@@ -1,0 +1,84 @@
+from snakemake.remote.GS import RemoteProvider as GSRemoteProvider
+GS = GSRemoteProvider()
+
+
+#configfile: "config_lostruct/config.yaml"
+include: "rules/common.smk"
+
+
+rule all:
+    input:
+        #config["vcfs"],
+        "results_lostruct/good_regions/chr1.10MB.blk.1_thin.vcf.gz"
+
+        #"results_lostruct/lostruct/lostruct_chr1_dists.txt",
+        #"results_lostruct/lostruct/lostruct_chr1_dists.png",
+
+
+##### Modules #####
+
+
+rule thin_variants_AC10:
+    input:
+        vcftable=config["vcfs"],
+        vcf=lambda wildcards: get_remote_vcf(wildcards),
+        #vcf=get_remote_vcf({wildcards.chrom},{block}),
+        regions=GS.remote(config["good_regions"]),
+    output:
+        outvcf=protected("results_lostruct/good_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz"),
+    log:
+        "logs/thin_variants/{chrom}.{block}.log",
+    shell:
+        """
+          bcftools view -c 10:major -c 10:nref \
+          -R {input.regions} \
+          -o {output.outvcf} -O z \
+          {input.vcf}
+        """
+
+
+
+rule lostruct_block:
+    input:
+        pcblock="results_lostruct/good_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz",
+    output:
+        lsblock=temporary("results_lostruct/lostruct/lostruct_pcs_chr{chrom}_blk{block}.txt"),
+        lsblockposn=temporary("results_lostruct/lostruct/lostruct_pcs_chr{chrom}_blk{block}.pos.txt"),
+    log:
+        "logs/lostruct/chr{chrom}_blk{block}.log",
+    shell:
+        """Rscript scripts/lostruct_pcs_block.R --vanilla \
+              {input.pcblock} {wildcards.chrom} {wildcards.block} {output.lsblock}
+        """
+
+rule lostruct_merge_sort:
+    input:
+        # pcblocks=expand(
+        #      "results/lostruct/lostruct_pcs_chr{chrom}_blk{block}.txt",
+        #      chrom=lambda wildcards: '{chrom}'.replace(wildcards.chrom),
+        #      block=lambda wildcards: get_chrom_blocks(wildcards)
+        #  ),
+        vcftable=config["vcfs"],
+        pcblocks=lambda wildcards: expand("results_lostruct/lostruct/lostruct_pcs_{blockstring}.txt",
+                                          blockstring=get_chrom_blocks_string(wildcards))
+    output:
+        "results_lostruct/lostruct/lostruct_chr{chrom}_pcs.txt",
+    log:
+        "logs/lostruct_merge/merge-chr{chrom}.log",
+    shell:
+        """cat {input.pcblocks} | sort -k1,2g > {output}
+        """
+
+
+rule lostruct_distance:
+    input:
+        chromblock="results_lostruct/lostruct/lostruct_chr{chrom}_pcs.txt",
+    output:
+        pcs="results_lostruct/lostruct/lostruct_chr{chrom}_dists.txt",
+        png="results_lostruct/lostruct/lostruct_chr{chrom}_dists.png",
+    log:
+        log="logs/lostruct_merge/merge-chr{chrom}.log",
+    shell:
+        """Rscript scripts/lostruct_calc_distance.R --vanilla \
+              {input.chromblock} {output.pcs} {output.png}
+        """

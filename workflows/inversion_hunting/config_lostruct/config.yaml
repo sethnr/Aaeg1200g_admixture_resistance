@@ -1,0 +1,16 @@
+good_regions: "gs://verily-aaeg1200g/genome_mask_files/snpable_no_outliers.bed.gz"
+#samples: "config/samples.tsv"
+
+vcfs: "config_lostruct/vcfs_head.tsv"
+# vcfs: "resources/Aaeg1000g_vcfs.tsv"
+
+
+#rawdata_bucket: "gs://verily-aaeg1200g/"
+
+ref:
+  # ensembl species name
+  species: Aedes_aegypti
+  # ensembl release
+  release: 100
+  # genome build
+  build: AaegL5

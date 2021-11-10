@@ -1,0 +1,3 @@
+chrom	block	vcflocal	vcf
+1	1	aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr1.10MB.blck.1.reg.comp.vcf.gz	gs://verily-aaeg1200g/vcfs/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr1.10MB.blck.1.reg.comp.vcf.gz
+1	2	aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr1.10MB.blck.2.reg.comp.vcf.gz	gs://verily-aaeg1200g/vcfs/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr1.10MB.blck.2.reg.comp.vcf.gz

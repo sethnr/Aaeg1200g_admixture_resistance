@@ -1,0 +1,32 @@
+gsutil cp gs://verily-aaeg1200g/read_depth/aegy.wgs.AfrI3.Franceville.GoodIntSites.depthSample ./
+
+bcftools view -R rawdata/genome_mask_files/norepeat_5_30x_coverage.bed.gz \
+   -o data/good_regions/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr1.10MB.blck.1.reg.comp.vcf.gz -O z \
+   rawdata/vcfs/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr1.10MB.blck.1.reg.comp.vcf.gz
+
+
+
+SNP counts (all bi-SNPs):
+c1b1 unfiltered                 9758927
+c1b1 norepeat_5-30              2248159
+c1b1 snpable_no_outliers        1980845
+c1b1 snpable_no_outliers_AC2     943932
+c1b1 snpable_no_outliers_AC3     793750
+c1b1 snpable_no_outliers_AC10    465028
+c1b1 snpable_no_outliers_thin20   92382
+c1b1 snpable_no_outliers_thin100  23179
+
+bcftools view -c 3:major -c 3:nref \
+  -R rawdata/genome_mask_files/norepeat_5_30x_coverage.bed.gz \
+  -o data/good_regions/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr1.10MB.blck.1.reg.comp.AC3.vcf.gz -O z \
+  rawdata/vcfs/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr1.10MB.blck.1.reg.comp.vcf.gz
+
+vcftools --thin 100 --gzvcf data/snpable_no_outliers/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr1.10MB.blck.1.reg.comp.AC3.vcf.gz
+
+
+snakemake --default-remote-provider GS  --default-remote-prefix redmond-lab-analysis \
+  --use-singularity  -j 99 --nolock --kubernetes
+
+
+# docker 0.01, builds, but "too many symlinks" issue with singularity
+# redoing.... 
