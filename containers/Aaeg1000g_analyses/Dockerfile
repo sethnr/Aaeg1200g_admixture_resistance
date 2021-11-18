@@ -29,7 +29,7 @@ RUN mamba install -c bioconda -c conda-forge -y snakemake
 RUN mamba install -c bioconda snakemake-wrapper-utils
 
 RUN mamba install -c bioconda -y bedops
-RUN mamba install -c bioconda -y bcftools
+RUN mamba install -c bioconda/label/main -y bcftools
 RUN mamba install -c bioconda -y vcftools
 
 RUN mamba install -c bioconda -y pindel

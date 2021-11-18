@@ -9,16 +9,15 @@ include: "rules/common.smk"
 rule all:
     input:
         #config["vcfs"],
-        "results_lostruct/good_regions/chr1.10MB.blk.1_thin.vcf.gz"
-
-        #"results_lostruct/lostruct/lostruct_chr1_dists.txt",
-        #"results_lostruct/lostruct/lostruct_chr1_dists.png",
+        # "results_lostruct/good_regions/chr1.10MB.blk.1_thin.vcf.gz"
+        "results_lostruct/lostruct/lostruct_chr1_dists.txt",
+        "results_lostruct/lostruct/lostruct_chr1_dists.png",
 
 
 ##### Modules #####
 
 
-rule thin_variants_AC10:
+rule thin_variants:
     input:
         vcftable=config["vcfs"],
         vcf=lambda wildcards: get_remote_vcf(wildcards),
@@ -26,11 +25,18 @@ rule thin_variants_AC10:
         regions=GS.remote(config["good_regions"]),
     output:
         outvcf=protected("results_lostruct/good_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz"),
+    resources:
+        mem_mb=3000,
+        disk_mb=500000,
+    threads: 1,
     log:
         "logs/thin_variants/{chrom}.{block}.log",
     shell:
         """
-          bcftools view -c 10:major -c 10:nref \
+          bcftools index -t {input.vcf};
+
+          bcftools view --threads 1 \
+          -c 10:major -c 10:nref \
           -R {input.regions} \
           -o {output.outvcf} -O z \
           {input.vcf}
@@ -38,17 +44,40 @@ rule thin_variants_AC10:
 
 
 
+# rule thin_variants_AC10:
+#     input:
+#         vcftable=config["vcfs"],
+#         vcf=lambda wildcards: get_remote_vcf(wildcards),
+#         #vcf=get_remote_vcf({wildcards.chrom},{block}),
+#         regions=GS.remote(config["good_regions"]),
+#     output:
+#         outvcf=protected("results_lostruct/good_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz"),
+#     log:
+#         "logs/thin_variants/{chrom}.{block}.log",
+#     shell:
+#         """
+#           bcftools view -c 10:major -c 10:nref \
+#           -R {input.regions} \
+#           -o {output.outvcf} -O z \
+#           {input.vcf}
+#         """
+
+
+
+
 rule lostruct_block:
     input:
         pcblock="results_lostruct/good_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz",
+        pcblocktbi="results_lostruct/good_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz.tbi",
     output:
         lsblock=temporary("results_lostruct/lostruct/lostruct_pcs_chr{chrom}_blk{block}.txt"),
-        lsblockposn=temporary("results_lostruct/lostruct/lostruct_pcs_chr{chrom}_blk{block}.pos.txt"),
+        #lsblockposn=temporary("results_lostruct/lostruct/lostruct_pcs_chr{chrom}_blk{block}.pos.txt"),
     log:
         "logs/lostruct/chr{chrom}_blk{block}.log",
     shell:
-        """Rscript scripts/lostruct_pcs_block.R --vanilla \
-              {input.pcblock} {wildcards.chrom} {wildcards.block} {output.lsblock}
+        """Rscript --vanilla scripts/lostruct_pcs_block.R \
+              {input.pcblock} {wildcards.chrom} {wildcards.block} {output.lsblock} \
+              2> {log}
         """
 
 rule lostruct_merge_sort:
@@ -66,7 +95,7 @@ rule lostruct_merge_sort:
     log:
         "logs/lostruct_merge/merge-chr{chrom}.log",
     shell:
-        """cat {input.pcblocks} | sort -k1,2g > {output}
+        """cat {input.pcblocks} | sort -u -k1,1df -k2,3g > {output}
         """
 
 
@@ -79,6 +108,20 @@ rule lostruct_distance:
     log:
         log="logs/lostruct_merge/merge-chr{chrom}.log",
     shell:
-        """Rscript scripts/lostruct_calc_distance.R --vanilla \
-              {input.chromblock} {output.pcs} {output.png}
+        """Rscript --vanilla scripts/lostruct_calc_distance.R \
+              {input.chromblock} {output.pcs} {output.png} \
+              2> {log}
         """
+
+
+rule tabix_vcf:
+    input:
+        "results_lostruct/{calltype}/{vcfname}.vcf.gz"
+    output:
+        "results_lostruct/{calltype}/{vcfname}.vcf.gz.tbi",
+    log:
+        "logs/tabix/{calltype}/{vcfname}.vcf.log",
+    params:
+        "-p vcf",
+    wrapper:
+        "0.74.0/bio/tabix"
