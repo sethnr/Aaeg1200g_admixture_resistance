@@ -35,7 +35,6 @@ def get_remote_vcf(wildcards):
     """Get vcf of given chrom and block """
     return GS.remote(vcf.loc[wildcards.chrom,wildcards.block].vcf)
 
-
 # def get_chrom_vcfs(wildcards):
 #     """Get vcfs of given chrom"""
 #     return vcfs.loc[(wildcards.chrom)].vcf
@@ -49,3 +48,10 @@ def get_chrom_blocks_string(wildcards):
     """Get block strings for given chrom"""
     return expand("chr{chrom}_blk{block}",chrom=wildcards.chrom,
                                           block=vcfs.loc[(wildcards.chrom)].block)
+
+# def get_chrom_blocks_spp_string(wildcards):
+#     vcfs = pd.read_table(config["vcfs"],dtype = str).set_index("chrom")
+#     """Get block strings for given chrom"""
+#     return expand("chr{chrom}_blk{block}_spp{spp}",chrom=wildcards.chrom,
+#                                           block=vcfs.loc[(wildcards.chrom)].block,
+#                                           spp=wildcards.spp)

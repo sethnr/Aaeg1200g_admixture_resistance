@@ -8,7 +8,7 @@ export ZONE="us-central1";
 export MACHINE_TYPE="n1-standard-4"
 
 gcloud container clusters create $CLUSTER_NAME \
-    --zone=$ZONE --num-nodes=6 \
+    --zone=$ZONE --num-nodes=1 \
     --machine-type=$MACHINE_TYPE \
     --scopes storage-rw \
     --image-type=UBUNTU \

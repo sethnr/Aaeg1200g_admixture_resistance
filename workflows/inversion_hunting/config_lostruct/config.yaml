@@ -1,8 +1,9 @@
 good_regions: "gs://verily-aaeg1200g/genome_mask_files/snpable_no_outliers.bed.gz"
 #samples: "config/samples.tsv"
 
-#vcfs: "config_lostruct/vcfs_head.tsv"
-vcfs: "config_lostruct/vcfs_tab.tsv"
+vcfs: "config_lostruct/vcfs_head.tsv"
+#vcfs: "config_lostruct/vcfs_tab.tsv"
+spptable: "resources/meta_Aaeg1kg_spp.txt"
 
 
 #rawdata_bucket: "gs://verily-aaeg1200g/"

@@ -5,14 +5,33 @@ GS = GSRemoteProvider()
 #configfile: "config_lostruct/config.yaml"
 include: "rules/common.smk"
 
+wildcard_constraints:
+    block="\d+",
+    chrom="\d+",
+    #spp="AAA|AAF|ADMX"
 
 rule all:
     input:
-        #config["vcfs"],
-        # "results_lostruct/good_regions/chr1.10MB.blk.1_thin.vcf.gz"
         "results_lostruct/lostruct/lostruct_chr1_dists.txt",
         "results_lostruct/lostruct/lostruct_chr1_dists.png",
+        # "results_lostruct/lostruct/lostruct_chr2_dists.txt",
+        # "results_lostruct/lostruct/lostruct_chr2_dists.png",
+        # "results_lostruct/lostruct/lostruct_chr3_dists.txt",
+        # "results_lostruct/lostruct/lostruct_chr3_dists.png",
 
+rule all_aaa:
+    input:
+        "results_lostruct/lostruct/lostruct_chr1_dists_aaa.txt",
+        "results_lostruct/lostruct/lostruct_chr1_dists_aaa.png",
+
+rule all2:
+    input:
+        "results_lostruct/lostruct/lostruct_chr2_dists.txt",
+        "results_lostruct/lostruct/lostruct_chr2_dists.png",
+
+rule get_pcs_chr:
+    input:
+        "results_lostruct/lostruct/lostruct_chr1_pcs.txt",
 
 ##### Modules #####
 
@@ -33,36 +52,14 @@ rule thin_variants:
         "logs/thin_variants/{chrom}.{block}.log",
     shell:
         """
-          bcftools index -t {input.vcf};
+          bcftools index -t {input.vcf} 2> {log};
 
           bcftools view --threads 1 \
           -c 10:major -c 10:nref \
           -R {input.regions} \
           -o {output.outvcf} -O z \
-          {input.vcf}
+          {input.vcf} 2> {log}
         """
-
-
-
-# rule thin_variants_AC10:
-#     input:
-#         vcftable=config["vcfs"],
-#         vcf=lambda wildcards: get_remote_vcf(wildcards),
-#         #vcf=get_remote_vcf({wildcards.chrom},{block}),
-#         regions=GS.remote(config["good_regions"]),
-#     output:
-#         outvcf=protected("results_lostruct/good_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz"),
-#     log:
-#         "logs/thin_variants/{chrom}.{block}.log",
-#     shell:
-#         """
-#           bcftools view -c 10:major -c 10:nref \
-#           -R {input.regions} \
-#           -o {output.outvcf} -O z \
-#           {input.vcf}
-#         """
-
-
 
 
 rule lostruct_block:
@@ -70,7 +67,7 @@ rule lostruct_block:
         pcblock="results_lostruct/good_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz",
         pcblocktbi="results_lostruct/good_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz.tbi",
     output:
-        lsblock=temporary("results_lostruct/lostruct/lostruct_pcs_chr{chrom}_blk{block}.txt"),
+        lsblock=temporary("results_lostruct/lostruct_pcs/lostruct_pcs_chr{chrom}_blk{block}.txt"),
         #lsblockposn=temporary("results_lostruct/lostruct/lostruct_pcs_chr{chrom}_blk{block}.pos.txt"),
     log:
         "logs/lostruct/chr{chrom}_blk{block}.log",
@@ -80,18 +77,15 @@ rule lostruct_block:
               2> {log}
         """
 
+
+
 rule lostruct_merge_sort:
     input:
-        # pcblocks=expand(
-        #      "results/lostruct/lostruct_pcs_chr{chrom}_blk{block}.txt",
-        #      chrom=lambda wildcards: '{chrom}'.replace(wildcards.chrom),
-        #      block=lambda wildcards: get_chrom_blocks(wildcards)
-        #  ),
         vcftable=config["vcfs"],
         pcblocks=lambda wildcards: expand("results_lostruct/lostruct/lostruct_pcs_{blockstring}.txt",
                                           blockstring=get_chrom_blocks_string(wildcards))
     output:
-        "results_lostruct/lostruct/lostruct_chr{chrom}_pcs.txt",
+        "results_lostruct/lostruct_pcs/lostruct_chr{chrom}_pcs.txt",
     log:
         "logs/lostruct_merge/merge-chr{chrom}.log",
     shell:
@@ -101,10 +95,10 @@ rule lostruct_merge_sort:
 
 rule lostruct_distance:
     input:
-        chromblock="results_lostruct/lostruct/lostruct_chr{chrom}_pcs.txt",
+        chromblock="results_lostruct/lostruct_pcs/lostruct_chr{chrom}_pcs.txt",
     output:
-        pcs="results_lostruct/lostruct/lostruct_chr{chrom}_dists.txt",
-        png="results_lostruct/lostruct/lostruct_chr{chrom}_dists.png",
+        pcs="results_lostruct/lostruct_dists/lostruct_chr{chrom}_dists.txt",
+        png="results_lostruct/lostruct_dists/lostruct_chr{chrom}_dists.png",
     log:
         log="logs/lostruct_merge/merge-chr{chrom}.log",
     shell:
@@ -112,6 +106,54 @@ rule lostruct_distance:
               {input.chromblock} {output.pcs} {output.png} \
               2> {log}
         """
+
+rule lostruct_block_spp:
+    input:
+        spptable=config["spptable"],
+        pcblock="results_lostruct/good_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz",
+        pcblocktbi="results_lostruct/good_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz.tbi",
+    output:
+        lsblock=temporary("results_lostruct/lostruct_pcs/lostruct_pcs_chr{chrom}_blk{block}_{spp}.txt"),
+        #lsblockposn=temporary("results_lostruct/lostruct/lostruct_pcs_chr{chrom}_blk{block}.pos.txt"),
+    log:
+        "logs/lostruct/chr{chrom}_blk{block}_{spp}.log",
+    shell:
+        """Rscript --vanilla scripts/lostruct_pcs_block_spp.R \
+              {input.pcblock} {wildcards.chrom} {wildcards.block} \
+              {input.spptable} {wildcards.spp} \
+              {output.lsblock} \
+              2> {log}
+        """
+
+rule lostruct_merge_sort_spp:
+    input:
+        vcftable=config["vcfs"],
+        pcblocks=lambda wildcards: expand("results_lostruct/lostruct_pcs/lostruct_pcs_{blockstring}_{{spp}}.txt",
+                                          blockstring=get_chrom_blocks_string(wildcards))
+    output:
+        "results_lostruct/lostruct_pcs/lostruct_chr{chrom}_pcs_{spp}.txt",
+    log:
+        "logs/lostruct_merge/merge-chr{chrom}_{spp}.log",
+    shell:
+        """cat {input.pcblocks} | sort -u -k1,1df -k2,3g > {output}
+        """
+
+
+rule lostruct_distance_spp:
+    input:
+        chromblock="results_lostruct/lostruct_pcs/lostruct_chr{chrom}_pcs_{spp}.txt",
+    output:
+        pcs="results_lostruct/lostruct_dists/lostruct_chr{chrom}_dists_{spp}.txt",
+        png="results_lostruct/lostruct_dists/lostruct_chr{chrom}_dists_{spp}.png",
+    log:
+        log="logs/lostruct_merge/merge-chr{chrom}_{spp}.log",
+    shell:
+        """Rscript --vanilla scripts/lostruct_calc_distance.R \
+              {input.chromblock} {output.pcs} {output.png} \
+              2> {log}
+        """
+
+
 
 
 rule tabix_vcf:

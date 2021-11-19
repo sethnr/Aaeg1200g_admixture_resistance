@@ -27,6 +27,13 @@ vcftools --thin 100 --gzvcf data/snpable_no_outliers/aegy.wgs.aaa.aaf.mapQ20.Goo
 snakemake --default-remote-provider GS  --default-remote-prefix redmond-lab-analysis \
   --use-singularity  -j 99 --nolock --kubernetes
 
-
 # docker 0.01, builds, but "too many symlinks" issue with singularity
 # redoing.... 
+
+
+#some blocks failing when running on cluster, recheck manually:
+bcftools view \
+  -R rawdata/genome_mask_files/snpable_no_outliers.chr1.bed.gz \
+  -o data/good_regions/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr1.10MB.blck.30.reg.comp.AC0.vcf.gz -O z \
+  rawdata/vcfs/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr1.10MB.blck.30.reg.comp.vcf.gz
+
