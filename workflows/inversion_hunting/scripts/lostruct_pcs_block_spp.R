@@ -7,7 +7,7 @@ vcf = args[1]
 chrom = as.numeric(args[2])
 block = as.numeric(args[3])
 sppfile = args[4]
-spp = args[5]
+spp = tolower(args[5])
 outfile = args[6]
 
 write(paste("vcf =",vcf),file=stderr())
@@ -30,20 +30,20 @@ regions <- data.frame("chrom"=rep(chromname[chrom],100),
 # snps <- vcf_windower(vcf,size=pcblocksize,type='bp')
 #pcs <- eigen_windows(snps,k=2)
 
-spptab <- read.table(spptable,header=T)
-samples <- spptab$sample[spptab$spp==spp]
+spptab <- read.table(sppfile,header=T, sep="\t")
+samples <- spptab$sample[tolower(spptab$spp)==spp]
 
 get_set_size_blocks <- function(n) {vcf_query(vcf,regions=regions[n,],samples=samples)}
 attr(get_set_size_blocks,"max.n") <- vcfblocksize/pcblocksize
 #attr(get_set_size_blocks,"max.n") <- 10
-attr(get_set_size_blocks,"samples") <- vcf_samples(vcf)
+attr(get_set_size_blocks,"samples") <- samples #vcf_samples(vcf)
 
 #get 1/2 principal components for all windows:
 write(paste("getting 2PCs for ",nrow(regions),"blocks"),file=stderr())
 pcs <- eigen_windows(get_set_size_blocks,k=2)
 
-snps1 <- get_set_size_blocks(1)
 write("=== SNPS ===",file=stderr())
+snps1 <- get_set_size_blocks(1)
 write.table(snps1[1:10,],file=stderr(),col.names=T,quote=F,row.names=F)
 write("=== REGIONS ===",file=stderr())
 write.table(regions[1:10,],file=stderr(),col.names=T,quote=F,row.names=F)

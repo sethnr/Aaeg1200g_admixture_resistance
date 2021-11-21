@@ -12,26 +12,32 @@ wildcard_constraints:
 
 rule all:
     input:
-        "results_lostruct/lostruct/lostruct_chr1_dists.txt",
-        "results_lostruct/lostruct/lostruct_chr1_dists.png",
-        # "results_lostruct/lostruct/lostruct_chr2_dists.txt",
-        # "results_lostruct/lostruct/lostruct_chr2_dists.png",
-        # "results_lostruct/lostruct/lostruct_chr3_dists.txt",
-        # "results_lostruct/lostruct/lostruct_chr3_dists.png",
+        #"results_lostruct/lostruct_dists/lostruct_chr1_dists.txt",
+        #"results_lostruct/lostruct_dists/lostruct_chr1_dists.png",
+        "results_lostruct/lostruct_dists/lostruct_chr2_dists.txt",
+        "results_lostruct/lostruct_dists/lostruct_chr2_dists.png",
+        "results_lostruct/lostruct_dists/lostruct_chr3_dists.txt",
+        "results_lostruct/lostruct_dists/lostruct_chr3_dists.png",
 
-rule all_aaa:
+rule all_spps:
     input:
-        "results_lostruct/lostruct/lostruct_chr1_dists_aaa.txt",
-        "results_lostruct/lostruct/lostruct_chr1_dists_aaa.png",
+        "results_lostruct/lostruct_dists/lostruct_chr1_dists_aaa.txt",
+        "results_lostruct/lostruct_dists/lostruct_chr1_dists_aaa.png",
+        "results_lostruct/lostruct_dists/lostruct_chr1_dists_aaf.txt",
+        "results_lostruct/lostruct_dists/lostruct_chr1_dists_aaf.png",
 
-rule all2:
+rule all_chr1:
     input:
-        "results_lostruct/lostruct/lostruct_chr2_dists.txt",
-        "results_lostruct/lostruct/lostruct_chr2_dists.png",
+        "results_lostruct/lostruct_dists/lostruct_chr1_dists.txt",
+        "results_lostruct/lostruct_dists/lostruct_chr1_dists.png",
+        "results_lostruct/lostruct_dists/lostruct_chr1_dists_aaa.txt",
+        "results_lostruct/lostruct_dists/lostruct_chr1_dists_aaa.png",
+        "results_lostruct/lostruct_dists/lostruct_chr1_dists_aaf.txt",
+        "results_lostruct/lostruct_dists/lostruct_chr1_dists_aaf.png",
 
 rule get_pcs_chr:
     input:
-        "results_lostruct/lostruct/lostruct_chr1_pcs.txt",
+        "results_lostruct/lostruct_pcs/lostruct_chr1_pcs.txt",
 
 ##### Modules #####
 
@@ -61,11 +67,40 @@ rule thin_variants:
           {input.vcf} 2> {log}
         """
 
+rule thin_variants_noreps:
+    input:
+        vcftable=config["vcfs"],
+        vcf=lambda wildcards: get_remote_vcf(wildcards),
+        #vcf=get_remote_vcf({wildcards.chrom},{block}),
+        regions=GS.remote(config["norep_regions"]),
+    output:
+        outvcf=protected("results_lostruct/norep_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz"),
+    resources:
+        mem_mb=3000,
+        disk_mb=500000,
+    threads: 1,
+    log:
+        "logs/thin_variants_norep/{chrom}.{block}.log",
+    shell:
+        """
+          bcftools index -t {input.vcf} 2> {log};
+
+          bcftools view --threads 1 \
+          -c 10:major -c 10:nref \
+          -R {input.regions} \
+          -o {output.outvcf} -O z \
+          {input.vcf} 2> {log}
+        """
+
+
+
 
 rule lostruct_block:
     input:
-        pcblock="results_lostruct/good_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz",
-        pcblocktbi="results_lostruct/good_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz.tbi",
+#        pcblock="results_lostruct/good_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz",
+#        pcblocktbi="results_lostruct/good_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz.tbi",
+        pcblock="results_lostruct/norep_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz",
+        pcblocktbi="results_lostruct/norep_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz.tbi",
     output:
         lsblock=temporary("results_lostruct/lostruct_pcs/lostruct_pcs_chr{chrom}_blk{block}.txt"),
         #lsblockposn=temporary("results_lostruct/lostruct/lostruct_pcs_chr{chrom}_blk{block}.pos.txt"),
@@ -82,7 +117,7 @@ rule lostruct_block:
 rule lostruct_merge_sort:
     input:
         vcftable=config["vcfs"],
-        pcblocks=lambda wildcards: expand("results_lostruct/lostruct/lostruct_pcs_{blockstring}.txt",
+        pcblocks=lambda wildcards: expand("results_lostruct/lostruct_pcs/lostruct_pcs_{blockstring}.txt",
                                           blockstring=get_chrom_blocks_string(wildcards))
     output:
         "results_lostruct/lostruct_pcs/lostruct_chr{chrom}_pcs.txt",
@@ -107,11 +142,14 @@ rule lostruct_distance:
               2> {log}
         """
 
+######
+# redo lostruct analysis but for one spp only
+#####
 rule lostruct_block_spp:
     input:
         spptable=config["spptable"],
-        pcblock="results_lostruct/good_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz",
-        pcblocktbi="results_lostruct/good_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz.tbi",
+        pcblock="results_lostruct/norep_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz",
+        pcblocktbi="results_lostruct/norep_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz.tbi",
     output:
         lsblock=temporary("results_lostruct/lostruct_pcs/lostruct_pcs_chr{chrom}_blk{block}_{spp}.txt"),
         #lsblockposn=temporary("results_lostruct/lostruct/lostruct_pcs_chr{chrom}_blk{block}.pos.txt"),
