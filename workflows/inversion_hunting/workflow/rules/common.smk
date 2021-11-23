@@ -55,3 +55,18 @@ def get_chrom_blocks_string(wildcards):
 #     return expand("chr{chrom}_blk{block}_spp{spp}",chrom=wildcards.chrom,
 #                                           block=vcfs.loc[(wildcards.chrom)].block,
 #                                           spp=wildcards.spp)
+
+
+
+
+rule tabix_vcf:
+    input:
+        "results_lostruct/{calltype}/{vcfname}.vcf.gz"
+    output:
+        "results_lostruct/{calltype}/{vcfname}.vcf.gz.tbi",
+    log:
+        "logs/tabix/{calltype}/{vcfname}.vcf.log",
+    params:
+        "-p vcf",
+    wrapper:
+        "0.74.0/bio/tabix"

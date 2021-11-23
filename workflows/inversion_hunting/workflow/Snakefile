@@ -8,32 +8,41 @@ include: "rules/common.smk"
 wildcard_constraints:
     block="\d+",
     chrom="\d+",
-    #spp="AAA|AAF|ADMX"
+    spp="aaa|aaf|admx",
+    cont="americas|asia|wafrica|eafrica"
 
 rule all:
     input:
         #"results_lostruct/lostruct_dists/lostruct_chr1_dists.txt",
         #"results_lostruct/lostruct_dists/lostruct_chr1_dists.png",
-        "results_lostruct/lostruct_dists/lostruct_chr2_dists.txt",
-        "results_lostruct/lostruct_dists/lostruct_chr2_dists.png",
-        "results_lostruct/lostruct_dists/lostruct_chr3_dists.txt",
-        "results_lostruct/lostruct_dists/lostruct_chr3_dists.png",
+        # "results_lostruct/lostruct_dists/lostruct_chr2_dists.txt",
+        # "results_lostruct/lostruct_dists/lostruct_chr2_dists.png",
+        # "results_lostruct/lostruct_dists/lostruct_chr3_dists.txt",
+        # "results_lostruct/lostruct_dists/lostruct_chr3_dists.png",
+        # "results_lostruct/lostruct_dists/lostruct_chr1_dists_aaa.txt",
+        # "results_lostruct/lostruct_dists/lostruct_chr1_dists_aaa.png",
+        # "results_lostruct/lostruct_dists/lostruct_chr1_dists_aaf.txt",
+        # "results_lostruct/lostruct_dists/lostruct_chr1_dists_aaf.png",
+        "results_lostruct/lostruct_dists/lostruct_chr2_dists_aaa.txt",
+        "results_lostruct/lostruct_dists/lostruct_chr2_dists_aaa.png",
+        "results_lostruct/lostruct_dists/lostruct_chr2_dists_aaf.txt",
+        "results_lostruct/lostruct_dists/lostruct_chr2_dists_aaf.png",
+        "results_lostruct/lostruct_dists/lostruct_chr3_dists_aaa.txt",
+        "results_lostruct/lostruct_dists/lostruct_chr3_dists_aaa.png",
+        "results_lostruct/lostruct_dists/lostruct_chr3_dists_aaf.txt",
+        "results_lostruct/lostruct_dists/lostruct_chr3_dists_aaf.png",
 
-rule all_spps:
+rule all_conts:
     input:
-        "results_lostruct/lostruct_dists/lostruct_chr1_dists_aaa.txt",
-        "results_lostruct/lostruct_dists/lostruct_chr1_dists_aaa.png",
-        "results_lostruct/lostruct_dists/lostruct_chr1_dists_aaf.txt",
-        "results_lostruct/lostruct_dists/lostruct_chr1_dists_aaf.png",
+        "results_lostruct/lostruct_dists/lostruct_chr1_dists_americas.txt",
+        "results_lostruct/lostruct_dists/lostruct_chr1_dists_americas.png",
+        "results_lostruct/lostruct_dists/lostruct_chr1_dists_asia.txt",
+        "results_lostruct/lostruct_dists/lostruct_chr1_dists_asia.png",
+        "results_lostruct/lostruct_dists/lostruct_chr1_dists_wafrica.txt",
+        "results_lostruct/lostruct_dists/lostruct_chr1_dists_wafrica.png",
+        "results_lostruct/lostruct_dists/lostruct_chr1_dists_eafrica.txt",
+        "results_lostruct/lostruct_dists/lostruct_chr1_dists_eafrica.png",
 
-rule all_chr1:
-    input:
-        "results_lostruct/lostruct_dists/lostruct_chr1_dists.txt",
-        "results_lostruct/lostruct_dists/lostruct_chr1_dists.png",
-        "results_lostruct/lostruct_dists/lostruct_chr1_dists_aaa.txt",
-        "results_lostruct/lostruct_dists/lostruct_chr1_dists_aaa.png",
-        "results_lostruct/lostruct_dists/lostruct_chr1_dists_aaf.txt",
-        "results_lostruct/lostruct_dists/lostruct_chr1_dists_aaf.png",
 
 rule get_pcs_chr:
     input:
@@ -193,15 +202,51 @@ rule lostruct_distance_spp:
 
 
 
-
-rule tabix_vcf:
+######
+# redo lostruct analysis but for one continent/region only
+#####
+rule lostruct_block_cont:
     input:
-        "results_lostruct/{calltype}/{vcfname}.vcf.gz"
+        spptable=config["spptable"],
+        pcblock="results_lostruct/norep_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz",
+        pcblocktbi="results_lostruct/norep_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz.tbi",
     output:
-        "results_lostruct/{calltype}/{vcfname}.vcf.gz.tbi",
+        lsblock=temporary("results_lostruct/lostruct_pcs/lostruct_pcs_chr{chrom}_blk{block}_{cont}.txt"),
+        #lsblockposn=temporary("results_lostruct/lostruct/lostruct_pcs_chr{chrom}_blk{block}.pos.txt"),
     log:
-        "logs/tabix/{calltype}/{vcfname}.vcf.log",
-    params:
-        "-p vcf",
-    wrapper:
-        "0.74.0/bio/tabix"
+        "logs/lostruct/chr{chrom}_blk{block}_{cont}.log",
+    shell:
+        """Rscript --vanilla scripts/lostruct_pcs_block_cont.R \
+              {input.pcblock} {wildcards.chrom} {wildcards.block} \
+              {input.spptable} {wildcards.cont} \
+              {output.lsblock} \
+              2> {log}
+        """
+
+rule lostruct_merge_sort_cont:
+    input:
+        vcftable=config["vcfs"],
+        pcblocks=lambda wildcards: expand("results_lostruct/lostruct_pcs/lostruct_pcs_{blockstring}_{{cont}}.txt",
+                                          blockstring=get_chrom_blocks_string(wildcards))
+    output:
+        "results_lostruct/lostruct_pcs/lostruct_chr{chrom}_pcs_{cont}.txt",
+    log:
+        "logs/lostruct_merge/merge-chr{chrom}_{cont}.log",
+    shell:
+        """cat {input.pcblocks} | sort -u -k1,1df -k2,3g > {output}
+        """
+
+
+rule lostruct_distance_cont:
+    input:
+        chromblock="results_lostruct/lostruct_pcs/lostruct_chr{chrom}_pcs_{cont}.txt",
+    output:
+        pcs="results_lostruct/lostruct_dists/lostruct_chr{chrom}_dists_{cont}.txt",
+        png="results_lostruct/lostruct_dists/lostruct_chr{chrom}_dists_{cont}.png",
+    log:
+        log="logs/lostruct_merge/merge-chr{chrom}_{cont}.log",
+    shell:
+        """Rscript --vanilla scripts/lostruct_calc_distance.R \
+              {input.chromblock} {output.pcs} {output.png} \
+              2> {log}
+        """
