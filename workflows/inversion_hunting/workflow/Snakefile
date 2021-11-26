@@ -5,14 +5,33 @@ GS = GSRemoteProvider()
 #configfile: "config_lostruct/config.yaml"
 include: "rules/common.smk"
 
+
+#spps = ["aaa", "aaf", "admx"]
+spps = ["aaa", "aaf"]
+conts = ["americas", "asia", "eafrica", "wafrica"]
+
 wildcard_constraints:
     block="\d+",
     chrom="\d+",
-    spp="aaa|aaf|admx",
-    cont="americas|asia|wafrica|eafrica"
+    #spp="aaa|aaf|admx",
+    #cont="americas|asia|wafrica|eafrica",
+    #location="aaa|aaf|admx|americas|asia|wafrica|eafrica"
+    spp="|".join(spps),
+    cont="|".join(conts),
+    location="|".join(conts+spps),
+
+
 
 rule all:
     input:
+        expand("results_lostruct/lostruct_dists/lostruct_chr{chrid}_{loc}_pca_composite.png",
+                chrid=[1,2,3],loc=conts),
+        # expand(["results_lostruct/lostruct_dists/lostruct_chr{chrid}_dists.txt",
+        #         "results_lostruct/lostruct_dists/lostruct_chr{chrid}_dists.png"],
+        #         chrid=[2]),
+        # expand(["results_lostruct/lostruct_dists/lostruct_chr{chrid}_dists_{loc}.txt",
+        #         "results_lostruct/lostruct_dists/lostruct_chr{chrid}_{loc}_pca_composite.png"],
+        #         chrid=[1,2,3],loc=spps+conts),
         #"results_lostruct/lostruct_dists/lostruct_chr1_dists.txt",
         #"results_lostruct/lostruct_dists/lostruct_chr1_dists.png",
         # "results_lostruct/lostruct_dists/lostruct_chr2_dists.txt",
@@ -23,30 +42,39 @@ rule all:
         # "results_lostruct/lostruct_dists/lostruct_chr1_dists_aaa.png",
         # "results_lostruct/lostruct_dists/lostruct_chr1_dists_aaf.txt",
         # "results_lostruct/lostruct_dists/lostruct_chr1_dists_aaf.png",
-        "results_lostruct/lostruct_dists/lostruct_chr2_dists_aaa.txt",
-        "results_lostruct/lostruct_dists/lostruct_chr2_dists_aaa.png",
-        "results_lostruct/lostruct_dists/lostruct_chr2_dists_aaf.txt",
-        "results_lostruct/lostruct_dists/lostruct_chr2_dists_aaf.png",
-        "results_lostruct/lostruct_dists/lostruct_chr3_dists_aaa.txt",
-        "results_lostruct/lostruct_dists/lostruct_chr3_dists_aaa.png",
-        "results_lostruct/lostruct_dists/lostruct_chr3_dists_aaf.txt",
-        "results_lostruct/lostruct_dists/lostruct_chr3_dists_aaf.png",
+        # "results_lostruct/lostruct_dists/lostruct_chr2_dists_aaa.txt",
+        # "results_lostruct/lostruct_dists/lostruct_chr2_dists_aaa.png",
+        # "results_lostruct/lostruct_dists/lostruct_chr2_dists_aaf.txt",
+        # "results_lostruct/lostruct_dists/lostruct_chr2_dists_aaf.png",
+        # "results_lostruct/lostruct_dists/lostruct_chr3_dists_aaa.txt",
+        # "results_lostruct/lostruct_dists/lostruct_chr3_dists_aaa.png",
+        # "results_lostruct/lostruct_dists/lostruct_chr3_dists_aaf.txt",
+        # "results_lostruct/lostruct_dists/lostruct_chr3_dists_aaf.png",
+        # "results_lostruct/lostruct_dists/lostruct_chr1_dists_americas.txt",
+        # "results_lostruct/lostruct_dists/lostruct_chr1_americas_pca_composite.png",
+        # "results_lostruct/lostruct_dists/lostruct_chr1_dists_asia.txt",
+        # "results_lostruct/lostruct_dists/lostruct_chr1_asia_pca_composite.png",
+        # "results_lostruct/lostruct_dists/lostruct_chr1_dists_wafrica.txt",
+        # "results_lostruct/lostruct_dists/lostruct_chr1_wafrica_pca_composite.png",
+        # "results_lostruct/lostruct_dists/lostruct_chr1_dists_eafrica.txt",
+        # "results_lostruct/lostruct_dists/lostruct_chr1_eafrica_pca_composite.png",
+        # "results_lostruct/lostruct_dists/lostruct_chr2_dists_americas.txt",
+        # "results_lostruct/lostruct_dists/lostruct_chr2_americas_pca_composite.png",
+        # "results_lostruct/lostruct_dists/lostruct_chr2_dists_asia.txt",
+        # "results_lostruct/lostruct_dists/lostruct_chr2_asia_pca_composite.png",
+        # "results_lostruct/lostruct_dists/lostruct_chr2_dists_wafrica.txt",
+        # "results_lostruct/lostruct_dists/lostruct_chr2_wafrica_pca_composite.png",
+        # "results_lostruct/lostruct_dists/lostruct_chr2_dists_eafrica.txt",
+        # "results_lostruct/lostruct_dists/lostruct_chr2_eafrica_pca_composite.png",
+        # "results_lostruct/lostruct_dists/lostruct_chr3_dists_americas.txt",
+        # "results_lostruct/lostruct_dists/lostruct_chr3_americas_pca_composite.png",
+        # "results_lostruct/lostruct_dists/lostruct_chr3_dists_asia.txt",
+        # "results_lostruct/lostruct_dists/lostruct_chr3_asia_pca_composite.png",
+        # "results_lostruct/lostruct_dists/lostruct_chr3_dists_wafrica.txt",
+        # "results_lostruct/lostruct_dists/lostruct_chr3_wafrica_pca_composite.png",
+        # "results_lostruct/lostruct_dists/lostruct_chr3_dists_eafrica.txt",
+        # "results_lostruct/lostruct_dists/lostruct_chr3_eafrica_pca_composite.png",
 
-rule all_conts:
-    input:
-        "results_lostruct/lostruct_dists/lostruct_chr1_dists_americas.txt",
-        "results_lostruct/lostruct_dists/lostruct_chr1_dists_americas.png",
-        "results_lostruct/lostruct_dists/lostruct_chr1_dists_asia.txt",
-        "results_lostruct/lostruct_dists/lostruct_chr1_dists_asia.png",
-        "results_lostruct/lostruct_dists/lostruct_chr1_dists_wafrica.txt",
-        "results_lostruct/lostruct_dists/lostruct_chr1_dists_wafrica.png",
-        "results_lostruct/lostruct_dists/lostruct_chr1_dists_eafrica.txt",
-        "results_lostruct/lostruct_dists/lostruct_chr1_dists_eafrica.png",
-
-
-rule get_pcs_chr:
-    input:
-        "results_lostruct/lostruct_pcs/lostruct_chr1_pcs.txt",
 
 ##### Modules #####
 
@@ -101,13 +129,8 @@ rule thin_variants_noreps:
           {input.vcf} 2> {log}
         """
 
-
-
-
 rule lostruct_block:
     input:
-#        pcblock="results_lostruct/good_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz",
-#        pcblocktbi="results_lostruct/good_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz.tbi",
         pcblock="results_lostruct/norep_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz",
         pcblocktbi="results_lostruct/norep_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz.tbi",
     output:
@@ -136,20 +159,45 @@ rule lostruct_merge_sort:
         """cat {input.pcblocks} | sort -u -k1,1df -k2,3g > {output}
         """
 
-
 rule lostruct_distance:
     input:
         chromblock="results_lostruct/lostruct_pcs/lostruct_chr{chrom}_pcs.txt",
     output:
         pcs="results_lostruct/lostruct_dists/lostruct_chr{chrom}_dists.txt",
         png="results_lostruct/lostruct_dists/lostruct_chr{chrom}_dists.png",
+    resources:
+        mem_mb=8000,
+        disk_mb=500000,
+    threads: 4
     log:
-        log="logs/lostruct_merge/merge-chr{chrom}.log",
+        log="logs/lostruct_dist/dist-chr{chrom}.log",
     shell:
         """Rscript --vanilla scripts/lostruct_calc_distance.R \
               {input.chromblock} {output.pcs} {output.png} \
               2> {log}
         """
+
+rule lostruct_composite:
+    input:
+        pcs="results_lostruct/lostruct_pcs/lostruct_chr{chrom}_pcs_{cont}.txt",
+        dists="results_lostruct/lostruct_dists/lostruct_chr{chrom}_dists_{cont}.txt",
+        invs=config["invtable"],
+    output:
+        overlay="results_lostruct/lostruct_dists/lostruct_chr{chrom}_{cont}_invs_overlay.png",
+        comp="results_lostruct/lostruct_dists/lostruct_chr{chrom}_{cont}_pca_composite.png",
+    params:
+        prefix="results_lostruct/lostruct_dists/lostruct_chr{chrom}_{cont}",
+    resources:
+        mem_mb=8000,
+        disk_mb=300000,
+    log:
+        log="logs/lostruct_dist/dist-chr{chrom}_{cont}_composite.log",
+    shell:
+        """ Rscript scripts/lostruct_dists_invs_overlay.R \
+        {input.dists} {input.pcs} {input.invs} \
+        {wildcards.chrom} {wildcards.cont} {params.prefix}
+        """
+
 
 ######
 # redo lostruct analysis but for one spp only
@@ -185,22 +233,23 @@ rule lostruct_merge_sort_spp:
         """cat {input.pcblocks} | sort -u -k1,1df -k2,3g > {output}
         """
 
-
 rule lostruct_distance_spp:
     input:
         chromblock="results_lostruct/lostruct_pcs/lostruct_chr{chrom}_pcs_{spp}.txt",
     output:
         pcs="results_lostruct/lostruct_dists/lostruct_chr{chrom}_dists_{spp}.txt",
         png="results_lostruct/lostruct_dists/lostruct_chr{chrom}_dists_{spp}.png",
+    resources:
+        mem_mb=15000,
+        disk_mb=500000,
+    threads: 4,
     log:
-        log="logs/lostruct_merge/merge-chr{chrom}_{spp}.log",
+        log="logs/lostruct_dist/dist-chr{chrom}_{spp}.log",
     shell:
         """Rscript --vanilla scripts/lostruct_calc_distance.R \
               {input.chromblock} {output.pcs} {output.png} \
               2> {log}
         """
-
-
 
 ######
 # redo lostruct analysis but for one continent/region only
@@ -216,7 +265,7 @@ rule lostruct_block_cont:
     log:
         "logs/lostruct/chr{chrom}_blk{block}_{cont}.log",
     shell:
-        """Rscript --vanilla scripts/lostruct_pcs_block_cont.R \
+        """Rscript --vanilla scripts/lostruct_pcs_block_continent.R \
               {input.pcblock} {wildcards.chrom} {wildcards.block} \
               {input.spptable} {wildcards.cont} \
               {output.lsblock} \
@@ -236,15 +285,18 @@ rule lostruct_merge_sort_cont:
         """cat {input.pcblocks} | sort -u -k1,1df -k2,3g > {output}
         """
 
-
 rule lostruct_distance_cont:
     input:
         chromblock="results_lostruct/lostruct_pcs/lostruct_chr{chrom}_pcs_{cont}.txt",
     output:
         pcs="results_lostruct/lostruct_dists/lostruct_chr{chrom}_dists_{cont}.txt",
         png="results_lostruct/lostruct_dists/lostruct_chr{chrom}_dists_{cont}.png",
+    resources:
+        mem_mb=15000,
+        disk_mb=500000,
+    threads: 4,
     log:
-        log="logs/lostruct_merge/merge-chr{chrom}_{cont}.log",
+        log="logs/lostruct_dist/dist-chr{chrom}_{cont}.log",
     shell:
         """Rscript --vanilla scripts/lostruct_calc_distance.R \
               {input.chromblock} {output.pcs} {output.png} \

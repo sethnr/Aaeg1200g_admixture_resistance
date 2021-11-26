@@ -8,13 +8,14 @@ inpcs <- args[1]
 outdist <- args[2]
 outpng <- args[3]
 
-cores <- 7
+cores <- 4
 
 intable <- read.table(inpcs,header=T)
 
 allposns <- intable %>% select(chrom,start,end)
 allpcs <- as.matrix(intable %>% select(-chrom,-start,-end))
 
+write("calculating PC distances",stderr())
 pcdist <- pc_dist(allpcs,npc=2,w=1,mc.cores=cores)
 
 
@@ -26,6 +27,7 @@ allposns$block <- blocks
 allposns$pos <- c(1:nrow(allposns))
 
 colnames(pcdistdf) <- blocks
+write("saving PC distances",stderr())
 write.table(pcdistdf,file=outdist,col.names = T,quote=F,sep="\t")
 
 
