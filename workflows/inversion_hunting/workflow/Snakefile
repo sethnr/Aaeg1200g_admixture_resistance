@@ -173,7 +173,7 @@ rule lostruct_distance:
         disk_mb=500000,
     threads: 4
     log:
-        log="logs/lostruct_dist/dist-chr{chrom}.log",
+        log="logs/lostruct_dists/dist-chr{chrom}.log",
     shell:
         """Rscript --vanilla scripts/lostruct_calc_distance.R \
               {input.chromblock} {output.pcs} {output.png} \
