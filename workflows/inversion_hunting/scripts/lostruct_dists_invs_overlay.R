@@ -50,7 +50,7 @@ pcdistflat <- pivot_longer(pcdistdf,cols=all_of(blocks),names_to = "y")
 pcdistflat <- merge(merge(pcdistflat,allposns,by.x="x",by.y="block"),allposns,by.x="y",by.y="block",suffixes = c(".x",".y"))
 
 #create dir if not exists
-dir.create(dirname(outfile))
+dir.create(dirname(outfile),recursive=T)
 #plot distances with inversions overlaid
 png(paste(outfile,"_invs_overlay.png",sep=""),width=7,height=7,res=400)
 pcdistsplot <- ggplot(pcdistflat,aes(x=pos.x,y=pos.y,fill=value)) + geom_raster() + 
