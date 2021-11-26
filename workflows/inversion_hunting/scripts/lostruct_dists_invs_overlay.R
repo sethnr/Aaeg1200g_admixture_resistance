@@ -56,7 +56,7 @@ pcdistsplot <- ggplot(pcdistflat,aes(x=pos.x,y=pos.y,fill=value)) + geom_raster(
             inherit.aes=F,fill=NA,color="orange") +
   ggtitle(paste(chrid,"lostruct invs",spp)) + 
   coord_fixed()
-ggsave(paste(outfile,"_invs_overlay.png",sep=""),pcdistsplot)
+ggsave(paste(outfile,"_invs_overlay.png",sep=""),plot=pcdistsplot)
 
 
 
@@ -90,4 +90,4 @@ combplot <- arrangeGrob(
   pcsplot,
   ncol=2,widths=c(5,5))
 
-ggsave(paste(outfile,"_pca_composite.png",sep=""),combplot, width=12, height=7,dpi = 400)
+ggsave(paste(outfile,"_pca_composite.png",sep=""),plot=combplot, width=12, height=7,dpi = 400)
