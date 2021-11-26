@@ -21,6 +21,9 @@ wildcard_constraints:
     location="|".join(conts+spps),
 
 
+rule test1:
+    input:
+        "results_lostruct/lostruct_dists/lostruct_chr3_eafrica_pca_composite.png"
 
 rule all:
     input:
