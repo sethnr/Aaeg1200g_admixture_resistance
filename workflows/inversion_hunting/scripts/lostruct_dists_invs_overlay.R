@@ -50,13 +50,16 @@ pcdistflat <- pivot_longer(pcdistdf,cols=all_of(blocks),names_to = "y")
 pcdistflat <- merge(merge(pcdistflat,allposns,by.x="x",by.y="block"),allposns,by.x="y",by.y="block",suffixes = c(".x",".y"))
 
 #plot distances with inversions overlaid
+png(paste(outfile,"_invs_overlay.png",sep=""),width=7,height=7,dpi=400)
 pcdistsplot <- ggplot(pcdistflat,aes(x=pos.x,y=pos.y,fill=value)) + geom_raster() + 
   geom_rect(aes(xmin=start,xmax=end,ymin=start,ymax=end),
             data=invcalls,
             inherit.aes=F,fill=NA,color="orange") +
   ggtitle(paste(chrid,"lostruct invs",spp)) + 
   coord_fixed()
-ggsave(paste(outfile,"_invs_overlay.png",sep=""),plot=pcdistsplot)
+pcdistsplot
+dev.off()
+#ggsave(,plot=pcdistsplot)
 
 
 

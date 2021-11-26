@@ -35,7 +35,7 @@ pcdistdf$x <- blocks
 pcdistflat <- pivot_longer(pcdistdf,cols=blocks,names_to = "y")
 pcdistflat <- merge(merge(pcdistflat,allposns,by.x="x",by.y="block"),allposns,by.x="y",by.y="block",suffixes = c(".x",".y"))
 
-ggplot(pcdistflat,aes(x=x,y=y,fill=value)) + geom_raster() + coord_fixed()
+#ggplot(pcdistflat,aes(x=x,y=y,fill=value)) + geom_raster() + coord_fixed()
 
 ggplot(pcdistflat,aes(x=pos.x,y=pos.y,fill=value)) + geom_raster() + coord_fixed()
 ggsave(outpng)
