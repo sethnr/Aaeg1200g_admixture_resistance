@@ -194,11 +194,12 @@ rule lostruct_composite:
         mem_mb=8000,
         disk_mb=300000,
     log:
-        log="logs/lostruct_dist/dist-chr{chrom}_{cont}_composite.log",
+        log="logs/lostruct_plot/dist-chr{chrom}_{cont}_composite.log",
     shell:
         """ Rscript scripts/lostruct_dists_invs_overlay.R \
         {input.dists} {input.pcs} {input.invs} \
-        {wildcards.chrom} {wildcards.cont} {params.prefix}
+        {wildcards.chrom} {wildcards.cont} {output.overlay} {output.comp} \
+        2> {log}
         """
 
 

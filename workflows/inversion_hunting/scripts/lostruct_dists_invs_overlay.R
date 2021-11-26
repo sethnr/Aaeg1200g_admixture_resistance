@@ -9,14 +9,16 @@ pcs = args[2]
 invs = args[3]
 chrid = as.numeric(args[4])
 spp = tolower(args[5])
-outfile = args[6]
+outfile1 = args[6]
+outfile2 = args[7]
 
 write(paste("dists =",dists),file=stderr())
 write(paste("pcs =",pcs),file=stderr())
 write(paste("invs =",invs),file=stderr())
 write(paste("chrom =",chrid),file=stderr())
 write(paste("spp =",spp),file=stderr())
-write(paste("outfile =",outfile),file=stderr())
+write(paste("outfile1 =",outfile1),file=stderr())
+write(paste("outfile2 =",outfile2),file=stderr())
 
 chromname <- c("NC_035107.1","NC_035108.1","NC_035109.1")
 
@@ -52,7 +54,11 @@ pcdistflat <- merge(merge(pcdistflat,allposns,by.x="x",by.y="block"),allposns,by
 #create dir if not exists
 dir.create(dirname(outfile),recursive=T)
 #plot distances with inversions overlaid
-png(paste(outfile,"_invs_overlay.png",sep=""),width=7,height=7,res=400)
+#write(paste("writing to",paste(outfile,"_invs_overlay.png",sep="")),stderr())
+#png(paste(outfile,"_invs_overlay.png",sep=""),width=7,height=7,res=400)
+write(paste("writing to",outfile1),stderr())
+png(outfile1,sep=""),width=7,height=7,res=400)
+
 pcdistsplot <- ggplot(pcdistflat,aes(x=pos.x,y=pos.y,fill=value)) + geom_raster() + 
   geom_rect(aes(xmin=start,xmax=end,ymin=start,ymax=end),
             data=invcalls,
@@ -95,4 +101,7 @@ combplot <- arrangeGrob(
   pcsplot,
   ncol=2,widths=c(5,5))
 
-ggsave(paste(outfile,"_pca_composite.png",sep=""),plot=combplot, width=12, height=7,dpi = 400)
+#write(paste("writing to",paste(outfile,"_pca_composite.png",sep="")),stderr())
+#ggsave(paste(outfile,"_pca_composite.png",sep=""),plot=combplot, width=12, height=7,dpi = 400)
+write(paste("writing to",outfile2),stderr())
+ggsave(outfile2,plot=combplot, width=12, height=7,dpi = 400)
