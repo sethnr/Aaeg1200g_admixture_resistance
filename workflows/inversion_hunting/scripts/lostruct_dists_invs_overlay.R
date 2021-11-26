@@ -52,7 +52,7 @@ pcdistflat <- pivot_longer(pcdistdf,cols=all_of(blocks),names_to = "y")
 pcdistflat <- merge(merge(pcdistflat,allposns,by.x="x",by.y="block"),allposns,by.x="y",by.y="block",suffixes = c(".x",".y"))
 
 #create dir if not exists
-dir.create(dirname(outfile),recursive=T)
+#dir.create(dirname(outfile),recursive=T)
 #plot distances with inversions overlaid
 #write(paste("writing to",paste(outfile,"_invs_overlay.png",sep="")),stderr())
 #png(paste(outfile,"_invs_overlay.png",sep=""),width=7,height=7,res=400)
