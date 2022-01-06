@@ -7,7 +7,7 @@ vcf <- args[1]
 sppfile <- args[2]
 chrom <- numeric(args[3])
 cgroup <- args[4]
-outpc <- args[5]
+outtxt <- args[5]
 outpng <- args[6]
 
 
@@ -35,7 +35,7 @@ attr(get_set_size_blocks,"samples") <- samples #vcf_samples(vcf)
 pcs <- eigen_windows(get_set_size_blocks,k=2,mc.cores=3)
 
 outtable <- cbind(regions,pcs)
-write.table(outpcs,file=outfile,col.names=T,quote=F,row.names=F)
+write.table(outtable,file=outfile,col.names=T,quote=F,row.names=F)
 
 
 pcdist <- pc_dist(pcs,npc=2,w=1)
@@ -54,9 +54,10 @@ pcdistflat <- merge(merge(pcdistflat,regions,by.x="x",by.y="block"),regions,by.x
 
 
 ggplot(pcdistflat,aes(x=pos.x,y=pos.y,fill=value)) + geom_raster() + coord_fixed() +
-  ggtitle(paste(vcf,"\nchrom",chrom," ",cgroup," (",pcblocksize,"bp blocks)"))
-ggsave(outpng,sep=""))
+  ggtitle(paste(vcffile,"\nchrom",chrom," ",cgroup," (",pcblocksize,"bp blocks)"))
+ggsave(paste("c",chrom,"_",snpset,"_",pcblocksize,"_",cgroup,".png",sep=""))
 
 
 
 ```
+
