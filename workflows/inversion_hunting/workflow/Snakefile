@@ -8,7 +8,8 @@ include: "rules/common.smk"
 
 #spps = ["aaa", "aaf", "admx"]
 spps = ["aaa", "aaf"]
-conts = ["americas", "asia", "eafrica", "wafrica"]
+#conts = ["americas", "asia", "eafrica", "wafrica"]
+conts = ["eafrica", "wafrica"]
 
 wildcard_constraints:
     block="\d+",
@@ -21,14 +22,12 @@ wildcard_constraints:
     location="|".join(conts+spps),
 
 
-rule test1:
-    input:
-        "results_lostruct/lostruct_dists/lostruct_chr3_eafrica_pca_composite.png"
-
 rule all:
     input:
         expand("results_lostruct/lostruct_dists/lostruct_chr{chrid}_{loc}_pca_composite.png",
                 chrid=[1,2,3],loc=conts),
+        # expand("results_lostruct/lostruct_dists/lostruct_chr{chrid}_{loc}_pca_composite.png",
+                # chrid=[1,2,3],loc=spps),
         # expand(["results_lostruct/lostruct_dists/lostruct_chr{chrid}_dists.txt",
         #         "results_lostruct/lostruct_dists/lostruct_chr{chrid}_dists.png"],
         #         chrid=[2]),
@@ -132,6 +131,33 @@ rule thin_variants_noreps:
           {input.vcf} 2> {log}
         """
 
+rule thin_variants_random:
+    input:
+        thin="results_lostruct/norep_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz",
+    output:
+        outvcf=temporary("results_lostruct/norep_regions_thinrand/chr{chrom}_blk.{block}_thin.vcf.gz"),
+    log:
+        "logs/thin_variants_random/chr{chrom}_blk{block}.log",
+    shell:
+        """gunzip -dc {input.thin} | \
+           perl -ne 'print $_ if m/^\#/gi or rand() < 0.1' | \
+           bgzip > {output.outvcf}  2> {log}
+        """
+
+rule merge_thin_vcfs:
+    input:
+        vcftable=config["vcfs"],
+        vcfs=lambda wildcards: expand("results_lostruct/norep_regions_thinrand/{blockstring}_thin.vcf.gz",
+                                              blockstring=get_chrom_blocks_string(wildcards))
+    output:
+        "results_lostruct/norep_regions_thinrand/lostruct_chr{chrom}_pcs.txt",
+    log:
+        "logs/thin_variants_random/merge-chr{chrom}.log",
+    shell:
+        """bcftools merge -o {output} -O z {input.vcfs} 2> {log}"""
+
+
+
 rule lostruct_block:
     input:
         pcblock="results_lostruct/norep_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz",
@@ -169,9 +195,9 @@ rule lostruct_distance:
         pcs="results_lostruct/lostruct_dists/lostruct_chr{chrom}_dists.txt",
         png="results_lostruct/lostruct_dists/lostruct_chr{chrom}_dists.png",
     resources:
-        mem_mb=8000,
+        mem_mb=12000,
         disk_mb=500000,
-    threads: 4
+    threads: 3
     log:
         log="logs/lostruct_dists/dist-chr{chrom}.log",
     shell:
@@ -242,9 +268,9 @@ rule lostruct_distance_spp:
         pcs="results_lostruct/lostruct_dists/lostruct_chr{chrom}_dists_{spp}.txt",
         png="results_lostruct/lostruct_dists/lostruct_chr{chrom}_dists_{spp}.png",
     resources:
-        mem_mb=15000,
+        mem_mb=12000,
         disk_mb=500000,
-    threads: 4,
+    threads: 3,
     log:
         log="logs/lostruct_dist/dist-chr{chrom}_{spp}.log",
     shell:
@@ -294,9 +320,9 @@ rule lostruct_distance_cont:
         pcs="results_lostruct/lostruct_dists/lostruct_chr{chrom}_dists_{cont}.txt",
         png="results_lostruct/lostruct_dists/lostruct_chr{chrom}_dists_{cont}.png",
     resources:
-        mem_mb=15000,
+        mem_mb=12000,
         disk_mb=500000,
-    threads: 4,
+    threads: 3,
     log:
         log="logs/lostruct_dist/dist-chr{chrom}_{cont}.log",
     shell:

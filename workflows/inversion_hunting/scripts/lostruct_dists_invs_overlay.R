@@ -57,7 +57,7 @@ pcdistflat <- merge(merge(pcdistflat,allposns,by.x="x",by.y="block"),allposns,by
 #write(paste("writing to",paste(outfile,"_invs_overlay.png",sep="")),stderr())
 #png(paste(outfile,"_invs_overlay.png",sep=""),width=7,height=7,res=400)
 write(paste("writing to",outfile1),stderr())
-png(outfile1,width=7,height=7,res=400)
+#png(outfile1,width=7,height=7,res=400)
 
 pcdistsplot <- ggplot(pcdistflat,aes(x=pos.x,y=pos.y,fill=value)) + geom_raster() + 
   geom_rect(aes(xmin=start,xmax=end,ymin=start,ymax=end),
@@ -65,9 +65,7 @@ pcdistsplot <- ggplot(pcdistflat,aes(x=pos.x,y=pos.y,fill=value)) + geom_raster(
             inherit.aes=F,fill=NA,color="orange") +
   ggtitle(paste(chrid,"lostruct invs",spp)) + 
   coord_fixed()
-pcdistsplot
-dev.off()
-#ggsave(,plot=pcdistsplot)
+ggsave(outfile1,plot=pcdistsplot)
 
 
 
