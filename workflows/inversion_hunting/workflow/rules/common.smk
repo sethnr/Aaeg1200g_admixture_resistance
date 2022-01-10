@@ -9,7 +9,7 @@ GS = GSRemoteProvider()
 min_version("5.18.0")
 
 
-container: "docker://sethnr/aaeg1000g_analysis:0.02"
+container: "docker://sethnr/aaeg1000g_analysis:0.03"
 
 
 ###### Config file and sample sheets #####

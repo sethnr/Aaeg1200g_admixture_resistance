@@ -22,17 +22,17 @@ RUN curl -sSL https://sdk.cloud.google.com | bash
 # RUN conda init
 
 
+
 # install conda packages
 WORKDIR /root/
+# RUN conda update --all
 RUN conda install mamba -c conda-forge
 RUN mamba install -c bioconda -c conda-forge -y snakemake
 RUN mamba install -c bioconda snakemake-wrapper-utils
 
-RUN mamba install -c bioconda -y bedops
-RUN mamba install -c bioconda/label/main -y bcftools
 RUN mamba install -c bioconda -y vcftools
 
-RUN mamba install -c bioconda -y pindel
+# RUN mamba install -c bioconda -y pindel
 # RUN pip install lostruct
 
 #python
@@ -42,6 +42,12 @@ RUN mamba install -c bioconda numpy
 RUN mamba install -c bioconda -y scikit-learn
 # RUN mamba install -c conda-forge/label/cf202003  -y scikit-allel
 RUN mamba install -c conda-forge/label/main  -y scikit-allel
+
+#BCFtools / HTSlib / Samtools
+RUN mamba install -c bioconda -c conda-forge -y htslib'>=1.13,<1.14.0a0'
+RUN mamba install -c bioconda -c conda-forge -y bcftools=1.13
+RUN mamba install -c bioconda -c conda-forge -y samtools=1.11
+
 
 ############
 # Rstats
@@ -63,8 +69,3 @@ RUN Rscript install_devtools.R
 
 COPY install_demographics.R  install_demographics.R
 RUN Rscript install_demographics.R
-
-# COPY install_tidyverse.R  install_tidyverse.R
-# RUN Rscript install_tidyverse.R
-# COPY install_Rcpp.R  install_Rcpp.R
-# RUN Rscript install_Rcpp.R
