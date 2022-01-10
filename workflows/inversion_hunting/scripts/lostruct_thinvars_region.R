@@ -10,6 +10,14 @@ cgroup <- args[4]
 outtxt <- args[5]
 outpng <- args[6]
 
+write(paste("vcf: ",vcf),file=stderr())
+write(paste("sppfile: ",sppfile),file=stderr())
+write(paste("chrom: ",chrom),file=stderr())
+write(paste("region: ",cgroup),file=stderr())
+write(paste("pcs: ",outtxt),file=stderr())
+write(paste("png: ",outpng),file=stderr())
+
+
 
 chromname <- c("NC_035107.1","NC_035108.1","NC_035109.1")
 chromlen <- c(310827022,474425716,409777670)
