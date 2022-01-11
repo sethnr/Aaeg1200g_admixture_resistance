@@ -33,7 +33,18 @@ regions <- data.frame("chrom"=rep(chromname[chrom],regionct),
 
 
 spptab <- read.table(sppfile,header=T, sep="\t")
-samples <- spptab$sample[tolower(spptab$contgroup)==cgroup]
+type <- "spp"
+samples <- spptab$sample[tolower(spptab$spp)==cgroup]
+if(length(samples)==0) {
+  samples <- spptab$sample[tolower(spptab$contgroup)==cgroup]
+  type <- "contgroup"
+}
+if(length(samples)==0) {
+  samples <- spptab$sample[tolower(spptab$country)==cgroup]
+  type <- "country"
+}
+write(paste("found:",length(samples),"samples with type:",type),file=stderr())
+
 
 get_set_size_blocks <- function(n) {vcf_query(vcf,regions=regions[n,],samples=samples)}
 attr(get_set_size_blocks,"max.n") <- regionct
@@ -43,13 +54,15 @@ attr(get_set_size_blocks,"samples") <- samples #vcf_samples(vcf)
 #get 1/2 principal components for all windows:
 pcs <- eigen_windows(get_set_size_blocks,k=2,mc.cores=3)
 
-outtable <- cbind(regions,pcs)
-write.table(outtable,file=outtxt,col.names=T,quote=F,row.names=F)
+#outtable <- cbind(regions,pcs)
+#write.table(outtable,file=outtxt,col.names=T,quote=F,row.names=F)
 
 
 pcdist <- pc_dist(pcs,npc=2,w=1)
 pcdistdf <- as.data.frame(pcdist)
 
+outtable <- cbind(pcdistdf,pcs)
+write.table(outtable,file=outtxt,col.names=T,quote=F,row.names=F)
 
 
 blocks <- paste(regions[,1],regions[,2],sep=":")
@@ -65,6 +78,3 @@ pcdistflat <- merge(merge(pcdistflat,regions,by.x="x",by.y="block"),regions,by.x
 ggplot(pcdistflat,aes(x=pos.x,y=pos.y,fill=value)) + geom_raster() + coord_fixed() +
   ggtitle(paste(vcf,"\nchrom",chrom," ",cgroup," (",pcblocksize,"bp blocks)"))
 ggsave(outpng)
-
-
-
