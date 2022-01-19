@@ -1,8 +1,9 @@
 
 library("tidyverse")
-library("patchwork")
 library("lostruct")
 
+#library("patchwork")
+library("gridExtra")
 
 args = commandArgs(trailingOnly=TRUE)
 
@@ -162,5 +163,7 @@ ncol=round(sqrt(length(unique(pcs$inv))))
 invpca <- ggplot(pcs,aes(x=PC1,y=PC2)) + geom_point() + coord_fixed() +
   facet_wrap("inv ~ .",ncol=ncol)
 
-distplot | invpca
+#distplot | invpca
+grid.arrange(distplot, invpca, ncol=2)
+
 ggsave(outpng,width=350,height=200,units="mm")

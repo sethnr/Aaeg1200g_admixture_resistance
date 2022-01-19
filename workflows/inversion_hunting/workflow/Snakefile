@@ -9,13 +9,12 @@ include: "rules/common.smk"
 #spps = ["aaa", "aaf", "admx"]
 spps = ["aaa", "aaf"]
 #conts = ["americas", "asia", "eafrica", "wafrica"]
-#bigcountries = ["Brazil", "USA", "Senegal",
-#"Kenya", "Philippines","Gabon","Ghana",
-#"SaudiArabia","BurkinaFaso","PuertoRico",
-#"Uganda","Trinidad","Vietnam"]
+bigcountries = ["Brazil", "USA", "Senegal",
+    "Kenya", "Philippines","Gabon","Ghana",
+    "SaudiArabia","BurkinaFaso","PuertoRico",
+    "Uganda","Trinidad","Vietnam"]
 
 conts = ["eafrica", "wafrica"]
-bigcountries = ["Gabon"]
 
 
 wildcard_constraints:
@@ -135,14 +134,14 @@ rule lostruct_all_chr:
         tbi="results_lostruct/norep_regions_thinrand/lostruct_chr{chrom}.vcf.gz.tbi",
         spptable=config["spptable"],
     output:
-        pcs="results_lostruct/lostruct_all_chr/candidates_chr{chrom}_{region}.txt",
-        png="results_lostruct/lostruct_all_chr/candidates_chr{chrom}_{region}.png",
+        pcs="results_lostruct/lostruct_all_chr/dists_chr{chrom}_{region}.txt",
+        png="results_lostruct/lostruct_all_chr/dists_chr{chrom}_{region}.png",
     resources:
         mem_mb=12000,
         disk_mb=500000,
     threads: 3
     log:
-        log="logs/lostruct_inversion_candidates/outliers_chr{chrom}_{region}.log",
+        log="logs/lostruct_all_chr/outliers_chr{chrom}_{region}.log",
     shell:
         """Rscript --vanilla scripts/lostruct_thinvars_region.R \
               {input.vcf} \
@@ -158,15 +157,14 @@ rule lostruct_find_inversion_candidates:
         dists="results_lostruct/lostruct_all_chr/lostruct_chr{chrom}_{region}.txt",
         vcf="results_lostruct/norep_regions_thinrand/lostruct_chr{chrom}.vcf.gz",
         tbi="results_lostruct/norep_regions_thinrand/lostruct_chr{chrom}.vcf.gz.tbi",
-        spptable=config["spptable"],
-        spptable=config["invtable"],
+        spptable=config["spptable"]
     output:
+        txt="results_lostruct/lostruct_inversion_candidates/lostruct_chr{chrom}_{region}.txt",
         png="results_lostruct/lostruct_inversion_candidates/lostruct_chr{chrom}_{region}.png",
-        txt="results_lostruct/lostruct_inversion_candidates/lostruct_chr{chrom}_{region}.png",
     log:
-        log="logs/lostruct_all_chr/dist-chr{chrom}_{region}.log",
+        log="logs/lostruct_inversion_candidates/candidates-chr{chrom}_{region}.log",
     shell:
-        """Rscript lostruct_find_outlier_inversions.R \
+        """Rscript scripts/lostruct_find_outlier_inversions.R \
         	{input.dists} \
         	{input.vcf} \
         	{wildcards.region} {wildcards.chrom} \
