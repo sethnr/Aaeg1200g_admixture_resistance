@@ -4,6 +4,7 @@ library("lostruct")
 
 #library("patchwork")
 library("gridExtra")
+library("grid")
 
 args = commandArgs(trailingOnly=TRUE)
 
@@ -33,9 +34,11 @@ names(chromlen) <- chromname
 
 pcblocksize <- 5e5
 
-spptab <- read.table(sppfile,header=T, sep="\t")
 
+spptab <- read.table(sppfile,header=T, sep="\t")
 samples <- spptab$sample[spptab$country==country]
+
+write(paste("found",length(samples),"samples for",country),file=stderr())
 
 #read table, parse out PC dists
 pcdistdf <- read.table(dists,header=T)
@@ -58,7 +61,8 @@ pcdistflat <- merge(merge(pcdistflat,regions,by.x="x",by.y="block"),regions,by.x
 invcands <- data.frame("inversion"=character(),
                        "chrom"=numeric(),
                        "start"=numeric(),
-                       "end"=numeric())
+                       "end"=numeric(),
+                       "country"=character())
 
 
 #remake indices from posn x/y
@@ -67,7 +71,7 @@ pcdistflat$x <- pcdistflat$pos.x/pcblocksize
 
 pcdistmat <- matrix(nrow=max(pcdistflat$x),ncol=max(pcdistflat$y))
 for(i in c(1:nrow(pcdistflat))) {
-  pcdistmat[pcdistflat$y[i],pcdistflat$x[i]] <- pcdistflat$value[i] 
+  pcdistmat[pcdistflat$y[i],pcdistflat$x[i]] <- pcdistflat$value[i]
 }
 
 
@@ -83,6 +87,7 @@ minsize=4
 #for(k in c(1:mdsk)) {
 
 for(k in c(1:mdsk)) {
+    #write(paste("surveying MDS",k),file=stderr())
     koutliers <- which(mds[,k] %in% boxplot.stats(mds[,k])$out)
     if(length(koutliers) > minsize) {
       start <- koutliers[1]
@@ -98,6 +103,7 @@ for(k in c(1:mdsk)) {
             invcands[ii,"chrom"] <- chrom
             invcands[ii,"start"] <- start*pcblocksize
             invcands[ii,"end"] <- end*pcblocksize
+            invcands[ii,"country"] <- country
             }
           start=koutliers[i]
           end=koutliers[i]
@@ -110,31 +116,39 @@ for(k in c(1:mdsk)) {
         invcands[ii,"chrom"] <- chrom
         invcands[ii,"start"] <- start*pcblocksize
         invcands[ii,"end"] <- end*pcblocksize
+        invcands[ii,"country"] <- country
       }
     }
 }
 
+
 axlab <- as_mapper(~ .x /1e6)
 
-  
-distplot <- ggplot(pcdistflat,aes(x=pos.x,y=pos.y,fill=value)) + geom_raster() + coord_fixed() +
-    geom_rect(aes(xmin=start,xmax=end,ymin=start,ymax=end),
-              data=invcands[invcands$chrom==chrom,],
-              inherit.aes=F,fill=NA,color="orange",alpha=0.5) +
-    scale_x_continuous(expand = c(0,0),labels=axlab) + scale_y_continuous(expand = c(0,0),labels=axlab) +
-    theme(legend.position="none") + ggtitle(paste("chrom",chrom,"mdsk:",mdsk," gap:",maxgap," size",minsize))
+write(paste("found",nrow(invcands),"inversion candidates on chrom",chrom),file=stderr())
 
-#distplot
+if(nrow(invcands)>0) {
+  distplot <- ggplot(pcdistflat,aes(x=pos.x,y=pos.y,fill=value)) + geom_raster() + coord_fixed() +
+      geom_rect(aes(xmin=start,xmax=end,ymin=start,ymax=end),
+                data=invcands[invcands$chrom==chrom,],
+                inherit.aes=F,fill=NA,color="orange",alpha=0.5) +
+      scale_x_continuous(expand = c(0,0),labels=axlab) + scale_y_continuous(expand = c(0,0),labels=axlab) +
+      theme(legend.position="none") + ggtitle(paste("chrom",chrom,"mdsk:",mdsk," gap:",maxgap," size",minsize))
+} else {
+  distplot <- ggplot(pcdistflat,aes(x=pos.x,y=pos.y,fill=value)) + geom_raster() + coord_fixed() +
+      scale_x_continuous(expand = c(0,0),labels=axlab) + scale_y_continuous(expand = c(0,0),labels=axlab) +
+      theme(legend.position="none") + ggtitle(paste("chrom",chrom,"mdsk:",mdsk," gap:",maxgap," size",minsize))
+}
 
 
-invcands$country=country
+write(paste("writing",nrow(invcands),"candidates on chrom",chrom),file=stderr())
 write.table(invcands,file=outtxt,sep="\t",quote=F,col.names=T,row.names=F)
 
 invcands <- unique(invcands[order(invcands$chrom,invcands$start,invcands$end),c("chrom","start","end")])
 invcands$chromname <- chromname[invcands$chrom]
 
 rm("pcs")
-for(ii in c(1:nrow(invcands))) {
+#for(ii in c(1:nrow(invcands))) {
+for(ii in rownames(invcands)) {
     chr = invcands[ii,"chrom"]
     st = invcands[ii,"start"]/1e6
     en = invcands[ii,"end"]/1e6
@@ -144,13 +158,13 @@ for(ii in c(1:nrow(invcands))) {
                          regions=invcands[ii,c("chromname","start","end")])
     goodsnps <- invsnps[apply(invsnps,1,function(x) {!any(is.na(x))}),]
     pca <- prcomp(t(goodsnps))
-    
+
     invpcs <- as.data.frame(pca$x[,c("PC1","PC2")])
     invpcs$sample <- samples
     invpcs <- merge(invpcs,spptab)
     invpcs$inv <- ii
     invpcs$chrom <- chr
-    
+
     if(exists("pcs")) {
       pcs <- rbind(pcs,invpcs)
     } else {
@@ -159,12 +173,17 @@ for(ii in c(1:nrow(invcands))) {
     #spca <- summary(pca)
 }
 
-ncol=round(sqrt(length(unique(pcs$inv))))
-invpca <- ggplot(pcs,aes(x=PC1,y=PC2)) + geom_point() + coord_fixed() +
-  facet_wrap("inv ~ .",ncol=ncol)
+if(exists("pcs")) {
+  ncol=round(sqrt(length(unique(pcs$inv))))
+  invpca <- ggplot(pcs,aes(x=PC1,y=PC2)) + geom_point() + coord_fixed() +
+    facet_wrap("inv ~ .",ncol=ncol)
 
-#distplot | invpca
-png(filename = outpng,width=350,height=200,units="mm",res=400)
-grid.arrange(distplot, invpca, ncol=2)
-dev.off()
-
+  #distplot | invpca
+  png(filename = outpng,width=350,height=200,units="mm",res=400)
+  grid.arrange(distplot, invpca, ncol=2)
+  dev.off()
+} else {
+  png(filename = outpng,width=350,height=200,units="mm",res=400)
+  grid.arrange(distplot,  grid.rect(gp=gpar(col="white")), ncol=2)
+  dev.off()
+}
