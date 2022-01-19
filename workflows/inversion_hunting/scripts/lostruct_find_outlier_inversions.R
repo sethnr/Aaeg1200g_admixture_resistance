@@ -164,7 +164,7 @@ invpca <- ggplot(pcs,aes(x=PC1,y=PC2)) + geom_point() + coord_fixed() +
   facet_wrap("inv ~ .",ncol=ncol)
 
 #distplot | invpca
-png(filename = outpng,width=350,height=200,units="mm")
+png(filename = outpng,width=350,height=200,units="mm",res=400)
 grid.arrange(distplot, invpca, ncol=2)
 dev.off()
 
