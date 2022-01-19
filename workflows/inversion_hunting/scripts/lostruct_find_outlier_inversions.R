@@ -17,7 +17,7 @@ args = commandArgs(trailingOnly=TRUE)
 # invfile <- "resources/redmond_2020_inversion_calls.txt"
 
 dists <- args[1]
-snps <- args[2]
+vcffile <- args[2]
 country = args[3]
 chrom <- as.numeric(args[4])
 sppfile <- args[5]
@@ -139,7 +139,7 @@ for(ii in c(1:nrow(invcands))) {
     st = invcands[ii,"start"]/1e6
     en = invcands[ii,"end"]/1e6
     write(paste("PCA: ",ii,chr,st,en),file=stderr())
-    invsnps <- vcf_query(paste("SNPs/lostruct_chr",chr,".vcf.gz",sep=""),
+    invsnps <- vcf_query(vcffile,
                          samples=samples,
                          regions=invcands[ii,c("chromname","start","end")])
     goodsnps <- invsnps[apply(invsnps,1,function(x) {!any(is.na(x))}),]
