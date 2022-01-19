@@ -6,7 +6,7 @@ args = commandArgs(trailingOnly=TRUE)
 vcf <- args[1]
 sppfile <- args[2]
 chrom <- as.numeric(args[3])
-cgroup <- args[4]
+cgroup <- tolower(args[4])
 outtxt <- args[5]
 outpng <- args[6]
 

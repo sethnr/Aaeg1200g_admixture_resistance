@@ -6,7 +6,8 @@ args = commandArgs(trailingOnly=TRUE)
 
 inpcs <- args[1]
 outdist <- args[2]
-outpng <- args[3]
+invs = args[3]
+outpng <- args[4]
 
 cores <- 4
 

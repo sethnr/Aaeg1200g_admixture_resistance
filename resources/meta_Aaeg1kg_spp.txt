@@ -46,17 +46,17 @@ Debug01-REPREP-05042017-aegy-La_Lope-Gabon-7	La_Lope	AAF	West Africa	Wafrica	Gab
 Debug01-REPREP-05042017-aegy-La_Lope-Gabon-8	La_Lope	AAF	West Africa	Wafrica	Gabon
 Debug01-REPREP-05042017-aegy-La_Lope-Gabon-9	La_Lope	AAF	West Africa	Wafrica	Gabon
 La_Lope_Gabon-_19	La_Lope	AAF	West Africa	Wafrica	Gabon
-Debug010_aegypti_Skukusa_South_Africa_02	Skukusa	AAF	East Africa	Safrica	South Africa
-Debug010_aegypti_Skukusa_South_Africa_03	Skukusa	AAF	East Africa	Safrica	South Africa
-Debug010_aegypti_Skukusa_South_Africa_04	Skukusa	AAF	East Africa	Safrica	South Africa
-Debug010_aegypti_Skukusa_South_Africa_05	Skukusa	AAF	East Africa	Safrica	South Africa
-Debug010_aegypti_Skukusa_South_Africa_06	Skukusa	AAF	East Africa	Safrica	South Africa
-Debug010_aegypti_Skukusa_South_Africa_07	Skukusa	AAF	East Africa	Safrica	South Africa
-Debug010_aegypti_Skukusa_South_Africa_10	Skukusa	AAF	East Africa	Safrica	South Africa
-Debug010_aegypti_Skukusa_South_Africa_12	Skukusa	AAF	East Africa	Safrica	South Africa
-Debug010_aegypti_Skukusa_South_Africa_13	Skukusa	AAF	East Africa	Safrica	South Africa
-Debug010_aegypti_Skukusa_South_Africa_15	Skukusa	AAF	East Africa	Safrica	South Africa
-Debug010_aegypti_Skukusa_South_Africa_16	Skukusa	AAF	East Africa	Safrica	South Africa
+Debug010_aegypti_Skukusa_South_Africa_02	Skukusa	AAF	East Africa	Safrica	SouthAfrica
+Debug010_aegypti_Skukusa_South_Africa_03	Skukusa	AAF	East Africa	Safrica	SouthAfrica
+Debug010_aegypti_Skukusa_South_Africa_04	Skukusa	AAF	East Africa	Safrica	SouthAfrica
+Debug010_aegypti_Skukusa_South_Africa_05	Skukusa	AAF	East Africa	Safrica	SouthAfrica
+Debug010_aegypti_Skukusa_South_Africa_06	Skukusa	AAF	East Africa	Safrica	SouthAfrica
+Debug010_aegypti_Skukusa_South_Africa_07	Skukusa	AAF	East Africa	Safrica	SouthAfrica
+Debug010_aegypti_Skukusa_South_Africa_10	Skukusa	AAF	East Africa	Safrica	SouthAfrica
+Debug010_aegypti_Skukusa_South_Africa_12	Skukusa	AAF	East Africa	Safrica	SouthAfrica
+Debug010_aegypti_Skukusa_South_Africa_13	Skukusa	AAF	East Africa	Safrica	SouthAfrica
+Debug010_aegypti_Skukusa_South_Africa_15	Skukusa	AAF	East Africa	Safrica	SouthAfrica
+Debug010_aegypti_Skukusa_South_Africa_16	Skukusa	AAF	East Africa	Safrica	SouthAfrica
 Debug018_aegypti_YAOMO_Cameroon__U_63	YAOMO	AAF	West Africa	Wafrica	Cameroon
 Debug018_aegypti_YAOMO_Cameroon__U_65	YAOMO	AAF	West Africa	Wafrica	Cameroon
 Debug018_aegypti_YAOMO_Cameroon__U_66	YAOMO	AAF	West Africa	Wafrica	Cameroon
@@ -228,48 +228,48 @@ Debug013_aegypti_Kichwamba_Uganda_09	Kichwamba	AAF	East Africa	Eafrica	Uganda
 Debug014_aegypti_Kichwamba_Uganda_15	Kichwamba	AAF	East Africa	Eafrica	Uganda
 Debug014_aegypti_Kichwamba_Uganda_17	Kichwamba	AAF	East Africa	Eafrica	Uganda
 Debug014_aegypti_Kichwamba_Uganda_18	Kichwamba	AAF	East Africa	Eafrica	Uganda
-Debug017_aegypti_Libreville_Gabon_F_10	Libreville	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_Libreville_Gabon_F_11	Libreville	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_Libreville_Gabon_F_12	Libreville	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_Libreville_Gabon_F_14	Libreville	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_Libreville_Gabon_F_15	Libreville	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_Libreville_Gabon_F_2	Libreville	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_Libreville_Gabon_F_3	Libreville	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_Libreville_Gabon_F_4	Libreville	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_Libreville_Gabon_F_5	Libreville	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_Libreville_Gabon_F_6	Libreville	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_Libreville_Gabon_F_7	Libreville	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_Libreville_Gabon_F_8	Libreville	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_Libreville_Gabon_M_13	Libreville	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_Libreville_Gabon_M_9	Libreville	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_LopeVillage_Gabon_F_15	Lope_village	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_LopeVillage_Gabon_F_1	Lope_village	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_LopeVillage_Gabon_F_2	Lope_village	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_LopeVillage_Gabon_F_3	Lope_village	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_LopeVillage_Gabon_F_4	Lope_village	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_LopeVillage_Gabon_F_5	Lope_village	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_LopeVillage_Gabon_F_6	Lope_village	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_LopeVillage_Gabon_F_7	Lope_village	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_LopeVillage_Gabon_F_8	Lope_village	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_LopeVillage_Gabon_F_9	Lope_village	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_LopeVillage_Gabon_M_10	Lope_village	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_LopeVillage_Gabon_M_11	Lope_village	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_LopeVillage_Gabon_M_12	Lope_village	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_LopeVillage_Gabon_M_13	Lope_village	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_LopeVillage_Gabon_M_14	Lope_village	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_Franceville_Gabon_F_11	Franceville	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_Franceville_Gabon_F_12	Franceville	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_Franceville_Gabon_F_1	Franceville	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_Franceville_Gabon_F_2	Franceville	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_Franceville_Gabon_F_3	Franceville	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_Franceville_Gabon_F_4	Franceville	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_Franceville_Gabon_F_5	Franceville	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_Franceville_Gabon_F_6	Franceville	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_Franceville_Gabon_F_8	Franceville	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_Franceville_Gabon_F_9	Franceville	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_Franceville_Gabon_M_10	Franceville	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_Franceville_Gabon_M_13	Franceville	AAF	East Africa	Eafrica	Gabon
-Debug017_aegypti_Franceville_Gabon_M_7	Franceville	AAF	East Africa	Eafrica	Gabon
+Debug017_aegypti_Libreville_Gabon_F_10	Libreville	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_Libreville_Gabon_F_11	Libreville	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_Libreville_Gabon_F_12	Libreville	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_Libreville_Gabon_F_14	Libreville	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_Libreville_Gabon_F_15	Libreville	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_Libreville_Gabon_F_2	Libreville	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_Libreville_Gabon_F_3	Libreville	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_Libreville_Gabon_F_4	Libreville	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_Libreville_Gabon_F_5	Libreville	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_Libreville_Gabon_F_6	Libreville	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_Libreville_Gabon_F_7	Libreville	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_Libreville_Gabon_F_8	Libreville	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_Libreville_Gabon_M_13	Libreville	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_Libreville_Gabon_M_9	Libreville	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_F_15	Lope_village	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_F_1	Lope_village	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_F_2	Lope_village	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_F_3	Lope_village	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_F_4	Lope_village	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_F_5	Lope_village	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_F_6	Lope_village	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_F_7	Lope_village	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_F_8	Lope_village	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_F_9	Lope_village	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_M_10	Lope_village	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_M_11	Lope_village	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_M_12	Lope_village	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_M_13	Lope_village	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_M_14	Lope_village	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_Franceville_Gabon_F_11	Franceville	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_Franceville_Gabon_F_12	Franceville	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_Franceville_Gabon_F_1	Franceville	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_Franceville_Gabon_F_2	Franceville	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_Franceville_Gabon_F_3	Franceville	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_Franceville_Gabon_F_4	Franceville	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_Franceville_Gabon_F_5	Franceville	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_Franceville_Gabon_F_6	Franceville	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_Franceville_Gabon_F_8	Franceville	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_Franceville_Gabon_F_9	Franceville	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_Franceville_Gabon_M_10	Franceville	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_Franceville_Gabon_M_13	Franceville	AAF	East Africa	Wafrica	Gabon
+Debug017_aegypti_Franceville_Gabon_M_7	Franceville	AAF	East Africa	Wafrica	Gabon
 Debug023_aegypti_Kumasi_Ghana_F_11	Kumasi	AAF	West Africa	Wafrica	Ghana
 Debug023_aegypti_Kumasi_Ghana_F_14	Kumasi	AAF	West Africa	Wafrica	Ghana
 Debug023_aegypti_Kumasi_Ghana_F_16	Kumasi	AAF	West Africa	Wafrica	Ghana
@@ -430,42 +430,42 @@ Debug023_aegypti_Awka_Nigeria_M_2	Awka	AAF	West Africa	Wafrica	Nigeria
 Debug023_aegypti_Awka_Nigeria_M_4	Awka	AAF	West Africa	Wafrica	Nigeria
 Debug023_aegypti_Awka_Nigeria_M_7	Awka	AAF	West Africa	Wafrica	Nigeria
 Debug023_aegypti_Awka_Nigeria_M_8	Awka	AAF	West Africa	Wafrica	Nigeria
-Debug023_aegypti_Ouahigouya_BurkinaFaso_F_11	Ouahigouya	AAF	West Africa	Wafrica	Burkina Faso
-Debug023_aegypti_Ouahigouya_BurkinaFaso_F_13	Ouahigouya	AAF	West Africa	Wafrica	Burkina Faso
-Debug023_aegypti_Ouahigouya_BurkinaFaso_F_14	Ouahigouya	AAF	West Africa	Wafrica	Burkina Faso
-Debug023_aegypti_Ouahigouya_BurkinaFaso_F_16	Ouahigouya	AAF	West Africa	Wafrica	Burkina Faso
-Debug023_aegypti_Ouahigouya_BurkinaFaso_F_17	Ouahigouya	AAF	West Africa	Wafrica	Burkina Faso
-Debug023_aegypti_Ouahigouya_BurkinaFaso_F_2	Ouahigouya	AAF	West Africa	Wafrica	Burkina Faso
-Debug023_aegypti_Ouahigouya_BurkinaFaso_F_3	Ouahigouya	AAF	West Africa	Wafrica	Burkina Faso
-Debug023_aegypti_Ouahigouya_BurkinaFaso_F_4	Ouahigouya	AAF	West Africa	Wafrica	Burkina Faso
-Debug023_aegypti_Ouahigouya_BurkinaFaso_F_5	Ouahigouya	AAF	West Africa	Wafrica	Burkina Faso
-Debug023_aegypti_Ouahigouya_BurkinaFaso_F_9	Ouahigouya	AAF	West Africa	Wafrica	Burkina Faso
-Debug023_aegypti_Ouahigouya_BurkinaFaso_M_10	Ouahigouya	AAF	West Africa	Wafrica	Burkina Faso
-Debug023_aegypti_Ouahigouya_BurkinaFaso_M_12	Ouahigouya	AAF	West Africa	Wafrica	Burkina Faso
-Debug023_aegypti_Ouahigouya_BurkinaFaso_M_15	Ouahigouya	AAF	West Africa	Wafrica	Burkina Faso
-Debug023_aegypti_Ouahigouya_BurkinaFaso_M_1	Ouahigouya	AAF	West Africa	Wafrica	Burkina Faso
-Debug023_aegypti_Ouahigouya_BurkinaFaso_M_6	Ouahigouya	AAF	West Africa	Wafrica	Burkina Faso
-Debug023_aegypti_Ouahigouya_BurkinaFaso_M_7	Ouahigouya	AAF	West Africa	Wafrica	Burkina Faso
-Debug021_aegypti_Bangr_Ouaga_Burkina_Faso_F_1	Ouaga	AAF	West Africa	Wafrica	Burkina Faso
-Debug021_aegypti_Gound_Ouaga_Burkina_Faso_F_2	Ouaga	AAF	West Africa	Wafrica	Burkina Faso
-Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_10	Ouaga	AAF	West Africa	Wafrica	Burkina Faso
-Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_11	Ouaga	AAF	West Africa	Wafrica	Burkina Faso
-Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_12	Ouaga	AAF	West Africa	Wafrica	Burkina Faso
-Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_13	Ouaga	AAF	West Africa	Wafrica	Burkina Faso
-Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_14	Ouaga	AAF	West Africa	Wafrica	Burkina Faso
-Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_15	Ouaga	AAF	West Africa	Wafrica	Burkina Faso
-Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_16	Ouaga	AAF	West Africa	Wafrica	Burkina Faso
-Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_18	Ouaga	AAF	West Africa	Wafrica	Burkina Faso
-Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_19	Ouaga	AAF	West Africa	Wafrica	Burkina Faso
-Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_9	Ouaga	AAF	West Africa	Wafrica	Burkina Faso
-Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_17	Ouaga	AAF	West Africa	Wafrica	Burkina Faso
-Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_20	Ouaga	AAF	West Africa	Wafrica	Burkina Faso
-Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_3	Ouaga	AAF	West Africa	Wafrica	Burkina Faso
-Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_4	Ouaga	AAF	West Africa	Wafrica	Burkina Faso
-Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_5	Ouaga	AAF	West Africa	Wafrica	Burkina Faso
-Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_6	Ouaga	AAF	West Africa	Wafrica	Burkina Faso
-Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_7	Ouaga	AAF	West Africa	Wafrica	Burkina Faso
-Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_8	Ouaga	AAF	West Africa	Wafrica	Burkina Faso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_F_11	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_F_13	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_F_14	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_F_16	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_F_17	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_F_2	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_F_3	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_F_4	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_F_5	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_F_9	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_M_10	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_M_12	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_M_15	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_M_1	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_M_6	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_M_7	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_Bangr_Ouaga_Burkina_Faso_F_1	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_Gound_Ouaga_Burkina_Faso_F_2	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_10	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_11	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_12	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_13	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_14	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_15	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_16	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_18	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_19	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_9	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_17	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_20	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_3	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_4	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_5	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_6	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_7	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_8	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
 Debug016_aegypti_New_Orleans_USA_U_10	New_Orleans	AAA	North America	Americas	USA
 Debug016_aegypti_New_Orleans_USA_U_12	New_Orleans	AAA	North America	Americas	USA
 Debug016_aegypti_New_Orleans_USA_U_14	New_Orleans	AAA	North America	Americas	USA
@@ -851,24 +851,24 @@ Debug026_aegypti_Patos_de_Minas_Brazil_M_5	Patos_de_Minas	AAA	South America	Amer
 Debug026_aegypti_Patos_de_Minas_Brazil_M_7	Patos_de_Minas	AAA	South America	Americas	Brazil
 Debug026_aegypti_Patos_de_Minas_Brazil_M_8	Patos_de_Minas	AAA	South America	Americas	Brazil
 Debug026_aegypti_Patos_de_Minas_Brazil_M_9	Patos_de_Minas	AAA	South America	Americas	Brazil
-Debug021_aegypti_St_Croix_USVI_F_10	Croix	AAA	Caribean	Americas	US Virgin Islands
-Debug021_aegypti_St_Croix_USVI_F_1	Croix	AAA	Caribean	Americas	US Virgin Islands
-Debug021_aegypti_St_Croix_USVI_F_2	Croix	AAA	Caribean	Americas	US Virgin Islands
-Debug021_aegypti_St_Croix_USVI_F_3	Croix	AAA	Caribean	Americas	US Virgin Islands
-Debug021_aegypti_St_Croix_USVI_F_4	Croix	AAA	Caribean	Americas	US Virgin Islands
-Debug021_aegypti_St_Croix_USVI_F_5	Croix	AAA	Caribean	Americas	US Virgin Islands
-Debug021_aegypti_St_Croix_USVI_F_6	Croix	AAA	Caribean	Americas	US Virgin Islands
-Debug021_aegypti_St_Croix_USVI_F_7	Croix	AAA	Caribean	Americas	US Virgin Islands
-Debug021_aegypti_St_Croix_USVI_F_8	Croix	AAA	Caribean	Americas	US Virgin Islands
-Debug021_aegypti_St_Croix_USVI_F_9	Croix	AAA	Caribean	Americas	US Virgin Islands
-Debug021_aegypti_St_Croix_USVI_M_11	Croix	AAA	Caribean	Americas	US Virgin Islands
-Debug021_aegypti_St_Croix_USVI_M_14	Croix	AAA	Caribean	Americas	US Virgin Islands
-Debug021_aegypti_St_Croix_USVI_M_15	Croix	AAA	Caribean	Americas	US Virgin Islands
-Debug021_aegypti_St_Croix_USVI_M_16	Croix	AAA	Caribean	Americas	US Virgin Islands
-Debug021_aegypti_St_Croix_USVI_M_17	Croix	AAA	Caribean	Americas	US Virgin Islands
-Debug021_aegypti_St_Croix_USVI_M_18	Croix	AAA	Caribean	Americas	US Virgin Islands
-Debug021_aegypti_St_Croix_USVI_M_19	Croix	AAA	Caribean	Americas	US Virgin Islands
-Debug021_aegypti_St_Croix_USVI_M_20	Croix	AAA	Caribean	Americas	US Virgin Islands
+Debug021_aegypti_St_Croix_USVI_F_10	Croix	AAA	Caribean	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_F_1	Croix	AAA	Caribean	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_F_2	Croix	AAA	Caribean	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_F_3	Croix	AAA	Caribean	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_F_4	Croix	AAA	Caribean	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_F_5	Croix	AAA	Caribean	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_F_6	Croix	AAA	Caribean	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_F_7	Croix	AAA	Caribean	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_F_8	Croix	AAA	Caribean	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_F_9	Croix	AAA	Caribean	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_M_11	Croix	AAA	Caribean	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_M_14	Croix	AAA	Caribean	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_M_15	Croix	AAA	Caribean	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_M_16	Croix	AAA	Caribean	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_M_17	Croix	AAA	Caribean	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_M_18	Croix	AAA	Caribean	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_M_19	Croix	AAA	Caribean	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_M_20	Croix	AAA	Caribean	Americas	USVirginIslands
 Debug019_aegypti_Far_North_Dominica_U_1	North_Dominica	AAA	Caribean	Americas	Dominica
 Debug019_aegypti_Far_North_Dominica_U_2	North_Dominica	AAA	Caribean	Americas	Dominica
 Debug019_aegypti_Far_North_Dominica_U_3	North_Dominica	AAA	Caribean	Americas	Dominica
@@ -884,35 +884,35 @@ Debug019_aegypti_Roseau_Dominica_U_1	Roseau	AAA	Caribean	Americas	Dominica
 Debug019_aegypti_Roseau_Dominica_U_5	Roseau	AAA	Caribean	Americas	Dominica
 Debug019_aegypti_Roseau_Dominica_U_8	Roseau	AAA	Caribean	Americas	Dominica
 Debug019_aegypti_Roseau_Dominica_U_9	Roseau	AAA	Caribean	Americas	Dominica
-Debug034_aegypti_Playa_Puerto_Rico_F_1	Playa	AAA	Caribean	Americas	Puerto Rico
-Debug034_aegypti_Playa_Puerto_Rico_F_2	Playa	AAA	Caribean	Americas	Puerto Rico
-Debug034_aegypti_Playa_Puerto_Rico_F_3	Playa	AAA	Caribean	Americas	Puerto Rico
-Debug034_aegypti_Playa_Puerto_Rico_F_4	Playa	AAA	Caribean	Americas	Puerto Rico
-Debug034_aegypti_Playa_Puerto_Rico_F_5	Playa	AAA	Caribean	Americas	Puerto Rico
-Debug034_aegypti_Playa_Puerto_Rico_F_6	Playa	AAA	Caribean	Americas	Puerto Rico
-Debug034_aegypti_Playa_Puerto_Rico_F_7	Playa	AAA	Caribean	Americas	Puerto Rico
-Debug034_aegypti_Playa_Puerto_Rico_F_8	Playa	AAA	Caribean	Americas	Puerto Rico
-Debug034_aegypti_Playa_Puerto_Rico_M_10	Playa	AAA	Caribean	Americas	Puerto Rico
-Debug034_aegypti_Playa_Puerto_Rico_M_11	Playa	AAA	Caribean	Americas	Puerto Rico
-Debug034_aegypti_Playa_Puerto_Rico_M_12	Playa	AAA	Caribean	Americas	Puerto Rico
-Debug034_aegypti_Playa_Puerto_Rico_M_13	Playa	AAA	Caribean	Americas	Puerto Rico
-Debug034_aegypti_Playa_Puerto_Rico_M_14	Playa	AAA	Caribean	Americas	Puerto Rico
-Debug034_aegypti_Playa_Puerto_Rico_M_15	Playa	AAA	Caribean	Americas	Puerto Rico
-Debug034_aegypti_Playa_Puerto_Rico_M_16	Playa	AAA	Caribean	Americas	Puerto Rico
-Debug034_aegypti_Playa_Puerto_Rico_M_9	Playa	AAA	Caribean	Americas	Puerto Rico
-Debug034_aegypti_Ponce_Puerto_Rico_F_1	Ponce	AAA	Caribean	Americas	Puerto Rico
-Debug034_aegypti_Ponce_Puerto_Rico_F_2	Ponce	AAA	Caribean	Americas	Puerto Rico
-Debug034_aegypti_Ponce_Puerto_Rico_F_3	Ponce	AAA	Caribean	Americas	Puerto Rico
-Debug034_aegypti_Ponce_Puerto_Rico_F_4	Ponce	AAA	Caribean	Americas	Puerto Rico
-Debug034_aegypti_Ponce_Puerto_Rico_F_5	Ponce	AAA	Caribean	Americas	Puerto Rico
-Debug034_aegypti_Ponce_Puerto_Rico_F_6	Ponce	AAA	Caribean	Americas	Puerto Rico
-Debug034_aegypti_Ponce_Puerto_Rico_F_7	Ponce	AAA	Caribean	Americas	Puerto Rico
-Debug034_aegypti_Ponce_Puerto_Rico_M_10	Ponce	AAA	Caribean	Americas	Puerto Rico
-Debug034_aegypti_Ponce_Puerto_Rico_M_11	Ponce	AAA	Caribean	Americas	Puerto Rico
-Debug034_aegypti_Ponce_Puerto_Rico_M_12	Ponce	AAA	Caribean	Americas	Puerto Rico
-Debug034_aegypti_Ponce_Puerto_Rico_M_14	Ponce	AAA	Caribean	Americas	Puerto Rico
-Debug034_aegypti_Ponce_Puerto_Rico_M_16	Ponce	AAA	Caribean	Americas	Puerto Rico
-Debug034_aegypti_Ponce_Puerto_Rico_M_9	Ponce	AAA	Caribean	Americas	Puerto Rico
+Debug034_aegypti_Playa_Puerto_Rico_F_1	Playa	AAA	Caribean	Americas	PuertoRico
+Debug034_aegypti_Playa_Puerto_Rico_F_2	Playa	AAA	Caribean	Americas	PuertoRico
+Debug034_aegypti_Playa_Puerto_Rico_F_3	Playa	AAA	Caribean	Americas	PuertoRico
+Debug034_aegypti_Playa_Puerto_Rico_F_4	Playa	AAA	Caribean	Americas	PuertoRico
+Debug034_aegypti_Playa_Puerto_Rico_F_5	Playa	AAA	Caribean	Americas	PuertoRico
+Debug034_aegypti_Playa_Puerto_Rico_F_6	Playa	AAA	Caribean	Americas	PuertoRico
+Debug034_aegypti_Playa_Puerto_Rico_F_7	Playa	AAA	Caribean	Americas	PuertoRico
+Debug034_aegypti_Playa_Puerto_Rico_F_8	Playa	AAA	Caribean	Americas	PuertoRico
+Debug034_aegypti_Playa_Puerto_Rico_M_10	Playa	AAA	Caribean	Americas	PuertoRico
+Debug034_aegypti_Playa_Puerto_Rico_M_11	Playa	AAA	Caribean	Americas	PuertoRico
+Debug034_aegypti_Playa_Puerto_Rico_M_12	Playa	AAA	Caribean	Americas	PuertoRico
+Debug034_aegypti_Playa_Puerto_Rico_M_13	Playa	AAA	Caribean	Americas	PuertoRico
+Debug034_aegypti_Playa_Puerto_Rico_M_14	Playa	AAA	Caribean	Americas	PuertoRico
+Debug034_aegypti_Playa_Puerto_Rico_M_15	Playa	AAA	Caribean	Americas	PuertoRico
+Debug034_aegypti_Playa_Puerto_Rico_M_16	Playa	AAA	Caribean	Americas	PuertoRico
+Debug034_aegypti_Playa_Puerto_Rico_M_9	Playa	AAA	Caribean	Americas	PuertoRico
+Debug034_aegypti_Ponce_Puerto_Rico_F_1	Ponce	AAA	Caribean	Americas	PuertoRico
+Debug034_aegypti_Ponce_Puerto_Rico_F_2	Ponce	AAA	Caribean	Americas	PuertoRico
+Debug034_aegypti_Ponce_Puerto_Rico_F_3	Ponce	AAA	Caribean	Americas	PuertoRico
+Debug034_aegypti_Ponce_Puerto_Rico_F_4	Ponce	AAA	Caribean	Americas	PuertoRico
+Debug034_aegypti_Ponce_Puerto_Rico_F_5	Ponce	AAA	Caribean	Americas	PuertoRico
+Debug034_aegypti_Ponce_Puerto_Rico_F_6	Ponce	AAA	Caribean	Americas	PuertoRico
+Debug034_aegypti_Ponce_Puerto_Rico_F_7	Ponce	AAA	Caribean	Americas	PuertoRico
+Debug034_aegypti_Ponce_Puerto_Rico_M_10	Ponce	AAA	Caribean	Americas	PuertoRico
+Debug034_aegypti_Ponce_Puerto_Rico_M_11	Ponce	AAA	Caribean	Americas	PuertoRico
+Debug034_aegypti_Ponce_Puerto_Rico_M_12	Ponce	AAA	Caribean	Americas	PuertoRico
+Debug034_aegypti_Ponce_Puerto_Rico_M_14	Ponce	AAA	Caribean	Americas	PuertoRico
+Debug034_aegypti_Ponce_Puerto_Rico_M_16	Ponce	AAA	Caribean	Americas	PuertoRico
+Debug034_aegypti_Ponce_Puerto_Rico_M_9	Ponce	AAA	Caribean	Americas	PuertoRico
 Debug019_aegypti_Trinidad_Trinidad_U_10	Trinidad	AAA	Caribean	Americas	Trinidad
 Debug019_aegypti_Trinidad_Trinidad_U_11	Trinidad	AAA	Caribean	Americas	Trinidad
 Debug019_aegypti_Trinidad_Trinidad_U_12	Trinidad	AAA	Caribean	Americas	Trinidad
@@ -933,18 +933,18 @@ Debug019_aegypti_Trinidad_Trinidad_U_6	Trinidad	AAA	Caribean	Americas	Trinidad
 Debug019_aegypti_Trinidad_Trinidad_U_7	Trinidad	AAA	Caribean	Americas	Trinidad
 Debug019_aegypti_Trinidad_Trinidad_U_8	Trinidad	AAA	Caribean	Americas	Trinidad
 Debug019_aegypti_Trinidad_Trinidad_U_9	Trinidad	AAA	Caribean	Americas	Trinidad
-Debug021_aegypti_Jaffna_Sri_Lanka_F_10	Jaffna	AAA	Asia	Asia	Sri Lanka
-Debug021_aegypti_Jaffna_Sri_Lanka_F_11	Jaffna	AAA	Asia	Asia	Sri Lanka
-Debug021_aegypti_Jaffna_Sri_Lanka_F_2	Jaffna	AAA	Asia	Asia	Sri Lanka
-Debug021_aegypti_Jaffna_Sri_Lanka_F_3	Jaffna	AAA	Asia	Asia	Sri Lanka
-Debug021_aegypti_Jaffna_Sri_Lanka_F_4	Jaffna	AAA	Asia	Asia	Sri Lanka
-Debug021_aegypti_Jaffna_Sri_Lanka_F_5	Jaffna	AAA	Asia	Asia	Sri Lanka
-Debug021_aegypti_Jaffna_Sri_Lanka_M_14	Jaffna	AAA	Asia	Asia	Sri Lanka
-Debug021_aegypti_Jaffna_Sri_Lanka_M_16	Jaffna	AAA	Asia	Asia	Sri Lanka
-Debug021_aegypti_Jaffna_Sri_Lanka_M_18	Jaffna	AAA	Asia	Asia	Sri Lanka
-Debug021_aegypti_Jaffna_Sri_Lanka_M_1	Jaffna	AAA	Asia	Asia	Sri Lanka
-Debug031_aegypti_Jaffna_Sri_Lanka_M_21	Jaffna	AAA	Asia	Asia	Sri Lanka
-Debug031_aegypti_Jaffna_Sri_Lanka_M_23	Jaffna	AAA	Asia	Asia	Sri Lanka
+Debug021_aegypti_Jaffna_Sri_Lanka_F_10	Jaffna	AAA	Asia	Asia	SriLanka
+Debug021_aegypti_Jaffna_Sri_Lanka_F_11	Jaffna	AAA	Asia	Asia	SriLanka
+Debug021_aegypti_Jaffna_Sri_Lanka_F_2	Jaffna	AAA	Asia	Asia	SriLanka
+Debug021_aegypti_Jaffna_Sri_Lanka_F_3	Jaffna	AAA	Asia	Asia	SriLanka
+Debug021_aegypti_Jaffna_Sri_Lanka_F_4	Jaffna	AAA	Asia	Asia	SriLanka
+Debug021_aegypti_Jaffna_Sri_Lanka_F_5	Jaffna	AAA	Asia	Asia	SriLanka
+Debug021_aegypti_Jaffna_Sri_Lanka_M_14	Jaffna	AAA	Asia	Asia	SriLanka
+Debug021_aegypti_Jaffna_Sri_Lanka_M_16	Jaffna	AAA	Asia	Asia	SriLanka
+Debug021_aegypti_Jaffna_Sri_Lanka_M_18	Jaffna	AAA	Asia	Asia	SriLanka
+Debug021_aegypti_Jaffna_Sri_Lanka_M_1	Jaffna	AAA	Asia	Asia	SriLanka
+Debug031_aegypti_Jaffna_Sri_Lanka_M_21	Jaffna	AAA	Asia	Asia	SriLanka
+Debug031_aegypti_Jaffna_Sri_Lanka_M_23	Jaffna	AAA	Asia	Asia	SriLanka
 Debug_010_aegypti_Bangkok_Thailand_01	Bangkok	AAA	Asia	Asia	Thailand
 Debug_010_aegypti_Bangkok_Thailand_02	Bangkok	AAA	Asia	Asia	Thailand
 Debug_010_aegypti_Bangkok_Thailand_03	Bangkok	AAA	Asia	Asia	Thailand
@@ -1076,42 +1076,42 @@ Debug019_aegypti_Karachi_Pakistan_U_15	Pakistan	AAA	Asia	Asia	Pakistan
 Debug019_aegypti_Karachi_Pakistan_U_18	Pakistan	AAA	Asia	Asia	Pakistan
 Debug019_aegypti_Karachi_Pakistan_U_20	Pakistan	AAA	Asia	Asia	Pakistan
 Debug019_aegypti_Karachi_Pakistan_U_9	Pakistan	AAA	Asia	Asia	Pakistan
-Debug015_aegypti_Jeddah_Saudi_Arabia_Female_10	Jeddah	AAA	Middle East	Asia	Saudi Arabia
-Debug015_aegypti_Jeddah_Saudi_Arabia_Female_11	Jeddah	AAA	Middle East	Asia	Saudi Arabia
-Debug015_aegypti_Jeddah_Saudi_Arabia_Female_12	Jeddah	AAA	Middle East	Asia	Saudi Arabia
-Debug015_aegypti_Jeddah_Saudi_Arabia_Female_13	Jeddah	AAA	Middle East	Asia	Saudi Arabia
-Debug015_aegypti_Jeddah_Saudi_Arabia_Female_16	Jeddah	AAA	Middle East	Asia	Saudi Arabia
-Debug015_aegypti_Jeddah_Saudi_Arabia_Female_17	Jeddah	AAA	Middle East	Asia	Saudi Arabia
-Debug015_aegypti_Jeddah_Saudi_Arabia_Female_18	Jeddah	AAA	Middle East	Asia	Saudi Arabia
-Debug015_aegypti_Jeddah_Saudi_Arabia_Female_1	Jeddah	AAA	Middle East	Asia	Saudi Arabia
-Debug015_aegypti_Jeddah_Saudi_Arabia_Female_2	Jeddah	AAA	Middle East	Asia	Saudi Arabia
-Debug015_aegypti_Jeddah_Saudi_Arabia_Female_3	Jeddah	AAA	Middle East	Asia	Saudi Arabia
-Debug015_aegypti_Jeddah_Saudi_Arabia_Female_4	Jeddah	AAA	Middle East	Asia	Saudi Arabia
-Debug015_aegypti_Jeddah_Saudi_Arabia_Female_5	Jeddah	AAA	Middle East	Asia	Saudi Arabia
-Debug015_aegypti_Jeddah_Saudi_Arabia_Female_6	Jeddah	AAA	Middle East	Asia	Saudi Arabia
-Debug015_aegypti_Jeddah_Saudi_Arabia_Female_7	Jeddah	AAA	Middle East	Asia	Saudi Arabia
-Debug015_aegypti_Jeddah_Saudi_Arabia_Female_8	Jeddah	AAA	Middle East	Asia	Saudi Arabia
-Debug015_aegypti_Jeddah_Saudi_Arabia_Female_9	Jeddah	AAA	Middle East	Asia	Saudi Arabia
-Debug05-10162017-aegy-Jeddah-Saudi_Arabia-16	Jeddah	AAA	Middle East	Asia	Saudi Arabia
-Debug05-10162017-aegy-Jeddah-Saudi_Arabia-20	Jeddah	AAA	Middle East	Asia	Saudi Arabia
-Debug05-10162017-aegy-Jeddah-Saudi_Arabia-22	Jeddah	AAA	Middle East	Asia	Saudi Arabia
-Debug05-10162017-aegy-Jeddah-Saudi_Arabia-3	Jeddah	AAA	Middle East	Asia	Saudi Arabia
-Debug05-10162017-aegy-Jeddah-Saudi_Arabia-6	Jeddah	AAA	Middle East	Asia	Saudi Arabia
-Debug015_aegypti_Mecca_Saudi_Arabia_Female_10	Mecca	AAA	Middle East	Asia	Saudi Arabia
-Debug015_aegypti_Mecca_Saudi_Arabia_Female_11	Mecca	AAA	Middle East	Asia	Saudi Arabia
-Debug015_aegypti_Mecca_Saudi_Arabia_Female_12	Mecca	AAA	Middle East	Asia	Saudi Arabia
-Debug015_aegypti_Mecca_Saudi_Arabia_Female_14	Mecca	AAA	Middle East	Asia	Saudi Arabia
-Debug015_aegypti_Mecca_Saudi_Arabia_Female_15	Mecca	AAA	Middle East	Asia	Saudi Arabia
-Debug015_aegypti_Mecca_Saudi_Arabia_Female_16	Mecca	AAA	Middle East	Asia	Saudi Arabia
-Debug015_aegypti_Mecca_Saudi_Arabia_Female_17	Mecca	AAA	Middle East	Asia	Saudi Arabia
-Debug015_aegypti_Mecca_Saudi_Arabia_Female_18	Mecca	AAA	Middle East	Asia	Saudi Arabia
-Debug015_aegypti_Mecca_Saudi_Arabia_Female_20	Mecca	AAA	Middle East	Asia	Saudi Arabia
-Debug015_aegypti_Mecca_Saudi_Arabia_Female_2	Mecca	AAA	Middle East	Asia	Saudi Arabia
-Debug015_aegypti_Mecca_Saudi_Arabia_Female_4	Mecca	AAA	Middle East	Asia	Saudi Arabia
-Debug015_aegypti_Mecca_Saudi_Arabia_Female_5	Mecca	AAA	Middle East	Asia	Saudi Arabia
-Debug015_aegypti_Mecca_Saudi_Arabia_Female_7	Mecca	AAA	Middle East	Asia	Saudi Arabia
-Debug015_aegypti_Mecca_Saudi_Arabia_Female_8	Mecca	AAA	Middle East	Asia	Saudi Arabia
-Debug015_aegypti_Mecca_Saudi_Arabia_Female_9	Mecca	AAA	Middle East	Asia	Saudi Arabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_10	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_11	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_12	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_13	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_16	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_17	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_18	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_1	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_2	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_3	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_4	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_5	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_6	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_7	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_8	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_9	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug05-10162017-aegy-Jeddah-Saudi_Arabia-16	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug05-10162017-aegy-Jeddah-Saudi_Arabia-20	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug05-10162017-aegy-Jeddah-Saudi_Arabia-22	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug05-10162017-aegy-Jeddah-Saudi_Arabia-3	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug05-10162017-aegy-Jeddah-Saudi_Arabia-6	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Mecca_Saudi_Arabia_Female_10	Mecca	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Mecca_Saudi_Arabia_Female_11	Mecca	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Mecca_Saudi_Arabia_Female_12	Mecca	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Mecca_Saudi_Arabia_Female_14	Mecca	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Mecca_Saudi_Arabia_Female_15	Mecca	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Mecca_Saudi_Arabia_Female_16	Mecca	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Mecca_Saudi_Arabia_Female_17	Mecca	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Mecca_Saudi_Arabia_Female_18	Mecca	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Mecca_Saudi_Arabia_Female_20	Mecca	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Mecca_Saudi_Arabia_Female_2	Mecca	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Mecca_Saudi_Arabia_Female_4	Mecca	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Mecca_Saudi_Arabia_Female_5	Mecca	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Mecca_Saudi_Arabia_Female_7	Mecca	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Mecca_Saudi_Arabia_Female_8	Mecca	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Mecca_Saudi_Arabia_Female_9	Mecca	AAA	Middle East	Asia	SaudiArabia
 Debug05-10162017-aegy-Cairns-Australia-10	Cairns	AAA	Pacific	Asia	Australia
 Debug05-10162017-aegy-Cairns-Australia-11	Cairns	AAA	Pacific	Asia	Australia
 Debug05-10162017-aegy-Cairns-Australia-12	Cairns	AAA	Pacific	Asia	Australia

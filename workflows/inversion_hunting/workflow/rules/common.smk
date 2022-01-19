@@ -49,13 +49,6 @@ def get_chrom_blocks_string(wildcards):
     return expand("chr{chrom}_blk{block}",chrom=wildcards.chrom,
                                           block=vcfs.loc[(wildcards.chrom)].block)
 
-# def get_chrom_blocks_spp_string(wildcards):
-#     vcfs = pd.read_table(config["vcfs"],dtype = str).set_index("chrom")
-#     """Get block strings for given chrom"""
-#     return expand("chr{chrom}_blk{block}_spp{spp}",chrom=wildcards.chrom,
-#                                           block=vcfs.loc[(wildcards.chrom)].block,
-#                                           spp=wildcards.spp)
-
 
 
 
