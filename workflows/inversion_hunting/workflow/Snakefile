@@ -161,6 +161,9 @@ rule lostruct_find_inversion_candidates:
     output:
         txt="results_lostruct/lostruct_inversion_candidates/lostruct_chr{chrom}_{region}.txt",
         png="results_lostruct/lostruct_inversion_candidates/lostruct_chr{chrom}_{region}.png",
+    resources:
+        mem_mb=12000,
+        disk_mb=500000,
     log:
         log="logs/lostruct_inversion_candidates/candidates-chr{chrom}_{region}.log",
     shell:
