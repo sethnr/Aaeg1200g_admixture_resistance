@@ -35,7 +35,7 @@ rule all:
         expand("results_lostruct/lostruct_all_chr/lostruct_chr{chrid}_{loc}.png",
         chrid=[1,2,3],loc=bigcountries),
 
-        expand("results_lostruct/lostruct_inversion_candidates/lostruct_chr{chrid}_{loc}.png",
+        expand("results_lostruct/lostruct_valid_candidates/lostruct_chr{chrid}_{loc}.png",
         chrid=[1,2,3],loc=bigcountries),
 
         #expand("results_lostruct/lostruct_dists/lostruct_chr{chrid}_{loc}_pca_composite.png",
@@ -183,8 +183,8 @@ rule lostruct_assess_inversion_candidates:
         tbi="results_lostruct/norep_regions_thinrand/lostruct_chr{chrom}.vcf.gz.tbi",
         spptable=config["spptable"]
     output:
-        txt="results_lostruct/lostruct_inversion_candidates/lostruct_chr{chrom}_{region}.txt",
-        png="results_lostruct/lostruct_inversion_candidates/lostruct_chr{chrom}_{region}.png",
+        txt="results_lostruct/lostruct_valid_candidates/lostruct_chr{chrom}_{region}.txt",
+        png="results_lostruct/lostruct_valid_candidates/lostruct_chr{chrom}_{region}.png",
     resources:
         mem_mb=12000,
         disk_mb=500000,

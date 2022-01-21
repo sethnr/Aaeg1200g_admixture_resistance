@@ -8,26 +8,16 @@ library("grid")
 
 args = commandArgs(trailingOnly=TRUE)
 
-setwd("~/Gits/Aaeg1000g_analyses/analyses/sredmond/220118_inversion_region_calls/")
-dists <- "redmond-lab-aaeg1000g/results_lostruct/lostruct_all_chr/lostruct_chr1_Senegal.txt"
-vcffile <- "/Volumes/Mosquito_raw_data/Aedes/Aaeg1000g/thinrand/lostruct_chr1.vcf.gz"
-country <- "Senegal"
-chrom <- 1
-outtxt <- "./inv_candidates_chr1_Senegal.txt"
-outpng <- "./inv_candidates_chr1_Senegal.png"
-sppfile <- "resources/meta_Aaeg1kg_spp.txt"
-invfile <- "resources/redmond_2020_inversion_calls.txt"
-
 # setwd("~/Gits/Aaeg1000g_analyses/analyses/sredmond/220118_inversion_region_calls/")
-# dists <- "redmond-lab-aaeg1000g/results_lostruct/lostruct_all_chr/lostruct_chr1_Brazil.txt"
+# dists <- "redmond-lab-aaeg1000g/results_lostruct/lostruct_all_chr/lostruct_chr1_USA.txt"
 # vcffile <- "/Volumes/Mosquito_raw_data/Aedes/Aaeg1000g/thinrand/lostruct_chr1.vcf.gz"
-# country <- "Brazil"
+# country <- "USA"
 # chrom <- 1
-# outtxt <- "./inv_candidates_chr1_Brazil.txt"
-# outpng <- "./inv_candidates_chr1_Brazil.png"
+# outtxt <- "./inv_candidates_chr1_USA.txt"
+# outpng <- "./inv_candidates_chr1_USA.png"
 # sppfile <- "resources/meta_Aaeg1kg_spp.txt"
 # invfile <- "resources/redmond_2020_inversion_calls.txt"
-
+# 
 
 dists <- args[1]
 vcffile <- args[2]
