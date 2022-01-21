@@ -8,8 +8,9 @@ library("grid")
 
 args = commandArgs(trailingOnly=TRUE)
 
+# setwd("~/Gits/Aaeg1000g_analyses/analyses/sredmond/220118_inversion_region_calls/")
 # dists <- "redmond-lab-aaeg1000g/results_lostruct/lostruct_all_chr/lostruct_chr1_Senegal.txt"
-# snps <- "/Volumes/Mosquito_raw_data/Aedes/Aaeg1000g/thinrand/lostruct_chr1.vcf.gz"
+# vcffile <- "/Volumes/Mosquito_raw_data/Aedes/Aaeg1000g/thinrand/lostruct_chr1.vcf.gz"
 # country <- "Senegal"
 # chrom <- 1
 # outtxt <- "./inv_candidates_chr1_Senegal.txt"
@@ -75,16 +76,19 @@ for(i in c(1:nrow(pcdistflat))) {
 }
 
 
+
+#calculate MDS values
 mdsk <- 5
 #set NAs to 1
 pcdistmat[is.na(pcdistmat)] <- 1
 mds <- cmdscale(pcdistmat,k=mdsk)
 
-outliersT <- mds==NA
 
+
+#run through MDS to find outlier regions, assess for consistency (at least 4 blocks long and not separated by 10 blocks)
 maxgap=10
 minsize=4
-#for(k in c(1:mdsk)) {
+outliersT <- mds==NA
 
 for(k in c(1:mdsk)) {
     #write(paste("surveying MDS",k),file=stderr())
@@ -141,11 +145,10 @@ if(nrow(invcands)>0) {
 }
 
 
-write(paste("writing",nrow(invcands),"candidates on chrom",chrom),file=stderr())
-write.table(invcands,file=outtxt,sep="\t",quote=F,col.names=T,row.names=F)
-
 invcands <- unique(invcands[order(invcands$chrom,invcands$start,invcands$end),c("chrom","start","end")])
 invcands$chromname <- chromname[invcands$chrom]
+invcands$valid <- 0
+invcands$name <- NA
 
 rm("pcs")
 #for(ii in c(1:nrow(invcands))) {
@@ -153,6 +156,9 @@ for(ii in rownames(invcands)) {
     chr = invcands[ii,"chrom"]
     st = invcands[ii,"start"]/1e6
     en = invcands[ii,"end"]/1e6
+    
+    invcands[ii,"name"] <- paste(chr,":",st,"-",en,sep="")
+    
     write(paste("PCA: ",ii,chr,st,en),file=stderr())
     invsnps <- vcf_query(vcffile,
                          samples=samples,
@@ -163,7 +169,7 @@ for(ii in rownames(invcands)) {
     invpcs <- as.data.frame(pca$x[,c("PC1","PC2")])
     invpcs$sample <- samples
     invpcs <- merge(invpcs,spptab)
-    invpcs$inv <- ii
+    invpcs$inv <- paste(chr,":",st,"-",en,sep="")
     invpcs$chrom <- chr
 
     if(exists("pcs")) {
@@ -171,15 +177,70 @@ for(ii in rownames(invcands)) {
     } else {
       pcs <- invpcs
     }
-    #spca <- summary(pca)
 }
+
+pcs$inv <- factor(pcs$inv,levels=invcands$name,ordered=T)
+pcs$valid<-factor(NA,levels=c("aa","ab","bb"))
+#### assess PCA clusters
+
+for(I in unique(pcs$inv)) {
+  pcsinv <- subset(pcs,inv==I)
+  kmpca <- kmeans(pcsinv[,c("PC1")],centers=3,nstart=20,iter.max=50)
+  
+  clusters <- factor(kmpca$cluster)
+  clustorder <- order(kmpca$centers)
+  
+  #calculate deviation of middle cluster from center point
+  centers <- kmpca$centers[clustorder]
+  delta <- ((centers[2] - centers[1])-(centers[3] - centers[2])) / 
+    ((centers[3]-centers[1])/2)
+  
+  #rename levels 0/1/2 based on pcorder
+  levels(clusters)[clustorder] <- c('aa','ab','bb')
+    
+  n<-length(clusters)
+  wss <- kmpca$withinss[clustorder]
+  tot.wss <- kmpca$tot.withinss
+  bss <- kmpca$betweenss
+  tot.ss <- kmpca$totss
+  
+  MAXD <- 0.3
+  MAXSS <- 55
+  invpass <- ((abs(delta)<MAXD) && ((tot.wss/n) < MAXSS))
+  write(paste("inv:",I,
+              "\tctr:",paste(round(centers,1),collapse="/"),
+              "\twss:",paste(round(wss,1),collapse="/"),
+              "\t",(tot.wss/n) < MAXSS,
+              (abs(delta)<MAXD),
+              "\tpass:",invpass),file=stderr())
+  
+  invcands[invcands$name==I,"valid"] <- invpass
+  if(invpass) {
+    pcs$valid[which(pcs$inv==I)] <- clusters
+  }
+}
+
+
+write(paste("writing",nrow(invcands),"candidates on chrom",chrom),file=stderr())
+write.table(invcands,file=outtxt,sep="\t",quote=F,col.names=T,row.names=F)
+
+
+
+
+invcols <- scale_color_manual(values=c("aa"="yellow","ab"="orange","bb"="red"),na.value = "dark grey")
+ncol=round(sqrt(length(unique(pcs$inv))))
+invpca <- ggplot(pcs,aes(x=PC1,y=PC2,color=valid)) + geom_point() + coord_fixed() + invcols +
+  facet_wrap("inv ~ .",ncol=ncol)
+invpca
+
 
 if(exists("pcs")) {
   ncol=round(sqrt(length(unique(pcs$inv))))
-  invpca <- ggplot(pcs,aes(x=PC1,y=PC2)) + geom_point() + coord_fixed() +
+  invpca <- ggplot(pcs,aes(x=PC1,y=PC2,color=valid)) + geom_point() + coord_fixed() + invcols +
     facet_wrap("inv ~ .",ncol=ncol)
 
-  #distplot | invpca
+  invpca
+  
   png(filename = outpng,width=350,height=200,units="mm",res=400)
   grid.arrange(distplot, invpca, ncol=2)
   dev.off()
