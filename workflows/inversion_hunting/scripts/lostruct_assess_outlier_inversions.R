@@ -8,15 +8,26 @@ library("grid")
 
 args = commandArgs(trailingOnly=TRUE)
 
+setwd("~/Gits/Aaeg1000g_analyses/analyses/sredmond/220118_inversion_region_calls/")
+dists <- "redmond-lab-aaeg1000g/results_lostruct/lostruct_all_chr/lostruct_chr1_Senegal.txt"
+vcffile <- "/Volumes/Mosquito_raw_data/Aedes/Aaeg1000g/thinrand/lostruct_chr1.vcf.gz"
+country <- "Senegal"
+chrom <- 1
+outtxt <- "./inv_candidates_chr1_Senegal.txt"
+outpng <- "./inv_candidates_chr1_Senegal.png"
+sppfile <- "resources/meta_Aaeg1kg_spp.txt"
+invfile <- "resources/redmond_2020_inversion_calls.txt"
+
 # setwd("~/Gits/Aaeg1000g_analyses/analyses/sredmond/220118_inversion_region_calls/")
-# dists <- "redmond-lab-aaeg1000g/results_lostruct/lostruct_all_chr/lostruct_chr1_Senegal.txt"
+# dists <- "redmond-lab-aaeg1000g/results_lostruct/lostruct_all_chr/lostruct_chr1_Brazil.txt"
 # vcffile <- "/Volumes/Mosquito_raw_data/Aedes/Aaeg1000g/thinrand/lostruct_chr1.vcf.gz"
-# country <- "Senegal"
+# country <- "Brazil"
 # chrom <- 1
-# outtxt <- "./inv_candidates_chr1_Senegal.txt"
-# outpng <- "./inv_candidates_chr1_Senegal.png"
+# outtxt <- "./inv_candidates_chr1_Brazil.txt"
+# outpng <- "./inv_candidates_chr1_Brazil.png"
 # sppfile <- "resources/meta_Aaeg1kg_spp.txt"
 # invfile <- "resources/redmond_2020_inversion_calls.txt"
+
 
 dists <- args[1]
 vcffile <- args[2]
@@ -204,14 +215,19 @@ for(I in unique(pcs$inv)) {
   bss <- kmpca$betweenss
   tot.ss <- kmpca$totss
   
-  MAXD <- 0.3
-  MAXSS <- 55
-  invpass <- ((abs(delta)<MAXD) && ((tot.wss/n) < MAXSS))
+  
+  
+  MAXD <- 0.25
+  MAXSS <- 20
+  MINBSS <- 0.95
+  
+  invpass <- ((abs(delta)<=MAXD) && ((tot.wss/n) <= MAXSS) && (bss/tot.ss)>=MINBSS)
   write(paste("inv:",I,
-              "\tctr:",paste(round(centers,1),collapse="/"),
-              "\twss:",paste(round(wss,1),collapse="/"),
-              "\t",(tot.wss/n) < MAXSS,
-              (abs(delta)<MAXD),
+              #"\tctr:",paste(round(centers,1),collapse="/"),
+              #"\twss:",paste(round(wss,1),collapse="/"),
+              "\tbss/tot:",round(bss/tot.ss,2),
+              "\tss",round(tot.wss/n,2),
+              "d",round(abs(delta),2),
               "\tpass:",invpass),file=stderr())
   
   invcands[invcands$name==I,"valid"] <- invpass
@@ -229,15 +245,11 @@ write.table(invcands,file=outtxt,sep="\t",quote=F,col.names=T,row.names=F)
 
 invcols <- scale_color_manual(values=c("aa"="yellow","ab"="orange","bb"="red"),na.value = "dark grey")
 ncol=round(sqrt(length(unique(pcs$inv))))
-invpca <- ggplot(pcs,aes(x=PC1,y=PC2,color=valid)) + geom_point() + coord_fixed() + invcols +
-  facet_wrap("inv ~ .",ncol=ncol)
-invpca
-
 
 if(exists("pcs")) {
   ncol=round(sqrt(length(unique(pcs$inv))))
   invpca <- ggplot(pcs,aes(x=PC1,y=PC2,color=valid)) + geom_point() + coord_fixed() + invcols +
-    facet_wrap("inv ~ .",ncol=ncol)
+    facet_wrap("inv ~ .",ncol=ncol) + theme(legend.position = "none")
 
   invpca
   
