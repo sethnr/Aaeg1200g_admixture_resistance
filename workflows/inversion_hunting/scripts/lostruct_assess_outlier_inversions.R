@@ -29,6 +29,12 @@ outtxt <- args[6]
 outpng <- args[7]
 
 
+#inversion validation criteria
+MAXD <- 0.25
+MAXSS <- 20
+MINBSS <- 0.95
+
+
 
 chromname <- c("NC_035107.1","NC_035108.1","NC_035109.1")
 chromlen <- c(310827022,474425716,409777670)
@@ -151,6 +157,8 @@ invcands$chromname <- chromname[invcands$chrom]
 invcands$valid <- logical()
 invcands$name <- character()
 
+write("calculating PCAs in SV regions",file=stderr())
+
 rm("pcs")
 #for(ii in c(1:nrow(invcands))) {
 for(ii in rownames(invcands)) {
@@ -180,10 +188,13 @@ for(ii in rownames(invcands)) {
     }
 }
 
+write("assessing PCAs as inversions",file=stderr())
+
 #### assess PCA clusters
 if(exists("pcs")) {
   pcs$inv <- factor(pcs$inv,levels=invcands$name,ordered=T)
   pcs$valid<-factor(NA,levels=c("aa","ab","bb"))
+  
   for(I in unique(pcs$inv)) {
     pcsinv <- subset(pcs,inv==I)
     kmpca <- kmeans(pcsinv[,c("PC1")],centers=3,nstart=20,iter.max=50)
@@ -205,12 +216,6 @@ if(exists("pcs")) {
     bss <- kmpca$betweenss
     tot.ss <- kmpca$totss
     
-    
-    
-    MAXD <- 0.25
-    MAXSS <- 20
-    MINBSS <- 0.95
-    
     invpass <- ((abs(delta)<=MAXD) && ((tot.wss/n) <= MAXSS) && (bss/tot.ss)>=MINBSS)
     write(paste("inv:",I,
                 #"\tctr:",paste(round(centers,1),collapse="/"),
@@ -221,6 +226,10 @@ if(exists("pcs")) {
                 "\tpass:",invpass),file=stderr())
     
     invcands[invcands$name==I,"valid"] <- invpass
+    invcands[invcands$name==I,"d"] <- round(abs(delta),2)
+    invcands[invcands$name==I,"mean_wss"] <- round(tot.wss/n,2)
+    invcands[invcands$name==I,"bss_tot"] <- round(bss/tot.ss/n,2)
+    
     if(invpass) {
       pcs$valid[which(pcs$inv==I)] <- clusters
     }
