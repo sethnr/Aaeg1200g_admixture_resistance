@@ -9,12 +9,12 @@ library("grid")
 args = commandArgs(trailingOnly=TRUE)
 
 # setwd("~/Gits/Aaeg1000g_analyses/analyses/sredmond/220118_inversion_region_calls/")
-# dists <- "redmond-lab-aaeg1000g/results_lostruct/lostruct_all_chr/lostruct_chr1_USA.txt"
+# dists <- "redmond-lab-aaeg1000g/results_lostruct/lostruct_all_chr/lostruct_chr1_Uganda.txt"
 # vcffile <- "/Volumes/Mosquito_raw_data/Aedes/Aaeg1000g/thinrand/lostruct_chr1.vcf.gz"
-# country <- "USA"
-# chrom <- 1
-# outtxt <- "./inv_candidates_chr1_USA.txt"
-# outpng <- "./inv_candidates_chr1_USA.png"
+# country <- "Uganda"
+# chrom <- 2
+# outtxt <- "./inv_candidates_chr2_Uganda.txt"
+# outpng <- "./inv_candidates_chr2_Uganda.png"
 # sppfile <- "resources/meta_Aaeg1kg_spp.txt"
 # invfile <- "resources/redmond_2020_inversion_calls.txt"
 # 
@@ -148,8 +148,8 @@ if(nrow(invcands)>0) {
 
 invcands <- unique(invcands[order(invcands$chrom,invcands$start,invcands$end),c("chrom","start","end")])
 invcands$chromname <- chromname[invcands$chrom]
-invcands$valid <- 0
-invcands$name <- NA
+invcands$valid <- logical()
+invcands$name <- character()
 
 rm("pcs")
 #for(ii in c(1:nrow(invcands))) {
@@ -180,49 +180,50 @@ for(ii in rownames(invcands)) {
     }
 }
 
-pcs$inv <- factor(pcs$inv,levels=invcands$name,ordered=T)
-pcs$valid<-factor(NA,levels=c("aa","ab","bb"))
 #### assess PCA clusters
-
-for(I in unique(pcs$inv)) {
-  pcsinv <- subset(pcs,inv==I)
-  kmpca <- kmeans(pcsinv[,c("PC1")],centers=3,nstart=20,iter.max=50)
-  
-  clusters <- factor(kmpca$cluster)
-  clustorder <- order(kmpca$centers)
-  
-  #calculate deviation of middle cluster from center point
-  centers <- kmpca$centers[clustorder]
-  delta <- ((centers[2] - centers[1])-(centers[3] - centers[2])) / 
-    ((centers[3]-centers[1])/2)
-  
-  #rename levels 0/1/2 based on pcorder
-  levels(clusters)[clustorder] <- c('aa','ab','bb')
+if(exists("pcs")) {
+  pcs$inv <- factor(pcs$inv,levels=invcands$name,ordered=T)
+  pcs$valid<-factor(NA,levels=c("aa","ab","bb"))
+  for(I in unique(pcs$inv)) {
+    pcsinv <- subset(pcs,inv==I)
+    kmpca <- kmeans(pcsinv[,c("PC1")],centers=3,nstart=20,iter.max=50)
     
-  n<-length(clusters)
-  wss <- kmpca$withinss[clustorder]
-  tot.wss <- kmpca$tot.withinss
-  bss <- kmpca$betweenss
-  tot.ss <- kmpca$totss
-  
-  
-  
-  MAXD <- 0.25
-  MAXSS <- 20
-  MINBSS <- 0.95
-  
-  invpass <- ((abs(delta)<=MAXD) && ((tot.wss/n) <= MAXSS) && (bss/tot.ss)>=MINBSS)
-  write(paste("inv:",I,
-              #"\tctr:",paste(round(centers,1),collapse="/"),
-              #"\twss:",paste(round(wss,1),collapse="/"),
-              "\tbss/tot:",round(bss/tot.ss,2),
-              "\tss",round(tot.wss/n,2),
-              "d",round(abs(delta),2),
-              "\tpass:",invpass),file=stderr())
-  
-  invcands[invcands$name==I,"valid"] <- invpass
-  if(invpass) {
-    pcs$valid[which(pcs$inv==I)] <- clusters
+    clusters <- factor(kmpca$cluster)
+    clustorder <- order(kmpca$centers)
+    
+    #calculate deviation of middle cluster from center point
+    centers <- kmpca$centers[clustorder]
+    delta <- ((centers[2] - centers[1])-(centers[3] - centers[2])) / 
+      ((centers[3]-centers[1])/2)
+    
+    #rename levels 0/1/2 based on pcorder
+    levels(clusters)[clustorder] <- c('aa','ab','bb')
+      
+    n<-length(clusters)
+    wss <- kmpca$withinss[clustorder]
+    tot.wss <- kmpca$tot.withinss
+    bss <- kmpca$betweenss
+    tot.ss <- kmpca$totss
+    
+    
+    
+    MAXD <- 0.25
+    MAXSS <- 20
+    MINBSS <- 0.95
+    
+    invpass <- ((abs(delta)<=MAXD) && ((tot.wss/n) <= MAXSS) && (bss/tot.ss)>=MINBSS)
+    write(paste("inv:",I,
+                #"\tctr:",paste(round(centers,1),collapse="/"),
+                #"\twss:",paste(round(wss,1),collapse="/"),
+                "\tbss/tot:",round(bss/tot.ss,2),
+                "\tss",round(tot.wss/n,2),
+                "d",round(abs(delta),2),
+                "\tpass:",invpass),file=stderr())
+    
+    invcands[invcands$name==I,"valid"] <- invpass
+    if(invpass) {
+      pcs$valid[which(pcs$inv==I)] <- clusters
+    }
   }
 }
 
@@ -233,10 +234,10 @@ write.table(invcands,file=outtxt,sep="\t",quote=F,col.names=T,row.names=F)
 
 
 
-invcols <- scale_color_manual(values=c("aa"="yellow","ab"="orange","bb"="red"),na.value = "dark grey")
-ncol=round(sqrt(length(unique(pcs$inv))))
 
 if(exists("pcs")) {
+  invcols <- scale_color_manual(values=c("aa"="yellow","ab"="orange","bb"="red"),na.value = "dark grey")
+  ncol=round(sqrt(length(unique(pcs$inv))))
   ncol=round(sqrt(length(unique(pcs$inv))))
   invpca <- ggplot(pcs,aes(x=PC1,y=PC2,color=valid)) + geom_point() + coord_fixed() + invcols +
     facet_wrap("inv ~ .",ncol=ncol) + theme(legend.position = "none")
