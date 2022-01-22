@@ -154,8 +154,8 @@ if(nrow(invcands)>0) {
 
 invcands <- unique(invcands[order(invcands$chrom,invcands$start,invcands$end),c("chrom","start","end")])
 invcands$chromname <- chromname[invcands$chrom]
-invcands$valid <- logical()
-invcands$name <- character()
+invcands$valid <- logical(nrow(invcands))
+invcands$name <- character(nrow(invcands))
 
 write("calculating PCAs in SV regions",file=stderr())
 
