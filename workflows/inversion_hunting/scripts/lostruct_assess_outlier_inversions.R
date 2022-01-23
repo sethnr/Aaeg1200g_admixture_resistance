@@ -114,7 +114,7 @@ for(k in c(1:mdsk)) {
             invcands[ii,"chrom"] <- chrom
             invcands[ii,"start"] <- start*pcblocksize
             invcands[ii,"end"] <- end*pcblocksize
-            invcands[ii,"country"] <- country
+            #invcands[ii,"country"] <- country
             }
           start=koutliers[i]
           end=koutliers[i]
@@ -128,7 +128,7 @@ for(k in c(1:mdsk)) {
         invcands[ii,"chrom"] <- chrom
         invcands[ii,"start"] <- start*pcblocksize
         invcands[ii,"end"] <- end*pcblocksize
-        invcands[ii,"country"] <- country
+        #invcands[ii,"country"] <- country
       }
     }
 }
@@ -154,6 +154,7 @@ if(nrow(invcands)>0) {
 
 invcands <- unique(invcands[order(invcands$chrom,invcands$start,invcands$end),c("chrom","start","end")])
 invcands$chromname <- chromname[invcands$chrom]
+invcands$country <- country
 invcands$valid <- logical(nrow(invcands))
 invcands$name <- character(nrow(invcands))
 
@@ -229,6 +230,7 @@ if(exists("pcs")) {
     invcands[invcands$name==I,"d"] <- round(abs(delta),2)
     invcands[invcands$name==I,"mean_wss"] <- round(tot.wss/n,2)
     invcands[invcands$name==I,"bss_tot"] <- round(bss/tot.ss/n,2)
+    
     
     if(invpass) {
       pcs$valid[which(pcs$inv==I)] <- clusters

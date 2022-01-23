@@ -37,6 +37,8 @@ rule all:
 
         expand("results_lostruct/lostruct_valid_candidates/lostruct_chr{chrid}_{loc}.png",
         chrid=[1,2,3],loc=bigcountries),
+        expand("results_lostruct/lostruct_valid_candidates/lostruct_chr{chrid}_{loc}.txt",
+        chrid=[1,2,3],loc=bigcountries),
 
         #expand("results_lostruct/lostruct_dists/lostruct_chr{chrid}_{loc}_pca_composite.png",
         #        chrid=[1,2,3],loc=conts),
