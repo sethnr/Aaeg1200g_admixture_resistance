@@ -17,7 +17,7 @@ args = commandArgs(trailingOnly=TRUE)
 # outpng <- "./inv_candidates_chr2_Uganda.png"
 # sppfile <- "resources/meta_Aaeg1kg_spp.txt"
 # invfile <- "resources/redmond_2020_inversion_calls.txt"
-# 
+#
 
 dists <- args[1]
 vcffile <- args[2]
@@ -114,13 +114,13 @@ for(k in c(1:mdsk)) {
             invcands[ii,"chrom"] <- chrom
             invcands[ii,"start"] <- start*pcblocksize
             invcands[ii,"end"] <- end*pcblocksize
-            #invcands[ii,"country"] <- country
+            invcands[ii,"country"] <- country
             }
           start=koutliers[i]
           end=koutliers[i]
         }
       }
-      
+
       if(end-start > minsize) {
         #write(paste(mdsk,k,start/2,end/2,end-start,end-start>minsize),file=stderr())
         ii <- nrow(invcands)+1
@@ -128,7 +128,7 @@ for(k in c(1:mdsk)) {
         invcands[ii,"chrom"] <- chrom
         invcands[ii,"start"] <- start*pcblocksize
         invcands[ii,"end"] <- end*pcblocksize
-        #invcands[ii,"country"] <- country
+        invcands[ii,"country"] <- country
       }
     }
 }
@@ -154,7 +154,7 @@ if(nrow(invcands)>0) {
 
 invcands <- unique(invcands[order(invcands$chrom,invcands$start,invcands$end),c("chrom","start","end")])
 invcands$chromname <- chromname[invcands$chrom]
-invcands$country <- country
+#invcands$country <- country
 invcands$valid <- logical(nrow(invcands))
 invcands$name <- character(nrow(invcands))
 
@@ -166,9 +166,9 @@ for(ii in rownames(invcands)) {
     chr = invcands[ii,"chrom"]
     st = invcands[ii,"start"]/1e6
     en = invcands[ii,"end"]/1e6
-    
+
     invcands[ii,"name"] <- paste(chr,":",st,"-",en,sep="")
-    
+
     write(paste("PCA: ",ii,chr,st,en),file=stderr())
     invsnps <- vcf_query(vcffile,
                          samples=samples,
@@ -195,28 +195,28 @@ write("assessing PCAs as inversions",file=stderr())
 if(exists("pcs")) {
   pcs$inv <- factor(pcs$inv,levels=invcands$name,ordered=T)
   pcs$valid<-factor(NA,levels=c("aa","ab","bb"))
-  
+
   for(I in unique(pcs$inv)) {
     pcsinv <- subset(pcs,inv==I)
     kmpca <- kmeans(pcsinv[,c("PC1")],centers=3,nstart=20,iter.max=50)
-    
+
     clusters <- factor(kmpca$cluster)
     clustorder <- order(kmpca$centers)
-    
+
     #calculate deviation of middle cluster from center point
     centers <- kmpca$centers[clustorder]
-    delta <- ((centers[2] - centers[1])-(centers[3] - centers[2])) / 
+    delta <- ((centers[2] - centers[1])-(centers[3] - centers[2])) /
       ((centers[3]-centers[1])/2)
-    
+
     #rename levels 0/1/2 based on pcorder
     levels(clusters)[clustorder] <- c('aa','ab','bb')
-      
+
     n<-length(clusters)
     wss <- kmpca$withinss[clustorder]
     tot.wss <- kmpca$tot.withinss
     bss <- kmpca$betweenss
     tot.ss <- kmpca$totss
-    
+
     invpass <- ((abs(delta)<=MAXD) && ((tot.wss/n) <= MAXSS) && (bss/tot.ss)>=MINBSS)
     write(paste("inv:",I,
                 #"\tctr:",paste(round(centers,1),collapse="/"),
@@ -225,13 +225,13 @@ if(exists("pcs")) {
                 "\tss",round(tot.wss/n,2),
                 "d",round(abs(delta),2),
                 "\tpass:",invpass),file=stderr())
-    
+
     invcands[invcands$name==I,"valid"] <- invpass
     invcands[invcands$name==I,"d"] <- round(abs(delta),2)
     invcands[invcands$name==I,"mean_wss"] <- round(tot.wss/n,2)
     invcands[invcands$name==I,"bss_tot"] <- round(bss/tot.ss/n,2)
-    
-    
+
+
     if(invpass) {
       pcs$valid[which(pcs$inv==I)] <- clusters
     }
@@ -254,7 +254,7 @@ if(exists("pcs")) {
     facet_wrap("inv ~ .",ncol=ncol) + theme(legend.position = "none")
 
   invpca
-  
+
   png(filename = outpng,width=350,height=200,units="mm",res=400)
   grid.arrange(distplot, invpca, ncol=2)
   dev.off()
