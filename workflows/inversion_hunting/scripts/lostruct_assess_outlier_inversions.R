@@ -17,16 +17,15 @@ args = commandArgs(trailingOnly=TRUE)
 # outpng <- "./inv_candidates_chr2_Uganda.png"
 # sppfile <- "resources/meta_Aaeg1kg_spp.txt"
 # invfile <- "resources/redmond_2020_inversion_calls.txt"
-#
 
 dists <- args[1]
 vcffile <- args[2]
 country = args[3]
 chrom <- as.numeric(args[4])
 sppfile <- args[5]
-#invfile <- args[6]
 outtxt <- args[6]
-outpng <- args[7]
+outpcs <- args[7]
+outpng <- args[8]
 
 
 #inversion validation criteria
@@ -246,7 +245,12 @@ write.table(invcands,file=outtxt,sep="\t",quote=F,col.names=T,row.names=F)
 
 
 
+
+write(paste("saving",nrow(invcands),"PCs on chrom",chrom),file=stderr())
+
 if(exists("pcs")) {
+  saveRDS(pcs,file=outpcs)
+
   invcols <- scale_color_manual(values=c("aa"="yellow","ab"="orange","bb"="red"),na.value = "dark grey")
   ncol=round(sqrt(length(unique(pcs$inv))))
   ncol=round(sqrt(length(unique(pcs$inv))))
@@ -259,6 +263,8 @@ if(exists("pcs")) {
   grid.arrange(distplot, invpca, ncol=2)
   dev.off()
 } else {
+  saveRDS(NA,file=outpcs)
+
   png(filename = outpng,width=350,height=200,units="mm",res=400)
   grid.arrange(distplot,  grid.rect(gp=gpar(col="white")), ncol=2)
   dev.off()
