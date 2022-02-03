@@ -58,7 +58,7 @@ allaims <- data.frame(chrom=character(),
                       country=character(),
                       assoc=numeric())
                       
-)
+
 
 for(i in as.character(row.names(invcands))) {
     chr = invcands[i,"chrom"]

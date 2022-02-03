@@ -39,6 +39,8 @@ rule all:
         chrid=[1,2,3],loc=bigcountries),
         expand("results_lostruct/lostruct_valid_candidates/lostruct_chr{chrid}_{loc}.txt",
         chrid=[1,2,3],loc=bigcountries),
+        expand("results_lostruct/lostruct_aims/lostruct_chr{chrid}_{loc}.txt",
+        chrid=[1,2,3],loc=bigcountries),
 
         #expand("results_lostruct/lostruct_dists/lostruct_chr{chrid}_{loc}_pca_composite.png",
         #        chrid=[1,2,3],loc=conts),
@@ -187,7 +189,7 @@ rule lostruct_assess_inversion_candidates:
         spptable=config["spptable"]
     output:
         txt="results_lostruct/lostruct_valid_candidates/lostruct_chr{chrom}_{region}.txt",
-        pcs="results_lostruct/lostruct_valid_candidates/lostruct_chr{chrom}_{region}_pcs.rds",
+        pcs="results_lostruct/lostruct_valid_candidates/lostruct_chr{chrom}_{region}_pcs.Rds",
         png="results_lostruct/lostruct_valid_candidates/lostruct_chr{chrom}_{region}.png",
     resources:
         mem_mb=12000,
@@ -201,8 +203,34 @@ rule lostruct_assess_inversion_candidates:
         	{wildcards.region} {wildcards.chrom} \
         	{input.spptable} \
         	{output.txt} \
+        	{output.pcs} \
         	{output.png}
         """
+
+rule lostruct_find_aims:
+    input:
+        vcf="results_lostruct/norep_regions_thinrand/lostruct_chr{chrom}.vcf.gz",
+        tbi="results_lostruct/norep_regions_thinrand/lostruct_chr{chrom}.vcf.gz.tbi",
+        invs="results_lostruct/lostruct_valid_candidates/lostruct_chr{chrom}_{region}.txt",
+        pcs="results_lostruct/lostruct_valid_candidates/lostruct_chr{chrom}_{region}_pcs.Rds",
+        spptable=config["spptable"]
+    output:
+        txt="results_lostruct/lostruct_aims/lostruct_chr{chrom}_{region}.txt",
+    resources:
+        mem_mb=12000,
+        disk_mb=500000,
+    log:
+        log="logs/lostruct_valid_candidates/candidates-chr{chrom}_{region}.log",
+    shell:
+        """Rscript scripts/lostruct_genotype_valid_inversions.R \
+        	{input.vcf} \
+        	{wildcards.region} \
+        	{input.spptable} \
+            {input.invs} \
+            {input.pcs} \
+        	{output.txt}
+        """
+
 
 
 rule lostruct_all_composite:
