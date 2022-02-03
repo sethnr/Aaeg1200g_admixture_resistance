@@ -25,7 +25,7 @@ outtxt <- args[6]
 
 
 #AIM criteria
-MAXCHISQ <- 1e-9
+MAXCHISQ <- 1e-8
 
 vcf_positions <- function (file, regions) 
 {
@@ -91,12 +91,15 @@ for(i in as.character(row.names(invcands))) {
     goodposns$assoc <- assoc
     
     #get associated SNPS & posns
-    realgoodposns <- goodposns[goodposns$assoc < MAXCHISQ,] %>% add_column(i=c(1:sum(goodposns$assoc < MAXCHISQ)),
+    write(paste(sum(goodposns$assoc < MAXCHISQ)," potential AIMs over",MAXCHISQ,"for",invname),file=stderr())
+    if(sum(goodposns$assoc < MAXCHISQ)>0) {
+      realgoodposns <- goodposns[goodposns$assoc < MAXCHISQ,] %>% add_column(i=c(1:sum(goodposns$assoc < MAXCHISQ)),
                                                                               "inv"=invname,
                                                                               "country"=country,
                                                                               .after="pos")
     
-    allaims <- rbind(allaims,realgoodposns)
+      allaims <- rbind(allaims,realgoodposns)
+    }
     
     # # do following if plotting results...
     # realgoodsnps <- goodsnps[goodposns$assoc < assoccutoff,]
