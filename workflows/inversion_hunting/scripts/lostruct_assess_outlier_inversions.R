@@ -151,9 +151,8 @@ if(nrow(invcands)>0) {
 }
 
 
-invcands <- unique(invcands[order(invcands$chrom,invcands$start,invcands$end),c("chrom","start","end")])
+invcands <- unique(invcands[order(invcands$chrom,invcands$start,invcands$end),c("chrom","start","end","country")])
 invcands$chromname <- chromname[invcands$chrom]
-#invcands$country <- country
 invcands$valid <- logical(nrow(invcands))
 invcands$name <- character(nrow(invcands))
 
