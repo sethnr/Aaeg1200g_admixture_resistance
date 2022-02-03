@@ -25,7 +25,7 @@ outtxt <- args[6]
 
 
 #AIM criteria
-MAXCHISQ <- 1e-8
+MAXCHISQ <- 1e-9
 
 vcf_positions <- function (file, regions) 
 {
