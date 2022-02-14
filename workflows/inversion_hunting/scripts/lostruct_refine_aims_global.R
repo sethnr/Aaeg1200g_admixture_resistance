@@ -182,7 +182,7 @@ for(i in as.character(row.names(invcands))) {
 write.table(invcalls,outcalls,col.names=T,quote=F,row.names=F,sep="\t")
 write.table(allinvsnps,outsnps,col.names=T,quote=F,row.names=F,sep="\t")
 
-png(outaimspng,res=400,width=200,height=200,units='mm')
+png(outsnpspng,res=400,width=200,height=200,units='mm')
   do.call("grid.arrange", c(aimplots, nrow=1))
 dev.off()
 
