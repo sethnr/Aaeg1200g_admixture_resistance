@@ -24,7 +24,9 @@ metafile <- args[4]
 invfile <- args[5]
 aimsfile <- args[6]
 outcalls <- args[7]
-outsnps <- args[8]
+outcallspng <- args[8]
+outsnps <- args[9]
+outsnpspng <- args[10]
 
 plotaims <- F
 
@@ -74,6 +76,9 @@ allaims <- read.table(aimsfile)
 
 invcalls <- data.frame("sample"=samples,"country"=country)
 if(exists("allinvsnps")) {rm("allinvsnps")}
+aimplots <- list()
+callplots <- list()
+
 for(i in as.character(row.names(invcands))) {
     chr = invcands[i,"chrom"]
     chrname = invcands[i,"chromname"]
@@ -138,36 +143,38 @@ for(i in as.character(row.names(invcands))) {
     if(!exists("allinvsnps")) {allinvsnps <- invsnps} else {allinvsnps <- rbind(allinvsnps,invsnps)}
     
     
-    if(plotaims) {
-      aimsM <- pivot_longer(invsnps,all_of(samples),names_to = "sample") %>% rename("invcountry"="country")
-      aimsM <- merge(aimsM,metatab,by="sample")
-      aimsM$sample <- factor(aimsM$sample,levels = cntinvorder,ordered=T)
+    aimsM <- pivot_longer(invsnps,all_of(samples),names_to = "sample") %>% rename("invcountry"="country")
+    aimsM <- merge(aimsM,metatab,by="sample")
+    aimsM$sample <- factor(aimsM$sample,levels = cntinvorder,ordered=T)
+    
+    aimplot <- ggplot(aimsM,aes(x=i,y=as.numeric(sample),fill=as.factor(value))) + geom_raster() + 
+       ylab("samples") + xlab("SNPs")+ theme(legend.position="none")+
+       scale_y_continuous(expand = c(0,0)) + scale_x_continuous(expand = c(0,0)) +
+      scale_fill_manual(values=c("0"="blue","1"="purple","2"="red")) +
+      facet_grid("country ~ .",scale="free_y",space="free_y") +
+      ggtitle(paste(invname,country,"aim calls","( top",nrow(invaims),")"))+
+      theme(panel.spacing = unit(0.2, "mm"),
+            axis.text=element_blank(),
+            axis.ticks.y=element_blank())
+    aimplots[[invname]] <- aimplot
+    
+      # ggsave(paste("inv_",gsub(":","_",invname),"_",country,"_n",maxaims,"_aims_LD_pruned.png",sep=""),
+      #        aimplot,
+      #        height=250,width=200,units="mm")
+      # 
       
-      aimplot <- ggplot(aimsM,aes(x=i,y=as.numeric(sample),fill=as.factor(value))) + geom_raster() + 
-         ylab("samples") + xlab("SNPs")+ theme(legend.position="none")+
-         scale_y_continuous(expand = c(0,0)) + scale_x_continuous(expand = c(0,0)) +
-        scale_fill_manual(values=c("0"="blue","1"="purple","2"="red")) +
-        facet_grid("country ~ .",scale="free_y",space="free_y") +
-        ggtitle(paste(invname,country,"aim calls","( top",nrow(invaims),")"))+
-        theme(panel.spacing = unit(0.2, "mm"),
-              axis.text=element_blank(),
-              axis.ticks.y=element_blank())
-      #aimplot
-      ggsave(paste("inv_",gsub(":","_",invname),"_",country,"_n",maxaims,"_aims_LD_pruned.png",sep=""),
-             aimplot,
-             height=250,width=200,units="mm")
       
-      
-      
-      callplot <- ggplot(data.frame("sample"=names(meancall),
-                        "mean"=meancall,
-                        "call"=invcall),aes(x=mean,group=call,fill=as.factor(call))) + 
-        geom_histogram(bins=100)+
-        ggtitle(invname)
-      ggsave(paste("inv_",gsub(":","_",invname),"_",country,"_n",maxaims,"_calls_LD_pruned.png",sep=""),
-             callplot,
-             height=250,width=200,units="mm")
-    }
+    callplot <- ggplot(data.frame("sample"=names(meancall),
+                      "mean"=meancall,
+                      "call"=invcall),aes(x=mean,group=call,fill=as.factor(call))) + 
+      scale_fill_manual(values=c("0"="blue","1"="purple","2"="red"),na.value = "grey",guide="none") +
+      geom_histogram(bins=100)+
+      ggtitle(invname)
+    callplots[[invname]] <- callplot
+       # ggsave(paste("inv_",gsub(":","_",invname),"_",country,"_n",maxaims,"_calls_LD_pruned.png",sep=""),
+       #       callplot,
+       #       height=250,width=200,units="mm")
+    
 }
 
 # write.table(invcalls,paste("inv_",chrom,"_",country,"_n",maxaims,"_mean_calls.txt",sep=""),col.names=T,quote=F,row.names=F,sep="\t")
@@ -175,3 +182,10 @@ for(i in as.character(row.names(invcands))) {
 write.table(invcalls,outcalls,col.names=T,quote=F,row.names=F,sep="\t")
 write.table(allinvsnps,outsnps,col.names=T,quote=F,row.names=F,sep="\t")
 
+png(outaimspng,res=400,width=200,height=200,units='mm')
+  do.call("grid.arrange", c(aimplots, nrow=1))
+dev.off()
+
+png(outcallspng,res=400,width=200,height=200,units='mm')
+  do.call("grid.arrange", c(callplots, ncol=1))
+dev.off()
