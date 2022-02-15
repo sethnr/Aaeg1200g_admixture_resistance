@@ -154,7 +154,8 @@ for(i in as.character(row.names(invcands))) {
       facet_grid("country ~ .",scale="free_y",space="free_y") +
       ggtitle(paste(invname,country,"aim calls","( top",nrow(invaims),")"))+
       theme(panel.spacing = unit(0.2, "mm"),
-            axis.text=element_blank(),
+            axis.text.y=element_blank(),
+            axis.title.y=element_blank(),
             axis.ticks.y=element_blank())
     aimplots[[invname]] <- aimplot
     
@@ -180,7 +181,11 @@ for(i in as.character(row.names(invcands))) {
 # write.table(invcalls,paste("inv_",chrom,"_",country,"_n",maxaims,"_mean_calls.txt",sep=""),col.names=T,quote=F,row.names=F,sep="\t")
 # write.table(allinvsnps,paste("inv_",chrom,"_",country,"_n",maxaims,"_aim_snps.txt",sep=""),col.names=T,quote=F,row.names=F,sep="\t")
 write.table(invcalls,outcalls,col.names=T,quote=F,row.names=F,sep="\t")
-write.table(allinvsnps,outsnps,col.names=T,quote=F,row.names=F,sep="\t")
+
+if(!exists("allinvsnps")) {
+  write.table(allinvsnps,outsnps,col.names=T,quote=F,row.names=F,sep="\t")
+} else {touch(allinvsnps)}
+
 
 png(outsnpspng,res=400,width=200,height=200,units='mm')
   do.call("grid.arrange", c(aimplots, nrow=1))
