@@ -193,7 +193,7 @@ if(!exists("allinvsnps")) {
     do.call("grid.arrange", c(callplots, ncol=1))
   dev.off()
 } else {
-  file.create(allinvsnps)
+  file.create(outsnps)
   file.create(outsnpspng)
   file.create(outcallspng)
 }
