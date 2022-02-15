@@ -184,13 +184,16 @@ write.table(invcalls,outcalls,col.names=T,quote=F,row.names=F,sep="\t")
 
 if(!exists("allinvsnps")) {
   write.table(allinvsnps,outsnps,col.names=T,quote=F,row.names=F,sep="\t")
-} else {touch(allinvsnps)}
 
-
-png(outsnpspng,res=400,width=200,height=200,units='mm')
-  do.call("grid.arrange", c(aimplots, nrow=1))
-dev.off()
-
-png(outcallspng,res=400,width=200,height=200,units='mm')
-  do.call("grid.arrange", c(callplots, ncol=1))
-dev.off()
+  png(outsnpspng,res=400,width=200,height=200,units='mm')
+    do.call("grid.arrange", c(aimplots, nrow=1))
+  dev.off()
+  
+  png(outcallspng,res=400,width=200,height=200,units='mm')
+    do.call("grid.arrange", c(callplots, ncol=1))
+  dev.off()
+} else {
+  touch(allinvsnps)
+  touch(outsnpspng)
+  touch(outcallspng)
+}
