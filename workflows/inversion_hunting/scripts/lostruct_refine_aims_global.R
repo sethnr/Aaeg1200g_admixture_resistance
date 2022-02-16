@@ -90,6 +90,8 @@ for(i in as.character(row.names(invcands))) {
     
     invaims <- allaims[allaims$inv==invname,]
     # if more than <maxaims> aims, only take top <maxaims> sorted by P-value
+    
+    write(paste(" ",nrow(invaims),"aims found"),file=stderr())
     maxaims <- 100
     if(nrow(invaims) > maxaims) {
       invaims <- invaims[order(invaims$assoc)[1:maxaims],]
@@ -114,6 +116,8 @@ for(i in as.character(row.names(invcands))) {
     modecorr <- apply(invsnps,1,function(x) {cor(modecall[!is.na(x)],x[!is.na(x)])})
     invsnps[modecorr<0,] <- abs(invsnps[modecorr<0,]-2)
     
+    
+    write(paste("  LD filtering",nrow(invsnps),"SNPs"),file=stderr())
     #remove SNPs not in LD across whole dataset (mean -1x sd)
     #calculate mean r2 for each SNP
     r2s <- matrix(rep(-1,nrow(invsnps)^2),nrow=nrow(invsnps))
@@ -127,6 +131,9 @@ for(i in as.character(row.names(invcands))) {
     invsnps <- invsnps[ldinclude,]
     invaims <- invaims[ldinclude,]
     invaims$i <- c(1:nrow(invaims))
+    write(paste("  -->",nrow(invsnps)),file=stderr())
+    
+    
     
     #order all SNPs by country, then mean inv call of high LD SNPs
     meancall <- apply(invsnps,2,function(x) {mean(na.omit(x))})
@@ -143,6 +150,7 @@ for(i in as.character(row.names(invcands))) {
     invsnps <- cbind(invaims,invsnps)
     if(!exists("allinvsnps")) {allinvsnps <- invsnps} else {allinvsnps <- rbind(allinvsnps,invsnps)}
     
+    write("  plotting",file=stderr())
     
     aimsM <- pivot_longer(invsnps,all_of(samples),names_to = "sample") %>% rename("invcountry"="country")
     aimsM <- merge(aimsM,metatab,by="sample")
