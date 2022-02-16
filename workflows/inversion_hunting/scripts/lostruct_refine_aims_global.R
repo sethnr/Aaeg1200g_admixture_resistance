@@ -56,21 +56,19 @@ chromname <- c("NC_035107.1","NC_035108.1","NC_035109.1")
 chromlen <- c(310827022,474425716,409777670)
 names(chromlen) <- chromname
 
+write("gathering meta",file=stderr())
+
 metatab <- read.table(metafile,header=T, sep="\t")
 metatab$contgroup <- factor(metatab$contgroup,levels=c("Wafrica","Eafrica","Americas","Asia"),ordered=T)
 metatab$region <- factor(metatab$region,levels=c("East Africa","West Africa","South America","Carribean","North America","Middle East","Asia","Pacific"),ordered=T)
 
-
 countrysorttab <- unique(metatab[,c("country","contgroup","region")])
-
 metatab$country <- factor(metatab$country,levels=unique(metatab$country[order(metatab$region)]),ordered=T)
-
-
 samples <- metatab$sample
+
 
 invcands <- read.table(invfile,header=T)
 invcands <- subset(invcands,as.logical(valid))
-
 
 allaims <- read.table(aimsfile)           
 
@@ -79,6 +77,7 @@ if(exists("allinvsnps")) {rm("allinvsnps")}
 aimplots <- list()
 callplots <- list()
 
+
 for(i in as.character(row.names(invcands))) {
     chr = invcands[i,"chrom"]
     chrname = invcands[i,"chromname"]
@@ -86,6 +85,8 @@ for(i in as.character(row.names(invcands))) {
     st = invcands[i,"start"]
     en = invcands[i,"end"]
     invname = invcands[i,"name"]
+    
+    write(paste("refining aim",invname),file=stderr())
     
     invaims <- allaims[allaims$inv==invname,]
     # if more than <maxaims> aims, only take top <maxaims> sorted by P-value
