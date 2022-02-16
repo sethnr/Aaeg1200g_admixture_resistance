@@ -180,9 +180,12 @@ for(i in as.character(row.names(invcands))) {
 
 # write.table(invcalls,paste("inv_",chrom,"_",country,"_n",maxaims,"_mean_calls.txt",sep=""),col.names=T,quote=F,row.names=F,sep="\t")
 # write.table(allinvsnps,paste("inv_",chrom,"_",country,"_n",maxaims,"_aim_snps.txt",sep=""),col.names=T,quote=F,row.names=F,sep="\t")
+
+write("writing output tables",file=stderr())
 write.table(invcalls,outcalls,col.names=T,quote=F,row.names=F,sep="\t")
 
 if(exists("allinvsnps")) {
+  write("found invsnps",file=stderr())
   write.table(allinvsnps,outsnps,col.names=T,quote=F,row.names=F,sep="\t")
 
   png(outsnpspng,res=400,width=200,height=200,units='mm')
@@ -193,6 +196,8 @@ if(exists("allinvsnps")) {
     do.call("grid.arrange", c(callplots, ncol=1))
   dev.off()
 } else {
+  write("writing null tables",file=stderr())
+  
   file.create(outsnps)
   file.create(outsnpspng)
   file.create(outcallspng)
