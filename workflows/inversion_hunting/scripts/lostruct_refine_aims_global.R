@@ -97,6 +97,9 @@ for(i in as.character(row.names(invcands))) {
       invaims <- invaims[order(invaims$assoc)[1:maxaims],]
       invaims <- invaims[order(invaims$i),]
     }
+    
+    if(nrow(invaims)==0) {next}
+    
     invaims$i <- c(1:nrow(invaims))
     
     invsnps <- vcf_query(vcffile,
