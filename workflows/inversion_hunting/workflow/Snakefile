@@ -200,7 +200,8 @@ rule lostruct_assess_inversion_candidates:
         	{input.spptable} \
         	{output.txt} \
         	{output.pcs} \
-        	{output.png}
+        	{output.png}\
+            2> {log}
         """
 
 rule lostruct_find_aims:
@@ -224,7 +225,8 @@ rule lostruct_find_aims:
             {input.spptable} \
             {input.invs} \
             {input.pcs} \
-            {output.txt}
+            {output.txt}\
+            2> {log}
           """
 
 rule lostruct_refine_aims:
@@ -243,7 +245,7 @@ rule lostruct_refine_aims:
           mem_mb=2000,
           disk_mb=100000,
       log:
-          log="logs/lostruct_valid_candidates/candidates-chr{chrom}_{region}.log",
+          log="logs/lostruct_aims/refine-chr{chrom}_{region}.log",
       shell:
           """Rscript scripts/lostruct_refine_aims_global.R \
           	{input.vcf} \
@@ -255,7 +257,8 @@ rule lostruct_refine_aims:
           	{output.aimcalls} \
             {output.aimcallspng} \
             {output.aimsnps} \
-            {output.aimsnpspng}
+            {output.aimsnpspng}\
+            2> {log}
           """
 
 

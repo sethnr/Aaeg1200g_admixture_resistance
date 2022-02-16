@@ -182,7 +182,7 @@ for(i in as.character(row.names(invcands))) {
 # write.table(allinvsnps,paste("inv_",chrom,"_",country,"_n",maxaims,"_aim_snps.txt",sep=""),col.names=T,quote=F,row.names=F,sep="\t")
 write.table(invcalls,outcalls,col.names=T,quote=F,row.names=F,sep="\t")
 
-if(!exists("allinvsnps")) {
+if(exists("allinvsnps")) {
   write.table(allinvsnps,outsnps,col.names=T,quote=F,row.names=F,sep="\t")
 
   png(outsnpspng,res=400,width=200,height=200,units='mm')
