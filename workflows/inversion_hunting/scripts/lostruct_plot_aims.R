@@ -33,13 +33,18 @@ samples <- metatab$sample
 # invcands <- read.table(invfile,header=T)
 # invcands <- subset(invcands,as.logical(valid))
 
+write("reading inv snps",file=stderr())
 allinvsnps <- read.table(invaimsfile,header=T,check.names = F)           
 
 # mlpreds <- read.table(mlcallsfile,header=F,col.names = unique(allinvsnps$inv))           
 # meanpreds <- read.table(meancallsfile,header=T)           
 
 aimplots=list()
+write(paste(length(unique(allinvsnps$inv)),"invs found in",invaimsfile),file=stderr())
 for(invname in unique(allinvsnps$inv)) {
+    write(paste(" ",invname),file=stderr())
+  
+  
     invnamesafe <- paste("X",gsub("\\D",".",invname,perl=T),sep="")
     invsnps <- subset(allinvsnps,inv==invname)
     
@@ -71,8 +76,9 @@ for(invname in unique(allinvsnps$inv)) {
     
 }
 
-if(length(aimplots>0)) {
-png(outcallspng,res=400,width=200,height=200,units='mm')
-  do.call("grid.arrange", c(aimplots, nrow=1))
-dev.off()
-} else {file.create(outcallspng)}
+if(length(aimplots)>0) {
+  png(outsnpspng,res=400,width=200,height=200,units='mm')
+    do.call("grid.arrange", c(aimplots, nrow=1))
+  dev.off()
+} else {file.create(outsnpspng)}
+
