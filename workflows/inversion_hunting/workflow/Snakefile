@@ -30,8 +30,6 @@ wildcard_constraints:
 
 rule all:
     input:
-        expand("results_lostruct/lostruct_aim_snps/lostruct_chr{chrid}_{loc}_aim_snps.png",
-        chrid=[1,2,3],loc=bigcountries),
         expand("results_lostruct/lostruct_aim_snps/lostruct_chr{chrid}_{loc}_aim_snps.txt",
         chrid=[1,2,3],loc=bigcountries)
 
