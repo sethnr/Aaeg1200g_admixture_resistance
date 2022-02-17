@@ -72,8 +72,8 @@ for(invname in unique(allinvsnps$inv)) {
     
 }
 
-do.call("grid.arrange", c(aimplots, nrow=1))
-
+if(length(aimplots>0)) {
 png(outcallspng,res=400,width=200,height=200,units='mm')
   do.call("grid.arrange", c(aimplots, nrow=1))
 dev.off()
+} else {file.create(outcallspng)}

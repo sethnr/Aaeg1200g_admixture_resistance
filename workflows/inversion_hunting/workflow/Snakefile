@@ -256,6 +256,33 @@ rule lostruct_refine_aims:
           """
 
 
+rule plot_aims:
+      input:
+          aims="results_lostruct/lostruct_aims/lostruct_chr{chrom}_{region}.txt",
+          spptable=config["spptable"]
+      output:
+          aimspic="results_lostruct/lostruct_aim_snps/lostruct_chr{chrom}_{region}_aim_snps.png",
+          aimcalls="results_lostruct/lostruct_aim_snps/lostruct_chr{chrom}_{region}_aim_calls.txt",
+      resources:
+          mem_mb=2000,
+          disk_mb=100000,
+      log:
+          log="logs/lostruct_aims/refine-chr{chrom}_{region}.log",
+      shell:
+          """Rscript scripts/lostruct_refine_aims_global.R \
+          	{input.vcf} \
+          	{wildcards.region} \
+            {wildcards.chrom} \
+          	{input.spptable} \
+            {input.invs} \
+            {input.aims} \
+          	{output.aimcalls} \
+            {output.aimsnps} \
+            2> {log}
+          """
+
+
+
 
 # rule lostruct_all_composite:
 #     input:
