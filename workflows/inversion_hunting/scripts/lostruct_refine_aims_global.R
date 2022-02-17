@@ -71,8 +71,11 @@ invcands <- read.table(invfile,header=T)
 invcands <- subset(invcands,as.logical(valid))
 
 allaims <- read.table(aimsfile)           
+write(paste("",nrow(allaims),"aims found for",country,chrom),file=stderr())
+
 
 invcalls <- data.frame("sample"=samples,"country"=country)
+
 if(exists("allinvsnps")) {rm("allinvsnps")}
 aimplots <- list()
 callplots <- list()
