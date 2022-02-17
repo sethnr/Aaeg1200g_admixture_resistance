@@ -24,9 +24,7 @@ metafile <- args[4]
 invfile <- args[5]
 aimsfile <- args[6]
 outcalls <- args[7]
-#outcallspng <- args[8]
 outsnps <- args[8]
-#outsnpspng <- args[10]
 
 plotaims <- F
 
@@ -66,6 +64,9 @@ countrysorttab <- unique(metatab[,c("country","contgroup","region")])
 metatab$country <- factor(metatab$country,levels=unique(metatab$country[order(metatab$region)]),ordered=T)
 samples <- metatab$sample
 
+countrysamples <- metatab$sample[metatab$country==country]
+write(paste("found",length(countrysamples),"samples for",country),file=stderr())
+
 
 invcands <- read.table(invfile,header=T)
 invcands <- subset(invcands,as.logical(valid))
@@ -89,6 +90,8 @@ for(i in as.character(row.names(invcands))) {
     en = invcands[i,"end"]
     invname = invcands[i,"name"]
 
+
+
     write(paste("refining aim",invname),file=stderr())
 
     invaims <- allaims[allaims$inv==invname,]
@@ -109,11 +112,10 @@ for(i in as.character(row.names(invcands))) {
                          regions=data.frame("chrom"=invaims$chrom,
                                             "start"=invaims$pos,
                                             "end"=invaims$pos),
-                         samples=samples)
+                         samples=countrysamples)
 
 
     colnames(invsnps) <- samples
-
 
     nocall_rate <- round(apply(invsnps,1,function(x) {sum(is.na(x))/length(x)}),2)
 
@@ -157,11 +159,11 @@ for(i in as.character(row.names(invcands))) {
     if(!exists("allinvsnps")) {allinvsnps <- invsnps} else {allinvsnps <- rbind(allinvsnps,invsnps)}
 
     # write("  plotting",file=stderr())
-    # 
+    #
     # aimsM <- pivot_longer(invsnps,all_of(samples),names_to = "sample") %>% rename("invcountry"="country")
     # aimsM <- merge(aimsM,metatab,by="sample")
     # aimsM$sample <- factor(aimsM$sample,levels = cntinvorder,ordered=T)
-    # 
+    #
     # aimplot <- ggplot(aimsM,aes(x=i,y=as.numeric(sample),fill=as.factor(value))) + geom_raster() +
     #    ylab("samples") + xlab("SNPs")+ theme(legend.position="none")+
     #    scale_y_continuous(expand = c(0,0)) + scale_x_continuous(expand = c(0,0)) +
@@ -173,13 +175,13 @@ for(i in as.character(row.names(invcands))) {
     #         axis.title.y=element_blank(),
     #         axis.ticks.y=element_blank())
     # aimplots[[invname]] <- aimplot
-    # 
+    #
     #   # ggsave(paste("inv_",gsub(":","_",invname),"_",country,"_n",maxaims,"_aims_LD_pruned.png",sep=""),
     #   #        aimplot,
     #   #        height=250,width=200,units="mm")
     #   #
-    # 
-    # 
+    #
+    #
     # callplot <- ggplot(data.frame("sample"=names(meancall),
     #                   "mean"=meancall,
     #                   "call"=invcall),aes(x=mean,group=call,fill=as.factor(call))) +
@@ -206,7 +208,7 @@ if(exists("allinvsnps")) {
   # png(outsnpspng,res=400,width=200,height=200,units='mm')
   #   do.call("grid.arrange", c(aimplots, nrow=1))
   # dev.off()
-  # 
+  #
   # png(outcallspng,res=400,width=200,height=200,units='mm')
   #   do.call("grid.arrange", c(callplots, ncol=1))
   # dev.off()

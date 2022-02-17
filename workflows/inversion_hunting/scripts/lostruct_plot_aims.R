@@ -36,6 +36,9 @@ samples <- metatab$sample
 write("reading inv snps",file=stderr())
 allinvsnps <- read.table(invaimsfile,header=T,check.names = F)           
 
+write.table(table(allinvsnps$inv),file=stderr(),row.names = F,quote=F,col.names = F)
+
+
 # mlpreds <- read.table(mlcallsfile,header=F,col.names = unique(allinvsnps$inv))           
 # meanpreds <- read.table(meancallsfile,header=T)           
 
