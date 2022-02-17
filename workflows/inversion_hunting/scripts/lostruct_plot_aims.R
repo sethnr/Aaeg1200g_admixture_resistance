@@ -34,17 +34,21 @@ samples <- metatab$sample
 # invcands <- subset(invcands,as.logical(valid))
 
 write("reading inv snps",file=stderr())
-allinvsnps <- read.table(invaimsfile,header=T,check.names = F)           
 
-write.table(table(allinvsnps$inv),file=stderr(),row.names = F,quote=F,col.names = F)
-
+if (file.size(invaimsfile)>0) {
+  allinvsnps <- read.table(invaimsfile,header=T,check.names = F)           
+  write.table(table(allinvsnps$inv),file=stderr(),row.names = F,quote=F,col.names = F)
+  write(paste(length(unique(allinvsnps$inv)),"invs found in",invaimsfile),file=stderr())
+  allinvnames <- unique(allinvsnps$inv)
+} else {
+  allinvnames <- c()
+}
 
 # mlpreds <- read.table(mlcallsfile,header=F,col.names = unique(allinvsnps$inv))           
 # meanpreds <- read.table(meancallsfile,header=T)           
 
 aimplots=list()
-write(paste(length(unique(allinvsnps$inv)),"invs found in",invaimsfile),file=stderr())
-for(invname in unique(allinvsnps$inv)) {
+for(invname in allinvnames) {
     write(paste(" ",invname),file=stderr())
   
   
