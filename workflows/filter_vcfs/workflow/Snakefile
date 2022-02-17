@@ -1,0 +1,96 @@
+from snakemake.remote.GS import RemoteProvider as GSRemoteProvider
+GS = GSRemoteProvider()
+
+
+#configfile: "config_lostruct/config.yaml"
+include: "rules/common.smk"
+
+
+rule all:
+    input:
+        expand("results_thinvars/norep_regions_thinrand/lostruct_chr{chrom}.vcf.gz",,
+        chrid=[1,2,3])
+
+
+##### Make thin var files #####
+
+rule thin_variants:
+    input:
+        vcftable=config["vcfs"],
+        vcf=lambda wildcards: get_remote_vcf(wildcards),
+        #vcf=get_remote_vcf({wildcards.chrom},{block}),
+        regions=GS.remote(config["good_regions"]),
+    output:
+        outvcf=temporary("results_thinvars/good_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz"),
+    resources:
+        mem_mb=3000,
+        disk_mb=500000,
+    threads: 1,
+    log:
+        "logs/thin_variants/{chrom}.{block}.log",
+    shell:
+        """
+          bcftools index -t {input.vcf} 2> {log};
+
+          bcftools view --threads 1 \
+          -c 10:major -c 10:nref \
+          -R {input.regions} \
+          -o {output.outvcf} -O z \
+          {input.vcf} 2> {log}
+        """
+
+rule thin_variants_noreps:
+    input:
+        vcftable=config["vcfs"],
+        vcf=lambda wildcards: get_remote_vcf(wildcards),
+        regions=GS.remote(config["norep_regions"]),
+    output:
+        outvcf=temporary("results_thinvars/norep_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz"),
+    resources:
+        mem_mb=3000,
+        disk_mb=500000,
+    threads: 1,
+    log:
+        "logs/thin_variants_norep/{chrom}.{block}.log",
+    shell:
+        """
+          bcftools index -t {input.vcf} 2> {log};
+
+          bcftools view --threads 1 \
+          -c 10:major -c 10:nref \
+          -R {input.regions} \
+          -o {output.outvcf} -O z \
+          {input.vcf} 2> {log}
+        """
+
+rule thin_variants_random:
+    input:
+        thin="results_thinvars/norep_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz",
+    output:
+        outvcf=temporary("results_thinvars/norep_regions_thinrand/chr{chrom}_blk{block}_thin.vcf.gz"),
+    log:
+        "logs/thin_variants_random/chr{chrom}_blk{block}.log",
+    shell:
+        """gunzip -dc {input.thin} | \
+           perl -ne 'print $_ if m/^\#/gi or rand() < 0.1' | \
+           bgzip > {output.outvcf}  2> {log}
+        """
+
+rule concat_vcfs:
+    input:
+        vcftable=config["vcfs"],
+        vcfs=lambda wildcards: expand("results_thinvars/norep_regions_thinrand/{blockstring}_thin.vcf.gz",
+                                              blockstring=get_chrom_blocks_string(wildcards)),
+        tbis=lambda wildcards: expand("results_thinvars/norep_regions_thinrand/{blockstring}_thin.vcf.gz.tbi",
+                                              blockstring=get_chrom_blocks_string(wildcards))
+    output:
+        protected("results_thinvars/norep_regions_thinrand/lostruct_chr{chrom}.vcf.gz"),
+    log:
+        "logs/thin_variants_random/merge-chr{chrom}.log",
+    shell:
+        """
+        bcftools --version 2>> {log}
+        bcftools concat -o temp_{wildcards.chrom}.bcf -O u {input.vcfs} 2>> {log};
+
+        bcftools sort -o {output} -O z temp_{wildcards.chrom}.bcf 2>> {log}
+        """

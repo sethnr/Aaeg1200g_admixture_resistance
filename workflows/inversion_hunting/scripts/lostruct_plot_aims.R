@@ -15,9 +15,8 @@ args = commandArgs(trailingOnly=TRUE)
 
 
 metafile <- args[1]
-invfile <- args[2]
-invaimsfile <- args[3]
-outsnpspng <- args[4]
+invaimsfile <- args[2]
+outsnpspng <- args[3]
 
 
 write("gathering meta",file=stderr())

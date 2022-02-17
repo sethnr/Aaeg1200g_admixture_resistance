@@ -31,6 +31,8 @@ wildcard_constraints:
 rule all:
     input:
         expand("results_lostruct/lostruct_aim_snps/lostruct_chr{chrid}_{loc}_aim_snps.txt",
+        chrid=[1,2,3],loc=bigcountries),
+        expand("results_lostruct/lostruct_aim_snps/lostruct_chr{chrid}_{loc}_aim_snps.png",
         chrid=[1,2,3],loc=bigcountries)
 
 
@@ -262,22 +264,16 @@ rule plot_aims:
           spptable=config["spptable"]
       output:
           aimspic="results_lostruct/lostruct_aim_snps/lostruct_chr{chrom}_{region}_aim_snps.png",
-          aimcalls="results_lostruct/lostruct_aim_snps/lostruct_chr{chrom}_{region}_aim_calls.txt",
       resources:
-          mem_mb=2000,
-          disk_mb=100000,
+          mem_mb=1000,
+          disk_mb=2000,
       log:
-          log="logs/lostruct_aims/refine-chr{chrom}_{region}.log",
+          log="logs/lostruct_plots/plot_aims_chr{chrom}_{region}.log",
       shell:
-          """Rscript scripts/lostruct_refine_aims_global.R \
-          	{input.vcf} \
-          	{wildcards.region} \
-            {wildcards.chrom} \
+          """Rscript scripts/lostruct_plot_aims.R \
           	{input.spptable} \
-            {input.invs} \
-            {input.aims} \
-          	{output.aimcalls} \
-            {output.aimsnps} \
+          	{input.aims} \
+            {output.aimspic} \
             2> {log}
           """
 
