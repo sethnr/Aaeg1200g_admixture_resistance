@@ -80,7 +80,7 @@ for(invname in unique(allinvsnps$inv)) {
 }
 
 if(length(aimplots)>0) {
-  png(outsnpspng,res=400,width=200,height=200,units='mm')
+  png(outsnpspng,res=400,width=400,height=200,units='mm')
     do.call("grid.arrange", c(aimplots, nrow=1))
   dev.off()
 } else {file.create(outsnpspng)}
