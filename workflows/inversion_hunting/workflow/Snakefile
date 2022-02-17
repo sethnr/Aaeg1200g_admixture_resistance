@@ -238,9 +238,7 @@ rule lostruct_refine_aims:
           spptable=config["spptable"]
       output:
           aimsnps="results_lostruct/lostruct_aim_snps/lostruct_chr{chrom}_{region}_aim_snps.txt",
-          aimsnpspng="results_lostruct/lostruct_aim_snps/lostruct_chr{chrom}_{region}_aim_snps.png",
           aimcalls="results_lostruct/lostruct_aim_snps/lostruct_chr{chrom}_{region}_aim_calls.txt",
-          aimcallspng="results_lostruct/lostruct_aims_snps/lostruct_chr{chrom}_{region}_aim_calls.png",
       resources:
           mem_mb=2000,
           disk_mb=100000,
@@ -255,9 +253,7 @@ rule lostruct_refine_aims:
             {input.invs} \
             {input.aims} \
           	{output.aimcalls} \
-            {output.aimcallspng} \
             {output.aimsnps} \
-            {output.aimsnpspng}\
             2> {log}
           """
 

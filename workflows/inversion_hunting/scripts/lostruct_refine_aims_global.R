@@ -24,9 +24,9 @@ metafile <- args[4]
 invfile <- args[5]
 aimsfile <- args[6]
 outcalls <- args[7]
-outcallspng <- args[8]
-outsnps <- args[9]
-outsnpspng <- args[10]
+#outcallspng <- args[8]
+outsnps <- args[8]
+#outsnpspng <- args[10]
 
 plotaims <- F
 
