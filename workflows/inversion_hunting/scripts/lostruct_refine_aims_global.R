@@ -3,8 +3,8 @@ library("tidyverse")
 library("lostruct")
 
 #library("patchwork")
-# library("gridExtra")
-# library("grid")
+library("gridExtra")
+library("grid")
 
 args = commandArgs(trailingOnly=TRUE)
 
@@ -35,8 +35,8 @@ plotaims <- F
 MAXCHISQ <- 1e-9
 
 vcf_positions <- function (file, regions) {
-  bcf.sites <- data.table::fread(cmd = paste("bcftools query -f '%CHROM\\t%POS\\n'", 
-                                             file,"-r",regions), 
+  bcf.sites <- data.table::fread(cmd = paste("bcftools query -f '%CHROM\\t%POS\\n'",
+                                             file,"-r",regions),
                                   header = FALSE, sep = "\t", data.table = FALSE)
   colnames(bcf.sites) <- c("chrom", "pos")
   bcf.sites
@@ -44,10 +44,10 @@ vcf_positions <- function (file, regions) {
 
 
 vcf_genotypes <- function (file, regions, samples) {
-  txtgenos <- data.table::fread(cmd = paste("bcftools query -f '[ %GT]\\n'", 
+  txtgenos <- data.table::fread(cmd = paste("bcftools query -f '[ %GT]\\n'",
                                              "-r",region_string(regions),
                                              "-s",shQuote(paste(samples, collapse = ",")),
-                                             file), 
+                                             file),
                                header = FALSE, sep = "\t", data.table = FALSE)
   txtgenos
 }
@@ -70,7 +70,7 @@ samples <- metatab$sample
 invcands <- read.table(invfile,header=T)
 invcands <- subset(invcands,as.logical(valid))
 
-allaims <- read.table(aimsfile)           
+allaims <- read.table(aimsfile)
 write(paste("",nrow(allaims),"aims found for",country,chrom),file=stderr())
 
 
@@ -84,45 +84,45 @@ callplots <- list()
 for(i in as.character(row.names(invcands))) {
     chr = invcands[i,"chrom"]
     chrname = invcands[i,"chromname"]
-    
+
     st = invcands[i,"start"]
     en = invcands[i,"end"]
     invname = invcands[i,"name"]
-    
+
     write(paste("refining aim",invname),file=stderr())
-    
+
     invaims <- allaims[allaims$inv==invname,]
     # if more than <maxaims> aims, only take top <maxaims> sorted by P-value
-    
+
     write(paste(" ",nrow(invaims),"aims found"),file=stderr())
     maxaims <- 100
     if(nrow(invaims) > maxaims) {
       invaims <- invaims[order(invaims$assoc)[1:maxaims],]
       invaims <- invaims[order(invaims$i),]
     }
-    
+
     if(nrow(invaims)==0) {next}
-    
+
     invaims$i <- c(1:nrow(invaims))
-    
+
     invsnps <- vcf_query(vcffile,
                          regions=data.frame("chrom"=invaims$chrom,
                                             "start"=invaims$pos,
                                             "end"=invaims$pos),
                          samples=samples)
-    
-    
+
+
     colnames(invsnps) <- samples
-    
-    
+
+
     nocall_rate <- round(apply(invsnps,1,function(x) {sum(is.na(x))/length(x)}),2)
-    
+
     #if inversely correlated with modal value, flip call
     modecall <- apply(invsnps,2,function(x) {as.numeric(names(sort(table(na.omit(x)),decreasing = T))[1])})
     modecorr <- apply(invsnps,1,function(x) {cor(modecall[!is.na(x)],x[!is.na(x)])})
     invsnps[modecorr<0,] <- abs(invsnps[modecorr<0,]-2)
-    
-    
+
+
     write(paste("  LD filtering",nrow(invsnps),"SNPs"),file=stderr())
     #remove SNPs not in LD across whole dataset (mean -1x sd)
     #calculate mean r2 for each SNP
@@ -138,59 +138,59 @@ for(i in as.character(row.names(invcands))) {
     invaims <- invaims[ldinclude,]
     invaims$i <- c(1:nrow(invaims))
     write(paste("  -->",nrow(invsnps)),file=stderr())
-    
-    
-    
+
+
+
     #order all SNPs by country, then mean inv call of high LD SNPs
     meancall <- apply(invsnps,2,function(x) {mean(na.omit(x))})
     cntinvorder <- metatab$sample[order(metatab$contgroup,metatab$country,meancall)]
     invaims$qual <- mean(abs(modecorr))
 
-    
+
     invcall = rep(NA,length(meancall))
     invcall[meancall < 0.25] <- 0
     invcall[meancall < 1.25 & meancall > 0.75 ] <- 1
     invcall[meancall > 1.75 ] <- 2
     invcalls[[invname]] <- invcall
-    
+
     invsnps <- cbind(invaims,invsnps)
     if(!exists("allinvsnps")) {allinvsnps <- invsnps} else {allinvsnps <- rbind(allinvsnps,invsnps)}
-    
-    write("  plotting",file=stderr())
-    
-    aimsM <- pivot_longer(invsnps,all_of(samples),names_to = "sample") %>% rename("invcountry"="country")
-    aimsM <- merge(aimsM,metatab,by="sample")
-    aimsM$sample <- factor(aimsM$sample,levels = cntinvorder,ordered=T)
-    
-    aimplot <- ggplot(aimsM,aes(x=i,y=as.numeric(sample),fill=as.factor(value))) + geom_raster() + 
-       ylab("samples") + xlab("SNPs")+ theme(legend.position="none")+
-       scale_y_continuous(expand = c(0,0)) + scale_x_continuous(expand = c(0,0)) +
-      scale_fill_manual(values=c("0"="blue","1"="purple","2"="red")) +
-      facet_grid("country ~ .",scale="free_y",space="free_y") +
-      ggtitle(paste(invname,country,"aim calls","( top",nrow(invaims),")"))+
-      theme(panel.spacing = unit(0.2, "mm"),
-            axis.text.y=element_blank(),
-            axis.title.y=element_blank(),
-            axis.ticks.y=element_blank())
-    aimplots[[invname]] <- aimplot
-    
-      # ggsave(paste("inv_",gsub(":","_",invname),"_",country,"_n",maxaims,"_aims_LD_pruned.png",sep=""),
-      #        aimplot,
-      #        height=250,width=200,units="mm")
-      # 
-      
-      
-    callplot <- ggplot(data.frame("sample"=names(meancall),
-                      "mean"=meancall,
-                      "call"=invcall),aes(x=mean,group=call,fill=as.factor(call))) + 
-      scale_fill_manual(values=c("0"="blue","1"="purple","2"="red"),na.value = "grey",guide="none") +
-      geom_histogram(bins=100)+
-      ggtitle(invname)
-    callplots[[invname]] <- callplot
-       # ggsave(paste("inv_",gsub(":","_",invname),"_",country,"_n",maxaims,"_calls_LD_pruned.png",sep=""),
-       #       callplot,
-       #       height=250,width=200,units="mm")
-    
+
+    # write("  plotting",file=stderr())
+    # 
+    # aimsM <- pivot_longer(invsnps,all_of(samples),names_to = "sample") %>% rename("invcountry"="country")
+    # aimsM <- merge(aimsM,metatab,by="sample")
+    # aimsM$sample <- factor(aimsM$sample,levels = cntinvorder,ordered=T)
+    # 
+    # aimplot <- ggplot(aimsM,aes(x=i,y=as.numeric(sample),fill=as.factor(value))) + geom_raster() +
+    #    ylab("samples") + xlab("SNPs")+ theme(legend.position="none")+
+    #    scale_y_continuous(expand = c(0,0)) + scale_x_continuous(expand = c(0,0)) +
+    #   scale_fill_manual(values=c("0"="blue","1"="purple","2"="red")) +
+    #   facet_grid("country ~ .",scale="free_y",space="free_y") +
+    #   ggtitle(paste(invname,country,"aim calls","( top",nrow(invaims),")"))+
+    #   theme(panel.spacing = unit(0.2, "mm"),
+    #         axis.text.y=element_blank(),
+    #         axis.title.y=element_blank(),
+    #         axis.ticks.y=element_blank())
+    # aimplots[[invname]] <- aimplot
+    # 
+    #   # ggsave(paste("inv_",gsub(":","_",invname),"_",country,"_n",maxaims,"_aims_LD_pruned.png",sep=""),
+    #   #        aimplot,
+    #   #        height=250,width=200,units="mm")
+    #   #
+    # 
+    # 
+    # callplot <- ggplot(data.frame("sample"=names(meancall),
+    #                   "mean"=meancall,
+    #                   "call"=invcall),aes(x=mean,group=call,fill=as.factor(call))) +
+    #   scale_fill_manual(values=c("0"="blue","1"="purple","2"="red"),na.value = "grey",guide="none") +
+    #   geom_histogram(bins=100)+
+    #   ggtitle(invname)
+    # callplots[[invname]] <- callplot
+    #    # ggsave(paste("inv_",gsub(":","_",invname),"_",country,"_n",maxaims,"_calls_LD_pruned.png",sep=""),
+    #    #       callplot,
+    #    #       height=250,width=200,units="mm")
+
 }
 
 # write.table(invcalls,paste("inv_",chrom,"_",country,"_n",maxaims,"_mean_calls.txt",sep=""),col.names=T,quote=F,row.names=F,sep="\t")
@@ -203,16 +203,16 @@ if(exists("allinvsnps")) {
   write("found invsnps",file=stderr())
   write.table(allinvsnps,outsnps,col.names=T,quote=F,row.names=F,sep="\t")
 
-  png(outsnpspng,res=400,width=200,height=200,units='mm')
-    do.call("grid.arrange", c(aimplots, nrow=1))
-  dev.off()
-  
-  png(outcallspng,res=400,width=200,height=200,units='mm')
-    do.call("grid.arrange", c(callplots, ncol=1))
-  dev.off()
+  # png(outsnpspng,res=400,width=200,height=200,units='mm')
+  #   do.call("grid.arrange", c(aimplots, nrow=1))
+  # dev.off()
+  # 
+  # png(outcallspng,res=400,width=200,height=200,units='mm')
+  #   do.call("grid.arrange", c(callplots, ncol=1))
+  # dev.off()
 } else {
   write("writing null tables",file=stderr())
-  
+
   file.create(outsnps)
   file.create(outsnpspng)
   file.create(outcallspng)

@@ -30,9 +30,9 @@ wildcard_constraints:
 
 rule all:
     input:
-        expand("results_lostruct/lostruct_aims/lostruct_chr{chrid}_{loc}_aim_calls.png",
+        expand("results_lostruct/lostruct_aim_snps/lostruct_chr{chrid}_{loc}_aim_snps.png",
         chrid=[1,2,3],loc=bigcountries),
-        expand("results_lostruct/lostruct_aims/lostruct_chr{chrid}_{loc}_aim_snps.png",
+        expand("results_lostruct/lostruct_aim_snps/lostruct_chr{chrid}_{loc}_aim_snps.txt",
         chrid=[1,2,3],loc=bigcountries)
 
 
@@ -238,8 +238,8 @@ rule lostruct_refine_aims:
           spptable=config["spptable"]
       output:
           aimsnps="results_lostruct/lostruct_aim_snps/lostruct_chr{chrom}_{region}_aim_snps.txt",
-          aimsnpspng="results_lostruct/lostruct_aims_snps/lostruct_chr{chrom}_{region}_aim_snps.png",
-          aimcalls="results_lostruct/lostruct_aims_snps/lostruct_chr{chrom}_{region}_aim_calls.txt",
+          aimsnpspng="results_lostruct/lostruct_aim_snps/lostruct_chr{chrom}_{region}_aim_snps.png",
+          aimcalls="results_lostruct/lostruct_aim_snps/lostruct_chr{chrom}_{region}_aim_calls.txt",
           aimcallspng="results_lostruct/lostruct_aims_snps/lostruct_chr{chrom}_{region}_aim_calls.png",
       resources:
           mem_mb=2000,
