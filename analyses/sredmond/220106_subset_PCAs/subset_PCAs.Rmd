@@ -1,0 +1,120 @@
+```{r}
+library("lostruct")
+library("tidyverse")
+
+library("vcfR")
+
+snpset <- "100k"
+vcffile = paste("rawdata/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr123.SNP.",snpset,".vcf.gz",sep="")
+sppfile <- "meta_Aaeg1kg_spp.txt"
+
+```
+
+```{r}
+
+# chromname <- c("NC_035107.1","NC_035108.1","NC_035109.1")
+# chromlen <- c(310827022,474425716,409777670)
+# names(chromlen) <- chromname
+
+vcf <- read.vcfR(vcffile)
+gts <- extract.gt(vcf)
+
+a1 <- masplit(gts,delim="/",record=1)
+a2 <- masplit(gts,delim="/",record=2)
+
+#if any have more than 2 vars, remove from PCA
+biall <- !(apply((a1 > 1),1,FUN=any,na.rm=T) | apply((a2 > 1),1,FUN=any,na.rm=T))
+calls <- a1[biall,] + a2[biall,]
+
+rm(a1,a2)
+
+
+spptab <- read.table(sppfile,header=T, sep="\t")
+  
+
+```
+
+
+```{r}
+
+
+for(cgroup in c("wafrica","eafrica","asia","americas")) {
+  write(cgroup,file=stderr())
+  #samples <- spptab$sample[tolower(spptab$contgroup)==cgroup & spptab$spp!="ADMX"]
+  samples <- spptab$sample[tolower(spptab$contgroup)==cgroup]
+  
+  #do PCA
+  pca <- prcomp(t(na.omit(calls[,samples])))
+  pcs <- as.data.frame(pca$x[,c("PC1","PC2","PC3")])
+  pcs$sample <- rownames(pcs)
+  pcs <- merge(pcs,spptab)
+  spca <- summary(pca)
+  
+  ggplot(pcs,aes(x=PC1,y=PC2,color=country,shape=spp)) + geom_point() + coord_fixed() +
+    xlab(paste("PC1",spca$importance[2,1])) + ylab(paste("PC2",spca$importance[2,2])) + 
+    ggtitle(paste("PCA ",cgroup," (country)"))
+  ggsave(paste("thin_",snpset,"_",cgroup,"_pca_country.png",sep=""))
+
+  ggplot(pcs,aes(x=PC1,y=PC2,color=pop,shape=spp)) + geom_point() + coord_fixed() +
+    xlab(paste("PC1",spca$importance[2,1])) + ylab(paste("PC2",spca$importance[2,2])) + 
+    ggtitle(paste("PCA ",cgroup," (pop)"))
+  ggsave(paste("thin_",snpset,"_",cgroup,"_pca_pop.png",sep=""))
+
+  }
+
+
+
+for(cgroup in c("wafrica","eafrica","asia","americas")) {
+  write(cgroup,file=stderr())
+  samples <- spptab$sample[tolower(spptab$contgroup)==cgroup & spptab$spp!="ADMX"]
+  #samples <- spptab$sample[tolower(spptab$contgroup)==cgroup]
+  
+  #do PCA
+  pca <- prcomp(t(na.omit(calls[,samples])))
+  pcs <- as.data.frame(pca$x[,c("PC1","PC2","PC3")])
+  pcs$sample <- rownames(pcs)
+  pcs <- merge(pcs,spptab)
+  spca <- summary(pca)
+  
+  ggplot(pcs,aes(x=PC1,y=PC2,color=country,shape=spp)) + geom_point() + coord_fixed() +
+    xlab(paste("PC1",spca$importance[2,1])) + ylab(paste("PC2",spca$importance[2,2])) + 
+    ggtitle(paste("PCA ",cgroup," no admx (country)"))
+  ggsave(paste("thin_",snpset,"_",cgroup,"_noadmx_pca_country.png",sep=""))
+
+  ggplot(pcs,aes(x=PC1,y=PC2,color=pop,shape=spp)) + geom_point() + coord_fixed() +
+    xlab(paste("PC1",spca$importance[2,1])) + ylab(paste("PC2",spca$importance[2,2])) + 
+    ggtitle(paste("PCA ",cgroup," no admx (pop)"))
+  ggsave(paste("thin_",snpset,"_",cgroup,"_noadmx_pca_pop.png",sep=""))
+
+  }
+
+
+```
+
+
+```{r}
+bigpops <- subset(as.data.frame(table(spptab$country)),Freq>20) %>% rename("country"="Var1","n"="Freq")
+
+for(country in bigpops$country) {
+  
+  write(country,file=stderr())
+  samples <- spptab$sample[tolower(spptab$country)==tolower(country)]
+  #samples <- spptab$sample[tolower(spptab$contgroup)==cgroup]
+  
+  #do PCA
+  pca <- prcomp(t(na.omit(calls[,samples])))
+  pcs <- as.data.frame(pca$x[,c("PC1","PC2","PC3")])
+  pcs$sample <- rownames(pcs)
+  pcs <- merge(pcs,spptab)
+  spca <- summary(pca)
+  
+  
+  ggplot(pcs,aes(x=PC1,y=PC2,color=pop,shape=spp)) + geom_point() + coord_fixed() +
+    xlab(paste("PC1",spca$importance[2,1])) + ylab(paste("PC2",spca$importance[2,2])) + 
+    ggtitle(paste("PCA ",country," (pop)"))
+  ggsave(paste("thin_",snpset,"_",tolower(country),"_pca_pop.png",sep=""))
+
+
+}
+
+```

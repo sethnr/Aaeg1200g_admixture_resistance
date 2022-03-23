@@ -1,0 +1,130 @@
+```{r}
+library("lostruct")
+library("tidyverse")
+
+snpset <- "1e6"
+vcf = paste("rawdata/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr123.SNP.",snpset,".vcf.gz",sep="")
+chrom = 1
+sppfile <- "meta_Aaeg1kg_spp.txt"
+cgroup <- "eafrica"
+
+pcblocksize <- 5e5
+outfile = paste("test_thinvars_v",snpset,"_c",chrom,"_b",pcblocksize,"_",cgroup,"_pcs.txt",sep="")
+
+```
+
+```{r}
+
+chromname <- c("NC_035107.1","NC_035108.1","NC_035109.1")
+chromlen <- c(310827022,474425716,409777670)
+names(chromlen) <- chromname
+
+
+```
+
+
+```{r}
+regionct <- ceiling(chromlen[chrom] / pcblocksize)
+regions <- data.frame("chrom"=rep(chromname[chrom],regionct),
+                      "start"=(0:(regionct-1)*pcblocksize) + 1,
+                      "end"=1:regionct*pcblocksize)
+
+
+spptab <- read.table(sppfile,header=T, sep="\t")
+samples <- spptab$sample[tolower(spptab$contgroup)==cgroup]
+
+get_set_size_blocks <- function(n) {vcf_query(vcf,regions=regions[n,],samples=samples)}
+attr(get_set_size_blocks,"max.n") <- regionct
+attr(get_set_size_blocks,"samples") <- samples #vcf_samples(vcf)
+
+```
+
+
+```{r}
+#get 1/2 principal components for all windows:
+pcs <- eigen_windows(get_set_size_blocks,k=2,mc.cores=3)
+```
+
+```{r}
+outtable <- cbind(regions,pcs)
+write.table(outtable,file=outfile,col.names=T,quote=F,row.names=F)
+```
+
+```{r}
+
+pcdist <- pc_dist(pcs,npc=2,w=1)
+pcdistdf <- as.data.frame(pcdist)
+
+
+
+blocks <- paste(regions[,1],regions[,2],sep=":")
+regions$block <- blocks
+regions$pos <- regions$end / pcblocksize
+
+colnames(pcdistdf) <- blocks
+pcdistdf$x <- blocks
+pcdistflat <- pivot_longer(pcdistdf,cols=all_of(blocks),names_to = "y")
+pcdistflat <- merge(merge(pcdistflat,regions,by.x="x",by.y="block"),regions,by.x="y",by.y="block",suffixes = c(".x",".y"))
+
+
+ggplot(pcdistflat,aes(x=pos.x,y=pos.y,fill=value)) + geom_raster() + coord_fixed() +
+  ggtitle(paste(vcf,"\nchrom",chrom," ",cgroup," (",pcblocksize,"bp blocks)"))
+ggsave(paste("c",chrom,"_",snpset,"_",pcblocksize,"_",cgroup,".png",sep=""))
+
+
+
+```
+
+```{r}
+
+pcdistflat$cdist <- abs(pcdistflat$pos.x-pcdistflat$pos.y)
+
+fit <- lm(value ~ cdist, data=pcdistflat)
+
+
+ggplot(subset(pcdistflat,pos.x>=pos.y),aes(x=cdist,y=value)) + geom_hex()
+
+ggplot(subset(pcdistflat,pos.x>=pos.y & cdist>2),aes(x=cdist,y=value/cdist)) + geom_hex()
+
+library('cluster')
+library('NbClust')
+
+pcdist <- as.dist(pcdist)
+# hclusters <- hclust(pcdist,method="complete")
+
+
+# cmeth <-"ward.D2"
+# nbcl_meth <- NbClust(c(1:regionct), diss=pcdist,method=cmeth,distance=NULL)
+# ncs <- table(nbcl_meth$Best.nc["Number_clusters",nbcl_meth$Best.nc["Number_clusters",]>=1])
+# nclusts <- which(ncs==max(ncs))
+# hclusters <- hclust(pcdist,method=cmeth)
+# hgroups <- cutree(hclusters,nclusts)
+
+
+hclusters <- hclust(pcdist,method="complete")
+hgroups <- cutree(hclusters,h = 0.65)
+hcount <- as.data.frame(table(hgroups))
+
+hblocks <- data.frame(group=numeric(),
+           n=numeric(),
+           from=numeric(),
+           to=numeric())
+
+for(h in as.numeric(hcount$hgroups[hcount$Freq > 3])) {
+  i <- nrow(hblocks)+1
+  nh <- hcount[h,"Freq"]
+  minh <- min(which(hgroups==h))
+  maxh <- max(which(hgroups==h))
+  hblocks[i,] <- c(h,nh,minh,maxh)
+}
+
+
+ggplot(pcdistflat,aes(x=pos.x,y=pos.y,fill=value)) + geom_raster() + coord_fixed() +
+  geom_rect(data=hblocks,
+            aes(xmin=from,xmax=to,ymin=from,ymax=to),
+            inherit.aes = F,fill=NA,color="white") +
+  ggtitle(paste(vcf,"\nchrom",chrom," ",cgroup," (",pcblocksize,"bp blocks)"))
+  
+
+
+```

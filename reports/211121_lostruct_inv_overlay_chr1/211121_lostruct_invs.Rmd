@@ -1,0 +1,145 @@
+---
+title: "211121_lostruct_invs.R"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+opts_chunk$set(dev = c("png"),fig.width=12, fig.height=7,dpi = 400)
+
+library(tidyverse)
+library(patchwork)
+library(gridExtra)
+```
+
+```{r}
+invcalls <- read.table("redmond_2020_inversion_calls.txt",header=T,sep="\t")
+colnames(invcalls) <- tolower(colnames(invcalls))
+chromname <- c("NC_035107.1","NC_035108.1","NC_035109.1")
+invcalls$chrom <- chromname[invcalls$chrom]
+
+#distance for regular PCAs
+pcsep = 1e7
+```
+
+AAF dists
+
+```{r}
+pcdistdf <- read.table("lostruct_chr1_dists_aaf.txt")
+blocks <- colnames(pcdistdf)
+allposns <- t(data.frame(strsplit(blocks,"\\.")))
+allposns <- data.frame("block"=blocks,
+           "chrom"=paste(allposns[,1],allposns[,2],sep="."),
+           "pos"=as.numeric(allposns[,3]))
+
+pcdistdf$x <- blocks
+pcdistflat <- pivot_longer(pcdistdf,cols=all_of(blocks),names_to = "y")
+pcdistflat <- merge(merge(pcdistflat,allposns,by.x="x",by.y="block"),allposns,by.x="y",by.y="block",suffixes = c(".x",".y"))
+
+pcdistsplot <- ggplot(pcdistflat,aes(x=pos.x,y=pos.y,fill=value)) + geom_raster() + 
+  geom_rect(aes(xmin=start,xmax=end,ymin=start,ymax=end),
+            data=subset(invcalls,chrom=="NC_035107.1"),
+            inherit.aes=F,fill=NA,color="orange") +
+  ggtitle("chr1 lostruct invs aaf") + 
+  coord_fixed()
+pcdistsplot
+ggsave("chr1_lostruct_invs_overlay_aaf.png")
+
+```
+
+
+```{r}
+
+pcpos <- data.frame(x=seq(0,max(pcdistflat$pos.x),by=pcsep)+1,
+                    y=seq(0,max(pcdistflat$pos.x),by=pcsep)+1,
+                    ord=c(0:floor(max(pcdistflat$pos.x)/pcsep)))
+
+pcs <- read.table("lostruct_chr1_pcs_aaf.txt",header=T)
+#get every 10mth block
+pcs <- pcs[pcs$start %% pcsep==1,]
+
+pc1s <- colnames(pcs)[substr(colnames(pcs),0,4)=="PC_1"]
+pc2s <- colnames(pcs)[substr(colnames(pcs),0,4)=="PC_2"]
+headcols <- colnames(pcs)[1:6]
+pc1tab <- pivot_longer(pcs[,c(headcols,pc1s)],cols=pc1s,names_to = "sample",values_to = "pc1")
+pc1tab$sample <- gsub("PC_1_","",pc1tab$sample)
+pc2tab <- pivot_longer(pcs[,c(headcols,pc2s)],cols=pc2s,names_to = "sample",values_to = "pc2")
+pc2tab$sample <- gsub("PC_2_","",pc2tab$sample)
+pcslong <- merge(pc1tab,pc2tab)
+pcslong$label <- (pcslong$start-1)/pcsep
+
+pcsplot <- ggplot(pcslong,aes(x=pc1,y=pc2)) + geom_point(size=0.2) + 
+  facet_wrap("label",ncol=5) #+ ggtitle("pcas blocks aaf")
+
+combplot <- arrangeGrob(
+  pcdistsplot + 
+     geom_text(data=pcpos,aes(x=x,y=y,label=ord),inherit.aes = F,color="red") + 
+    theme(legend.position="bottom"),
+  pcsplot,
+  ncol=2,widths=c(5,5))
+combplot
+ggsave("chr1_block_pcs_aaf.png",combplot)
+
+```
+
+AAA dists
+
+```{r}
+pcdistdf <- read.table("lostruct_chr1_dists_aaa.txt")
+blocks <- colnames(pcdistdf)
+allposns <- t(data.frame(strsplit(blocks,"\\.")))
+allposns <- data.frame("block"=blocks,
+           "chrom"=paste(allposns[,1],allposns[,2],sep="."),
+           "pos"=as.numeric(allposns[,3]))
+
+pcdistdf$x <- blocks
+pcdistflat <- pivot_longer(pcdistdf,cols=all_of(blocks),names_to = "y")
+pcdistflat <- merge(merge(pcdistflat,allposns,by.x="x",by.y="block"),allposns,by.x="y",by.y="block",suffixes = c(".x",".y"))
+
+pcdistsplot <- ggplot(pcdistflat,aes(x=pos.x,y=pos.y,fill=value)) + geom_raster() + 
+  geom_rect(aes(xmin=start,xmax=end,ymin=start,ymax=end),
+            data=subset(invcalls,chrom=="NC_035107.1"),
+            inherit.aes=F,fill=NA,color="orange") +
+  ggtitle("chr1 lostruct invs aaa") + 
+  coord_fixed()
+pcdistsplot
+ggsave("chr1_lostruct_invs_overlay_aaa.png")
+
+```
+
+
+```{r}
+pcs <- read.table("lostruct_chr1_pcs_aaa.txt",header=T)
+#get every 10mth block
+pcpos <- data.frame(x=seq(0,max(pcdistflat$pos.x),by=pcsep)+1,
+                    y=seq(0,max(pcdistflat$pos.x),by=pcsep)+1,
+                    ord=c(0:floor(max(pcdistflat$pos.x)/pcsep)))
+
+pcs <- read.table("lostruct_chr1_pcs_aaa.txt",header=T)
+#get every 10mth block
+pcs <- pcs[pcs$start %% pcsep==1,]
+
+pc1s <- colnames(pcs)[substr(colnames(pcs),0,4)=="PC_1"]
+pc2s <- colnames(pcs)[substr(colnames(pcs),0,4)=="PC_2"]
+headcols <- colnames(pcs)[1:6]
+pc1tab <- pivot_longer(pcs[,c(headcols,pc1s)],cols=pc1s,names_to = "sample",values_to = "pc1")
+pc1tab$sample <- gsub("PC_1_","",pc1tab$sample)
+pc2tab <- pivot_longer(pcs[,c(headcols,pc2s)],cols=pc2s,names_to = "sample",values_to = "pc2")
+pc2tab$sample <- gsub("PC_2_","",pc2tab$sample)
+pcslong <- merge(pc1tab,pc2tab)
+pcslong$label <- (pcslong$start-1)/pcsep
+
+pcsplot <- ggplot(pcslong,aes(x=pc1,y=pc2)) + geom_point(size=0.2) + 
+  facet_wrap("label",ncol=5) #+ ggtitle("pcas blocks aaa")
+
+combplot <- arrangeGrob(
+  pcdistsplot + 
+     geom_text(data=pcpos,aes(x=x,y=y,label=ord),inherit.aes = F,color="red") + 
+    theme(legend.position="bottom"),
+  pcsplot,
+  ncol=2,widths=c(5,5))
+combplot
+ggsave("chr1_block_pcs_aaa.png",combplot)
+```
+

@@ -1,0 +1,26 @@
+ln -s /Volumes/Mosquito_raw_data/Aedes/Aaeg1000g/redmond-lab-aaeg1000g
+ln -s ../../../resources
+
+
+Rscript lostruct_find_outlier_inversions.R \
+	redmond-lab-aaeg1000g/results_lostruct/lostruct_all_chr/lostruct_chr1_Senegal.txt \
+	thinrand/lostruct_chr1.vcf.gz \
+	Senegal 1 \
+	resources/meta_Aaeg1kg_spp.txt \
+	inv_candidates_chr1_Senegal.txt \
+	inv_candidates_chr1_Senegal.png
+
+
+for CHR in 1 2 3 ; do for CNT in Kenya Senegal; do 
+Rscript lostruct_find_outlier_inversions.R redmond-lab-aaeg1000g/results_lostruct/lostruct_all_chr/lostruct_chr${CHR}_${CNT}.txt thinrand/lostruct_chr${CHR}.vcf.gz ${CNT} ${CHR} resources/meta_Aaeg1kg_spp.txt inv_candidates_chr${CHR}_${CNT}.txt inv_candidates_chr${CHR}_${CNT}.png; done ; done 
+
+
+
+for CHR in 1 ; do for CNT in Kenya; do
+    Rscript lostruct_find_outlier_inversions.R \
+      redmond-lab-aaeg1000g/results_lostruct/lostruct_all_chr/lostruct_chr${CHR}_${CNT}.txt thinrand/lostruct_chr${CHR}.vcf.gz
+      ${CNT} ${CHR} resources/meta_Aaeg1kg_spp.txt
+      inv_candidates_chr${CHR}_${CNT}.txt
+      inv_candidates_chr${CHR}_${CNT}.Rds
+      inv_candidates_chr${CHR}_${CNT}.png;
+done ; done

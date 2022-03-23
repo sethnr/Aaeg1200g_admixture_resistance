@@ -1,0 +1,4 @@
+inversion	chrom	start	end	country
+1	1	1.48e+08	150500000	Uganda
+2	1	155500000	1.6e+08	Uganda
+3	1	302500000	3.07e+08	Uganda

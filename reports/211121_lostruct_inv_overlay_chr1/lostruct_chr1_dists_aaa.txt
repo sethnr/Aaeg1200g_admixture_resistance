@@ -1,0 +1,1 @@
+../../workflows/inversion_hunting/redmond-lab-aaeg1000g/results_lostruct_norep_regions/lostruct_dists/lostruct_chr1_dists_aaa.txt

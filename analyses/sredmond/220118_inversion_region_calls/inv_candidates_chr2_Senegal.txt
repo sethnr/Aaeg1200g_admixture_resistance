@@ -1,0 +1,5 @@
+inversion	chrom	start	end	country
+1	2	3.1e+08	3.13e+08	Senegal
+2	2	3.07e+08	309500000	Senegal
+3	2	464500000	472500000	Senegal
+4	2	464500000	472500000	Senegal

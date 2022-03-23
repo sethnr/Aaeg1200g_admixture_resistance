@@ -1,0 +1,3 @@
+chrom	start	end	chromname	valid	name	d	mean_wss	bss_tot
+1	1.38e+08	1.48e+08	NC_035107.1	FALSE	1:138-148	0.15	48.35	0.05
+1	1.49e+08	174500000	NC_035107.1	FALSE	1:149-174.5	0.33	55.46	0.05

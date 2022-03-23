@@ -1,0 +1,12 @@
+for chrom in 1 2 3; do
+  for region in wafrica eafrica asia americas; do
+    Rscript lostruct_make_composite.R \
+      redmond-lab-aaeg1000g/results_lostruct/lostruct_all_chr/ \
+      $region \
+      $chrom \
+      resources/meta_Aaeg1kg_spp.txt \
+      resources/redmond_2020_inversion_calls.txt \
+      redmond-lab-aaeg1000g/results_lostruct/lostruct_all_composite/lostruct_chr${chrom}_${region}_composite.png \
+      redmond-lab-aaeg1000g/results_lostruct/lostruct_all_composite/lostruct_chr${chrom}_${region}_composite_invs.png
+  done
+done

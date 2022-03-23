@@ -1,0 +1,2 @@
+gsutil cp gs://verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr123.SNP.100k.vcf.gz Aaeg1000g/vcfs/SNPs/pruned_sites/
+gsutil cp gs://verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr123.SNP.1e6.vcf.gz Aaeg1000g/vcfs/SNPs/pruned_sites/

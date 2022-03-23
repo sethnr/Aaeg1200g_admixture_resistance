@@ -1,0 +1,21 @@
+perl -pe 's/gs.*(aegy.*chr)(\d+)(.10MB.blck.)(\d+)(.*)/$2\t$4\t$1$2$3$4$5\t$&/gi' config_lostruct/vcfs.tsv
+snakemake --default-remote-provider GS --default-remote-prefix redmond-lab-analysis --use-singularity -j 99 --nolock --kubernetes --latency-wait 120
+snakemake --default-remote-provider GS --default-remote-prefix redmond-lab-aaeg1000g --use-singularity -j 99 --nolock --kubernetes --latency-wait 120
+grep -v -e Africa -e El_Dorado resources/meta_Aaeg1kg_sample_locations.txt > resources/AAA_samples.txt
+grep -e region -e Africa resources/meta_Aaeg1kg_sample_locations.txt > resources/AAF_samples.txt
+
+...DAC taking a long time to make
+       just composite for regions -> 17 mins
+
+NA / failed blocks:
+NC_035108.1:9500000-10000000
+NC_035108.1:17300000-20000000
+NC_035108.1:26700000-30000000
+NC_035108.1:188600000-190000000
+
+
+#upload thinned VCFs to verily archive
+for C in 1 2 3  ; do
+  echo gsutil cp gs://redmond-lab-aaeg1000g/results_lostruct/norep_regions_thinrand/lostruct_chr${C}.vcf.gz \
+    gs://verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.norep5-30x.ac10.thinrand01.chr${C}.vcf.gz ;
+done
