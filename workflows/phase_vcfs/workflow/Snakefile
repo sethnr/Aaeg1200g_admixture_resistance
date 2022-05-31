@@ -17,7 +17,7 @@ rule all:
 
 rule split_vcf:
     input:
-        vcf="results_phase/input_vcf/input_vcf_{chrom}.vcf.gz")
+        vcf="results_phase/input_vcf/input_vcf_{chrom}.vcf.gz"
     output:
         outvcf=expand("results_phase/split_vcf/split_{chrom}_{sample}.vcf.gz",
                     sample=config["samples"].sample)
@@ -77,6 +77,7 @@ rule merge_vcfs:
         bcftools --version 2>> {log}
         bcftools merge -o {output.vcf} -O z {input.vcfs} 2>> {log};
         """
+
 
 rule phase_shapeit:
     input:
