@@ -42,11 +42,11 @@ rule split_vcf:
         "logs/phase_split_vcf/{chrom}.log",
     shell:
         """
-        for sample in `bcftools query -l {input.vcf}`; do
+        for SAMPLE in `bcftools query -l {input.vcf}`; do
             bcftools view -c1 -Oz -s $sample \
-                          -o results/phase_split_vcf/split_{wildcards.chrom}_${sample}.vcf.gz \
+                          -o results/phase_split_vcf/split_{wildcards.chrom}_${{SAMPLE}}.vcf.gz \
                           {input.vcf}
-            tabix -p vcf results/phase_split_vcf/split_{wildcards.chrom}_${sample}.vcf.gz
+            tabix -p vcf results/phase_split_vcf/split_{wildcards.chrom}_${{SAMPLE}}.vcf.gz
         done
         """
 
