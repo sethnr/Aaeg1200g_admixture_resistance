@@ -1,4 +1,4 @@
-sample	bam  bai
+sample	bam	bai
 Amacuzac_Mexico-_12	gs://verily-aaeg1200g/non-afrI3.bams/Amacuzac_Mexico-_12.RLN.CL.bam	gs://verily-aaeg1200g/non-afrI3.bams/Amacuzac_Mexico-_12.RLN.CL.bam.bai
 Amacuzac_Mexico-_15	gs://verily-aaeg1200g/non-afrI3.bams/Amacuzac_Mexico-_15.RLN.CL.bam	gs://verily-aaeg1200g/non-afrI3.bams/Amacuzac_Mexico-_15.RLN.CL.bam.bai
 Amacuzac_Mexico-_2	gs://verily-aaeg1200g/non-afrI3.bams/Amacuzac_Mexico-_2.RLN.CL.bam	gs://verily-aaeg1200g/non-afrI3.bams/Amacuzac_Mexico-_2.RLN.CL.bam.bai

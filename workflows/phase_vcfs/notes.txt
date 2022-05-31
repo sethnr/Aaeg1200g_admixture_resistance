@@ -1,4 +1,7 @@
 
+#set project for both (needs GS access for rawdata)
+gcloud config set project redmond-lab-analyses
+
 #GCP
 snakemake --default-remote-provider GS --default-remote-prefix redmond-lab-analysis --use-singularity -j 99 --nolock --kubernetes --latency-wait 120
 

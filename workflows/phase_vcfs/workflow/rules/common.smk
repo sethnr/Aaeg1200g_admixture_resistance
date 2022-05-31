@@ -9,11 +9,9 @@ GS = GSRemoteProvider()
 min_version("5.18.0")
 
 
-container: "docker://sethnr/aaeg1000g_analysis:0.03"
+#container: "docker://sethnr/aaeg1000g_analysis:0.03"
 
 
-###### Config file and sample sheets #####
-configfile: "config_lostruct/config.yaml"
 
 
 
@@ -30,7 +28,24 @@ configfile: "config_lostruct/config.yaml"
 #     """Get vcfs of given chrom"""
 #     return [GS.remote(v) for v in vcfs.loc[(wildcards.chrom)].vcf]
 
+def get_remote_bam(wildcards):
+    bams = pd.read_table(config["bams"],dtype = str).set_index(["sample"])
+    """Get bam of given sample """
+    return GS.remote(bams.loc[wildcards.sample].bam)
+
+def get_remote_bai(wildcards):
+    bams = pd.read_table(config["bams"],dtype = str).set_index(["sample"])
+    """Get bam of given sample """
+    return GS.remote(bams.loc[wildcards.sample].bai)
+
+
 def get_remote_vcf(wildcards):
+    vcfs = pd.read_table(config["vcfs"],dtype = str,header=0).set_index(["chrom"])
+    """Get processed/thinned vcf of given chrom """
+    return GS.remote(vcfs.loc[wildcards.chrom].vcf)
+
+
+def get_remote_vcf_raw(wildcards):
     vcf = pd.read_table(config["vcfs"],dtype = str).set_index(["chrom","block"])
     """Get vcf of given chrom and block """
     return GS.remote(vcf.loc[wildcards.chrom,wildcards.block].vcf)
@@ -49,6 +64,8 @@ def get_chrom_blocks_string(wildcards):
     return expand("chr{chrom}_blk{block}",chrom=wildcards.chrom,
                                           block=vcfs.loc[(wildcards.chrom)].block)
 
+
+
 def get_bam_for_sample(wildcards):
     samples = pd.read_table(config["samples"],dtype = str).set_index(["sample"])
     """Get vcf of given chrom and block """
@@ -62,11 +79,11 @@ def get_bai_for_sample(wildcards):
 
 rule tabix_vcf:
     input:
-        "results_lostruct/{calltype}/{vcfname}.vcf.gz"
+        "results/{vcftype}/{vcfname}.vcf.gz"
     output:
-        "results_lostruct/{calltype}/{vcfname}.vcf.gz.tbi",
+        "results/{vcftype}/{vcfname}.vcf.gz.tbi",
     log:
-        "logs/tabix/{calltype}/{vcfname}.vcf.log",
+        "logs/tabix/{vcftype}/{vcfname}.vcf.log",
     params:
         "-p vcf",
     wrapper:
