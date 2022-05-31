@@ -8,7 +8,7 @@ include: "rules/common.smk"
 
 rule all:
     input:
-        expand("results_phase/whatshap_vcf/whatshapp_{chrom}_{sample}.vcf.gz",
+        expand("results_phase/shapeit_vcf/phased_shapeit_{chrom}.vcf.gz",
         chrid=[1,2,3])
 
 
@@ -42,7 +42,7 @@ rule split_vcf:
 
 rule whatshap_vcf:
     input:
-        invcf="results_phase/split_vcf/splitvcf_{chrom}_{sample}.vcf.gz")
+        invcf="results_phase/split_vcf/splitvcf_{chrom}_{sample}.vcf.gz"
         bam=lambda wildcards: get_remote_bam(wildcards),
         vcf=lambda wildcards: get_remote_vcf(wildcards),
     output:
