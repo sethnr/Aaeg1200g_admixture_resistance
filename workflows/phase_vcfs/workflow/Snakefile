@@ -1,0 +1,94 @@
+from snakemake.remote.GS import RemoteProvider as GSRemoteProvider
+GS = GSRemoteProvider()
+
+
+#configfile: "config_lostruct/config.yaml"
+include: "rules/common.smk"
+
+
+rule all:
+    input:
+        expand("results_phase/whatshap_vcf/whatshapp_{chrom}_{sample}.vcf.gz",
+        chrid=[1,2,3])
+
+
+##### split and phase vcf #####
+
+
+rule split_vcf:
+    input:
+        vcf="results_phase/input_vcf/input_vcf_{chrom}.vcf.gz")
+    output:
+        outvcf=expand("results_phase/split_vcf/split_{chrom}_{sample}.vcf.gz",
+                    sample=config["samples"].sample)
+        outtbi=expand("results_phase/split_vcf/split_{chrom}_{sample}.vcf.gz.tbi",
+                    sample=config["samples"].sample)
+    resources:
+        mem_mb=3000,
+        disk_mb=500000,
+    threads: 1,
+    log:
+        "logs/thin_variants/{chrom}.{block}.log",
+    shell:
+        """
+        for sample in `bcftools query -l {input.vcf}`; do
+            bcftools view -c1 -Oz -s $sample \
+                          -o results_phase/split_vcf/split_{wildcards.chrom}_${sample}.vcf.gz \
+                          {input.vcf}
+            tabix -p vcf results_phase/split_vcf/split_{wildcards.chrom}_${sample}.vcf.gz
+        done
+        """
+
+
+rule whatshap_vcf:
+    input:
+        invcf="results_phase/split_vcf/splitvcf_{chrom}_{sample}.vcf.gz")
+        bam=lambda wildcards: get_remote_bam(wildcards),
+        vcf=lambda wildcards: get_remote_vcf(wildcards),
+    output:
+        vcf=temporary("results_phase/whatshap_vcf/whatshapp_{chrom}_{sample}.vcf.gz")
+        tbi=temporary("results_phase/whatshap_vcf/whatshapp_{chrom}_{sample}.vcf.gz.tbi")
+    resources:
+        mem_mb=3000,
+        disk_mb=500000,
+    threads: 1,
+    log:
+        "logs/thin_variants/{chrom}.{block}.log",
+    shell:
+        """
+          whatshap phase {input.vcf} {input.bam} -r {input.ref} -o {output.vcf}
+          tabix -pvcf {output.vcf}
+        """
+
+
+rule merge_vcfs:
+    input:
+        vcftable=config["vcfs"],
+        vcfs=lambda wildcards: expand("results_thinvars/norep_regions_thinrand/{blockstring}_thin.vcf.gz",
+                                              blockstring=get_chrom_blocks_string(wildcards)),
+        tbis=lambda wildcards: expand("results_thinvars/norep_regions_thinrand/{blockstring}_thin.vcf.gz.tbi",
+                                              blockstring=get_chrom_blocks_string(wildcards))
+    output:
+        vcf=protected("results_phase/whatshap_vcf/whatshap_{chrom}.vcf.gz"),
+    log:
+        "logs/thin_variants_random/merge-chr{chrom}.log",
+    shell:
+        """
+        bcftools --version 2>> {log}
+        bcftools merge -o {output.vcf} -O z {input.vcfs} 2>> {log};
+        """
+
+rule phase_shapeit:
+    input:
+        vcf="results_phase/whatshap_vcf/whatshap_{chrom}.vcf.gz",
+        tbi="results_phase/whatshap_vcf/whatshap_{chrom}.vcf.gz.tbi"
+    output:
+        vcf=protected("results_phase/shapeit_vcf/phased_shapeit_{chrom}.vcf.gz"),
+    log:
+        "logs/thin_variants_random/merge-chr{chrom}.log",
+    shell:
+        """
+        shapeit4 --input {input.vcf} --map {input.map} \
+                 --region {wildcards.chrom} --log {log} \
+                 --output {output.vcf}
+        """

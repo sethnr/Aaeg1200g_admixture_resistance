@@ -1,0 +1,456 @@
+sample	search	pop	label	region
+Debug010_aegypti_Cuanda_Angola_01	Cuanda	Cuanda	Luanda	West Africa
+Debug010_aegypti_Cuanda_Angola_02	Cuanda	Cuanda	Luanda	West Africa
+Debug010_aegypti_Cuanda_Angola_03	Cuanda	Cuanda	Luanda	West Africa
+Debug010_aegypti_Cuanda_Angola_04	Cuanda	Cuanda	Luanda	West Africa
+Debug010_aegypti_Cuanda_Angola_05	Cuanda	Cuanda	Luanda	West Africa
+Debug010_aegypti_Cuanda_Angola_06	Cuanda	Cuanda	Luanda	West Africa
+Debug010_aegypti_Cuanda_Angola_08	Cuanda	Cuanda	Luanda	West Africa
+Debug010_aegypti_Cuanda_Angola_10	Cuanda	Cuanda	Luanda	West Africa
+Debug010_aegypti_Cuanda_Angola_11	Cuanda	Cuanda	Luanda	West Africa
+Debug010_aegypti_Cuanda_Angola_14	Cuanda	Cuanda	Luanda	West Africa
+Debug010_aegypti_Cuanda_Angola_18	Cuanda	Cuanda	Luanda	West Africa
+Debug010_aegypti_Cuanda_Angola_19	Cuanda	Cuanda	Luanda	West Africa
+Debug010_aegypti_Cuanda_Angola_20	Cuanda	Cuanda	Luanda	West Africa
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-10	La_Lope	La_Lope	La_Lope	West Africa
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-11	La_Lope	La_Lope	La_Lope	West Africa
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-12	La_Lope	La_Lope	La_Lope	West Africa
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-13	La_Lope	La_Lope	La_Lope	West Africa
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-14	La_Lope	La_Lope	La_Lope	West Africa
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-15	La_Lope	La_Lope	La_Lope	West Africa
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-16	La_Lope	La_Lope	La_Lope	West Africa
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-17	La_Lope	La_Lope	La_Lope	West Africa
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-18	La_Lope	La_Lope	La_Lope	West Africa
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-1	La_Lope	La_Lope	La_Lope	West Africa
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-20	La_Lope	La_Lope	La_Lope	West Africa
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-23	La_Lope	La_Lope	La_Lope	West Africa
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-24	La_Lope	La_Lope	La_Lope	West Africa
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-2	La_Lope	La_Lope	La_Lope	West Africa
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-3	La_Lope	La_Lope	La_Lope	West Africa
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-4	La_Lope	La_Lope	La_Lope	West Africa
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-5	La_Lope	La_Lope	La_Lope	West Africa
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-6	La_Lope	La_Lope	La_Lope	West Africa
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-7	La_Lope	La_Lope	La_Lope	West Africa
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-8	La_Lope	La_Lope	La_Lope	West Africa
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-9	La_Lope	La_Lope	La_Lope	West Africa
+La_Lope_Gabon-_19	La_Lope	La_Lope	La_Lope	West Africa
+Debug010_aegypti_Skukusa_South_Africa_02	Skukusa	Skukusa	Skukusa	East Africa
+Debug010_aegypti_Skukusa_South_Africa_03	Skukusa	Skukusa	Skukusa	East Africa
+Debug010_aegypti_Skukusa_South_Africa_04	Skukusa	Skukusa	Skukusa	East Africa
+Debug010_aegypti_Skukusa_South_Africa_05	Skukusa	Skukusa	Skukusa	East Africa
+Debug010_aegypti_Skukusa_South_Africa_06	Skukusa	Skukusa	Skukusa	East Africa
+Debug010_aegypti_Skukusa_South_Africa_07	Skukusa	Skukusa	Skukusa	East Africa
+Debug010_aegypti_Skukusa_South_Africa_10	Skukusa	Skukusa	Skukusa	East Africa
+Debug010_aegypti_Skukusa_South_Africa_12	Skukusa	Skukusa	Skukusa	East Africa
+Debug010_aegypti_Skukusa_South_Africa_13	Skukusa	Skukusa	Skukusa	East Africa
+Debug010_aegypti_Skukusa_South_Africa_15	Skukusa	Skukusa	Skukusa	East Africa
+Debug010_aegypti_Skukusa_South_Africa_16	Skukusa	Skukusa	Skukusa	East Africa
+Debug018_aegypti_YAOMO_Cameroon__U_63	YAOMO	YAOMO	Yaounde	West Africa
+Debug018_aegypti_YAOMO_Cameroon__U_65	YAOMO	YAOMO	Yaounde	West Africa
+Debug018_aegypti_YAOMO_Cameroon__U_66	YAOMO	YAOMO	Yaounde	West Africa
+Debug018_aegypti_YAOMO_Cameroon__U_67	YAOMO	YAOMO	Yaounde	West Africa
+Debug018_aegypti_YAOMO_Cameroon__U_69	YAOMO	YAOMO	Yaounde	West Africa
+Debug018_aegypti_YAOMO_Cameroon__U_71	YAOMO	YAOMO	Yaounde	West Africa
+Debug018_aegypti_YAOMO_Cameroon__U_72	YAOMO	YAOMO	Yaounde	West Africa
+Debug018_aegypti_YAOMO_Cameroon__U_73	YAOMO	YAOMO	Yaounde	West Africa
+Debug018_aegypti_YAOMO_Cameroon__U_74	YAOMO	YAOMO	Yaounde	West Africa
+Debug018_aegypti_YAOMO_Cameroon__U_75	YAOMO	YAOMO	Yaounde	West Africa
+Debug018_aegypti_YAOMO_Cameroon__U_77	YAOMO	YAOMO	Yaounde	West Africa
+Debug018_aegypti_YAOMO_Cameroon__U_80	YAOMO	YAOMO	Yaounde	West Africa
+Debug018_aegypti_YAOMO_Cameroon__U_81	YAOMO	YAOMO	Yaounde	West Africa
+Debug011_aegypti_Arabuko_Kenya_01	Arabuko	Arabuko	Arabuko	East Africa
+Debug011_aegypti_Arabuko_Kenya_02	Arabuko	Arabuko	Arabuko	East Africa
+Debug011_aegypti_Arabuko_Kenya_03	Arabuko	Arabuko	Arabuko	East Africa
+Debug011_aegypti_Arabuko_Kenya_04	Arabuko	Arabuko	Arabuko	East Africa
+Debug011_aegypti_Arabuko_Kenya_05	Arabuko	Arabuko	Arabuko	East Africa
+Debug011_aegypti_Arabuko_Kenya_06	Arabuko	Arabuko	Arabuko	East Africa
+Debug011_aegypti_Arabuko_Kenya_07	Arabuko	Arabuko	Arabuko	East Africa
+Debug011_aegypti_Arabuko_Kenya_08	Arabuko	Arabuko	Arabuko	East Africa
+Debug011_aegypti_Arabuko_Kenya_09	Arabuko	Arabuko	Arabuko	East Africa
+Debug011_aegypti_Arabuko_Kenya_10	Arabuko	Arabuko	Arabuko	East Africa
+Debug011_aegypti_Arabuko_Kenya_11	Arabuko	Arabuko	Arabuko	East Africa
+Debug011_aegypti_Arabuko_Kenya_12	Arabuko	Arabuko	Arabuko	East Africa
+Debug011_aegypti_Arabuko_Kenya_14	Arabuko	Arabuko	Arabuko	East Africa
+Debug011_aegypti_Arabuko_Kenya_15	Arabuko	Arabuko	Arabuko	East Africa
+Debug011_aegypti_Arabuko_Kenya_16	Arabuko	Arabuko	Arabuko	East Africa
+Debug011_aegypti_Arabuko_Kenya_17	Arabuko	Arabuko	Arabuko	East Africa
+Debug011_aegypti_Arabuko_Kenya_18	Arabuko	Arabuko	Arabuko	East Africa
+Debug011_aegypti_Arabuko_Kenya_19	Arabuko	Arabuko	Arabuko	East Africa
+Debug011_aegypti_Ganda_Kenya_01	Ganda	Ganda	Ganda	East Africa
+Debug011_aegypti_Ganda_Kenya_02	Ganda	Ganda	Ganda	East Africa
+Debug011_aegypti_Ganda_Kenya_08	Ganda	Ganda	Ganda	East Africa
+Debug011_aegypti_Ganda_Kenya_09	Ganda	Ganda	Ganda	East Africa
+Debug011_aegypti_Ganda_Kenya_10	Ganda	Ganda	Ganda	East Africa
+Debug011_aegypti_Ganda_Kenya_14	Ganda	Ganda	Ganda	East Africa
+Debug011_aegypti_Ganda_Kenya_17	Ganda	Ganda	Ganda	East Africa
+Debug011_aegypti_Ganda_Kenya_20	Ganda	Ganda	Ganda	East Africa
+Debug011_aegypti_Kakamega_Kenya_01	Kakamega	Kakamega	Kakamega	East Africa
+Debug011_aegypti_Kakamega_Kenya_02	Kakamega	Kakamega	Kakamega	East Africa
+Debug011_aegypti_Kakamega_Kenya_03	Kakamega	Kakamega	Kakamega	East Africa
+Debug011_aegypti_Kakamega_Kenya_04	Kakamega	Kakamega	Kakamega	East Africa
+Debug011_aegypti_Kakamega_Kenya_05	Kakamega	Kakamega	Kakamega	East Africa
+Debug011_aegypti_Kakamega_Kenya_06	Kakamega	Kakamega	Kakamega	East Africa
+Debug011_aegypti_Kakamega_Kenya_07	Kakamega	Kakamega	Kakamega	East Africa
+Debug011_aegypti_Kakamega_Kenya_08	Kakamega	Kakamega	Kakamega	East Africa
+Debug011_aegypti_Kakamega_Kenya_09	Kakamega	Kakamega	Kakamega	East Africa
+Debug011_aegypti_Kakamega_Kenya_10	Kakamega	Kakamega	Kakamega	East Africa
+Debug011_aegypti_Kakamega_Kenya_11	Kakamega	Kakamega	Kakamega	East Africa
+Debug011_aegypti_Kakamega_Kenya_13	Kakamega	Kakamega	Kakamega	East Africa
+Debug011_aegypti_Kakamega_Kenya_14	Kakamega	Kakamega	Kakamega	East Africa
+Debug011_aegypti_Kakamega_Kenya_15	Kakamega	Kakamega	Kakamega	East Africa
+Debug011_aegypti_Kakamega_Kenya_16	Kakamega	Kakamega	Kakamega	East Africa
+Debug011_aegypti_Kakamega_Kenya_17	Kakamega	Kakamega	Kakamega	East Africa
+Debug011_aegypti_Kakamega_Kenya_18	Kakamega	Kakamega	Kakamega	East Africa
+Debug011_aegypti_Kakamega_Kenya_19	Kakamega	Kakamega	Kakamega	East Africa
+Debug011_aegypti_KayaBomu_Kenya_03	KayaBomu	KayaBomu	KayaBomu	East Africa
+Debug011_aegypti_KayaBomu_Kenya_05	KayaBomu	KayaBomu	KayaBomu	East Africa
+Debug011_aegypti_KayaBomu_Kenya_06	KayaBomu	KayaBomu	KayaBomu	East Africa
+Debug011_aegypti_KayaBomu_Kenya_07	KayaBomu	KayaBomu	KayaBomu	East Africa
+Debug011_aegypti_KayaBomu_Kenya_09	KayaBomu	KayaBomu	KayaBomu	East Africa
+Debug011_aegypti_KayaBomu_Kenya_12	KayaBomu	KayaBomu	KayaBomu	East Africa
+Debug011_aegypti_KayaBomu_Kenya_14	KayaBomu	KayaBomu	KayaBomu	East Africa
+Debug011_aegypti_KayaBomu_Kenya_15	KayaBomu	KayaBomu	KayaBomu	East Africa
+Debug011_aegypti_KayaBomu_Kenya_28	KayaBomu	KayaBomu	KayaBomu	East Africa
+Debug011_aegypti_KayaBomu_Kenya_30	KayaBomu	KayaBomu	KayaBomu	East Africa
+Debug012_aegypti_KayaBomu_Kenya_32	KayaBomu	KayaBomu	KayaBomu	East Africa
+Debug012_aegypti_KayaBomu_Kenya_34	KayaBomu	KayaBomu	KayaBomu	East Africa
+Debug012_aegypti_KayaBomu_Kenya_36	KayaBomu	KayaBomu	KayaBomu	East Africa
+Debug012_aegypti_KayaBomu_Kenya_37	KayaBomu	KayaBomu	KayaBomu	East Africa
+Debug012_aegypti_KayaBomu_Kenya_38	KayaBomu	KayaBomu	KayaBomu	East Africa
+Debug012_aegypti_KayaBomu_Kenya_39	KayaBomu	KayaBomu	KayaBomu	East Africa
+Debug012_aegypti_KayaBomu_Kenya_40	KayaBomu	KayaBomu	KayaBomu	East Africa
+Debug012_aegypti_Kwale_Kenya_01	Kwale	Kwale	Kwale	East Africa
+Debug012_aegypti_Kwale_Kenya_06	Kwale	Kwale	Kwale	East Africa
+Debug012_aegypti_Kwale_Kenya_10	Kwale	Kwale	Kwale	East Africa
+Debug012_aegypti_Kwale_Kenya_11	Kwale	Kwale	Kwale	East Africa
+Debug012_aegypti_Kwale_Kenya_13	Kwale	Kwale	Kwale	East Africa
+Debug012_aegypti_Kwale_Kenya_16	Kwale	Kwale	Kwale	East Africa
+Debug012_aegypti_Kwale_Kenya_17	Kwale	Kwale	Kwale	East Africa
+Debug012_aegypti_Kwale_Kenya_22	Kwale	Kwale	Kwale	East Africa
+Debug012_aegypti_Kwale_Kenya_23	Kwale	Kwale	Kwale	East Africa
+Debug012_aegypti_Kwale_Kenya_28	Kwale	Kwale	Kwale	East Africa
+Debug012_aegypti_Kwale_Kenya_29	Kwale	Kwale	Kwale	East Africa
+Debug012_aegypti_Kwale_Kenya_33	Kwale	Kwale	Kwale	East Africa
+Debug012_aegypti_Kwale_Kenya_34	Kwale	Kwale	Kwale	East Africa
+Debug012_aegypti_Kwale_Kenya_35	Kwale	Kwale	Kwale	East Africa
+Debug014_aegypti_Kwale_Kenya_36	Kwale	Kwale	Kwale	East Africa
+Debug014_aegypti_Kwale_Kenya_37	Kwale	Kwale	Kwale	East Africa
+Debug014_aegypti_Kwale_Kenya_38	Kwale	Kwale	Kwale	East Africa
+Debug014_aegypti_Kwale_Kenya_39	Kwale	Kwale	Kwale	East Africa
+Debug014_aegypti_Kwale_Kenya_40	Kwale	Kwale	Kwale	East Africa
+Debug012_aegypti_Rabai_Kenya_01	Debug012*Rabai	Rabai_2017	Rabai 2017	East Africa
+Debug012_aegypti_Rabai_Kenya_02	Debug012*Rabai	Rabai_2017	Rabai 2017	East Africa
+Debug012_aegypti_Rabai_Kenya_03	Debug012*Rabai	Rabai_2017	Rabai 2017	East Africa
+Debug012_aegypti_Rabai_Kenya_04	Debug012*Rabai	Rabai_2017	Rabai 2017	East Africa
+Debug012_aegypti_Rabai_Kenya_05	Debug012*Rabai	Rabai_2017	Rabai 2017	East Africa
+Debug012_aegypti_Rabai_Kenya_08	Debug012*Rabai	Rabai_2017	Rabai 2017	East Africa
+Debug012_aegypti_Rabai_Kenya_09	Debug012*Rabai	Rabai_2017	Rabai 2017	East Africa
+Debug012_aegypti_Rabai_Kenya_12	Debug012*Rabai	Rabai_2017	Rabai 2017	East Africa
+Debug012_aegypti_Rabai_Kenya_13	Debug012*Rabai	Rabai_2017	Rabai 2017	East Africa
+Debug012_aegypti_Rabai_Kenya_16	Debug012*Rabai	Rabai_2017	Rabai 2017	East Africa
+Debug012_aegypti_Rabai_Kenya_17	Debug012*Rabai	Rabai_2017	Rabai 2017	East Africa
+Debug012_aegypti_Rabai_Kenya_20	Debug012*Rabai	Rabai_2017	Rabai 2017	East Africa
+Debug012_aegypti_Rabai_Kenya_21	Debug012*Rabai	Rabai_2017	Rabai 2017	East Africa
+Debug012_aegypti_Rabai_Kenya_25	Debug012*Rabai	Rabai_2017	Rabai 2017	East Africa
+Debug012_aegypti_Rabai_Kenya_28	Debug012*Rabai	Rabai_2017	Rabai 2017	East Africa
+Debug012_aegypti_Rabai_Kenya_29	Debug012*Rabai	Rabai_2017	Rabai 2017	East Africa
+Debug012_aegypti_Rabai_Kenya_33	Debug012*Rabai	Rabai_2017	Rabai 2017	East Africa
+Debug017_aegypti_Rabai_Kenya_2009_F_10	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Rabai_Kenya_2009_F_11	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Rabai_Kenya_2009_F_12	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Rabai_Kenya_2009_F_13	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Rabai_Kenya_2009_F_1	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Rabai_Kenya_2009_F_3	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Rabai_Kenya_2009_F_4	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Rabai_Kenya_2009_F_9	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Rabai_Kenya_2009_M_5	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Rabai_Kenya_2009_M_6	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Rabai_Kenya_2011_F_15	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Rabai_Kenya_2011_M_16	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug012_aegypti_ShimbaHills_Kenya_01	Debug012*Rabai	Rabai_2017	Rabai 2017	East Africa
+Debug012_aegypti_ShimbaHills_Kenya_02	Debug012*Rabai	Rabai_2017	Rabai 2017	East Africa
+Debug012_aegypti_ShimbaHills_Kenya_07	Debug012*Rabai	Rabai_2017	Rabai 2017	East Africa
+Debug012_aegypti_ShimbaHills_Kenya_08	Debug012*Rabai	Rabai_2017	Rabai 2017	East Africa
+Debug012_aegypti_ShimbaHills_Kenya_09	Debug012*Rabai	Rabai_2017	Rabai 2017	East Africa
+Debug012_aegypti_ShimbaHills_Kenya_12	Debug012*Rabai	Rabai_2017	Rabai 2017	East Africa
+Debug014_aegypti_ShimbaHills_Kenya_23	ShimbaHills	ShimbaHills	ShimbaHills	East Africa
+Debug014_aegypti_ShimbaHills_Kenya_24	ShimbaHills	ShimbaHills	ShimbaHills	East Africa
+Debug013_aegypti_Virhembe_Kenya_01	Virhembe	Virhembe	Virhembe	East Africa
+Debug013_aegypti_Virhembe_Kenya_02	Virhembe	Virhembe	Virhembe	East Africa
+Debug013_aegypti_Virhembe_Kenya_03	Virhembe	Virhembe	Virhembe	East Africa
+Debug013_aegypti_Virhembe_Kenya_04	Virhembe	Virhembe	Virhembe	East Africa
+Debug013_aegypti_Virhembe_Kenya_05	Virhembe	Virhembe	Virhembe	East Africa
+Debug013_aegypti_Virhembe_Kenya_06	Virhembe	Virhembe	Virhembe	East Africa
+Debug013_aegypti_Virhembe_Kenya_07	Virhembe	Virhembe	Virhembe	East Africa
+Debug013_aegypti_Virhembe_Kenya_11	Virhembe	Virhembe	Virhembe	East Africa
+Debug013_aegypti_Virhembe_Kenya_12	Virhembe	Virhembe	Virhembe	East Africa
+Debug013_aegypti_Virhembe_Kenya_13	Virhembe	Virhembe	Virhembe	East Africa
+Debug013_aegypti_Virhembe_Kenya_15	Virhembe	Virhembe	Virhembe	East Africa
+Debug013_aegypti_Virhembe_Kenya_16	Virhembe	Virhembe	Virhembe	East Africa
+Debug013_aegypti_Virhembe_Kenya_17	Virhembe	Virhembe	Virhembe	East Africa
+Debug013_aegypti_Virhembe_Kenya_19	Virhembe	Virhembe	Virhembe	East Africa
+Debug013_aegypti_Virhembe_Kenya_20	Virhembe	Virhembe	Virhembe	East Africa
+Debug014_aegypti_Entebbe_Uganda_01	Entebbe	Entebbe	Entebbe	East Africa
+Debug014_aegypti_Entebbe_Uganda_03	Entebbe	Entebbe	Entebbe	East Africa
+Debug014_aegypti_Entebbe_Uganda_04	Entebbe	Entebbe	Entebbe	East Africa
+Debug014_aegypti_Entebbe_Uganda_10	Entebbe	Entebbe	Entebbe	East Africa
+Debug014_aegypti_Entebbe_Uganda_11	Entebbe	Entebbe	Entebbe	East Africa
+Debug014_aegypti_Entebbe_Uganda_14	Entebbe	Entebbe	Entebbe	East Africa
+Debug014_aegypti_Entebbe_Uganda_15	Entebbe	Entebbe	Entebbe	East Africa
+Debug014_aegypti_Entebbe_Uganda_20	Entebbe	Entebbe	Entebbe	East Africa
+Debug014_aegypti_Entebbe_Uganda_21	Entebbe	Entebbe	Entebbe	East Africa
+Debug014_aegypti_Entebbe_Uganda_23	Entebbe	Entebbe	Entebbe	East Africa
+Debug014_aegypti_Entebbe_Uganda_24	Entebbe	Entebbe	Entebbe	East Africa
+Debug013_aegypti_Bundibugyo_Uganda_01	Bundibugyo	Bundibugyo	Bundibugyo	East Africa
+Debug013_aegypti_Bundibugyo_Uganda_04	Bundibugyo	Bundibugyo	Bundibugyo	East Africa
+Debug013_aegypti_Bundibugyo_Uganda_09	Bundibugyo	Bundibugyo	Bundibugyo	East Africa
+Debug013_aegypti_Bundibugyo_Uganda_10	Bundibugyo	Bundibugyo	Bundibugyo	East Africa
+Debug013_aegypti_Bundibugyo_Uganda_11	Bundibugyo	Bundibugyo	Bundibugyo	East Africa
+Debug013_aegypti_Bundibugyo_Uganda_36	Bundibugyo	Bundibugyo	Bundibugyo	East Africa
+Debug013_aegypti_Bundibugyo_Uganda_37	Bundibugyo	Bundibugyo	Bundibugyo	East Africa
+Debug013_aegypti_Kichwamba_Uganda_01	Kichwamba	Kichwamba	Kichwamba	East Africa
+Debug013_aegypti_Kichwamba_Uganda_02	Kichwamba	Kichwamba	Kichwamba	East Africa
+Debug013_aegypti_Kichwamba_Uganda_03	Kichwamba	Kichwamba	Kichwamba	East Africa
+Debug013_aegypti_Kichwamba_Uganda_07	Kichwamba	Kichwamba	Kichwamba	East Africa
+Debug013_aegypti_Kichwamba_Uganda_09	Kichwamba	Kichwamba	Kichwamba	East Africa
+Debug014_aegypti_Kichwamba_Uganda_15	Kichwamba	Kichwamba	Kichwamba	East Africa
+Debug014_aegypti_Kichwamba_Uganda_17	Kichwamba	Kichwamba	Kichwamba	East Africa
+Debug014_aegypti_Kichwamba_Uganda_18	Kichwamba	Kichwamba	Kichwamba	East Africa
+Debug017_aegypti_Libreville_Gabon_F_10	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Libreville_Gabon_F_11	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Libreville_Gabon_F_12	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Libreville_Gabon_F_14	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Libreville_Gabon_F_15	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Libreville_Gabon_F_2	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Libreville_Gabon_F_3	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Libreville_Gabon_F_4	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Libreville_Gabon_F_5	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Libreville_Gabon_F_6	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Libreville_Gabon_F_7	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Libreville_Gabon_F_8	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Libreville_Gabon_M_13	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Libreville_Gabon_M_9	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_LopeVillage_Gabon_F_15	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_LopeVillage_Gabon_F_1	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_LopeVillage_Gabon_F_2	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_LopeVillage_Gabon_F_3	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_LopeVillage_Gabon_F_4	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_LopeVillage_Gabon_F_5	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_LopeVillage_Gabon_F_6	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_LopeVillage_Gabon_F_7	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_LopeVillage_Gabon_F_8	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_LopeVillage_Gabon_F_9	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_LopeVillage_Gabon_M_10	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_LopeVillage_Gabon_M_11	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_LopeVillage_Gabon_M_12	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_LopeVillage_Gabon_M_13	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_LopeVillage_Gabon_M_14	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Franceville_Gabon_F_11	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Franceville_Gabon_F_12	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Franceville_Gabon_F_1	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Franceville_Gabon_F_2	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Franceville_Gabon_F_3	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Franceville_Gabon_F_4	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Franceville_Gabon_F_5	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Franceville_Gabon_F_6	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Franceville_Gabon_F_8	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Franceville_Gabon_F_9	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Franceville_Gabon_M_10	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Franceville_Gabon_M_13	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug017_aegypti_Franceville_Gabon_M_7	Debug017*Rabai	Rabai_2009	Rabai 2009	East Africa
+Debug023_aegypti_Kumasi_Ghana_F_11	Kumasi	Kumasi	Kumasi	West Africa
+Debug023_aegypti_Kumasi_Ghana_F_14	Kumasi	Kumasi	Kumasi	West Africa
+Debug023_aegypti_Kumasi_Ghana_F_16	Kumasi	Kumasi	Kumasi	West Africa
+Debug023_aegypti_Kumasi_Ghana_F_18	Kumasi	Kumasi	Kumasi	West Africa
+Debug023_aegypti_Kumasi_Ghana_F_19	Kumasi	Kumasi	Kumasi	West Africa
+Debug023_aegypti_Kumasi_Ghana_F_20	Kumasi	Kumasi	Kumasi	West Africa
+Debug023_aegypti_Kumasi_Ghana_F_2	Kumasi	Kumasi	Kumasi	West Africa
+Debug023_aegypti_Kumasi_Ghana_F_4	Kumasi	Kumasi	Kumasi	West Africa
+Debug023_aegypti_Kumasi_Ghana_F_6	Kumasi	Kumasi	Kumasi	West Africa
+Debug023_aegypti_Kumasi_Ghana_F_9	Kumasi	Kumasi	Kumasi	West Africa
+Debug023_aegypti_Kumasi_Ghana_M_10	Kumasi	Kumasi	Kumasi	West Africa
+Debug023_aegypti_Kumasi_Ghana_M_12	Kumasi	Kumasi	Kumasi	West Africa
+Debug023_aegypti_Kumasi_Ghana_M_13	Kumasi	Kumasi	Kumasi	West Africa
+Debug023_aegypti_Kumasi_Ghana_M_15	Kumasi	Kumasi	Kumasi	West Africa
+Debug023_aegypti_Kumasi_Ghana_M_17	Kumasi	Kumasi	Kumasi	West Africa
+Debug023_aegypti_Kumasi_Ghana_M_1	Kumasi	Kumasi	Kumasi	West Africa
+Debug023_aegypti_Kumasi_Ghana_M_3	Kumasi	Kumasi	Kumasi	West Africa
+Debug023_aegypti_Kumasi_Ghana_M_5	Kumasi	Kumasi	Kumasi	West Africa
+Debug023_aegypti_Kumasi_Ghana_M_7	Kumasi	Kumasi	Kumasi	West Africa
+Debug023_aegypti_Kumasi_Ghana_M_8	Kumasi	Kumasi	Kumasi	West Africa
+Debug023_aegypti_Kintampo_Ghana_F_11	Kintampo	Kintampo	Kintampo	West Africa
+Debug023_aegypti_Kintampo_Ghana_F_12	Kintampo	Kintampo	Kintampo	West Africa
+Debug023_aegypti_Kintampo_Ghana_F_15	Kintampo	Kintampo	Kintampo	West Africa
+Debug023_aegypti_Kintampo_Ghana_F_16	Kintampo	Kintampo	Kintampo	West Africa
+Debug023_aegypti_Kintampo_Ghana_F_17	Kintampo	Kintampo	Kintampo	West Africa
+Debug023_aegypti_Kintampo_Ghana_F_20	Kintampo	Kintampo	Kintampo	West Africa
+Debug023_aegypti_Kintampo_Ghana_F_4	Kintampo	Kintampo	Kintampo	West Africa
+Debug023_aegypti_Kintampo_Ghana_F_7	Kintampo	Kintampo	Kintampo	West Africa
+Debug023_aegypti_Kintampo_Ghana_F_9	Kintampo	Kintampo	Kintampo	West Africa
+Debug023_aegypti_Kintampo_Ghana_M_10	Kintampo	Kintampo	Kintampo	West Africa
+Debug023_aegypti_Kintampo_Ghana_M_13	Kintampo	Kintampo	Kintampo	West Africa
+Debug023_aegypti_Kintampo_Ghana_M_14	Kintampo	Kintampo	Kintampo	West Africa
+Debug023_aegypti_Kintampo_Ghana_M_18	Kintampo	Kintampo	Kintampo	West Africa
+Debug023_aegypti_Kintampo_Ghana_M_1	Kintampo	Kintampo	Kintampo	West Africa
+Debug023_aegypti_Kintampo_Ghana_M_2	Kintampo	Kintampo	Kintampo	West Africa
+Debug023_aegypti_Kintampo_Ghana_M_5	Kintampo	Kintampo	Kintampo	West Africa
+Debug023_aegypti_Kintampo_Ghana_M_6	Kintampo	Kintampo	Kintampo	West Africa
+Debug023_aegypti_Kintampo_Ghana_M_8	Kintampo	Kintampo	Kintampo	West Africa
+Debug023_aegypti_BoabengFiema_Ghana_F_1	Boabeng	Boabeng	Boabeng Fiema	West Africa
+Debug023_aegypti_BoabengFiema_Ghana_F_2	Boabeng	Boabeng	Boabeng Fiema	West Africa
+Debug023_aegypti_Bantata_Senegal_F_11	Bantata	Bantata	Bantata	West Africa
+Debug023_aegypti_Bantata_Senegal_F_1	Bantata	Bantata	Bantata	West Africa
+Debug023_aegypti_Bantata_Senegal_F_2	Bantata	Bantata	Bantata	West Africa
+Debug023_aegypti_Bantata_Senegal_F_3	Bantata	Bantata	Bantata	West Africa
+Debug023_aegypti_Bantata_Senegal_F_4	Bantata	Bantata	Bantata	West Africa
+Debug023_aegypti_Bantata_Senegal_F_5	Bantata	Bantata	Bantata	West Africa
+Debug023_aegypti_Bantata_Senegal_M_10	Bantata	Bantata	Bantata	West Africa
+Debug023_aegypti_Bantata_Senegal_M_6	Bantata	Bantata	Bantata	West Africa
+Debug023_aegypti_Bantata_Senegal_M_7	Bantata	Bantata	Bantata	West Africa
+Debug023_aegypti_Bantata_Senegal_M_8	Bantata	Bantata	Bantata	West Africa
+Debug023_aegypti_Bantata_Senegal_M_9	Bantata	Bantata	Bantata	West Africa
+Debug023_aegypti_Thies_Senegal_F_1	Thies	Thies	Dakar_Thies	West Africa
+Debug023_aegypti_Thies_Senegal_M_2	Thies	Thies	Dakar_Thies	West Africa
+Debug023_aegypti_Thies_Senegal_M_3	Thies	Thies	Dakar_Thies	West Africa
+Debug023_aegypti_Thies_Senegal_M_4	Thies	Thies	Dakar_Thies	West Africa
+Debug023_aegypti_Thies_Senegal_M_5	Thies	Thies	Dakar_Thies	West Africa
+Debug024_aegypti_Thies_Senegal_F_12	Thies	Thies	Dakar_Thies	West Africa
+Debug024_aegypti_Thies_Senegal_F_13	Thies	Thies	Dakar_Thies	West Africa
+Debug024_aegypti_Thies_Senegal_F_17	Thies	Thies	Dakar_Thies	West Africa
+Debug024_aegypti_Thies_Senegal_M_14	Thies	Thies	Dakar_Thies	West Africa
+Debug024_aegypti_Thies_Senegal_M_15	Thies	Thies	Dakar_Thies	West Africa
+Debug024_aegypti_Thies_Senegal_M_16	Thies	Thies	Dakar_Thies	West Africa
+Debug024_aegypti_Thies_Senegal_M_18	Thies	Thies	Dakar_Thies	West Africa
+Debug024_aegypti_Thies_Senegal_M_19	Thies	Thies	Dakar_Thies	West Africa
+Debug024_aegypti_Thies_Senegal_M_20	Thies	Thies	Dakar_Thies	West Africa
+Debug024_aegypti_Mindin_Senegal_F_10	Mindin	Mindin	Mindin	West Africa
+Debug024_aegypti_Mindin_Senegal_F_12	Mindin	Mindin	Mindin	West Africa
+Debug024_aegypti_Mindin_Senegal_F_14	Mindin	Mindin	Mindin	West Africa
+Debug024_aegypti_Mindin_Senegal_F_15	Mindin	Mindin	Mindin	West Africa
+Debug024_aegypti_Mindin_Senegal_F_17	Mindin	Mindin	Mindin	West Africa
+Debug024_aegypti_Mindin_Senegal_F_19	Mindin	Mindin	Mindin	West Africa
+Debug024_aegypti_Mindin_Senegal_F_2	Mindin	Mindin	Mindin	West Africa
+Debug024_aegypti_Mindin_Senegal_F_3	Mindin	Mindin	Mindin	West Africa
+Debug024_aegypti_Mindin_Senegal_F_6	Mindin	Mindin	Mindin	West Africa
+Debug024_aegypti_Mindin_Senegal_F_8	Mindin	Mindin	Mindin	West Africa
+Debug024_aegypti_Mindin_Senegal_M_11	Mindin	Mindin	Mindin	West Africa
+Debug024_aegypti_Mindin_Senegal_M_13	Mindin	Mindin	Mindin	West Africa
+Debug024_aegypti_Mindin_Senegal_M_16	Mindin	Mindin	Mindin	West Africa
+Debug024_aegypti_Mindin_Senegal_M_18	Mindin	Mindin	Mindin	West Africa
+Debug024_aegypti_Mindin_Senegal_M_1	Mindin	Mindin	Mindin	West Africa
+Debug024_aegypti_Mindin_Senegal_M_20	Mindin	Mindin	Mindin	West Africa
+Debug024_aegypti_Mindin_Senegal_M_4	Mindin	Mindin	Mindin	West Africa
+Debug024_aegypti_Mindin_Senegal_M_5	Mindin	Mindin	Mindin	West Africa
+Debug024_aegypti_Mindin_Senegal_M_7	Mindin	Mindin	Mindin	West Africa
+Debug024_aegypti_Mindin_Senegal_M_9	Mindin	Mindin	Mindin	West Africa
+Debug024_aegypti_Kedougou_Senegal_F_12	Kedougou	Kedougou	Kedougou	West Africa
+Debug024_aegypti_Kedougou_Senegal_F_15	Kedougou	Kedougou	Kedougou	West Africa
+Debug024_aegypti_Kedougou_Senegal_F_18	Kedougou	Kedougou	Kedougou	West Africa
+Debug024_aegypti_Kedougou_Senegal_F_19	Kedougou	Kedougou	Kedougou	West Africa
+Debug024_aegypti_Kedougou_Senegal_F_1	Kedougou	Kedougou	Kedougou	West Africa
+Debug024_aegypti_Kedougou_Senegal_F_3	Kedougou	Kedougou	Kedougou	West Africa
+Debug024_aegypti_Kedougou_Senegal_F_5	Kedougou	Kedougou	Kedougou	West Africa
+Debug024_aegypti_Kedougou_Senegal_F_7	Kedougou	Kedougou	Kedougou	West Africa
+Debug024_aegypti_Kedougou_Senegal_F_8	Kedougou	Kedougou	Kedougou	West Africa
+Debug024_aegypti_Kedougou_Senegal_M_10	Kedougou	Kedougou	Kedougou	West Africa
+Debug024_aegypti_Kedougou_Senegal_M_11	Kedougou	Kedougou	Kedougou	West Africa
+Debug024_aegypti_Kedougou_Senegal_M_14	Kedougou	Kedougou	Kedougou	West Africa
+Debug024_aegypti_Kedougou_Senegal_M_16	Kedougou	Kedougou	Kedougou	West Africa
+Debug024_aegypti_Kedougou_Senegal_M_17	Kedougou	Kedougou	Kedougou	West Africa
+Debug024_aegypti_Kedougou_Senegal_M_20	Kedougou	Kedougou	Kedougou	West Africa
+Debug024_aegypti_Kedougou_Senegal_M_2	Kedougou	Kedougou	Kedougou	West Africa
+Debug024_aegypti_Kedougou_Senegal_M_4	Kedougou	Kedougou	Kedougou	West Africa
+Debug024_aegypti_Kedougou_Senegal_M_6	Kedougou	Kedougou	Kedougou	West Africa
+Debug024_aegypti_Kedougou_Senegal_M_9	Kedougou	Kedougou	Kedougou	West Africa
+Debug024_aegypti_PK10_Senegal_F_10	PK10	PK10	PK10	West Africa
+Debug024_aegypti_PK10_Senegal_F_12	PK10	PK10	PK10	West Africa
+Debug024_aegypti_PK10_Senegal_F_14	PK10	PK10	PK10	West Africa
+Debug024_aegypti_PK10_Senegal_F_15	PK10	PK10	PK10	West Africa
+Debug024_aegypti_PK10_Senegal_F_17	PK10	PK10	PK10	West Africa
+Debug024_aegypti_PK10_Senegal_F_19	PK10	PK10	PK10	West Africa
+Debug024_aegypti_PK10_Senegal_F_1	PK10	PK10	PK10	West Africa
+Debug024_aegypti_PK10_Senegal_F_3	PK10	PK10	PK10	West Africa
+Debug024_aegypti_PK10_Senegal_F_5	PK10	PK10	PK10	West Africa
+Debug024_aegypti_PK10_Senegal_F_8	PK10	PK10	PK10	West Africa
+Debug024_aegypti_PK10_Senegal_M_11	PK10	PK10	PK10	West Africa
+Debug024_aegypti_PK10_Senegal_M_13	PK10	PK10	PK10	West Africa
+Debug024_aegypti_PK10_Senegal_M_16	PK10	PK10	PK10	West Africa
+Debug024_aegypti_PK10_Senegal_M_18	PK10	PK10	PK10	West Africa
+Debug024_aegypti_PK10_Senegal_M_20	PK10	PK10	PK10	West Africa
+Debug024_aegypti_PK10_Senegal_M_4	PK10	PK10	PK10	West Africa
+Debug024_aegypti_PK10_Senegal_M_7	PK10	PK10	PK10	West Africa
+Debug024_aegypti_PK10_Senegal_M_9	PK10	PK10	PK10	West Africa
+Debug024_aegypti_Ngoye_Senegal_F_10	Ngoye	Ngoye	Ngoye	West Africa
+Debug024_aegypti_Ngoye_Senegal_F_11	Ngoye	Ngoye	Ngoye	West Africa
+Debug024_aegypti_Ngoye_Senegal_F_12	Ngoye	Ngoye	Ngoye	West Africa
+Debug024_aegypti_Ngoye_Senegal_F_16	Ngoye	Ngoye	Ngoye	West Africa
+Debug024_aegypti_Ngoye_Senegal_F_19	Ngoye	Ngoye	Ngoye	West Africa
+Debug024_aegypti_Ngoye_Senegal_F_1	Ngoye	Ngoye	Ngoye	West Africa
+Debug024_aegypti_Ngoye_Senegal_F_20	Ngoye	Ngoye	Ngoye	West Africa
+Debug024_aegypti_Ngoye_Senegal_F_3	Ngoye	Ngoye	Ngoye	West Africa
+Debug024_aegypti_Ngoye_Senegal_F_7	Ngoye	Ngoye	Ngoye	West Africa
+Debug024_aegypti_Ngoye_Senegal_F_8	Ngoye	Ngoye	Ngoye	West Africa
+Debug024_aegypti_Ngoye_Senegal_M_13	Ngoye	Ngoye	Ngoye	West Africa
+Debug024_aegypti_Ngoye_Senegal_M_14	Ngoye	Ngoye	Ngoye	West Africa
+Debug024_aegypti_Ngoye_Senegal_M_15	Ngoye	Ngoye	Ngoye	West Africa
+Debug024_aegypti_Ngoye_Senegal_M_18	Ngoye	Ngoye	Ngoye	West Africa
+Debug024_aegypti_Ngoye_Senegal_M_2	Ngoye	Ngoye	Ngoye	West Africa
+Debug024_aegypti_Ngoye_Senegal_M_4	Ngoye	Ngoye	Ngoye	West Africa
+Debug024_aegypti_Ngoye_Senegal_M_5	Ngoye	Ngoye	Ngoye	West Africa
+Debug024_aegypti_Ngoye_Senegal_M_6	Ngoye	Ngoye	Ngoye	West Africa
+Debug024_aegypti_Ngoye_Senegal_M_9	Ngoye	Ngoye	Ngoye	West Africa
+Debug023_aegypti_Awka_Nigeria_F_11	Awka	Awka	Awka	West Africa
+Debug023_aegypti_Awka_Nigeria_F_13	Awka	Awka	Awka	West Africa
+Debug023_aegypti_Awka_Nigeria_F_16	Awka	Awka	Awka	West Africa
+Debug023_aegypti_Awka_Nigeria_F_1	Awka	Awka	Awka	West Africa
+Debug023_aegypti_Awka_Nigeria_F_20	Awka	Awka	Awka	West Africa
+Debug023_aegypti_Awka_Nigeria_F_3	Awka	Awka	Awka	West Africa
+Debug023_aegypti_Awka_Nigeria_F_5	Awka	Awka	Awka	West Africa
+Debug023_aegypti_Awka_Nigeria_F_6	Awka	Awka	Awka	West Africa
+Debug023_aegypti_Awka_Nigeria_F_9	Awka	Awka	Awka	West Africa
+Debug023_aegypti_Awka_Nigeria_M_10	Awka	Awka	Awka	West Africa
+Debug023_aegypti_Awka_Nigeria_M_12	Awka	Awka	Awka	West Africa
+Debug023_aegypti_Awka_Nigeria_M_14	Awka	Awka	Awka	West Africa
+Debug023_aegypti_Awka_Nigeria_M_15	Awka	Awka	Awka	West Africa
+Debug023_aegypti_Awka_Nigeria_M_17	Awka	Awka	Awka	West Africa
+Debug023_aegypti_Awka_Nigeria_M_18	Awka	Awka	Awka	West Africa
+Debug023_aegypti_Awka_Nigeria_M_2	Awka	Awka	Awka	West Africa
+Debug023_aegypti_Awka_Nigeria_M_4	Awka	Awka	Awka	West Africa
+Debug023_aegypti_Awka_Nigeria_M_7	Awka	Awka	Awka	West Africa
+Debug023_aegypti_Awka_Nigeria_M_8	Awka	Awka	Awka	West Africa
+Debug023_aegypti_Ouahigouya_BurkinaFaso_F_11	Ouahigouya	Ouahigouya	Ouahigouya	West Africa
+Debug023_aegypti_Ouahigouya_BurkinaFaso_F_13	Ouahigouya	Ouahigouya	Ouahigouya	West Africa
+Debug023_aegypti_Ouahigouya_BurkinaFaso_F_14	Ouahigouya	Ouahigouya	Ouahigouya	West Africa
+Debug023_aegypti_Ouahigouya_BurkinaFaso_F_16	Ouahigouya	Ouahigouya	Ouahigouya	West Africa
+Debug023_aegypti_Ouahigouya_BurkinaFaso_F_17	Ouahigouya	Ouahigouya	Ouahigouya	West Africa
+Debug023_aegypti_Ouahigouya_BurkinaFaso_F_2	Ouahigouya	Ouahigouya	Ouahigouya	West Africa
+Debug023_aegypti_Ouahigouya_BurkinaFaso_F_3	Ouahigouya	Ouahigouya	Ouahigouya	West Africa
+Debug023_aegypti_Ouahigouya_BurkinaFaso_F_4	Ouahigouya	Ouahigouya	Ouahigouya	West Africa
+Debug023_aegypti_Ouahigouya_BurkinaFaso_F_5	Ouahigouya	Ouahigouya	Ouahigouya	West Africa
+Debug023_aegypti_Ouahigouya_BurkinaFaso_F_9	Ouahigouya	Ouahigouya	Ouahigouya	West Africa
+Debug023_aegypti_Ouahigouya_BurkinaFaso_M_10	Ouahigouya	Ouahigouya	Ouahigouya	West Africa
+Debug023_aegypti_Ouahigouya_BurkinaFaso_M_12	Ouahigouya	Ouahigouya	Ouahigouya	West Africa
+Debug023_aegypti_Ouahigouya_BurkinaFaso_M_15	Ouahigouya	Ouahigouya	Ouahigouya	West Africa
+Debug023_aegypti_Ouahigouya_BurkinaFaso_M_1	Ouahigouya	Ouahigouya	Ouahigouya	West Africa
+Debug023_aegypti_Ouahigouya_BurkinaFaso_M_6	Ouahigouya	Ouahigouya	Ouahigouya	West Africa
+Debug023_aegypti_Ouahigouya_BurkinaFaso_M_7	Ouahigouya	Ouahigouya	Ouahigouya	West Africa
+Debug021_aegypti_Bangr_Ouaga_Burkina_Faso_F_1	Ouaga	Ouaga	Ouagadougou	West Africa
+Debug021_aegypti_Gound_Ouaga_Burkina_Faso_F_2	Ouaga	Ouaga	Ouagadougou	West Africa
+Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_10	Ouaga	Ouaga	Ouagadougou	West Africa
+Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_11	Ouaga	Ouaga	Ouagadougou	West Africa
+Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_12	Ouaga	Ouaga	Ouagadougou	West Africa
+Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_13	Ouaga	Ouaga	Ouagadougou	West Africa
+Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_14	Ouaga	Ouaga	Ouagadougou	West Africa
+Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_15	Ouaga	Ouaga	Ouagadougou	West Africa
+Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_16	Ouaga	Ouaga	Ouagadougou	West Africa
+Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_18	Ouaga	Ouaga	Ouagadougou	West Africa
+Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_19	Ouaga	Ouaga	Ouagadougou	West Africa
+Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_9	Ouaga	Ouaga	Ouagadougou	West Africa
+Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_17	Ouaga	Ouaga	Ouagadougou	West Africa
+Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_20	Ouaga	Ouaga	Ouagadougou	West Africa
+Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_3	Ouaga	Ouaga	Ouagadougou	West Africa
+Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_4	Ouaga	Ouaga	Ouagadougou	West Africa
+Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_5	Ouaga	Ouaga	Ouagadougou	West Africa
+Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_6	Ouaga	Ouaga	Ouagadougou	West Africa
+Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_7	Ouaga	Ouaga	Ouagadougou	West Africa
+Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_8	Ouaga	Ouaga	Ouagadougou	West Africa
