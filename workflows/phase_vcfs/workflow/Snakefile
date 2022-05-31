@@ -3,7 +3,7 @@
 
 
 
-container: "docker://sethnr/aaeg1000g_aadmixture:0.01"
+container: "docker://sethnr/aaeg1000g_admixture:0.01"
 #### Config file and sample sheets #####
 configfile: "config/config.yaml"
 #### reused methods for grabbing GS objects, etc ####
