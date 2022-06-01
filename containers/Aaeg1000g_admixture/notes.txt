@@ -3,3 +3,8 @@ wget http://cb.csail.mit.edu/cb/alder/alder_v1.03.tar.gz
 
 docker build ./ -t sethnr/aaeg1000g_admixture:0.01
 docker push sethnr/aaeg1000g_admixture:0.01
+
+# rewritten to work as singularity
+# (i.e. don't run from root, everything in /usr/local/bin)
+docker build ./ -t sethnr/aaeg1000g_admixture:0.02
+docker push sethnr/aaeg1000g_admixture:0.02
