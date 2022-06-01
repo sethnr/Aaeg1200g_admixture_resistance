@@ -43,7 +43,7 @@ rule split_vcf:
     shell:
         """
         for SAMPLE in `bcftools query -l {input.vcf}`; do
-            bcftools view -c1 -Oz -s $sample \
+            bcftools view -c1 -Oz -s ${{SAMPLE}} \
                           -o results/phase_split_vcf/split_{wildcards.chrom}_${{SAMPLE}}.vcf.gz \
                           {input.vcf}
             tabix -p vcf results/phase_split_vcf/split_{wildcards.chrom}_${{SAMPLE}}.vcf.gz
