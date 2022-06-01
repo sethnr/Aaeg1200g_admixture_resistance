@@ -13,3 +13,4 @@ tmp*/
 .ipynb_checkpoints
 .snakemake
 redmond-lab-aaeg1000g
+apikey.json
