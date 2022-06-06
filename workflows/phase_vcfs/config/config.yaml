@@ -12,7 +12,7 @@ invtable: "resources/redmond_2020_inversion_calls.txt"
 
 fasta: "resources/Aedes-aegypti-LVP_AGWG_CHROMOSOMES_ONLY_AaegL5.fa.gz"
 fai: "resources/Aedes-aegypti-LVP_AGWG_CHROMOSOMES_ONLY_AaegL5.fa.gz.fai"
-
+map: "resources/juneja_linkage_REMAP.manual.c{chrom}.txt"
 #rawdata_bucket: "gs://verily-aaeg1200g/"
 
 ref:

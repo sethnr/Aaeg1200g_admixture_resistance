@@ -113,6 +113,7 @@ rule phase_shapeit:
     input:
         vcf="results/phase_whatshap/whatshap_{chrom}.vcf.gz",
         tbi="results/phase_whatshap/whatshap_{chrom}.vcf.gz.tbi"
+        map=config['map']
     output:
         vcf=protected("results/phase_shapeit/phased_shapeit_{chrom}.vcf.gz"),
     log:
