@@ -73,7 +73,7 @@ rule split_vcf:
 
 rule whatshap_sample:
     input:
-        invcf="results/phase_split_vcf/split_{chrom}_{sample}.vcf.gz",
+        vcf="results/phase_split_vcf/split_{chrom}_{sample}.vcf.gz",
         bam=lambda wildcards: get_remote_bam(wildcards)
         #bai=lambda wildcards: get_remote_bai(wildcards)
     output:
