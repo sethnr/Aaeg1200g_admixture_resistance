@@ -42,7 +42,7 @@ def get_remote_bai(wildcards):
 def get_remote_vcf(wildcards):
     vcfs = pd.read_table(config["vcfs"],dtype = str,header=0).set_index(["chrom"])
     """Get processed/thinned vcf of given chrom """
-    return GS.remote(vcfs.loc[wildcards.chrom].vcf)
+    return GS.remote(vcfs.loc[wildcards.chrom].vcf, keep_local=True)
 
 
 def get_remote_vcf_raw(wildcards):
