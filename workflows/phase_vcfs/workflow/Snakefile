@@ -64,7 +64,7 @@ rule split_vcf:
         "logs/phase_split_vcf/{chrom}.{sample}log",
     shell:
         """
-        bcftools view -c1 -Oz -s ${wildcards.sample} \
+        bcftools view -c1 -Oz -s {wildcards.sample} \
                           -o results/phase_split_vcf/split_{wildcards.chrom}_{wildcards.sample}.vcf.gz \
                           {input.vcf}
         tabix -p vcf results/phase_split_vcf/split_{wildcards.chrom}_${{SAMPLE}}.vcf.gz
