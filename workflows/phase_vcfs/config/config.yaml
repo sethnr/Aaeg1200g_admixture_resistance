@@ -10,6 +10,8 @@ bams: "resources/aaeg1000g_bams.txt"
 spptable: "resources/meta_Aaeg1kg_spp.txt"
 invtable: "resources/redmond_2020_inversion_calls.txt"
 
+fasta: "resources/Aedes-aegypti-LVP_AGWG_CHROMOSOMES_ONLY_AaegL5.fa.gz"
+fai: "resources/Aedes-aegypti-LVP_AGWG_CHROMOSOMES_ONLY_AaegL5.fa.gz.fai"
 
 #rawdata_bucket: "gs://verily-aaeg1200g/"
 

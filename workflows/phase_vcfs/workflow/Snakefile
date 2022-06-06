@@ -75,6 +75,8 @@ rule whatshap_sample:
     input:
         vcf="results/phase_split_vcf/split_{chrom}_{sample}.vcf.gz",
         bam=lambda wildcards: get_remote_bam(wildcards)
+        ref=config['fasta']
+        fai=config['fai']
         #bai=lambda wildcards: get_remote_bai(wildcards)
     output:
         vcf=temporary("results/phase_whatshap/whatshapp_{chrom}_{sample}.vcf.gz"),
