@@ -54,7 +54,7 @@ rule split_vcf:
     input:
         vcf=lambda wildcards: get_remote_vcf(wildcards)
     output:
-        outvcf="results/phase_split_vcf/split_{chrom}_{sample}.vcf.gz"
+        outvcf="results/phase_split_vcf/split_{chrom}_{sample}.vcf.gz",
         outtbi="results/phase_split_vcf/split_{chrom}_{sample}.vcf.gz.tbi"
     resources:
         mem_mb=3000,
