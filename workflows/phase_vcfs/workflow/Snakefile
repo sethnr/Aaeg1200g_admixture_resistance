@@ -61,13 +61,13 @@ rule split_vcf:
         disk_mb=500000,
     threads: 1,
     log:
-        "logs/phase_split_vcf/{chrom}.{sample}log",
+        "logs/phase_split_vcf/{chrom}.{sample}.log",
     shell:
         """
         bcftools view -c1 -Oz -s {wildcards.sample} \
                           -o results/phase_split_vcf/split_{wildcards.chrom}_{wildcards.sample}.vcf.gz \
-                          {input.vcf}
-        tabix -p vcf results/phase_split_vcf/split_{wildcards.chrom}_{wildcards.sample}.vcf.gz
+                          {input.vcf} 2>> {log}
+        tabix -p vcf results/phase_split_vcf/split_{wildcards.chrom}_{wildcards.sample}.vcf.gz  2>> {log}
         """
 
 
@@ -90,8 +90,8 @@ rule whatshap_sample:
         "logs/phase_whatshap/{chrom}_{sample}.log",
     shell:
         """
-          whatshap phase {input.vcf} {input.bam} -r {input.ref} -o {output.vcf}
-          tabix -pvcf {output.vcf}
+          whatshap phase {input.vcf} {input.bam} -r {input.ref} -o {output.vcf} 2>> {log}
+          tabix -pvcf {output.vcf} 2>> {log}
         """
 
 
