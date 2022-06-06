@@ -83,7 +83,7 @@ rule whatshap_sample:
         vcf=temporary("results/phase_whatshap/whatshapp_{chrom}_{sample}.vcf.gz"),
         tbi=temporary("results/phase_whatshap/whatshapp_{chrom}_{sample}.vcf.gz.tbi")
     resources:
-        mem_mb=3000,
+        mem_mb=8000,
         disk_mb=500000,
     threads: 1,
     log:
