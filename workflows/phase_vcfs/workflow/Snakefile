@@ -26,7 +26,7 @@ rule all:
 ##### split and phase vcf #####
 
 
-rule split_vcf:
+rule split_vcfs:
     input:
         vcf=lambda wildcards: get_remote_vcf(wildcards)
     output:
@@ -48,6 +48,26 @@ rule split_vcf:
                           {input.vcf}
             tabix -p vcf results/phase_split_vcf/split_{wildcards.chrom}_${{SAMPLE}}.vcf.gz
         done
+        """
+
+rule split_vcf:
+    input:
+        vcf=lambda wildcards: get_remote_vcf(wildcards)
+    output:
+        outvcf="results/phase_split_vcf/split_{chrom}_{sample}.vcf.gz"
+        outtbi="results/phase_split_vcf/split_{chrom}_{sample}.vcf.gz.tbi"
+    resources:
+        mem_mb=3000,
+        disk_mb=500000,
+    threads: 1,
+    log:
+        "logs/phase_split_vcf/{chrom}.log",
+    shell:
+        """
+        bcftools view -c1 -Oz -s ${wildcards.sample} \
+                          -o results/phase_split_vcf/split_{wildcards.chrom}_{wildcards.sample}.vcf.gz \
+                          {input.vcf}
+        tabix -p vcf results/phase_split_vcf/split_{wildcards.chrom}_${{SAMPLE}}.vcf.gz
         """
 
 
