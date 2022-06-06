@@ -61,7 +61,7 @@ rule split_vcf:
         disk_mb=500000,
     threads: 1,
     log:
-        "logs/phase_split_vcf/{chrom}.log",
+        "logs/phase_split_vcf/{chrom}.{sample}log",
     shell:
         """
         bcftools view -c1 -Oz -s ${wildcards.sample} \
