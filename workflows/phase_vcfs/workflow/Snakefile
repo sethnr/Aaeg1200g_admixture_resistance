@@ -67,7 +67,7 @@ rule split_vcf:
         bcftools view -c1 -Oz -s {wildcards.sample} \
                           -o results/phase_split_vcf/split_{wildcards.chrom}_{wildcards.sample}.vcf.gz \
                           {input.vcf}
-        tabix -p vcf results/phase_split_vcf/split_{wildcards.chrom}_${{SAMPLE}}.vcf.gz
+        tabix -p vcf results/phase_split_vcf/split_{wildcards.chrom}_{wildcards.sample}.vcf.gz
         """
 
 
