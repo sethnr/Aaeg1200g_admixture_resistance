@@ -49,12 +49,14 @@ RUN mamba install -c bioconda  -c conda-forge -y boost
 RUN mamba install -c bioconda  -c conda-forge -y libstdcxx-ng
 RUN mamba install -c bioconda  -c conda-forge -y bzip2
 RUN mamba install -c bioconda  -c conda-forge -y shapeit4
-
 #eagle / alder / fs prerequisites
 #RUN mamba install -c conda-forge -y libgomp
 #RUN mamba install -c conda-forge -y fftw
 RUN mamba install -c conda-forge -y liblapack
 RUN mamba install -c conda-forge -y openmp
+
+RUN mamba install -c conda-forge -c bioconda -y biopython
+RUN mamba install -c conda-forge -y packaging
 
 RUN mamba install -c bioconda alder
 
