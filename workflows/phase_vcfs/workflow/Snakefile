@@ -99,6 +99,8 @@ rule merge_vcfs:
      input:
         vcfs=expand("results/phase_whatshap/whatshapp_{{chrom}}_{sample}.vcf.gz",
             sample=SAMPLES),
+        tbis=expand("results/phase_whatshap/whatshapp_{{chrom}}_{sample}.vcf.gz.tbi",
+            sample=SAMPLES),
      output:
          vcf=protected("results/phase_whatshap/whatshap_{chrom}.vcf.gz"),
      log:
