@@ -50,6 +50,13 @@ def get_remote_vcf_raw(wildcards):
     """Get vcf of given chrom and block """
     return GS.remote(vcf.loc[wildcards.chrom,wildcards.block].vcf)
 
+def get_chrom_id(wildcards):
+    chromtab = pd.read_table(config["chrom_map"],dtype = str).set_index(["chrom"])
+    """lookup ncbi chrom ID for chrom No"""
+    return chromtab.loc[wildcards.chrom].chrom_id
+
+
+
 # def get_chrom_vcfs(wildcards):
 #     """Get vcfs of given chrom"""
 #     return vcfs.loc[(wildcards.chrom)].vcf
