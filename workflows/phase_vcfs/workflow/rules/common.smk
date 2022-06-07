@@ -53,7 +53,7 @@ def get_remote_vcf_raw(wildcards):
 def get_chrom_id(wildcards):
     chromtab = pd.read_table(config["chrommap"],dtype = str).set_index(["chrom"])
     """lookup ncbi chrom ID for chrom No"""
-    return chromtab.loc[wildcards.chrom].chrom_id
+    return chromtab.loc[str(wildcards.chrom)].chrom_id
 
 
 
