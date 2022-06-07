@@ -31,12 +31,12 @@ min_version("5.18.0")
 def get_remote_bam(wildcards):
     bams = pd.read_table(config["bams"],dtype = str).set_index(["sample"])
     """Get bam of given sample """
-    return GS.remote(bams.loc[wildcards.sample].bam)
+    return GS.remote(bams.loc[wildcards.sample].bam, keep_local=False)
 
 def get_remote_bai(wildcards):
     bams = pd.read_table(config["bams"],dtype = str).set_index(["sample"])
     """Get bam of given sample """
-    return GS.remote(bams.loc[wildcards.sample].bai)
+    return GS.remote(bams.loc[wildcards.sample].bai, keep_local=False)
 
 
 def get_remote_vcf(wildcards):
