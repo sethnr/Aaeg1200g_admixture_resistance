@@ -1,4 +1,4 @@
-chrom   chrom_id
-1   NC_035107.1
-2   NC_035108.1
-3   NC_035109.1
+chrom	chrom_id
+1	NC_035107.1
+2	NC_035108.1
+3	NC_035109.1
