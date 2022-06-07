@@ -26,7 +26,6 @@ ruleorder: whatshap_sample > tabix_vcf
 
 ##### split and phase vcf #####
 
-
 # rule split_vcfs:
 #     input:
 #         vcf=lambda wildcards: get_remote_vcf(wildcards)
@@ -79,7 +78,6 @@ rule whatshap_sample:
         bai=lambda wildcards: get_remote_bai(wildcards),
         ref=config['fasta'],
         fai=config['fai']
-        #bai=lambda wildcards: get_remote_bai(wildcards)
     output:
         vcf=temporary("results/phase_whatshap/whatshapp_{chrom}_{sample}.vcf.gz"),
         tbi=temporary("results/phase_whatshap/whatshapp_{chrom}_{sample}.vcf.gz.tbi")
@@ -120,11 +118,13 @@ rule phase_shapeit:
         map=config['map']
     output:
         vcf=protected("results/phase_shapeit/phased_shapeit_{chrom}.vcf.gz"),
+    params:
+        chromid=lambda wildcards: get_chrom_id(wildcards)
     log:
         "logs/phase_shapeit/merge-chr{chrom}.log",
     shell:
         """
         shapeit4 --input {input.vcf} --map {input.map} \
-                 --region {wildcards.chrom} --log {log} \
+                 --region {params.chromid} --log {log} \
                  --output {output.vcf}
         """
