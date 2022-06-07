@@ -81,8 +81,10 @@ rule whatshap_sample:
         fai=config['fai']
         #bai=lambda wildcards: get_remote_bai(wildcards)
     output:
-        vcf=temporary("results/phase_whatshap/whatshapp_{chrom}_{sample}.vcf.gz"),
-        tbi=temporary("results/phase_whatshap/whatshapp_{chrom}_{sample}.vcf.gz.tbi")
+        #vcf=temporary("results/phase_whatshap/whatshapp_{chrom}_{sample}.vcf.gz"),
+        #tbi=temporary("results/phase_whatshap/whatshapp_{chrom}_{sample}.vcf.gz.tbi")
+        vcf="results/phase_whatshap/whatshapp_{chrom}_{sample}.vcf.gz",
+        tbi="results/phase_whatshap/whatshapp_{chrom}_{sample}.vcf.gz.tbi"
     resources:
         mem_mb=16000,
         disk_mb=500000,

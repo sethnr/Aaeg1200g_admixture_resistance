@@ -10,3 +10,4 @@ snakemake --default-remote-provider GS --default-remote-prefix redmond-lab-analy
 #on-prem
 snakemake --use-singularity -j 99 --nolock --kubernetes --latency-wait 120
 snakemake --cluster qsub --use-singularity -j 20
+snakemake --use-singularity -j 20 --rerun-incomplete --profile uge
