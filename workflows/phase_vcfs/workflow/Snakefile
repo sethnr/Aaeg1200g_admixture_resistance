@@ -17,10 +17,8 @@ wildcard_constraints:
 
 rule all:
     input:
-       expand("results/phase_shapeit/phased_shapeit_{chrom}.vcf.gz",
-       chrom=[1])
-#        expand("results/phase_shapeit/phased_shapeit_{chrom}.vcf.gz",
-#        chrom=CHROMS)
+	expand("results/phase_shapeit/phased_shapeit_{chrom}.vcf.gz",
+        chrom=CHROMS)
 
 ruleorder: whatshap_sample > tabix_vcf
 
