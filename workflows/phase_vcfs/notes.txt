@@ -8,6 +8,7 @@ gcloud iam service-accounts keys create apikey.JSON --iam-account=seth-redmond@s
 snakemake --default-remote-provider GS --default-remote-prefix redmond-lab-analysis --use-singularity -j 99 --nolock --kubernetes --latency-wait 120
 
 #on-prem
-snakemake --use-singularity -j 99 --nolock --kubernetes --latency-wait 120
 snakemake --cluster qsub --use-singularity -j 20
 snakemake --use-singularity -j 20 --rerun-incomplete --profile uge
+#on prem; limit bam downloads:
+snakemake --use-singularity --profile apo --rerun-incomplete --resources bamspace=10

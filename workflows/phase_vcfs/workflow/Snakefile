@@ -80,6 +80,11 @@ rule tx_remote_bam:
     params:
         bam=lambda wildcards: get_remote_bam_url(wildcards),
         bai=lambda wildcards: get_remote_bai_url(wildcards),
+    resources:
+        #run with, eg, --resources bamspace=10 for 10 sim d/ls
+        bamspace=1
+    container:
+        "docker://google/cloud-sdk:latest"
     log:
         "logs/txbam/{sample}.log",
     shell:
