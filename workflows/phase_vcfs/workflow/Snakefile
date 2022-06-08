@@ -57,8 +57,8 @@ rule split_vcf:
     input:
         vcf=lambda wildcards: get_remote_vcf(wildcards)
     output:
-        outvcf="results/phase_split_vcf/split_{chrom}_{sample}.vcf.gz",
-        outtbi="results/phase_split_vcf/split_{chrom}_{sample}.vcf.gz.tbi"
+        outvcf=temporary("results/phase_split_vcf/split_{chrom}_{sample}.vcf.gz"),
+        outtbi=temporary("results/phase_split_vcf/split_{chrom}_{sample}.vcf.gz.tbi")
     resources:
         mem_mb=3000,
         disk_mb=500000,
@@ -121,7 +121,8 @@ rule whatshap_sample:
     resources:
         mem_mb=16000,
         disk_mb=500000,
-        bamspace=0
+        bamspace=0,
+        h_rt='2:00:00'
     threads: 1,
     log:
         "logs/phase_whatshap/{chrom}_{sample}.log",
@@ -141,7 +142,8 @@ rule merge_vcfs:
     output:
         vcf=protected("results/phase_whatshap/whatshap_{chrom}.vcf.gz"),
     resources:
-        bamspace=0
+        bamspace=0,
+        h_rt='4:00:00'
     log:
         "logs/phase_whatshap/merge-chr{chrom}.log",
     shell:
