@@ -28,6 +28,24 @@ min_version("5.18.0")
 #     """Get vcfs of given chrom"""
 #     return [GS.remote(v) for v in vcfs.loc[(wildcards.chrom)].vcf]
 
+def get_remote_bam_url(wildcards):
+    bams = pd.read_table(config["bams"],dtype = str).set_index(["sample"])
+    return bams.loc[wildcards.sample].bam
+
+def get_remote_bai_url(wildcards):
+    bams = pd.read_table(config["bams"],dtype = str).set_index(["sample"])
+    return bams.loc[wildcards.sample].bai
+
+def get_local_bam_url(wildcards):
+    bams = pd.read_table(config["bams"],dtype = str).set_index(["sample"])
+    return bams.loc[wildcards.sample].bam.replace("gs://","")
+
+def get_local_bai_url(wildcards):
+    bams = pd.read_table(config["bams"],dtype = str).set_index(["sample"])
+    return bams.loc[wildcards.sample].bai.replace("gs://","")
+
+
+
 def get_remote_bam(wildcards):
     bams = pd.read_table(config["bams"],dtype = str).set_index(["sample"])
     """Get bam of given sample """

@@ -68,12 +68,36 @@ rule split_vcf:
         tabix -p vcf results/phase_split_vcf/split_{wildcards.chrom}_{wildcards.sample}.vcf.gz  2>> {log}
         """
 
+rule tx_remote_bam:
+    output:
+        bam=temporary(lambda wildcards: get_local_bam_url(wildcards)),
+        bai=temporary(lambda wildcards: get_local_bai_url(wildcards)),
+    resources:
+        mem_mb=2000,
+        disk_mb=500000,
+    threads: 1,
+    params:
+        bam=lambda wildcards: get_remote_bam_url(wildcards),
+        bai=lambda wildcards: get_remote_bai_url(wildcards),
+    log:
+        "logs/txbam/{sample}.log",
+    shell:
+        """
+        gsutil cp {params.bam} {output.bam}
+        gsutil cp {params.bai} {output.bai}
+        samtools quickcheck {output.bam}
+        exit $?
+        """
+
+
 
 rule whatshap_sample:
     input:
         vcf="results/phase_split_vcf/split_{chrom}_{sample}.vcf.gz",
-        bam=lambda wildcards: get_remote_bam(wildcards),
-        bai=lambda wildcards: get_remote_bai(wildcards),
+        #bam=lambda wildcards: get_remote_bam(wildcards),
+        #bai=lambda wildcards: get_remote_bai(wildcards),
+        bam=lambda wildcards: get_local_bam_url(wildcards),
+        bai=lambda wildcards: get_local_bai_url(wildcards),
         ref=config['fasta'],
         fai=config['fai']
     output:
