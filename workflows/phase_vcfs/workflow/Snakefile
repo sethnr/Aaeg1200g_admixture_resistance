@@ -161,6 +161,7 @@ rule phase_shapeit:
     resources:
         mem_mb=16000,
         disk_mb=500000,
+        h_rt=12:00:00,
         bamspace=0
     params:
         chromid=lambda wildcards: get_chrom_id(wildcards)
