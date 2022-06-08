@@ -98,8 +98,8 @@ rule tx_remote_bam:
         gcloud auth activate-service-account --key-file {input.apikey}
         gsutil cp {params.bam} {output.bam}
         gsutil cp {params.bai} {output.bai}
-        samtools quickcheck {output.bam}
-        exit $?
+        #samtools quickcheck {output.bam}
+        #exit $?
         """
 
 
