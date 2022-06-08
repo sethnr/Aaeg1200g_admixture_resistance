@@ -71,8 +71,8 @@ rule split_vcf:
 
 rule tx_remote_bam:
     output:
-        bam=temporary(lambda wildcards: get_local_bam_url(wildcards)),
-        bai=temporary(lambda wildcards: get_local_bai_url(wildcards)),
+        bam="results/bams/{sample}.bam"
+        bai="results/bams/{sample}.bam.bai"
     resources:
         mem_mb=2000,
         disk_mb=500000,
@@ -97,8 +97,8 @@ rule whatshap_sample:
         vcf="results/phase_split_vcf/split_{chrom}_{sample}.vcf.gz",
         #bam=lambda wildcards: get_remote_bam(wildcards),
         #bai=lambda wildcards: get_remote_bai(wildcards),
-        bam=lambda wildcards: get_local_bam_url(wildcards),
-        bai=lambda wildcards: get_local_bai_url(wildcards),
+        bam="results/bams/{sample}.bam"
+        bai="results/bams/{sample}.bam.bai"
         ref=config['fasta'],
         fai=config['fai']
     output:
