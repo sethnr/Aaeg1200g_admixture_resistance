@@ -19,6 +19,11 @@ rule all:
     input:
         expand("results/phase_shapeit/phased_shapeit_{chrom}.vcf.gz",chrom=CHROMS)
 
+rule bamtest:
+    input:
+        "Debug010_aegypti_Tahiti_FrenchPolynesia_01.bam",
+        "Debug010_aegypti_Tahiti_FrenchPolynesia_01.bam.bai",
+
 ###rule orders ###
 ruleorder: whatshap_sample > tabix_vcf
 
