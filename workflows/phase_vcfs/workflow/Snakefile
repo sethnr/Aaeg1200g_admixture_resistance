@@ -21,8 +21,7 @@ rule all:
 
 rule bamtest:
     input:
-        "Debug010_aegypti_Tahiti_FrenchPolynesia_01.bam",
-        "Debug010_aegypti_Tahiti_FrenchPolynesia_01.bam.bai",
+        bam="results/bams/Debug010_aegypti_Tahiti_FrenchPolynesia_01.bam"
 
 ###rule orders ###
 ruleorder: whatshap_sample > tabix_vcf
