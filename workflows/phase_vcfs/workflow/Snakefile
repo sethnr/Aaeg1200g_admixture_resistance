@@ -75,6 +75,8 @@ rule split_vcf:
         """
 
 rule tx_remote_bam:
+    input:
+        apikey=config["gkey"]
     output:
         bam=temporary("results/bams/{sample}.bam"),
         bai=temporary("results/bams/{sample}.bam.bai")
@@ -94,6 +96,7 @@ rule tx_remote_bam:
         "logs/txbam/{sample}.log",
     shell:
         """
+        gcloud auth activate-service-account --key-file {input.apikey}
         gsutil cp {params.bam} {output.bam}
         gsutil cp {params.bai} {output.bai}
         samtools quickcheck {output.bam}

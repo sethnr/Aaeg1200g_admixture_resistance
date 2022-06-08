@@ -16,6 +16,8 @@ fasta: "resources/Aedes-aegypti-LVP_AGWG_AaegL5_refSeq.fa"
 fai: "resources/Aedes-aegypti-LVP_AGWG_AaegL5_refSeq.fa.fai"
 chrommap: "resources/chrom_ids.txt"
 
+gkey: "resources/apikey.json"
+
 map: "resources/juneja_linkage_REMAP.manual.c{chrom}.txt"
 #rawdata_bucket: "gs://verily-aaeg1200g/"
 
