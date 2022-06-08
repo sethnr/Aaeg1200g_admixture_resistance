@@ -63,6 +63,8 @@ rule split_vcf:
         mem_mb=3000,
         disk_mb=500000,
     threads: 1,
+    resources:
+        bamspace=1
     log:
         "logs/phase_split_vcf/{chrom}.{sample}.log",
     shell:
@@ -88,7 +90,7 @@ rule tx_remote_bam:
         bai=lambda wildcards: get_remote_bai_url(wildcards),
     resources:
         #run with, eg, --resources bamspace=10 for 10 sim d/ls
-        bamspace=1
+        bamspace=50
     container:
         "docker://google/cloud-sdk:latest"
     log:
@@ -99,7 +101,7 @@ rule tx_remote_bam:
         gsutil cp {params.bam} {output.bam}
         gsutil cp {params.bai} {output.bai}
         #samtools quickcheck {output.bam}
-        #exit $?
+        exit $?
         """
 
 
@@ -121,6 +123,7 @@ rule whatshap_sample:
     resources:
         mem_mb=16000,
         disk_mb=500000,
+        bamspace=1
     threads: 1,
     log:
         "logs/phase_whatshap/{chrom}_{sample}.log",
@@ -132,20 +135,22 @@ rule whatshap_sample:
 
 
 rule merge_vcfs:
-     input:
+    input:
         vcfs=expand("results/phase_whatshap/whatshapp_{{chrom}}_{sample}.vcf.gz",
             sample=SAMPLES),
         tbis=expand("results/phase_whatshap/whatshapp_{{chrom}}_{sample}.vcf.gz.tbi",
             sample=SAMPLES),
-     output:
-         vcf=protected("results/phase_whatshap/whatshap_{chrom}.vcf.gz"),
-     log:
-         "logs/phase_whatshap/merge-chr{chrom}.log",
-     shell:
-         """
-         bcftools --version 2>> {log}
-         bcftools merge -o {output.vcf} -O z {input.vcfs} 2>> {log};
-         """
+    output:
+        vcf=protected("results/phase_whatshap/whatshap_{chrom}.vcf.gz"),
+    resources:
+        bamspace=1
+    log:
+        "logs/phase_whatshap/merge-chr{chrom}.log",
+    shell:
+        """
+        bcftools --version 2>> {log}
+        bcftools merge -o {output.vcf} -O z {input.vcfs} 2>> {log};
+        """
 
 
 rule phase_shapeit:
@@ -155,6 +160,8 @@ rule phase_shapeit:
         map=config['map']
     output:
         vcf=protected("results/phase_shapeit/phased_shapeit_{chrom}.vcf.gz"),
+    resources:
+        bamspace=1
     params:
         chromid=lambda wildcards: get_chrom_id(wildcards)
     log:
