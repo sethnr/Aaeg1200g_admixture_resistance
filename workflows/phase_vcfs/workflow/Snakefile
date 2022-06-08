@@ -62,9 +62,8 @@ rule split_vcf:
     resources:
         mem_mb=3000,
         disk_mb=500000,
-    threads: 1,
-    resources:
         bamspace=1
+    threads: 1,
     log:
         "logs/phase_split_vcf/{chrom}.{sample}.log",
     shell:
@@ -84,13 +83,12 @@ rule tx_remote_bam:
     resources:
         mem_mb=2000,
         disk_mb=500000,
+        #run with, eg, --resources bamspace=10 for 10 sim d/ls
+        bamspace=50
     threads: 1,
     params:
         bam=lambda wildcards: get_remote_bam_url(wildcards),
         bai=lambda wildcards: get_remote_bai_url(wildcards),
-    resources:
-        #run with, eg, --resources bamspace=10 for 10 sim d/ls
-        bamspace=50
     container:
         "docker://google/cloud-sdk:latest"
     log:
