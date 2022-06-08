@@ -159,6 +159,8 @@ rule phase_shapeit:
     output:
         vcf=protected("results/phase_shapeit/phased_shapeit_{chrom}.vcf.gz"),
     resources:
+        mem_mb=16000,
+        disk_mb=500000,
         bamspace=0
     params:
         chromid=lambda wildcards: get_chrom_id(wildcards)
