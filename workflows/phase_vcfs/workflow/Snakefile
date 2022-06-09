@@ -143,7 +143,9 @@ rule merge_vcfs:
         vcf=protected("results/phase_whatshap/whatshap_{chrom}.vcf.gz"),
     resources:
         bamspace=0,
-        h_rt='4:00:00'
+        h_rt='6:00:00',
+        cpus=4
+    threads:4
     log:
         "logs/phase_whatshap/merge-chr{chrom}.log",
     shell:
