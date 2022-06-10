@@ -177,6 +177,6 @@ rule phase_shapeit:
         """
         shapeit4 --input {input.vcf} --map {input.map} \
                  --region {params.chromid} \
-                 --threads {threads} --log {log} \
+                 --thread {threads} --log {log} \
                  --output {output.vcf}
         """
