@@ -1,0 +1,41 @@
+container: "docker://sethnr/aaeg1000g_admixture:0.02"
+#### Config file and sample sheets #####
+configfile: "config/config.yaml"
+#### reused methods for grabbing GS objects, etc ####
+include: "rules/common.smk"
+
+CHROMS=[1,2,3]
+SAMPLES=pd.read_table(config['samples'],dtype=str,header=0)['sample']
+
+wildcard_constraints:
+    chrom=CHROMS
+
+rule all:
+    input:
+        expand("results/admix_3pop/3pop_{chrom}_{pop}.out",chrom=CHROMS,pop=POPS)
+
+###rule orders ###
+#ruleorder: whatshap_sample > tabix_vcf
+
+
+##### run admix tests on 4 pops #####
+
+
+rule fs_3pop:
+    input:
+        vcf="results/phase_shapeit/phased_shapeit_{chrom}.vcf.gz",
+        tbi="results/phase_shapeit/phased_shapeit_{chrom}.vcf.gz.tbi",
+    output:
+        txt=results/admix_tests/3pop_{pop1}_{pop2}_{pop3}.txt
+    resources:
+        mem_mb=4000,
+        disk_mb=20000,
+        h_rt='2:00:00',
+    params:
+        chromid=lambda wildcards: get_chrom_id(wildcards)
+    log:
+        "logs/phase_shapeit/merge-chr{chrom}.log",
+    shell:
+        """
+	python scripts/run3pop.py --vcf {input.vcf} --p1 {wildcards.pop1} --p2 {wildcards.pop2} --p2 {wildcards.pop3}  
+        """
