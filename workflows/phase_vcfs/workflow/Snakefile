@@ -151,7 +151,7 @@ rule merge_vcfs:
     shell:
         """
         bcftools --version 2>> {log}
-        bcftools merge -o {output.vcf} -O z {input.vcfs} 2>> {log};
+        bcftools merge --threads {threads} -o {output.vcf} -O z {input.vcfs} 2>> {log};
         """
 
 
@@ -166,7 +166,9 @@ rule phase_shapeit:
         mem_mb=16000,
         disk_mb=500000,
         h_rt='12:00:00',
-        bamspace=0
+        bamspace=0,
+        cpus=4
+    threads: 4
     params:
         chromid=lambda wildcards: get_chrom_id(wildcards)
     log:
@@ -174,6 +176,7 @@ rule phase_shapeit:
     shell:
         """
         shapeit4 --input {input.vcf} --map {input.map} \
-                 --region {params.chromid} --log {log} \
+                 --region {params.chromid} \
+                 --threads {threads} --log {log} \
                  --output {output.vcf}
         """
