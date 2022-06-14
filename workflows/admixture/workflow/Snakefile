@@ -102,7 +102,9 @@ rule admix_alder:
 rule admix_3pop:
     input:
         vcf="results/admix_bivcf/phased_bi_{chrom}.vcf.gz",
-        tbi="results/admix_bivcf/phased_bi_{chrom}.vcf.gz.tbi"
+        tbi="results/admix_bivcf/phased_bi_{chrom}.vcf.gz.tbi",
+        chrom_ids=config["chrommap"],
+        meta=config["spptable"]
     output:
         blk="results/admix_tests/3pop_{chrom}_{pop1}_{pop2}_{pop3}_blocks.txt",
         sum="results/admix_tests/3pop_{chrom}_{pop1}_{pop2}_{pop3}_summary.txt"
