@@ -134,3 +134,16 @@ rule cat_tests:
         """
         cat {input.sums} > {output}
         """
+
+rule cat_alder:
+    input:
+        sums=expand("results/admix_tests/alder_{{chrom}}_{popstring}_summary.txt",
+                    popstring=get_all_admix_3_strings(BIGPOPS))
+    output:
+        "results/admix_tests/alder_{chrom}_summaries.txt"
+    log:
+        "logs/admix_tests/alder_{chrom}.log"
+    shell:
+        """
+        cat {input.sums} > {output}
+        """
