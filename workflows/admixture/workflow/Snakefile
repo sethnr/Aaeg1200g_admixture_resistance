@@ -102,17 +102,17 @@ rule admix_3pop:
         vcf="results/admix_bivcf/phased_bi_{chrom}.vcf.gz",
         tbi="results/admix_bivcf/phased_bi_{chrom}.vcf.gz.tbi"
     output:
-        blk="results/admix_tests/3pop_{pop1}_{pop2}_{pop3}_blocks.txt",
-        sum="results/admix_tests/3pop_{pop1}_{pop2}_{pop3}_summary.txt"
+        blk="results/admix_tests/3pop_{chrom}_{pop1}_{pop2}_{pop3}_blocks.txt",
+        sum="results/admix_tests/3pop_{chrom}_{pop1}_{pop2}_{pop3}_summary.txt"
     resources:
         mem_mb=4000,
         disk_mb=20000,
         h_rt='2:00:00',
     params:
         chromid=lambda wildcards: get_chrom_id(wildcards),
-        prefix="results/admix_tests/3pop_{pop1}_{pop2}_{pop3}_blocks"
+        prefix="results/admix_tests/3pop_{chrom}_{pop1}_{pop2}_{pop3}_blocks"
     log:
-        "logs/admix_tests/3pop-chr{chrom}_{pop1}_{pop2}_{pop3}.log"
+        "logs/admix_tests/3pop_{chrom}_{pop1}_{pop2}_{pop3}.log"
     shell:
         """
 	    python scripts/run_3pop_tests.py \
