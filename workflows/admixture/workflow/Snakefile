@@ -130,7 +130,7 @@ rule cat_tests:
     output:
         "results/admix_tests/{test}_{chrom}_summaries.txt"
     log:
-        "logs/admix_tests/{test}_{chrom}_{popstring}.log"
+        "logs/admix_tests/{test}_{chrom}.log"
     shell:
         """
         cat {input.sums} > {output}
