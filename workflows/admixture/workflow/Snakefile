@@ -9,7 +9,7 @@ BIGPOPS=pd.read_table(config["countries"],dtype = str)
 TESTS=['alder','3pop']
 
 wildcard_constraints:
-    chrom=CHROMS
+    chrom=CHROMS,
     test=TESTS
 
 rule all:
