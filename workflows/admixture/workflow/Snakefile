@@ -18,8 +18,7 @@ rule all:
             chrom=CHROMS,test=TESTS)
 
 ###rule orders ###
-#ruleorder: whatshap_sample > tabix_vcf
-
+ruleorder: make_biallelic > tabix_vcf
 
 ##### run admix tests on 4 pops #####
 
