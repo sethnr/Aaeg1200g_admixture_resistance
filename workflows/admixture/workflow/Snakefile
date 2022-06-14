@@ -124,8 +124,7 @@ rule admix_3pop:
 
 rule cat_tests:
     input:
-        sums=expand("results/admix_tests/{test}_{{chrom}}_{popstring}_summary.txt",
-                    test=["alder","3pop"],
+        sums=expand("results/admix_tests/{{test}}_{{chrom}}_{popstring}_summary.txt",
                     popstring=get_all_admix_3_strings(BIGPOPS))
     output:
         "results/admix_tests/{test}_{chrom}_summaries.txt"
