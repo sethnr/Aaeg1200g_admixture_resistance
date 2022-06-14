@@ -1,33 +1,33 @@
- 217 Americas	Brazil
- 145 Americas	USA
- 101 Wafrica	Senegal
-  97 Eafrica	Kenya
-  53 Asia	Philippines
-  42 	Gabon
-  40 Wafrica	Ghana
-  36 Asia	Saudi Arabia
-  36 Wafrica	Burkina Faso
-  35 	Kenya
-  29 Americas	Puerto Rico
-  26 Eafrica	Uganda
-  22 Wafrica	Gabon
-  20 Americas	Trinidad
-  20 Asia	Vietnam
-  19 Wafrica	Nigeria
-  18 Americas	US Virgin Islands
-  18 Asia	Thailand
-  17 Americas	Mexico
-  15 Americas	Dominica
-  14 Asia	Pakistan
-  14 Asia	Taiwan
-  13 Wafrica	Angola
-  13 Wafrica	Cameroon
-  12 Americas	Argentina
-  12 Asia	Sri Lanka
-  12 Asia	Turkey
-  11 Asia	Australia
-  11 Safrica	South Africa
-   8 Asia	Tahiti
-   6 Americas	Colombia
-   1 Asia	Tahiti
-   1 contgroup	country
+country	contgroup	total
+Brazil	Americas	217
+USA	Americas	145
+Senegal	Wafrica	101
+Kenya	Eafrica	97
+Philippines	Asia	53
+	Gabon	42
+Ghana	Wafrica	40
+SaudiArabia	Asia	36
+BurkinaFaso	Wafrica	36
+	Kenya	35
+PuertoRico	Americas	29
+Uganda	Eafrica	26
+Gabon	Wafrica	22
+Trinidad	Americas	20
+Vietnam	Asia	20
+Nigeria	Wafrica	19
+USVirgin	Americas	18
+Thailand	Asia	18
+Mexico	Americas	17
+Dominica	Americas	15
+Pakistan	Asia	14
+Taiwan	Asia	14
+Angola	Wafrica	13
+Cameroon	Wafrica	13
+Argentina	Americas	12
+SriLanka	Asia	12
+Turkey	Asia	12
+Australia	Asia	11
+SouthAfrica	Safrica	11
+Tahiti	Asia	8
+Colombia	Americas	6
+Tahiti	Asia	1

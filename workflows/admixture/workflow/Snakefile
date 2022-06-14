@@ -5,14 +5,17 @@ configfile: "config/config.yaml"
 include: "rules/common.smk"
 
 CHROMS=[1,2,3]
-SAMPLES=pd.read_table(config['samples'],dtype=str,header=0)['sample']
+BIGPOPS=pd.read_table(config["countries"],dtype = str)
+TESTS=['alder','3pop']
 
 wildcard_constraints:
     chrom=CHROMS
+    test=TESTS
 
 rule all:
     input:
-        expand("results/admix_3pop/3pop_{chrom}_{pop}.out",chrom=CHROMS,pop=POPS)
+        expand("results/admix_tests/{test}_{chrom}_summaries.txt",
+            chrom=CHROMS,test=TESTS)
 
 ###rule orders ###
 #ruleorder: whatshap_sample > tabix_vcf
@@ -20,11 +23,84 @@ rule all:
 
 ##### run admix tests on 4 pops #####
 
-
-rule fs_3pop:
+rule make_biallelic:
     input:
         vcf="results/phase_shapeit/phased_shapeit_{chrom}.vcf.gz",
         tbi="results/phase_shapeit/phased_shapeit_{chrom}.vcf.gz.tbi",
+    output:
+        vcf="results/admix_bivcf/phased_bi_{chrom}.vcf.gz",
+        tbi="results/admix_bivcf/phased_bi_{chrom}.vcf.gz.tbi",
+    log:
+        "logs/admix_bivcf/bivcf_{chrom}"
+    shell:
+        """
+        bcftools --version 2>> {log}
+        bcftools view -m2 -M2 {input.vcf} -O z -o {output.vcf}
+        tabix -pvcf {output.vcf}
+        """
+
+rule make_eigenfiles:
+    input:
+        vcf="results/admix_bivcf/phased_bi_{chrom}.vcf.gz",
+        tbi="results/admix_bivcf/phased_bi_{chrom}.vcf.gz.tbi",
+        chrom_ids=config["chrommap"]
+        meta=config["spptable"]
+    output:
+        geno="results/admix_eigen/eigen_{chrom}.geno"
+        snp="results/admix_eigen/eigen_{chrom}.snp"
+        ind="results/admix_eigen/eigen_{chrom}.ind"
+    resources:
+        mem_mb=4000,
+        disk_mb=20000,
+        h_rt='2:00:00',
+    log:
+        "logs/admix_eigen/eigen_{chrom}.log",
+    params:
+        prefix="results/admix_eigen/eigen_{chrom}"
+    shell:
+        """
+	    python scripts/VCF_to_eigenstrat.py \
+             -v {input.vcf} -m {input.meta} \
+              -c {wildcards.chrom} -C {input.chrom_ids} \
+              -M country -o {params.prefix}
+        """
+
+rule admix_alder:
+    input:
+        vcf="results/admix_bivcf/phased_bi_{chrom}.vcf.gz",
+        tbi="results/admix_bivcf/phased_bi_{chrom}.vcf.gz.tbi",
+    output:
+        sum="results/admix_tests/alder_{chrom}_{pop1}_{pop2}_{pop3}_summary.txt"
+        raw="results/admix_tests/alder_{chrom}_{pop1}_{pop2}_{pop3}_raw.txt"
+    resources:
+        mem_mb=4000,
+        disk_mb=20000,
+        h_rt='2:00:00',
+        cpus=4
+    threads: 4
+    params:
+        chromid=lambda wildcards: get_chrom_id(wildcards)
+        file="alder_{pop1}_{pop2}_{pop3}.params"
+    log:
+        "logs/admix_alder/alder_{chrom}_{pop1}_{pop2}_{pop3}.log",
+    shell:
+        """
+        echo genotypename: {input.geno} >./{params.file}
+        echo snpname:      {input.snp} >>./{params.file}
+        echo indivname:    {input.ind} >>./{params.file}
+        echo admixpop:     {wildcards.pop3} >>./{params.file}
+        echo refpops:      {wildcards.pop2};{wildcards.pop2} >>./{params.file}
+        echo raw_outname:  {output.sum} >>./{params.file}
+        echo \n                         >>./{params.file}
+        echo num_threads:  {threads} >>./{params.file}
+
+	    alder -p {params.file} > {output.sum}
+        """
+
+rule admix_3pop:
+    input:
+        vcf="results/admix_bivcf/phased_bi_{chrom}.vcf.gz",
+        tbi="results/admix_bivcf/phased_bi_{chrom}.vcf.gz.tbi",
     output:
         blk="results/admix_tests/3pop_{pop1}_{pop2}_{pop3}_blocks.txt"
         sum="results/admix_tests/3pop_{pop1}_{pop2}_{pop3}_summary.txt"
@@ -36,7 +112,7 @@ rule fs_3pop:
         chromid=lambda wildcards: get_chrom_id(wildcards)
         prefix="results/admix_tests/3pop_{pop1}_{pop2}_{pop3}_blocks"
     log:
-        "logs/admix_3pop/3pop-chr{chrom}_{pop1}_{pop2}_{pop3}.log",
+        "logs/admix_tests/3pop-chr{chrom}_{pop1}_{pop2}_{pop3}.log",
     shell:
         """
 	    python scripts/run_3pop_tests.py \
@@ -44,4 +120,19 @@ rule fs_3pop:
             -m {input.meta} -M 'country' \
             -c {wildcards.chrom} -v {input.vcf} \
             -o {params.prefix}
+        """
+
+
+rule cat_tests:
+    input:
+        sums=expand("results/admix_tests/{test}_{{chrom}}_{popstring}_summary.txt",
+                    test=["alder","3pop"],
+                    popstring=get_all_admix_3_strings(BIGPOPS))
+    output:
+        "results/admix_tests/{test}_{chrom}_summaries.txt"
+    log:
+        "logs/admix_tests/{test}_{chrom}_{popstring}.log",
+    shell:
+        """
+        cat {input.sums} > {output}
         """

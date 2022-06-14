@@ -6,6 +6,8 @@ from snakemake.utils import min_version
 from snakemake.remote.GS import RemoteProvider as GSRemoteProvider
 GS = GSRemoteProvider()
 
+from itertools import *
+
 min_version("5.18.0")
 
 
@@ -19,6 +21,18 @@ min_version("5.18.0")
 # wildcard_constraints:
 #     chrom="|".join(vcfs.index.astype("string").unique())
 
+def get_all_admix_3s(bigpops):
+    popcombs = []
+    for a,b,c in combinations(bigpops,3):
+        popcombs.append((a,b,c))
+        popcombs.append((c,a,b))
+        popcombs.append((b,c,a))
+    return popcombs
+
+def get_all_admix_3_strings(bigpops):
+    popcombs = get_all_admix_3s(bigpops)
+    popstrings = ["{}_{}_{}".format(a,b,c) for a,b,c in popcombs]
+    return popstrings
 
 
 
