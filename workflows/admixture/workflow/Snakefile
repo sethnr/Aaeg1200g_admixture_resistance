@@ -26,16 +26,22 @@ rule fs_3pop:
         vcf="results/phase_shapeit/phased_shapeit_{chrom}.vcf.gz",
         tbi="results/phase_shapeit/phased_shapeit_{chrom}.vcf.gz.tbi",
     output:
-        txt=results/admix_tests/3pop_{pop1}_{pop2}_{pop3}.txt
+        blk="results/admix_tests/3pop_{pop1}_{pop2}_{pop3}_blocks.txt"
+        sum="results/admix_tests/3pop_{pop1}_{pop2}_{pop3}_summary.txt"
     resources:
         mem_mb=4000,
         disk_mb=20000,
         h_rt='2:00:00',
     params:
         chromid=lambda wildcards: get_chrom_id(wildcards)
+        prefix="results/admix_tests/3pop_{pop1}_{pop2}_{pop3}_blocks"
     log:
-        "logs/phase_shapeit/merge-chr{chrom}.log",
+        "logs/admix_3pop/3pop-chr{chrom}_{pop1}_{pop2}_{pop3}.log",
     shell:
         """
-	python scripts/run3pop.py --vcf {input.vcf} --p1 {wildcards.pop1} --p2 {wildcards.pop2} --p2 {wildcards.pop3}  
+	    python scripts/run_3pop_tests.py \
+            -p1 {wildcards.pop1} -p2 {wildcards.pop2} -p3 {wildcards.pop3} \
+            -m {input.meta} -M 'country' \
+            -c {wildcards.chrom} -v {input.vcf} \
+            -o {params.prefix}
         """
