@@ -25,8 +25,8 @@ rule all:
 
 rule make_biallelic:
     input:
-        vcf="results/phase_shapeit/phased_shapeit_{chrom}.vcf.gz",
-        tbi="results/phase_shapeit/phased_shapeit_{chrom}.vcf.gz.tbi"
+        vcf="results/phase_shapeit/phased_shapeit_{chrom}_200_samples.vcf.gz",
+        tbi="results/phase_shapeit/phased_shapeit_{chrom}_200_samples.vcf.gz.tbi"
     output:
         vcf="results/admix_bivcf/phased_bi_{chrom}.vcf.gz",
         tbi="results/admix_bivcf/phased_bi_{chrom}.vcf.gz.tbi"
