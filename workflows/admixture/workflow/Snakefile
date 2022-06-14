@@ -147,3 +147,17 @@ rule cat_alder:
         """
         cat {input.sums} > {output}
         """
+
+
+rule cat_3pop:
+    input:
+        sums=expand("results/admix_tests/3pop_{{chrom}}_{popstring}_summary.txt",
+                    popstring=get_all_admix_3_strings(BIGPOPS))
+    output:
+        "results/admix_tests/3pop_{chrom}_summaries.txt"
+    log:
+        "logs/admix_tests/3pop_{chrom}.log"
+    shell:
+        """
+        cat {input.sums} > {output}
+        """
