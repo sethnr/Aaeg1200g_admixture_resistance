@@ -5,7 +5,7 @@ configfile: "config/config.yaml"
 include: "rules/common.smk"
 
 CHROMS=[1,2,3]
-BIGPOPS=pd.read_table(config["countries"],dtype = str)
+BIGPOPS=pd.read_table(config["countries"],dtype=str,header=0)['country']
 TESTS=['alder','3pop']
 
 wildcard_constraints:
@@ -122,18 +122,6 @@ rule admix_3pop:
         """
 
 
-rule cat_tests:
-    input:
-        sums=expand("results/admix_tests/{{test}}_{{chrom}}_{popstring}_summary.txt",
-                    popstring=get_all_admix_3_strings(BIGPOPS))
-    output:
-        "results/admix_tests/{test}_{chrom}_summaries.txt"
-    log:
-        "logs/admix_tests/{test}_{chrom}.log"
-    shell:
-        """
-        cat {input.sums} > {output}
-        """
 
 rule cat_alder:
     input:
