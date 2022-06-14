@@ -66,8 +66,9 @@ rule make_eigenfiles:
 
 rule admix_alder:
     input:
-        vcf="results/admix_bivcf/phased_bi_{chrom}.vcf.gz",
-        tbi="results/admix_bivcf/phased_bi_{chrom}.vcf.gz.tbi"
+        geno="results/admix_eigen/eigen_{chrom}.geno",
+        snp="results/admix_eigen/eigen_{chrom}.snp",
+        ind="results/admix_eigen/eigen_{chrom}.ind"
     output:
         sum="results/admix_tests/alder_{chrom}_{pop1}_{pop2}_{pop3}_summary.txt",
         raw="results/admix_tests/alder_{chrom}_{pop1}_{pop2}_{pop3}_raw.txt"
