@@ -1,5 +1,6 @@
 wget https://storage.googleapis.com/broad-alkesgroup-public/Eagle/downloads/Eagle_v2.4.1.tar.gz
 wget http://cb.csail.mit.edu/cb/alder/alder_v1.03.tar.gz
+wget https://storage.googleapis.com/broad-alkesgroup-public/EIGENSOFT/EIG-6.1.4.tar.gz
 
 docker build ./ -t sethnr/aaeg1000g_admixture:0.01
 docker push sethnr/aaeg1000g_admixture:0.01

@@ -57,6 +57,10 @@ RUN mamba install -c conda-forge -y openmp
 
 RUN mamba install -c conda-forge -c bioconda -y biopython
 RUN mamba install -c conda-forge -y packaging
+RUN mamba install -c conda-forge -y libgfortran
+#RUN apt-get install -y gfortran
+#RUN apt-get install -y libgfortran5
+ENV LD_LIBRARY_PATH="${PATH}"
 
 RUN mamba install -c bioconda alder
 
@@ -66,3 +70,6 @@ COPY eagle /usr/bin/eagle
 #admixture software
 COPY fs /usr/bin/fs
 # COPY alder /usr/bin/alder
+
+COPY EIG-6.1.4/bin/convertf  /usr/bin/convertf
+COPY EIG-6.1.4/bin/eigenstrat  /usr/bin/eigenstrat

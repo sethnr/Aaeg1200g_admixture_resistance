@@ -144,6 +144,8 @@ rule merge_vcfs:
     resources:
         bamspace=0,
         h_rt='6:00:00',
+        mem_mb=8000,
+        disk_mb=50000,
         cpus=4
     threads:4
     log:
