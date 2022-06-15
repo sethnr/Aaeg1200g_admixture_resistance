@@ -24,10 +24,10 @@ ruleorder: make_biallelic > tabix_vcf
 
 rule make_biallelic:
     input:
-        #vcf="results/phase_shapeit/phased_shapeit_{chrom}.vcf.gz",
-        #tbi="results/phase_shapeit/phased_shapeit_{chrom}.vcf.gz.tbi"
-        vcf="results/phase_whatshap/whatshap_{chrom}.vcf.gz",
-        tbi="results/phase_whatshap/whatshap_{chrom}.vcf.gz.tbi"
+        vcf="results/phase_shapeit/phased_shapeit_{chrom}.vcf.gz",
+        tbi="results/phase_shapeit/phased_shapeit_{chrom}.vcf.gz.tbi"
+        #vcf="results/phase_whatshap/whatshap_{chrom}.vcf.gz",
+        #tbi="results/phase_whatshap/whatshap_{chrom}.vcf.gz.tbi"
     output:
         vcf="results/admix_bivcf/phased_bi_{chrom}.vcf.gz",
         tbi="results/admix_bivcf/phased_bi_{chrom}.vcf.gz.tbi"
