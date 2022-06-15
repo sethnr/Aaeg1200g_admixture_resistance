@@ -158,7 +158,9 @@ rule merge_vcfs:
             echo $F >> $FNMS
         done
 
-        bcftools merge --threads {threads} -o {output.vcf} -O z -l ${FNMS} 2>> {log};
+        bcftools merge --threads {threads} -o {output.vcf} -O z -l $FNMS 2>> {log};
+
+        rm $FNMS
         """
 
 
