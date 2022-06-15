@@ -58,6 +58,7 @@ rule make_eigenfiles:
         "logs/admix_eigen/eigen_{chrom}.log",
     params:
         prefix="results/admix_eigen/eigen_{chrom}"
+    container: "docker://sethnr/aaeg1000g_analysis:0.02"
     shell:
         """
 	    python scripts/VCF_to_eigenstrat.py \
@@ -116,6 +117,7 @@ rule admix_3pop:
         prefix="results/admix_tests/3pop_{chrom}_{pop1}_{pop2}_{pop3}_blocks"
     log:
         "logs/admix_tests/3pop_{chrom}_{pop1}_{pop2}_{pop3}.log"
+    container: "docker://sethnr/aaeg1000g_analysis:0.02"
     shell:
         """
 	    python scripts/run_3pop_tests.py \
