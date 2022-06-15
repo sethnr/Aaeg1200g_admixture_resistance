@@ -40,6 +40,8 @@ RUN mamba install -c bioconda -c conda-forge -y snakemake-minimal
 RUN mamba install -c bioconda -c conda-forge -y bcftools
 RUN mamba install -c bioconda -c conda-forge -y htslib'>=1.13,<1.14.0a0'
 
+
+
 #phasing software
 RUN mamba install -c bioconda -c conda-forge -y whatshap nomkl
 
@@ -69,7 +71,7 @@ COPY eagle /usr/bin/eagle
 
 #admixture software
 COPY fs /usr/bin/fs
-# COPY alder /usr/bin/alder
 
-COPY EIG-6.1.4/bin/convertf  /usr/bin/convertf
-COPY EIG-6.1.4/bin/eigenstrat  /usr/bin/eigenstrat
+# COPY alder /usr/bin/alder
+# COPY EIG-6.1.4/bin/convertf  /usr/bin/convertf
+# COPY EIG-6.1.4/bin/eigenstrat  /usr/bin/eigenstrat
