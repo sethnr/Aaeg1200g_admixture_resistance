@@ -19,6 +19,11 @@ rule all:
     input:
         expand("results/phase_shapeit/phased_shapeit_{chrom}.vcf.gz",chrom=CHROMS)
 
+rule mergetest:
+    input:
+        bam="results/phase_whatshap/whatshap_1.vcf.gz"
+
+
 rule bamtest:
     input:
         bam="results/bams/Debug010_aegypti_Tahiti_FrenchPolynesia_01.bam"
