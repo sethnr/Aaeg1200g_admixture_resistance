@@ -152,8 +152,13 @@ rule merge_vcfs:
         "logs/phase_whatshap/merge-chr{chrom}.log",
     shell:
         """
-        bcftools --version 2>> {log}
-        bcftools merge --threads {threads} -o {output.vcf} -O z {input.vcfs} 2>> {log};
+        FNMS=$(mktemp)
+        echo "writing filenames to ${FNMS}"
+        for F in {input.vcfs}:
+            echo $F >> $FNMS
+        done
+
+        bcftools merge --threads {threads} -o {output.vcf} -O z -l ${FNMS} 2>> {log};
         """
 
 
