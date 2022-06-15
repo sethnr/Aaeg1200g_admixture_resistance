@@ -158,7 +158,7 @@ rule merge_vcfs:
     shell:
         """
         FNMS=$(mktemp)
-        echo "writing filenames to ${FNMS}"
+        echo "writing filenames to $FNMS"
         for F in {input.vcfs}:
             echo $F >> $FNMS
         done
