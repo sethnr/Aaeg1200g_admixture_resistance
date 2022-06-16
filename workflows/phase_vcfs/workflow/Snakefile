@@ -36,30 +36,6 @@ ruleorder: whatshap_sample > tabix_vcf
 
 ##### split and phase vcf #####
 
-# rule split_vcfs:
-#     input:
-#         vcf=lambda wildcards: get_remote_vcf(wildcards)
-#     output:
-#         outvcf=expand("results/phase_split_vcf/split_{{chrom}}_{sample}.vcf.gz",
-#                     sample=SAMPLES),
-#         outtbi=expand("results/phase_split_vcf/split_{{chrom}}_{sample}.vcf.gz.tbi",
-#                     sample=SAMPLES)
-#     resources:
-#         mem_mb=3000,
-#         disk_mb=500000,
-#     threads: 1,
-#     log:
-#         "logs/phase_split_vcf/{chrom}.log",
-#     shell:
-#         """
-#         for SAMPLE in `bcftools query -l {input.vcf}`; do
-#             bcftools view -c1 -Oz -s ${{SAMPLE}} \
-#                           -o results/phase_split_vcf/split_{wildcards.chrom}_${{SAMPLE}}.vcf.gz \
-#                           {input.vcf}
-#             tabix -p vcf results/phase_split_vcf/split_{wildcards.chrom}_${{SAMPLE}}.vcf.gz
-#         done
-#         """
-
 rule split_vcf:
     input:
         vcf=lambda wildcards: get_remote_vcf(wildcards)
@@ -145,22 +121,24 @@ rule merge_vcfs:
         vcfs=expand("results/phase_whatshap/whatshapp_{{chrom}}_{sample}.vcf.gz",
             sample=SAMPLES),
         tbis=expand("results/phase_whatshap/whatshapp_{{chrom}}_{sample}.vcf.gz.tbi",
-            sample=SAMPLES),
+            sample=SAMPLES)
     output:
+        filelist="results/phase_whatshap/filelist_{chrom}.txt",
         vcf=protected("results/phase_whatshap/whatshap_{chrom}.vcf.gz"),
     resources:
         bamspace=0,
         h_rt='6:00:00',
-        mem_mb=8000,
-        disk_mb=50000,
+        mem_mb=16000,
+        disk_mb=100000,
         cpus=4
     threads:4
     log:
         "logs/phase_whatshap/merge-chr{chrom}.log",
     shell:
         """
-        bcftools merge --threads {threads} -o {output.vcf} -O z -l $FNMS
-        """
+	       echo {input.vcfs} | tr ' ' '\n' > {output.filelist}
+	       bcftools merge --threads {threads} -o {output.vcf} -O z -l {output.filelist};
+	    """
 
 
 rule merge_aaa_vcfs:
@@ -178,12 +156,11 @@ rule merge_aaa_vcfs:
         disk_mb=50000,
         cpus=4
     threads:4
-    log:
-        "logs/phase_whatshap/merge-chr{chrom}.log",
-    shell:
-        """
-        bcftools merge --threads {threads} -o {output.vcf} -O z -l $FNMS
-        """
+        shell:
+            """
+    	       echo {input.vcfs} | tr ' ' '\n' > {output.filelist}
+    	       bcftools merge --threads {threads} -o {output.vcf} -O z -l {output.filelist};
+    	    """
 
 
 
