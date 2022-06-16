@@ -149,6 +149,7 @@ rule merge_aaa_vcfs:
             sample=AAA_SAMPLES),
     output:
         vcf=protected("results/phase_whatshap/whatshap_{chrom}_AAAsamples.vcf.gz"),
+        filelist=temporary("results/phase_whatshap/whatshap_{chrom}_AAAsamples.txt"),
     resources:
         bamspace=0,
         h_rt='6:00:00',
@@ -156,11 +157,13 @@ rule merge_aaa_vcfs:
         disk_mb=50000,
         cpus=4
     threads:4
-        shell:
-            """
-    	       echo {input.vcfs} | tr ' ' '\n' > {output.filelist}
-    	       bcftools merge --threads {threads} -o {output.vcf} -O z -l {output.filelist};
-    	    """
+    log:
+        "logs/phase_whatshap/merge-chr{chrom}_aaa.log",
+    shell:
+        """
+    	echo {input.vcfs} | tr ' ' '\n' > {output.filelist}
+    	bcftools merge --threads {threads} -o {output.vcf} -O z -l {output.filelist}  >> {log}
+    	"""
 
 rule merge_aaf_vcfs:
     input:
@@ -169,7 +172,8 @@ rule merge_aaf_vcfs:
         tbis=expand("results/phase_whatshap/whatshapp_{{chrom}}_{sample}.vcf.gz.tbi",
             sample=AAF_SAMPLES),
     output:
-        vcf=protected("results/phase_whatshap/whatshap_{chrom}_AAAsamples.vcf.gz"),
+        vcf=protected("results/phase_whatshap/whatshap_{chrom}_AAFsamples.vcf.gz"),
+        filelist=temporary("results/phase_whatshap/whatshap_{chrom}_AAFsamples.txt"),
     resources:
         bamspace=0,
         h_rt='6:00:00',
@@ -177,11 +181,13 @@ rule merge_aaf_vcfs:
         disk_mb=50000,
         cpus=4
     threads:4
-        shell:
-            """
-    	       echo {input.vcfs} | tr ' ' '\n' > {output.filelist}
-    	       bcftools merge --threads {threads} -o {output.vcf} -O z -l {output.filelist};
-    	    """
+    log:
+        "logs/phase_whatshap/merge-chr{chrom}_aaf.log",
+    shell:
+        """
+	       echo {input.vcfs} | tr ' ' '\n' > {output.filelist}
+	       bcftools merge --threads {threads} -o {output.vcf} -O z -l {output.filelist}  >> {log}
+	    """
 
 rule merge_aaa_aaf:
     input:
@@ -202,7 +208,7 @@ rule merge_aaa_aaf:
         "logs/phase_whatshap/merge-chr{chrom}.log",
     shell:
         """
-	       bcftools merge --threads {threads} -o {output.vcf} -O z {input.aaa} {input.aaf};
+	       bcftools merge --threads {threads} -o {output.vcf} -O z {input.aaa} {input.aaf} >> {log}
 	    """
 
 
