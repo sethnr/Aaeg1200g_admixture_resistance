@@ -11,8 +11,8 @@ include: "rules/common.smk"
 
 CHROMS=[1,2,3]
 SAMPLES=pd.read_table(config['samples'],dtype=str,header=0)['sample']
-AAF_SAMPLES=pd.read_table("resources/AAF_samples.txt",dtype=str,header=0)['sample']
-AAA_SAMPLES=pd.read_table("resources/AAA_samples.txt",dtype=str,header=0)['sample']
+AAF_SAMPLES=pd.read_table("config/AAF_samples.txt",dtype=str,header=0)['sample']
+AAA_SAMPLES=pd.read_table("config/AAA_samples.txt",dtype=str,header=0)['sample']
 
 wildcard_constraints:
     chrom=CHROMS
