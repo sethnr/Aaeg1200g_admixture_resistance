@@ -37,7 +37,7 @@ rule all:
 ###### run lostruct algorithm ########
 # blocks of PCAs for each 0.5mb, then a distance matrix
 # of first two PCS for each to find similar regions
-rule lostruct_run:
+rule lostruct_run_lostruct:
     input:
         vcf="results_lostruct/thin_vcfs/lostruct_chr{chrom}.vcf.gz",
         tbi="results_lostruct/thin_vcfs/lostruct_chr{chrom}.vcf.gz.tbi",
@@ -52,7 +52,7 @@ rule lostruct_run:
     log:
         log="logs/lostruct_run/outliers_chr{chrom}_{region}.log",
     shell:
-        """Rscript --vanilla scripts/lostruct_thinvars_region.R \
+        """Rscript --vanilla scripts/lostruct_run_lostruct.R \
               {input.vcf} \
               {input.spptable}  \
               {wildcards.chrom} {wildcards.region} \
@@ -93,7 +93,7 @@ rule lostruct_find_inversion_regions:
 # using PC calls for regions thought to be inversions
 # get associated SNPs that could be used as AIMs for
 # these haplotypes
-rule lostruct_find_aims:
+rule lostruct_get_aims:
       input:
           vcf="results_lostruct/thin_vcfs/lostruct_chr{chrom}.vcf.gz",
           tbi="results_lostruct/thin_vcfs/lostruct_chr{chrom}.vcf.gz.tbi",
@@ -119,7 +119,7 @@ rule lostruct_find_aims:
           """
 
 #plot AIMs for all samples in dataset, ordered by country + putative inversion call
-rule plot_aims:
+rule lostruct_plot_aims:
       input:
           aims="results_lostruct/lostruct_aims/lostruct_chr{chrom}_{region}_aim_snps.txt",
           spptable=config["spptable"]
@@ -139,77 +139,6 @@ rule plot_aims:
           """
 
 
-
-
-# rule lostruct_all_composite:
-#     input:
-#         pcs="results_lostruct/lostruct_all_chr/lostruct_chr{chrom}_{region}.txt",
-#         dists="results_lostruct/lostruct_dists/lostruct_chr{chrom}_dists_{cont}.txt",
-#         invs=config["invtable"],
-#     output:
-#         overlay="results_lostruct/lostruct_dists/lostruct_chr{chrom}_{cont}_invs_overlay.png",
-#         comp="results_lostruct/lostruct_dists/lostruct_chr{chrom}_{cont}_pca_composite.png",
-#     resources:
-#         mem_mb=8000,
-#         disk_mb=300000,
-#     log:
-#         log="logs/lostruct_dists/dist-chr{chrom}_{cont}_composite.log",
-#     shell:
-#         """Rscript scripts/lostruct_dists_invs_overlay.R \
-#         {input.dists} {input.pcs} {input.invs} \
-#         {wildcards.chrom} {wildcards.cont} {output.overlay} {output.comp} \
-#         2> {log}
-#         """
-
-
-###### run lostruct algorithm in N Mb blocks ######
-
-# rule lostruct_block:
-#     input:
-#         pcblock="results_lostruct/norep_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz",
-#         pcblocktbi="results_lostruct/norep_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz.tbi",
-#     output:
-#         lsblock=temporary("results_lostruct/lostruct_pcs/lostruct_pcs_chr{chrom}_blk{block}.txt"),
-#         #lsblockposn=temporary("results_lostruct/lostruct/lostruct_pcs_chr{chrom}_blk{block}.pos.txt"),
-#     log:
-#         "logs/lostruct/chr{chrom}_blk{block}.log",
-#     shell:
-#         """Rscript --vanilla scripts/lostruct_pcs_block.R \
-#               {input.pcblock} {wildcards.chrom} {wildcards.block} {output.lsblock} \
-#               2> {log}
-#         """
-#
-# rule lostruct_merge_blocks:
-#     input:
-#         vcftable=config["vcfs"],
-#         pcblocks=lambda wildcards: expand("results_lostruct/lostruct_pcs/lostruct_pcs_{blockstring}.txt",
-#                                           blockstring=get_chrom_blocks_string(wildcards))
-#     output:
-#         "results_lostruct/lostruct_pcs/lostruct_chr{chrom}_pcs.txt",
-#     log:
-#         "logs/lostruct_merge/merge-chr{chrom}.log",
-#     shell:
-#         """cat {input.pcblocks} | sort -u -k1,1df -k2,3g > {output}
-#         """
-#
-# rule lostruct_distance:
-#     input:
-#         chromblock="results_lostruct/lostruct_pcs/lostruct_chr{chrom}_pcs.txt",
-#     output:
-#         pcs="results_lostruct/lostruct_dists/lostruct_chr{chrom}_dists.txt",
-#         png="results_lostruct/lostruct_dists/lostruct_chr{chrom}_dists.png",
-#     resources:
-#         mem_mb=12000,
-#         disk_mb=500000,
-#     threads: 3
-#     log:
-#         log="logs/lostruct_dists/dist-chr{chrom}.log",
-#     shell:
-#         """Rscript --vanilla scripts/lostruct_calc_distance.R \
-#               {input.chromblock} {output.pcs} {output.png} \
-#               2> {log}
-#         """
-
 ###### make inversion plots ######
 
 rule lostruct_plot_pcas:
@@ -226,114 +155,8 @@ rule lostruct_plot_pcas:
     log:
         log="logs/lostruct_dists/dist-chr{chrom}_{cont}_composite.log",
     shell:
-        """Rscript scripts/lostruct_dists_invs_overlay.R \
+        """Rscript scripts/lostruct_plot_PCAs.R \
         {input.dists} {input.pcs} {input.invs} \
         {wildcards.chrom} {wildcards.cont} {output.overlay} {output.comp} \
         2> {log}
         """
-
-
-######
-# block lostruct analysis but for one spp only
-#####
-# rule lostruct_block_spp:
-#     input:
-#         spptable=config["spptable"],
-#         pcblock="results_lostruct/norep_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz",
-#         pcblocktbi="results_lostruct/norep_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz.tbi",
-#     output:
-#         lsblock=temporary("results_lostruct/lostruct_pcs/lostruct_pcs_chr{chrom}_blk{block}_{spp}.txt"),
-#         #lsblockposn=temporary("results_lostruct/lostruct/lostruct_pcs_chr{chrom}_blk{block}.pos.txt"),
-#     log:
-#         "logs/lostruct/chr{chrom}_blk{block}_{spp}.log",
-#     shell:
-#         """Rscript --vanilla scripts/lostruct_pcs_block_spp.R \
-#               {input.pcblock} {wildcards.chrom} {wildcards.block} \
-#               {input.spptable} {wildcards.spp} \
-#               {output.lsblock} \
-#               2> {log}
-#         """
-#
-# rule lostruct_merge_sort_blocks_spp:
-#     input:
-#         vcftable=config["vcfs"],
-#         pcblocks=lambda wildcards: expand("results_lostruct/lostruct_pcs/lostruct_pcs_{blockstring}_{{spp}}.txt",
-#                                           blockstring=get_chrom_blocks_string(wildcards))
-#     output:
-#         "results_lostruct/lostruct_pcs/lostruct_chr{chrom}_pcs_{spp}.txt",
-#     log:
-#         "logs/lostruct_merge/merge-chr{chrom}_{spp}.log",
-#     shell:
-#         """cat {input.pcblocks} | sort -u -k1,1df -k2,3g > {output}
-#         """
-#
-# rule lostruct_distance_spp:
-#     input:
-#         chromblock="results_lostruct/lostruct_pcs/lostruct_chr{chrom}_pcs_{spp}.txt",
-#     output:
-#         pcs="results_lostruct/lostruct_dists/lostruct_chr{chrom}_dists_{spp}.txt",
-#         png="results_lostruct/lostruct_dists/lostruct_chr{chrom}_dists_{spp}.png",
-#     resources:
-#         mem_mb=12000,
-#         disk_mb=500000,
-#     threads: 3,
-#     log:
-#         log="logs/lostruct_dist/dist-chr{chrom}_{spp}.log",
-#     shell:
-#         """Rscript --vanilla scripts/lostruct_calc_distance.R \
-#               {input.chromblock} {output.pcs} {output.png} \
-#               2> {log}
-#         """
-
-
-######
-# redo lostruct analysis but for one continent/region only
-#####
-# rule lostruct_block_cont:
-#     input:
-#         spptable=config["spptable"],
-#         pcblock="results_lostruct/norep_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz",
-#         pcblocktbi="results_lostruct/norep_regions/chr{chrom}.10MB.blk.{block}_thin.vcf.gz.tbi",
-#     output:
-#         lsblock=temporary("results_lostruct/lostruct_pcs/lostruct_pcs_chr{chrom}_blk{block}_{cont}.txt"),
-#         #lsblockposn=temporary("results_lostruct/lostruct/lostruct_pcs_chr{chrom}_blk{block}.pos.txt"),
-#     log:
-#         "logs/lostruct/chr{chrom}_blk{block}_{cont}.log",
-#     shell:
-#         """Rscript --vanilla scripts/lostruct_pcs_block_continent.R \
-#               {input.pcblock} {wildcards.chrom} {wildcards.block} \
-#               {input.spptable} {wildcards.cont} \
-#               {output.lsblock} \
-#               2> {log}
-#         """
-#
-# rule lostruct_merge_sort_cont:
-#     input:
-#         vcftable=config["vcfs"],
-#         pcblocks=lambda wildcards: expand("results_lostruct/lostruct_pcs/lostruct_pcs_{blockstring}_{{cont}}.txt",
-#                                           blockstring=get_chrom_blocks_string(wildcards))
-#     output:
-#         "results_lostruct/lostruct_pcs/lostruct_chr{chrom}_pcs_{cont}.txt",
-#     log:
-#         "logs/lostruct_merge/merge-chr{chrom}_{cont}.log",
-#     shell:
-#         """cat {input.pcblocks} | sort -u -k1,1df -k2,3g > {output}
-#         """
-#
-# rule lostruct_distance_cont:
-#     input:
-#         chromblock="results_lostruct/lostruct_pcs/lostruct_chr{chrom}_pcs_{cont}.txt",
-#     output:
-#         pcs="results_lostruct/lostruct_dists/lostruct_chr{chrom}_dists_{cont}.txt",
-#         png="results_lostruct/lostruct_dists/lostruct_chr{chrom}_dists_{cont}.png",
-#     resources:
-#         mem_mb=12000,
-#         disk_mb=500000,
-#     threads: 3,
-#     log:
-#         log="logs/lostruct_dist/dist-chr{chrom}_{cont}.log",
-#     shell:
-#         """Rscript --vanilla scripts/lostruct_calc_distance.R \
-#               {input.chromblock} {output.pcs} {output.png} \
-#               2> {log}
-#         """
