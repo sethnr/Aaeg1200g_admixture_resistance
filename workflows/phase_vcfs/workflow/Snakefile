@@ -192,8 +192,8 @@ rule merge_aaf_vcfs:
 rule merge_aaa_aaf:
     input:
         aaa="results/phase_whatshap/whatshap_{chrom}_AAAsamples.vcf.gz",
-        aaatbi="results/phase_whatshap/whatshap_{chrom}_AAFsamples.vcf.gz.tbi",
-        aaf="results/phase_whatshap/whatshap_{chrom}_AAAsamples.vcf.gz",
+        aaatbi="results/phase_whatshap/whatshap_{chrom}_AAAsamples.vcf.gz.tbi",
+        aaf="results/phase_whatshap/whatshap_{chrom}_AAFsamples.vcf.gz",
         aaftbi="results/phase_whatshap/whatshap_{chrom}_AAFsamples.vcf.gz.tbi"
     output:
         vcf=protected("results/phase_whatshap/whatshap_{chrom}.vcf.gz"),
