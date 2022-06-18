@@ -18,7 +18,8 @@ chrommap: "resources/chrom_ids.txt"
 
 gkey: "resources/apikey.json"
 
-map: "resources/juneja_linkage_REMAP.manual.c{chrom}.txt"
+#map: "resources/juneja_linkage_REMAP.manual.c{chrom}.txt"
+map: "resources/AaegL5_chr{chrom}.gmap.gz"
 #rawdata_bucket: "gs://verily-aaeg1200g/"
 
 ref:

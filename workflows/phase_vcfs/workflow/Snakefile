@@ -220,11 +220,12 @@ rule phase_shapeit:
     output:
         vcf=protected("results/phase_shapeit/phased_shapeit_{chrom}.vcf.gz"),
     resources:
-        mem_mb=32000,
+        mem_mb=16000,
         disk_mb=500000,
         h_rt='96:00:00',
         bamspace=0,
-        cpus=10
+        cpus=10,
+	qsub_args='--highmem'
     threads: 10
     params:
         chromid=lambda wildcards: get_chrom_id(wildcards)
