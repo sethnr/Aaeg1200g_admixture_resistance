@@ -70,8 +70,8 @@ rule lostruct_find_inversion_regions:
     input:
         dists="results/lostruct_run/lostruct_chr{chrom}_{region}.txt"
     output:
-        txt="results/lostruct_inversion_regions/lostruct_chr{chrom}_{region}.txt",
-        png="results/lostruct_inversion_regions/lostruct_chr{chrom}_{region}.png",
+        txt="results/lostruct_inversion_candidates/lostruct_chr{chrom}_{region}.txt",
+        png="results/lostruct_inversion_candidates/lostruct_chr{chrom}_{region}.png",
     resources:
         mem_mb=12000,
         disk_mb=500000,
@@ -83,7 +83,7 @@ rule lostruct_find_inversion_regions:
     log:
         log="logs/lostruct_inversion_regions/candidates-chr{chrom}_{region}.log",
     shell:
-        """Rscript scripts/lostruct_find_inversion_regions.R \
+        """Rscript scripts/find_inversion_candidates.R \
         	-i {input.dists} \
         	-o {params.prefix} \
         	-c {wildcards.chrom} \
@@ -95,7 +95,7 @@ rule lostruct_assess_inversion_candidates:
     input:
         vcf=lambda wildcards: get_remote_vcf(wildcards),
         tbi=lambda wildcards: get_remote_vcf_tbi(wildcards),
-        txt="results/lostruct_inversion_regions/lostruct_chr{chrom}_{region}.txt",
+        txt="results/lostruct_inversion_candidates/lostruct_chr{chrom}_{region}.txt",
         spptable=config["spptable"],
     output:
         txt="results/lostruct_inversions/inversions_chr{chrom}_{region}.txt",
