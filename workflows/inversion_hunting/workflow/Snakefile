@@ -2,6 +2,7 @@ from snakemake.remote.GS import RemoteProvider as GSRemoteProvider
 GS = GSRemoteProvider()
 
 
+container: "docker://sethnr/aaeg1000g_analysis:0.03
 #### Config file and sample sheets #####
 configfile: "config/config.yaml"
 #### reused methods for grabbing GS objects, etc ####
