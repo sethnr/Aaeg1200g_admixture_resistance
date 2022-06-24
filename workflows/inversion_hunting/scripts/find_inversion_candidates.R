@@ -112,6 +112,8 @@ distplot <- ggplot(pcdistflat,aes(x=pos.x,y=pos.y,fill=value)) +
 
 #some blocks in chr3 completely empty
 usenacomp="na.or.complete"
+#fill with 1 (no similarity) as default value for now
+pcdists[is.na(pcdists)] <- 1
 
 if(cores==0) {
   write(paste("running",
