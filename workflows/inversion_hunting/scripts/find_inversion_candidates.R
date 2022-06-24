@@ -1,10 +1,10 @@
 
 library("tidyverse")
-library("patchwork")
+#library("patchwork")
 
 library("pvclust")
 library("getopt")
-
+library("gridExtra")
 
 #parse children from merges
 getchildren <- function(x, mergetable=merges) {
