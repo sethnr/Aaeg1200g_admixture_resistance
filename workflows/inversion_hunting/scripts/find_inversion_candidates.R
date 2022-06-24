@@ -117,17 +117,17 @@ if(cores==0) {
   write(paste("running",
               dmeth,"/",cmeth," clustering with",
               nboots,"bootstraps on all cores"),stderr())
-  distpv <- pvclust(pcdists,method.dist=dmeth,method.hclust=cmeth,nboot=nboots,parallel=T,use=usenacomp)
+  distpv <- pvclust(pcdists,method.dist=dmeth,method.hclust=cmeth,nboot=nboots,parallel=T,use.cor=usenacomp)
 } else if(cores>1) {
   write(paste("running",
               dmeth,"/",cmeth," clustering with",
               nboots,"bootstraps on",cores,"cores"),stderr())
-  distpv <- pvclust(pcdists,method.dist=dmeth,method.hclust=cmeth,nboot=nboots,parallel=cores,use=usenacomp)
+  distpv <- pvclust(pcdists,method.dist=dmeth,method.hclust=cmeth,nboot=nboots,parallel=cores,use.cor=usenacomp)
 } else {
   write(paste("running",
               dmeth,"/",cmeth," clustering with",
               nboots,"bootstraps on 1 core"),stderr())
-  distpv <- pvclust(pcdists,method.dist=dmeth,method.hclust=cmeth,nboot=nboots,parallel=F,use=usenacomp)
+  distpv <- pvclust(pcdists,method.dist=dmeth,method.hclust=cmeth,nboot=nboots,parallel=F,use.cor=usenacomp)
 }
 
 
