@@ -67,7 +67,7 @@ rule lostruct_run_lostruct:
 # output list of candidates and image of regions
 rule lostruct_find_inversion_regions:
     input:
-        dists="results_lostruct/lostruct_all_chr/lostruct_chr{chrom}_{region}.txt"
+        dists="results_lostruct/lostruct_run/lostruct_chr{chrom}_{region}.txt"
     output:
         txt="results_lostruct/lostruct_inversion_regions/lostruct_chr{chrom}_{region}.txt",
         png="results_lostruct/lostruct_inversion_regions/lostruct_chr{chrom}_{region}.png",
@@ -92,8 +92,9 @@ rule lostruct_find_inversion_regions:
 
 rule lostruct_assess_inversion_candidates:
     input:
-        vcf="results_lostruct/thin_vcfs/lostruct_chr{chrom}.vcf.gz",
-        txt="results_lostruct/lostruct_regions/lostruct_chr{chrom}_{region}.txt",
+        vcf=lambda wildcards: get_remote_vcf(wildcards),
+        tbi=lambda wildcards: get_remote_vcf_tbi(wildcards),
+        txt="results_lostruct/lostruct_inversion_regions/lostruct_chr{chrom}_{region}.txt",
     output:
         txt="results_lostruct/lostruct_inversions/inversions_chr{chrom}_{region}.txt",
         png="results_lostruct/lostruct_inversions/inversions_chr{chrom}_{region}.png",
@@ -126,8 +127,8 @@ rule lostruct_assess_inversion_candidates:
 # these haplotypes
 rule lostruct_get_aims:
       input:
-          vcf="results_lostruct/thin_vcfs/lostruct_chr{chrom}.vcf.gz",
-          tbi="results_lostruct/thin_vcfs/lostruct_chr{chrom}.vcf.gz.tbi",
+          vcf=lambda wildcards: get_remote_vcf(wildcards),
+          tbi=lambda wildcards: get_remote_vcf_tbi(wildcards),
           invs="results_lostruct/lostruct_inversion_regions/lostruct_chr{chrom}_{region}.txt",
           pcs="results_lostruct/lostruct_inversion_regions/lostruct_chr{chrom}_{region}_pcs.Rds",
           spptable=config["spptable"]
@@ -137,7 +138,7 @@ rule lostruct_get_aims:
           mem_mb=4000,
           disk_mb=100000,
       log:
-          log="logs/lostruct_find_aims/candidates-chr{chrom}_{region}.log",
+          log="logs/lostruct_aims/get_aims_chr{chrom}_{region}.log",
       shell:
           """Rscript scripts/lostruct_get_aims.R \
             {input.vcf} \
@@ -155,7 +156,7 @@ rule lostruct_plot_aims:
           aims="results_lostruct/lostruct_aims/lostruct_chr{chrom}_{region}_aim_snps.txt",
           spptable=config["spptable"]
       output:
-          aimspic="results_lostruct/lostruct_aims_plot/lostruct_chr{chrom}_{region}_aims.png",
+          aimspic="results_lostruct/lostruct_aims/lostruct_chr{chrom}_{region}_aims.png",
       resources:
           mem_mb=1000,
           disk_mb=2000,
