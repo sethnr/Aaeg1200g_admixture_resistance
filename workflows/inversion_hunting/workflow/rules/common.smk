@@ -9,19 +9,6 @@ GS = GSRemoteProvider()
 min_version("5.18.0")
 
 
-#container: "docker://sethnr/aaeg1000g_analysis:0.03"
-
-
-
-
-
-
-# wildcard_constraints:
-#     chrom="|".join(vcfs.index.astype("string").unique())
-
-
-
-
 ##### Helper functions #####
 
 # def get_remote_vcfs(wildcards):
@@ -58,6 +45,11 @@ def get_remote_bai(wildcards):
 
 
 def get_remote_vcf(wildcards):
+    vcfs = pd.read_table(config["vcfs"],dtype = str,header=0).set_index(["chrom"])
+    """Get processed/thinned vcf of given chrom """
+    return GS.remote(vcfs.loc[wildcards.chrom].vcf, keep_local=True)
+
+def get_remote_vcf_tbi(wildcards):
     vcfs = pd.read_table(config["vcfs"],dtype = str,header=0).set_index(["chrom"])
     """Get processed/thinned vcf of given chrom """
     return GS.remote(vcfs.loc[wildcards.chrom].vcf, keep_local=True)
