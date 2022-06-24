@@ -75,7 +75,7 @@ rule lostruct_find_inversion_regions:
         h_rt='48:00:00',
         cpus=4
     params:
-        prefix: "results_lostruct/lostruct_inversion_regions/regions_chr{chrom}_{region}"
+        prefix="results_lostruct/lostruct_inversion_regions/regions_chr{chrom}_{region}"
     threads: 4
     log:
         log="logs/lostruct_inversion_regions/candidates-chr{chrom}_{region}.log",
