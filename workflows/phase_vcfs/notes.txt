@@ -13,3 +13,7 @@ snakemake --use-singularity -j 20 --rerun-incomplete --profile uge
 #on prem; limit bam downloads:
 snakemake --use-singularity --profile apo --rerun-incomplete --resources bamspace=10
 snakemake --use-singularity --profile apo --ri -k -j 250 --resources bamspace=100
+
+
+#convert gmaps (calc CMMB)
+gunzip -dc resources/AaegL5_chr3.gmap.gz  | perl -lane 'BEGIN{$lcm=0; $lbp=-1}; print join("\t",$F[0],($F[2]-$lcm)/($F[0]-$lbp)*1e6, $F[2]); $lcm=$F[2]; $lbp=$F[0];' > resources/AaegL5_chr3.recalc.gmap
