@@ -55,7 +55,7 @@ rule lostruct_run_lostruct:
     log:
         log="logs/lostruct_run/outliers_chr{chrom}_{region}.log",
     shell:
-        """Rscript --vanilla scripts/lostruct_run_lostruct.R \
+        """Rscript --vanilla scripts/lostruct_get_pc_distances.R \
               {input.vcf} \
               {input.spptable}  \
               {wildcards.chrom} {wildcards.region} \

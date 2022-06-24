@@ -14,7 +14,7 @@ getchildren <- function(x, mergetable=merges) {
   #print(paste(a,b),stderr())
   if(a < 0) {children = c(children,(a*-1))}
   else {children = c(children,getchildren(a, mergetable))}
-  
+
   if(b < 0) {children = c(children,(b*-1))}
   else {children = c(children,getchildren(b, mergetable))}
   return(children)
@@ -32,7 +32,7 @@ dmeth <- "uncentered"
 minP <- 0.99
 filterP <- 0.95
 minblocks <- 5
-maxblocks <- 300 
+maxblocks <- 300
 nboots <- 1000
 cores <- 0
 
@@ -56,10 +56,10 @@ opttab <- as.matrix(data.frame("long"=c("infile","outfile","chr",
                             "integer",
                             "double","integer",
                             "integer","integer","integer")))
-                   
+
 
 opt <- getopt(opttab,)
-                   
+
 infile <- opt$infile
 outfile <- opt$outfile
 chrom <- opt$chr
@@ -101,7 +101,7 @@ rownames(pcdists) <- blocks
 pcdistflat <- pivot_longer(cbind(pcdists,blocks),cols=all_of(blocks),names_to = "y") %>% rename("block"="blocks")
 pcdistflat <- merge(merge(pcdistflat,regions,by="block"),
                     regions,by.x="y",by.y="block",suffixes = c(".x",".y"))
-distplot <- ggplot(pcdistflat,aes(x=pos.x,y=pos.y,fill=value)) + 
+distplot <- ggplot(pcdistflat,aes(x=pos.x,y=pos.y,fill=value)) +
   geom_tile() + xlim(0,chromlen[chrom])
 
 
@@ -139,7 +139,7 @@ merges <- disttree$merge
 clust=list()
 for(node in goodedges) {
   kids = sort(getchildren(node, merges))
-  
+
   if(length(kids) >= minblocks & length(kids) < maxblocks){
     clust[as.character(node)] = list(kids)
   }
@@ -161,19 +161,15 @@ clustdf <- merge(clustdf,regions,by="block",)
 edgetable$cluster = rownames(edgetable)
 clustdf <- merge(clustdf,edgetable,by="cluster")
 
-# clustplot <- ggplot(clustdf,aes(x=pos,y=as.factor(cluster))) + geom_tile() + 
-#   xlim(0,35e07) + ggtitle(paste(cmeth,"/",dmeth,", ",
-#                                 minblocks,"-",maxblocks," blocks ",
-#                                 "P>",minP," ",nboots," boots",sep=""))
-# 
-# clustplot / distplot + plot_layout(heights=c(2,5))
 
-
-clustplotP <- ggplot(subset(clustdf,au>=minP),aes(x=pos,fill=au,y=as.factor(cluster))) + geom_tile() + 
+clustplotP <- ggplot(subset(clustdf,au>=minP),aes(x=pos,fill=au,y=as.factor(cluster))) + geom_tile() +
   xlim(0,chromlen[chrom]) + ylab("cluster") + ggtitle(paste(cmeth,"/",dmeth,", ",
                                 minblocks,"-",maxblocks," blocks ",
                                 "P>",minP," ",nboots," boots",sep=""))
-clustplotP / distplot + plot_layout(heights=c(2,5))
+
+grid.arrange(clustplotP,distplot,ncol=1,heights=c(2,5))
+
+
 #ggsave(paste("trinidad_chr1_pvclust_",cmeth,"_",dmeth,"_hier_P",minP,"_n",nboots,".png",sep=""))
 ggsave(paste(outfile,".png",sep=""))
 
