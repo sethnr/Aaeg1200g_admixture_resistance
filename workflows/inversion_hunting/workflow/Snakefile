@@ -111,7 +111,7 @@ rule lostruct_assess_inversion_candidates:
         log="logs/lostruct_inversion_regions/candidates-chr{chrom}_{region}.log",
     shell:
         """Rscript scripts/assess_inversion_candidates.R \
-        	-i {input.dists} \
+        	-i {input.txt} \
         	-o {params.prefix} \
             -v {input.vcf} \
             -s {input.sample} \
