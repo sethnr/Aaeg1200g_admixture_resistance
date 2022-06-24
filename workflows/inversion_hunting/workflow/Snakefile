@@ -65,30 +65,59 @@ rule lostruct_run_lostruct:
 # output list of candidates and image of regions
 rule lostruct_find_inversion_regions:
     input:
-        dists="results_lostruct/lostruct_all_chr/lostruct_chr{chrom}_{region}.txt",
-        vcf="results_lostruct/thin_vcfs/lostruct_chr{chrom}.vcf.gz",
-        tbi="results_lostruct/thin_vcfs/lostruct_chr{chrom}.vcf.gz.tbi",
-        spptable=config["spptable"]
+        dists="results_lostruct/lostruct_all_chr/lostruct_chr{chrom}_{region}.txt"
     output:
         txt="results_lostruct/lostruct_inversion_regions/lostruct_chr{chrom}_{region}.txt",
-        pcs="results_lostruct/lostruct_inversion_regions/lostruct_chr{chrom}_{region}_pcs.Rds",
         png="results_lostruct/lostruct_inversion_regions/lostruct_chr{chrom}_{region}.png",
     resources:
         mem_mb=12000,
         disk_mb=500000,
+        h_rt='48:00:00',
+        cpus=4
+    params:
+        prefix: "results_lostruct/lostruct_inversion_regions/regions_chr{chrom}_{region}"
+    threads: 4
     log:
         log="logs/lostruct_inversion_regions/candidates-chr{chrom}_{region}.log",
     shell:
         """Rscript scripts/lostruct_find_inversion_regions.R \
-        	{input.dists} \
-        	{input.vcf} \
-        	{wildcards.region} {wildcards.chrom} \
-        	{input.spptable} \
-        	{output.txt} \
-        	{output.pcs} \
-        	{output.png}\
-            2> {log}
+        	-i {input.dists} \
+        	-o {params.prefix} \
+        	-c {wildcards.chrom} \
+        	-C {threads} \
+        	2>> {log}
         """
+
+rule lostruct_assess_inversion_candidates:
+    input:
+        vcf="results_lostruct/thin_vcfs/lostruct_chr{chrom}.vcf.gz",
+        txt="results_lostruct/lostruct_regions/lostruct_chr{chrom}_{region}.txt",
+    output:
+        txt="results_lostruct/lostruct_inversions/inversions_chr{chrom}_{region}.txt",
+        png="results_lostruct/lostruct_inversions/inversions_chr{chrom}_{region}.png",
+        pcs="results_lostruct/lostruct_inversions/inversions_chr{chrom}_{region}_pcs.Rds",
+    resources:
+        mem_mb=12000,
+        disk_mb=500000,
+        h_rt='48:00:00',
+        cpus=4
+    params:
+        prefix: "results_lostruct/lostruct_inversions/regions_chr{chrom}_{region}"
+    threads: 4
+    log:
+        log="logs/lostruct_inversion_regions/candidates-chr{chrom}_{region}.log",
+    shell:
+        """Rscript scripts/assess_inversion_candidates.R \
+        	-i {input.dists} \
+        	-o {params.prefix} \
+            -v {input.vcf} \
+            -s {input.sample} \
+            -c {wildcards.region} \
+        	-C {wildcards.chrom} \
+        	2>> {log}
+        """
+
+
 
 # using PC calls for regions thought to be inversions
 # get associated SNPs that could be used as AIMs for
