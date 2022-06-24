@@ -95,6 +95,7 @@ rule lostruct_assess_inversion_candidates:
         vcf=lambda wildcards: get_remote_vcf(wildcards),
         tbi=lambda wildcards: get_remote_vcf_tbi(wildcards),
         txt="results/lostruct_inversion_regions/lostruct_chr{chrom}_{region}.txt",
+        spptable=config["spptable"],
     output:
         txt="results/lostruct_inversions/inversions_chr{chrom}_{region}.txt",
         png="results/lostruct_inversions/inversions_chr{chrom}_{region}.png",
@@ -114,7 +115,7 @@ rule lostruct_assess_inversion_candidates:
         	-i {input.txt} \
         	-o {params.prefix} \
             -v {input.vcf} \
-            -s {input.sample} \
+            -s {input.spptable} \
             -c {wildcards.region} \
         	-C {wildcards.chrom} \
         	2>> {log}
@@ -140,13 +141,13 @@ rule lostruct_get_aims:
       log:
           log="logs/lostruct_aims/get_aims_chr{chrom}_{region}.log",
       shell:
-          """Rscript scripts/lostruct_get_aims.R \
-            {input.vcf} \
-            {wildcards.region} \
-            {input.spptable} \
-            {input.invs} \
-            {input.pcs} \
-            {output.txt}\
+          """Rscript scripts/find_inversion_aims.R \
+                -v {input.vcf} \
+                -c {wildcards.region} \
+                -s {input.spptable} \
+                -i {input.invs} \
+                -p {input.pcs} \
+                -o {output.txt}\
             2> {log}
           """
 
@@ -163,11 +164,11 @@ rule lostruct_plot_aims:
       log:
           log="logs/lostruct_aims/plot_aims_chr{chrom}_{region}.log",
       shell:
-          """Rscript scripts/lostruct_plot_aims.R \
-          	{input.spptable} \
-          	{input.aims} \
-            {output.aimspic} \
-            2> {log}
+          """Rscript scripts/plot_inversion_aims.R \
+          	   -s {input.spptable} \
+          	   -i {input.aims} \
+               -o {output.aimspic} \
+                 2> {log}
           """
 
 
