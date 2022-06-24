@@ -32,7 +32,7 @@ wildcard_constraints:
 
 rule all:
     input:
-        expand("results_lostruct/lostruct_aims_plot/lostruct_chr{chrid}_{loc}_aims.png",
+        expand("results_lostruct/lostruct_aims/lostruct_chr{chrid}_{loc}_aims.png",
         chrid=[1,2,3],loc=bigcountries)
 
 
@@ -161,7 +161,7 @@ rule lostruct_plot_aims:
           mem_mb=1000,
           disk_mb=2000,
       log:
-          log="logs/lostruct_plots/plot_aims_chr{chrom}_{region}.log",
+          log="logs/lostruct_aims/plot_aims_chr{chrom}_{region}.log",
       shell:
           """Rscript scripts/lostruct_plot_aims.R \
           	{input.spptable} \
