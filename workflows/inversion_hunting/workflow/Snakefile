@@ -129,8 +129,8 @@ rule lostruct_get_aims:
       input:
           vcf=lambda wildcards: get_remote_vcf(wildcards),
           tbi=lambda wildcards: get_remote_vcf_tbi(wildcards),
-          invs="results/lostruct_inversions/lostruct_chr{chrom}_{region}.txt",
-          pcs="results/lostruct_inversions/lostruct_chr{chrom}_{region}_pcs.Rds",
+          invs="results/lostruct_inversions/inversions_chr{chrom}_{region}.txt",
+          pcs="results/lostruct_inversions/inversions_chr{chrom}_{region}_pcs.Rds",
           spptable=config["spptable"]
       output:
           txt="results/lostruct_aims/lostruct_chr{chrom}_{region}_aim_snps.txt",
