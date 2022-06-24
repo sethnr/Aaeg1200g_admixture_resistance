@@ -39,8 +39,8 @@ rule all:
 # of first two PCS for each to find similar regions
 rule lostruct_run_lostruct:
     input:
-        vcf="results_lostruct/thin_vcfs/lostruct_chr{chrom}.vcf.gz",
-        tbi="results_lostruct/thin_vcfs/lostruct_chr{chrom}.vcf.gz.tbi",
+        vcf=lambda wildcards: get_remote_vcf(wildcards)
+        tbi=lambda wildcards: get_remote_vcf_tbi(wildcards)
         spptable=config["spptable"],
     output:
         pcs="results_lostruct/lostruct_run/dists_chr{chrom}_{region}.txt",
