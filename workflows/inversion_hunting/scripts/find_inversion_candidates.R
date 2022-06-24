@@ -6,8 +6,6 @@ library("pvclust")
 library("getopt")
 library("gridExtra")
 
-library("pvclust")
-
 
 #parse children from merges
 getchildren <- function(x, mergetable=merges) {

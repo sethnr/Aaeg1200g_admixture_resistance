@@ -45,8 +45,8 @@ rule lostruct_run_lostruct:
         tbi=lambda wildcards: get_remote_vcf_tbi(wildcards),
         spptable=config["spptable"],
     output:
-        pcs="results/lostruct_run/dists_chr{chrom}_{region}.txt",
-        png="results/lostruct_run/dists_chr{chrom}_{region}.png",
+        pcs="results/lostruct_run/lostruct_chr{chrom}_{region}.txt",
+        png="results/lostruct_run/lostruct_chr{chrom}_{region}.png",
     resources:
         mem_mb=12000,
         disk_mb=500000,
@@ -65,7 +65,7 @@ rule lostruct_run_lostruct:
 
 # using PC distances, find distinct regions that might be inversions
 # output list of candidates and image of regions
-rule lostruct_find_inversion_regions:
+rule lostruct_find_inversion_candidates:
     input:
         dists="results/lostruct_run/lostruct_chr{chrom}_{region}.txt"
     output:
@@ -77,10 +77,10 @@ rule lostruct_find_inversion_regions:
         h_rt='48:00:00',
         cpus=4
     params:
-        prefix="results/lostruct_inversion_regions/regions_chr{chrom}_{region}"
+        prefix="results/lostruct_inversion_candidates/regions_chr{chrom}_{region}"
     threads: 4
     log:
-        log="logs/lostruct_inversion_regions/candidates-chr{chrom}_{region}.log",
+        log="logs/lostruct_inversion_candidates/candidates-chr{chrom}_{region}.log",
     shell:
         """Rscript scripts/find_inversion_candidates.R \
         	-i {input.dists} \
