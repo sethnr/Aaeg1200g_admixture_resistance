@@ -110,21 +110,24 @@ distplot <- ggplot(pcdistflat,aes(x=pos.x,y=pos.y,fill=value)) +
 # h-cluster, identify significant clusters
 ######
 
+#some blocks in chr3 completely empty
+usenacomp="na.or.complete"
+
 if(cores==0) {
   write(paste("running",
               dmeth,"/",cmeth," clustering with",
               nboots,"bootstraps on all cores"),stderr())
-  distpv <- pvclust(pcdists,method.dist=dmeth,method.hclust=cmeth,nboot=nboots,parallel=T)
+  distpv <- pvclust(pcdists,method.dist=dmeth,method.hclust=cmeth,nboot=nboots,parallel=T,use=usenacomp)
 } else if(cores>1) {
   write(paste("running",
               dmeth,"/",cmeth," clustering with",
               nboots,"bootstraps on",cores,"cores"),stderr())
-  distpv <- pvclust(pcdists,method.dist=dmeth,method.hclust=cmeth,nboot=nboots,parallel=cores)
+  distpv <- pvclust(pcdists,method.dist=dmeth,method.hclust=cmeth,nboot=nboots,parallel=cores,use=usenacomp)
 } else {
   write(paste("running",
               dmeth,"/",cmeth," clustering with",
               nboots,"bootstraps on 1 core"),stderr())
-  distpv <- pvclust(pcdists,method.dist=dmeth,method.hclust=cmeth,nboot=nboots,parallel=F)
+  distpv <- pvclust(pcdists,method.dist=dmeth,method.hclust=cmeth,nboot=nboots,parallel=F,use=usenacomp)
 }
 
 
