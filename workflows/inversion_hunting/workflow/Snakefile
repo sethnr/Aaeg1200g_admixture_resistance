@@ -9,13 +9,12 @@ configfile: "config/config.yaml"
 include: "rules/common.smk"
 
 
-#spps = ["aaa", "aaf", "admx"]
 spps = ["aaa", "aaf"]
-#conts = ["americas", "asia", "eafrica", "wafrica"]
-bigcountries = ["Brazil", "USA", "Senegal",
-    "Kenya", "Philippines","Gabon","Ghana",
-    "SaudiArabia","BurkinaFaso","PuertoRico",
-    "Uganda","Trinidad","Vietnam"]
+# bigcountries = ["Brazil", "USA", "Senegal",
+#     "Kenya", "Philippines","Gabon","Ghana",
+#     "SaudiArabia","BurkinaFaso","PuertoRico",
+#     "Uganda","Trinidad","Vietnam"]
+bigcountries = ["Brazil"]
 
 conts = ["eafrica", "wafrica"]
 
