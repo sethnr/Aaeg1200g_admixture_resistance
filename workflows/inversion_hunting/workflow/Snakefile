@@ -2,7 +2,9 @@ from snakemake.remote.GS import RemoteProvider as GSRemoteProvider
 GS = GSRemoteProvider()
 
 
-#configfile: "config_lostruct/config.yaml"
+#### Config file and sample sheets #####
+configfile: "config/config.yaml"
+#### reused methods for grabbing GS objects, etc ####
 include: "rules/common.smk"
 
 
