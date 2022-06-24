@@ -19,3 +19,5 @@ for C in 1 2 3  ; do
   echo gsutil cp gs://redmond-lab-aaeg1000g/results_lostruct/norep_regions_thinrand/lostruct_chr${C}.vcf.gz \
     gs://verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.norep5-30x.ac10.thinrand01.chr${C}.vcf.gz ;
 done
+snakemake --use-singularity --profile apo --ri -k -j 250 --dry-run
+snakemake --use-singularity --profile apo --ri -k -j 250 --dry-run
