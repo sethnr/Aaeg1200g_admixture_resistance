@@ -1,6 +1,6 @@
 #FROM ubuntu:latest
-# FROM continuumio/miniconda3:latest
-FROM continuumio/miniconda3:4.10.3
+FROM continuumio/miniconda3:latest
+# FROM continuumio/miniconda3:4.10.3
 
 RUN apt-get update
 RUN apt-get install -y wget
@@ -39,9 +39,10 @@ RUN mamba install -c bioconda -y vcftools
 RUN mamba install -c bioconda pandas
 RUN mamba install -c bioconda numpy
 
-RUN mamba install -c bioconda -y scikit-learn
-# RUN mamba install -c conda-forge/label/cf202003  -y scikit-allel
+#RUN mamba install -c bioconda -y scikit-learn
 RUN mamba install -c conda-forge/label/main  -y scikit-allel
+RUN mamba install -c anaconda -y scikit-learn
+
 
 #BCFtools / HTSlib / Samtools
 RUN mamba install -c bioconda -c conda-forge -y htslib'>=1.13,<1.14.0a0'
@@ -69,3 +70,7 @@ RUN Rscript install_devtools.R
 
 COPY install_demographics.R  install_demographics.R
 RUN Rscript install_demographics.R
+
+
+ENV PATH="${PATH}:/opt/miniconda/bin:/opt/miniconda/lib"
+ENV LD_LIBRARY_PATH="${PATH}"
