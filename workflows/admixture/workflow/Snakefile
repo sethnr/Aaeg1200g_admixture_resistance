@@ -82,7 +82,7 @@ rule admix_alder:
         cpus=4
     threads: 4
     params:
-        chromid=lambda wildcards: get_chrom_id(wildcards),
+        #chromid=lambda wildcards: get_chrom_id(wildcards),
         file="alder_{pop1}_{pop2}_{pop3}.params"
     log:
         "logs/admix_alder/alder_{chrom}_{pop1}_{pop2}_{pop3}.log",
