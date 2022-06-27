@@ -14,8 +14,10 @@ wildcard_constraints:
 
 rule all:
     input:
-        expand("results/admix_tests/{test}_{chrom}_summaries.txt",
-            chrom=CHROMS,test=TESTS)
+        expand("results/admix_tests/3pop_{chrom}_summaries.txt",
+            chrom=CHROMS),
+        expand("results/admix_tests/alder_summaries.txt",
+            chrom=CHROMS)
 
 ###rule orders ###
 ruleorder: make_biallelic > tabix_vcf
@@ -155,12 +157,12 @@ rule admix_3pop:
 
 rule cat_alder:
     input:
-        sums=expand("results/admix_tests/alder_{{chrom}}_{popstring}_summary.txt",
+        sums=expand("results/admix_tests/alder_{popstring}_summary.txt",
                     popstring=get_all_admix_3_strings(BIGPOPS))
     output:
-        "results/admix_tests/alder_{chrom}_summaries.txt"
+        "results/admix_tests/alder_all_summaries.txt"
     log:
-        "logs/admix_tests/alder_{chrom}.log"
+        "logs/admix_tests/alder_all.log"
     shell:
         """
         cat {input.sums} > {output}
