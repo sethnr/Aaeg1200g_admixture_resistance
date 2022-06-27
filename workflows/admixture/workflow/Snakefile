@@ -114,7 +114,7 @@ rule admix_3pop:
         disk_mb=20000,
         h_rt='2:00:00',
     params:
-        prefix="results/admix_tests/3pop_{chrom}_{pop1}_{pop2}_{pop3}_blocks"
+        prefix="results/admix_tests/3pop_{chrom}_{pop1}_{pop2}_{pop3}"
     log:
         "logs/admix_tests/3pop_{chrom}_{pop1}_{pop2}_{pop3}.log"
     container: "docker://sethnr/aaeg1000g_analysis:0.02"
