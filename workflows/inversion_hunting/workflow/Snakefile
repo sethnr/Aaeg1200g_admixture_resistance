@@ -69,8 +69,8 @@ rule find_inversion_candidates:
     input:
         dists="results/lostruct_run/lostruct_chr{chrom}_{region}.txt"
     output:
-        txt="results/lostruct_inversion_candidates/lostruct_chr{chrom}_{region}.txt",
-        png="results/lostruct_inversion_candidates/lostruct_chr{chrom}_{region}.png",
+        txt="results/lostruct_inversion_candidates/regions_chr{chrom}_{region}.txt",
+        png="results/lostruct_inversion_candidates/regions_chr{chrom}_{region}.png",
     resources:
         mem_mb=12000,
         disk_mb=500000,
@@ -80,7 +80,7 @@ rule find_inversion_candidates:
         prefix="results/lostruct_inversion_candidates/regions_chr{chrom}_{region}"
     threads: 4
     log:
-        log="logs/lostruct_inversion_candidates/candidates-chr{chrom}_{region}.log",
+        log="logs/lostruct_inversion_candidates/regions-chr{chrom}_{region}.log",
     shell:
         """Rscript scripts/find_inversion_candidates.R \
         	-i {input.dists} \
@@ -94,7 +94,7 @@ rule assess_inversion_candidates:
     input:
         vcf=lambda wildcards: get_remote_vcf(wildcards),
         tbi=lambda wildcards: get_remote_vcf_tbi(wildcards),
-        txt="results/lostruct_inversion_candidates/lostruct_chr{chrom}_{region}.txt",
+        txt="results/lostruct_inversion_candidates/regions_chr{chrom}_{region}.txt",
         spptable=config["spptable"],
     output:
         txt="results/lostruct_inversions/inversions_chr{chrom}_{region}.txt",
@@ -106,10 +106,10 @@ rule assess_inversion_candidates:
         h_rt='48:00:00',
         cpus=4
     params:
-        prefix="results/lostruct_inversions/regions_chr{chrom}_{region}"
+        prefix="results/lostruct_inversions/inversions_chr{chrom}_{region}"
     threads: 4
     log:
-        log="logs/lostruct_inversion_regions/candidates-chr{chrom}_{region}.log",
+        log="logs/lostruct_inversions/inversions-chr{chrom}_{region}.log",
     shell:
         """Rscript scripts/assess_inversion_candidates.R \
         	-i {input.txt} \
@@ -134,7 +134,7 @@ rule get_aims:
           pcs="results/lostruct_inversions/inversions_chr{chrom}_{region}_pcs.Rds",
           spptable=config["spptable"]
       output:
-          txt="results/lostruct_aims/lostruct_chr{chrom}_{region}_aim_snps.txt",
+          txt="results/lostruct_aims/aims_chr{chrom}_{region}.txt",
       resources:
           mem_mb=4000,
           disk_mb=100000,
@@ -154,10 +154,10 @@ rule get_aims:
 #plot AIMs for all samples in dataset, ordered by country + putative inversion call
 rule plot_aims:
       input:
-          aims="results/lostruct_aims/lostruct_chr{chrom}_{region}_aim_snps.txt",
+          aims="results/lostruct_aims/aims_chr{chrom}_{region}.txt",
           spptable=config["spptable"]
       output:
-          aimspic="results/lostruct_aims/lostruct_chr{chrom}_{region}_aims.png",
+          aimspic="results/lostruct_aims/aims_chr{chrom}_{region}.png",
       resources:
           mem_mb=1000,
           disk_mb=2000,
