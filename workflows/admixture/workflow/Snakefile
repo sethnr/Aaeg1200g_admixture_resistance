@@ -92,7 +92,7 @@ rule admix_alder:
         echo snpname:      {input.snp} >>./{params.file}
         echo indivname:    {input.ind} >>./{params.file}
         echo admixpop:     {wildcards.pop3} >>./{params.file}
-        echo refpops:      {wildcards.pop2}\;{wildcards.pop2} >>./{params.file}
+        echo refpops:      {wildcards.pop1}\;{wildcards.pop2} >>./{params.file}
         echo raw_outname:  {output.sum} >>./{params.file}
         echo \n                         >>./{params.file}
         echo num_threads:  {threads} >>./{params.file}
