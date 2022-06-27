@@ -16,7 +16,7 @@ rule all:
     input:
         expand("results/admix_tests/3pop_{chrom}_summaries.txt",
             chrom=CHROMS),
-        expand("results/admix_tests/alder_summaries.txt",
+        expand("results/admix_tests/alder_all_summaries.txt",
             chrom=CHROMS)
 
 ###rule orders ###
