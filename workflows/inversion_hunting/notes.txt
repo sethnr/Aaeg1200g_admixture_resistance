@@ -20,4 +20,5 @@ for C in 1 2 3  ; do
     gs://verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.norep5-30x.ac10.thinrand01.chr${C}.vcf.gz ;
 done
 snakemake --use-singularity --profile apo --ri -k -j 250 --dry-run
-snakemake --use-singularity --profile apo --ri -k -j 250 --dry-run
+
+snakemake --use-singularity --profile apo --ri -k -j 250 --latency-wait 300

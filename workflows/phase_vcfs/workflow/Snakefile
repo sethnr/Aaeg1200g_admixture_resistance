@@ -225,7 +225,7 @@ rule phase_shapeit:
         h_rt='96:00:00',
         bamspace=0,
         cpus=10,
-	qsub_args='--highmem'
+	qsub_args='--highmem  -l avx2=TRUE -l node_type=srm'
     threads: 10
     params:
         chromid=lambda wildcards: get_chrom_id(wildcards)

@@ -10,11 +10,11 @@ include: "rules/common.smk"
 
 
 spps = ["aaa", "aaf"]
-# bigcountries = ["Brazil", "USA", "Senegal",
-#     "Kenya", "Philippines","Gabon","Ghana",
-#     "SaudiArabia","BurkinaFaso","PuertoRico",
-#     "Uganda","Trinidad","Vietnam"]
-bigcountries = ["Brazil"]
+bigcountries = ["Brazil", "USA", "Senegal",
+     "Kenya", "Philippines","Gabon","Ghana",
+     "SaudiArabia","BurkinaFaso","PuertoRico",
+     "Uganda","Trinidad","Vietnam"]
+#bigcountries = ["Brazil"]
 
 conts = ["eafrica", "wafrica"]
 
