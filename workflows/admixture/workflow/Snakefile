@@ -110,9 +110,9 @@ rule admix_3pop:
         blk="results/admix_tests/3pop_{chrom}_{pop1}_{pop2}_{pop3}_blocks.txt",
         sum="results/admix_tests/3pop_{chrom}_{pop1}_{pop2}_{pop3}_summary.txt"
     resources:
-        mem_mb=4000,
+        mem_mb=8000,
         disk_mb=20000,
-        h_rt='2:00:00',
+        h_rt='1:00:00',
     params:
         prefix="results/admix_tests/3pop_{chrom}_{pop1}_{pop2}_{pop3}"
     log:
