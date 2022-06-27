@@ -78,9 +78,9 @@ for(C in unique(invcands$cluster)) {
 
 write("assessing PCAs as inversions",file=stderr())
 
-invsummary <- invcands %>% 
-                    group_by(cluster) %>% 
-                    mutate(size = length(block)*blocksize)  %>% 
+invsummary <- invcands %>%
+                    group_by(cluster) %>%
+                    mutate(size = length(block)*blocksize)  %>%
                     select(c("cluster","au","bp","meandist","lowdist","size")) %>%
                     unique()
 
@@ -133,19 +133,21 @@ if(exists("pcs")) {
 
 
 write(paste("writing",nrow(invsummary),"candidates"),file=stderr())
-write.table(invsummary,file=paste(outfile,"txt",sep="."),sep="\t",quote=F,col.names=T,row.names=F)
-
+if(nrow(invsummary) > 0) {
+    write.table(invsummary,file=paste(outfile,"txt",sep="."),sep="\t",quote=F,col.names=T,row.names=F)
+} else {
+    create.file(paste(outfile,"txt",sep="."))
+}
 
 
 
 
 
 write(paste("plotting",nrow(invsummary),"PCs"),file=stderr())
-
 clustplot <- ggplot(invcands,aes(x=pos,fill=meandist,y=as.factor(cluster))) + geom_tile() + ylab("cluster")
 
 if(exists("pcs")) {
-  saveRDS(pcs,file=paste(outfile,"pcs.Rds",sep="."))
+  saveRDS(pcs,file=paste(outfile,"pcs.Rds",sep="_"))
 
   invcols <- scale_color_manual(values=c("aa"="yellow","ab"="orange","bb"="red"),na.value = "dark grey")
   ncol=round(sqrt(length(unique(pcs$inv))))
@@ -158,9 +160,8 @@ if(exists("pcs")) {
   invpca
   dev.off()
 } else {
-  saveRDS(NA,file=outpcs)
-  # png(filename = paste(outfile,"png",sep="."),width=350,height=200,units="mm",res=400)
+  create.file(paste(outfile,"pcs.Rds",sep="_"))
+  png(filename = paste(outfile,"png",sep="."),width=350,height=200,units="mm",res=400)
   grid.arrange(clustplot, grid.rect(gp=gpar(col="white")), ncol=2)
-  # grid.arrange(distplot,  grid.rect(gp=gpar(col="white")), ncol=2)
-  # dev.off()
+  dev.off()
 }
