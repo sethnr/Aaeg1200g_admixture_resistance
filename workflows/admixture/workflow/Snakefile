@@ -72,7 +72,7 @@ rule merge_eigenfiles:
         geno=expand("results/admix_eigen/eigen_{chrom}.geno",chrom=CHROMS),
         snp=expand("results/admix_eigen/eigen_{chrom}.snp",chrom=CHROMS),
         ind="results/admix_eigen/eigen_1.ind"
-    ouput:
+    output:
         geno="results/admix_eigen/eigen_all.geno",
         snp="results/admix_eigen/eigen_all.snp",
         ind="results/admix_eigen/eigen_all.ind"
