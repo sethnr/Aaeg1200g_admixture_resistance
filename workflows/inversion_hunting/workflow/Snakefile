@@ -102,7 +102,7 @@ rule assess_inversion_candidates:
     resources:
         mem_mb=12000,
         disk_mb=500000,
-        h_rt='48:00:00',
+        h_rt='1:00:00',
         cpus=1
     params:
         prefix="results/lostruct_inversions/inversions_chr{chrom}_{region}"
@@ -116,7 +116,6 @@ rule assess_inversion_candidates:
             -v {input.vcf} \
             -s {input.spptable} \
             -c {wildcards.region} \
-        	-C {wildcards.chrom} \
         	2>> {log}
         """
 
