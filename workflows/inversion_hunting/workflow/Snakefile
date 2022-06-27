@@ -103,10 +103,10 @@ rule assess_inversion_candidates:
         mem_mb=12000,
         disk_mb=500000,
         h_rt='48:00:00',
-        cpus=4
+        cpus=1
     params:
         prefix="results/lostruct_inversions/inversions_chr{chrom}_{region}"
-    threads: 4
+    threads: 1
     log:
         log="logs/lostruct_inversions/inversions-chr{chrom}_{region}.log",
     shell:
