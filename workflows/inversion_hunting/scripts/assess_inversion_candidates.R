@@ -132,15 +132,15 @@ if(exists("pcs")) {
 }
 
 
+
+
+
 write(paste("writing",nrow(invsummary),"candidates"),file=stderr())
 if(nrow(invsummary) > 0) {
     write.table(invsummary,file=paste(outfile,"txt",sep="."),sep="\t",quote=F,col.names=T,row.names=F)
 } else {
-    create.file(paste(outfile,"txt",sep="."))
+    file.create(paste(outfile,"txt",sep="."))
 }
-
-
-
 
 
 write(paste("plotting",nrow(invsummary),"PCs"),file=stderr())
@@ -160,7 +160,7 @@ if(exists("pcs")) {
   invpca
   dev.off()
 } else {
-  create.file(paste(outfile,"pcs.Rds",sep="_"))
+  file.create(paste(outfile,"pcs.Rds",sep="_"))
   png(filename = paste(outfile,"png",sep="."),width=350,height=200,units="mm",res=400)
   grid.arrange(clustplot, grid.rect(gp=gpar(col="white")), ncol=2)
   dev.off()

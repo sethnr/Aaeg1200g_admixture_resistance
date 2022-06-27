@@ -41,7 +41,7 @@ vcf_positions <- function (file, regions)
 }
 
 vcf_genotypes <- function (file, regions, samples) {
-  
+
   write(paste("bcftools query -f '[ %GT]\\n'",
               "-r",regions,
               "-s",shQuote(paste(samples, collapse = ",")),
@@ -81,15 +81,15 @@ write("loading candidate regions",file=stderr())
   invass <- read.table(assessfile,header=T)
   goodinvs <- invass$cluster[invass$valid & invass$lowdist]
   write(paste(" ",length(goodinvs),"valid candidates"),file=stderr())
-  
+
   invcands <- subset(invcands,invcands$cluster %in% goodinvs)
   write(paste(" ",nrow(invcands),"valid blocks"),file=stderr())
 
   invcands$chromname <- chromname[invcands$chrom]
   invcands$end <- invcands$pos
   invcands$start <- invcands$end-blocksize
-  
-  
+
+
 allaims <- data.frame(chrom=character(),
                       pos=numeric(),
                       i=numeric(),
@@ -108,14 +108,14 @@ for(C in unique(invcands$cluster)) {
    #                   invcands$end[invcands$cluster==C],
    #                   sep="",collapse=",")
     #get SNPs in inverted region
-    
+
     invcands[invcands$cluster==C,c("chromname","start","end")]
 
     write("  get SNPs",stderr())
     invsnps <- vcf_query(vcffile,
                          samples=csamples,
                          regions=invcands[invcands$cluster==C,c("chromname","start","end")])
-    
+
     write("  get posns",stderr())
     posns <- vcf_positions(vcffile,invcands[invcands$cluster==C,c("chromname","start","end")])
 
@@ -159,7 +159,7 @@ for(C in unique(invcands$cluster)) {
 for(C in unique(invcands$cluster)) {
     chr = invcands[invcands$cluster==C,"chrom"][1]
     chrname = chromname[chr]
-    
+
 
 
    #get calculated aim posns for this inversion
@@ -223,5 +223,5 @@ for(C in unique(invcands$cluster)) {
 if(exists("allinvsnps")) {
   write.table(allinvsnps,outtxt,quote=F,row.names=F)
 } else {
-  create.file(outtxt)
+  file.create(outtxt)
 }
