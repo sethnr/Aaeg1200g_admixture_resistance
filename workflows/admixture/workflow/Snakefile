@@ -67,14 +67,38 @@ rule make_eigenfiles:
               -M country -o {params.prefix}
         """
 
+rule merge_eigenfiles:
+    input:
+        geno=expand("results/admix_eigen/eigen_{chrom}.geno",chrom=CHROMS),
+        snp=expand("results/admix_eigen/eigen_{chrom}.snp",chrom=CHROMS),
+        ind="results/admix_eigen/eigen_1.ind"
+    ouput:
+        geno="results/admix_eigen/eigen_all.geno",
+        snp="results/admix_eigen/eigen_all.snp",
+        ind="results/admix_eigen/eigen_all.ind"
+    resources:
+        mem_mb=4000,
+        disk_mb=20000,
+        h_rt='1:00:00',
+    log:
+        "logs/admix_eigen/eigen_merge.log",
+    shell:
+        """
+        cat {input.geno} > {output.geno}
+        cat {input.snp} > {output.snp}
+        cat {input.ind} > {output.ind}
+        """
+
+
+
 rule admix_alder:
     input:
-        geno="results/admix_eigen/eigen_{chrom}.geno",
-        snp="results/admix_eigen/eigen_{chrom}.snp",
-        ind="results/admix_eigen/eigen_{chrom}.ind"
+        geno="results/admix_eigen/eigen_all.geno",
+        snp="results/admix_eigen/eigen_all.snp",
+        ind="results/admix_eigen/eigen_all.ind"
     output:
-        sum="results/admix_tests/alder_{chrom}_{pop1}_{pop2}_{pop3}_summary.txt",
-        raw="results/admix_tests/alder_{chrom}_{pop1}_{pop2}_{pop3}_raw.txt"
+        sum="results/admix_tests/alder_{pop1}_{pop2}_{pop3}_summary.txt",
+        raw="results/admix_tests/alder_{pop1}_{pop2}_{pop3}_raw.txt"
     resources:
         mem_mb=4000,
         disk_mb=20000,
@@ -85,7 +109,7 @@ rule admix_alder:
         #chromid=lambda wildcards: get_chrom_id(wildcards),
         file="results/admix_tests/alder_{pop1}_{pop2}_{pop3}.params"
     log:
-        "logs/admix_alder/alder_{chrom}_{pop1}_{pop2}_{pop3}.log",
+        "logs/admix_alder/alder_{pop1}_{pop2}_{pop3}.log",
     shell:
         """
         echo genotypename: {input.geno} >./{params.file}
