@@ -128,7 +128,8 @@ rule get_aims:
       input:
           vcf=lambda wildcards: get_remote_vcf(wildcards),
           tbi=lambda wildcards: get_remote_vcf_tbi(wildcards),
-          invs="results/lostruct_inversions/inversions_chr{chrom}_{region}.txt",
+          invs="results/lostruct_inversion_candidates/regions_chr{chrom}_{region}.txt",
+          assess="results/lostruct_inversions/inversions_chr{chrom}_{region}.txt",
           pcs="results/lostruct_inversions/inversions_chr{chrom}_{region}_pcs.Rds",
           spptable=config["spptable"]
       output:
@@ -140,10 +141,11 @@ rule get_aims:
           log="logs/lostruct_aims/get_aims_chr{chrom}_{region}.log",
       shell:
           """Rscript scripts/find_inversion_aims.R \
+                -i {input.invs} \
+                -a {input.assess} \
                 -v {input.vcf} \
                 -c {wildcards.region} \
                 -s {input.spptable} \
-                -i {input.invs} \
                 -p {input.pcs} \
                 -o {output.txt}\
             2> {log}
