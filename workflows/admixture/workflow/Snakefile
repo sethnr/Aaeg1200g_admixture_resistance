@@ -121,7 +121,7 @@ rule admix_alder:
         echo \n                         >>./{params.file}
         echo num_threads:  {threads} >>./{params.file}
 
-	    alder -p {params.file} > {output.sum}
+	    alder -p {params.file} | tee {log} > {output.sum}
         """
 
 rule admix_3pop:
