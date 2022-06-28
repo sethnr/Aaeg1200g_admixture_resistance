@@ -122,6 +122,8 @@ rule admix_alder:
         echo raw_outname:  {output.raw} >>./{params.file}
         echo \n                         >>./{params.file}
         echo num_threads:  {threads} >>./{params.file}
+        echo mindis:       0.005 >>./{params.file}
+        echo jackknife:    NO >>./{params.file}
 
 	    alder -p {params.file} | tee {log} > {output.sum}
         """
@@ -165,7 +167,7 @@ rule cat_alder:
         "logs/admix_tests/alder_all.log"
     shell:
         """
-        cat {input.sums} > {output}
+        cat {input.sums} | grep DATA | sort -ur > {output}
         """
 
 
