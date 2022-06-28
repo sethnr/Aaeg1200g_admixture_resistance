@@ -119,7 +119,7 @@ rule admix_alder:
         echo indivname:    {input.ind} >>./{params.file}
         echo admixpop:     {wildcards.pop3} >>./{params.file}
         echo refpops:      {wildcards.pop1}\;{wildcards.pop2} >>./{params.file}
-        echo raw_outname:  {output.sum} >>./{params.file}
+        echo raw_outname:  {output.raw} >>./{params.file}
         echo \n                         >>./{params.file}
         echo num_threads:  {threads} >>./{params.file}
 
