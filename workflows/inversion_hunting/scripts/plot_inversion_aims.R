@@ -53,7 +53,7 @@ for(invname in allinvnames) {
     invnamesafe <- paste("X",gsub("\\D",".",invname,perl=T),sep="")
     invsnps <- subset(allinvsnps,inv==invname)
     
-    meansnp <- apply(invsnps[,samples],2,FUN=function(x) {mean(na.omit(x))})
+    meansnp <- apply(invsnps,2,FUN=function(x) {mean(na.omit(x))})
     
     cntinvorder <- metatab$sample[order(metatab$contgroup,metatab$region,metatab$country,meansnp[metatab$sample])]
     cntorder <- unique(metatab$country[order(metatab$contgroup,metatab$region)])
