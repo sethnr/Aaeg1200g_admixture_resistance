@@ -38,8 +38,9 @@ outdists <- paste(outprefix,"dists.png",sep="_")
 write(file.size(aimsfile),stderr())
 
 if(file.size(aimsfile)==0L) {
-  file.create(outpng)
-  write(paste("no aims in file",aimsfile,"\n","writing empty files for",outpng),stderr())
+  file.create(outaims)
+  file.create(outdists)
+  write(paste("no aims in file",aimsfile,"\n","writing empty files for",outaims,outdists),stderr())
   quit("no",0)
 }
 
