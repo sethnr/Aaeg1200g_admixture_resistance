@@ -81,6 +81,7 @@ for(invname in unique(invblocks$inv)) {
   
   #get SNPs for inversion, remove duplicates, re-index
   invsnps <- subset(aims,inv == invname)
+  write(nrow(invsnps),stderr())
   meansnp <- apply(invsnps[,samples],2,FUN=function(x) {mean(na.omit(x))})
   
   cntinvorder <- metatab$sample[order(metatab$contgroup,metatab$region,metatab$country,meansnp[metatab$sample])]
