@@ -131,7 +131,7 @@ aims <- aims[order(aims$pos),]
 for(invname in names(newblocks)) {
   aims$i[aims$inv %in% compinvids] <- c(1:sum(aims$inv %in% compinvids))
 }
-write.table(aims,outaims,col.names=T,quote=F,row.names=F)
+write.table(aims,outaims,col.names=T,quote=F,row.names=F,sep="\t")
 
 
 #write blocks file
@@ -145,4 +145,7 @@ for(invname in names(newblocks)) {
 }
 chrom <- as.numeric(as.data.frame(strsplit(block,":"))[1,])
 posn <- as.numeric(as.data.frame(strsplit(block,":"))[2,])
-write.table(data.frame("inv"=inv,"block"=block,"chrom"=chrom,pos=posn),outblocks,col.names=T,quote=F,row.names=F)
+write.table(data.frame("inv"=inv,"block"=block,"chrom"=chrom,pos=posn),
+            outblocks,col.names=T,quote=F,row.names=F,sep="\t")
+
+
