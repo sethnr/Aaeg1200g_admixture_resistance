@@ -74,9 +74,12 @@ invplot <- ggplot(invblocks,aes(x=pos,y=as.factor(inv))) + geom_tile(height=0.9)
   scale_x_continuous(limits=c(0,chromlen[chrom]),expand = c(0,0,0,0)) + 
   theme(axis.title=element_blank(),axis.text.y=element_blank())
 
+write("making aim plots",stderr())
+
 aimplots=list()
 for(invname in unique(invblocks$inv)) {
   invnamesafe <- paste("X",gsub("\\D",".",invname,perl=T),sep="")
+  write(invname,stderr())
   compinvids <- as.numeric(strsplit(invname,"/")[[1]])
   
   #get SNPs for inversion, remove duplicates, re-index

@@ -33,7 +33,7 @@ outprefix <- opt$out
 
 outaims <- paste(outprefix,"aims.txt",sep="_")
 outblocks <- paste(outprefix,"blocks.txt",sep="_")
-outpng <- paste(outprefix,"png",sep=".")
+#outpng <- paste(outprefix,"png",sep=".")
 
 #blocksize<-5e05
 # chromname <- c("NC_035107.1","NC_035108.1","NC_035109.1")
@@ -43,10 +43,9 @@ outpng <- paste(outprefix,"png",sep=".")
 write(file.size(aimsfile),stderr())
 
 if(file.size(aimsfile)==0L) {
-  file.create(outpng)
   file.create(outaims)
   file.create(outblocks)
-  write(paste("no aims in file",aimsfile,"\n","writing empty files for",outaims,outblocks,outpng),stderr())
+  write(paste("no aims in file",aimsfile,"\n","writing empty files for",outaims,outblocks),stderr())
   quit("no",0)
 }
 
