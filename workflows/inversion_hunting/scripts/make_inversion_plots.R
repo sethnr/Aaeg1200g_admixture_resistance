@@ -128,6 +128,7 @@ for(invname in unique(invblocks$inv)) {
 #   facet_grid(cncode ~ inv,scale="free",space="free")
 # aimplotC
 
+write(length(aimplots),stderr())
 aimplot <- do.call("arrangeGrob", c(aimplots, nrow=1))
 
 png(outaims,res=400,width=400,height=200,units='mm')
