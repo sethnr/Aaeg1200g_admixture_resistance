@@ -81,7 +81,6 @@ for(invname in unique(invblocks$inv)) {
   
   #get SNPs for inversion, remove duplicates, re-index
   invsnps <- subset(aims,inv == invname)
-  write(nrow(invsnps),stderr())
   meansnp <- apply(invsnps[,samples],2,FUN=function(x) {mean(na.omit(x))})
   
   cntinvorder <- metatab$sample[order(metatab$contgroup,metatab$region,metatab$country,meansnp[metatab$sample])]
@@ -94,16 +93,28 @@ for(invname in unique(invblocks$inv)) {
   aimsM$cncode <- aimsM$country
   levels(aimsM$cncode) <- substr(levels(aimsM$country),0,3)
   
-  aimplot <- ggplot(aimsM,aes(x=i,y=as.numeric(sample),fill=as.factor(value))) + geom_raster() + 
-    ylab("samples") + xlab("SNPs")+ theme(legend.position="none")+
-    scale_y_continuous(expand = c(0,0)) + scale_x_continuous(expand = c(0,0)) +
-    scale_fill_manual(values=c("0"="blue","1"="purple","2"="red")) +
-    facet_grid("cncode ~ .",scale="free_y",space="free_y") +
-    ggtitle(paste(invname,"aims","(",nrow(invsnps),")"))+
-    theme(panel.spacing = unit(0.2, "mm"),
-          axis.text.y=element_blank(),
-          axis.title.y=element_blank(),
-          axis.ticks.y=element_blank())
+  if(nrow(invsnps)>0) {
+    aimplot <- ggplot(aimsM,aes(x=i,y=as.numeric(sample),fill=as.factor(value))) + geom_raster() + 
+      ylab("samples") + xlab("SNPs")+ theme(legend.position="none")+
+      scale_y_continuous(expand = c(0,0)) + scale_x_continuous(expand = c(0,0)) +
+      scale_fill_manual(values=c("0"="blue","1"="purple","2"="red")) +
+      facet_grid("cncode ~ .",scale="free_y",space="free_y") +
+      ggtitle(paste(invname,"aims","(",nrow(invsnps),")"))+
+      theme(panel.spacing = unit(0.2, "mm"),
+            axis.text.y=element_blank(),
+            axis.title.y=element_blank(),
+            axis.ticks.y=element_blank())
+  } else {
+    aimplot <- ggplot(aimsM,aes(x=i,y=as.numeric(sample),fill=as.factor(value))) + geom_raster() + 
+      ylab("samples") + xlab("SNPs")+ theme(legend.position="none")+
+      scale_y_continuous(expand = c(0,0)) + scale_x_continuous(expand = c(0,0)) +
+      scale_fill_manual(values=c("0"="blue","1"="purple","2"="red")) +
+      ggtitle(paste(invname,"aims","(",nrow(invsnps),")"))+
+      theme(panel.spacing = unit(0.2, "mm"),
+            axis.text.y=element_blank(),
+            axis.title.y=element_blank(),
+            axis.ticks.y=element_blank())
+  }
   aimplots[[invnamesafe]] <- aimplot
   
   
