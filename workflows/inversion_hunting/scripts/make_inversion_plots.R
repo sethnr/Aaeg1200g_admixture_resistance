@@ -61,7 +61,7 @@ blocksize<-5e05
 #######
 
 
-invblocks <- read.table(blockfile,header=T)
+invblocks <- read.table(blockfile,header=T,colClasses = c("character","character","numeric","numeric"))
 invblocks <- invblocks[order(invblocks$chrom,invblocks$pos),]
 
 chrom <- unique(invblocks$chrom)[[1]]
