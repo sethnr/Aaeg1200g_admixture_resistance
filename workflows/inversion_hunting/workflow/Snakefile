@@ -15,6 +15,7 @@ bigcountries = ["Brazil", "USA", "Senegal",
      "SaudiArabia","BurkinaFaso","PuertoRico",
      "Uganda","Trinidad","Vietnam"]
 #bigcountries = ["Brazil"]
+REGIONS=bigcountries
 
 conts = ["eafrica", "wafrica"]
 
@@ -224,6 +225,40 @@ rule make_inversion_plots:
           -o {params.prefix}
         """
 
+
+#merge inversions within sample / pop by position
+rule merge_invs_global:
+    input:
+        invs=expand("results/lostruct_merge/invs_chr{{chrom}}_{region}_blocks.txt",region=REGIONS),
+        aims=expand("results/lostruct_merge/invs_chr{{chrom}}_{region}_aims.txt",region=REGIONS),
+        meta=config["spptable"]
+    output:
+        invs="results/lostruct_merge_chr/invs_chr{chrom}.txt",
+        png="results/lostruct_merge_chr/invs_chr{chrom}.png"
+  	#aimspic="results/lostruct_merge/aims_chr{chrom}_{region}.png",
+    params:
+        prefix="results/lostruct_merge_chr/invs_ldcf_chr{chrom}",
+        indir="results/lostruct_merge/",
+        minr2=0.5
+    resources:
+        mem_mb=1000,
+        disk_mb=2000,
+    log:
+        "logs/lostruct_merge/invs_chr{chrom}.log",
+    shell:
+        """
+        Rscript scripts/merge_inversions_global.R \
+          -d {params.indir} \
+          -c {wildcards.chrom} \
+          -o {params.prefix} >> {log}
+
+        Rscript scripts/plot_cluster_aims.R \
+            -s {input.meta} \
+            -i {params.prefix}_aims.txt \
+            -i {params.prefix}_blocks.txt \
+            -o {params.prefix}_aims.png
+
+        """
 
 
 ###### make inversion plots ######

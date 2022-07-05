@@ -1,0 +1,32 @@
+Rscript merge_inversion_calls.R \
+  -i data/lostruct_inversion_candidates/regions_chr1_Kenya.txt \
+  -a data/lostruct_inversions/inversions_chr1_Kenya.txt \
+  -m resources/meta_Aaeg1kg_spp.txt \
+  -A data/lostruct_aims/aims_chr1_Kenya.txt \
+  -o test_merged_chr1_kenya
+
+Rscript make_inversion_plots.R \
+  -i test_merged_chr1_kenya_blocks.txt \
+  -d data/lostruct_run/lostruct_chr1_Kenya.txt \
+  -m resources/meta_Aaeg1kg_spp.txt \
+  -a test_merged_chr1_kenya_aims.txt \
+  -o test_merged_chr1_kenya_plot
+
+
+#cluster merged calls by LD
+
+Rscript merge_inversions_global.R \
+  -d data/lostruct_merge   -c 1 \
+  -o invs_ldcf_chr1
+  
+Rscript plot_inversion_aims.R \
+  -s resources/meta_Aaeg1kg_spp.txt \
+  -i invs_ldcf_chr1_aims.txt \
+  -o invs_ldcf_chr1_aims.png
+
+Rscript plot_cluster_aims.R \
+  -i invs_ldcf_chr1_r0.25_aims.txt \
+  -b invs_ldcf_chr1_r0.25_blocks.txt \
+  -s resources/meta_Aaeg1kg_spp.txt \
+  -o invs_ldcf_chr1_r0.25_aims.png
+
