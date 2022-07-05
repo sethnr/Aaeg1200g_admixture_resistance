@@ -1,0 +1,13 @@
+DATA:	test status	p-value	test pop	ref A	ref B	2-ref z-score	1-ref z-score A	1-ref z-score B	max decay diff %	2-ref decay	2-ref amp_exp	1-ref decay A	1-ref amp_exp A	1-ref decay B	1-ref amp_exp B
+DATA:	failure (warning: decay rates inconsistent)	3e-05	Kenya	Philippines	Gabon	4.17	4.37	0.62	135%	13.51 +/- 3.24	0.00005526 +/- 0.00000798	14.92 +/- 3.41	0.00004195 +/- 0.00000358	69.68 +/- 48.88	0.00001133 +/- 0.00001820
+DATA:	failure (warning: decay rates inconsistent)	0.97	Philippines	Senegal	Kenya	0.04	0.00	0.00	58%	9.31 +/- 248.84	0.00000102 +/- 0.00002060	5.13 +/- inf	0.00002141 +/- inf	5.75 +/- inf	0.00001723 +/- inf
+DATA:	failure (warning: decay rates inconsistent)	0.97	Philippines	Gabon	Kenya	0.04	0.00	0.00	36%	7.29 +/- 171.29	0.00000105 +/- 0.00001038	5.09 +/- inf	0.00002189 +/- inf	5.75 +/- inf	0.00001723 +/- inf
+DATA:	failure (warning: decay rates inconsistent)	0.72	Senegal	Kenya	Gabon	0.36	0.40	1.64	49%	93.74 +/- 112.22	0.00001192 +/- 0.00003283	85.72 +/- 120.65	0.00000892 +/- 0.00002210	56.62 +/- 29.02	0.00000101 +/- 0.00000061
+DATA:	failure (warning: decay rates inconsistent)	0.55	Gabon	Senegal	Kenya	0.60	1.74	0.37	138%	156.30 +/- 131.73	0.00001197 +/- 0.00001997	28.46 +/- 16.33	0.00000095 +/- 0.00000017	116.81 +/- 122.18	0.00000817 +/- 0.00002228
+DATA:	failure (warning: decay rates inconsistent)	0.034	Senegal	Kenya	Philippines	2.11	0.40	2.74	174%	6.04 +/- 2.86	0.00001107 +/- 0.00000235	85.72 +/- 120.65	0.00000892 +/- 0.00002210	7.61 +/- 2.77	0.00001680 +/- 0.00000325
+DATA:	failure (warning: decay rates inconsistent)	0.015	Senegal	Philippines	Gabon	2.43	2.74	1.64	153%	9.11 +/- 3.75	0.00001890 +/- 0.00000396	7.61 +/- 2.77	0.00001680 +/- 0.00000325	56.62 +/- 29.02	0.00000101 +/- 0.00000061
+DATA:	failure (warning: decay rates inconsistent)	0.0072	Gabon	Senegal	Philippines	2.69	1.74	2.34	96%	9.98 +/- 0.93	0.00000854 +/- 0.00000318	28.46 +/- 16.33	0.00000095 +/- 0.00000017	10.97 +/- 3.08	0.00000929 +/- 0.00000398
+DATA:	failure (warning: decay rates inconsistent)	0.0009	Gabon	Kenya	Philippines	3.32	0.37	2.34	175%	7.67 +/- 2.25	0.00000636 +/- 0.00000192	116.81 +/- 122.18	0.00000817 +/- 0.00002228	10.97 +/- 3.08	0.00000929 +/- 0.00000398
+DATA:	failure (warning: decay rates inconsistent)	0.00024	Kenya	Philippines	Senegal	3.67	4.37	0.65	145%	13.59 +/- 3.70	0.00005294 +/- 0.00000698	14.92 +/- 3.41	0.00004195 +/- 0.00000358	86.06 +/- 82.50	0.00001160 +/- 0.00001787
+DATA:	failure	7.4e-07	Kenya	Gabon	Senegal	4.95	0.62	0.65	21%	83.25 +/- 11.35	0.00000080 +/- 0.00000016	69.68 +/- 48.88	0.00001133 +/- 0.00001820	86.06 +/- 82.50	0.00001160 +/- 0.00001787
+DATA:	failure	0.69	Philippines	Gabon	Senegal	0.40	0.00	0.00	16%	4.38 +/- 10.83	0.00000001 +/- 0.00000000	5.09 +/- inf	0.00002189 +/- inf	5.13 +/- inf	0.00002141 +/- inf
