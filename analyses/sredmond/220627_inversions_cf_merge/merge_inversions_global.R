@@ -53,6 +53,8 @@ allblocks$id <- paste(allblocks$chrom,allblocks$region,allblocks$inv,sep="_")
 csizes <- as.data.frame(allblocks %>% group_by(id) %>% summarise("size"=n(),"mid"=mean(pos)))
 cids <- csizes[order(csizes[,"mid"],decreasing = F),1]
 
+chromlen <- c(310827022,474425716,409777670)
+
 #####
 # get and cat aims
 ######
@@ -191,7 +193,8 @@ allblocks$id <- factor(allblocks$id,levels=cids,ordered=T)
 blockclustplot <- ggplot(allblocks,aes(x=pos,y=id,fill=as.factor(cluster))) + 
   geom_raster() + scale_y_discrete(position="right") +
   theme(axis.title=element_blank(),legend.position="bottom",legend.title.align = 1) +
-  scale_fill_manual(values = clustcols,name=(paste("cluster\nR^2>",minr2)))
+  scale_fill_manual(values = clustcols,name=(paste("cluster\nR^2>",minr2))) +
+  xlim(0,chromlen[chrom])
 
 r2plot | blockclustplot
 ggsave(paste(outprefix,".png",sep=""),dpi = 300,width=400,height=220,units="mm")

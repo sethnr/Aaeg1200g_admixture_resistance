@@ -30,6 +30,7 @@ metatab$region <- factor(metatab$region,levels=c("East Africa","West Africa","So
 countrysorttab <- unique(metatab[,c("country","contgroup","region")])
 metatab$country <- factor(metatab$country,levels=unique(metatab$country[order(metatab$region)]),ordered=T)
 
+chromlen <- c(310827022,474425716,409777670)
 
 # invcands <- read.table(invfile,header=T)
 # invcands <- subset(invcands,as.logical(valid))
@@ -126,6 +127,7 @@ blockextents <- blocks %>% group_by(cluster) %>% summarise(min=min(pos),mid=mean
 clustcols <- sample(rainbow(nrow(blockextents),s=0.6,v=0.9))
 names(clustcols) <- blockextents$cluster
 
+chrom <- blocks$chrom[1]
 
 blockclustplot <- ggplot(blocks,aes(x=pos,y=y,fill=as.factor(cluster))) + 
   geom_raster() + 
@@ -133,7 +135,10 @@ blockclustplot <- ggplot(blocks,aes(x=pos,y=y,fill=as.factor(cluster))) +
   geom_text(data=blockextents,aes(x=mid,y=y,label=cluster),inherit.aes=F) + 
   scale_fill_manual(values = clustcols)+
   scale_color_manual(values = clustcols)+
-  theme(axis.title=element_blank(),legend.position="none",legend.title.align = 1)
+  theme(axis.title=element_blank(),axis.text.y=element_blank(),axis.ticks.y=element_blank(),
+        legend.position="none",legend.title.align = 1) +
+  scale_x_continuous(limits=c(0,chromlen[chrom]),expand = c(0,0,0,0))
 
-aimplot / blockclustplot + plot_layout(heights=c(8,2))
-ggsave(outsnpspng,dpi = 300,width=400,height=300,units="mm")
+blockheight <- 0.5+(max(blocks$y)*0.25)
+aimplot / blockclustplot + plot_layout(heights=c(10-blockheight,blockheight))
+ggsave(outsnpspng,dpi = 300,width=250,height=175,units="mm")

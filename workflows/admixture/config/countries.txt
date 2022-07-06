@@ -1,5 +1,14 @@
 country
+Brazil
+USA
 Senegal
 Kenya
 Philippines
 Gabon
+Ghana
+SaudiArabia
+BurkinaFaso
+PuertoRico
+Uganda
+Trinidad
+Vietnam

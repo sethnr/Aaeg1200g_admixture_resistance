@@ -1,6 +1,5 @@
 
 library("tidyverse")
-library("lostruct")
 
 library("patchwork")
 library("gridExtra")
@@ -71,7 +70,14 @@ for(i in c(1:length(invnames))) {
   meansnpcalls <- apply(allinvsnps[allinvsnps$inv==I,samples],2,FUN=function(x) {as.integer(median(na.omit(x)))})
   callmatrix[samples,i] <- meansnpcalls
 }
-calldf <- as.data.frame(merge(callmatrix,metatab,by.x=0,by.y="sample"))
+
+
+calldf <- as.data.frame(callmatrix)
+calldf$sample <- row.names(calldf)
+
+
+
+calldf <- merge(calldf,metatab,by="sample")
 
 
 getCallFreqs <- function(x) {
@@ -89,7 +95,7 @@ getCallFreqs <- function(x) {
 
 
 
-calltable <- data.frame(inv=character(),
+freqtable <- data.frame(inv=character(),
            country=character(),
            pop=character(),
            aa=numeric(),
@@ -115,9 +121,9 @@ for(I in as.character(invnames)) {
       Pval <- 1
     }
     
-    i = nrow(calltable)+1
-    calltable[i,c("inv","country","pop")] <- c(I,C,"all")
-    calltable[i,c("aa","ab","bb","n","maf","P","HWE")] <- c(cfreqs[["aa"]],
+    i = nrow(freqtable)+1
+    freqtable[i,c("inv","country","pop")] <- c(I,C,"all")
+    freqtable[i,c("aa","ab","bb","n","maf","P","HWE")] <- c(cfreqs[["aa"]],
                                                cfreqs[["ab"]],
                                                cfreqs[["bb"]],
                                                cfreqs[["n"]],
@@ -137,9 +143,9 @@ for(I in as.character(invnames)) {
         Pval <- 1
       }
       
-      i = nrow(calltable)+1
-      calltable[i,c("inv","country","pop")] <- c(I,C,P)
-      calltable[i,c("aa","ab","bb","n","maf","P","HWE")] <- c(cfreqs[["aa"]],
+      i = nrow(freqtable)+1
+      freqtable[i,c("inv","country","pop")] <- c(I,C,P)
+      freqtable[i,c("aa","ab","bb","n","maf","P","HWE")] <- c(cfreqs[["aa"]],
                                                               cfreqs[["ab"]],
                                                               cfreqs[["bb"]],
                                                               cfreqs[["n"]],
@@ -151,8 +157,11 @@ for(I in as.character(invnames)) {
   }
 }
 
-write.table(subset(calltable,HWE==0),stderr())
-write.table(calltable,paste(outprefix,"inv_freqs.txt",sep="_"),sep="\t",quote=F,row.names=F,col.names=T)
+write.table(subset(freqtable,HWE==0),stderr())
+write.table(freqtable,paste(outprefix,"inv_freqs.txt",sep="_"),sep="\t",quote=F,row.names=F,col.names=T)
+
+write.table(calldf,paste(outprefix,"inv_calls.txt",sep="_"),
+            sep="\t",quote=F,row.names=F,col.names=T)
 
 
 

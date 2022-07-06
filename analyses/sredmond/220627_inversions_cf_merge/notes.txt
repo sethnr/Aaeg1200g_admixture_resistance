@@ -30,3 +30,21 @@ Rscript plot_cluster_aims.R \
   -s resources/meta_Aaeg1kg_spp.txt \
   -o invs_ldcf_chr1_r0.25_aims.png
 
+for C in 1 2 3 ; do Rscript plot_cluster_aims.R \
+  -i invs_ldcf_chr${C}_aims.txt \
+  -b invs_ldcf_chr${C}_blocks.txt \
+  -s resources/meta_Aaeg1kg_spp.txt \
+  -o invs_ldcf_chr${C}_aims.png; done
+
+
+
+for C in 1 2 3 ; do
+    Rscript call_cluster_invs.R \
+    -i invs_ldcf_chr${C}_aims.txt \
+    -m resources/meta_Aaeg1kg_spp.txt \
+    -o invs_ldcf_chr${C}
+
+    Rscript inversion_coocurrence.R \
+    -i invs_ldcf_chr${C}_inv_calls.txt \
+    -o invs_ldcf_chr${C};
+done
