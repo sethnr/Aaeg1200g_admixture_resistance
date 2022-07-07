@@ -1,0 +1,1022 @@
+sample	1	2	3	4	5	pop	spp	region	contgroup	country
+Debug_010_aegypti_Bangkok_Thailand_01	0	0	0	2	0	Bangkok	AAA	Asia	Asia	Thailand
+Debug_010_aegypti_Bangkok_Thailand_02	0	0	0	2	0	Bangkok	AAA	Asia	Asia	Thailand
+Debug_010_aegypti_Bangkok_Thailand_03	0	0	0	2	0	Bangkok	AAA	Asia	Asia	Thailand
+Debug_010_aegypti_Bangkok_Thailand_05	0	0	0	2	0	Bangkok	AAA	Asia	Asia	Thailand
+Debug_010_aegypti_Bangkok_Thailand_06	0	0	0	2	0	Bangkok	AAA	Asia	Asia	Thailand
+Debug_010_aegypti_Bangkok_Thailand_07	0	0	0	2	0	Bangkok	AAA	Asia	Asia	Thailand
+Debug_010_aegypti_Bangkok_Thailand_08	0	0	0	2	0	Bangkok	AAA	Asia	Asia	Thailand
+Debug_010_aegypti_Bangkok_Thailand_09	0	0	0	2	0	Bangkok	AAA	Asia	Asia	Thailand
+Debug_010_aegypti_Bangkok_Thailand_10	0	0	0	2	0	Bangkok	AAA	Asia	Asia	Thailand
+Debug_010_aegypti_Bangkok_Thailand_11	0	0	0	2	0	Bangkok	AAA	Asia	Asia	Thailand
+Debug_010_aegypti_Bangkok_Thailand_13	0	0	0	2	0	Bangkok	AAA	Asia	Asia	Thailand
+Debug_010_aegypti_Bangkok_Thailand_14	0	0	0	2	0	Bangkok	AAA	Asia	Asia	Thailand
+Debug_010_aegypti_Bangkok_Thailand_15	0	0	0	2	0	Bangkok	AAA	Asia	Asia	Thailand
+Debug_010_aegypti_Bangkok_Thailand_16	0	0	0	2	0	Bangkok	AAA	Asia	Asia	Thailand
+Debug_010_aegypti_Bangkok_Thailand_17	0	0	0	2	0	Bangkok	AAA	Asia	Asia	Thailand
+Debug_010_aegypti_Bangkok_Thailand_18	0	0	0	2	0	Bangkok	AAA	Asia	Asia	Thailand
+Debug_010_aegypti_Bangkok_Thailand_19	0	0	0	2	0	Bangkok	AAA	Asia	Asia	Thailand
+Debug_010_aegypti_Bangkok_Thailand_20	0	0	0	2	0	Bangkok	AAA	Asia	Asia	Thailand
+Debug_aegypti_Clovis_USA_F_1	0	0	0	2	0	Clovis	AAA	North America	Americas	USA
+Debug_aegypti_Clovis_USA_F_10	0	1	0	1	0	Clovis	AAA	North America	Americas	USA
+Debug_aegypti_Clovis_USA_F_11	0	2	0	1	0	Clovis	AAA	North America	Americas	USA
+Debug_aegypti_Clovis_USA_F_12	0	0	0	2	0	Clovis	AAA	North America	Americas	USA
+Debug_aegypti_Clovis_USA_F_13	0	1	0	2	0	Clovis	AAA	North America	Americas	USA
+Debug_aegypti_Clovis_USA_F_16	0	0	0	1	0	Clovis	AAA	North America	Americas	USA
+Debug_aegypti_Clovis_USA_F_17	0	0	0	2	0	Clovis	AAA	North America	Americas	USA
+Debug_aegypti_Clovis_USA_F_18	0	0	0	2	0	Clovis	AAA	North America	Americas	USA
+Debug_aegypti_Clovis_USA_F_2	0	1	0	1	0	Clovis	AAA	North America	Americas	USA
+Debug_aegypti_Clovis_USA_F_3	0	0	0	2	0	Clovis	AAA	North America	Americas	USA
+Debug_aegypti_Clovis_USA_F_4	0	1	0	2	0	Clovis	AAA	North America	Americas	USA
+Debug_aegypti_Clovis_USA_F_5	0	2	0	1	0	Clovis	AAA	North America	Americas	USA
+Debug_aegypti_Clovis_USA_F_6	0	1	0	1	0	Clovis	AAA	North America	Americas	USA
+Debug_aegypti_Clovis_USA_F_7	0	0	0	0	0	Clovis	AAA	North America	Americas	USA
+Debug_aegypti_Clovis_USA_F_8	0	1	0	2	0	Clovis	AAA	North America	Americas	USA
+Debug_aegypti_Clovis_USA_F_9	0	0	0	2	0	Clovis	AAA	North America	Americas	USA
+Debug010_aegypti_Cuanda_Angola_01	0	1	0	2	0	Cuanda	AAF	West Africa	Wafrica	Angola
+Debug010_aegypti_Cuanda_Angola_02	0	0	1	1	0	Cuanda	AAF	West Africa	Wafrica	Angola
+Debug010_aegypti_Cuanda_Angola_03	0	0	1	1	0	Cuanda	AAF	West Africa	Wafrica	Angola
+Debug010_aegypti_Cuanda_Angola_04	0	0	1	1	0	Cuanda	AAF	West Africa	Wafrica	Angola
+Debug010_aegypti_Cuanda_Angola_05	0	1	0	2	0	Cuanda	AAF	West Africa	Wafrica	Angola
+Debug010_aegypti_Cuanda_Angola_06	0	0	1	1	0	Cuanda	AAF	West Africa	Wafrica	Angola
+Debug010_aegypti_Cuanda_Angola_08	0	0	0	1	0	Cuanda	AAF	West Africa	Wafrica	Angola
+Debug010_aegypti_Cuanda_Angola_10	0	2	0	2	0	Cuanda	AAF	West Africa	Wafrica	Angola
+Debug010_aegypti_Cuanda_Angola_11	0	1	0	2	0	Cuanda	AAF	West Africa	Wafrica	Angola
+Debug010_aegypti_Cuanda_Angola_14	0	0	2	1	0	Cuanda	AAF	West Africa	Wafrica	Angola
+Debug010_aegypti_Cuanda_Angola_18	0	0	0	1	0	Cuanda	AAF	West Africa	Wafrica	Angola
+Debug010_aegypti_Cuanda_Angola_19	0	0	0	1	0	Cuanda	AAF	West Africa	Wafrica	Angola
+Debug010_aegypti_Cuanda_Angola_20	0	1	1	1	0	Cuanda	AAF	West Africa	Wafrica	Angola
+Debug010_aegypti_HoChiMin_Vietnam_01	0	0	0	2	0	HoChiMin	AAA	Asia	Asia	Vietnam
+Debug010_aegypti_HoChiMin_Vietnam_02	0	0	0	2	0	HoChiMin	AAA	Asia	Asia	Vietnam
+Debug010_aegypti_HoChiMin_Vietnam_03	0	0	0	2	0	HoChiMin	AAA	Asia	Asia	Vietnam
+Debug010_aegypti_HoChiMin_Vietnam_04	0	0	0	2	0	HoChiMin	AAA	Asia	Asia	Vietnam
+Debug010_aegypti_HoChiMin_Vietnam_05	0	0	1	2	0	HoChiMin	AAA	Asia	Asia	Vietnam
+Debug010_aegypti_HoChiMin_Vietnam_06	0	0	0	2	0	HoChiMin	AAA	Asia	Asia	Vietnam
+Debug010_aegypti_HoChiMin_Vietnam_07	0	0	0	2	0	HoChiMin	AAA	Asia	Asia	Vietnam
+Debug010_aegypti_HoChiMin_Vietnam_08	0	0	0	2	0	HoChiMin	AAA	Asia	Asia	Vietnam
+Debug010_aegypti_HoChiMin_Vietnam_09	0	0	0	2	0	HoChiMin	AAA	Asia	Asia	Vietnam
+Debug010_aegypti_HoChiMin_Vietnam_10	0	0	1	2	0	HoChiMin	AAA	Asia	Asia	Vietnam
+Debug010_aegypti_HoChiMin_Vietnam_11	0	0	0	2	0	HoChiMin	AAA	Asia	Asia	Vietnam
+Debug010_aegypti_HoChiMin_Vietnam_12	0	0	0	2	0	HoChiMin	AAA	Asia	Asia	Vietnam
+Debug010_aegypti_HoChiMin_Vietnam_13	0	0	0	2	0	HoChiMin	AAA	Asia	Asia	Vietnam
+Debug010_aegypti_HoChiMin_Vietnam_14	0	0	0	2	0	HoChiMin	AAA	Asia	Asia	Vietnam
+Debug010_aegypti_HoChiMin_Vietnam_15	0	0	0	2	0	HoChiMin	AAA	Asia	Asia	Vietnam
+Debug010_aegypti_HoChiMin_Vietnam_16	0	0	0	2	0	HoChiMin	AAA	Asia	Asia	Vietnam
+Debug010_aegypti_HoChiMin_Vietnam_17	0	0	0	2	0	HoChiMin	AAA	Asia	Asia	Vietnam
+Debug010_aegypti_HoChiMin_Vietnam_18	0	0	0	2	0	HoChiMin	AAA	Asia	Asia	Vietnam
+Debug010_aegypti_HoChiMin_Vietnam_19	0	0	0	2	0	HoChiMin	AAA	Asia	Asia	Vietnam
+Debug010_aegypti_HoChiMin_Vietnam_20	0	0	0	2	0	HoChiMin	AAA	Asia	Asia	Vietnam
+Debug010_aegypti_Skukusa_South_Africa_02	0	2	2	0	0	Skukusa	AAF	East Africa	Safrica	SouthAfrica
+Debug010_aegypti_Skukusa_South_Africa_03	0	2	2	0	0	Skukusa	AAF	East Africa	Safrica	SouthAfrica
+Debug010_aegypti_Skukusa_South_Africa_04	0	2	2	0	0	Skukusa	AAF	East Africa	Safrica	SouthAfrica
+Debug010_aegypti_Skukusa_South_Africa_05	0	2	2	0	0	Skukusa	AAF	East Africa	Safrica	SouthAfrica
+Debug010_aegypti_Skukusa_South_Africa_06	0	2	2	0	0	Skukusa	AAF	East Africa	Safrica	SouthAfrica
+Debug010_aegypti_Skukusa_South_Africa_07	0	2	2	0	0	Skukusa	AAF	East Africa	Safrica	SouthAfrica
+Debug010_aegypti_Skukusa_South_Africa_10	0	2	2	0	0	Skukusa	AAF	East Africa	Safrica	SouthAfrica
+Debug010_aegypti_Skukusa_South_Africa_12	0	2	2	0	0	Skukusa	AAF	East Africa	Safrica	SouthAfrica
+Debug010_aegypti_Skukusa_South_Africa_13	0	2	2	0	0	Skukusa	AAF	East Africa	Safrica	SouthAfrica
+Debug010_aegypti_Skukusa_South_Africa_15	0	2	2	0	0	Skukusa	AAF	East Africa	Safrica	SouthAfrica
+Debug010_aegypti_Skukusa_South_Africa_16	0	2	2	0	0	Skukusa	AAF	East Africa	Safrica	SouthAfrica
+Debug010_aegypti_Tahiti_FrenchPolynesia_01	0	0	0	2	0	Tahiti	AAA	Pacific	Asia	Tahiti
+Debug010_aegypti_Tahiti_FrenchPolynesia_05	0	0	0	2	0	Tahiti	AAA	Pacific	Asia	Tahiti
+Debug010_aegypti_Tahiti_FrenchPolynesia_07	0	0	0	2	0	Tahiti	AAA	Pacific	Asia	Tahiti
+Debug010_aegypti_Tahiti_FrenchPolynesia_13	0	0	0	2	0	Tahiti	AAA	Pacific	Asia	Tahiti
+Debug010_aegypti_Tahiti_FrenchPolynesia_16	0	0	0	2	0	Tahiti	AAA	Pacific	Asia	Tahiti
+Debug010_aegypti_Tahiti_FrenchPolynesia_17	0	0	0	2	0	Tahiti	AAA	Pacific	Asia	Tahiti
+Debug010_aegypti_Tahiti_FrenchPolynesia_18	0	0	0	2	0	Tahiti	AAA	Pacific	Asia	Tahiti
+Debug010_aegypti_Tahiti_FrenchPolynesia_19	0	0	0	1	0	Tahiti	AAA	Pacific	Asia	Tahiti
+Debug010_aegypti_Tahiti_FrenchPolynesia_20	0	0	0	2	0	Tahiti	AAA	Pacific	Asia	Tahiti
+Debug011_aegypti_Arabuko_Kenya_01	0	2	1	1	0	Arabuko	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Arabuko_Kenya_02	0	1	2	0	0	Arabuko	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Arabuko_Kenya_03	0	2	2	0	0	Arabuko	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Arabuko_Kenya_04	0	1	2	1	0	Arabuko	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Arabuko_Kenya_05	0	2	0	0	0	Arabuko	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Arabuko_Kenya_06	0	1	1	0	0	Arabuko	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Arabuko_Kenya_07	0	2	1	0	0	Arabuko	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Arabuko_Kenya_08	0	2	2	0	0	Arabuko	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Arabuko_Kenya_09	0	2	2	0	0	Arabuko	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Arabuko_Kenya_10	0	2	1	0	0	Arabuko	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Arabuko_Kenya_11	0	2	1	1	0	Arabuko	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Arabuko_Kenya_12	0	2	1	1	0	Arabuko	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Arabuko_Kenya_14	0	2	1	0	0	Arabuko	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Arabuko_Kenya_15	0	1	2	0	0	Arabuko	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Arabuko_Kenya_16	0	2	2	0	0	Arabuko	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Arabuko_Kenya_17	0	2	1	0	0	Arabuko	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Arabuko_Kenya_18	0	2	1	0	0	Arabuko	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Arabuko_Kenya_19	0	2	2	0	0	Arabuko	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Ganda_Kenya_01	0	2	1	0	0	Ganda	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Ganda_Kenya_02	0	2	2	0	0	Ganda	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Ganda_Kenya_08	0	1	1	0	0	Ganda	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Ganda_Kenya_09	0	2	1	0	0	Ganda	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Ganda_Kenya_10	0	2	2	0	0	Ganda	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Ganda_Kenya_14	0	1	2	1	0	Ganda	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Ganda_Kenya_17	0	0	2	0	0	Ganda	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Ganda_Kenya_20	0	1	0	0	0	Ganda	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Kakamega_Kenya_01	0	0	0	0	0	Kakamega	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Kakamega_Kenya_02	0	1	0	0	0	Kakamega	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Kakamega_Kenya_03	1	0	0	0	1	Kakamega	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Kakamega_Kenya_04	0	1	0	0	0	Kakamega	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Kakamega_Kenya_05	0	0	0	0	0	Kakamega	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Kakamega_Kenya_06	0	0	0	0	0	Kakamega	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Kakamega_Kenya_07	0	0	0	0	0	Kakamega	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Kakamega_Kenya_08	0	1	0	0	1	Kakamega	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Kakamega_Kenya_09	0	0	0	0	1	Kakamega	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Kakamega_Kenya_10	0	0	0	0	0	Kakamega	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Kakamega_Kenya_11	0	1	0	0	0	Kakamega	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Kakamega_Kenya_13	0	1	0	0	0	Kakamega	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Kakamega_Kenya_14	0	1	0	0	1	Kakamega	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Kakamega_Kenya_15	0	1	0	0	0	Kakamega	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Kakamega_Kenya_16	0	0	0	0	1	Kakamega	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Kakamega_Kenya_17	0	1	0	0	0	Kakamega	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Kakamega_Kenya_18	0	0	0	0	0	Kakamega	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_Kakamega_Kenya_19	0	0	0	0	0	Kakamega	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_KayaBomu_Kenya_03	0	2	0	1	0	KayaBomu	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_KayaBomu_Kenya_05	0	2	0	2	0	KayaBomu	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_KayaBomu_Kenya_06	0	2	2	0	0	KayaBomu	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_KayaBomu_Kenya_07	0	2	2	0	0	KayaBomu	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_KayaBomu_Kenya_09	0	2	1	0	0	KayaBomu	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_KayaBomu_Kenya_12	0	1	1	1	0	KayaBomu	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_KayaBomu_Kenya_14	0	1	2	1	0	KayaBomu	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_KayaBomu_Kenya_15	0	0	2	0	0	KayaBomu	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_KayaBomu_Kenya_28	0	1	2	0	0	KayaBomu	AAF	East Africa	Eafrica	Kenya
+Debug011_aegypti_KayaBomu_Kenya_30	0	1	2	0	0	KayaBomu	AAF	East Africa	Eafrica	Kenya
+Debug012_aegypti_KayaBomu_Kenya_32	0	2	2	0	0	KayaBomu	AAF	East Africa	Eafrica	Kenya
+Debug012_aegypti_KayaBomu_Kenya_34	0	2	2	0	0	KayaBomu	AAF	East Africa	Eafrica	Kenya
+Debug012_aegypti_KayaBomu_Kenya_36	0	1	1	0	0	KayaBomu	AAF	East Africa	Eafrica	Kenya
+Debug012_aegypti_KayaBomu_Kenya_37	0	1	2	0	0	KayaBomu	AAF	East Africa	Eafrica	Kenya
+Debug012_aegypti_KayaBomu_Kenya_38	0	2	2	0	0	KayaBomu	AAF	East Africa	Eafrica	Kenya
+Debug012_aegypti_KayaBomu_Kenya_39	0	2	2	0	0	KayaBomu	AAF	East Africa	Eafrica	Kenya
+Debug012_aegypti_KayaBomu_Kenya_40	0	2	2	1	0	KayaBomu	AAF	East Africa	Eafrica	Kenya
+Debug012_aegypti_Kwale_Kenya_01	0	2	2	0	0	Kwale	AAF	East Africa	Eafrica	Kenya
+Debug012_aegypti_Kwale_Kenya_06	0	2	1	1	0	Kwale	AAF	East Africa	Eafrica	Kenya
+Debug012_aegypti_Kwale_Kenya_10	0	2	2	0	0	Kwale	AAF	East Africa	Eafrica	Kenya
+Debug012_aegypti_Kwale_Kenya_11	0	2	1	1	0	Kwale	AAF	East Africa	Eafrica	Kenya
+Debug012_aegypti_Kwale_Kenya_13	0	2	2	0	0	Kwale	AAF	East Africa	Eafrica	Kenya
+Debug012_aegypti_Kwale_Kenya_16	0	2	1	0	0	Kwale	AAF	East Africa	Eafrica	Kenya
+Debug012_aegypti_Kwale_Kenya_17	0	2	1	0	0	Kwale	AAF	East Africa	Eafrica	Kenya
+Debug012_aegypti_Kwale_Kenya_22	0	2	2	0	0	Kwale	AAF	East Africa	Eafrica	Kenya
+Debug012_aegypti_Kwale_Kenya_23	0	1	1	0	0	Kwale	AAF	East Africa	Eafrica	Kenya
+Debug012_aegypti_Kwale_Kenya_28	0	2	2	0	0	Kwale	AAF	East Africa	Eafrica	Kenya
+Debug012_aegypti_Kwale_Kenya_29	0	2	2	0	0	Kwale	AAF	East Africa	Eafrica	Kenya
+Debug012_aegypti_Kwale_Kenya_33	0	2	1	1	0	Kwale	AAF	East Africa	Eafrica	Kenya
+Debug012_aegypti_Kwale_Kenya_34	0	2	2	0	0	Kwale	AAF	East Africa	Eafrica	Kenya
+Debug012_aegypti_Kwale_Kenya_35	0	1	1	2	0	Kwale	AAF	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_01	0	1	2	0	0	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_02	0	2	1	1	0	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_03	0	2	1	0	0	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_04	0	2	0	1	0	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_05	0	2	1	1	0	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_08	0	2	2	0	0	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_09	0	1	1	1	0	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_12	0	2	1	0	0	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_13	0	2	1	0	0	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_16	0	2	2	0	0	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_17	0	2	1	1	0	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_20	0	2	2	1	0	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_21	0	2	1	0	0	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_25	0	2	2	0	0	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_28	0	1	1	1	0	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_29	0	2	2	1	0	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_33	0	1	1	1	0	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_ShimbaHills_Kenya_01	0	2	2	0	0	ShimbaHills	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_ShimbaHills_Kenya_02	0	2	1	0	0	ShimbaHills	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_ShimbaHills_Kenya_07	0	2	1	1	0	ShimbaHills	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_ShimbaHills_Kenya_08	0	1	2	1	0	ShimbaHills	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_ShimbaHills_Kenya_09	0	2	2	0	0	ShimbaHills	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_ShimbaHills_Kenya_12	0	2	1	0	0	ShimbaHills	ADMX	East Africa	Eafrica	Kenya
+Debug013_aegypti_Bundibugyo_Uganda_01	0	0	0	0	0	Bundibugyo	AAF	East Africa	Eafrica	Uganda
+Debug013_aegypti_Bundibugyo_Uganda_04	0	0	0	0	0	Bundibugyo	AAF	East Africa	Eafrica	Uganda
+Debug013_aegypti_Bundibugyo_Uganda_09	0	1	0	0	0	Bundibugyo	AAF	East Africa	Eafrica	Uganda
+Debug013_aegypti_Bundibugyo_Uganda_10	0	1	0	0	0	Bundibugyo	AAF	East Africa	Eafrica	Uganda
+Debug013_aegypti_Bundibugyo_Uganda_11	0	0	0	0	0	Bundibugyo	AAF	East Africa	Eafrica	Uganda
+Debug013_aegypti_Bundibugyo_Uganda_36	0	0	0	0	0	Bundibugyo	AAF	East Africa	Eafrica	Uganda
+Debug013_aegypti_Bundibugyo_Uganda_37	0	0	0	0	0	Bundibugyo	AAF	East Africa	Eafrica	Uganda
+Debug013_aegypti_Kichwamba_Uganda_01	0	0	0	0	0	Kichwamba	AAF	East Africa	Eafrica	Uganda
+Debug013_aegypti_Kichwamba_Uganda_02	0	0	0	0	1	Kichwamba	AAF	East Africa	Eafrica	Uganda
+Debug013_aegypti_Kichwamba_Uganda_03	0	0	0	0	0	Kichwamba	AAF	East Africa	Eafrica	Uganda
+Debug013_aegypti_Kichwamba_Uganda_07	0	1	0	0	0	Kichwamba	AAF	East Africa	Eafrica	Uganda
+Debug013_aegypti_Kichwamba_Uganda_09	0	1	0	0	0	Kichwamba	AAF	East Africa	Eafrica	Uganda
+Debug013_aegypti_Virhembe_Kenya_01	0	0	0	0	0	Virhembe	AAF	East Africa	Eafrica	Kenya
+Debug013_aegypti_Virhembe_Kenya_02	0	1	0	0	1	Virhembe	AAF	East Africa	Eafrica	Kenya
+Debug013_aegypti_Virhembe_Kenya_03	0	1	0	0	1	Virhembe	AAF	East Africa	Eafrica	Kenya
+Debug013_aegypti_Virhembe_Kenya_04	0	0	0	0	0	Virhembe	AAF	East Africa	Eafrica	Kenya
+Debug013_aegypti_Virhembe_Kenya_05	0	0	0	0	1	Virhembe	AAF	East Africa	Eafrica	Kenya
+Debug013_aegypti_Virhembe_Kenya_06	0	1	0	0	1	Virhembe	AAF	East Africa	Eafrica	Kenya
+Debug013_aegypti_Virhembe_Kenya_07	0	0	0	0	0	Virhembe	AAF	East Africa	Eafrica	Kenya
+Debug013_aegypti_Virhembe_Kenya_11	0	0	0	0	0	Virhembe	AAF	East Africa	Eafrica	Kenya
+Debug013_aegypti_Virhembe_Kenya_12	0	0	0	0	0	Virhembe	AAF	East Africa	Eafrica	Kenya
+Debug013_aegypti_Virhembe_Kenya_13	0	0	0	0	1	Virhembe	AAF	East Africa	Eafrica	Kenya
+Debug013_aegypti_Virhembe_Kenya_15	0	0	0	0	0	Virhembe	AAF	East Africa	Eafrica	Kenya
+Debug013_aegypti_Virhembe_Kenya_16	0	0	0	0	1	Virhembe	AAF	East Africa	Eafrica	Kenya
+Debug013_aegypti_Virhembe_Kenya_17	0	0	0	0	0	Virhembe	AAF	East Africa	Eafrica	Kenya
+Debug013_aegypti_Virhembe_Kenya_19	0	0	0	0	0	Virhembe	AAF	East Africa	Eafrica	Kenya
+Debug013_aegypti_Virhembe_Kenya_20	0	0	0	0	0	Virhembe	AAF	East Africa	Eafrica	Kenya
+Debug014_aegypti_Entebbe_Uganda_01	0	0	0	0	0	Entebbe	AAF	East Africa	Eafrica	Uganda
+Debug014_aegypti_Entebbe_Uganda_03	0	1	0	0	0	Entebbe	AAF	East Africa	Eafrica	Uganda
+Debug014_aegypti_Entebbe_Uganda_04	0	0	0	0	0	Entebbe	AAF	East Africa	Eafrica	Uganda
+Debug014_aegypti_Entebbe_Uganda_10	0	0	0	0	0	Entebbe	AAF	East Africa	Eafrica	Uganda
+Debug014_aegypti_Entebbe_Uganda_11	0	0	0	0	0	Entebbe	AAF	East Africa	Eafrica	Uganda
+Debug014_aegypti_Entebbe_Uganda_14	0	0	0	0	1	Entebbe	AAF	East Africa	Eafrica	Uganda
+Debug014_aegypti_Entebbe_Uganda_15	0	0	0	0	0	Entebbe	AAF	East Africa	Eafrica	Uganda
+Debug014_aegypti_Entebbe_Uganda_20	0	0	0	0	1	Entebbe	AAF	East Africa	Eafrica	Uganda
+Debug014_aegypti_Entebbe_Uganda_21	0	0	0	0	0	Entebbe	AAF	East Africa	Eafrica	Uganda
+Debug014_aegypti_Entebbe_Uganda_23	0	0	0	0	2	Entebbe	AAF	East Africa	Eafrica	Uganda
+Debug014_aegypti_Entebbe_Uganda_24	0	0	0	0	0	Entebbe	AAF	East Africa	Eafrica	Uganda
+Debug014_aegypti_Kichwamba_Uganda_15	0	1	0	0	0	Kichwamba	AAF	East Africa	Eafrica	Uganda
+Debug014_aegypti_Kichwamba_Uganda_17	0	0	0	0	0	Kichwamba	AAF	East Africa	Eafrica	Uganda
+Debug014_aegypti_Kichwamba_Uganda_18	0	0	0	0	0	Kichwamba	AAF	East Africa	Eafrica	Uganda
+Debug014_aegypti_Kwale_Kenya_36	0	2	2	0	0	Kwale	AAF	East Africa	Eafrica	Kenya
+Debug014_aegypti_Kwale_Kenya_37	0	1	1	1	0	Kwale	AAF	East Africa	Eafrica	Kenya
+Debug014_aegypti_Kwale_Kenya_38	0	2	2	0	0	Kwale	AAF	East Africa	Eafrica	Kenya
+Debug014_aegypti_Kwale_Kenya_39	0	1	2	0	0	Kwale	AAF	East Africa	Eafrica	Kenya
+Debug014_aegypti_Kwale_Kenya_40	0	2	1	1	0	Kwale	AAF	East Africa	Eafrica	Kenya
+Debug014_aegypti_ShimbaHills_Kenya_23	0	2	2	0	0	ShimbaHills	AAF	East Africa	Eafrica	Kenya
+Debug014_aegypti_ShimbaHills_Kenya_24	0	2	1	0	0	ShimbaHills	AAF	East Africa	Eafrica	Kenya
+Debug015_aegypti_Jacobina_Brazil_L_1	0	1	0	1	0	Jacobina	AAA	South America	Americas	Brazil
+Debug015_aegypti_Jacobina_Brazil_L_10	0	0	0	2	0	Jacobina	AAA	South America	Americas	Brazil
+Debug015_aegypti_Jacobina_Brazil_L_11	0	0	0	1	0	Jacobina	AAA	South America	Americas	Brazil
+Debug015_aegypti_Jacobina_Brazil_L_12	0	0	0	2	0	Jacobina	AAA	South America	Americas	Brazil
+Debug015_aegypti_Jacobina_Brazil_L_13	0	0	0	2	0	Jacobina	AAA	South America	Americas	Brazil
+Debug015_aegypti_Jacobina_Brazil_L_14	0	0	0	2	0	Jacobina	AAA	South America	Americas	Brazil
+Debug015_aegypti_Jacobina_Brazil_L_16	0	0	0	2	0	Jacobina	AAA	South America	Americas	Brazil
+Debug015_aegypti_Jacobina_Brazil_L_17	0	0	0	2	0	Jacobina	AAA	South America	Americas	Brazil
+Debug015_aegypti_Jacobina_Brazil_L_18	0	0	0	2	0	Jacobina	AAA	South America	Americas	Brazil
+Debug015_aegypti_Jacobina_Brazil_L_19	0	0	0	2	0	Jacobina	AAA	South America	Americas	Brazil
+Debug015_aegypti_Jacobina_Brazil_L_20	0	0	0	2	0	Jacobina	AAA	South America	Americas	Brazil
+Debug015_aegypti_Jacobina_Brazil_L_4	0	0	0	2	0	Jacobina	AAA	South America	Americas	Brazil
+Debug015_aegypti_Jacobina_Brazil_L_5	0	0	0	2	0	Jacobina	AAA	South America	Americas	Brazil
+Debug015_aegypti_Jacobina_Brazil_L_7	0	0	0	1	0	Jacobina	AAA	South America	Americas	Brazil
+Debug015_aegypti_Jacobina_Brazil_L_8	0	0	0	2	0	Jacobina	AAA	South America	Americas	Brazil
+Debug015_aegypti_Jacobina_Brazil_L_9	0	0	0	2	0	Jacobina	AAA	South America	Americas	Brazil
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_1	0	0	0	2	0	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_10	0	0	0	2	0	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_11	0	0	0	2	0	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_12	0	0	0	2	0	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_13	0	0	0	2	0	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_16	0	0	0	2	0	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_17	0	0	0	2	0	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_18	0	0	0	2	0	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_2	0	0	0	2	0	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_3	0	0	0	2	0	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_4	0	0	0	2	0	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_5	0	0	0	2	0	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_6	0	0	0	2	0	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_7	0	0	0	2	0	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_8	0	0	0	2	0	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Jeddah_Saudi_Arabia_Female_9	0	0	0	2	0	Jeddah	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Mecca_Saudi_Arabia_Female_10	0	0	0	1	0	Mecca	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Mecca_Saudi_Arabia_Female_11	0	0	0	2	0	Mecca	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Mecca_Saudi_Arabia_Female_12	0	0	0	2	0	Mecca	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Mecca_Saudi_Arabia_Female_14	0	0	0	2	0	Mecca	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Mecca_Saudi_Arabia_Female_15	0	0	0	2	0	Mecca	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Mecca_Saudi_Arabia_Female_16	0	0	0	2	0	Mecca	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Mecca_Saudi_Arabia_Female_17	0	1	0	2	0	Mecca	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Mecca_Saudi_Arabia_Female_18	0	0	0	2	0	Mecca	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Mecca_Saudi_Arabia_Female_2	0	0	0	1	0	Mecca	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Mecca_Saudi_Arabia_Female_20	0	1	0	2	0	Mecca	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Mecca_Saudi_Arabia_Female_4	0	0	0	2	0	Mecca	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Mecca_Saudi_Arabia_Female_5	0	0	0	2	0	Mecca	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Mecca_Saudi_Arabia_Female_7	0	0	0	2	0	Mecca	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Mecca_Saudi_Arabia_Female_8	0	0	0	2	0	Mecca	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Mecca_Saudi_Arabia_Female_9	0	0	0	2	0	Mecca	AAA	Middle East	Asia	SaudiArabia
+Debug015_aegypti_Santarem_Brazil_L_1	0	0	0	2	0	Santarem	AAA	South America	Americas	Brazil
+Debug015_aegypti_Santarem_Brazil_L_10	0	0	0	2	0	Santarem	AAA	South America	Americas	Brazil
+Debug015_aegypti_Santarem_Brazil_L_11	0	0	0	2	0	Santarem	AAA	South America	Americas	Brazil
+Debug015_aegypti_Santarem_Brazil_L_12	0	0	0	2	0	Santarem	AAA	South America	Americas	Brazil
+Debug015_aegypti_Santarem_Brazil_L_13	0	0	0	2	0	Santarem	AAA	South America	Americas	Brazil
+Debug015_aegypti_Santarem_Brazil_L_15	0	0	0	2	0	Santarem	AAA	South America	Americas	Brazil
+Debug015_aegypti_Santarem_Brazil_L_17	0	0	0	2	0	Santarem	AAA	South America	Americas	Brazil
+Debug015_aegypti_Santarem_Brazil_L_18	0	0	0	2	0	Santarem	AAA	South America	Americas	Brazil
+Debug015_aegypti_Santarem_Brazil_L_2	0	0	0	2	0	Santarem	AAA	South America	Americas	Brazil
+Debug015_aegypti_Santarem_Brazil_L_3	0	0	0	2	0	Santarem	AAA	South America	Americas	Brazil
+Debug015_aegypti_Santarem_Brazil_L_4	0	0	0	2	0	Santarem	AAA	South America	Americas	Brazil
+Debug015_aegypti_Santarem_Brazil_L_5	0	0	0	2	0	Santarem	AAA	South America	Americas	Brazil
+Debug015_aegypti_Santarem_Brazil_L_6	0	0	0	2	0	Santarem	AAA	South America	Americas	Brazil
+Debug015_aegypti_Santarem_Brazil_L_7	0	0	0	2	0	Santarem	AAA	South America	Americas	Brazil
+Debug015_aegypti_Santarem_Brazil_L_8	0	0	0	2	0	Santarem	AAA	South America	Americas	Brazil
+Debug015_aegypti_Santarem_Brazil_L_9	0	0	0	2	0	Santarem	AAA	South America	Americas	Brazil
+Debug016_aegypti_Cali_Colombia_U_10	0	0	0	2	0	Cali	AAA	South America	Americas	Colombia
+Debug016_aegypti_Cali_Colombia_U_11	0	0	0	2	0	Cali	AAA	South America	Americas	Colombia
+Debug016_aegypti_Cali_Colombia_U_12	0	0	0	2	0	Cali	AAA	South America	Americas	Colombia
+Debug016_aegypti_Cali_Colombia_U_5	0	0	0	2	0	Cali	AAA	South America	Americas	Colombia
+Debug016_aegypti_Cali_Colombia_U_8	0	0	0	2	0	Cali	AAA	South America	Americas	Colombia
+Debug016_aegypti_Cali_Colombia_U_9	0	0	0	2	0	Cali	AAA	South America	Americas	Colombia
+Debug016_aegypti_New_Orleans_USA_U_10	0	0	0	1	0	New_Orleans	AAA	North America	Americas	USA
+Debug016_aegypti_New_Orleans_USA_U_12	0	0	0	2	0	New_Orleans	AAA	North America	Americas	USA
+Debug016_aegypti_New_Orleans_USA_U_14	0	0	0	2	0	New_Orleans	AAA	North America	Americas	USA
+Debug016_aegypti_New_Orleans_USA_U_16	0	0	0	2	0	New_Orleans	AAA	North America	Americas	USA
+Debug016_aegypti_New_Orleans_USA_U_17	0	1	0	2	0	New_Orleans	AAA	North America	Americas	USA
+Debug016_aegypti_New_Orleans_USA_U_19	0	0	0	2	0	New_Orleans	AAA	North America	Americas	USA
+Debug016_aegypti_New_Orleans_USA_U_2	0	0	0	2	0	New_Orleans	AAA	North America	Americas	USA
+Debug016_aegypti_New_Orleans_USA_U_20	0	0	0	2	0	New_Orleans	AAA	North America	Americas	USA
+Debug016_aegypti_New_Orleans_USA_U_3	0	0	0	2	0	New_Orleans	AAA	North America	Americas	USA
+Debug016_aegypti_New_Orleans_USA_U_4	0	0	0	1	0	New_Orleans	AAA	North America	Americas	USA
+Debug016_aegypti_New_Orleans_USA_U_5	0	1	0	1	0	New_Orleans	AAA	North America	Americas	USA
+Debug016_aegypti_New_Orleans_USA_U_6	0	0	0	2	0	New_Orleans	AAA	North America	Americas	USA
+Debug016_aegypti_New_Orleans_USA_U_7	0	2	0	0	0	New_Orleans	AAA	North America	Americas	USA
+Debug016_aegypti_New_Orleans_USA_U_8	0	0	0	1	0	New_Orleans	AAA	North America	Americas	USA
+Debug016_aegypti_New_Orleans_USA_U_9	0	1	0	2	0	New_Orleans	AAA	North America	Americas	USA
+Debug017_aegypti_Franceville_Gabon_F_1	0	1	2	0	0	Franceville	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_Franceville_Gabon_F_11	0	0	0	0	0	Franceville	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_Franceville_Gabon_F_12	0	0	1	0	0	Franceville	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_Franceville_Gabon_F_2	0	0	2	0	0	Franceville	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_Franceville_Gabon_F_3	0	0	0	0	0	Franceville	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_Franceville_Gabon_F_4	0	1	1	0	0	Franceville	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_Franceville_Gabon_F_5	0	1	0	0	0	Franceville	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_Franceville_Gabon_F_6	0	1	0	0	0	Franceville	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_Franceville_Gabon_F_8	0	1	0	0	0	Franceville	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_Franceville_Gabon_F_9	0	0	0	0	0	Franceville	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_Franceville_Gabon_M_10	0	0	1	0	0	Franceville	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_Franceville_Gabon_M_13	0	1	0	0	0	Franceville	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_Franceville_Gabon_M_7	0	1	1	0	0	Franceville	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_Libreville_Gabon_F_10	0	0	0	0	0	Libreville	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_Libreville_Gabon_F_11	0	1	0	0	0	Libreville	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_Libreville_Gabon_F_12	1	1	0	0	0	Libreville	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_Libreville_Gabon_F_14	0	0	0	0	0	Libreville	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_Libreville_Gabon_F_15	0	1	0	0	0	Libreville	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_Libreville_Gabon_F_2	0	0	0	1	0	Libreville	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_Libreville_Gabon_F_3	0	0	0	0	0	Libreville	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_Libreville_Gabon_F_4	0	0	0	1	0	Libreville	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_Libreville_Gabon_F_5	0	1	0	0	0	Libreville	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_Libreville_Gabon_F_6	0	0	0	0	0	Libreville	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_Libreville_Gabon_F_7	0	0	1	0	0	Libreville	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_Libreville_Gabon_F_8	0	0	0	0	1	Libreville	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_Libreville_Gabon_M_13	0	0	0	0	0	Libreville	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_Libreville_Gabon_M_9	0	0	0	0	0	Libreville	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_F_1	0	0	0	0	0	Lope_village	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_F_15	0	0	1	0	0	Lope_village	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_F_2	0	1	1	0	0	Lope_village	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_F_3	0	0	0	0	0	Lope_village	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_F_4	0	0	0	0	0	Lope_village	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_F_5	0	0	0	0	0	Lope_village	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_F_6	0	0	0	0	0	Lope_village	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_F_7	0	0	0	0	0	Lope_village	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_F_8	0	1	0	0	0	Lope_village	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_F_9	0	0	0	0	0	Lope_village	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_M_10	0	1	1	0	0	Lope_village	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_M_11	0	1	1	0	0	Lope_village	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_M_12	0	0	0	0	0	Lope_village	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_M_13	0	0	0	0	0	Lope_village	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_M_14	0	0	1	0	0	Lope_village	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_Rabai_Kenya_2009_F_1	0	0	0	2	0	Rabai_2009	ADMX	East Africa	Eafrica	Kenya
+Debug017_aegypti_Rabai_Kenya_2009_F_10	0	2	2	0	0	Rabai_2009	ADMX	East Africa	Eafrica	Kenya
+Debug017_aegypti_Rabai_Kenya_2009_F_11	0	0	1	2	0	Rabai_2009	ADMX	East Africa	Eafrica	Kenya
+Debug017_aegypti_Rabai_Kenya_2009_F_12	0	1	2	1	0	Rabai_2009	ADMX	East Africa	Eafrica	Kenya
+Debug017_aegypti_Rabai_Kenya_2009_F_13	0	0	1	2	0	Rabai_2009	ADMX	East Africa	Eafrica	Kenya
+Debug017_aegypti_Rabai_Kenya_2009_F_3	0	0	0	2	0	Rabai_2009	ADMX	East Africa	Eafrica	Kenya
+Debug017_aegypti_Rabai_Kenya_2009_F_4	0	0	1	2	0	Rabai_2009	ADMX	East Africa	Eafrica	Kenya
+Debug017_aegypti_Rabai_Kenya_2009_F_9	0	0	0	2	0	Rabai_2009	ADMX	East Africa	Eafrica	Kenya
+Debug017_aegypti_Rabai_Kenya_2009_M_5	0	0	1	2	0	Rabai_2009	ADMX	East Africa	Eafrica	Kenya
+Debug017_aegypti_Rabai_Kenya_2009_M_6	0	0	1	2	0	Rabai_2009	ADMX	East Africa	Eafrica	Kenya
+Debug017_aegypti_Rabai_Kenya_2011_F_15	0	0	0	2	0	Rabai_2009	ADMX	East Africa	Eafrica	Kenya
+Debug017_aegypti_Rabai_Kenya_2011_M_16	0	0	0	2	0	Rabai_2009	ADMX	East Africa	Eafrica	Kenya
+Debug018_aegypti_YAOMO_Cameroon__U_63	0	0	0	0	2	YAOMO	AAF	West Africa	Wafrica	Cameroon
+Debug018_aegypti_YAOMO_Cameroon__U_65	0	0	0	0	0	YAOMO	AAF	West Africa	Wafrica	Cameroon
+Debug018_aegypti_YAOMO_Cameroon__U_66	0	0	0	0	1	YAOMO	AAF	West Africa	Wafrica	Cameroon
+Debug018_aegypti_YAOMO_Cameroon__U_67	0	1	0	0	0	YAOMO	AAF	West Africa	Wafrica	Cameroon
+Debug018_aegypti_YAOMO_Cameroon__U_69	0	0	0	1	0	YAOMO	AAF	West Africa	Wafrica	Cameroon
+Debug018_aegypti_YAOMO_Cameroon__U_71	0	0	0	0	0	YAOMO	AAF	West Africa	Wafrica	Cameroon
+Debug018_aegypti_YAOMO_Cameroon__U_72	0	0	0	0	0	YAOMO	AAF	West Africa	Wafrica	Cameroon
+Debug018_aegypti_YAOMO_Cameroon__U_73	0	0	0	0	1	YAOMO	AAF	West Africa	Wafrica	Cameroon
+Debug018_aegypti_YAOMO_Cameroon__U_74	0	0	0	0	0	YAOMO	AAF	West Africa	Wafrica	Cameroon
+Debug018_aegypti_YAOMO_Cameroon__U_75	0	0	0	1	1	YAOMO	AAF	West Africa	Wafrica	Cameroon
+Debug018_aegypti_YAOMO_Cameroon__U_77	1	0	0	0	0	YAOMO	AAF	West Africa	Wafrica	Cameroon
+Debug018_aegypti_YAOMO_Cameroon__U_80	0	0	0	0	1	YAOMO	AAF	West Africa	Wafrica	Cameroon
+Debug018_aegypti_YAOMO_Cameroon__U_81	0	0	0	0	1	YAOMO	AAF	West Africa	Wafrica	Cameroon
+Debug019_aegypti_Attock_Pakistan_U_1	0	0	0	2	0	Pakistan	AAA	Asia	Asia	Pakistan
+Debug019_aegypti_Attock_Pakistan_U_2	0	0	0	2	0	Pakistan	AAA	Asia	Asia	Pakistan
+Debug019_aegypti_Attock_Pakistan_U_3	0	0	0	2	0	Pakistan	AAA	Asia	Asia	Pakistan
+Debug019_aegypti_Attock_Pakistan_U_4	0	0	0	2	0	Pakistan	AAA	Asia	Asia	Pakistan
+Debug019_aegypti_Attock_Pakistan_U_6	0	0	0	2	0	Pakistan	AAA	Asia	Asia	Pakistan
+Debug019_aegypti_Attock_Pakistan_U_7	0	0	0	2	0	Pakistan	AAA	Asia	Asia	Pakistan
+Debug019_aegypti_El_Dorado_Argentina_U_10	0	1	0	1	0	El_Dorado	ADMX	South America	Americas	Argentina
+Debug019_aegypti_El_Dorado_Argentina_U_11	0	1	0	1	0	El_Dorado	ADMX	South America	Americas	Argentina
+Debug019_aegypti_El_Dorado_Argentina_U_2	1	0	0	1	0	El_Dorado	ADMX	South America	Americas	Argentina
+Debug019_aegypti_El_Dorado_Argentina_U_4	0	0	0	1	0	El_Dorado	ADMX	South America	Americas	Argentina
+Debug019_aegypti_El_Dorado_Argentina_U_5	0	0	0	1	0	El_Dorado	ADMX	South America	Americas	Argentina
+Debug019_aegypti_Far_North_Dominica_U_1	0	0	0	2	0	North_Dominica	AAA	NA	Americas	Dominica
+Debug019_aegypti_Far_North_Dominica_U_2	0	0	0	2	0	North_Dominica	AAA	NA	Americas	Dominica
+Debug019_aegypti_Far_North_Dominica_U_3	0	0	0	2	0	North_Dominica	AAA	NA	Americas	Dominica
+Debug019_aegypti_Far_North_Dominica_U_4	0	0	0	2	0	North_Dominica	AAA	NA	Americas	Dominica
+Debug019_aegypti_Far_North_Dominica_U_5	0	0	0	2	0	North_Dominica	AAA	NA	Americas	Dominica
+Debug019_aegypti_Karachi_Pakistan_U_10	0	0	0	2	0	Pakistan	AAA	Asia	Asia	Pakistan
+Debug019_aegypti_Karachi_Pakistan_U_11	0	0	0	2	0	Pakistan	AAA	Asia	Asia	Pakistan
+Debug019_aegypti_Karachi_Pakistan_U_12	0	0	0	2	0	Pakistan	AAA	Asia	Asia	Pakistan
+Debug019_aegypti_Karachi_Pakistan_U_13	0	0	0	2	0	Pakistan	AAA	Asia	Asia	Pakistan
+Debug019_aegypti_Karachi_Pakistan_U_15	0	0	0	2	0	Pakistan	AAA	Asia	Asia	Pakistan
+Debug019_aegypti_Karachi_Pakistan_U_18	0	0	0	2	0	Pakistan	AAA	Asia	Asia	Pakistan
+Debug019_aegypti_Karachi_Pakistan_U_20	0	0	0	2	0	Pakistan	AAA	Asia	Asia	Pakistan
+Debug019_aegypti_Karachi_Pakistan_U_9	0	0	0	2	0	Pakistan	AAA	Asia	Asia	Pakistan
+Debug019_aegypti_Pazar_Turkey_U_1	0	0	0	2	0	Pazar	AAA	Asia	Asia	Turkey
+Debug019_aegypti_Pazar_Turkey_U_10	0	0	0	2	0	Pazar	AAA	Asia	Asia	Turkey
+Debug019_aegypti_Pazar_Turkey_U_11	0	0	0	2	0	Pazar	AAA	Asia	Asia	Turkey
+Debug019_aegypti_Pazar_Turkey_U_2	0	0	0	2	0	Pazar	AAA	Asia	Asia	Turkey
+Debug019_aegypti_Pazar_Turkey_U_3	0	0	0	2	0	Pazar	AAA	Asia	Asia	Turkey
+Debug019_aegypti_Pazar_Turkey_U_5	0	0	0	2	0	Pazar	AAA	Asia	Asia	Turkey
+Debug019_aegypti_Pazar_Turkey_U_6	0	0	0	2	0	Pazar	AAA	Asia	Asia	Turkey
+Debug019_aegypti_Pazar_Turkey_U_7	0	0	0	2	0	Pazar	AAA	Asia	Asia	Turkey
+Debug019_aegypti_Pazar_Turkey_U_9	0	0	0	2	0	Pazar	AAA	Asia	Asia	Turkey
+Debug019_aegypti_Roseau_Dominica_U_1	0	0	0	2	0	Roseau	AAA	NA	Americas	Dominica
+Debug019_aegypti_Roseau_Dominica_U_10	0	0	0	1	0	Roseau	AAA	NA	Americas	Dominica
+Debug019_aegypti_Roseau_Dominica_U_11	0	0	0	1	0	Roseau	AAA	NA	Americas	Dominica
+Debug019_aegypti_Roseau_Dominica_U_12	0	0	0	2	0	Roseau	AAA	NA	Americas	Dominica
+Debug019_aegypti_Roseau_Dominica_U_13	0	0	0	1	0	Roseau	AAA	NA	Americas	Dominica
+Debug019_aegypti_Roseau_Dominica_U_17	0	0	0	1	0	Roseau	AAA	NA	Americas	Dominica
+Debug019_aegypti_Roseau_Dominica_U_19	0	0	0	2	0	Roseau	AAA	NA	Americas	Dominica
+Debug019_aegypti_Roseau_Dominica_U_5	0	0	0	2	0	Roseau	AAA	NA	Americas	Dominica
+Debug019_aegypti_Roseau_Dominica_U_8	0	0	0	2	0	Roseau	AAA	NA	Americas	Dominica
+Debug019_aegypti_Roseau_Dominica_U_9	0	0	0	1	0	Roseau	AAA	NA	Americas	Dominica
+Debug019_aegypti_Trinidad_Trinidad_U_1	0	0	0	2	0	Trinidad	AAA	NA	Americas	Trinidad
+Debug019_aegypti_Trinidad_Trinidad_U_10	0	0	0	2	0	Trinidad	AAA	NA	Americas	Trinidad
+Debug019_aegypti_Trinidad_Trinidad_U_11	0	0	0	2	0	Trinidad	AAA	NA	Americas	Trinidad
+Debug019_aegypti_Trinidad_Trinidad_U_12	0	0	0	2	0	Trinidad	AAA	NA	Americas	Trinidad
+Debug019_aegypti_Trinidad_Trinidad_U_13	0	0	0	2	0	Trinidad	AAA	NA	Americas	Trinidad
+Debug019_aegypti_Trinidad_Trinidad_U_14	0	0	0	2	0	Trinidad	AAA	NA	Americas	Trinidad
+Debug019_aegypti_Trinidad_Trinidad_U_15	0	0	0	2	0	Trinidad	AAA	NA	Americas	Trinidad
+Debug019_aegypti_Trinidad_Trinidad_U_16	0	0	0	2	0	Trinidad	AAA	NA	Americas	Trinidad
+Debug019_aegypti_Trinidad_Trinidad_U_17	0	0	0	2	0	Trinidad	AAA	NA	Americas	Trinidad
+Debug019_aegypti_Trinidad_Trinidad_U_18	0	0	0	2	0	Trinidad	AAA	NA	Americas	Trinidad
+Debug019_aegypti_Trinidad_Trinidad_U_19	0	0	0	2	0	Trinidad	AAA	NA	Americas	Trinidad
+Debug019_aegypti_Trinidad_Trinidad_U_2	0	0	0	2	0	Trinidad	AAA	NA	Americas	Trinidad
+Debug019_aegypti_Trinidad_Trinidad_U_20	0	0	0	2	0	Trinidad	AAA	NA	Americas	Trinidad
+Debug019_aegypti_Trinidad_Trinidad_U_3	0	0	0	2	0	Trinidad	AAA	NA	Americas	Trinidad
+Debug019_aegypti_Trinidad_Trinidad_U_4	0	0	0	2	0	Trinidad	AAA	NA	Americas	Trinidad
+Debug019_aegypti_Trinidad_Trinidad_U_5	0	0	0	2	0	Trinidad	AAA	NA	Americas	Trinidad
+Debug019_aegypti_Trinidad_Trinidad_U_6	0	0	0	2	0	Trinidad	AAA	NA	Americas	Trinidad
+Debug019_aegypti_Trinidad_Trinidad_U_7	0	0	0	2	0	Trinidad	AAA	NA	Americas	Trinidad
+Debug019_aegypti_Trinidad_Trinidad_U_8	0	0	0	2	0	Trinidad	AAA	NA	Americas	Trinidad
+Debug019_aegypti_Trinidad_Trinidad_U_9	0	0	0	2	0	Trinidad	AAA	NA	Americas	Trinidad
+Debug020_aegypti_Miami_USA_F_1	0	0	0	2	0	Miami	AAA	North America	Americas	USA
+Debug020_aegypti_Miami_USA_F_3	0	1	0	2	0	Miami	AAA	North America	Americas	USA
+Debug020_aegypti_Miami_USA_F_5	0	0	0	2	0	Miami	AAA	North America	Americas	USA
+Debug020_aegypti_Miami_USA_M_2	0	0	0	2	0	Miami	AAA	North America	Americas	USA
+Debug020_aegypti_Miami_USA_M_4	0	0	0	2	0	Miami	AAA	North America	Americas	USA
+Debug020_aegypti_Miami_USA_M_6	0	0	0	2	0	Miami	AAA	North America	Americas	USA
+Debug020_aegypti_Pazar_Turkey_U_12	0	0	0	2	0	Pazar	AAA	Asia	Asia	Turkey
+Debug020_aegypti_Pazar_Turkey_U_19	0	0	0	2	0	Pazar	AAA	Asia	Asia	Turkey
+Debug020_aegypti_Pazar_Turkey_U_20	0	0	0	2	0	Pazar	AAA	Asia	Asia	Turkey
+Debug021_aegypti_Bangr_Ouaga_Burkina_Faso_F_1	0	0	0	0	2	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_Gound_Ouaga_Burkina_Faso_F_2	0	0	0	0	0	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_Jaffna_Sri_Lanka_F_10	0	0	0	2	0	Jaffna	AAA	Asia	Asia	SriLanka
+Debug021_aegypti_Jaffna_Sri_Lanka_F_11	0	0	0	2	0	Jaffna	AAA	Asia	Asia	SriLanka
+Debug021_aegypti_Jaffna_Sri_Lanka_F_2	0	0	0	2	0	Jaffna	AAA	Asia	Asia	SriLanka
+Debug021_aegypti_Jaffna_Sri_Lanka_F_3	0	0	0	2	0	Jaffna	AAA	Asia	Asia	SriLanka
+Debug021_aegypti_Jaffna_Sri_Lanka_F_4	0	0	0	2	0	Jaffna	AAA	Asia	Asia	SriLanka
+Debug021_aegypti_Jaffna_Sri_Lanka_F_5	0	0	0	1	0	Jaffna	AAA	Asia	Asia	SriLanka
+Debug021_aegypti_Jaffna_Sri_Lanka_M_1	0	0	0	2	0	Jaffna	AAA	Asia	Asia	SriLanka
+Debug021_aegypti_Jaffna_Sri_Lanka_M_14	0	0	0	1	0	Jaffna	AAA	Asia	Asia	SriLanka
+Debug021_aegypti_Jaffna_Sri_Lanka_M_16	0	0	0	2	0	Jaffna	AAA	Asia	Asia	SriLanka
+Debug021_aegypti_Jaffna_Sri_Lanka_M_18	0	0	0	2	0	Jaffna	AAA	Asia	Asia	SriLanka
+Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_10	0	0	0	1	0	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_11	0	0	0	1	0	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_12	0	0	0	1	0	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_13	0	0	0	1	0	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_14	1	0	0	1	0	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_15	0	0	0	0	1	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_16	0	0	0	1	0	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_18	0	0	0	1	1	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_19	0	0	0	1	0	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_LG_Ouaga_Burkina_Faso_F_9	0	0	0	1	0	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_Miami_USA_F_16	0	0	0	2	0	Miami	AAA	North America	Americas	USA
+Debug021_aegypti_Miami_USA_F_18	0	0	0	2	0	Miami	AAA	North America	Americas	USA
+Debug021_aegypti_Miami_USA_F_19	0	0	0	2	0	Miami	AAA	North America	Americas	USA
+Debug021_aegypti_Miami_USA_M_10	0	0	0	2	0	Miami	AAA	North America	Americas	USA
+Debug021_aegypti_Miami_USA_M_12	0	0	1	1	0	Miami	AAA	North America	Americas	USA
+Debug021_aegypti_Miami_USA_M_15	0	0	0	2	0	Miami	AAA	North America	Americas	USA
+Debug021_aegypti_Miami_USA_M_17	0	0	0	2	0	Miami	AAA	North America	Americas	USA
+Debug021_aegypti_Miami_USA_M_8	0	1	0	2	0	Miami	AAA	North America	Americas	USA
+Debug021_aegypti_Miami_USA_M_9	0	0	0	2	0	Miami	AAA	North America	Americas	USA
+Debug021_aegypti_St_Croix_USVI_F_1	0	0	0	2	0	Croix	AAA	NA	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_F_10	0	0	0	2	0	Croix	AAA	NA	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_F_2	0	1	0	2	0	Croix	AAA	NA	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_F_3	0	0	0	2	0	Croix	AAA	NA	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_F_4	0	0	0	2	0	Croix	AAA	NA	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_F_5	0	0	0	2	0	Croix	AAA	NA	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_F_6	0	0	0	2	0	Croix	AAA	NA	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_F_7	0	0	0	2	0	Croix	AAA	NA	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_F_8	0	0	0	2	0	Croix	AAA	NA	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_F_9	0	0	0	2	0	Croix	AAA	NA	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_M_11	0	0	0	2	0	Croix	AAA	NA	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_M_14	0	0	0	1	0	Croix	AAA	NA	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_M_15	0	0	0	2	0	Croix	AAA	NA	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_M_16	0	0	0	2	0	Croix	AAA	NA	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_M_17	0	0	0	2	0	Croix	AAA	NA	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_M_18	0	0	0	2	0	Croix	AAA	NA	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_M_19	0	0	0	2	0	Croix	AAA	NA	Americas	USVirginIslands
+Debug021_aegypti_St_Croix_USVI_M_20	0	1	0	2	0	Croix	AAA	NA	Americas	USVirginIslands
+Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_17	1	0	0	0	0	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_20	0	0	0	1	0	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_3	0	0	0	1	0	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_4	0	0	0	0	0	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_5	0	0	0	1	0	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_6	0	0	0	1	0	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_7	0	0	0	0	0	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_8	0	0	0	0	0	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
+Debug021_aegypti_Tainan_Taiwan_F_12	0	0	0	2	0	Taiwan	AAA	Asia	Asia	Taiwan
+Debug021_aegypti_Tainan_Taiwan_F_13	0	0	0	2	0	Taiwan	AAA	Asia	Asia	Taiwan
+Debug021_aegypti_Tainan_Taiwan_F_15	0	0	0	2	0	Taiwan	AAA	Asia	Asia	Taiwan
+Debug021_aegypti_Tainan_Taiwan_F_18	0	0	0	2	0	Taiwan	AAA	Asia	Asia	Taiwan
+Debug021_aegypti_Tainan_Taiwan_F_20	0	0	0	2	0	Taiwan	AAA	Asia	Asia	Taiwan
+Debug021_aegypti_Tainan_Taiwan_M_1	0	0	0	2	0	Taiwan	AAA	Asia	Asia	Taiwan
+Debug021_aegypti_Tainan_Taiwan_M_10	0	0	0	2	0	Taiwan	AAA	Asia	Asia	Taiwan
+Debug021_aegypti_Tainan_Taiwan_M_3	0	0	0	2	0	Taiwan	AAA	Asia	Asia	Taiwan
+Debug021_aegypti_Tainan_Taiwan_M_4	0	0	0	2	0	Taiwan	AAA	Asia	Asia	Taiwan
+Debug021_aegypti_Tainan_Taiwan_M_5	0	0	0	2	0	Taiwan	AAA	Asia	Asia	Taiwan
+Debug021_aegypti_Tainan_Taiwan_M_6	0	0	0	2	0	Taiwan	AAA	Asia	Asia	Taiwan
+Debug021_aegypti_Tainan_Taiwan_M_7	0	0	0	2	0	Taiwan	AAA	Asia	Asia	Taiwan
+Debug021_aegypti_Tainan_Taiwan_M_8	0	0	0	2	0	Taiwan	AAA	Asia	Asia	Taiwan
+Debug021_aegypti_Tainan_Taiwan_M_9	0	0	0	2	0	Taiwan	AAA	Asia	Asia	Taiwan
+Debug023_aegypti_Awka_Nigeria_F_1	0	0	0	0	0	Awka	AAF	West Africa	Wafrica	Nigeria
+Debug023_aegypti_Awka_Nigeria_F_11	0	0	0	0	1	Awka	AAF	West Africa	Wafrica	Nigeria
+Debug023_aegypti_Awka_Nigeria_F_13	0	0	0	0	0	Awka	AAF	West Africa	Wafrica	Nigeria
+Debug023_aegypti_Awka_Nigeria_F_16	0	0	0	0	0	Awka	AAF	West Africa	Wafrica	Nigeria
+Debug023_aegypti_Awka_Nigeria_F_20	0	0	0	0	0	Awka	AAF	West Africa	Wafrica	Nigeria
+Debug023_aegypti_Awka_Nigeria_F_3	0	0	0	0	0	Awka	AAF	West Africa	Wafrica	Nigeria
+Debug023_aegypti_Awka_Nigeria_F_5	0	0	0	0	0	Awka	AAF	West Africa	Wafrica	Nigeria
+Debug023_aegypti_Awka_Nigeria_F_6	1	0	0	0	0	Awka	AAF	West Africa	Wafrica	Nigeria
+Debug023_aegypti_Awka_Nigeria_F_9	0	0	0	0	0	Awka	AAF	West Africa	Wafrica	Nigeria
+Debug023_aegypti_Awka_Nigeria_M_10	0	0	0	0	1	Awka	AAF	West Africa	Wafrica	Nigeria
+Debug023_aegypti_Awka_Nigeria_M_12	0	0	0	1	0	Awka	AAF	West Africa	Wafrica	Nigeria
+Debug023_aegypti_Awka_Nigeria_M_14	0	0	0	0	1	Awka	AAF	West Africa	Wafrica	Nigeria
+Debug023_aegypti_Awka_Nigeria_M_15	0	0	0	2	1	Awka	AAF	West Africa	Wafrica	Nigeria
+Debug023_aegypti_Awka_Nigeria_M_17	0	0	0	0	0	Awka	AAF	West Africa	Wafrica	Nigeria
+Debug023_aegypti_Awka_Nigeria_M_18	0	0	0	0	0	Awka	AAF	West Africa	Wafrica	Nigeria
+Debug023_aegypti_Awka_Nigeria_M_2	0	0	0	0	0	Awka	AAF	West Africa	Wafrica	Nigeria
+Debug023_aegypti_Awka_Nigeria_M_4	1	0	0	0	0	Awka	AAF	West Africa	Wafrica	Nigeria
+Debug023_aegypti_Awka_Nigeria_M_7	0	0	0	0	0	Awka	AAF	West Africa	Wafrica	Nigeria
+Debug023_aegypti_Awka_Nigeria_M_8	0	0	0	0	1	Awka	AAF	West Africa	Wafrica	Nigeria
+Debug023_aegypti_Bantata_Senegal_F_1	0	0	0	0	1	Bantata	AAF	West Africa	Wafrica	Senegal
+Debug023_aegypti_Bantata_Senegal_F_11	1	0	0	0	0	Bantata	AAF	West Africa	Wafrica	Senegal
+Debug023_aegypti_Bantata_Senegal_F_2	0	0	0	0	1	Bantata	AAF	West Africa	Wafrica	Senegal
+Debug023_aegypti_Bantata_Senegal_F_3	0	0	0	0	0	Bantata	AAF	West Africa	Wafrica	Senegal
+Debug023_aegypti_Bantata_Senegal_F_4	0	0	0	0	1	Bantata	AAF	West Africa	Wafrica	Senegal
+Debug023_aegypti_Bantata_Senegal_F_5	1	0	0	0	0	Bantata	AAF	West Africa	Wafrica	Senegal
+Debug023_aegypti_Bantata_Senegal_M_10	0	0	0	0	0	Bantata	AAF	West Africa	Wafrica	Senegal
+Debug023_aegypti_Bantata_Senegal_M_6	0	0	0	0	0	Bantata	AAF	West Africa	Wafrica	Senegal
+Debug023_aegypti_Bantata_Senegal_M_7	1	0	0	0	0	Bantata	AAF	West Africa	Wafrica	Senegal
+Debug023_aegypti_Bantata_Senegal_M_8	0	0	0	0	0	Bantata	AAF	West Africa	Wafrica	Senegal
+Debug023_aegypti_Bantata_Senegal_M_9	0	0	0	0	0	Bantata	AAF	West Africa	Wafrica	Senegal
+Debug023_aegypti_BoabengFiema_Ghana_F_1	1	0	0	0	0	Boabeng	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_BoabengFiema_Ghana_F_2	0	0	0	0	1	Boabeng	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kintampo_Ghana_F_11	0	0	0	0	0	Kintampo	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kintampo_Ghana_F_12	0	0	0	0	0	Kintampo	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kintampo_Ghana_F_15	0	0	0	0	0	Kintampo	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kintampo_Ghana_F_16	0	0	0	0	0	Kintampo	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kintampo_Ghana_F_17	0	0	0	1	0	Kintampo	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kintampo_Ghana_F_20	1	0	0	0	0	Kintampo	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kintampo_Ghana_F_4	0	0	0	1	0	Kintampo	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kintampo_Ghana_F_7	0	1	0	0	1	Kintampo	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kintampo_Ghana_F_9	0	0	0	0	1	Kintampo	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kintampo_Ghana_M_1	1	0	0	0	1	Kintampo	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kintampo_Ghana_M_10	1	0	0	0	0	Kintampo	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kintampo_Ghana_M_13	0	0	0	0	1	Kintampo	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kintampo_Ghana_M_14	0	0	0	0	0	Kintampo	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kintampo_Ghana_M_18	1	0	0	1	0	Kintampo	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kintampo_Ghana_M_2	0	0	0	1	2	Kintampo	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kintampo_Ghana_M_5	0	0	0	0	0	Kintampo	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kintampo_Ghana_M_6	0	0	0	1	0	Kintampo	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kintampo_Ghana_M_8	0	0	0	0	1	Kintampo	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kumasi_Ghana_F_11	0	0	0	1	2	Kumasi	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kumasi_Ghana_F_14	1	0	0	0	0	Kumasi	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kumasi_Ghana_F_16	0	0	0	0	1	Kumasi	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kumasi_Ghana_F_18	0	0	0	1	0	Kumasi	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kumasi_Ghana_F_19	0	0	0	0	1	Kumasi	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kumasi_Ghana_F_2	0	0	0	0	1	Kumasi	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kumasi_Ghana_F_20	0	0	0	0	0	Kumasi	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kumasi_Ghana_F_4	0	0	0	0	0	Kumasi	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kumasi_Ghana_F_6	0	0	0	0	1	Kumasi	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kumasi_Ghana_F_9	0	0	0	0	0	Kumasi	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kumasi_Ghana_M_1	0	0	0	1	1	Kumasi	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kumasi_Ghana_M_10	0	0	0	0	1	Kumasi	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kumasi_Ghana_M_12	1	0	0	0	1	Kumasi	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kumasi_Ghana_M_13	1	0	0	0	0	Kumasi	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kumasi_Ghana_M_15	0	0	0	0	1	Kumasi	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kumasi_Ghana_M_17	1	0	0	0	1	Kumasi	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kumasi_Ghana_M_3	1	0	0	1	1	Kumasi	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kumasi_Ghana_M_5	0	0	0	0	1	Kumasi	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kumasi_Ghana_M_7	0	0	0	0	0	Kumasi	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Kumasi_Ghana_M_8	0	0	0	0	0	Kumasi	AAF	West Africa	Wafrica	Ghana
+Debug023_aegypti_Ouahigouya_BurkinaFaso_F_11	0	0	0	0	0	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_F_13	0	0	0	0	1	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_F_14	0	0	0	0	0	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_F_16	0	0	0	0	1	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_F_17	0	0	0	0	1	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_F_2	1	0	0	0	1	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_F_3	0	0	0	0	0	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_F_4	0	0	0	0	0	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_F_5	1	0	0	0	1	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_F_9	0	0	0	0	0	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_M_1	0	0	0	0	0	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_M_10	0	0	0	0	1	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_M_12	1	0	0	0	0	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_M_15	0	0	0	0	1	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_M_6	0	0	0	0	0	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Ouahigouya_BurkinaFaso_M_7	0	0	0	0	0	Ouahigouya	AAF	West Africa	Wafrica	BurkinaFaso
+Debug023_aegypti_Thies_Senegal_F_1	0	0	0	1	0	Thies	AAF	West Africa	Wafrica	Senegal
+Debug023_aegypti_Thies_Senegal_M_2	0	0	0	1	0	Thies	AAF	West Africa	Wafrica	Senegal
+Debug023_aegypti_Thies_Senegal_M_3	0	0	0	0	0	Thies	AAF	West Africa	Wafrica	Senegal
+Debug023_aegypti_Thies_Senegal_M_4	0	0	1	0	2	Thies	AAF	West Africa	Wafrica	Senegal
+Debug023_aegypti_Thies_Senegal_M_5	0	0	0	1	0	Thies	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Kedougou_Senegal_F_1	0	0	0	0	1	Kedougou	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Kedougou_Senegal_F_12	0	0	0	0	1	Kedougou	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Kedougou_Senegal_F_15	0	0	0	0	0	Kedougou	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Kedougou_Senegal_F_18	0	0	0	0	0	Kedougou	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Kedougou_Senegal_F_19	0	0	0	0	1	Kedougou	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Kedougou_Senegal_F_3	0	0	0	0	0	Kedougou	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Kedougou_Senegal_F_5	1	0	0	0	0	Kedougou	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Kedougou_Senegal_F_7	0	0	0	0	0	Kedougou	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Kedougou_Senegal_F_8	0	0	0	0	0	Kedougou	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Kedougou_Senegal_M_10	0	0	0	0	1	Kedougou	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Kedougou_Senegal_M_11	0	0	0	0	0	Kedougou	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Kedougou_Senegal_M_14	0	0	0	0	0	Kedougou	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Kedougou_Senegal_M_16	0	0	0	0	0	Kedougou	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Kedougou_Senegal_M_17	1	0	0	0	0	Kedougou	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Kedougou_Senegal_M_2	1	0	0	0	0	Kedougou	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Kedougou_Senegal_M_20	1	0	0	0	0	Kedougou	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Kedougou_Senegal_M_4	1	0	0	0	0	Kedougou	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Kedougou_Senegal_M_6	0	0	0	0	0	Kedougou	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Kedougou_Senegal_M_9	0	0	1	0	0	Kedougou	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Mindin_Senegal_F_10	2	0	0	0	2	Mindin	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Mindin_Senegal_F_12	0	0	0	1	1	Mindin	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Mindin_Senegal_F_14	1	0	0	0	1	Mindin	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Mindin_Senegal_F_15	0	0	0	0	0	Mindin	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Mindin_Senegal_F_17	0	0	0	0	1	Mindin	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Mindin_Senegal_F_19	0	0	0	0	1	Mindin	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Mindin_Senegal_F_2	0	0	0	0	1	Mindin	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Mindin_Senegal_F_3	0	0	0	0	1	Mindin	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Mindin_Senegal_F_6	0	0	0	0	1	Mindin	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Mindin_Senegal_F_8	0	0	0	0	0	Mindin	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Mindin_Senegal_M_1	0	0	0	0	0	Mindin	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Mindin_Senegal_M_11	0	0	0	0	1	Mindin	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Mindin_Senegal_M_13	1	0	0	0	1	Mindin	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Mindin_Senegal_M_16	0	0	0	0	0	Mindin	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Mindin_Senegal_M_18	0	0	0	0	1	Mindin	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Mindin_Senegal_M_20	0	0	0	0	2	Mindin	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Mindin_Senegal_M_4	1	0	0	0	1	Mindin	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Mindin_Senegal_M_5	0	0	0	0	0	Mindin	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Mindin_Senegal_M_7	0	0	0	0	1	Mindin	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Mindin_Senegal_M_9	0	0	0	0	1	Mindin	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Ngoye_Senegal_F_1	0	0	0	1	0	Ngoye	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Ngoye_Senegal_F_10	1	0	0	1	0	Ngoye	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Ngoye_Senegal_F_11	0	0	0	1	0	Ngoye	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Ngoye_Senegal_F_12	0	0	0	1	0	Ngoye	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Ngoye_Senegal_F_16	0	0	0	1	1	Ngoye	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Ngoye_Senegal_F_19	0	0	0	2	0	Ngoye	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Ngoye_Senegal_F_20	0	0	0	1	0	Ngoye	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Ngoye_Senegal_F_3	0	0	0	1	0	Ngoye	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Ngoye_Senegal_F_7	0	0	0	2	0	Ngoye	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Ngoye_Senegal_F_8	0	0	0	0	0	Ngoye	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Ngoye_Senegal_M_13	0	0	0	1	1	Ngoye	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Ngoye_Senegal_M_14	0	0	0	1	0	Ngoye	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Ngoye_Senegal_M_15	0	0	0	0	0	Ngoye	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Ngoye_Senegal_M_18	0	0	0	1	0	Ngoye	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Ngoye_Senegal_M_2	0	0	0	1	0	Ngoye	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Ngoye_Senegal_M_4	0	0	0	1	0	Ngoye	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Ngoye_Senegal_M_5	0	0	0	1	0	Ngoye	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Ngoye_Senegal_M_6	0	0	1	0	0	Ngoye	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Ngoye_Senegal_M_9	0	0	0	2	0	Ngoye	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_PK10_Senegal_F_1	0	0	0	0	0	PK10	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_PK10_Senegal_F_10	1	0	0	0	0	PK10	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_PK10_Senegal_F_12	0	0	0	0	1	PK10	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_PK10_Senegal_F_14	0	0	0	0	0	PK10	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_PK10_Senegal_F_15	1	0	0	0	1	PK10	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_PK10_Senegal_F_17	0	0	0	0	0	PK10	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_PK10_Senegal_F_19	0	0	0	0	1	PK10	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_PK10_Senegal_F_3	0	0	0	0	1	PK10	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_PK10_Senegal_F_5	1	0	0	0	1	PK10	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_PK10_Senegal_F_8	1	0	0	0	0	PK10	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_PK10_Senegal_M_11	0	0	0	0	2	PK10	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_PK10_Senegal_M_13	0	0	0	0	0	PK10	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_PK10_Senegal_M_16	1	0	0	0	0	PK10	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_PK10_Senegal_M_18	1	0	0	0	1	PK10	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_PK10_Senegal_M_20	0	0	0	0	0	PK10	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_PK10_Senegal_M_4	1	0	0	0	1	PK10	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_PK10_Senegal_M_7	1	0	0	0	0	PK10	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_PK10_Senegal_M_9	0	0	0	0	0	PK10	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Thies_Senegal_F_12	0	0	0	1	1	Thies	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Thies_Senegal_F_13	0	0	0	1	1	Thies	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Thies_Senegal_F_17	0	0	0	0	0	Thies	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Thies_Senegal_M_14	1	0	1	0	1	Thies	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Thies_Senegal_M_15	1	0	1	0	1	Thies	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Thies_Senegal_M_16	1	0	0	1	0	Thies	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Thies_Senegal_M_18	0	0	0	1	1	Thies	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Thies_Senegal_M_19	1	0	0	0	1	Thies	AAF	West Africa	Wafrica	Senegal
+Debug024_aegypti_Thies_Senegal_M_20	0	0	0	0	0	Thies	AAF	West Africa	Wafrica	Senegal
+Debug025_aegypti_Cuiaba_Brazil_M_1	0	0	0	2	0	Cuiaba	AAA	South America	Americas	Brazil
+Debug025_aegypti_Cuiaba_Brazil_M_10	0	0	0	1	0	Cuiaba	AAA	South America	Americas	Brazil
+Debug025_aegypti_Cuiaba_Brazil_M_11	0	0	0	2	0	Cuiaba	AAA	South America	Americas	Brazil
+Debug025_aegypti_Cuiaba_Brazil_M_12	0	0	0	1	0	Cuiaba	AAA	South America	Americas	Brazil
+Debug025_aegypti_Cuiaba_Brazil_M_13	0	0	0	2	0	Cuiaba	AAA	South America	Americas	Brazil
+Debug025_aegypti_Cuiaba_Brazil_M_14	0	0	0	2	0	Cuiaba	AAA	South America	Americas	Brazil
+Debug025_aegypti_Cuiaba_Brazil_M_15	0	0	0	1	0	Cuiaba	AAA	South America	Americas	Brazil
+Debug025_aegypti_Cuiaba_Brazil_M_16	0	0	0	2	0	Cuiaba	AAA	South America	Americas	Brazil
+Debug025_aegypti_Cuiaba_Brazil_M_17	0	0	0	2	0	Cuiaba	AAA	South America	Americas	Brazil
+Debug025_aegypti_Cuiaba_Brazil_M_18	0	0	2	1	0	Cuiaba	AAA	South America	Americas	Brazil
+Debug025_aegypti_Cuiaba_Brazil_M_19	0	0	0	2	0	Cuiaba	AAA	South America	Americas	Brazil
+Debug025_aegypti_Cuiaba_Brazil_M_2	0	0	1	1	0	Cuiaba	AAA	South America	Americas	Brazil
+Debug025_aegypti_Cuiaba_Brazil_M_20	0	0	0	2	0	Cuiaba	AAA	South America	Americas	Brazil
+Debug025_aegypti_Cuiaba_Brazil_M_3	0	0	1	1	0	Cuiaba	AAA	South America	Americas	Brazil
+Debug025_aegypti_Cuiaba_Brazil_M_4	0	0	2	2	0	Cuiaba	AAA	South America	Americas	Brazil
+Debug025_aegypti_Cuiaba_Brazil_M_5	0	0	0	2	0	Cuiaba	AAA	South America	Americas	Brazil
+Debug025_aegypti_Cuiaba_Brazil_M_6	0	0	0	1	0	Cuiaba	AAA	South America	Americas	Brazil
+Debug025_aegypti_Cuiaba_Brazil_M_7	0	0	0	2	0	Cuiaba	AAA	South America	Americas	Brazil
+Debug025_aegypti_Cuiaba_Brazil_M_8	0	0	0	1	0	Cuiaba	AAA	South America	Americas	Brazil
+Debug025_aegypti_Cuiaba_Brazil_M_9	0	0	1	1	0	Cuiaba	AAA	South America	Americas	Brazil
+Debug025_aegypti_Manaus_Brazil_M_1	0	0	0	2	0	Manaus	AAA	South America	Americas	Brazil
+Debug025_aegypti_Manaus_Brazil_M_10	0	0	0	2	0	Manaus	AAA	South America	Americas	Brazil
+Debug025_aegypti_Manaus_Brazil_M_11	0	0	0	2	0	Manaus	AAA	South America	Americas	Brazil
+Debug025_aegypti_Manaus_Brazil_M_12	0	0	0	2	0	Manaus	AAA	South America	Americas	Brazil
+Debug025_aegypti_Manaus_Brazil_M_13	0	0	0	2	0	Manaus	AAA	South America	Americas	Brazil
+Debug025_aegypti_Manaus_Brazil_M_14	0	0	0	2	0	Manaus	AAA	South America	Americas	Brazil
+Debug025_aegypti_Manaus_Brazil_M_15	0	0	0	2	0	Manaus	AAA	South America	Americas	Brazil
+Debug025_aegypti_Manaus_Brazil_M_16	0	0	0	2	0	Manaus	AAA	South America	Americas	Brazil
+Debug025_aegypti_Manaus_Brazil_M_17	0	0	0	2	0	Manaus	AAA	South America	Americas	Brazil
+Debug025_aegypti_Manaus_Brazil_M_18	0	0	0	2	0	Manaus	AAA	South America	Americas	Brazil
+Debug025_aegypti_Manaus_Brazil_M_19	0	0	0	2	0	Manaus	AAA	South America	Americas	Brazil
+Debug025_aegypti_Manaus_Brazil_M_2	0	0	0	2	0	Manaus	AAA	South America	Americas	Brazil
+Debug025_aegypti_Manaus_Brazil_M_3	0	0	0	2	0	Manaus	AAA	South America	Americas	Brazil
+Debug025_aegypti_Manaus_Brazil_M_4	0	0	0	2	0	Manaus	AAA	South America	Americas	Brazil
+Debug025_aegypti_Manaus_Brazil_M_5	0	0	0	2	0	Manaus	AAA	South America	Americas	Brazil
+Debug025_aegypti_Manaus_Brazil_M_6	0	0	0	2	0	Manaus	AAA	South America	Americas	Brazil
+Debug025_aegypti_Manaus_Brazil_M_7	0	0	0	2	0	Manaus	AAA	South America	Americas	Brazil
+Debug025_aegypti_Manaus_Brazil_M_8	0	0	0	2	0	Manaus	AAA	South America	Americas	Brazil
+Debug025_aegypti_Manaus_Brazil_M_9	0	0	0	2	0	Manaus	AAA	South America	Americas	Brazil
+Debug025_aegypti_Palmas_Brazil_M_1	0	0	0	1	0	Palmas	AAA	South America	Americas	Brazil
+Debug025_aegypti_Palmas_Brazil_M_10	0	0	0	1	0	Palmas	AAA	South America	Americas	Brazil
+Debug025_aegypti_Palmas_Brazil_M_11	0	0	0	2	0	Palmas	AAA	South America	Americas	Brazil
+Debug025_aegypti_Palmas_Brazil_M_12	0	0	0	2	0	Palmas	AAA	South America	Americas	Brazil
+Debug025_aegypti_Palmas_Brazil_M_13	0	0	1	0	0	Palmas	AAA	South America	Americas	Brazil
+Debug025_aegypti_Palmas_Brazil_M_14	0	0	0	2	0	Palmas	AAA	South America	Americas	Brazil
+Debug025_aegypti_Palmas_Brazil_M_15	0	0	1	1	0	Palmas	AAA	South America	Americas	Brazil
+Debug025_aegypti_Palmas_Brazil_M_16	0	0	0	2	0	Palmas	AAA	South America	Americas	Brazil
+Debug025_aegypti_Palmas_Brazil_M_18	0	0	0	1	0	Palmas	AAA	South America	Americas	Brazil
+Debug025_aegypti_Palmas_Brazil_M_19	0	0	0	2	0	Palmas	AAA	South America	Americas	Brazil
+Debug025_aegypti_Palmas_Brazil_M_2	0	0	1	1	0	Palmas	AAA	South America	Americas	Brazil
+Debug025_aegypti_Palmas_Brazil_M_20	0	0	0	2	0	Palmas	AAA	South America	Americas	Brazil
+Debug025_aegypti_Palmas_Brazil_M_3	0	0	0	2	0	Palmas	AAA	South America	Americas	Brazil
+Debug025_aegypti_Palmas_Brazil_M_4	0	0	0	2	0	Palmas	AAA	South America	Americas	Brazil
+Debug025_aegypti_Palmas_Brazil_M_5	0	0	0	2	0	Palmas	AAA	South America	Americas	Brazil
+Debug025_aegypti_Palmas_Brazil_M_6	0	0	0	2	0	Palmas	AAA	South America	Americas	Brazil
+Debug025_aegypti_Palmas_Brazil_M_7	0	0	0	1	0	Palmas	AAA	South America	Americas	Brazil
+Debug025_aegypti_Palmas_Brazil_M_8	0	0	1	1	0	Palmas	AAA	South America	Americas	Brazil
+Debug025_aegypti_Palmas_Brazil_M_9	0	0	2	1	0	Palmas	AAA	South America	Americas	Brazil
+Debug025_aegypti_Passo_Fundo_Brazil_M_1	0	1	0	1	0	Passo_Fundo	AAA	South America	Americas	Brazil
+Debug025_aegypti_Passo_Fundo_Brazil_M_10	0	0	0	1	0	Passo_Fundo	AAA	South America	Americas	Brazil
+Debug025_aegypti_Passo_Fundo_Brazil_M_11	0	0	0	1	0	Passo_Fundo	AAA	South America	Americas	Brazil
+Debug025_aegypti_Passo_Fundo_Brazil_M_12	0	0	0	1	0	Passo_Fundo	AAA	South America	Americas	Brazil
+Debug025_aegypti_Passo_Fundo_Brazil_M_13	0	0	0	1	0	Passo_Fundo	AAA	South America	Americas	Brazil
+Debug025_aegypti_Passo_Fundo_Brazil_M_14	0	0	0	2	0	Passo_Fundo	AAA	South America	Americas	Brazil
+Debug025_aegypti_Passo_Fundo_Brazil_M_15	0	0	0	2	0	Passo_Fundo	AAA	South America	Americas	Brazil
+Debug025_aegypti_Passo_Fundo_Brazil_M_2	0	1	0	1	0	Passo_Fundo	AAA	South America	Americas	Brazil
+Debug025_aegypti_Passo_Fundo_Brazil_M_3	0	0	0	1	0	Passo_Fundo	AAA	South America	Americas	Brazil
+Debug025_aegypti_Passo_Fundo_Brazil_M_4	0	0	0	2	0	Passo_Fundo	AAA	South America	Americas	Brazil
+Debug025_aegypti_Passo_Fundo_Brazil_M_5	0	0	0	1	0	Passo_Fundo	AAA	South America	Americas	Brazil
+Debug025_aegypti_Passo_Fundo_Brazil_M_6	0	1	0	2	0	Passo_Fundo	AAA	South America	Americas	Brazil
+Debug025_aegypti_Passo_Fundo_Brazil_M_7	0	0	0	1	0	Passo_Fundo	AAA	South America	Americas	Brazil
+Debug025_aegypti_Passo_Fundo_Brazil_M_8	0	1	0	1	0	Passo_Fundo	AAA	South America	Americas	Brazil
+Debug025_aegypti_Passo_Fundo_Brazil_M_9	0	0	0	2	0	Passo_Fundo	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_1	0	0	1	1	0	Sao_Luiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_10	0	0	0	2	0	Sao_Luiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_11	0	0	0	2	0	Sao_Luiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_13	0	0	1	1	0	Sao_Luiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_14	0	0	0	2	0	Sao_Luiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_15	0	0	0	2	0	Sao_Luiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_16	0	0	0	2	0	Sao_Luiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_17	0	0	0	2	0	Sao_Luiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_18	0	0	0	1	0	Sao_Luiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_19	0	0	0	1	0	Sao_Luiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_2	0	0	0	2	0	Sao_Luiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_20	0	0	0	2	0	Sao_Luiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_3	0	0	1	1	0	Sao_Luiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_4	0	0	0	2	0	Sao_Luiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_5	0	0	0	2	0	Sao_Luiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_7	0	0	0	2	0	Sao_Luiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_8	0	0	0	1	0	Sao_Luiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_9	0	0	0	2	0	Sao_Luiz	AAA	South America	Americas	Brazil
+Debug026_aegypti_Lagarto_Brazil_M_1	0	0	1	1	0	Lagarto	AAA	South America	Americas	Brazil
+Debug026_aegypti_Lagarto_Brazil_M_10	0	0	0	2	0	Lagarto	AAA	South America	Americas	Brazil
+Debug026_aegypti_Lagarto_Brazil_M_11	0	0	0	1	0	Lagarto	AAA	South America	Americas	Brazil
+Debug026_aegypti_Lagarto_Brazil_M_12	0	0	0	2	0	Lagarto	AAA	South America	Americas	Brazil
+Debug026_aegypti_Lagarto_Brazil_M_13	0	1	0	1	0	Lagarto	AAA	South America	Americas	Brazil
+Debug026_aegypti_Lagarto_Brazil_M_14	0	0	0	2	0	Lagarto	AAA	South America	Americas	Brazil
+Debug026_aegypti_Lagarto_Brazil_M_15	0	0	0	1	0	Lagarto	AAA	South America	Americas	Brazil
+Debug026_aegypti_Lagarto_Brazil_M_16	0	0	0	2	0	Lagarto	AAA	South America	Americas	Brazil
+Debug026_aegypti_Lagarto_Brazil_M_17	0	0	0	2	0	Lagarto	AAA	South America	Americas	Brazil
+Debug026_aegypti_Lagarto_Brazil_M_18	0	0	1	2	0	Lagarto	AAA	South America	Americas	Brazil
+Debug026_aegypti_Lagarto_Brazil_M_19	0	0	0	2	0	Lagarto	AAA	South America	Americas	Brazil
+Debug026_aegypti_Lagarto_Brazil_M_2	0	1	0	1	0	Lagarto	AAA	South America	Americas	Brazil
+Debug026_aegypti_Lagarto_Brazil_M_20	0	0	0	2	0	Lagarto	AAA	South America	Americas	Brazil
+Debug026_aegypti_Lagarto_Brazil_M_3	0	0	0	2	0	Lagarto	AAA	South America	Americas	Brazil
+Debug026_aegypti_Lagarto_Brazil_M_4	0	0	0	1	0	Lagarto	AAA	South America	Americas	Brazil
+Debug026_aegypti_Lagarto_Brazil_M_5	0	0	0	2	0	Lagarto	AAA	South America	Americas	Brazil
+Debug026_aegypti_Lagarto_Brazil_M_6	0	0	0	1	0	Lagarto	AAA	South America	Americas	Brazil
+Debug026_aegypti_Lagarto_Brazil_M_7	0	0	0	2	0	Lagarto	AAA	South America	Americas	Brazil
+Debug026_aegypti_Lagarto_Brazil_M_8	0	0	0	2	0	Lagarto	AAA	South America	Americas	Brazil
+Debug026_aegypti_Lagarto_Brazil_M_9	0	0	0	1	0	Lagarto	AAA	South America	Americas	Brazil
+Debug026_aegypti_Maringa_Brazil_M_1	0	1	0	2	0	Maringa	AAA	South America	Americas	Brazil
+Debug026_aegypti_Maringa_Brazil_M_10	0	0	0	2	0	Maringa	AAA	South America	Americas	Brazil
+Debug026_aegypti_Maringa_Brazil_M_11	0	0	0	1	0	Maringa	AAA	South America	Americas	Brazil
+Debug026_aegypti_Maringa_Brazil_M_12	0	0	0	2	0	Maringa	AAA	South America	Americas	Brazil
+Debug026_aegypti_Maringa_Brazil_M_13	0	0	0	1	0	Maringa	AAA	South America	Americas	Brazil
+Debug026_aegypti_Maringa_Brazil_M_15	0	0	0	1	0	Maringa	AAA	South America	Americas	Brazil
+Debug026_aegypti_Maringa_Brazil_M_16	0	0	0	2	0	Maringa	AAA	South America	Americas	Brazil
+Debug026_aegypti_Maringa_Brazil_M_17	0	0	0	2	0	Maringa	AAA	South America	Americas	Brazil
+Debug026_aegypti_Maringa_Brazil_M_18	0	0	0	2	0	Maringa	AAA	South America	Americas	Brazil
+Debug026_aegypti_Maringa_Brazil_M_19	0	0	0	1	0	Maringa	AAA	South America	Americas	Brazil
+Debug026_aegypti_Maringa_Brazil_M_2	0	0	0	2	0	Maringa	AAA	South America	Americas	Brazil
+Debug026_aegypti_Maringa_Brazil_M_20	0	0	0	2	0	Maringa	AAA	South America	Americas	Brazil
+Debug026_aegypti_Maringa_Brazil_M_3	0	0	0	1	0	Maringa	AAA	South America	Americas	Brazil
+Debug026_aegypti_Maringa_Brazil_M_4	0	0	0	2	0	Maringa	AAA	South America	Americas	Brazil
+Debug026_aegypti_Maringa_Brazil_M_6	0	0	0	1	0	Maringa	AAA	South America	Americas	Brazil
+Debug026_aegypti_Maringa_Brazil_M_7	0	0	0	2	0	Maringa	AAA	South America	Americas	Brazil
+Debug026_aegypti_Maringa_Brazil_M_8	0	0	0	2	0	Maringa	AAA	South America	Americas	Brazil
+Debug026_aegypti_Maringa_Brazil_M_9	0	1	0	2	0	Maringa	AAA	South America	Americas	Brazil
+Debug026_aegypti_Passo_Fundo_Brazil_M_16	0	0	0	1	0	Passo_Fundo	AAA	South America	Americas	Brazil
+Debug026_aegypti_Passo_Fundo_Brazil_M_17	0	0	0	2	0	Passo_Fundo	AAA	South America	Americas	Brazil
+Debug026_aegypti_Passo_Fundo_Brazil_M_19	0	0	0	2	0	Passo_Fundo	AAA	South America	Americas	Brazil
+Debug026_aegypti_Passo_Fundo_Brazil_M_20	0	0	0	2	0	Passo_Fundo	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_1	0	0	0	1	0	Patos_de_Minas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_10	0	1	1	2	0	Patos_de_Minas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_11	0	1	0	2	0	Patos_de_Minas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_12	0	0	0	1	0	Patos_de_Minas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_13	0	0	1	2	0	Patos_de_Minas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_14	0	0	0	1	0	Patos_de_Minas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_15	0	1	1	2	0	Patos_de_Minas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_16	0	0	2	2	0	Patos_de_Minas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_17	0	0	0	2	0	Patos_de_Minas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_18	0	0	1	2	0	Patos_de_Minas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_19	0	0	1	2	0	Patos_de_Minas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_2	0	0	1	2	0	Patos_de_Minas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_20	0	0	0	2	0	Patos_de_Minas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_4	0	0	0	2	0	Patos_de_Minas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_5	0	0	2	2	0	Patos_de_Minas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_7	0	0	0	2	0	Patos_de_Minas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_8	0	0	1	1	0	Patos_de_Minas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_9	0	0	1	2	0	Patos_de_Minas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_1	0	0	0	2	0	Porto_Velho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_11	0	0	0	2	0	Porto_Velho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_12	0	0	0	1	0	Porto_Velho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_13	0	0	0	2	0	Porto_Velho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_14	0	0	0	2	0	Porto_Velho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_15	0	0	0	1	0	Porto_Velho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_16	0	0	0	1	0	Porto_Velho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_17	0	0	0	2	0	Porto_Velho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_18	0	0	1	1	0	Porto_Velho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_19	0	1	1	2	0	Porto_Velho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_2	0	0	0	2	0	Porto_Velho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_20	0	0	0	2	0	Porto_Velho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_3	0	0	0	2	0	Porto_Velho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_4	0	0	0	2	0	Porto_Velho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_5	0	0	0	2	0	Porto_Velho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_6	0	0	1	1	0	Porto_Velho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_7	0	0	1	1	0	Porto_Velho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_8	0	0	0	2	0	Porto_Velho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_9	0	0	1	2	0	Porto_Velho	AAA	South America	Americas	Brazil
+Debug031_aegypti_El_Dorado_US_U_24	0	0	0	1	0	El_Dorado	ADMX	South America	Americas	Argentina
+Debug031_aegypti_El_Dorado_US_U_25	0	0	0	0	0	El_Dorado	ADMX	South America	Americas	Argentina
+Debug031_aegypti_El_Dorado_US_U_26	0	0	0	2	0	El_Dorado	ADMX	South America	Americas	Argentina
+Debug031_aegypti_El_Dorado_US_U_28	0	0	0	0	0	El_Dorado	ADMX	South America	Americas	Argentina
+Debug031_aegypti_El_Dorado_US_U_29	0	0	0	0	0	El_Dorado	ADMX	South America	Americas	Argentina
+Debug031_aegypti_El_Dorado_US_U_30	0	0	0	1	0	El_Dorado	ADMX	South America	Americas	Argentina
+Debug031_aegypti_El_Dorado_US_U_31	0	1	0	1	0	El_Dorado	ADMX	South America	Americas	Argentina
+Debug031_aegypti_Jaffna_Sri_Lanka_M_21	0	0	0	2	0	Jaffna	AAA	Asia	Asia	SriLanka
+Debug031_aegypti_Jaffna_Sri_Lanka_M_23	0	0	0	2	0	Jaffna	AAA	Asia	Asia	SriLanka
+Debug031_aegypti_Las_Cruces_US_U_1	0	1	0	2	0	Las_Cruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_10	0	1	0	2	0	Las_Cruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_11	0	0	1	0	0	Las_Cruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_12	0	1	1	2	0	Las_Cruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_13	0	0	1	1	0	Las_Cruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_14	0	0	1	2	0	Las_Cruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_15	0	2	0	2	0	Las_Cruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_16	0	1	0	1	0	Las_Cruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_17	0	1	0	1	0	Las_Cruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_18	0	0	1	2	0	Las_Cruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_19	0	0	0	2	0	Las_Cruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_3	0	1	0	1	0	Las_Cruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_4	0	0	0	2	0	Las_Cruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_5	0	0	0	1	0	Las_Cruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_6	0	0	0	2	0	Las_Cruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_7	0	0	1	0	0	Las_Cruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_8	0	0	0	1	0	Las_Cruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_9	0	1	0	1	0	Las_Cruces	AAA	North America	Americas	USA
+Debug031_aegypti_Roswell_US_U_1	0	0	0	1	0	Roswell	AAA	North America	Americas	USA
+Debug031_aegypti_Roswell_US_U_10	0	0	0	2	0	Roswell	AAA	North America	Americas	USA
+Debug031_aegypti_Roswell_US_U_11	0	0	0	2	0	Roswell	AAA	North America	Americas	USA
+Debug031_aegypti_Roswell_US_U_12	0	0	0	2	0	Roswell	AAA	North America	Americas	USA
+Debug031_aegypti_Roswell_US_U_13	0	1	0	1	0	Roswell	AAA	North America	Americas	USA
+Debug031_aegypti_Roswell_US_U_14	0	0	0	1	0	Roswell	AAA	North America	Americas	USA
+Debug031_aegypti_Roswell_US_U_15	0	0	0	1	0	Roswell	AAA	North America	Americas	USA
+Debug031_aegypti_Roswell_US_U_16	0	0	0	2	0	Roswell	AAA	North America	Americas	USA
+Debug031_aegypti_Roswell_US_U_18	0	1	0	2	0	Roswell	AAA	North America	Americas	USA
+Debug031_aegypti_Roswell_US_U_19	0	1	0	2	0	Roswell	AAA	North America	Americas	USA
+Debug031_aegypti_Roswell_US_U_2	0	0	0	2	0	Roswell	AAA	North America	Americas	USA
+Debug031_aegypti_Roswell_US_U_20	0	1	0	2	0	Roswell	AAA	North America	Americas	USA
+Debug031_aegypti_Roswell_US_U_3	0	1	0	2	0	Roswell	AAA	North America	Americas	USA
+Debug031_aegypti_Roswell_US_U_4	0	0	0	2	0	Roswell	AAA	North America	Americas	USA
+Debug031_aegypti_Roswell_US_U_5	0	2	0	2	0	Roswell	AAA	North America	Americas	USA
+Debug031_aegypti_Roswell_US_U_6	0	0	1	1	0	Roswell	AAA	North America	Americas	USA
+Debug031_aegypti_Roswell_US_U_7	0	0	0	2	0	Roswell	AAA	North America	Americas	USA
+Debug031_aegypti_Roswell_US_U_8	0	1	0	1	0	Roswell	AAA	North America	Americas	USA
+Debug031_aegypti_Roswell_US_U_9	0	1	0	1	0	Roswell	AAA	North America	Americas	USA
+Debug031_aegypti_Rural_Sulawesi_U_1	0	0	0	2	0	Rural_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_10	0	0	0	2	0	Rural_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_12	0	0	0	2	0	Rural_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_13	0	0	0	2	0	Rural_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_14	0	0	0	2	0	Rural_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_16	0	0	0	2	0	Rural_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_17	0	0	0	2	0	Rural_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_19	0	0	0	2	0	Rural_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_2	0	0	0	2	0	Rural_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_20	0	0	0	2	0	Rural_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_3	0	0	0	2	0	Rural_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_4	0	0	0	2	0	Rural_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_6	0	0	0	2	0	Rural_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_7	0	0	0	2	0	Rural_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_8	0	0	0	2	0	Rural_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_9	0	0	0	2	0	Rural_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_1	0	0	0	2	0	Urban_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_10	0	0	0	2	0	Urban_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_11	0	0	0	2	0	Urban_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_12	0	0	0	2	0	Urban_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_13	0	0	0	2	0	Urban_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_14	0	0	0	2	0	Urban_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_15	0	0	0	2	0	Urban_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_16	0	0	0	2	0	Urban_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_17	0	0	0	2	0	Urban_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_18	0	0	0	2	0	Urban_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_19	0	0	0	2	0	Urban_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_20	0	0	0	2	0	Urban_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_3	0	0	0	2	0	Urban_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_4	0	0	0	2	0	Urban_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_5	0	0	0	2	0	Urban_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_6	0	0	0	2	0	Urban_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_7	0	0	0	2	0	Urban_Sulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_8	0	0	0	2	0	Urban_Sulawesi	AAA	Asia	Asia	Philippines
+Debug032_aegypti_Coachella_USA_F_1	0	0	0	2	0	Coachella	AAA	North America	Americas	USA
+Debug032_aegypti_Coachella_USA_F_10	0	1	0	1	0	Coachella	AAA	North America	Americas	USA
+Debug032_aegypti_Coachella_USA_F_11	0	0	0	2	0	Coachella	AAA	North America	Americas	USA
+Debug032_aegypti_Coachella_USA_F_12	0	1	0	1	0	Coachella	AAA	North America	Americas	USA
+Debug032_aegypti_Coachella_USA_F_17	0	0	1	2	0	Coachella	AAA	North America	Americas	USA
+Debug032_aegypti_Coachella_USA_F_18	0	0	0	2	0	Coachella	AAA	North America	Americas	USA
+Debug032_aegypti_Coachella_USA_F_19	0	0	0	2	0	Coachella	AAA	North America	Americas	USA
+Debug032_aegypti_Coachella_USA_F_5	0	0	0	1	0	Coachella	AAA	North America	Americas	USA
+Debug032_aegypti_Coachella_USA_F_7	0	0	0	1	0	Coachella	AAA	North America	Americas	USA
+Debug032_aegypti_Coachella_USA_F_9	0	0	0	2	0	Coachella	AAA	North America	Americas	USA
+Debug032_aegypti_Coachella_USA_M_14	0	0	0	2	0	Coachella	AAA	North America	Americas	USA
+Debug032_aegypti_Coachella_USA_M_15	0	1	0	2	0	Coachella	AAA	North America	Americas	USA
+Debug032_aegypti_Coachella_USA_M_16	0	0	0	1	0	Coachella	AAA	North America	Americas	USA
+Debug032_aegypti_Coachella_USA_M_2	0	0	0	2	0	Coachella	AAA	North America	Americas	USA
+Debug032_aegypti_Coachella_USA_M_20	0	2	1	1	0	Coachella	AAA	North America	Americas	USA
+Debug032_aegypti_Coachella_USA_M_3	0	0	0	2	0	Coachella	AAA	North America	Americas	USA
+Debug032_aegypti_Coachella_USA_M_4	0	1	0	2	0	Coachella	AAA	North America	Americas	USA
+Debug032_aegypti_Coachella_USA_M_6	0	0	0	0	0	Coachella	AAA	North America	Americas	USA
+Debug032_aegypti_Coachella_USA_M_8	0	0	0	2	0	Coachella	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_1	0	0	0	2	0	Los_Angeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_10	0	0	0	2	0	Los_Angeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_11	0	0	0	2	0	Los_Angeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_12	0	1	0	2	0	Los_Angeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_13	0	0	0	2	0	Los_Angeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_14	0	0	0	2	0	Los_Angeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_15	0	0	0	2	0	Los_Angeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_16	0	1	0	2	0	Los_Angeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_17	0	0	0	2	0	Los_Angeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_18	0	0	0	2	0	Los_Angeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_19	0	0	0	2	0	Los_Angeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_2	0	0	0	2	0	Los_Angeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_20	0	0	0	2	0	Los_Angeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_3	0	1	0	2	0	Los_Angeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_4	0	1	0	1	0	Los_Angeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_5	0	2	0	2	0	Los_Angeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_6	0	1	0	2	0	Los_Angeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_7	0	0	0	2	0	Los_Angeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_8	0	1	0	2	0	Los_Angeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_9	0	0	0	2	0	Los_Angeles	AAA	North America	Americas	USA
+Debug034_aegypti_Playa_Puerto_Rico_F_1	0	0	1	2	0	Playa	AAA	NA	Americas	PuertoRico
+Debug034_aegypti_Playa_Puerto_Rico_F_2	0	0	0	2	0	Playa	AAA	NA	Americas	PuertoRico
+Debug034_aegypti_Playa_Puerto_Rico_F_3	0	0	0	2	0	Playa	AAA	NA	Americas	PuertoRico
+Debug034_aegypti_Playa_Puerto_Rico_F_4	0	0	0	2	0	Playa	AAA	NA	Americas	PuertoRico
+Debug034_aegypti_Playa_Puerto_Rico_F_5	0	0	0	2	0	Playa	AAA	NA	Americas	PuertoRico
+Debug034_aegypti_Playa_Puerto_Rico_F_6	0	0	0	1	0	Playa	AAA	NA	Americas	PuertoRico
+Debug034_aegypti_Playa_Puerto_Rico_F_7	0	0	0	2	0	Playa	AAA	NA	Americas	PuertoRico
+Debug034_aegypti_Playa_Puerto_Rico_F_8	0	0	1	2	0	Playa	AAA	NA	Americas	PuertoRico
+Debug034_aegypti_Playa_Puerto_Rico_M_10	0	0	0	1	0	Playa	AAA	NA	Americas	PuertoRico
+Debug034_aegypti_Playa_Puerto_Rico_M_11	0	0	0	2	0	Playa	AAA	NA	Americas	PuertoRico
+Debug034_aegypti_Playa_Puerto_Rico_M_12	0	0	1	2	0	Playa	AAA	NA	Americas	PuertoRico
+Debug034_aegypti_Playa_Puerto_Rico_M_13	0	1	0	2	0	Playa	AAA	NA	Americas	PuertoRico
+Debug034_aegypti_Playa_Puerto_Rico_M_14	0	0	0	2	0	Playa	AAA	NA	Americas	PuertoRico
+Debug034_aegypti_Playa_Puerto_Rico_M_15	0	1	1	2	0	Playa	AAA	NA	Americas	PuertoRico
+Debug034_aegypti_Playa_Puerto_Rico_M_16	0	0	1	1	0	Playa	AAA	NA	Americas	PuertoRico
+Debug034_aegypti_Playa_Puerto_Rico_M_9	0	0	0	2	0	Playa	AAA	NA	Americas	PuertoRico
+Debug034_aegypti_Ponce_Puerto_Rico_F_1	0	0	1	2	0	Ponce	AAA	NA	Americas	PuertoRico
+Debug034_aegypti_Ponce_Puerto_Rico_F_2	0	1	1	2	0	Ponce	AAA	NA	Americas	PuertoRico
+Debug034_aegypti_Ponce_Puerto_Rico_F_3	0	1	0	2	0	Ponce	AAA	NA	Americas	PuertoRico
+Debug034_aegypti_Ponce_Puerto_Rico_F_4	0	0	0	1	0	Ponce	AAA	NA	Americas	PuertoRico
+Debug034_aegypti_Ponce_Puerto_Rico_F_5	0	0	1	2	0	Ponce	AAA	NA	Americas	PuertoRico
+Debug034_aegypti_Ponce_Puerto_Rico_F_6	0	0	0	1	0	Ponce	AAA	NA	Americas	PuertoRico
+Debug034_aegypti_Ponce_Puerto_Rico_F_7	0	0	0	2	0	Ponce	AAA	NA	Americas	PuertoRico
+Debug034_aegypti_Ponce_Puerto_Rico_M_10	0	0	1	2	0	Ponce	AAA	NA	Americas	PuertoRico
+Debug034_aegypti_Ponce_Puerto_Rico_M_11	0	0	1	2	0	Ponce	AAA	NA	Americas	PuertoRico
+Debug034_aegypti_Ponce_Puerto_Rico_M_12	0	0	0	1	0	Ponce	AAA	NA	Americas	PuertoRico
+Debug034_aegypti_Ponce_Puerto_Rico_M_14	0	0	0	2	0	Ponce	AAA	NA	Americas	PuertoRico
+Debug034_aegypti_Ponce_Puerto_Rico_M_16	0	0	0	2	0	Ponce	AAA	NA	Americas	PuertoRico
+Debug034_aegypti_Ponce_Puerto_Rico_M_9	0	0	0	1	0	Ponce	AAA	NA	Americas	PuertoRico
