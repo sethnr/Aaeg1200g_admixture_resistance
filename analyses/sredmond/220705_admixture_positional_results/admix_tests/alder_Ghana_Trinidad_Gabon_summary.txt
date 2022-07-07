@@ -1,0 +1,290 @@
+
+        |                          
+        |      ALDER,   v1.03
+     \..|./                        
+    \ \  /       Admixture         
+     \ |/ /      Linkage           
+      \| /       Disequilibrium for
+       |/        Evolutionary      
+       |         Relationships     
+       |                           
+
+  +--------------------------------------------------------------------------+
+  |  ALDER computes weighted LD decay curves, performs curve-fitting to      |
+  |  infer admixture dates, and uses the results to test for admixture.      |
+  |  For full details about options and parameters, please see the README    |
+  |  file included with this software.                                       |
+  +--------------------------------------------------------------------------+
+
+---------- contents of parameter file: results/admix_tests/alder_Ghana_Trinidad_Gabon.params ----------
+genotypename: results/admix_eigen/eigen_all.geno
+snpname: results/admix_eigen/eigen_all.snp
+indivname: results/admix_eigen/eigen_all.ind
+admixpop: Gabon
+refpops: Ghana;Trinidad
+raw_outname: results/admix_tests/alder_Ghana_Trinidad_Gabon_raw.txt
+num_threads: 4
+mindis: 0.1
+binsize: 0.1
+jackknife: NO
+---------- parameter settings used (with defaults for unspecified) ----------
+
+Input data files:
+        genotypename: results/admix_eigen/eigen_all.geno
+             snpname: results/admix_eigen/eigen_all.snp
+           indivname: results/admix_eigen/eigen_all.ind
+
+Admixed population:
+            admixpop: Gabon
+
+Reference populations/weights:
+             refpops: Ghana;Trinidad
+
+Raw weighted LD curve output:
+         raw_outname: results/admix_tests/alder_Ghana_Trinidad_Gabon_raw.txt
+           jackknife: NO
+
+Output file for IDs of SNPs used:
+         snp_outname: (none)
+
+Data filtering:
+            mincount: 4
+
+Curve fitting:
+             binsize: 0.100000
+              mindis: 0.100000
+              maxdis: 0.500000
+
+Input checks:
+       fast_snp_read: NO
+            checkmap: YES
+
+Computational options:
+         num_threads: 4
+      approx_ld_corr: YES
+      use_naive_algo: NO
+
+-------------------------------------------------------------------------------
+
+                        *** Processing data ***
+
+num indivs in full data set: 1133
+parsing refpops string (semicolon-delimited; no spaces): Ghana;Trinidad
+  admixed pop: Gabon (64 indivs)
+  ref pop 0: Ghana (40 indivs)
+  ref pop 1: Trinidad (20 indivs)
+*** warning.  genetic distances are in cM not Morgans
+1:164135059	1	101	164135059
+
+initial filtering: using 7128587 of 7128587 snps in data set
+reading genotype data.................................................................................................................................................................................................................................................................................................................................................................................................................................................... done
+number of reference populations: 2
+number of chromosomes (with data) used: 3
+
+Form of ALDER to run: 2-reference weighted LD
+
+==> Time to process data: 26.1073
+
+-------------------------------------------------------------------------------
+
+     *** Determining extent of correlated LD between test and ref pops ***
+
+WARNING: skipping LD correlation computation: 'mindis' param is set
+decay curves will be fit starting at d = 0.1 Morgans, as specified
+
+-------------------------------------------------------------------------------
+
+   *** Computing 2-ref weighted LD with weights Ghana Trinidad ***
+
+analyzing chrom 1 2 3
+
+==> Time to run alder: 2.4179
+
+    10.000	 0.00000809	  -1189673455
+    20.000	 0.00000571	  -1006622583
+    30.000	 0.00000611	    -33410746
+    40.000	 0.00000411	   1318598720
+       inf	 0.00000339	    844817022   (inter-chrom snp pairs)
+
+---- fit on data from 9.80 to 50.00 cM (using inter-chrom affine term) ----
+d>9.80       decay:        4.55 +/- 0.53         z = 8.61 *
+d>9.80     amp_tot:  0.00000890 +/- 0.00000130
+d>9.80     amp_exp:  0.00000721 +/- 0.00000096   z = 7.47 *
+d>9.80     amp_aff:  0.00000339 +/- 0.00000110
+
+---- fit on data from 9.90 to 50.00 cM (using inter-chrom affine term) ----
+d>9.90       decay:        4.55 +/- 0.53         z = 8.61 *
+d>9.90     amp_tot:  0.00000890 +/- 0.00000130
+d>9.90     amp_exp:  0.00000721 +/- 0.00000096   z = 7.47 *
+d>9.90     amp_aff:  0.00000339 +/- 0.00000110
+
+---- fit on data from 10.00 to 50.00 cM (using inter-chrom affine term) ----
+d>10.00       decay:        4.55 +/- 0.53         z = 8.61 *
+d>10.00     amp_tot:  0.00000890 +/- 0.00000130
+d>10.00     amp_exp:  0.00000721 +/- 0.00000096   z = 7.47 *
+d>10.00     amp_aff:  0.00000339 +/- 0.00000110
+
+---- fit on data from 10.10 to 50.00 cM (using inter-chrom affine term) ----
+d>10.10       decay:        3.43 +/- 1.89         z = 1.82
+d>10.10     amp_tot:  0.00000691 +/- 0.00000367
+d>10.10     amp_exp:  0.00000521 +/- 0.00000398   z = 1.31
+d>10.10     amp_aff:  0.00000339 +/- 0.00000110
+
+---- fit on data from 10.20 to 50.00 cM (using inter-chrom affine term) ----
+d>10.20       decay:        3.43 +/- 1.89         z = 1.82
+d>10.20     amp_tot:  0.00000691 +/- 0.00000367
+d>10.20     amp_exp:  0.00000521 +/- 0.00000398   z = 1.31
+d>10.20     amp_aff:  0.00000339 +/- 0.00000110
+
+==> Time to run fits: 0.0162458
+
+-------------------------------------------------------------------------------
+
+                    *** Running test for admixture ***
+
+-------------------------------------------------------------------------------
+
+   *** Computing 1-ref weighted LD with weights Ghana ***
+
+analyzing chrom 1 2 3
+
+==> Time to run alder: 43.5909
+
+---- fit on data from 9.80 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 1 of 3 jackknife reps failed to fit; unable to estimate std
+d>9.80       decay:      500.00 +/- inf          z = 0.00
+d>9.80     amp_tot:556610892583781.56250000 +/- inf       
+d>9.80     amp_exp:556610892583781.56250000 +/- inf          z = 0.00
+d>9.80     amp_aff:  0.00000120 +/- inf       
+
+---- fit on data from 9.90 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 1 of 3 jackknife reps failed to fit; unable to estimate std
+d>9.90       decay:      500.00 +/- inf          z = 0.00
+d>9.90     amp_tot:556610892583781.56250000 +/- inf       
+d>9.90     amp_exp:556610892583781.56250000 +/- inf          z = 0.00
+d>9.90     amp_aff:  0.00000120 +/- inf       
+
+---- fit on data from 10.00 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 1 of 3 jackknife reps failed to fit; unable to estimate std
+d>10.00       decay:      500.00 +/- inf          z = 0.00
+d>10.00     amp_tot:556610892583781.56250000 +/- inf       
+d>10.00     amp_exp:556610892583781.56250000 +/- inf          z = 0.00
+d>10.00     amp_aff:  0.00000120 +/- inf       
+
+---- fit on data from 10.10 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 3 of 3 jackknife reps failed to fit; unable to estimate std
+d>10.10       decay:        2.00 +/- inf          z = 0.00
+d>10.10     amp_tot:  0.00000038 +/- inf       
+d>10.10     amp_exp: -0.00000022 +/- inf          z = -0.00
+d>10.10     amp_aff:  0.00000120 +/- inf       
+
+---- fit on data from 10.20 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 3 of 3 jackknife reps failed to fit; unable to estimate std
+d>10.20       decay:        2.00 +/- inf          z = 0.00
+d>10.20     amp_tot:  0.00000038 +/- inf       
+d>10.20     amp_exp: -0.00000022 +/- inf          z = -0.00
+d>10.20     amp_aff:  0.00000120 +/- inf       
+
+==> Time to run fits: 0.00453591
+
+-------------------------------------------------------------------------------
+
+   *** Computing 1-ref weighted LD with weights Trinidad ***
+
+analyzing chrom 1 2 3
+
+==> Time to run alder: 44.0918
+
+---- fit on data from 9.80 to 50.00 cM (using inter-chrom affine term) ----
+d>9.80       decay:        5.60 +/- 1.06         z = 5.30 *
+d>9.80     amp_tot:  0.00001197 +/- 0.00000210
+d>9.80     amp_exp:  0.00000876 +/- 0.00000204   z = 4.30 *
+d>9.80     amp_aff:  0.00000641 +/- 0.00000103
+
+---- fit on data from 9.90 to 50.00 cM (using inter-chrom affine term) ----
+d>9.90       decay:        5.60 +/- 1.06         z = 5.30 *
+d>9.90     amp_tot:  0.00001197 +/- 0.00000210
+d>9.90     amp_exp:  0.00000876 +/- 0.00000204   z = 4.30 *
+d>9.90     amp_aff:  0.00000641 +/- 0.00000103
+
+---- fit on data from 10.00 to 50.00 cM (using inter-chrom affine term) ----
+d>10.00       decay:        5.60 +/- 1.06         z = 5.30 *
+d>10.00     amp_tot:  0.00001197 +/- 0.00000210
+d>10.00     amp_exp:  0.00000876 +/- 0.00000204   z = 4.30 *
+d>10.00     amp_aff:  0.00000641 +/- 0.00000103
+
+---- fit on data from 10.10 to 50.00 cM (using inter-chrom affine term) ----
+d>10.10       decay:        5.42 +/- 2.14         z = 2.54 *
+d>10.10     amp_tot:  0.00001155 +/- 0.00000383
+d>10.10     amp_exp:  0.00000834 +/- 0.00000424   z = 1.97
+d>10.10     amp_aff:  0.00000641 +/- 0.00000103
+
+---- fit on data from 10.20 to 50.00 cM (using inter-chrom affine term) ----
+d>10.20       decay:        5.42 +/- 2.14         z = 2.54 *
+d>10.20     amp_tot:  0.00001155 +/- 0.00000383
+d>10.20     amp_exp:  0.00000834 +/- 0.00000424   z = 1.97
+d>10.20     amp_aff:  0.00000641 +/- 0.00000103
+
+==> Time to run fits: 0.000829935
+
+-------------------------------------------------------------------------------
+
+               *** Comparing curves to test for admixture ***
+
+---- fit on data from 9.80 to 50.00 cM (using inter-chrom affine term) ----
+d>9.80  decay diff:      495.44 +/- inf       1-ref Ghana - 2-ref
+d>9.80  decay diff:        1.05 +/- 0.70      1-ref Trinidad - 2-ref
+d>9.80  decay diff:     -494.40 +/- inf       1-ref Trinidad - 1-ref Ghana
+
+---- fit on data from 9.90 to 50.00 cM (using inter-chrom affine term) ----
+d>9.90  decay diff:      495.44 +/- inf       1-ref Ghana - 2-ref
+d>9.90  decay diff:        1.05 +/- 0.70      1-ref Trinidad - 2-ref
+d>9.90  decay diff:     -494.40 +/- inf       1-ref Trinidad - 1-ref Ghana
+
+---- fit on data from 10.00 to 50.00 cM (using inter-chrom affine term) ----
+d>10.00  decay diff:      495.44 +/- inf       1-ref Ghana - 2-ref
+d>10.00  decay diff:        1.05 +/- 0.70      1-ref Trinidad - 2-ref
+d>10.00  decay diff:     -494.40 +/- inf       1-ref Trinidad - 1-ref Ghana
+
+---- fit on data from 10.10 to 50.00 cM (using inter-chrom affine term) ----
+d>10.10  decay diff:       -1.43 +/- inf       1-ref Ghana - 2-ref
+d>10.10  decay diff:        1.99 +/- 0.77      1-ref Trinidad - 2-ref
+d>10.10  decay diff:        3.42 +/- inf       1-ref Trinidad - 1-ref Ghana
+
+---- fit on data from 10.20 to 50.00 cM (using inter-chrom affine term) ----
+d>10.20  decay diff:       -1.43 +/- inf       1-ref Ghana - 2-ref
+d>10.20  decay diff:        1.99 +/- 0.77      1-ref Trinidad - 2-ref
+d>10.20  decay diff:        3.42 +/- inf       1-ref Trinidad - 1-ref Ghana
+
+-------------------------------------------------------------------------------
+
+                    *** Admixture test summary ***
+
+Weighted LD curves are fit starting at 10 cM
+
+Pre-test: Does Gabon have a 1-ref weighted LD curve with Ghana?
+   1-ref decay z-score:    0.00
+   1-ref amp_exp z-score:  0.00
+                                  NO: curve is not significant
+
+Pre-test: Does Gabon have a 1-ref weighted LD curve with Trinidad?
+   1-ref decay z-score:    5.30
+   1-ref amp_exp z-score:  4.30
+                                  YES: curve is significant
+
+Does Gabon have a 2-ref weighted LD curve with Ghana and Trinidad?
+   2-ref decay z-score:    8.61
+   2-ref amp_exp z-score:  7.47
+                                  YES: curve is significant
+
+Do 2-ref and 1-ref curves have consistent decay rates?
+   1-ref Ghana - 2-ref z-score:                        0.00   (196%)
+   1-ref Trinidad - 2-ref z-score:                     1.49   ( 21%)
+   1-ref Trinidad - 1-ref Ghana z-score:              -0.00   (-196%)
+                                  WARNING: decay rates are inconsistent
+
+Test FAILS (z=7.47, p=8.2e-14) for Gabon with {Ghana, Trinidad} weights
+
+DATA:	failure (warning: decay rates inconsistent)	8.2e-14	Gabon	Ghana	Trinidad	7.47	0.00	4.30	196%	4.55 +/- 0.53	0.00000721 +/- 0.00000096	500.00 +/- inf	556610892583781.56250000 +/- inf	5.60 +/- 1.06	0.00000876 +/- 0.00000204
+
+DATA:	test status	p-value	test pop	ref A	ref B	2-ref z-score	1-ref z-score A	1-ref z-score B	max decay diff %	2-ref decay	2-ref amp_exp	1-ref decay A	1-ref amp_exp A	1-ref decay B	1-ref amp_exp B

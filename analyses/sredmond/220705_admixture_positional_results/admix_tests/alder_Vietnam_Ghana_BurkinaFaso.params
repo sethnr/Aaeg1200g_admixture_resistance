@@ -1,0 +1,10 @@
+genotypename: results/admix_eigen/eigen_all.geno
+snpname: results/admix_eigen/eigen_all.snp
+indivname: results/admix_eigen/eigen_all.ind
+admixpop: BurkinaFaso
+refpops: Vietnam;Ghana
+raw_outname: results/admix_tests/alder_Vietnam_Ghana_BurkinaFaso_raw.txt
+num_threads: 4
+mindis: 0.1
+binsize: 0.1
+jackknife: NO

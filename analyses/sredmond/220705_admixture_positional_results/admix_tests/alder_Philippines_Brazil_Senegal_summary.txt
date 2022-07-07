@@ -1,0 +1,291 @@
+
+        |                          
+        |      ALDER,   v1.03
+     \..|./                        
+    \ \  /       Admixture         
+     \ |/ /      Linkage           
+      \| /       Disequilibrium for
+       |/        Evolutionary      
+       |         Relationships     
+       |                           
+
+  +--------------------------------------------------------------------------+
+  |  ALDER computes weighted LD decay curves, performs curve-fitting to      |
+  |  infer admixture dates, and uses the results to test for admixture.      |
+  |  For full details about options and parameters, please see the README    |
+  |  file included with this software.                                       |
+  +--------------------------------------------------------------------------+
+
+---------- contents of parameter file: results/admix_tests/alder_Philippines_Brazil_Senegal.params ----------
+genotypename: results/admix_eigen/eigen_all.geno
+snpname: results/admix_eigen/eigen_all.snp
+indivname: results/admix_eigen/eigen_all.ind
+admixpop: Senegal
+refpops: Philippines;Brazil
+raw_outname: results/admix_tests/alder_Philippines_Brazil_Senegal_raw.txt
+num_threads: 4
+mindis: 0.1
+binsize: 0.1
+jackknife: NO
+---------- parameter settings used (with defaults for unspecified) ----------
+
+Input data files:
+        genotypename: results/admix_eigen/eigen_all.geno
+             snpname: results/admix_eigen/eigen_all.snp
+           indivname: results/admix_eigen/eigen_all.ind
+
+Admixed population:
+            admixpop: Senegal
+
+Reference populations/weights:
+             refpops: Philippines;Brazil
+
+Raw weighted LD curve output:
+         raw_outname: results/admix_tests/alder_Philippines_Brazil_Senegal_raw.txt
+           jackknife: NO
+
+Output file for IDs of SNPs used:
+         snp_outname: (none)
+
+Data filtering:
+            mincount: 4
+
+Curve fitting:
+             binsize: 0.100000
+              mindis: 0.100000
+              maxdis: 0.500000
+
+Input checks:
+       fast_snp_read: NO
+            checkmap: YES
+
+Computational options:
+         num_threads: 4
+      approx_ld_corr: YES
+      use_naive_algo: NO
+
+-------------------------------------------------------------------------------
+
+                        *** Processing data ***
+
+num indivs in full data set: 1133
+parsing refpops string (semicolon-delimited; no spaces): Philippines;Brazil
+  admixed pop: Senegal (101 indivs)
+  ref pop 0: Philippines (53 indivs)
+  ref pop 1: Brazil (217 indivs)
+*** warning.  genetic distances are in cM not Morgans
+1:164135059	1	101	164135059
+
+initial filtering: using 7128587 of 7128587 snps in data set
+reading genotype data.................................................................................................................................................................................................................................................................................................................................................................................................................................................... done
+number of reference populations: 2
+number of chromosomes (with data) used: 3
+
+Form of ALDER to run: 2-reference weighted LD
+
+==> Time to process data: 33.5687
+
+-------------------------------------------------------------------------------
+
+     *** Determining extent of correlated LD between test and ref pops ***
+
+WARNING: skipping LD correlation computation: 'mindis' param is set
+decay curves will be fit starting at d = 0.1 Morgans, as specified
+
+-------------------------------------------------------------------------------
+
+   *** Computing 2-ref weighted LD with weights Philippines Brazil ***
+
+analyzing chrom 1 2 3
+
+==> Time to run alder: 8.6775
+
+    10.000	 0.00000216	  -1189673455
+    20.000	 0.00000124	  -1006622583
+    30.000	 0.00000147	    -33410746
+    40.000	 0.00000069	   1318598720
+       inf	 0.00000074	    844817022   (inter-chrom snp pairs)
+
+---- fit on data from 9.80 to 50.00 cM (using inter-chrom affine term) ----
+d>9.80       decay:        6.75 +/- 7.28         z = 0.93
+d>9.80     amp_tot:  0.00000308 +/- 0.00000460
+d>9.80     amp_exp:  0.00000272 +/- 0.00000426   z = 0.64
+d>9.80     amp_aff:  0.00000074 +/- 0.00000070
+
+---- fit on data from 9.90 to 50.00 cM (using inter-chrom affine term) ----
+d>9.90       decay:        6.75 +/- 7.28         z = 0.93
+d>9.90     amp_tot:  0.00000308 +/- 0.00000460
+d>9.90     amp_exp:  0.00000272 +/- 0.00000426   z = 0.64
+d>9.90     amp_aff:  0.00000074 +/- 0.00000070
+
+---- fit on data from 10.00 to 50.00 cM (using inter-chrom affine term) ----
+d>10.00       decay:        6.75 +/- 7.28         z = 0.93
+d>10.00     amp_tot:  0.00000308 +/- 0.00000460
+d>10.00     amp_exp:  0.00000272 +/- 0.00000426   z = 0.64
+d>10.00     amp_aff:  0.00000074 +/- 0.00000070
+
+---- fit on data from 10.10 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 1 of 3 jackknife reps failed to fit; unable to estimate std
+d>10.10       decay:        4.74 +/- inf          z = 0.00
+d>10.10     amp_tot:  0.00000194 +/- inf       
+d>10.10     amp_exp:  0.00000157 +/- inf          z = 0.00
+d>10.10     amp_aff:  0.00000074 +/- inf       
+
+---- fit on data from 10.20 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 1 of 3 jackknife reps failed to fit; unable to estimate std
+d>10.20       decay:        4.74 +/- inf          z = 0.00
+d>10.20     amp_tot:  0.00000194 +/- inf       
+d>10.20     amp_exp:  0.00000157 +/- inf          z = 0.00
+d>10.20     amp_aff:  0.00000074 +/- inf       
+
+==> Time to run fits: 0.0244989
+
+-------------------------------------------------------------------------------
+
+                    *** Running test for admixture ***
+
+-------------------------------------------------------------------------------
+
+   *** Computing 1-ref weighted LD with weights Philippines ***
+
+analyzing chrom 1 2 3
+
+==> Time to run alder: 253.586
+
+---- fit on data from 9.80 to 50.00 cM (using inter-chrom affine term) ----
+d>9.80       decay:        5.29 +/- 2.68         z = 1.97
+d>9.80     amp_tot:  0.00001170 +/- 0.00000643
+d>9.80     amp_exp:  0.00001026 +/- 0.00000596   z = 1.72
+d>9.80     amp_aff:  0.00000290 +/- 0.00000177
+
+---- fit on data from 9.90 to 50.00 cM (using inter-chrom affine term) ----
+d>9.90       decay:        5.29 +/- 2.68         z = 1.97
+d>9.90     amp_tot:  0.00001170 +/- 0.00000643
+d>9.90     amp_exp:  0.00001026 +/- 0.00000596   z = 1.72
+d>9.90     amp_aff:  0.00000290 +/- 0.00000177
+
+---- fit on data from 10.00 to 50.00 cM (using inter-chrom affine term) ----
+d>10.00       decay:        5.29 +/- 2.68         z = 1.97
+d>10.00     amp_tot:  0.00001170 +/- 0.00000643
+d>10.00     amp_exp:  0.00001026 +/- 0.00000596   z = 1.72
+d>10.00     amp_aff:  0.00000290 +/- 0.00000177
+
+---- fit on data from 10.10 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 1 of 3 jackknife reps failed to fit; unable to estimate std
+d>10.10       decay:        4.60 +/- inf          z = 0.00
+d>10.10     amp_tot:  0.00000985 +/- inf       
+d>10.10     amp_exp:  0.00000840 +/- inf          z = 0.00
+d>10.10     amp_aff:  0.00000290 +/- inf       
+
+---- fit on data from 10.20 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 1 of 3 jackknife reps failed to fit; unable to estimate std
+d>10.20       decay:        4.60 +/- inf          z = 0.00
+d>10.20     amp_tot:  0.00000985 +/- inf       
+d>10.20     amp_exp:  0.00000840 +/- inf          z = 0.00
+d>10.20     amp_aff:  0.00000290 +/- inf       
+
+==> Time to run fits: 0.016814
+
+-------------------------------------------------------------------------------
+
+   *** Computing 1-ref weighted LD with weights Brazil ***
+
+analyzing chrom 1 3 2
+
+==> Time to run alder: 239.652
+
+---- fit on data from 9.80 to 50.00 cM (using inter-chrom affine term) ----
+d>9.80       decay:        7.79 +/- 2.61         z = 2.99 *
+d>9.80     amp_tot:  0.00000664 +/- 0.00000136
+d>9.80     amp_exp:  0.00000552 +/- 0.00000088   z = 6.30 *
+d>9.80     amp_aff:  0.00000225 +/- 0.00000108
+
+---- fit on data from 9.90 to 50.00 cM (using inter-chrom affine term) ----
+d>9.90       decay:        7.79 +/- 2.61         z = 2.99 *
+d>9.90     amp_tot:  0.00000664 +/- 0.00000136
+d>9.90     amp_exp:  0.00000552 +/- 0.00000088   z = 6.30 *
+d>9.90     amp_aff:  0.00000225 +/- 0.00000108
+
+---- fit on data from 10.00 to 50.00 cM (using inter-chrom affine term) ----
+d>10.00       decay:        7.79 +/- 2.61         z = 2.99 *
+d>10.00     amp_tot:  0.00000664 +/- 0.00000136
+d>10.00     amp_exp:  0.00000552 +/- 0.00000088   z = 6.30 *
+d>10.00     amp_aff:  0.00000225 +/- 0.00000108
+
+---- fit on data from 10.10 to 50.00 cM (using inter-chrom affine term) ----
+d>10.10       decay:        6.61 +/- 1.86         z = 3.56 *
+d>10.10     amp_tot:  0.00000516 +/- 0.00000231
+d>10.10     amp_exp:  0.00000404 +/- 0.00000277   z = 1.46
+d>10.10     amp_aff:  0.00000225 +/- 0.00000108
+
+---- fit on data from 10.20 to 50.00 cM (using inter-chrom affine term) ----
+d>10.20       decay:        6.61 +/- 1.86         z = 3.56 *
+d>10.20     amp_tot:  0.00000516 +/- 0.00000231
+d>10.20     amp_exp:  0.00000404 +/- 0.00000277   z = 1.46
+d>10.20     amp_aff:  0.00000225 +/- 0.00000108
+
+==> Time to run fits: 0.0330591
+
+-------------------------------------------------------------------------------
+
+               *** Comparing curves to test for admixture ***
+
+---- fit on data from 9.80 to 50.00 cM (using inter-chrom affine term) ----
+d>9.80  decay diff:       -1.46 +/- 4.62      1-ref Philippines - 2-ref
+d>9.80  decay diff:        1.04 +/- 7.67      1-ref Brazil - 2-ref
+d>9.80  decay diff:        2.49 +/- 3.88      1-ref Brazil - 1-ref Philippines
+
+---- fit on data from 9.90 to 50.00 cM (using inter-chrom affine term) ----
+d>9.90  decay diff:       -1.46 +/- 4.62      1-ref Philippines - 2-ref
+d>9.90  decay diff:        1.04 +/- 7.67      1-ref Brazil - 2-ref
+d>9.90  decay diff:        2.49 +/- 3.88      1-ref Brazil - 1-ref Philippines
+
+---- fit on data from 10.00 to 50.00 cM (using inter-chrom affine term) ----
+d>10.00  decay diff:       -1.46 +/- 4.62      1-ref Philippines - 2-ref
+d>10.00  decay diff:        1.04 +/- 7.67      1-ref Brazil - 2-ref
+d>10.00  decay diff:        2.49 +/- 3.88      1-ref Brazil - 1-ref Philippines
+
+---- fit on data from 10.10 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 1 of 3 jackknife reps failed to fit; unable to estimate std
+d>10.10  decay diff:       -0.14 +/- nan       1-ref Philippines - 2-ref
+d>10.10  decay diff:        1.87 +/- inf       1-ref Brazil - 2-ref
+d>10.10  decay diff:        2.01 +/- inf       1-ref Brazil - 1-ref Philippines
+
+---- fit on data from 10.20 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 1 of 3 jackknife reps failed to fit; unable to estimate std
+d>10.20  decay diff:       -0.14 +/- nan       1-ref Philippines - 2-ref
+d>10.20  decay diff:        1.87 +/- inf       1-ref Brazil - 2-ref
+d>10.20  decay diff:        2.01 +/- inf       1-ref Brazil - 1-ref Philippines
+
+-------------------------------------------------------------------------------
+
+                    *** Admixture test summary ***
+
+Weighted LD curves are fit starting at 10 cM
+
+Pre-test: Does Senegal have a 1-ref weighted LD curve with Philippines?
+   1-ref decay z-score:    1.97
+   1-ref amp_exp z-score:  1.72
+                                  NO: curve is not significant
+
+Pre-test: Does Senegal have a 1-ref weighted LD curve with Brazil?
+   1-ref decay z-score:    2.99
+   1-ref amp_exp z-score:  6.30
+                                  YES: curve is significant
+
+Does Senegal have a 2-ref weighted LD curve with Philippines and Brazil?
+   2-ref decay z-score:    0.93
+   2-ref amp_exp z-score:  0.64
+                                  NO: curve is not significant
+
+Do 2-ref and 1-ref curves have consistent decay rates?
+   1-ref Philippines - 2-ref z-score:                 -0.32   (-24%)
+   1-ref Brazil - 2-ref z-score:                       0.14   ( 14%)
+   1-ref Brazil - 1-ref Philippines z-score:           0.64   ( 38%)
+                                  WARNING: decay rates are inconsistent
+
+Test FAILS (z=0.64, p=0.52) for Senegal with {Philippines, Brazil} weights
+
+DATA:	failure (warning: decay rates inconsistent)	0.52	Senegal	Philippines	Brazil	0.64	1.72	2.99	38%	6.75 +/- 7.28	0.00000272 +/- 0.00000426	5.29 +/- 2.68	0.00001026 +/- 0.00000596	7.79 +/- 2.61	0.00000552 +/- 0.00000088
+
+DATA:	test status	p-value	test pop	ref A	ref B	2-ref z-score	1-ref z-score A	1-ref z-score B	max decay diff %	2-ref decay	2-ref amp_exp	1-ref decay A	1-ref amp_exp A	1-ref decay B	1-ref amp_exp B

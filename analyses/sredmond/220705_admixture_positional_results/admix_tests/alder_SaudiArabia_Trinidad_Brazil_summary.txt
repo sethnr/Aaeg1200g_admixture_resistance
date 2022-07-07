@@ -1,0 +1,305 @@
+
+        |                          
+        |      ALDER,   v1.03
+     \..|./                        
+    \ \  /       Admixture         
+     \ |/ /      Linkage           
+      \| /       Disequilibrium for
+       |/        Evolutionary      
+       |         Relationships     
+       |                           
+
+  +--------------------------------------------------------------------------+
+  |  ALDER computes weighted LD decay curves, performs curve-fitting to      |
+  |  infer admixture dates, and uses the results to test for admixture.      |
+  |  For full details about options and parameters, please see the README    |
+  |  file included with this software.                                       |
+  +--------------------------------------------------------------------------+
+
+---------- contents of parameter file: results/admix_tests/alder_SaudiArabia_Trinidad_Brazil.params ----------
+genotypename: results/admix_eigen/eigen_all.geno
+snpname: results/admix_eigen/eigen_all.snp
+indivname: results/admix_eigen/eigen_all.ind
+admixpop: Brazil
+refpops: SaudiArabia;Trinidad
+raw_outname: results/admix_tests/alder_SaudiArabia_Trinidad_Brazil_raw.txt
+num_threads: 4
+mindis: 0.1
+binsize: 0.1
+jackknife: NO
+---------- parameter settings used (with defaults for unspecified) ----------
+
+Input data files:
+        genotypename: results/admix_eigen/eigen_all.geno
+             snpname: results/admix_eigen/eigen_all.snp
+           indivname: results/admix_eigen/eigen_all.ind
+
+Admixed population:
+            admixpop: Brazil
+
+Reference populations/weights:
+             refpops: SaudiArabia;Trinidad
+
+Raw weighted LD curve output:
+         raw_outname: results/admix_tests/alder_SaudiArabia_Trinidad_Brazil_raw.txt
+           jackknife: NO
+
+Output file for IDs of SNPs used:
+         snp_outname: (none)
+
+Data filtering:
+            mincount: 4
+
+Curve fitting:
+             binsize: 0.100000
+              mindis: 0.100000
+              maxdis: 0.500000
+
+Input checks:
+       fast_snp_read: NO
+            checkmap: YES
+
+Computational options:
+         num_threads: 4
+      approx_ld_corr: YES
+      use_naive_algo: NO
+
+-------------------------------------------------------------------------------
+
+                        *** Processing data ***
+
+num indivs in full data set: 1133
+parsing refpops string (semicolon-delimited; no spaces): SaudiArabia;Trinidad
+  admixed pop: Brazil (217 indivs)
+  ref pop 0: SaudiArabia (36 indivs)
+  ref pop 1: Trinidad (20 indivs)
+*** warning.  genetic distances are in cM not Morgans
+1:164135059	1	101	164135059
+
+initial filtering: using 7128587 of 7128587 snps in data set
+reading genotype data.................................................................................................................................................................................................................................................................................................................................................................................................................................................... done
+number of reference populations: 2
+number of chromosomes (with data) used: 3
+
+Form of ALDER to run: 2-reference weighted LD
+
+==> Time to process data: 29.1585
+
+-------------------------------------------------------------------------------
+
+     *** Determining extent of correlated LD between test and ref pops ***
+
+WARNING: skipping LD correlation computation: 'mindis' param is set
+decay curves will be fit starting at d = 0.1 Morgans, as specified
+
+-------------------------------------------------------------------------------
+
+   *** Computing 2-ref weighted LD with weights SaudiArabia Trinidad ***
+
+analyzing chrom 1 2 3
+
+==> Time to run alder: 22.7058
+
+    10.000	 0.00001064	  -1189673455
+    20.000	 0.00001123	  -1006622583
+    30.000	 0.00001361	    -33410746
+    40.000	 0.00001164	   1318598720
+       inf	 0.00000923	    844817022   (inter-chrom snp pairs)
+
+---- fit on data from 9.80 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 3 of 3 jackknife reps failed to fit; unable to estimate std
+d>9.80       decay:        2.00 +/- inf          z = 0.00
+d>9.80     amp_tot:  0.00000830 +/- inf       
+d>9.80     amp_exp:  0.00000368 +/- inf          z = 0.00
+d>9.80     amp_aff:  0.00000923 +/- inf       
+
+---- fit on data from 9.90 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 3 of 3 jackknife reps failed to fit; unable to estimate std
+d>9.90       decay:        2.00 +/- inf          z = 0.00
+d>9.90     amp_tot:  0.00000830 +/- inf       
+d>9.90     amp_exp:  0.00000368 +/- inf          z = 0.00
+d>9.90     amp_aff:  0.00000923 +/- inf       
+
+---- fit on data from 10.00 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 3 of 3 jackknife reps failed to fit; unable to estimate std
+d>10.00       decay:        2.00 +/- inf          z = 0.00
+d>10.00     amp_tot:  0.00000830 +/- inf       
+d>10.00     amp_exp:  0.00000368 +/- inf          z = 0.00
+d>10.00     amp_aff:  0.00000923 +/- inf       
+
+---- fit on data from 10.10 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 3 of 3 jackknife reps failed to fit; unable to estimate std
+d>10.10       decay:        2.00 +/- inf          z = 0.00
+d>10.10     amp_tot:  0.00000968 +/- inf       
+d>10.10     amp_exp:  0.00000506 +/- inf          z = 0.00
+d>10.10     amp_aff:  0.00000923 +/- inf       
+
+---- fit on data from 10.20 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 3 of 3 jackknife reps failed to fit; unable to estimate std
+d>10.20       decay:        2.00 +/- inf          z = 0.00
+d>10.20     amp_tot:  0.00000968 +/- inf       
+d>10.20     amp_exp:  0.00000506 +/- inf          z = 0.00
+d>10.20     amp_aff:  0.00000923 +/- inf       
+
+==> Time to run fits: 0.015517
+
+-------------------------------------------------------------------------------
+
+                    *** Running test for admixture ***
+
+-------------------------------------------------------------------------------
+
+   *** Computing 1-ref weighted LD with weights SaudiArabia ***
+
+analyzing chrom 1 2 3
+
+==> Time to run alder: 1410.84
+
+---- fit on data from 9.80 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 1 of 3 jackknife reps failed to fit; unable to estimate std
+d>9.80       decay:      500.00 +/- inf          z = 0.00
+d>9.80     amp_tot:53951713302804808.00000000 +/- inf       
+d>9.80     amp_exp:53951713302804808.00000000 +/- inf          z = 0.00
+d>9.80     amp_aff:  0.00006720 +/- inf       
+
+---- fit on data from 9.90 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 1 of 3 jackknife reps failed to fit; unable to estimate std
+d>9.90       decay:      500.00 +/- inf          z = 0.00
+d>9.90     amp_tot:53951713302804808.00000000 +/- inf       
+d>9.90     amp_exp:53951713302804808.00000000 +/- inf          z = 0.00
+d>9.90     amp_aff:  0.00006720 +/- inf       
+
+---- fit on data from 10.00 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 1 of 3 jackknife reps failed to fit; unable to estimate std
+d>10.00       decay:      500.00 +/- inf          z = 0.00
+d>10.00     amp_tot:53951713302804808.00000000 +/- inf       
+d>10.00     amp_exp:53951713302804808.00000000 +/- inf          z = 0.00
+d>10.00     amp_aff:  0.00006720 +/- inf       
+
+---- fit on data from 10.10 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 2 of 3 jackknife reps failed to fit; unable to estimate std
+d>10.10       decay:        2.00 +/- inf          z = 0.00
+d>10.10     amp_tot:  0.00002739 +/- inf       
+d>10.10     amp_exp: -0.00000621 +/- inf          z = -0.00
+d>10.10     amp_aff:  0.00006720 +/- inf       
+
+---- fit on data from 10.20 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 2 of 3 jackknife reps failed to fit; unable to estimate std
+d>10.20       decay:        2.00 +/- inf          z = 0.00
+d>10.20     amp_tot:  0.00002739 +/- inf       
+d>10.20     amp_exp: -0.00000621 +/- inf          z = -0.00
+d>10.20     amp_aff:  0.00006720 +/- inf       
+
+==> Time to run fits: 0.000912905
+
+-------------------------------------------------------------------------------
+
+   *** Computing 1-ref weighted LD with weights Trinidad ***
+
+analyzing chrom 1 2 3
+
+==> Time to run alder: 1342.72
+
+---- fit on data from 9.80 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 1 of 3 jackknife reps failed to fit; unable to estimate std
+d>9.80       decay:        4.30 +/- inf          z = 0.00
+d>9.80     amp_tot:  0.00006236 +/- inf       
+d>9.80     amp_exp:  0.00001235 +/- inf          z = 0.00
+d>9.80     amp_aff:  0.00010002 +/- inf       
+
+---- fit on data from 9.90 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 1 of 3 jackknife reps failed to fit; unable to estimate std
+d>9.90       decay:        4.30 +/- inf          z = 0.00
+d>9.90     amp_tot:  0.00006236 +/- inf       
+d>9.90     amp_exp:  0.00001235 +/- inf          z = 0.00
+d>9.90     amp_aff:  0.00010002 +/- inf       
+
+---- fit on data from 10.00 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 1 of 3 jackknife reps failed to fit; unable to estimate std
+d>10.00       decay:        4.30 +/- inf          z = 0.00
+d>10.00     amp_tot:  0.00006236 +/- inf       
+d>10.00     amp_exp:  0.00001235 +/- inf          z = 0.00
+d>10.00     amp_aff:  0.00010002 +/- inf       
+
+---- fit on data from 10.10 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 1 of 3 jackknife reps failed to fit; unable to estimate std
+d>10.10       decay:        2.00 +/- inf          z = 0.00
+d>10.10     amp_tot:  0.00005614 +/- inf       
+d>10.10     amp_exp:  0.00000613 +/- inf          z = 0.00
+d>10.10     amp_aff:  0.00010002 +/- inf       
+
+---- fit on data from 10.20 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 1 of 3 jackknife reps failed to fit; unable to estimate std
+d>10.20       decay:        2.00 +/- inf          z = 0.00
+d>10.20     amp_tot:  0.00005614 +/- inf       
+d>10.20     amp_exp:  0.00000613 +/- inf          z = 0.00
+d>10.20     amp_aff:  0.00010002 +/- inf       
+
+==> Time to run fits: 0.00254297
+
+-------------------------------------------------------------------------------
+
+               *** Comparing curves to test for admixture ***
+
+---- fit on data from 9.80 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 3 of 3 jackknife reps failed to fit; unable to estimate std
+d>9.80  decay diff:      498.00 +/- nan       1-ref SaudiArabia - 2-ref
+d>9.80  decay diff:        2.30 +/- nan       1-ref Trinidad - 2-ref
+d>9.80  decay diff:     -495.70 +/- nan       1-ref Trinidad - 1-ref SaudiArabia
+
+---- fit on data from 9.90 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 3 of 3 jackknife reps failed to fit; unable to estimate std
+d>9.90  decay diff:      498.00 +/- nan       1-ref SaudiArabia - 2-ref
+d>9.90  decay diff:        2.30 +/- nan       1-ref Trinidad - 2-ref
+d>9.90  decay diff:     -495.70 +/- nan       1-ref Trinidad - 1-ref SaudiArabia
+
+---- fit on data from 10.00 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 3 of 3 jackknife reps failed to fit; unable to estimate std
+d>10.00  decay diff:      498.00 +/- nan       1-ref SaudiArabia - 2-ref
+d>10.00  decay diff:        2.30 +/- nan       1-ref Trinidad - 2-ref
+d>10.00  decay diff:     -495.70 +/- nan       1-ref Trinidad - 1-ref SaudiArabia
+
+---- fit on data from 10.10 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 3 of 3 jackknife reps failed to fit; unable to estimate std
+d>10.10  decay diff:        0.00 +/- nan       1-ref SaudiArabia - 2-ref
+d>10.10  decay diff:        0.00 +/- nan       1-ref Trinidad - 2-ref
+d>10.10  decay diff:        0.00 +/- inf       1-ref Trinidad - 1-ref SaudiArabia
+
+---- fit on data from 10.20 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 3 of 3 jackknife reps failed to fit; unable to estimate std
+d>10.20  decay diff:        0.00 +/- nan       1-ref SaudiArabia - 2-ref
+d>10.20  decay diff:        0.00 +/- nan       1-ref Trinidad - 2-ref
+d>10.20  decay diff:        0.00 +/- inf       1-ref Trinidad - 1-ref SaudiArabia
+
+-------------------------------------------------------------------------------
+
+                    *** Admixture test summary ***
+
+Weighted LD curves are fit starting at 10 cM
+
+Pre-test: Does Brazil have a 1-ref weighted LD curve with SaudiArabia?
+   1-ref decay z-score:    0.00
+   1-ref amp_exp z-score:  0.00
+                                  NO: curve is not significant
+
+Pre-test: Does Brazil have a 1-ref weighted LD curve with Trinidad?
+   1-ref decay z-score:    0.00
+   1-ref amp_exp z-score:  0.00
+                                  NO: curve is not significant
+
+Does Brazil have a 2-ref weighted LD curve with SaudiArabia and Trinidad?
+   2-ref decay z-score:    0.00
+   2-ref amp_exp z-score:  0.00
+                                  NO: curve is not significant
+
+Do 2-ref and 1-ref curves have consistent decay rates?
+   1-ref SaudiArabia - 2-ref z-score:                   nan   (198%)
+   1-ref Trinidad - 2-ref z-score:                      nan   ( 73%)
+   1-ref Trinidad - 1-ref SaudiArabia z-score:          nan   (-197%)
+                                  WARNING: decay rates are inconsistent
+
+Test FAILS (z=0.00, p=1) for Brazil with {SaudiArabia, Trinidad} weights
+
+DATA:	failure (warning: decay rates inconsistent)	1	Brazil	SaudiArabia	Trinidad	0.00	0.00	0.00	198%	2.00 +/- inf	0.00000368 +/- inf	500.00 +/- inf	53951713302804808.00000000 +/- inf	4.30 +/- inf	0.00001235 +/- inf
+
+DATA:	test status	p-value	test pop	ref A	ref B	2-ref z-score	1-ref z-score A	1-ref z-score B	max decay diff %	2-ref decay	2-ref amp_exp	1-ref decay A	1-ref amp_exp A	1-ref decay B	1-ref amp_exp B

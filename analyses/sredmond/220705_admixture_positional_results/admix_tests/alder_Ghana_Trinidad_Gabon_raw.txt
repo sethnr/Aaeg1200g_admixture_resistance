@@ -1,0 +1,7 @@
+#   d (cM)	weighted LD	    bin count
+    10.000	 0.00000809	  -1189673455
+    20.000	 0.00000571	  -1006622583
+    30.000	 0.00000611	    -33410746
+    40.000	 0.00000411	   1318598720
+       inf	 0.00000339	    844817022
+# last row: affine term computed from pairs of SNPs on different chroms

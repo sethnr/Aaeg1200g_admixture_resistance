@@ -104,7 +104,7 @@ rule admix_alder:
     resources:
         mem_mb=4000,
         disk_mb=20000,
-        h_rt='1:00:00',
+        h_rt='4:00:00',
         cpus=4
     threads: 4
     params:

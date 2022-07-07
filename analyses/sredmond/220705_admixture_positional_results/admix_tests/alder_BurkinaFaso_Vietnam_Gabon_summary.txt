@@ -1,0 +1,290 @@
+
+        |                          
+        |      ALDER,   v1.03
+     \..|./                        
+    \ \  /       Admixture         
+     \ |/ /      Linkage           
+      \| /       Disequilibrium for
+       |/        Evolutionary      
+       |         Relationships     
+       |                           
+
+  +--------------------------------------------------------------------------+
+  |  ALDER computes weighted LD decay curves, performs curve-fitting to      |
+  |  infer admixture dates, and uses the results to test for admixture.      |
+  |  For full details about options and parameters, please see the README    |
+  |  file included with this software.                                       |
+  +--------------------------------------------------------------------------+
+
+---------- contents of parameter file: results/admix_tests/alder_BurkinaFaso_Vietnam_Gabon.params ----------
+genotypename: results/admix_eigen/eigen_all.geno
+snpname: results/admix_eigen/eigen_all.snp
+indivname: results/admix_eigen/eigen_all.ind
+admixpop: Gabon
+refpops: BurkinaFaso;Vietnam
+raw_outname: results/admix_tests/alder_BurkinaFaso_Vietnam_Gabon_raw.txt
+num_threads: 4
+mindis: 0.1
+binsize: 0.1
+jackknife: NO
+---------- parameter settings used (with defaults for unspecified) ----------
+
+Input data files:
+        genotypename: results/admix_eigen/eigen_all.geno
+             snpname: results/admix_eigen/eigen_all.snp
+           indivname: results/admix_eigen/eigen_all.ind
+
+Admixed population:
+            admixpop: Gabon
+
+Reference populations/weights:
+             refpops: BurkinaFaso;Vietnam
+
+Raw weighted LD curve output:
+         raw_outname: results/admix_tests/alder_BurkinaFaso_Vietnam_Gabon_raw.txt
+           jackknife: NO
+
+Output file for IDs of SNPs used:
+         snp_outname: (none)
+
+Data filtering:
+            mincount: 4
+
+Curve fitting:
+             binsize: 0.100000
+              mindis: 0.100000
+              maxdis: 0.500000
+
+Input checks:
+       fast_snp_read: NO
+            checkmap: YES
+
+Computational options:
+         num_threads: 4
+      approx_ld_corr: YES
+      use_naive_algo: NO
+
+-------------------------------------------------------------------------------
+
+                        *** Processing data ***
+
+num indivs in full data set: 1133
+parsing refpops string (semicolon-delimited; no spaces): BurkinaFaso;Vietnam
+  admixed pop: Gabon (64 indivs)
+  ref pop 0: BurkinaFaso (36 indivs)
+  ref pop 1: Vietnam (20 indivs)
+*** warning.  genetic distances are in cM not Morgans
+1:164135059	1	101	164135059
+
+initial filtering: using 7128587 of 7128587 snps in data set
+reading genotype data.................................................................................................................................................................................................................................................................................................................................................................................................................................................... done
+number of reference populations: 2
+number of chromosomes (with data) used: 3
+
+Form of ALDER to run: 2-reference weighted LD
+
+==> Time to process data: 22.1993
+
+-------------------------------------------------------------------------------
+
+     *** Determining extent of correlated LD between test and ref pops ***
+
+WARNING: skipping LD correlation computation: 'mindis' param is set
+decay curves will be fit starting at d = 0.1 Morgans, as specified
+
+-------------------------------------------------------------------------------
+
+   *** Computing 2-ref weighted LD with weights BurkinaFaso Vietnam ***
+
+analyzing chrom 1 2 3
+
+==> Time to run alder: 2.26953
+
+    10.000	 0.00000688	  -1189673455
+    20.000	 0.00000473	  -1006622583
+    30.000	 0.00000479	    -33410746
+    40.000	 0.00000187	   1318598720
+       inf	 0.00000147	    844817022   (inter-chrom snp pairs)
+
+---- fit on data from 9.80 to 50.00 cM (using inter-chrom affine term) ----
+d>9.80       decay:        4.55 +/- 1.14         z = 3.99 *
+d>9.80     amp_tot:  0.00000935 +/- 0.00000279
+d>9.80     amp_exp:  0.00000861 +/- 0.00000260   z = 3.31 *
+d>9.80     amp_aff:  0.00000147 +/- 0.00000107
+
+---- fit on data from 9.90 to 50.00 cM (using inter-chrom affine term) ----
+d>9.90       decay:        4.55 +/- 1.14         z = 3.99 *
+d>9.90     amp_tot:  0.00000935 +/- 0.00000279
+d>9.90     amp_exp:  0.00000861 +/- 0.00000260   z = 3.31 *
+d>9.90     amp_aff:  0.00000147 +/- 0.00000107
+
+---- fit on data from 10.00 to 50.00 cM (using inter-chrom affine term) ----
+d>10.00       decay:        4.55 +/- 1.14         z = 3.99 *
+d>10.00     amp_tot:  0.00000935 +/- 0.00000279
+d>10.00     amp_exp:  0.00000861 +/- 0.00000260   z = 3.31 *
+d>10.00     amp_aff:  0.00000147 +/- 0.00000107
+
+---- fit on data from 10.10 to 50.00 cM (using inter-chrom affine term) ----
+d>10.10       decay:        4.98 +/- 0.94         z = 5.29 *
+d>10.10     amp_tot:  0.00001049 +/- 0.00000282
+d>10.10     amp_exp:  0.00000976 +/- 0.00000276   z = 3.54 *
+d>10.10     amp_aff:  0.00000147 +/- 0.00000107
+
+---- fit on data from 10.20 to 50.00 cM (using inter-chrom affine term) ----
+d>10.20       decay:        4.98 +/- 0.94         z = 5.29 *
+d>10.20     amp_tot:  0.00001049 +/- 0.00000282
+d>10.20     amp_exp:  0.00000976 +/- 0.00000276   z = 3.54 *
+d>10.20     amp_aff:  0.00000147 +/- 0.00000107
+
+==> Time to run fits: 0.021045
+
+-------------------------------------------------------------------------------
+
+                    *** Running test for admixture ***
+
+-------------------------------------------------------------------------------
+
+   *** Computing 1-ref weighted LD with weights BurkinaFaso ***
+
+analyzing chrom 1 2 3
+
+==> Time to run alder: 52.5152
+
+---- fit on data from 9.80 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 2 of 3 jackknife reps failed to fit; unable to estimate std
+d>9.80       decay:        2.00 +/- inf          z = 0.00
+d>9.80     amp_tot:  0.00000141 +/- inf       
+d>9.80     amp_exp: -0.00000020 +/- inf          z = -0.00
+d>9.80     amp_aff:  0.00000322 +/- inf       
+
+---- fit on data from 9.90 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 2 of 3 jackknife reps failed to fit; unable to estimate std
+d>9.90       decay:        2.00 +/- inf          z = 0.00
+d>9.90     amp_tot:  0.00000141 +/- inf       
+d>9.90     amp_exp: -0.00000020 +/- inf          z = -0.00
+d>9.90     amp_aff:  0.00000322 +/- inf       
+
+---- fit on data from 10.00 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 2 of 3 jackknife reps failed to fit; unable to estimate std
+d>10.00       decay:        2.00 +/- inf          z = 0.00
+d>10.00     amp_tot:  0.00000141 +/- inf       
+d>10.00     amp_exp: -0.00000020 +/- inf          z = -0.00
+d>10.00     amp_aff:  0.00000322 +/- inf       
+
+---- fit on data from 10.10 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 3 of 3 jackknife reps failed to fit; unable to estimate std
+d>10.10       decay:        2.00 +/- inf          z = 0.00
+d>10.10     amp_tot:  0.00000121 +/- inf       
+d>10.10     amp_exp: -0.00000040 +/- inf          z = -0.00
+d>10.10     amp_aff:  0.00000322 +/- inf       
+
+---- fit on data from 10.20 to 50.00 cM (using inter-chrom affine term) ----
+WARNING: 3 of 3 jackknife reps failed to fit; unable to estimate std
+d>10.20       decay:        2.00 +/- inf          z = 0.00
+d>10.20     amp_tot:  0.00000121 +/- inf       
+d>10.20     amp_exp: -0.00000040 +/- inf          z = -0.00
+d>10.20     amp_aff:  0.00000322 +/- inf       
+
+==> Time to run fits: 0.00152016
+
+-------------------------------------------------------------------------------
+
+   *** Computing 1-ref weighted LD with weights Vietnam ***
+
+analyzing chrom 1 2 3
+
+==> Time to run alder: 52.3501
+
+---- fit on data from 9.80 to 50.00 cM (using inter-chrom affine term) ----
+d>9.80       decay:        6.69 +/- 1.52         z = 4.41 *
+d>9.80     amp_tot:  0.00001007 +/- 0.00000197
+d>9.80     amp_exp:  0.00000699 +/- 0.00000183   z = 3.82 *
+d>9.80     amp_aff:  0.00000616 +/- 0.00000070
+
+---- fit on data from 9.90 to 50.00 cM (using inter-chrom affine term) ----
+d>9.90       decay:        6.69 +/- 1.52         z = 4.41 *
+d>9.90     amp_tot:  0.00001007 +/- 0.00000197
+d>9.90     amp_exp:  0.00000699 +/- 0.00000183   z = 3.82 *
+d>9.90     amp_aff:  0.00000616 +/- 0.00000070
+
+---- fit on data from 10.00 to 50.00 cM (using inter-chrom affine term) ----
+d>10.00       decay:        6.69 +/- 1.52         z = 4.41 *
+d>10.00     amp_tot:  0.00001007 +/- 0.00000197
+d>10.00     amp_exp:  0.00000699 +/- 0.00000183   z = 3.82 *
+d>10.00     amp_aff:  0.00000616 +/- 0.00000070
+
+---- fit on data from 10.10 to 50.00 cM (using inter-chrom affine term) ----
+d>10.10       decay:        5.99 +/- 2.05         z = 2.92 *
+d>10.10     amp_tot:  0.00000886 +/- 0.00000176
+d>10.10     amp_exp:  0.00000578 +/- 0.00000192   z = 3.01 *
+d>10.10     amp_aff:  0.00000616 +/- 0.00000070
+
+---- fit on data from 10.20 to 50.00 cM (using inter-chrom affine term) ----
+d>10.20       decay:        5.99 +/- 2.05         z = 2.92 *
+d>10.20     amp_tot:  0.00000886 +/- 0.00000176
+d>10.20     amp_exp:  0.00000578 +/- 0.00000192   z = 3.01 *
+d>10.20     amp_aff:  0.00000616 +/- 0.00000070
+
+==> Time to run fits: 0.0015831
+
+-------------------------------------------------------------------------------
+
+               *** Comparing curves to test for admixture ***
+
+---- fit on data from 9.80 to 50.00 cM (using inter-chrom affine term) ----
+d>9.80  decay diff:       -2.55 +/- inf       1-ref BurkinaFaso - 2-ref
+d>9.80  decay diff:        2.15 +/- 2.03      1-ref Vietnam - 2-ref
+d>9.80  decay diff:        4.69 +/- inf       1-ref Vietnam - 1-ref BurkinaFaso
+
+---- fit on data from 9.90 to 50.00 cM (using inter-chrom affine term) ----
+d>9.90  decay diff:       -2.55 +/- inf       1-ref BurkinaFaso - 2-ref
+d>9.90  decay diff:        2.15 +/- 2.03      1-ref Vietnam - 2-ref
+d>9.90  decay diff:        4.69 +/- inf       1-ref Vietnam - 1-ref BurkinaFaso
+
+---- fit on data from 10.00 to 50.00 cM (using inter-chrom affine term) ----
+d>10.00  decay diff:       -2.55 +/- inf       1-ref BurkinaFaso - 2-ref
+d>10.00  decay diff:        2.15 +/- 2.03      1-ref Vietnam - 2-ref
+d>10.00  decay diff:        4.69 +/- inf       1-ref Vietnam - 1-ref BurkinaFaso
+
+---- fit on data from 10.10 to 50.00 cM (using inter-chrom affine term) ----
+d>10.10  decay diff:       -2.98 +/- inf       1-ref BurkinaFaso - 2-ref
+d>10.10  decay diff:        1.00 +/- 2.79      1-ref Vietnam - 2-ref
+d>10.10  decay diff:        3.98 +/- inf       1-ref Vietnam - 1-ref BurkinaFaso
+
+---- fit on data from 10.20 to 50.00 cM (using inter-chrom affine term) ----
+d>10.20  decay diff:       -2.98 +/- inf       1-ref BurkinaFaso - 2-ref
+d>10.20  decay diff:        1.00 +/- 2.79      1-ref Vietnam - 2-ref
+d>10.20  decay diff:        3.98 +/- inf       1-ref Vietnam - 1-ref BurkinaFaso
+
+-------------------------------------------------------------------------------
+
+                    *** Admixture test summary ***
+
+Weighted LD curves are fit starting at 10 cM
+
+Pre-test: Does Gabon have a 1-ref weighted LD curve with BurkinaFaso?
+   1-ref decay z-score:    0.00
+   1-ref amp_exp z-score: -0.00
+                                  NO: curve is not significant
+
+Pre-test: Does Gabon have a 1-ref weighted LD curve with Vietnam?
+   1-ref decay z-score:    4.41
+   1-ref amp_exp z-score:  3.82
+                                  YES: curve is significant
+
+Does Gabon have a 2-ref weighted LD curve with BurkinaFaso and Vietnam?
+   2-ref decay z-score:    3.99
+   2-ref amp_exp z-score:  3.31
+                                  YES: curve is significant
+
+Do 2-ref and 1-ref curves have consistent decay rates?
+   1-ref BurkinaFaso - 2-ref z-score:                 -0.00   (-78%)
+   1-ref Vietnam - 2-ref z-score:                      1.05   ( 38%)
+   1-ref Vietnam - 1-ref BurkinaFaso z-score:          0.00   (108%)
+                                  WARNING: decay rates are inconsistent
+
+Test FAILS (z=3.31, p=0.00092) for Gabon with {BurkinaFaso, Vietnam} weights
+
+DATA:	failure (warning: decay rates inconsistent)	0.00092	Gabon	BurkinaFaso	Vietnam	3.31	0.00	3.82	108%	4.55 +/- 1.14	0.00000861 +/- 0.00000260	2.00 +/- inf	-0.00000020 +/- inf	6.69 +/- 1.52	0.00000699 +/- 0.00000183
+
+DATA:	test status	p-value	test pop	ref A	ref B	2-ref z-score	1-ref z-score A	1-ref z-score B	max decay diff %	2-ref decay	2-ref amp_exp	1-ref decay A	1-ref amp_exp A	1-ref decay B	1-ref amp_exp B
