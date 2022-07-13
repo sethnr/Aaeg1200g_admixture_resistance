@@ -192,7 +192,7 @@ rule merge_invs_sample:
         log="logs/lostruct_merge/merge_chr{chrom}_{region}.log",
     shell:
         """
-        Rscript scripts/merge_inversion_calls.R \
+        Rscript scripts/merge_inversions_by_position.R \
           -i {input.invs} \
           -a {input.assess} \
           -m {input.meta} \
@@ -234,7 +234,7 @@ rule merge_invs_global:
         meta=config["spptable"]
     output:
         invs="results/lostruct_merge_chr/invs_chr{chrom}.txt",
-        png="results/lostruct_merge_chr/invs_chr{chrom}.png"
+        png="results/lostruct_plots/invs_chr{chrom}.png"
   	#aimspic="results/lostruct_merge/aims_chr{chrom}_{region}.png",
     params:
         prefix="results/lostruct_merge_chr/invs_ldcf_chr{chrom}",
@@ -247,7 +247,7 @@ rule merge_invs_global:
         "logs/lostruct_merge/invs_chr{chrom}.log",
     shell:
         """
-        Rscript scripts/merge_inversions_global.R \
+        Rscript scripts/merge_inversions_by_linkage.R \
           -d {params.indir} \
           -c {wildcards.chrom} \
           -o {params.prefix} >> {log}

@@ -1,4 +1,4 @@
-Rscript merge_inversion_calls.R \
+Rscript merge_inversions_by_position.R \
   -i data/lostruct_inversion_candidates/regions_chr1_Kenya.txt \
   -a data/lostruct_inversions/inversions_chr1_Kenya.txt \
   -m resources/meta_Aaeg1kg_spp.txt \
@@ -15,7 +15,7 @@ Rscript make_inversion_plots.R \
 
 #cluster merged calls by LD
 
-Rscript merge_inversions_global.R \
+Rscript merge_inversions_by_linkage.R \
   -d data/lostruct_merge   -c 1 \
   -o invs_ldcf_chr1
   
