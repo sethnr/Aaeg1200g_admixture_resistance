@@ -11,9 +11,9 @@ TESTS=['alder','3pop']
 wildcard_constraints:
     chrom=CHROMS,
     test=TESTS,
-    pop1=BIGPOPS,
-    pop2=BIGPOPS,
-    pop3=BIGPOPS
+#    pop1=BIGPOPS,
+#    pop2=BIGPOPS,
+#    pop3=BIGPOPS
 
 rule all:
     input:
@@ -26,6 +26,7 @@ rule all:
 
 ###rule orders ###
 ruleorder: make_biallelic > tabix_vcf
+ruleorder: admix_alder_chr > admix_alder
 
 ##### run admix tests on 4 pops #####
 

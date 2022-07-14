@@ -38,7 +38,8 @@ ruleorder: whatshap_sample > tabix_vcf
 
 rule split_vcf:
     input:
-        vcf=lambda wildcards: get_remote_vcf(wildcards)
+        #vcf=lambda wildcards: get_remote_vcf(wildcards)
+        vcf="verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.norep5-30x.ac10.thinrand01.chr{chrom}.vcf.gz"
     output:
         outvcf=temporary("results/phase_split_vcf/split_{chrom}_{sample}.vcf.gz"),
         outtbi=temporary("results/phase_split_vcf/split_{chrom}_{sample}.vcf.gz.tbi")
@@ -225,7 +226,7 @@ rule phase_shapeit:
         h_rt='96:00:00',
         bamspace=0,
         cpus=10,
-	qsub_args='--highmem  -l avx2=TRUE -l node_type=srm'
+	qsub_args='-l highmem  -l avx2=TRUE -l node_type=srm'
     threads: 10
     params:
         chromid=lambda wildcards: get_chrom_id(wildcards)

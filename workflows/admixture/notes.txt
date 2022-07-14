@@ -10,3 +10,5 @@ snakemake --default-remote-provider GS --default-remote-prefix redmond-lab-analy
 #on-prem
 snakemake --use-singularity --profile apo --ri -k -j 250
 
+#alder failing due to long names
+perl -i.longnames -pe 's/Debug.*aegypti_//g; s/Debug.*aegy-//g' results/admix_eigen/eigen_?.ind
