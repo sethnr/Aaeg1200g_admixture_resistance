@@ -10,7 +10,10 @@ TESTS=['alder','3pop']
 
 wildcard_constraints:
     chrom=CHROMS,
-    test=TESTS
+    test=TESTS,
+    pop1=BIGPOPS,
+    pop2=BIGPOPS,
+    pop3=BIGPOPS
 
 rule all:
     input:
