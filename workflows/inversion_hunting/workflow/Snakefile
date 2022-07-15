@@ -34,7 +34,9 @@ wildcard_constraints:
 rule all:
     input:
         expand("results/lostruct_plot/invs_chr{chrid}_{loc}_aims.png",
-        chrid=[1,2,3],loc=bigcountries)
+        chrid=[1,2,3],loc=bigcountries),
+        expand("results/lostruct_plot/invs_chr{chrid}.png",
+        chrid=[1,2,3])
 
 ###### run lostruct algorithm ########
 # blocks of PCAs for each 0.5mb, then a distance matrix
