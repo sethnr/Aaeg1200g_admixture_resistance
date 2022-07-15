@@ -19,9 +19,9 @@ rule all:
     input:
         expand("results/admix_tests/3pop_{chrom}_summaries.txt",
             chrom=CHROMS),
-        expand("results/admix_tests/alder_{chrom}_summaries.txt",
+        expand("results/admix_tests/alder_all_summaries.txt",
             chrom=CHROMS)
-#        expand("results/admix_tests/alder_all_summaries.txt",
+#        expand("results/admix_tests/alder_{chrom}_summaries.txt",
 #            chrom=CHROMS)
 
 ###rule orders ###
@@ -225,7 +225,7 @@ rule cat_alder_chrom:
         "logs/admix_tests/alder_{chrom}_cat.log"
     shell:
         """
-        cat {input.sums} | grep DATA | sort -ur > {output}
+        cat results/admix_tests/alder_{wildcards.chrom}_*_summary.txt | grep DATA > {output} 
         """
 
 
