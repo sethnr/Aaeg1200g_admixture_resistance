@@ -4,7 +4,7 @@ configfile: "config/config.yaml"
 #### reused methods for grabbing GS objects, etc ####
 include: "rules/common.smk"
 
-CHROMS=[1,2,3]
+CHROMS=[2,3]
 BIGPOPS=pd.read_table(config["countries"],dtype=str,header=0)['country']
 TESTS=['alder','3pop']
 
@@ -17,12 +17,10 @@ wildcard_constraints:
 
 rule all:
     input:
-        expand("results/admix_tests/3pop_{chrom}_summaries.txt",
-            chrom=CHROMS),
         expand("results/admix_tests/alder_all_summaries.txt",
             chrom=CHROMS)
-#        expand("results/admix_tests/alder_{chrom}_summaries.txt",
-#            chrom=CHROMS)
+        #expand("results/admix_tests/3pop_{chrom}_summaries.txt",
+        #    chrom=CHROMS),
 
 ###rule orders ###
 ruleorder: make_biallelic > tabix_vcf
@@ -169,7 +167,7 @@ rule admix_alder_chr:
         echo binsize:      0.1 >>./{params.file}
         echo jackknife:    NO >>./{params.file}
 
-	    alder -p {params.file} | tee {log} > {output.sum}
+	alder -p {params.file} | tee {log} > {output.sum}
         """
 
 
@@ -181,7 +179,7 @@ rule admix_3pop:
         meta=config["spptable"]
     output:
         blk="results/admix_tests/3pop_{chrom}_{pop1}_{pop2}_{pop3}_blocks.txt",
-        sum="results/admix_tests/3pop_{chrom}_{pop1}_{pop2}_{pop3}_summary.txt"
+        sum=temporary("results/admix_tests/3pop_{chrom}_{pop1}_{pop2}_{pop3}_summary.txt")
     resources:
         mem_mb=8000,
         disk_mb=20000,
