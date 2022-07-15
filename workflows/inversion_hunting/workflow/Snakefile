@@ -35,7 +35,7 @@ rule all:
     input:
         expand("results/lostruct_plot/invs_chr{chrid}_{loc}_aims.png",
         chrid=[1,2,3],loc=bigcountries),
-        expand("results/lostruct_plot/invs_chr{chrid}.png",
+        expand("results/lostruct_merge_chr/invs_chr{chrid}.png",
         chrid=[1,2,3])
 
 ###### run lostruct algorithm ########
@@ -236,12 +236,12 @@ rule merge_invs_global:
         meta=config["spptable"]
     output:
         invs="results/lostruct_merge_chr/invs_chr{chrom}.txt",
-        png="results/lostruct_plots/invs_chr{chrom}.png"
+        png="results/lostruct_merge_chr/invs_chr{chrom}.png"
   	#aimspic="results/lostruct_merge/aims_chr{chrom}_{region}.png",
     params:
-        prefix="results/lostruct_merge_chr/invs_ldcf_chr{chrom}",
+        prefix="results/lostruct_merge_chr/invs_chr{chrom}",
         indir="results/lostruct_merge/",
-        minr2=0.5
+        minr2=0.25
     resources:
         mem_mb=1000,
         disk_mb=2000,
@@ -251,6 +251,7 @@ rule merge_invs_global:
         """
         Rscript scripts/merge_inversions_by_linkage.R \
           -d {params.indir} \
+          -r {params.minr2} \
           -c {wildcards.chrom} \
           -o {params.prefix} >> {log}
 
