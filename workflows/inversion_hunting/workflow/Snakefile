@@ -255,8 +255,8 @@ rule merge_invs_global:
         Rscript scripts/plot_cluster_aims.R \
             -s {input.meta} \
             -i {params.prefix}_aims.txt \
-            -i {params.prefix}_blocks.txt \
-            -o {params.prefix}_aims.png
+            -b {params.prefix}_blocks.txt \
+            -o {params.prefix}_aims.png >> {log}
 
         """
 
