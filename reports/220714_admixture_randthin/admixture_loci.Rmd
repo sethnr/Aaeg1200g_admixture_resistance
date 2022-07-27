@@ -8,10 +8,12 @@ library("tidyverse")
 
 library("patchwork")
 library("gridExtra")
-library("plyr")
-library("zoo")
 
+library("zoo")
+library("plyr")
 library("getopt")
+
+knitr::opts_chunk$set(fig.width=10,fig.height=8,dpi=300)
 ```
 
 ```{r}
@@ -67,7 +69,7 @@ pop3results$f3z <- pop3results$f3/pop3results$f3sd
 ```
 
 
-```{r  fig.width=10,fig.height=8,dpi=300}
+```{r}
 
 
 #######
@@ -130,5 +132,144 @@ ggplot(subset(pop3results,!p1 %in% sigpops & !p2 %in% sigpops & !p3 %in% sigpops
 #   print(rollplot)
 #   dev.off()
 # }  
+
+```
+
+
+
+
+```{r fig.width=10,fig.height=4.5,dpi=300}
+library(maptools)
+library(raster)
+library(ggmap)
+
+world <- map_data("world")
+poptotals <- read.table("resources/aegy.wgs.pops.list.csv",sep=",",header=T,stringsAsFactors = F)
+colnames(poptotals) <- tolower(colnames(poptotals))
+poptotals$country <- gsub(" ","",poptotals$country)
+
+
+countryfile <- "country_geocoords.txt"
+if(file.exists(countryfile)){
+  locations <- read.table(countryfile,header=T) 
+} else {
+  register_google(key="AIzaSyBFbT5X6MjrepPAlzIj3zz1HS58hnIPtEM", write=T)
+  countries <- unique(poptotals$country)
+  locations <- geocode(countries)
+  locations$country <- countries
+  write.table(locations,countryfile,sep="\t",row.names=F,col.names=T)
+}
+
+
+
+countrytotals <- unique(merge(aggregate(num_bams ~ country,poptotals,FUN=sum),
+                              aggregate(f3sig ~ p3,pop3sum,FUN=max),by.x="country",by.y="p3",all.x=T))
+
+countrytotals <- merge(countrytotals,locations,all.x=T) %>% dplyr::rename(n=num_bams)
+countrytotals$f3sig[is.na(countrytotals$f3sig)] <- -1
+countrytotals$admixed <- c("not tested","not admixed","admixed")[countrytotals$f3sig+2]
+
+ggplot() +
+    geom_polygon(data = world, aes(x=long, y = lat, group=group), fill='grey',color="black",size=0.2) +
+    geom_point(data=countrytotals, aes(x=lon, y=lat, fill=admixed,size=n), shape=21,inherit.aes=F) +
+    #geom_text(data=sample_table, aes(x=lon, y=lat, fill=set,label=Population), shape=21,inherit.aes=F) +
+    scale_fill_manual(values=c("red","green","white")) +
+    ggtitle(paste("sampling sites",sep="")) +
+    coord_fixed(ylim=c(-48,48),xlim=c(-155,140))+
+    theme(axis.text=element_blank(),
+          panel.border=element_rect(fill=NA, color="black"),
+          panel.background=element_rect(fill='light blue', color=NA),
+          panel.grid = element_blank(),
+          axis.title=element_blank(),
+          legend.position="bottom")
+
+
+```
+
+
+```{r  fig.width=10,fig.height=8,dpi=300}
+
+corder <- c("Kenya","Uganda","Gabon","Ghana","BurkinaFaso","Senegal","Brazil" ,"PuertoRico","Trinidad","USA","SaudiArabia","Philippines","Vietnam")
+
+pop3sum$p2 <-factor(pop3sum$p2,levels=corder,ordered=T)
+pop3sum$p1 <-factor(pop3sum$p1,levels=corder,ordered=T)
+
+sigmixes <- subset(pop3sum,p3 %in% sigpops) %>% group_by(set) %>% 
+                        dplyr::summarise(p1=first(p1),p2=first(p2),p3=first(p3),
+                                         f3mean=mean(f3),f3zmean=mean(f3z),
+                                         f3zmin=min(f3z),sig=max(f3sig))
+
+
+uppertri <- sigmixes$p1>sigmixes$p2
+sigmixes[uppertri,c("p1","p2")] <- sigmixes[uppertri,c("p2","p1")]
+
+sigmixes$f3zmean[sigmixes$f3zmean>0] <- 0
+sigmixes$f3zmin[sigmixes$f3zmin>0] <- 0
+
+ggplot(sigmixes,aes(x=p1,y=p2,fill=f3zmin)) + 
+  geom_raster() + facet_wrap("p3") + coord_fixed() +
+  theme(axis.text.x=element_text(angle=45,hjust=1),axis.title=element_blank())
+
+
+ggplot(subset(sigmixes,!p1 %in% sigpops & !p2 %in% sigpops),aes(x=p1,y=p2,fill=f3zmin)) + 
+  geom_raster() + facet_wrap("p3") + coord_fixed() +
+  theme(axis.text.x=element_text(angle=45,hjust=1),axis.title=element_blank())
+
+
+ggplot(subset(sigmixes,!p1 %in% sigpops & !p2 %in% sigpops),aes(x=p1,y=p2,fill=f3zmin)) + 
+  geom_raster() + facet_wrap("p3") + coord_fixed() +
+  theme(axis.text.x=element_text(angle=45,hjust=1),axis.title=element_blank())
+```
+
+
+
+```{r fig.width=10,fig.height=4.5,dpi=300}
+
+minmixes <- subset(sigmixes,!p1 %in% sigpops & !p2 %in% sigpops) %>% 
+                  group_by(p3) %>% 
+                  slice_min(order_by = f3zmin)
+
+
+minmixes <- merge(minmixes,locations,by.x="p3",by.y="country")
+minmixes <- merge(minmixes,locations,by.x="p1",by.y="country",suffixes=c("","1"))
+minmixes <- merge(minmixes,locations,by.x="p2",by.y="country",suffixes=c("","2"))
+
+ggplot() +
+    geom_polygon(data = world, aes(x=long, y = lat, group=group), fill='grey',color="black",size=0.2) +
+    geom_point(data=countrytotals, aes(x=lon, y=lat, fill=admixed,size=n), shape=21,inherit.aes=F) +
+    geom_curve(data=minmixes, 
+                 aes(x=lon1, y=lat1, xend=lon,yend=lat),
+                 arrow=arrow(length = unit(0.3,"cm")),inherit.aes=F) +
+    geom_curve(data=minmixes, aes(x=lon2, y=lat2, xend=lon,yend=lat),
+                 arrow=arrow(length = unit(0.3,"cm")),inherit.aes=F) +
+    geom_point(data=subset(countrytotals,admixed=="not admixed"), 
+               aes(x=lon, y=lat, fill=admixed,size=n), shape=21,inherit.aes=F) +
+    ggtitle(paste("sampling sites",sep="")) +
+    scale_fill_manual(values=c("red","green","white")) +
+    coord_fixed(ylim=c(-48,48),xlim=c(-155,140))+
+    theme(axis.text=element_blank(),
+          panel.border=element_rect(fill=NA, color="black"),
+          panel.background=element_rect(fill='light blue', color=NA),
+          panel.grid = element_blank(),
+          axis.title=element_blank(),
+          legend.position="bottom")
+
+
+```
+
+
+
+```{r}
+ggplot() +
+    geom_polygon(data = world, aes(x=long, y = lat, group=group), fill='grey',color="black",size=0.2) +
+    geom_point(data=countrytotals, aes(x=lon, y=lat, size=n), fill="white", shape=21,inherit.aes=F) +
+    coord_fixed(ylim=c(-48,48),xlim=c(-155,140))+
+    theme(axis.text=element_blank(),
+          panel.border=element_rect(fill=NA, color="black"),
+          panel.background=element_rect(fill='light blue', color=NA),
+          panel.grid = element_blank(),
+          axis.title=element_blank(),
+          legend.position="bottom")
+
 
 ```
