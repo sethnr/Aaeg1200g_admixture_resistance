@@ -1,7 +1,17 @@
-
 Rscript assess_inversion_candidates.R \
-        -i uganda_chr1_pvclust_single_uncentered_hier_P0.99_n1000.txt \
+        -i regions_chr1_Senegal.txt \
         -v data/aegy.wgs.aaa.aaf.norep5-30x.ac10.thinrand01.chr1.vcf.gz \
-        -o uganda_chr1_pvclust_single_uncentered_hier_P0.99_n1000_assess \
+        -o inversions_chr1_Senegal \
         -s resources/meta_Aaeg1kg_spp.txt \
-        -c Uganda
+        -c Senegal
+
+
+
+for C in Kenya Senegal Trinidad USA; do
+   Rscript assess_inversion_candidates.R \
+        -i regions_chr1_${C}.txt \
+        -v data/aegy.wgs.aaa.aaf.norep5-30x.ac10.thinrand01.chr1.vcf.gz \
+        -o inversions_chr1_${C} \
+        -s resources/meta_Aaeg1kg_spp.txt \
+        -c ${C}
+done

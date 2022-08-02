@@ -29,8 +29,9 @@ sppfile <- opt$samples
 
 #default inversion validation criteria
 MAXD <- 0.25
-MAXSS <- 20
-MINBSS <- 0.95
+MAXWSS <- 2
+MINBSS <- 10
+MINBSP <- 0.95
 blocksize <- 5e5
 if (!is.null(opt$blocksize)  ) {blocksize <- opt$blocksize}
 if (!is.null(opt$maxd)  ) {MAXD <- opt$maxd}
@@ -77,62 +78,110 @@ for(C in unique(invcands$cluster)) {
 }
 
 write("assessing PCAs as inversions",file=stderr())
-
+#good: 194, 181, 129
+#bad: 30, 50 
 invsummary <- invcands %>%
                     group_by(cluster) %>%
                     mutate(size = length(block)*blocksize)  %>%
                     select(c("cluster","au","bp","meandist","lowdist","size")) %>%
                     unique()
 
-#### assess PCA clusters
-if(exists("pcs")) {
-  pcs$inv <- factor(pcs$inv,levels=invsummary$cluster,ordered=T)
-  pcs$valid<-factor(NA,levels=c("aa","ab","bb"))
-
-  for(I in unique(pcs$inv)) {
-    pcsinv <- subset(pcs,inv==I)
-    kmpca <- kmeans(pcsinv[,c("PC1")],centers=3,nstart=20,iter.max=50)
-
-    clusters <- factor(kmpca$cluster)
-    clustorder <- order(kmpca$centers)
-
-    #calculate deviation of middle cluster from center point
-    centers <- kmpca$centers[clustorder]
-    delta <- ((centers[2] - centers[1])-(centers[3] - centers[2])) /
-      ((centers[3]-centers[1])/2)
-
-    #rename levels 0/1/2 based on pcorder
-    levels(clusters)[clustorder] <- c('aa','ab','bb')
-
-    n<-length(clusters)
-    wss <- kmpca$withinss[clustorder]
-    tot.wss <- kmpca$tot.withinss
-    bss <- kmpca$betweenss
-    tot.ss <- kmpca$totss
-
-    invpass <- ((abs(delta)<=MAXD) && ((tot.wss/n) <= MAXSS) && (bss/tot.ss)>=MINBSS)
-    write(paste("inv:",I,
-                #"\tctr:",paste(round(centers,1),collapse="/"),
-                #"\twss:",paste(round(wss,1),collapse="/"),
-                "\tbss/tot:",round(bss/tot.ss,2),
-                "\tss",round(tot.wss/n,2),
-                "d",round(abs(delta),2),
-                "\tpass:",invpass),file=stderr())
-
-    invsummary[invsummary$cluster==I,"valid"] <- invpass
-    invsummary[invsummary$cluster==I,"d"] <- round(abs(delta),2)
-    invsummary[invsummary$cluster==I,"mean_wss"] <- round(tot.wss/n,2)
-    invsummary[invsummary$cluster==I,"bss_tot"] <- round(bss/tot.ss/n,2)
-
-
-    if(invpass) {
-      pcs$valid[which(pcs$inv==I)] <- clusters
-    }
-  }
+assessInvK <- function(pcs,maxd=MAXD,maxwss=MAXWSS,minbss=MINBSS,minbsp=MINBSP) {
+  
+  kmpca <- kmeans(pcs,centers=3,nstart=50,iter.max=100)
+  clusters <- factor(kmpca$cluster)
+  clustorder <- order(kmpca$centers)
+  
+  #calculate deviation of middle cluster from center point
+  centers <- kmpca$centers[clustorder]
+  delta <- ((centers[2] - centers[1])-(centers[3] - centers[2])) /
+    ((centers[3]-centers[1])/2)
+  
+  #rename levels 0/1/2 based on pcorder
+  levels(clusters)[clustorder] <- c('aa','ab','bb')
+  
+  #get sum squares
+  n<-length(clusters)
+  npairs <- n*(n-1)/2 
+  wss <- kmpca$withinss[clustorder]
+  tot.wss <- kmpca$tot.withinss
+  nwss <- sum(apply(table(clusters),1,FUN=function(x) {x*(x-1)/2}))
+  
+  tot.bss <- kmpca$betweenss
+  ncl <- table(clusters)
+  nbss <- sum(ncl[1]*ncl[2] + ncl[2]*ncl[3] + ncl[1]*ncl[3])
+  
+  tot.ss <- kmpca$totss
+  c(nwss,nbss,npairs)
+  
+  #assess pass
+  invpass <- (
+    (tot.bss/nbss   >= minbss && 
+       tot.wss/nwss   <= maxwss )
+    && 
+      (abs(delta)     <= maxd && 
+         tot.bss/tot.ss >= minbsp ) )
+  
+  list("valid"=invpass,
+       "d"=abs(delta),
+       "mean_ss"=tot.ss/npairs,
+       "mean_wss"=tot.wss/nwss,
+       "mean_bss"=tot.bss/nbss,
+       "prop_bss"=tot.bss/tot.ss,
+       "clusters"=clusters)
 }
 
 
+rotateXY <- function(coords,a,origin=c(0,0)) {
+  arad <- a*(pi/180)
+  rotm <- matrix(c(cos(arad),sin(arad),-sin(arad),cos(arad)),ncol=2)
+  t(rotm %*% t(coords))
+}
 
+
+angles <- c(0,rep(seq(5,45,5),each=2)*c(1,-1))
+#angles <- c(0,rep(seq(5,45,5)))
+
+#### assess PCA clusters via kmeans with angle rotate
+if(exists("pcs")) {
+  pcs$inv <- factor(pcs$inv,levels=invsummary$cluster,ordered=T)
+  pcs$valid<-factor(NA,levels=c("aa","ab","bb"))
+  
+  for(I in unique(pcs$inv)) {
+    pcsinv <- subset(pcs,inv==I)
+    
+    anygood = FALSE
+    for(a in angles) {
+      rotPCs <- rotateXY(as.matrix(pcsinv[,c("PC1","PC2")]),a)
+      colnames(rotPCs) <- c("PC1","PC2")
+      assk <- assessInvK(rotPCs[,"PC1"])
+      write(paste(I,
+                  a,
+                  round(assk$d,2),
+                  round(assk$mean_wss,2),
+                  round(assk$mean_bss,2),
+                  assk$valid),
+            stderr())
+      if(assk$valid) {
+        anygood=T
+        break}
+    }
+    if(anygood) {
+      pcs$valid[which(pcs$inv==I)] <- assk$clusters
+    } else {
+      assk <- assessInvK(pcsinv[,c("PC1","PC2")])
+      a <- 0
+    }
+    
+    invsummary[invsummary$cluster==I,"valid"]    <- assk$valid
+    invsummary[invsummary$cluster==I,"d"]        <- round(assk$d,2)
+    invsummary[invsummary$cluster==I,"mean_wss"] <- round(assk$mean_wss,2)
+    invsummary[invsummary$cluster==I,"mean_bss"]  <- round(assk$mean_bss,3)
+    invsummary[invsummary$cluster==I,"angle"]    <- a
+    
+    
+  }
+}
 
 
 write(paste("writing",nrow(invsummary),"candidates"),file=stderr())
@@ -144,17 +193,22 @@ if(nrow(invsummary) > 0) {
 
 
 write(paste("plotting",nrow(invsummary),"PCs"),file=stderr())
-clustplot <- ggplot(invcands,aes(x=pos,fill=meandist,y=as.factor(cluster))) + geom_tile() + ylab("cluster")
+
+invsummary$inv <- factor(invsummary$cluster)
+invcandsV <- merge(invcands,invsummary[,c("cluster","valid")],all.x=T)
+clustplot <- ggplot(invcandsV,aes(x=pos,fill=valid,y=as.factor(cluster))) + geom_tile() + ylab("cluster")
 
 if(exists("pcs")) {
   saveRDS(pcs,file=paste(outfile,"pcs.Rds",sep="_"))
 
   invcols <- scale_color_manual(values=c("aa"="yellow","ab"="orange","bb"="red"),na.value = "dark grey")
   ncol=round(sqrt(length(unique(pcs$inv))))
-
-  invpca <- ggplot(pcs,aes(x=PC1,y=PC2,color=valid)) + geom_point() + coord_fixed() + invcols +
-    facet_wrap("inv ~ .",ncol=ncol) + theme(legend.position = "none")
-
+  invpca <- ggplot(pcs,aes(x=PC1,y=PC2,color=valid)) + 
+    geom_abline(aes(slope=(angle/45)*-1,intercept=0),linetype=2,invsummary)+
+    geom_point() + coord_fixed() + invcols +
+    facet_wrap("inv ~ .",ncol=ncol) + 
+    theme(legend.position = "none")
+  
   png(filename = paste(outfile,"png",sep="."),width=350,height=200,units="mm",res=400)
   grid.arrange(clustplot, invpca, ncol=2)
   invpca
