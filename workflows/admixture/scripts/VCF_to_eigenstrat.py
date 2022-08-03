@@ -71,7 +71,8 @@ snpfile.close()
 sampfile = open(out+'.ind', 'w')
 
 #alder failing due to long names!
-shortsamples = re.sub("Debug.*aegypti_","",meta['sample'].tolist())
+shortsamples = [re.sub("Debug.*aegypti_","",S) for S in meta['sample']]
+
 #sampzip = [(s,x,c) for s,x,c in zip(meta['sample'].tolist(),
 sampzip = [(s,x,c) for s,x,c in zip(shortsamples,
                            ['U']*len(allsamps),
