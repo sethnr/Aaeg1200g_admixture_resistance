@@ -231,11 +231,11 @@ rule cat_alder:
 rule cat_3pop:
     input:
         sums=expand("results/admix_tests/3pop_{{chrom}}_{popstring}_summary.txt",
-                    popstring=get_all_admix_3_strings(BIGPOPS))
+                    popstring=get_all_admix_3_strings(BIGPOPS)),
         blocks=expand("results/admix_tests/3pop_{{chrom}}_{popstring}_blocks.txt",
                     popstring=get_all_admix_3_strings(BIGPOPS))
     output:
-        sums="results/admix_tests/3pop_{chrom}_summaries.txt"
+        sums="results/admix_tests/3pop_{chrom}_summaries.txt",
         blocks="results/admix_tests/3pop_{chrom}_blocks.txt"
     log:
         "logs/admix_tests/3pop_{chrom}.log"
