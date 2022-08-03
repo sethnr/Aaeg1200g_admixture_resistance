@@ -8,85 +8,80 @@ library("grid")
 
 library("getopt")
 
-opttab <- matrix(c("infile","i","1","character",
-                   "vcf","v","1","character",
-                   "country","c","1","character",
-                   "samples","s","1","character",
-                   "outfile","o","1","character",
-                   "blocksize","b","2","integer",
-                   "maxd","D","2","double",
-                   "maxss","S","2","double",
-                   "minbss","B","2","double"
-                      ),byrow=T,ncol=4)
-opt <- getopt(opttab)
 
-invcandfile <- opt$infile
-outfile <- opt$outfile
-#chrom <- opt$chr
-vcffile <- opt$vcf
-country <- opt$country
-sppfile <- opt$samples
+#######
+# functions
+####### 
 
-#default inversion validation criteria
-MAXD <- 0.25
-MAXWSS <- 2
-MINBSS <- 10
-MINBSP <- 0.95
-blocksize <- 5e5
-if (!is.null(opt$blocksize)  ) {blocksize <- opt$blocksize}
-if (!is.null(opt$maxd)  ) {MAXD <- opt$maxd}
-if (!is.null(opt$maxss) ) {MAXSS <- opt$maxss}
-if (!is.null(opt$minbss)) {MINBSS <- opt$minbss}
-#invcandfile <- "uganda_chr1_pvclust_single_uncentered_hier_P0.99_n1000.txt"
-
-chromname <- c("NC_035107.1","NC_035108.1","NC_035109.1")
-chromlen <- c(310827022,474425716,409777670)
-names(chromlen) <- chromname
-
-spptab <- read.table(sppfile,header=T, sep="\t")
-samples <- spptab$sample[spptab$country==country]
-write(paste("found",length(samples),"samples for",country),stderr())
-
-
-invcands <- read.table(invcandfile,header=T)
-invcands$end <- as.numeric((as.data.frame(strsplit(invcands$block,":"))[2,]))
-invcands$start <- invcands$end-blocksize
-invcands$chromname <- chromname[invcands$chrom]
-
-for(C in unique(invcands$cluster)) {
-  #write.table(invcands[invcands$cluster==C,c("chromname","start","end")],stderr())
-  #write(samples,stderr())
-  invsnps <- vcf_query(vcffile,
-                        samples=samples,
-                        regions=invcands[invcands$cluster==C,c("chromname","start","end")])
-  goodsnps <- invsnps[apply(invsnps,1,function(x) {!any(is.na(x))}),]
-  write(paste("found",nrow(goodsnps),"snps for",country,"cluster",C),stderr())
-
-  pca <- prcomp(t(goodsnps))
-
-  invpcs <- as.data.frame(pca$x[,c("PC1","PC2")])
-  invpcs$sample <- samples
-  invpcs <- merge(invpcs,spptab)
-  invpcs$inv <- C
-  #invpcs$chrom <- chr
-
-  if(exists("pcs")) {
-    pcs <- rbind(pcs,invpcs)
-  } else {
-    pcs <- invpcs
-  }
+vcf_positions <- function (file, regions) {
+  bcf.sites <- data.table::fread(cmd = paste("bcftools query -f '%CHROM\\t%POS\\n'",
+                                             file,"-r",region_string(regions)),
+                                 header = FALSE, sep = "\t", data.table = FALSE)
+  colnames(bcf.sites) <- c("chrom", "pos")
+  bcf.sites
 }
 
-write("assessing PCAs as inversions",file=stderr())
-#good: 194, 181, 129
-#bad: 30, 50 
-invsummary <- invcands %>%
-                    group_by(cluster) %>%
-                    mutate(size = length(block)*blocksize)  %>%
-                    select(c("cluster","au","bp","meandist","lowdist","size")) %>%
-                    unique()
+vcf_genotypes <- function (file, regions, samples) {
+  txtgenos <- data.table::fread(cmd = paste("bcftools query -f '[ %GT]\\n'",
+                                            "-r",region_string(regions),
+                                            "-s",shQuote(paste(samples, collapse = ",")),
+                                            file),
+                                header = FALSE, sep = "\t", data.table = FALSE)
+  txtgenos
+}
 
-assessInvK <- function(pcs,maxd=MAXD,maxwss=MAXWSS,minbss=MINBSS,minbsp=MINBSP) {
+meanF3 <- function(invsnps,p3,p1,p2) {
+  #calculate f3 stat for 3 'pops'
+  maf = function(x) {sum(na.omit(x)) / sum(!is.na(x))*2}
+  getmafs <- function(inds,snps) {
+    if(sum(inds)>1) {
+      maf <- apply(snps[,inds],1,maf)
+    } else {
+      maf <- snps[,inds]/2
+    }
+    maf
+  }
+  
+  p1maf <- getmafs(p1,invsnps)
+  p2maf <- getmafs(p2,invsnps)
+  p3maf <- getmafs(p3,invsnps)
+  f3=(p3maf-p1maf)*(p3maf-p2maf)
+  mean(na.omit(f3))
+}
+
+jackknifeF3se <- function(snps,posns,p3,p1,p2,blocksize=1e5) {
+  starts <- seq(floor(min(posns$pos)/blocksize)*blocksize, floor(max(posns$pos)/blocksize)*blocksize, by=blocksize)
+  snpcounts <- c()
+  for(s in starts) {
+    snpcounts = c(snpcounts,sum(posns$pos>=s & posns$pos < s+blocksize))}
+  starts <- starts[snpcounts>0]
+  snpcounts <- snpcounts[snpcounts>0]
+  
+  f3blocks <- c()
+  for(s in starts) {
+    # jacksnps <- invsnps[posns$pos<s | posns$pos>=s+blocksize,]
+    # jackf3 <- meanF3(jacksnps,p3,p2,p1)
+    blocksnps <- invsnps[posns$pos>=s & posns$pos<s+blocksize,]
+    blockf3 <- meanF3(blocksnps,p3,p2,p1)
+    f3blocks = c(f3blocks,blockf3)}
+
+  f3jacks <- c()
+  for(s in starts) {
+    f3jacks = c(f3jacks,mean(f3blocks[starts != s]))}
+  
+  # compute mean of jackknife values
+  #m <- weighted.mean(f3jacks,snpcounts)
+  m <- mean(f3jacks)
+  n <- length(starts) 
+  # compute standard error
+  sv = ((n - 1) / n) * sum((f3jacks - m)^2)
+  se = sqrt(sv)
+  se
+}
+
+
+
+assessInvK <- function(pcs,invsnps,maxd=MAXD,maxwss=MAXWSS,minbss=MINBSS,minbsp=MINBSP) {
   
   kmpca <- kmeans(pcs,centers=3,nstart=50,iter.max=100)
   clusters <- factor(kmpca$cluster)
@@ -116,21 +111,22 @@ assessInvK <- function(pcs,maxd=MAXD,maxwss=MAXWSS,minbss=MINBSS,minbsp=MINBSP) 
   
   #assess pass
   invpass <- (
-    (tot.bss/nbss   >= minbss && 
-       tot.wss/nwss   <= maxwss )
-    && 
-      (abs(delta)     <= maxd && 
-         tot.bss/tot.ss >= minbsp ) )
+    #(tot.bss/nbss   >= minbss &&
+    # tot.wss/nwss   <= maxwss )
+    # &&
+    (abs(delta)     <= maxd &&
+       tot.bss/tot.ss >= minbsp ) )
+  
   
   list("valid"=invpass,
        "d"=abs(delta),
        "mean_ss"=tot.ss/npairs,
        "mean_wss"=tot.wss/nwss,
        "mean_bss"=tot.bss/nbss,
+       "prop_wss"=tot.wss/tot.ss,
        "prop_bss"=tot.bss/tot.ss,
        "clusters"=clusters)
 }
-
 
 rotateXY <- function(coords,a,origin=c(0,0)) {
   arad <- a*(pi/180)
@@ -139,10 +135,95 @@ rotateXY <- function(coords,a,origin=c(0,0)) {
 }
 
 
-angles <- c(0,rep(seq(5,45,5),each=2)*c(1,-1))
-#angles <- c(0,rep(seq(5,45,5)))
+
+
+
+
+
+
+opttab <- matrix(c("infile","i","1","character",
+                   "vcf","v","1","character",
+                   "country","c","1","character",
+                   "samples","s","1","character",
+                   "outfile","o","1","character",
+                   "blocksize","b","2","integer",
+                   "maxd","D","2","double",
+                   "maxss","S","2","double",
+                   "minbss","B","2","double"
+                      ),byrow=T,ncol=4)
+opt <- getopt(opttab)
+
+invcandfile <- opt$infile
+outfile <- opt$outfile
+#chrom <- opt$chr
+vcffile <- opt$vcf
+country <- opt$country
+sppfile <- opt$samples
+
+#default inversion validation criteria
+MAXD <- 0.25
+MAXWSS <- 2
+MINBSS <- 10
+MINBSP <- 0.95
+blocksize <- 5e5
+
+if (!is.null(opt$blocksize)  ) {blocksize <- opt$blocksize}
+if (!is.null(opt$maxd)  ) {MAXD <- opt$maxd}
+if (!is.null(opt$maxss) ) {MAXSS <- opt$maxss}
+if (!is.null(opt$minbss)) {MINBSS <- opt$minbss}
+#invcandfile <- "uganda_chr1_pvclust_single_uncentered_hier_P0.99_n1000.txt"
+
+chromname <- c("NC_035107.1","NC_035108.1","NC_035109.1")
+chromlen <- c(310827022,474425716,409777670)
+names(chromlen) <- chromname
+
+spptab <- read.table(sppfile,header=T, sep="\t")
+samples <- spptab$sample[spptab$country==country]
+write(paste("found",length(samples),"samples for",country),stderr())
+
+
+invcands <- read.table(invcandfile,header=T)
+invcands$end <- as.numeric((as.data.frame(strsplit(invcands$block,":"))[2,]))
+invcands$start <- invcands$end-blocksize
+invcands$chromname <- chromname[invcands$chrom]
+
+
+
+
+
+for(C in unique(invcands$cluster)) {
+  invsnps <- vcf_query(vcffile,
+                        samples=samples,
+                        regions=invcands[invcands$cluster==C,c("chromname","start","end")])
+  goodsnps <- invsnps[apply(invsnps,1,function(x) {!any(is.na(x))}),]
+  write(paste("found",nrow(goodsnps),"snps for",country,"cluster",C),stderr())
+
+  pca <- prcomp(t(goodsnps))
+
+  invpcs <- as.data.frame(pca$x[,c("PC1","PC2")])
+  invpcs$sample <- samples
+  invpcs <- merge(invpcs,spptab)
+  invpcs$inv <- C
+  #invpcs$chrom <- chr
+
+  if(exists("pcs")) {
+    pcs <- rbind(pcs,invpcs)
+  } else {
+    pcs <- invpcs
+  }
+}
+
+
+
+write("assessing PCAs as inversions",file=stderr())
+invsummary <- invcands %>%
+                    group_by(cluster) %>%
+                    mutate(size = length(block)*blocksize)  %>%
+                    select(c("cluster","au","bp","meandist","lowdist","size")) %>%
+                    unique()
 
 #### assess PCA clusters via kmeans with angle rotate
+angles <- c(0,rep(seq(5,45,5),each=2)*c(1,-1))
 if(exists("pcs")) {
   pcs$inv <- factor(pcs$inv,levels=invsummary$cluster,ordered=T)
   pcs$valid<-factor(NA,levels=c("aa","ab","bb"))
@@ -162,10 +243,23 @@ if(exists("pcs")) {
                   round(assk$mean_bss,2),
                   assk$valid),
             stderr())
+      
+      #if valid, check F3 stat
       if(assk$valid) {
-        anygood=T
-        break}
-    }
+        f3 <- meanF3(invsnps,p3,p1,p2)
+        assk$f3 <- f3
+        if(assk$valid) {
+          f3se <- jackknifeF3se(invsnps,invposns,p3,p1,p2)
+          assk$f3se <- f3se
+          #if fails F3 test, set valid to false
+          if(f3 > 0-(2*f3se)) {
+            assk$valid <- F
+          }
+        }
+      }
+    } #angles tested
+    
+    
     if(anygood) {
       pcs$valid[which(pcs$inv==I)] <- assk$clusters
     } else {
@@ -177,11 +271,51 @@ if(exists("pcs")) {
     invsummary[invsummary$cluster==I,"d"]        <- round(assk$d,2)
     invsummary[invsummary$cluster==I,"mean_wss"] <- round(assk$mean_wss,2)
     invsummary[invsummary$cluster==I,"mean_bss"]  <- round(assk$mean_bss,3)
+    invsummary[invsummary$cluster==I,"prop_bss"]  <- round(assk$prop_bss,3)
+    invsummary[invsummary$cluster==I,"f3"]  <- round(assk$f3,3)
+    
     invsummary[invsummary$cluster==I,"angle"]    <- a
     
     
   }
 }
+
+########
+# do f3 test on candidates
+########
+invsummary$admixed=NA
+for(I in unique(invsummary$cluster[invsummary$valid])) {
+  invsnps <- vcf_query(vcffile,
+                       samples=samples,
+                       regions=invcands[invcands$cluster==I,c("chromname","start","end")])
+  
+  invposns <- vcf_positions(vcffile,
+                            invcands[invcands$cluster==I,c("chromname","start","end")])
+  
+  goodloci <- apply(invsnps,1,function(x) {!any(is.na(x))})
+  
+  invsnps <- invsnps[goodloci,]
+  invposns <- invposns[goodloci,]
+  clusters <- pcs$valid[which(pcs$inv==I)]
+  
+  p1 <- clusters=='aa'
+  p3 <- clusters=='ab'
+  p2 <- clusters=='bb'
+  f3 <- meanF3(invsnps,p3,p1,p2)
+  f3se <- jackknifeF3se(invsnps,invposns,p3,p1,p2)
+  if(f3 > 0-(2*f3se)) {
+    invsummary$admixed[invsummary$cluster==I] <- T
+  } else {
+    invsummary$admixed[invsummary$cluster==I] <- F
+  }
+    
+  
+}
+
+
+
+
+
 
 
 write(paste("writing",nrow(invsummary),"candidates"),file=stderr())
@@ -196,7 +330,7 @@ write(paste("plotting",nrow(invsummary),"PCs"),file=stderr())
 
 invsummary$inv <- factor(invsummary$cluster)
 invcandsV <- merge(invcands,invsummary[,c("cluster","valid")],all.x=T)
-clustplot <- ggplot(invcandsV,aes(x=pos,fill=valid,y=as.factor(cluster))) + geom_tile() + ylab("cluster")
+clustplot <- ggplot(invcandsV,aes(x=pos,fill=valid,color=admixed,y=as.factor(cluster))) + geom_tile() + ylab("cluster")
 
 if(exists("pcs")) {
   saveRDS(pcs,file=paste(outfile,"pcs.Rds",sep="_"))

@@ -57,14 +57,21 @@ jackknifeF3se <- function(snps,posns,p3,p1,p2,blocksize=1e5) {
   starts <- starts[snpcounts>0]
   snpcounts <- snpcounts[snpcounts>0]
   
+  f3blocks <- c()
+  for(s in starts) {
+    # jacksnps <- invsnps[posns$pos<s | posns$pos>=s+blocksize,]
+    # jackf3 <- meanF3(jacksnps,p3,p2,p1)
+    blocksnps <- invsnps[posns$pos>=s & posns$pos<s+blocksize,]
+    blockf3 <- meanF3(blocksnps,p3,p2,p1)
+    f3blocks = c(f3blocks,blockf3)}
+
   f3jacks <- c()
   for(s in starts) {
-    jacksnps <- invsnps[posns$pos<s | posns$pos>=s+blocksize,]
-    jackf3 <- meanF3(jacksnps,p3,p2,p1)
-    f3jacks = c(f3jacks,jackf3)}
+    f3jacks = c(f3jacks,mean(f3blocks[starts != s]))}
   
   # compute mean of jackknife values
-  m <- weighted.mean(f3jacks,snpcounts)
+  #m <- weighted.mean(f3jacks,snpcounts)
+  m <- mean(f3jacks)
   n <- length(starts) 
   # compute standard error
   sv = ((n - 1) / n) * sum((f3jacks - m)^2)
