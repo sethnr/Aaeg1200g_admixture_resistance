@@ -24,7 +24,7 @@ rule all:
 
 ###rule orders ###
 ruleorder: make_biallelic > tabix_vcf
-ruleorder: admix_alder_chr > admix_alder
+#ruleorder: admix_alder_chr > admix_alder
 
 ##### run admix tests on 4 pops #####
 
@@ -232,11 +232,15 @@ rule cat_3pop:
     input:
         sums=expand("results/admix_tests/3pop_{{chrom}}_{popstring}_summary.txt",
                     popstring=get_all_admix_3_strings(BIGPOPS))
+        blocks=expand("results/admix_tests/3pop_{{chrom}}_{popstring}_blocks.txt",
+                    popstring=get_all_admix_3_strings(BIGPOPS))
     output:
-        "results/admix_tests/3pop_{chrom}_summaries.txt"
+        sums="results/admix_tests/3pop_{chrom}_summaries.txt"
+        blocks="results/admix_tests/3pop_{chrom}_blocks.txt"
     log:
         "logs/admix_tests/3pop_{chrom}.log"
     shell:
         """
-        cat {input.sums} > {output}
+        cat {input.sums} > {output.sums}
+        cat {input.blocks} > {output.blocks}
         """
