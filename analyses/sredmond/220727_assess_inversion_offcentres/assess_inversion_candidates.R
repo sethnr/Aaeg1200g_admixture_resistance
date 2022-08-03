@@ -8,6 +8,16 @@ library("grid")
 
 library("getopt")
 
+#######
+# default inversion validation criteria
+#######
+MAXD <- 0.2
+MAXWSS <- 2
+MINBSS <- 10
+MINBSP <- 0.95
+blocksize <- 5e5
+
+
 
 #######
 # functions
@@ -160,12 +170,6 @@ vcffile <- opt$vcf
 country <- opt$country
 sppfile <- opt$samples
 
-#default inversion validation criteria
-MAXD <- 0.25
-MAXWSS <- 2
-MINBSS <- 10
-MINBSP <- 0.95
-blocksize <- 5e5
 
 if (!is.null(opt$blocksize)  ) {blocksize <- opt$blocksize}
 if (!is.null(opt$maxd)  ) {MAXD <- opt$maxd}
@@ -284,7 +288,7 @@ if(exists("pcs")) {
 # do f3 test on candidates
 ########
 invsummary$admixed=NA
-for(I in unique(invsummary$cluster[invsummary$valid])) {
+for(I in unique(invsummary$cluster)) {
   invsnps <- vcf_query(vcffile,
                        samples=samples,
                        regions=invcands[invcands$cluster==I,c("chromname","start","end")])
@@ -328,7 +332,7 @@ if(nrow(invsummary) > 0) {
 write(paste("plotting",nrow(invsummary),"PCs"),file=stderr())
 
 invsummary$inv <- factor(invsummary$cluster)
-invcandsV <- merge(invcands,invsummary[,c("cluster","valid")],all.x=T)
+invcandsV <- merge(invcands,invsummary[,c("cluster","valid","admixed")],all.x=T)
 clustplot <- ggplot(invcandsV,aes(x=pos,fill=valid,color=admixed,y=as.factor(cluster))) + geom_tile() + ylab("cluster")
 
 if(exists("pcs")) {
