@@ -15,3 +15,14 @@ for C in Kenya Senegal Trinidad USA; do
         -s resources/meta_Aaeg1kg_spp.txt \
         -c ${C}
 done
+
+
+Rscript print_inversion_offcenters.R \
+        -i regions_chr1_USA.txt \
+        -v data/aegy.wgs.aaa.aaf.norep5-30x.ac10.thinrand01.chr1.vcf.gz \
+        -o inversions_chr1_USA \
+        -s resources/meta_Aaeg1kg_spp.txt \
+        -c USA
+	-n 485
+
+

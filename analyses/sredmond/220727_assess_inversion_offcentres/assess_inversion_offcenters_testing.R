@@ -5,15 +5,15 @@ library("grid")
 
 library("getopt")
 
-# invcandfile <- "regions_chr1_Senegal.txt"
-# vcffile <- "data/aegy.wgs.aaa.aaf.norep5-30x.ac10.thinrand01.chr1.vcf.gz"
-# country <- "Senegal"
-# sppfile <- "resources/meta_Aaeg1kg_spp.txt"
-
-invcandfile <- "regions_chr1_Kenya.txt"
+invcandfile <- "regions_chr1_Senegal.txt"
 vcffile <- "data/aegy.wgs.aaa.aaf.norep5-30x.ac10.thinrand01.chr1.vcf.gz"
-country <- "Kenya"
+country <- "Senegal"
 sppfile <- "resources/meta_Aaeg1kg_spp.txt"
+
+# invcandfile <- "regions_chr1_Kenya.txt"
+# vcffile <- "data/aegy.wgs.aaa.aaf.norep5-30x.ac10.thinrand01.chr1.vcf.gz"
+# country <- "Kenya"
+# sppfile <- "resources/meta_Aaeg1kg_spp.txt"
 
 
 # invcandfile <- "regions_chr1_Trinidad.txt"

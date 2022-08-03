@@ -69,7 +69,11 @@ snpfile.close()
 
 #make sample file from meta file
 sampfile = open(out+'.ind', 'w')
-sampzip = [(s,x,c) for s,x,c in zip(meta['sample'].tolist(),
+
+#alder failing due to long names!
+shortsamples = re.sub("Debug.*aegypti_","",meta['sample']).tolist()
+#sampzip = [(s,x,c) for s,x,c in zip(meta['sample'].tolist(),
+sampzip = [(s,x,c) for s,x,c in zip(shortsamples,
                            ['U']*len(allsamps),
                            meta[column].tolist())]
 samparray = np.array(sampzip,dtype=[('sample', 'U50'), ('sex', 'U2'), ('class', 'U30')])
