@@ -8,6 +8,16 @@ library("grid")
 
 library("getopt")
 
+#######
+# default inversion validation criteria
+#######
+MAXD <- 0.2
+MAXWSS <- 2
+MINBSS <- 10
+MINBSP <- 0.95
+blocksize <- 5e5
+
+
 
 #######
 # functions
@@ -160,12 +170,6 @@ vcffile <- opt$vcf
 country <- opt$country
 sppfile <- opt$samples
 
-#default inversion validation criteria
-MAXD <- 0.25
-MAXWSS <- 2
-MINBSS <- 10
-MINBSP <- 0.95
-blocksize <- 5e5
 
 if (!is.null(opt$blocksize)  ) {blocksize <- opt$blocksize}
 if (!is.null(opt$maxd)  ) {MAXD <- opt$maxd}
@@ -190,7 +194,7 @@ invcands$chromname <- chromname[invcands$chrom]
 
 
 
-
+# Run PCAs for all candidate inversion regions
 for(C in unique(invcands$cluster)) {
   invsnps <- vcf_query(vcffile,
                         samples=samples,
@@ -204,7 +208,6 @@ for(C in unique(invcands$cluster)) {
   invpcs$sample <- samples
   invpcs <- merge(invpcs,spptab)
   invpcs$inv <- C
-  #invpcs$chrom <- chr
 
   if(exists("pcs")) {
     pcs <- rbind(pcs,invpcs)
@@ -215,6 +218,8 @@ for(C in unique(invcands$cluster)) {
 
 
 
+#### assess PCA clusters via kmeans with angle rotation
+
 write("assessing PCAs as inversions",file=stderr())
 invsummary <- invcands %>%
                     group_by(cluster) %>%
@@ -222,7 +227,6 @@ invsummary <- invcands %>%
                     select(c("cluster","au","bp","meandist","lowdist","size")) %>%
                     unique()
 
-#### assess PCA clusters via kmeans with angle rotate
 angles <- c(0,rep(seq(5,45,5),each=2)*c(1,-1))
 if(exists("pcs")) {
   pcs$inv <- factor(pcs$inv,levels=invsummary$cluster,ordered=T)
@@ -244,19 +248,23 @@ if(exists("pcs")) {
                   assk$valid),
             stderr())
       
-      #if valid, check F3 stat
       if(assk$valid) {
-        f3 <- meanF3(invsnps,p3,p1,p2)
-        assk$f3 <- f3
-        if(assk$valid) {
-          f3se <- jackknifeF3se(invsnps,invposns,p3,p1,p2)
-          assk$f3se <- f3se
-          #if fails F3 test, set valid to false
-          if(f3 > 0-(2*f3se)) {
-            assk$valid <- F
-          }
-        }
+        anygood=T
+        break
       }
+      # #if valid, check F3 stat
+      # if(assk$valid) {
+      #   f3 <- meanF3(invsnps,p3,p1,p2)
+      #   assk$f3 <- f3
+      #   if(assk$valid) {
+      #     f3se <- jackknifeF3se(invsnps,invposns,p3,p1,p2)
+      #     assk$f3se <- f3se
+      #     #if fails F3 test, set valid to false
+      #     if(f3 > 0-(2*f3se)) {
+      #       assk$valid <- F
+      #     }
+      #   }
+      # }
     } #angles tested
     
     
@@ -272,7 +280,7 @@ if(exists("pcs")) {
     invsummary[invsummary$cluster==I,"mean_wss"] <- round(assk$mean_wss,2)
     invsummary[invsummary$cluster==I,"mean_bss"]  <- round(assk$mean_bss,3)
     invsummary[invsummary$cluster==I,"prop_bss"]  <- round(assk$prop_bss,3)
-    invsummary[invsummary$cluster==I,"f3"]  <- round(assk$f3,3)
+    # invsummary[invsummary$cluster==I,"f3"]  <- round(assk$f3,3)
     
     invsummary[invsummary$cluster==I,"angle"]    <- a
     
@@ -284,6 +292,10 @@ if(exists("pcs")) {
 # do f3 test on candidates
 ########
 invsummary$admixed=NA
+invsummary$f3=NA
+invsummary$f3se=NA
+
+
 for(I in unique(invsummary$cluster[invsummary$valid])) {
   invsnps <- vcf_query(vcffile,
                        samples=samples,
@@ -297,19 +309,20 @@ for(I in unique(invsummary$cluster[invsummary$valid])) {
   invsnps <- invsnps[goodloci,]
   invposns <- invposns[goodloci,]
   clusters <- pcs$valid[which(pcs$inv==I)]
-  
+  #write(clusters,stderr())
   p1 <- clusters=='aa'
   p3 <- clusters=='ab'
   p2 <- clusters=='bb'
   f3 <- meanF3(invsnps,p3,p1,p2)
   f3se <- jackknifeF3se(invsnps,invposns,p3,p1,p2)
-  if(f3 > 0-(2*f3se)) {
+  invsummary$f3[invsummary$cluster==I] <- f3
+  invsummary$f3se[invsummary$cluster==I] <- f3se
+  if(f3 < 0-(2*f3se)) {
     invsummary$admixed[invsummary$cluster==I] <- T
   } else {
     invsummary$admixed[invsummary$cluster==I] <- F
   }
     
-  
 }
 
 
@@ -328,9 +341,14 @@ if(nrow(invsummary) > 0) {
 
 write(paste("plotting",nrow(invsummary),"PCs"),file=stderr())
 
-invsummary$inv <- factor(invsummary$cluster)
-invcandsV <- merge(invcands,invsummary[,c("cluster","valid")],all.x=T)
-clustplot <- ggplot(invcandsV,aes(x=pos,fill=valid,color=admixed,y=as.factor(cluster))) + geom_tile() + ylab("cluster")
+invsummary$inv <- factor(invsummary$cluster,levels=sort(unique(invsummary$cluster)),ordered=T)
+invcandsV <- merge(invcands,invsummary[,c("cluster","valid","admixed")],all.x=T)
+
+invcandsV$validation <- "fail"
+invcandsV$validation[invcandsV$valid] <- "pass-d"
+invcandsV$validation[invcandsV$admixed] <- "pass-F3"
+
+clustplot <- ggplot(invcandsV,aes(x=pos,fill=validation,y=as.factor(cluster))) + geom_tile() + ylab("cluster")
 
 if(exists("pcs")) {
   saveRDS(pcs,file=paste(outfile,"pcs.Rds",sep="_"))

@@ -178,7 +178,7 @@ rule admix_3pop:
         chrom_ids=config["chrommap"],
         meta=config["spptable"]
     output:
-        blk="results/admix_tests/3pop_{chrom}_{pop1}_{pop2}_{pop3}_blocks.txt",
+        blk=temporary("results/admix_tests/3pop_{chrom}_{pop1}_{pop2}_{pop3}_blocks.txt"),
         sum=temporary("results/admix_tests/3pop_{chrom}_{pop1}_{pop2}_{pop3}_summary.txt")
     resources:
         mem_mb=8000,
