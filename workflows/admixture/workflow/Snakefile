@@ -4,7 +4,7 @@ configfile: "config/config.yaml"
 #### reused methods for grabbing GS objects, etc ####
 include: "rules/common.smk"
 
-CHROMS=[2,3]
+CHROMS=[1,2,3]
 BIGPOPS=pd.read_table(config["countries"],dtype=str,header=0)['country']
 TESTS=['alder','3pop']
 
@@ -18,9 +18,9 @@ wildcard_constraints:
 rule all:
     input:
         expand("results/admix_tests/alder_all_summaries.txt",
-            chrom=CHROMS)
-        #expand("results/admix_tests/3pop_{chrom}_summaries.txt",
-        #    chrom=CHROMS),
+            chrom=CHROMS),
+        expand("results/admix_tests/3pop_{chrom}_summaries.txt",
+            chrom=CHROMS),
 
 ###rule orders ###
 ruleorder: make_biallelic > tabix_vcf
