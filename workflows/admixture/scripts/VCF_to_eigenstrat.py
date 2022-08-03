@@ -72,6 +72,7 @@ sampfile = open(out+'.ind', 'w')
 
 #alder failing due to long names!
 shortsamples = [re.sub("Debug.*aegypti_","",S) for S in meta['sample']]
+shortsamples = [re.sub("Debug.*REPREP*aegy-","",S) for S in shortsamples]
 
 #sampzip = [(s,x,c) for s,x,c in zip(meta['sample'].tolist(),
 sampzip = [(s,x,c) for s,x,c in zip(shortsamples,
