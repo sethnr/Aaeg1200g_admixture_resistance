@@ -107,7 +107,7 @@ rule whatshap_sample:
         mem_mb=16000,
         disk_mb=500000,
         bamspace=0,
-        h_rt='2:00:00'
+        h_rt='24:00:00'
     threads: 1,
     log:
         "logs/phase_whatshap/{chrom}_{sample}.log",
@@ -236,7 +236,7 @@ rule phase_shapeit:
     shell:
         """
         shapeit4 --input {input.vcf} --map {input.map} \
-                 --region {wildcards.chrom} \
+                 --region {params.chromid} \
                  --thread {threads} --log {log} \
                  --output {output.vcf} \
 		 --sequencing
