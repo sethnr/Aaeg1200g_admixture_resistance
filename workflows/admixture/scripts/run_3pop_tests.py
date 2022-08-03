@@ -68,7 +68,12 @@ f3, f3sd, f3z, f3blk, f3jack = allel.average_patterson_f3(acpop3, acpop1, acpop2
 f3wins = allel.moving_patterson_f3(acpop3, acpop1, acpop2, block, step=step, normed=True)
 
 
-poswins = np.vstack((allel.moving_statistic(callset1['variants/POS'], min, block, step=step),
+poswins = np.vstack((
+            [pop3] * len(f3wins),
+            [pop1] * len(f3wins),
+            [pop2] * len(f3wins),
+            [chrom] * len(f3wins),
+            allel.moving_statistic(callset1['variants/POS'], min, block, step=step),
             allel.moving_statistic(callset1['variants/POS'], np.average, block, step=step),
             allel.moving_statistic(callset1['variants/POS'], max, block, step=step),
             f3wins)).transpose()
