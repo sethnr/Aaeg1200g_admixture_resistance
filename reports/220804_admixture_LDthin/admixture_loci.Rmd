@@ -1,0 +1,134 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+```{r}
+library("tidyverse")
+
+library("patchwork")
+library("gridExtra")
+library("plyr")
+library("zoo")
+
+library("getopt")
+```
+
+```{r}
+indir <- "admix_tests"
+outprefix <- "3pop_admix_loci"
+
+#make function to read/parse all vars and create table
+parse_3pop <- function(x) {
+  fnspl <- strsplit(basename(x),"_")[[1]]
+  chr = fnspl[2]
+  mixpop <- fnspl[5]
+  pop1 <- fnspl[3]
+  pop2 <- fnspl[4]
+  read.table(x,col.names = c("start","mid","end","f3")) %>% 
+    add_column("p1"=pop1,"p2"=pop2,"p3"=mixpop,"chr"=chr)
+}
+
+#read in block files:
+write(paste("getting blocks from ",indir),stderr())
+pop3files <- list.files(indir,pattern="3pop.*_blocks.txt.gz",full.names = T)
+pop3tab <- ldply(pop3files, parse_3pop)
+pop3tab[pop3tab$p2>pop3tab$p1,c("p1","p2")] <- pop3tab[pop3tab$p2>pop3tab$p1,c("p2","p1")]
+pop3tab$set <- paste(pop3tab$p3,pop3tab$p1,pop3tab$p2,sep="/")
+
+write(paste("found",nrow(pop3tab),"block lines from",length(pop3files),"files"),stderr())
+
+
+#read in summary (significance) files
+pop3files <- list.files(indir,pattern="3pop.*_summaries.txt",full.names = T)
+pop3sum <- ldply(pop3files, function(x) {read.table(x,col.names=c("p3","p1","p2","chr","f3","f3sd","f3z","f3sig"))})
+pop3sum[pop3sum$p2>pop3sum$p1,c("p1","p2")] <- pop3sum[pop3sum$p2>pop3sum$p1,c("p2","p1")]
+pop3sum$set <- paste(pop3sum$p3,pop3sum$p1,pop3sum$p2,sep="/")
+pop3sum$parent <- paste(pop3sum$p1,pop3sum$p2,sep="/")
+pop3sum$f3sig <- as.logical(pop3sum$f3sig)
+write(paste("found",nrow(pop3sum),"summary lines from",length(pop3files),"files"),stderr())
+
+
+#get sign admixed pops based on whole genome f3
+sigpops <- unique(pop3sum$p3[pop3sum$f3sig])
+#get those that show sig f3 but not from admixed parents
+sigsets <- unique(pop3sum$set[pop3sum$f3sig & 
+                                ((!pop3sum$p1 %in% sigpops) & (!pop3sum$p2 %in% sigpops) & (pop3sum$p3 %in% sigpops))])
+#get those that show non-sig f3
+nonsigsets <- subset(pop3results,!p1 %in% sigpops & !p2 %in% sigpops &
+                                !p3 %in% sigpops & !set %in% sigsets)$set
+
+
+
+#calculate z-scores
+pop3results <- merge(pop3tab,pop3sum[,c("set","parent","chr","f3sd","f3sig")],by=c("set","chr"),all=T)
+pop3results$f3z <- pop3results$f3/pop3results$f3sd
+
+```
+
+
+```{r  fig.width=10,fig.height=8,dpi=300}
+
+
+#######
+# plot z scores
+####### 
+
+ggplot(subset(pop3results,set %in% sigsets),aes(x=mid,y=f3z,group=set,color=parent)) + 
+  geom_line() + facet_grid(p3 ~ chr,scale="free_x",space="free_x") + 
+  scale_y_continuous(limits=c(-100,0)) +
+  theme(legend.position = "bottom")
+#ggsave(paste(outprefix,"fz_sigpops_neg.png",sep="_"),dpi = 300,width=250,height=175,units="mm")
+
+ggplot(subset(pop3results,!p1 %in% sigpops & !p2 %in% sigpops & !p3 %in% sigpops & !set %in% sigsets),aes(x=mid,y=f3z,group=set,color=parent)) + 
+  geom_line() + 
+  facet_grid(p3 ~ chr,scale="free_x",space="free_x") + 
+  scale_y_continuous(limits=c(-100,0)) +
+  theme(legend.position = "bottom")
+#ggsave(paste(outprefix,"fz_nonsig_neg.png",sep="_"),dpi = 300,width=250,height=175,units="mm")
+
+```
+
+
+```{r}
+# #calculate rolling window
+# sets <- unique(pop3tab$set)
+# chroms <- unique(pop3tab$chr)
+# 
+# pop3tab <- pop3tab[order(pop3tab$set,pop3tab$chr,pop3tab$mid),]
+# pop3tab$mid <- round(pop3tab$mid)
+# for(winsize in c(50)) {
+#   if(exists("rolltab")) {rm("rolltab")}
+#   for(S in sets) {
+#     for(C in chroms) {
+#       midroll <- rollapply(pop3tab$mid[pop3tab$chr==C & pop3tab$set==S],winsize,FUN=median)
+#       f3zroll <- rollapply(pop3tab$f3z[pop3tab$chr==C & pop3tab$set==S],winsize,FUN=mean)
+#       chrroll <- rep(C,length(midroll))
+#       setroll <- rep(S,length(midroll))
+#       rolltabc <- data.frame(mid=midroll,
+#                              f3zroll=f3zroll,
+#                              chr=chrroll,
+#                              set=setroll)
+#       if(!exists("rolltab")) {
+#         rolltab <- rolltabc
+#       } else {
+#         rolltab <- rbind(rolltab,rolltabc)
+#       }
+#     }
+#   }
+#   
+#   pop3tabroll <- merge(rolltab,pop3sum[,c("set","p3","parent","chr","f3sd","f3sig")],by=c("set","chr"))
+#   
+#   rollplot <- ggplot(subset(pop3tabroll,set %in% sigsets),aes(x=mid,y=f3zroll,group=set,color=parent)) + 
+#     geom_line() + 
+#     facet_grid(p3 ~ chr,scale="free_x",space="free_x") + 
+#     scale_y_continuous(limits=c(-100,0)) +
+#     theme(legend.position = "bottom")
+#   
+#   png(paste(outprefix,"_fz_sigpops_neg_r",winsize,".png",sep=""),
+#       res = 300,width=250,height=175,units="mm")
+#   print(rollplot)
+#   dev.off()
+# }  
+
+```
