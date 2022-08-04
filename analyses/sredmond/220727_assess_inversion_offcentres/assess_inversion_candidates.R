@@ -45,11 +45,17 @@ meanF3 <- function(invsnps,p3,p1,p2) {
   getmaf = function(x) {sum(na.omit(x)) / sum(!is.na(x))*2}
   getmafs <- function(inds,snps) {
     if(sum(inds)==1) {  #if only one ind
-      maf <- snps[,inds]/2
-    } else if (is.null(nrow(invsnps))) {   #if only one SNP
-      maf <- getmaf(snps[inds])
+      if (is.null(nrow(invsnps))) {   #if only one SNP
+        maf <- snps[inds]/2
+      } else {
+        maf <- snps[,inds]/2
+      }
     } else {
+      if (is.null(nrow(invsnps))) {   #if only one SNP
+        maf <- getmaf(snps[inds])
+      } else {
       maf <- apply(snps[,inds],1,getmaf)
+      }
     }
     maf
   }
@@ -336,6 +342,9 @@ clustplot <- ggplot(invcandsV,aes(x=pos,fill=validation,y=as.factor(cluster))) +
 if(exists("pcs")) {
   saveRDS(pcs,file=paste(outfile,"pcs.Rds",sep="_"))
 
+  callstable <- pivot_wider(pcs[,c("sample","valid","inv")],names_from = inv,values_from = c("valid"))
+  write.table(callstable,file=paste(outfile,"calls.txt",sep="_"),sep="\t",quote=F,row.names = F)
+  
   invcols <- scale_color_manual(values=c("aa"="yellow","ab"="orange","bb"="red"),na.value = "dark grey")
   ncol=round(sqrt(length(unique(pcs$inv))))
   invpca <- ggplot(pcs,aes(x=PC1,y=PC2,color=valid)) + 
@@ -354,3 +363,7 @@ if(exists("pcs")) {
   grid.arrange(clustplot, grid.rect(gp=gpar(col="white")), ncol=2)
   dev.off()
 }
+
+
+
+
