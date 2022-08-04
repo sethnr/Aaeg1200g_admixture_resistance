@@ -42,12 +42,14 @@ vcf_genotypes <- function (file, regions, samples) {
 
 meanF3 <- function(invsnps,p3,p1,p2) {
   #calculate f3 stat for 3 'pops'
-  maf = function(x) {sum(na.omit(x)) / sum(!is.na(x))*2}
+  getmaf = function(x) {sum(na.omit(x)) / sum(!is.na(x))*2}
   getmafs <- function(inds,snps) {
-    if(sum(inds)>1) {
-      maf <- apply(snps[,inds],1,maf)
-    } else {
+    if(sum(inds)==1) {  #if only one ind
       maf <- snps[,inds]/2
+    } else if (is.null(nrow(invsnps))) {   #if only one SNP
+      maf <- getmaf(snps[inds])
+    } else {
+      maf <- apply(snps[,inds],1,getmaf)
     }
     maf
   }
@@ -55,6 +57,7 @@ meanF3 <- function(invsnps,p3,p1,p2) {
   p1maf <- getmafs(p1,invsnps)
   p2maf <- getmafs(p2,invsnps)
   p3maf <- getmafs(p3,invsnps)
+  
   f3=(p3maf-p1maf)*(p3maf-p2maf)
   mean(na.omit(f3))
 }
@@ -67,10 +70,12 @@ jackknifeF3se <- function(snps,posns,p3,p1,p2,blocksize=1e5) {
   starts <- starts[snpcounts>0]
   snpcounts <- snpcounts[snpcounts>0]
   
+  
   f3blocks <- c()
   for(s in starts) {
     # jacksnps <- invsnps[posns$pos<s | posns$pos>=s+blocksize,]
     # jackf3 <- meanF3(jacksnps,p3,p2,p1)
+    write(paste("  getting F3 for block",s,snpcounts[starts==s],"SNPs"),stderr())
     blocksnps <- invsnps[posns$pos>=s & posns$pos<s+blocksize,]
     blockf3 <- meanF3(blocksnps,p3,p2,p1)
     f3blocks = c(f3blocks,blockf3)}
@@ -191,7 +196,7 @@ invcands$end <- as.numeric((as.data.frame(strsplit(invcands$block,":"))[2,]))
 invcands$start <- invcands$end-blocksize
 invcands$chromname <- chromname[invcands$chrom]
 
-
+invcands <- invcands[invcands$cluster %in% c(485),]
 
 
 # Run PCAs for all candidate inversion regions
@@ -240,32 +245,12 @@ if(exists("pcs")) {
       rotPCs <- rotateXY(as.matrix(pcsinv[,c("PC1","PC2")]),a)
       colnames(rotPCs) <- c("PC1","PC2")
       assk <- assessInvK(rotPCs[,"PC1"])
-      write(paste(I,
-                  a,
-                  round(assk$d,2),
-                  round(assk$mean_wss,2),
-                  round(assk$mean_bss,2),
-                  assk$valid),
-            stderr())
       
       if(assk$valid) {
         anygood=T
         break
       }
-      # #if valid, check F3 stat
-      # if(assk$valid) {
-      #   f3 <- meanF3(invsnps,p3,p1,p2)
-      #   assk$f3 <- f3
-      #   if(assk$valid) {
-      #     f3se <- jackknifeF3se(invsnps,invposns,p3,p1,p2)
-      #     assk$f3se <- f3se
-      #     #if fails F3 test, set valid to false
-      #     if(f3 > 0-(2*f3se)) {
-      #       assk$valid <- F
-      #     }
-      #   }
-      # }
-    } #angles tested
+    } #all angles tested
     
     
     if(anygood) {
@@ -309,10 +294,10 @@ for(I in unique(invsummary$cluster[invsummary$valid])) {
   invsnps <- invsnps[goodloci,]
   invposns <- invposns[goodloci,]
   clusters <- pcs$valid[which(pcs$inv==I)]
-  #write(clusters,stderr())
   p1 <- clusters=='aa'
   p3 <- clusters=='ab'
   p2 <- clusters=='bb'
+  
   f3 <- meanF3(invsnps,p3,p1,p2)
   f3se <- jackknifeF3se(invsnps,invposns,p3,p1,p2)
   invsummary$f3[invsummary$cluster==I] <- f3
