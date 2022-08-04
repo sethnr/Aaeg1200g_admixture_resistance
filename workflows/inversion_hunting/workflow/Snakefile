@@ -94,10 +94,10 @@ rule find_inversion_candidates:
 
 rule assess_inversion_candidates:
     input:
-        #vcf=lambda wildcards: get_remote_vcf(wildcards),
-        #tbi=lambda wildcards: get_remote_vcf_tbi(wildcards),
-        vcf="verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr{chrom}.SNP.refseq.7e6.vcf.gz",
-        tbi="verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr{chrom}.SNP.refseq.7e6.vcf.gz.tbi",
+        vcf=lambda wildcards: get_remote_vcf(wildcards),
+        tbi=lambda wildcards: get_remote_vcf_tbi(wildcards),
+        #vcf="verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr{chrom}.SNP.refseq.7e6.vcf.gz",
+        #tbi="verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr{chrom}.SNP.refseq.7e6.vcf.gz.tbi",x
         txt="results/lostruct_inversion_candidates/regions_chr{chrom}_{region}.txt",
         spptable=config["spptable"],
     output:
