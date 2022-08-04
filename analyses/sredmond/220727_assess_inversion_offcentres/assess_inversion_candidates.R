@@ -73,9 +73,7 @@ jackknifeF3se <- function(snps,posns,p3,p1,p2,blocksize=1e5) {
   
   f3blocks <- c()
   for(s in starts) {
-    # jacksnps <- invsnps[posns$pos<s | posns$pos>=s+blocksize,]
-    # jackf3 <- meanF3(jacksnps,p3,p2,p1)
-    write(paste("  getting F3 for block",s,snpcounts[starts==s],"SNPs"),stderr())
+    #write(paste("  getting F3 for block",s,snpcounts[starts==s],"SNPs"),stderr())
     blocksnps <- invsnps[posns$pos>=s & posns$pos<s+blocksize,]
     blockf3 <- meanF3(blocksnps,p3,p2,p1)
     f3blocks = c(f3blocks,blockf3)}
@@ -196,7 +194,7 @@ invcands$end <- as.numeric((as.data.frame(strsplit(invcands$block,":"))[2,]))
 invcands$start <- invcands$end-blocksize
 invcands$chromname <- chromname[invcands$chrom]
 
-invcands <- invcands[invcands$cluster %in% c(485),]
+#invcands <- invcands[invcands$cluster %in% c(485),]
 
 
 # Run PCAs for all candidate inversion regions
