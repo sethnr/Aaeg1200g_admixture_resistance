@@ -211,7 +211,7 @@ for(C in unique(invcands$cluster)) {
 
 
     write(typeof(invsnps),stderr())
-    if(typeof(invsnps)=="data.frame")) {
+    if(typeof(invsnps)=="data.frame") {
         write(paste("  -->",nrow(invsnps)),file=stderr())
         meancall <- apply(invsnps,2,function(x) {mean(na.omit(x))})
     } else {

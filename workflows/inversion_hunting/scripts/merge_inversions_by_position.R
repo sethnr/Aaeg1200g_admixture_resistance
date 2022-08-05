@@ -94,9 +94,11 @@ while(length(rawnames)>0) {
     if (C1==C2) {next}
     B2 <- invcands$block[invcands$cluster==C2]
     if (length(B1)<length(B2)) {next}
-    
+
     B1ol <- sum(B1 %in% B2)/length(B1)
     B2ol <- sum(B2 %in% B1)/length(B2)
+
+    write(paste(B1ol,B2ol,blocksim),stderr())
     if(B1ol>=blocksim & B2ol>=blocksim) {
       #write(paste(C1,"<-",C1,C2,length(B1),length(B2)),stderr())
       #write(paste(C1,"<-",C1,C2),stderr())
@@ -107,10 +109,10 @@ while(length(rawnames)>0) {
   rawnames <- rawnames[!rawnames %in% ols]
   write(paste(" ",C1,"<-",paste(ols,collapse="/")),stderr())
   #newnames <- c(newnames,paste(ols,collapse="/"))
-  
+
   newblocks[[paste(ols,collapse="/")]] = unique(olbs)
   #write(paste(allBlocks),stderr())
-  
+
 }
 #length(newblocks)
 
@@ -140,11 +142,9 @@ inv = c()
 for(invname in names(newblocks)) {
   block <- c(block,newblocks[[invname]])
   inv <- c(inv,rep(invname,length(newblocks[[invname]])))
-  
+
 }
 chrom <- as.numeric(as.data.frame(strsplit(block,":"))[1,])
 posn <- as.numeric(as.data.frame(strsplit(block,":"))[2,])
 write.table(data.frame("inv"=inv,"block"=block,"chrom"=chrom,pos=posn),
             outblocks,col.names=T,quote=F,row.names=F,sep="\t")
-
-
