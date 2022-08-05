@@ -223,7 +223,10 @@ for(C in unique(invcands$cluster)) {
     invaims$qual <- mean(abs(modecorr))
 
     invsnps <- cbind(invaims,invsnps)
-    if(!exists("allinvsnps")) {allinvsnps <- invsnps} else {allinvsnps <- rbind(allinvsnps,invsnps)}
+
+    write(dim(invsnps),stderr())
+    if(!exists("allinvsnps")) {allinvsnps <- invsnps
+    } else {allinvsnps <- rbind(allinvsnps,invsnps)}
 
 
 }
