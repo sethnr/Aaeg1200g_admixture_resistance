@@ -209,7 +209,9 @@ for(C in unique(invcands$cluster)) {
     invaims <- invaims[ldinclude,]
     invaims$i <- c(1:nrow(invaims))
 
-    if(nrow(invsnps)>1) {
+
+    write(typeof(invsnps),stderr())
+    if(typeof(invsnps)=="data.frame")) {
         write(paste("  -->",nrow(invsnps)),file=stderr())
         meancall <- apply(invsnps,2,function(x) {mean(na.omit(x))})
     } else {
