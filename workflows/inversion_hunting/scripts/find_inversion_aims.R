@@ -208,12 +208,15 @@ for(C in unique(invcands$cluster)) {
     invsnps <- invsnps[ldinclude,]
     invaims <- invaims[ldinclude,]
     invaims$i <- c(1:nrow(invaims))
-    write(paste("  -->",nrow(invsnps)),file=stderr())
 
+    if(nrow(invsnps)>1) {
+        write(paste("  -->",nrow(invsnps)),file=stderr())
+        meancall <- apply(invsnps,2,function(x) {mean(na.omit(x))})
+    } else {
+        meancall <- invsnps
+    }
 
-
-   #order all SNPs by country, then mean inv call of high LD SNPs
-    meancall <- apply(invsnps,2,function(x) {mean(na.omit(x))})
+    #order all SNPs by country, then mean inv call of high LD SNPs
     cntinvorder <- metatab$sample[order(metatab$contgroup,metatab$country,meancall)]
     invaims$qual <- mean(abs(modecorr))
 
