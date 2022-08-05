@@ -210,8 +210,8 @@ for(C in unique(invcands$cluster)) {
     invaims$i <- c(1:nrow(invaims))
 
 
-    write(typeof(invsnps),stderr())
-    if(typeof(invsnps)=="data.frame") {
+    write(is.data.frame(invsnps),stderr())
+    if(is.data.frame(invsnps) | is.matrix(invsnps)) {
         write(paste("  -->",nrow(invsnps)),file=stderr())
         meancall <- apply(invsnps,2,function(x) {mean(na.omit(x))})
     } else {
