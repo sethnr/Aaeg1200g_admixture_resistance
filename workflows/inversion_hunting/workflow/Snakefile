@@ -142,6 +142,7 @@ rule get_aims:
       resources:
           mem_mb=4000,
           disk_mb=100000,
+	  h_rt='2:00:00',
       log:
           log="logs/lostruct_aims/get_aims_chr{chrom}_{region}.log",
       shell:
