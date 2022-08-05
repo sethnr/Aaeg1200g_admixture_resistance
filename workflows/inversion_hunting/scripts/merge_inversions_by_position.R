@@ -98,7 +98,10 @@ while(length(rawnames)>0) {
     B1ol <- sum(B1 %in% B2)/length(B1)
     B2ol <- sum(B2 %in% B1)/length(B2)
 
-    write(paste(B1ol,B2ol,blocksim),stderr())
+    write(paste(B1ol,sum(B1 %in% B2),length(B1),
+                B2ol,sum(B2 %in% B1),length(B2),
+                blocksim),stderr())
+                
     if(B1ol>=blocksim & B2ol>=blocksim) {
       #write(paste(C1,"<-",C1,C2,length(B1),length(B2)),stderr())
       #write(paste(C1,"<-",C1,C2),stderr())

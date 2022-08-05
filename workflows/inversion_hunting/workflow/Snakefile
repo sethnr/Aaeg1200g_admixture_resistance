@@ -201,7 +201,7 @@ rule merge_invs_sample:
           -a {input.assess} \
           -m {input.meta} \
           -A {input.aims} \
-          -o {params.prefix}
+          -o {params.prefix} 2> {log}
         """
 
 rule make_inversion_plots:
@@ -255,7 +255,7 @@ rule merge_invs_global:
           -d {params.indir} \
           -r {params.minr2} \
           -c {wildcards.chrom} \
-          -o {params.prefix} >> {log}
+          -o {params.prefix} > {log}
 
         Rscript scripts/plot_cluster_aims.R \
             -s {input.meta} \
