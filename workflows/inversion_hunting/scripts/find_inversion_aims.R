@@ -186,10 +186,10 @@ for(C in unique(invcands$cluster)) {
 
    #if inversely correlated with modal value, flip call
     modecall <- apply(invsnps,2,function(x) {as.numeric(names(sort(table(na.omit(x)),decreasing = T))[1])})
-    write(length(modecall),stderr())
-    write(paste(modecall,sep="",collapse="."),stderr())
+    #write(length(modecall),stderr())
+    #write(paste(modecall,sep="",collapse="."),stderr())
     modecall <- as.numeric(modecall)
-    write(paste(modecall,sep="",collapse="."),stderr())
+    #write(paste(modecall,sep="",collapse="."),stderr())
     modecorr <- apply(invsnps,1,function(x) {if(sum(!is.na(x))>0) {cor(modecall[!is.na(x)],x[!is.na(x)])} else {0}})
     invsnps[modecorr<0,] <- abs(invsnps[modecorr<0,]-2)
 
