@@ -32,7 +32,8 @@ parse_3pop <- function(x) {
 #read in block files:
 write(paste("getting blocks from ",indir),stderr())
 pop3files <- list.files(indir,pattern="3pop.*_blocks.txt.gz",full.names = T)
-pop3tab <- ldply(pop3files, parse_3pop)
+# pop3tab <- ldply(pop3files, parse_3pop)
+pop3tab <- ldply(pop3files, function(x) {read.table(x,sep="\t",col.names=c("p3","p1","p2","chr","start","mid","end","f3"))})
 pop3tab[pop3tab$p2>pop3tab$p1,c("p1","p2")] <- pop3tab[pop3tab$p2>pop3tab$p1,c("p2","p1")]
 pop3tab$set <- paste(pop3tab$p3,pop3tab$p1,pop3tab$p2,sep="/")
 
@@ -49,7 +50,12 @@ pop3sum$f3sig <- as.logical(pop3sum$f3sig)
 write(paste("found",nrow(pop3sum),"summary lines from",length(pop3files),"files"),stderr())
 
 
-#get sign admixed pops based on whole genome f3
+#calculate z-scores
+pop3results <- merge(pop3tab,pop3sum[,c("set","parent","chr","f3sd","f3sig")],by=c("set","chr"),all=T)
+pop3results$f3z <- pop3results$f3/pop3results$f3sd
+
+
+#get significant admixed pops based on whole genome f3
 sigpops <- unique(pop3sum$p3[pop3sum$f3sig])
 #get those that show sig f3 but not from admixed parents
 sigsets <- unique(pop3sum$set[pop3sum$f3sig & 
@@ -57,13 +63,6 @@ sigsets <- unique(pop3sum$set[pop3sum$f3sig &
 #get those that show non-sig f3
 nonsigsets <- subset(pop3results,!p1 %in% sigpops & !p2 %in% sigpops &
                                 !p3 %in% sigpops & !set %in% sigsets)$set
-
-
-
-#calculate z-scores
-pop3results <- merge(pop3tab,pop3sum[,c("set","parent","chr","f3sd","f3sig")],by=c("set","chr"),all=T)
-pop3results$f3z <- pop3results$f3/pop3results$f3sd
-
 ```
 
 
