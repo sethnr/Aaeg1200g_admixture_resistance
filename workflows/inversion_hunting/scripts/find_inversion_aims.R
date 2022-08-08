@@ -23,6 +23,7 @@ outtxt <- opt$outfile
 #AIM criteria
 MAXCHISQ <- 1e-9
 blocksize<-5e05
+maxaims <- 100
 chromname <- c("NC_035107.1","NC_035108.1","NC_035109.1")
 chromlen <- c(310827022,474425716,409777670)
 names(chromlen) <- chromname
