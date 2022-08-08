@@ -246,7 +246,7 @@ rule merge_invs_global:
         indir="results/lostruct_merge/",
         minr2=0.25
     resources:
-        mem_mb=8000,
+        mem_mb=16000,
         disk_mb=10000,
     log:
         "logs/lostruct_merge/invs_chr{chrom}.log",
