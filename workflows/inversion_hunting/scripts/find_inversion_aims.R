@@ -212,7 +212,7 @@ for(C in unique(invcands$cluster)) {
 
     write(paste(is.data.frame(invsnps),
                 is.matrix(invsnps),
-                is.data.frame(invsnps) | is.matrix(invsnps),
+                is.data.frame(invsnps) | is.matrix(invsnps)),
                 stderr())
     if(is.data.frame(invsnps) | is.matrix(invsnps)) {
         write(paste("  -->",nrow(invsnps)),file=stderr())
