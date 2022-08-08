@@ -229,8 +229,11 @@ for(C in unique(invcands$cluster)) {
 
     invaims$qual <- mean(abs(modecorr))
 
+    write("invaims",stderr())
     write(dim(invaims),stderr())
+    write("invsnps",stderr())
     write(dim(invsnps),stderr())
+    
     invsnps <- cbind(invaims,invsnps)
 
 
