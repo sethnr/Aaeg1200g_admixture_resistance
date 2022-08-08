@@ -224,9 +224,14 @@ for(C in unique(invcands$cluster)) {
 
     invsnps <- cbind(invaims,invsnps)
 
-    write(dim(invsnps),stderr())
-    if(!exists("allinvsnps")) {allinvsnps <- invsnps
-    } else {allinvsnps <- rbind(allinvsnps,invsnps)}
+    if(!exists("allinvsnps")) {
+        write(dim(invsnps),stderr())
+        allinvsnps <- invsnps
+    } else {
+        write(dim(allinvsnps),stderr())
+        write(dim(invsnps),stderr())
+
+        allinvsnps <- rbind(allinvsnps,invsnps)}
 
 
 }
