@@ -153,6 +153,7 @@ for(C in unique(invcands$cluster)) {
 
 
 
+
 ########
 # refine aims based on LD Across all samples
 ########
@@ -169,67 +170,78 @@ for(C in unique(invcands$cluster)) {
     write(paste(" ",nrow(invaims),"aims found"),file=stderr())
 
 
-    if(nrow(invaims)==0) {next}
-
-   #pull out only those SNPs from file for ALL samples
-    invsnps <- vcf_query(vcffile,
+    if(nrow(invaims)==0) {
+        next
+    } else if (nrow(invaims)==1) {
+        #if only one aim, no LD filtering, just pull out AIM and add to set
+        invsnps <- vcf_query(vcffile,
                          regions=data.frame("chrom"=invaims$chrom,
                                             "start"=invaims$pos,
                                             "end"=invaims$pos),
                          samples=samples)
-    colnames(invsnps) <- samples
-
-   #if inversely correlated with modal value, flip call
-    modecall <- apply(invsnps,2,function(x) {as.numeric(names(sort(table(na.omit(x)),decreasing = T))[1])})
-    #write(length(modecall),stderr())
-    #write(paste(modecall,sep="",collapse="."),stderr())
-    modecall <- as.numeric(modecall)
-    #write(paste(modecall,sep="",collapse="."),stderr())
-    modecorr <- apply(invsnps,1,function(x) {if(sum(!is.na(x))>0) {cor(modecall[!is.na(x)],x[!is.na(x)])} else {0}})
-    invsnps[modecorr<0,] <- abs(invsnps[modecorr<0,]-2)
-
-
-   #remove SNPs not in LD across whole dataset (mean -1x sd)
-    write(paste("  LD filtering",nrow(invsnps),"SNPs"),file=stderr())
-    #calculate mean r2 for each SNP
-    r2s <- matrix(rep(-1,nrow(invsnps)^2),nrow=nrow(invsnps))
-    for(si in c(1:nrow(invsnps))){
-      for(sj in c(1:nrow(invsnps))){
-        r2s[si,sj] = cor(invsnps[si,],invsnps[sj,],use = "pairwise.complete.obs")^2
-      }
-    }
-    meanr2s <- apply(r2s,1,mean)
-    ldinclude <- meanr2s >= (mean(r2s)-sd(r2s))
-    invsnps <- invsnps[ldinclude,]
-    invaims <- invaims[ldinclude,]
-    invaims$i <- c(1:nrow(invaims))
-
-    write(paste(C,sum(ldinclude),
-                is.data.frame(invsnps),
-                is.matrix(invsnps),
-                is.data.frame(invsnps) | is.matrix(invsnps)),
-                stderr())
-    if(is.data.frame(invsnps) | is.matrix(invsnps)) {
-        write(paste("  -->",nrow(invsnps)),file=stderr())
-        meancall <- apply(invsnps,2,function(x) {mean(na.omit(x))})
-        #order all SNPs by country, then mean inv call of high LD SNPs
-        cntinvorder <- metatab$sample[order(metatab$contgroup,metatab$country,meancall)]
-
+        names(invsnps) <- samples
+        invsnps <- cbind(invaims,t(samples))
     } else {
-        write(paste("  --> one snp?"),file=stderr())
-        meancall <- mean(na.omit(invsnps))
-        #order all SNPs by country, then mean inv call of high LD SNPs
-        cntinvorder <- metatab$sample[order(metatab$contgroup,metatab$country)]
-    }
+       #pull out only those SNPs from file for ALL samples
+        invsnps <- vcf_query(vcffile,
+                             regions=data.frame("chrom"=invaims$chrom,
+                                                "start"=invaims$pos,
+                                                "end"=invaims$pos),
+                             samples=samples)
+        colnames(invsnps) <- samples
 
-    invaims$qual <- mean(abs(modecorr))
+       #if inversely correlated with modal value, flip call
+        modecall <- apply(invsnps,2,function(x) {as.numeric(names(sort(table(na.omit(x)),decreasing = T))[1])})
+        #write(length(modecall),stderr())
+        #write(paste(modecall,sep="",collapse="."),stderr())
+        modecall <- as.numeric(modecall)
+        #write(paste(modecall,sep="",collapse="."),stderr())
+        modecorr <- apply(invsnps,1,function(x) {if(sum(!is.na(x))>0) {cor(modecall[!is.na(x)],x[!is.na(x)])} else {0}})
+        invsnps[modecorr<0,] <- abs(invsnps[modecorr<0,]-2)
 
-    write("invaims",stderr())
-    write(dim(invaims),stderr())
-    write("invsnps",stderr())
-    write(dim(invsnps),stderr())
 
-    invsnps <- cbind(invaims,invsnps)
+       #remove SNPs not in LD across whole dataset (mean -1x sd)
+        write(paste("  LD filtering",nrow(invsnps),"SNPs"),file=stderr())
+        #calculate mean r2 for each SNP
+        r2s <- matrix(rep(-1,nrow(invsnps)^2),nrow=nrow(invsnps))
+        for(si in c(1:nrow(invsnps))){
+          for(sj in c(1:nrow(invsnps))){
+            r2s[si,sj] = cor(invsnps[si,],invsnps[sj,],use = "pairwise.complete.obs")^2
+          }
+        }
+        meanr2s <- apply(r2s,1,mean)
+        ldinclude <- meanr2s >= (mean(r2s)-sd(r2s))
+        invsnps <- invsnps[ldinclude,]
+        invaims <- invaims[ldinclude,]
+        invaims$i <- c(1:nrow(invaims))
+
+        write(paste(C,sum(ldinclude),
+                    is.data.frame(invsnps),
+                    is.matrix(invsnps),
+                    is.data.frame(invsnps) | is.matrix(invsnps)),
+                    stderr())
+        if(is.data.frame(invsnps) | is.matrix(invsnps)) {
+            write(paste("  -->",nrow(invsnps)),file=stderr())
+            meancall <- apply(invsnps,2,function(x) {mean(na.omit(x))})
+            #order all SNPs by country, then mean inv call of high LD SNPs
+            cntinvorder <- metatab$sample[order(metatab$contgroup,metatab$country,meancall)]
+
+        } else {
+            write(paste("  --> one snp?"),file=stderr())
+            meancall <- mean(na.omit(invsnps))
+            #order all SNPs by country, then mean inv call of high LD SNPs
+            cntinvorder <- metatab$sample[order(metatab$contgroup,metatab$country)]
+        }
+
+        invaims$qual <- mean(abs(modecorr))
+
+        write("invaims",stderr())
+        write(dim(invaims),stderr())
+        write("invsnps",stderr())
+        write(dim(invsnps),stderr())
+
+        invsnps <- cbind(invaims,invsnps)
+        }
 
 
     if(!exists("allinvsnps")) {
