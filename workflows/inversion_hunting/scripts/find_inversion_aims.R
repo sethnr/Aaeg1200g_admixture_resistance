@@ -80,10 +80,10 @@ write("loading candidate regions",file=stderr())
   write(paste(" ",nrow(invcands),"inversion candidates"),file=stderr())
 
   invass <- read.table(assessfile,header=T)
-  goodinvs <- invass$cluster[invass$valid & invass$lowdist]
-  write(paste(" ",length(goodinvs),"valid candidates"),file=stderr())
+  compinvs <- invass$cluster[invass$valid & invass$lowdist]
+  write(paste(" ",length(compinvs),"valid candidates"),file=stderr())
 
-  invcands <- subset(invcands,invcands$cluster %in% goodinvs)
+  invcands <- subset(invcands,invcands$cluster %in% compinvs)
   write(paste(" ",nrow(invcands),"valid blocks"),file=stderr())
 
   invcands$chromname <- chromname[invcands$chrom]
@@ -111,45 +111,42 @@ for(C in unique(invcands$cluster)) {
     invsnps <- vcf_query(vcffile,
                          samples=csamples,
                          regions=invcands[invcands$cluster==C,c("chromname","start","end")])
-
     write("  get posns",stderr())
     posns <- vcf_positions(vcffile,invcands[invcands$cluster==C,c("chromname","start","end")])
-
     write(paste(" ",nrow(posns),"SNPs in region"),stderr())
 
-    #parse out inversion calls from PC file,
+   #parse out inversion calls from PC file,
     invcall <- as.numeric(pcs$valid[pcs$inv==C])-1
     names(invcall) <- pcs$sample[pcs$inv==C]
     invcall <- invcall[csamples]
     invorder <- order(invcall)
 
-
    #get SNPs that can be used for chisq
-    goodsnpsi <- apply(invsnps,1,function(x) {!any(is.na(x)) & length(unique(x))>1})
-    goodsnps <- invsnps[goodsnpsi,]
-    goodposns <- posns[goodsnpsi,]
+    compsnpsi <- apply(invsnps,1,function(x) {!any(is.na(x)) & length(unique(x))>1})
+    compsnps <- invsnps[compsnpsi,]
+    compposns <- posns[compsnpsi,]
 
    #do chisq with inversion calls for each
-    #write(paste(length(invcall),dim(goodsnps)),file=stderr())
-    assoc <- apply(goodsnps,1,FUN=function(x)(chisq.test(x,invcall)$p.value))
-    goodposns$assoc <- assoc
+    #write(paste(length(invcall),dim(compsnps)),file=stderr())
+    assoc <- apply(compsnps,1,FUN=function(x)(chisq.test(x,invcall)$p.value))
+    compposns$assoc <- assoc
 
    #get associated SNPS & posns
-    write(paste(" ",sum(goodposns$assoc < MAXCHISQ)," potential AIMs over",MAXCHISQ,"for",C),file=stderr())
-    if(sum(goodposns$assoc < MAXCHISQ)>0) {
-      realgoodposns <- goodposns[goodposns$assoc < MAXCHISQ,] %>% add_column(i=c(1:sum(goodposns$assoc < MAXCHISQ)),
+    write(paste(" ",sum(compposns$assoc < MAXCHISQ)," potential AIMs over",MAXCHISQ,"for",C),file=stderr())
+    if(sum(compposns$assoc < MAXCHISQ)>0) {
+      assocposns <- compposns[compposns$assoc < MAXCHISQ,] %>% add_column(i=c(1:sum(compposns$assoc < MAXCHISQ)),
                                                                               "inv"=C,
                                                                               "country"=country,
                                                                               .after="pos")
 
-      #if more than [maxaims] posns, take top 100 by chisq p-value
-      if(nrow(realgoodposns)>maxaims) {
-        realgoodposns <- realgoodposns[order(realgoodposns$assoc)[1:maxaims],]
-        realgoodposns <- realgoodposns[order(realgoodposns$i),]
-      }
+   #if more than [maxaims] posns, take top 100 by chisq p-value
+    if(nrow(assocposns)>maxaims) {
+        assocposns <- assocposns[order(assocposns$assoc)[1:maxaims],]
+        assocposns <- assocposns[order(assocposns$i),]
+    }
 
-      allaims <- rbind(allaims,realgoodposns)
-      }
+    allaims <- rbind(allaims,assocposns)
+    }
 }
 
 
@@ -163,13 +160,10 @@ for(C in unique(invcands$cluster)) {
     chr = invcands[invcands$cluster==C,"chrom"][1]
     chrname = chromname[chr]
 
-
-
    #get calculated aim posns for this inversion
     write(paste("refining aim",C),file=stderr())
     invaims <- allaims[allaims$inv==C,]
     write(paste(" ",nrow(invaims),"aims found"),file=stderr())
-
 
     if(nrow(invaims)==0) {
         next
@@ -181,6 +175,7 @@ for(C in unique(invcands$cluster)) {
                                             "end"=invaims$pos),
                          samples=samples)
         names(invsnps) <- samples
+        invaims$i=1
         invsnps <- cbind(invaims,t(samples))
     } else {
        #pull out only those SNPs from file for ALL samples
