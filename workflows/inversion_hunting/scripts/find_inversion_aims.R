@@ -209,7 +209,7 @@ for(C in unique(invcands$cluster)) {
     invaims <- invaims[ldinclude,]
     invaims$i <- c(1:nrow(invaims))
 
-    write(paste(sum(ldinclude),
+    write(paste(C,sum(ldinclude),
                 is.data.frame(invsnps),
                 is.matrix(invsnps),
                 is.data.frame(invsnps) | is.matrix(invsnps)),
