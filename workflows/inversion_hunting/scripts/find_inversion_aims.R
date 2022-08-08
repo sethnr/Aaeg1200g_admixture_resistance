@@ -102,13 +102,8 @@ allaims <- data.frame(chrom=character(),
 
 for(C in unique(invcands$cluster)) {
     write(paste("finding aims for cluster",C),file=stderr())
-    #write.table(invcands[invcands$cluster==C,c("chromname","start","end")],stderr())
-   #  regions <- paste(invcands$chromname[invcands$cluster==C],":",
-   #                   invcands$start[invcands$cluster==C],"-",
-   #                   invcands$end[invcands$cluster==C],
-   #                   sep="",collapse=",")
-    #get SNPs in inverted region
 
+    #get SNPs in inverted region
     invcands[invcands$cluster==C,c("chromname","start","end")]
 
     write("  get SNPs",stderr())
@@ -146,6 +141,12 @@ for(C in unique(invcands$cluster)) {
                                                                               "country"=country,
                                                                               .after="pos")
 
+      #if more than [maxaims] posns, take top 100 by chisq p-value
+      if(nrow(realgoodposns)>maxaims) {
+        realgoodposns <- realgoodposns[order(realgoodposns$assoc)[1:maxaims],]
+        realgoodposns <- realgoodposns[order(realgoodposns$i),]
+      }
+
       allaims <- rbind(allaims,realgoodposns)
       }
 }
@@ -167,14 +168,8 @@ for(C in unique(invcands$cluster)) {
     invaims <- allaims[allaims$inv==C,]
     write(paste(" ",nrow(invaims),"aims found"),file=stderr())
 
-   # if more than <maxaims> aims, only take top <maxaims> sorted by P-value
-    maxaims <- 100
-    if(nrow(invaims) > maxaims) {
-      invaims <- invaims[order(invaims$assoc)[1:maxaims],]
-      invaims <- invaims[order(invaims$i),]
-    }
-    if(nrow(invaims)==0) {next}
 
+    if(nrow(invaims)==0) {next}
 
    #pull out only those SNPs from file for ALL samples
     invsnps <- vcf_query(vcffile,
@@ -233,7 +228,7 @@ for(C in unique(invcands$cluster)) {
     write(dim(invaims),stderr())
     write("invsnps",stderr())
     write(dim(invsnps),stderr())
-    
+
     invsnps <- cbind(invaims,invsnps)
 
 
