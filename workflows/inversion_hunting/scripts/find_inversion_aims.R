@@ -175,7 +175,7 @@ for(C in unique(invcands$cluster)) {
                                             "end"=invaims$pos),
                          samples=samples)
         names(invsnps) <- samples
-        invaims$i=1
+        invaims$i<-1
         invsnps <- cbind(invaims,t(samples))
     } else {
        #pull out only those SNPs from file for ALL samples
