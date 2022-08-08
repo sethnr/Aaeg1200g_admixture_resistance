@@ -138,13 +138,11 @@ for(C in unique(invcands$cluster)) {
                                                                               "inv"=C,
                                                                               "country"=country,
                                                                               .after="pos")
-
    #if more than [maxaims] posns, take top 100 by chisq p-value
     if(nrow(assocposns)>maxaims) {
         assocposns <- assocposns[order(assocposns$assoc)[1:maxaims],]
         assocposns <- assocposns[order(assocposns$i),]
     }
-
     allaims <- rbind(allaims,assocposns)
     }
 }
@@ -174,8 +172,8 @@ for(C in unique(invcands$cluster)) {
                                             "start"=invaims$pos,
                                             "end"=invaims$pos),
                          samples=samples)
-        names(invsnps) <- samples
-        invsnps <- cbind(invaims,t(samples))
+	names(invsnps) <- samples
+        invsnps <- cbind(invaims,t(invsnps))
     } else {
        #pull out only those SNPs from file for ALL samples
         invsnps <- vcf_query(vcffile,
@@ -240,7 +238,7 @@ for(C in unique(invcands$cluster)) {
     } else {
         write(dim(allinvsnps),stderr())
         write(dim(invsnps),stderr())
-        write(colnames(invsnps)[colnames(invsnps)!=colnames(allinvsnps)],stderr())
+        write(colnames(allinvsnps)[!colnames(allinvsnps) %in% colnames(invsnps)],stderr())
         allinvsnps <- rbind(allinvsnps,invsnps)}
 
 
