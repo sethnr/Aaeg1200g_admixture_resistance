@@ -175,7 +175,6 @@ for(C in unique(invcands$cluster)) {
                                             "end"=invaims$pos),
                          samples=samples)
         names(invsnps) <- samples
-        invaims$i<-1
         invsnps <- cbind(invaims,t(samples))
     } else {
        #pull out only those SNPs from file for ALL samples
@@ -229,7 +228,7 @@ for(C in unique(invcands$cluster)) {
             cntinvorder <- metatab$sample[order(metatab$contgroup,metatab$country)]
         }
 
-        invaims$qual <- mean(abs(modecorr))
+        #invaims$qual <- mean(abs(modecorr))
 
         write("invaims",stderr())
         write(dim(invaims),stderr())
