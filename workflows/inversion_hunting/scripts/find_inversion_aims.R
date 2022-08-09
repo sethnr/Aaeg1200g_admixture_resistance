@@ -174,9 +174,10 @@ for(C in unique(invcands$cluster)) {
                                             "start"=invaims$pos,
                                             "end"=invaims$pos),
                          samples=samples)
+
 	colnames(invsnps) <- samples
         invsnps <- cbind(invaims,as.data.frame(invsnps))
-#	write.table(invsnps[,c(1:20)],stderr())
+#	write.table(invsnps[,c(1:20)]
 
     } else {
        #pull out only those SNPs from file for ALL samples
