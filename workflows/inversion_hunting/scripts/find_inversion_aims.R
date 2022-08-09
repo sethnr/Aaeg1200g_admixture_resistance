@@ -102,6 +102,7 @@ allaims <- data.frame(chrom=character(),
 ######
 
 for(C in unique(invcands$cluster)) {
+#for(C in c(47,82)) {
     write(paste("finding aims for cluster",C),file=stderr())
 
     #get SNPs in inverted region
@@ -155,6 +156,7 @@ for(C in unique(invcands$cluster)) {
 ########
 
 for(C in unique(invcands$cluster)) {
+#for(C in c(47,82)) {
     chr = invcands[invcands$cluster==C,"chrom"][1]
     chrname = chromname[chr]
 
@@ -172,8 +174,10 @@ for(C in unique(invcands$cluster)) {
                                             "start"=invaims$pos,
                                             "end"=invaims$pos),
                          samples=samples)
-	names(invsnps) <- samples
-        invsnps <- cbind(invaims,t(invsnps))
+	colnames(invsnps) <- samples
+        invsnps <- cbind(invaims,as.data.frame(invsnps))
+#	write.table(invsnps[,c(1:20)],stderr())
+
     } else {
        #pull out only those SNPs from file for ALL samples
         invsnps <- vcf_query(vcffile,
@@ -185,10 +189,7 @@ for(C in unique(invcands$cluster)) {
 
        #if inversely correlated with modal value, flip call
         modecall <- apply(invsnps,2,function(x) {as.numeric(names(sort(table(na.omit(x)),decreasing = T))[1])})
-        #write(length(modecall),stderr())
-        #write(paste(modecall,sep="",collapse="."),stderr())
         modecall <- as.numeric(modecall)
-        #write(paste(modecall,sep="",collapse="."),stderr())
         modecorr <- apply(invsnps,1,function(x) {if(sum(!is.na(x))>0) {cor(modecall[!is.na(x)],x[!is.na(x)])} else {0}})
         invsnps[modecorr<0,] <- abs(invsnps[modecorr<0,]-2)
 
@@ -208,39 +209,24 @@ for(C in unique(invcands$cluster)) {
         invaims <- invaims[ldinclude,]
         invaims$i <- c(1:nrow(invaims))
 
-        write(paste(C,sum(ldinclude),
-                    is.data.frame(invsnps),
-                    is.matrix(invsnps),
-                    is.data.frame(invsnps) | is.matrix(invsnps)),
-                    stderr())
-#        if(is.data.frame(invsnps) | is.matrix(invsnps)) {
-            write(paste("  -->",nrow(invsnps)),file=stderr())
-            meancall <- apply(invsnps,2,function(x) {mean(na.omit(x))})
-            #order all SNPs by country, then mean inv call of high LD SNPs
-            cntinvorder <- metatab$sample[order(metatab$contgroup,metatab$country,meancall)]
-
-#        } else {
-#            write(paste("  --> one snp?"),file=stderr())
-#            meancall <- mean(na.omit(invsnps))
-#            #order all SNPs by country, then mean inv call of high LD SNPs
-#            cntinvorder <- metatab$sample[order(metatab$contgroup,metatab$country)]
-#        }
-
-        #invaims$qual <- mean(abs(modecorr))
+        meancall <- apply(invsnps,2,function(x) {mean(na.omit(x))})
+        #order all SNPs by country, then mean inv call of high LD SNPs
+        cntinvorder <- metatab$sample[order(metatab$contgroup,metatab$country,meancall)]
 
         invsnps <- cbind(invaims,invsnps)
+#	write.table(invsnps[,c(1:20)],stderr())
         }
 
 
     if(!exists("allinvsnps")) {
-        write(dim(invsnps),stderr())
+#        write(dim(invsnps),stderr())
         allinvsnps <- invsnps
     } else {
-        write(dim(allinvsnps),stderr())
-        write(dim(invsnps),stderr())
-        write(colnames(allinvsnps)[!colnames(allinvsnps) %in% colnames(invsnps)],stderr())
+#        write(dim(allinvsnps),stderr())
+#        write(dim(invsnps),stderr())
+#        write(colnames(allinvsnps)[!colnames(allinvsnps) %in% colnames(invsnps)],stderr())
+#        write(colnames(invsnps)[!colnames(invsnps) %in% colnames(allinvsnps)],stderr())
         allinvsnps <- rbind(allinvsnps,invsnps)}
-
 
 }
 
