@@ -202,7 +202,7 @@ ggsave(paste(outprefix,".png",sep=""),dpi = 300,width=400,height=220,units="mm")
 
 
 #set aims for each cluster
-clustaims <- allaims[!duplicated(allaims[,c("cluster","chrom","pos")]),] %>% select(!c(inv,assoc,qual))
+clustaims <- allaims[!duplicated(allaims[,c("cluster","chrom","pos")]),] %>% select(!c(inv,assoc))
 clustaims <- clustaims[order(clustaims$pos),] %>% rename("inv"="cluster")
 for(i in unique(allaims$cluster)) {
   clustaims$i[clustaims$cluster==i] <- c(1:sum(clustaims$cluster==i))
