@@ -28,7 +28,7 @@ if (!is.null(opt$r2)  ) {minr2 <- opt$r2}
 
 
 #####
-# get and cat blocks 
+# get and cat blocks
 #####
 
 write(paste("getting positions from ",indir),stderr())
@@ -83,7 +83,7 @@ allaims$id <- paste(match(allaims$chrom,chromnames),allaims$region,allaims$inv,s
 
 #######
 # calc R2 for all inv pairs
-####### 
+#######
 
 if(file.exists(paste(outprefix,".r2.txt",sep=""))) {
   write(paste("reading from",paste(outprefix,".r2.txt",sep="")),stderr())
@@ -94,7 +94,7 @@ if(file.exists(paste(outprefix,".r2.txt",sep=""))) {
 } else {
 
   r2matrix <- matrix(rep(NA,length(cids)^2),nrow=length(cids),dimnames=list(cids,cids))
-  
+
   for (C1 in cids) {
     cat(paste("cf",C1),file=stderr())
     A1 <- as.matrix(allaims[allaims$id==C1,samples])
@@ -104,7 +104,7 @@ if(file.exists(paste(outprefix,".r2.txt",sep=""))) {
       cat(".",file=stderr())
       A2 <- as.matrix(allaims[allaims$id==C2,samples])
       if(nrow(A2)==0) {next}
-  
+
       r2s <- matrix(rep(-1,nrow(A1)*nrow(A2)),nrow=nrow(A1))
       for(si in c(1:nrow(A1))){
         for(sj in c(1:nrow(A2))){
@@ -115,11 +115,11 @@ if(file.exists(paste(outprefix,".r2.txt",sep=""))) {
       #meanr2s <- mean(r2s)
       r2matrix[C1,C2] <- meanr2s
       r2matrix[C2,C1] <- meanr2s
-      
+
     }
     write(paste(" "),stderr())
-  }    
-  
+  }
+
   r2df <- as.data.frame(r2matrix)
   write.table(r2df,paste(outprefix,".r2.txt",sep=""),col.names=T,row.names=T,quote=F,sep="\t")
 }
@@ -129,8 +129,8 @@ r2df$from <- rownames(r2matrix)
 r2dfM <- pivot_longer(r2df,cols=any_of(cids),names_to = "to",values_to = "r2")
 r2dfM$to <- factor(r2dfM$to,levels=cids,ordered=T)
 r2dfM$from <- factor(r2dfM$from,levels=cids,ordered=T)
-r2plot <- ggplot(r2dfM,aes(x=from,y=to,fill=r2)) + geom_raster() + 
-  coord_fixed() + 
+r2plot <- ggplot(r2dfM,aes(x=from,y=to,fill=r2)) + geom_raster() +
+  coord_fixed() +
   theme(axis.text.x=element_text(angle=45,hjust=1),
         legend.position="bottom",axis.title=element_blank())
 
@@ -175,12 +175,12 @@ write.table(allblocks,file=paste(outprefix,"blocks.txt",sep="_"),sep="\t",col.na
 
 
 
-# r2clustplot <- ggplot(r2dfM,aes(x=from,y=to,fill=as.factor(cluster))) + geom_raster() + 
-#   coord_fixed() + 
+# r2clustplot <- ggplot(r2dfM,aes(x=from,y=to,fill=as.factor(cluster))) + geom_raster() +
+#   coord_fixed() +
 #   theme(axis.text.x=element_text(angle=45,hjust=1),
 #         legend.position="bottom",axis.title=element_blank())
 
-clustersizes <- allblocks %>% group_by(cluster) %>% 
+clustersizes <- allblocks %>% group_by(cluster) %>%
                 summarise(invs=n_distinct(inv),
                           blocks=n_distinct(block))
 
@@ -190,7 +190,7 @@ clustcols <- sample(rainbow(length(bigclusts),s=0.6,v=0.9))
 names(clustcols) <- bigclusts
 
 allblocks$id <- factor(allblocks$id,levels=cids,ordered=T)
-blockclustplot <- ggplot(allblocks,aes(x=pos,y=id,fill=as.factor(cluster))) + 
+blockclustplot <- ggplot(allblocks,aes(x=pos,y=id,fill=as.factor(cluster))) +
   geom_raster() + scale_y_discrete(position="right") +
   theme(axis.title=element_blank(),legend.position="bottom",legend.title.align = 1) +
   scale_fill_manual(values = clustcols,name=(paste("cluster\nR^2>",minr2))) +
@@ -209,4 +209,3 @@ for(i in unique(allaims$cluster)) {
 }
 
 write.table(clustaims,paste(outprefix,"aims.txt",sep="_"),sep="\t",quote=F,col.names=T,row.names=F)
-

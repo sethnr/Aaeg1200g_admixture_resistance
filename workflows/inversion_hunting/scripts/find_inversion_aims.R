@@ -172,8 +172,9 @@ for(C in unique(invcands$cluster)) {
                                             "start"=invaims$pos,
                                             "end"=invaims$pos),
                          samples=samples)
-	names(invsnps) <- samples
-        invsnps <- cbind(invaims,t(invsnps))
+	    names(invsnps) <- samples
+        invsnps <- t(c(invaims[1,],invsnps))
+
     } else {
        #pull out only those SNPs from file for ALL samples
         invsnps <- vcf_query(vcffile,

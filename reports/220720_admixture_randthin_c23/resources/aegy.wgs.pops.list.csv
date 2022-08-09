@@ -1,0 +1,75 @@
+Index,Search,Pop,Old_label,Label,State,Country,Region,num_bams,num_bams_unrel,Lat,Long
+1,Bangkok,Bangkok,Bangkok,Bangkok,,Thailand,Asia,20,NA,13.7563309,100.5017651
+2,Cebu_City,Cebu_City,Cebu City,Cebu_City,,Philippines,Asia,24,NA,10.3156992,123.8854366
+3,HoChiMin,HoChiMin,Ho Chi Min,HoChiMin,,Vietnam,Asia,20,NA,10.8230989,106.6296638
+4,Jaffna,Jaffna,Jaffna,Jaffna,,Sri Lanka,Asia,16,NA,9.6614981,80.0255465
+5,Pakistan,Pakistan,Pakistan,Karachi,,Pakistan,Asia,16,NA,24.842502,67.029845
+6,Pazar,Pazar,Pazar,Pazar,,Turkey,Asia,20,NA,40.266759,36.2325877
+7,Rural_Sulawesi,Rural_Sulawesi,Sulawesi Rural,Sulawesi Forest,,Indonesia,Asia,16,NA,-3.6687994,119.9740534
+8,Urban_Sulawesi,Urban_Sulawesi,Sulawesi Urban,Sulawesi Urban,,Indonesia,Asia,18,NA,-5.1476651,119.4327314
+9,Taiwan,Taiwan,Taiwan,Taiwan,,Taiwan,Asia,19,NA,23.69781,120.960515
+10,North_Dominica,North_Dominica,Dominica_North,Dominica_North,,Dominica,Caribbean,5,NA,15.6081,-61.442865
+11,Roseau,Roseau,Dominica_Roseau,Roseau,,Dominica,Caribbean,20,NA,15.311378,-61.378875
+12,Playa,Playa,Playa,Playa,,Puerto Rico,Caribbean,16,NA,18.3336694,-66.6650391
+13,Ponce,Ponce,Ponce,Ponce,,Puerto Rico,Caribbean,16,NA,18.3336694,-66.6650391
+14,Croix,Croix,St. Croix,St. Croix,,USVI,Caribbean,20,NA,17.7058446,-64.858516
+15,Trinidad,Trinidad,Trinidad,Trinidad,,Trinidad,Caribbean,20,NA,10.3757217,-61.2335592
+16,Jeddah,Jeddah,Jeddah,Jeddah,,Saudi Arabia,Middle East,25,NA,21.2854067,39.2375507
+17,Mecca,Mecca,Mecca,Mecca,,Saudi Arabia,Middle East,20,NA,21.3890824,39.8579118
+18,Clovis,Clovis,Clovis,Clovis,CA,USA,North America,18,NA,36.7288597,-119.8264655
+19,Coachella,Coachella,Coachella Valley,Coachella Valley,CA,USA,North America,20,NA,33.7558183,-116.3619077
+20,Las_Cruces,Las_Cruces,Las Cruces,Las Cruces,NM,USA,North America,18,NA,32.3489439,-106.7425285
+21,Los_Angeles,Los_Angeles,Los Angeles,Los Angeles,CA,USA,North America,20,NA,34.0386375,-118.3120464
+22,Maricopa_County,Maricopa_County,Maricopa_County,Maricopa_County,AZ,USA,North America,23,NA,33.2917968,-112.4291464
+23,Miami,Miami,Miami,Miami,FL,USA,North America,19,NA,25.7616798,-80.1917902
+24,New_Orleans,New_Orleans,New Orleans,New Orleans,LA,USA,North America,17,NA,29.9549345,-90.1318359
+25,Roswell,Roswell,Roswell,Roswell,NM,USA,North America,19,NA,33.4374693,-104.5562492
+26,Cairns,Cairns,Cairns,Cairns,,Australia,Pacific,19,NA,-16.9185514,145.7780548
+27,Tahiti,Tahiti,Tahiti,Tahiti,,French Polynesia,Pacific,20,NA,-17.679742,-149.406843
+28,Amacuzac,Amacuzac,Amacuzac,Amacuzac,,Mexico,South America,23,NA,18.6004449,-99.3700834
+29,Cali,Cali,Cali,Cali,,Colombia,South America,17,NA,4.570868,-74.297333
+30,Cuiaba,Cuiaba,Cuiab√°,Cuiaba,Mato Grosso,Brazil,South America,20,NA,-15.6015336,-56.097889
+31,El_Dorado,El_Dorado,El Dorado,El Dorado,,Argentina,South America,16,NA,-28.5362745,-59.5898437
+32,Jacobina,Jacobina,Jacobina,Jacobina,,Brazil,South America,20,NA,-11.1816506,-40.5120603
+33,Lagarto,Lagarto,Lagarto,Lagarto,Sergipe,Brazil,South America,20,NA,-10.9195816,-37.6734334
+34,Manaus,Manaus,Manaus,Manaus,Amazonas,Brazil,South America,20,NA,-3.1190275,-60.0217314
+35,Maringa,Maringa,Maring√°,Maringa,Paraná,Brazil,South America,20,NA,-23.3476706,-51.9791849
+36,Palmas,Palmas,Palmas,Palmas,Tocantins,Brazil,South America,20,NA,-10.249091,-48.3242858
+37,Paqueta,Paqueta,Paqueta,Paqueta,,Brazil,South America,17,NA,-22.7636255,-43.1083583
+38,Passo_Fundo,Passo_Fundo,Passo Fundo,Passo Fundo,Rio Grande do Sul,Brazil,South America,20,NA,-28.2622601,-52.4102795
+39,Patos_de_Minas,Patos_de_Minas,Patos de Minas,Patos de Minas,Minas Gerais,Brazil,South America,20,NA,-18.5872582,-46.5146749
+40,Porto_Velho,Porto_Velho,Porto Velho,Porto Velho,Rondônia,Brazil,South America,19,NA,-8.7611605,-63.9004303
+41,Santarem,Santarem,Santarem,Santarem,,Brazil,South America,18,NA,-2.4506291,-54.7009228
+42,Sao_Luiz,Sao_Luiz,Sao Luiz,Sao Luiz,Maranhão,Brazil,South America,20,NA,-2.521158,-44.2487793
+43,Thies,Thies,Dakar_Thies,Dakar_Thies,,Senegal,West Africa,20,13,14.759118,-16.938893
+44,Bantata,Bantata,Bantata,Bantata,,Senegal,West Africa,11,11,12.67571,-12.327975
+45,Kedougou,Kedougou,Kedougou,Kedougou,,Senegal,West Africa,20,19,12.55272,-12.176632
+46,Mindin,Mindin,Mindin,Mindin,,Senegal,West Africa,20,19,14.074444,-15.283188
+47,Ngoye,Ngoye,Ngoye,Ngoye,,Senegal,West Africa,20,19,14.639733,-16.431455
+48,PK10,PK10,PK10,PK10,,Senegal,West Africa,20,18,12.609676,-12.246706
+49,Kintampo,Kintampo,Kintampo,Kintampo,,Ghana,West Africa,19,18,8.047809,-1.731033
+50,Kumasi,Kumasi,Kumasi,Kumasi,,Ghana,West Africa,20,20,6.675765,-1.566573
+51,Boabeng,Boabeng,Boabeng Fiema,Boabeng Fiema,,Ghana,West Africa,2,2,7.708767,-1.697372
+52,Franceville,Franceville,Franceville,Franceville,,Gabon,West Africa,13,12,-1.640046,13.569856
+53,Awka,Awka,Awka,Awka,,Nigeria,West Africa,19,19,6.278009,6.938843
+54,Ouaga,Ouaga,Ouagadougou,Ouagadougou,,Burkina Faso,West Africa,20,20,12.3646,-1.5339
+55,Ouahigouya,Ouahigouya,Ouahigouya,Ouahigouya,,Burkina Faso,West Africa,16,14,13.583331,-2.416665
+56,La_Lope,La_Lope,La_Lope,La_Lope,,Gabon,West Africa,22,19,-0.4411596,11.5248055
+57,Libreville,Libreville,Libreville,Libreville,,Gabon,West Africa,15,13,0.4161976,9.4672676
+58,LopeVillage,LopeVillage,Lope Village,Lope Village,,Gabon,West Africa,15,14,-0.106656,11.611057
+59,YAOMO,YAOMO,Yaounde,Yaounde,,Cameroon,West Africa,19,10,3.897138,11.5136719
+60,Cuanda,Cuanda,Luanda,Luanda,,Angola,West Africa,17,13,-8.8399876,13.2894368
+61,Bundibugyo,Bundibugyo,Bundibugyo,Bundibugyo,,Uganda,East Africa,14,5,0.707613,30.063658
+62,Entebbe,Entebbe,Entebbe,Entebbe,,Uganda,East Africa,12,9,0.078,32.45
+63,Kichwamba,Kichwamba,Kichwamba,Kichwamba,,Uganda,East Africa,11,4,-0.220484,30.098082
+64,Karenga,Karenga,Karenga,Karenga,,Uganda,East Africa,3,3,3.5695944,33.6930611
+65,Kakamega,Kakamega,Kakamega,Kakamega,,Kenya,East Africa,19,14,0.284163,34.753605
+66,Virhembe,Virembe,Virembe,Virembe,,Kenya,East Africa,20,10,0.242379,34.849028
+67,Arabuko,Arabuko,Arabuko,Arabuko,,Kenya,East Africa,19,18,-3.313413,39.942171
+68,Ganda,Ganda,Ganda,Ganda,,Kenya,East Africa,9,8,-3.2199547,40.061902
+69,KayaBomu,KayaBomu,KayaBomu,KayaBomu,,Kenya,East Africa,19,16,-3.932396,39.596201
+70,Kwale,Kwale,Kwale,Kwale,,Kenya,East Africa,19,19,-4.173403,39.447779
+71,Debug017_aegypti_Rabai,Rabai_2009,Rabai 2009,Rabai 2009,,Kenya,East Africa,16,5,-3.935733,39.573809
+72,Debug012_aegypti_Rabai,Rabai_2017,Rabai 2017,Rabai 2017,,Kenya,East Africa,18,18,-3.935733,39.573809
+73,ShimbaHills,ShimbaHills,ShimbaHills,Shimba Hills,,Kenya,East Africa,8,7,-4.2356522,39.3977342
+74,Skukusa,Skukusa,Skukusa,Skukusa,,South Africa,East Africa,15,3,-24.996448,31.591886
