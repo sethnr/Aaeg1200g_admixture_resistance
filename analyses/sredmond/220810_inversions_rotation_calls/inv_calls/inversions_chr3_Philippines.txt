@@ -1,0 +1,2 @@
+cluster	au	bp	meandist	lowdist	size	valid	d	mean_wss	mean_bss	prop_bss	angle	admixed	f3	f3se
+8	0.98892196864809	0.198613064251417	0.730583601543829	TRUE	3e+06	TRUE	0.04	0.23	2.799	0.953	-30	FALSE	0.00099201130738353	0.00208490121685002
