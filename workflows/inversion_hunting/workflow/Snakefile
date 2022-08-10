@@ -258,6 +258,7 @@ rule merge_invs_global:
           -c {wildcards.chrom} \
           -o {params.prefix} > {log}
 
+
         Rscript scripts/plot_cluster_aims.R \
             -s {input.meta} \
             -i {params.prefix}_aims.txt \

@@ -61,8 +61,14 @@ cntorder <- unique(metatab$country[order(metatab$contgroup,metatab$region)])
 
 meansnp <- apply(allinvsnps[,samples],2,FUN=function(x) {mean(na.omit(x))})
 
-aimsM <- pivot_longer(allinvsnps,any_of(samples),names_to = "sample") %>% rename("invcountry"="country")
+write("got means",stderr())
+write(dim(allinvsnps),stderr())
+aimsM <- pivot_longer(allinvsnps,any_of(samples),
+			names_to = "sample") %>% rename("invcountry"="country")
+write("pivoted",stderr())
+
 aimsM <- merge(aimsM,metatab,by="sample")
+write("merged",stderr())
 
 write("sorting countries",stderr())
 aimsM$country <- factor(aimsM$country,levels = cntorder,ordered=T)
