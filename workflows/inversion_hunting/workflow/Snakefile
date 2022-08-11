@@ -125,6 +125,10 @@ rule assess_inversion_candidates:
             -v {input.vcf} \
             -s {input.spptable} \
             -c {wildcards.region} \
+            -D {params.MAXD} \
+        	-W {params.MAXWSS} \
+        	-B {params.MINBSS} \
+        	-P {params.MINBSP} \
         	2>> {log}
         """
 
