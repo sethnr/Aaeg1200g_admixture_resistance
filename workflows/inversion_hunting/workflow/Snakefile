@@ -110,7 +110,11 @@ rule assess_inversion_candidates:
         h_rt='1:00:00',
         cpus=1
     params:
-        prefix="results/lostruct_inversions/inversions_chr{chrom}_{region}"
+        prefix="results/lostruct_inversions/inversions_chr{chrom}_{region}",
+        MAXD=0.2,
+        MAXWSS=5,
+        MINBSS=20,
+        MINBSP=0.95
     threads: 1
     log:
         log="logs/lostruct_inversions/inversions-chr{chrom}_{region}.log",
