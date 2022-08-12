@@ -10,6 +10,8 @@ library("getopt")
 opttab <- matrix(c("dir","d","1","character",
                    "chr","c","1","character",
                    "out","o","1","character",
+                   "vcf","v","1","character",
+                   "meta","m","1","character",
                    "r2","r","2","numeric"
 ),byrow=T,ncol=4)
 opt <- getopt(opttab)
@@ -18,6 +20,9 @@ indir <- opt$dir
 chrom <- opt$chr
 outprefix <- opt$out
 minr2 <- 0.25 #minimum r2 for merging
+blocksize<-5e05
+
+
 if (!is.null(opt$r2)  ) {minr2 <- opt$r2}
 
 # aimsfile <- "data/lostruct_aims/aims_chr1_Kenya.txt"
@@ -36,9 +41,6 @@ blockfiles <- list.files(indir,pattern = paste(".*chr",chrom,".*blocks.txt",sep=
 countries <- gsub("invs_chr._","",gsub("_blocks.txt","",basename(blockfiles)))
 names(blockfiles) <- countries
 
-write(blockfiles,stderr())
-write(names(blockfiles),stderr())
-
 if(exists("allblocks")){rm(allblocks)}
 for(C in countries) {
   if(file.size(blockfiles[C])>0) {
@@ -52,6 +54,9 @@ for(C in countries) {
   }
 }
 allblocks$id <- paste(allblocks$chrom,allblocks$region,allblocks$inv,sep="_")
+allblocks$chromname <- chromname[allblocks$chrom]
+allblocks$end <- allblocks$pos
+allblocks$start <- allblocks$end-blocksize
 
 csizes <- as.data.frame(allblocks %>% group_by(id) %>% summarise("size"=n(),"mid"=mean(pos)))
 cids <- csizes[order(csizes[,"mid"],decreasing = F),1]
@@ -73,6 +78,7 @@ for(C in countries) {
   if(file.size(aimsfiles[C])>0) {
     write(paste(C,file.size(aimsfiles[C])),stderr())
     caims = read.table(aimsfiles[C],header=T)
+    caims <- caims[,c("chrom","pos","i","inv","assoc")]
     caims$region <- C
     if(exists("allaims")) {
       allaims <- rbind(allaims,caims)
@@ -86,6 +92,26 @@ samples <- colnames(allaims)[8:ncol(allaims)-1]
 chromnames <- c("NC_035107.1","NC_035108.1","NC_035109.1")
 allaims$id <- paste(match(allaims$chrom,chromnames),allaims$region,allaims$inv,sep="_")
 
+
+######
+# get SNPs for all aims
+######
+#write("gathering meta",file=stderr())
+metatab <- read.table(metafile,header=T, sep="\t")
+samples <- metatab$sample
+
+
+for(I in allaims$inv) {
+    invsnps <- vcf_query(vcffile,
+                     samples=samples,
+                     regions=allblocks[allblocks$inv==I,c("chromname","start","end")])
+    if(exists("allinvsnps")) {
+        allinvsnps <- rbind(allinvsnps,invsnps)
+    } else {
+        allinvsnps <- invsnps
+    }
+}
+allaims <- cbind(allaims,allinvsnps)
 
 #######
 # calc R2 for all inv pairs
