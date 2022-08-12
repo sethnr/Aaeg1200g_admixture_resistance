@@ -137,6 +137,33 @@ rule assess_inversion_candidates:
         	2>> {log}
         """
 
+#merge inversions within sample / pop by position
+rule merge_invs_sample:
+    input:
+        invs="results/lostruct_inversion_candidates/regions_chr{chrom}_{region}.txt",
+        calls="results/lostruct_inversions/inversions_chr{chrom}_{region}_calls.txt",
+        assess="results/lostruct_inversions/inversions_chr{chrom}_{region}.txt",
+        meta=config["spptable"]
+    output:
+        calls="results/lostruct_merge/invs_chr{chrom}_{region}_calls.txt",
+        blocks="results/lostruct_merge/invs_chr{chrom}_{region}_blocks.txt",
+  	#aimspic="results/lostruct_merge/aims_chr{chrom}_{region}.png",
+    params:
+        prefix="results/lostruct_merge/invs_chr{chrom}_{region}",
+    resources:
+        mem_mb=1000,
+        disk_mb=2000,
+    log:
+        log="logs/lostruct_merge/merge_chr{chrom}_{region}.log",
+    shell:
+        """
+        Rscript scripts/merge_inversions_by_position.R \
+          -i {input.invs} \
+          -a {input.assess} \
+          -m {input.meta} \
+          -c {input.calls} \
+          -o {params.prefix} 2> {log}
+        """
 
 
 # using PC calls for regions thought to be inversions
@@ -146,9 +173,8 @@ rule get_aims:
       input:
           vcf=lambda wildcards: get_remote_vcf(wildcards),
           tbi=lambda wildcards: get_remote_vcf_tbi(wildcards),
-          invs="results/lostruct_inversion_candidates/regions_chr{chrom}_{region}.txt",
-          assess="results/lostruct_inversions/inversions_chr{chrom}_{region}.txt",
-          pcs="results/lostruct_inversions/inversions_chr{chrom}_{region}_pcs.Rds",
+          invs="results/lostruct_merge/invs_chr{chrom}_{region}_blocks.txt"
+          calls="results/lostruct_inversions/inversions_chr{chrom}_{region}_calls.txt",
           spptable=config["spptable"]
       output:
           txt="results/lostruct_aims/aims_chr{chrom}_{region}.txt",
@@ -161,11 +187,10 @@ rule get_aims:
       shell:
           """Rscript scripts/find_inversion_aims.R \
                 -i {input.invs} \
-                -a {input.assess} \
+                -c {input.calls} \
                 -v {input.vcf} \
-                -c {wildcards.region} \
+                -r {wildcards.region} \
                 -s {input.spptable} \
-                -p {input.pcs} \
                 -o {output.txt}\
             2> {log}
           """
@@ -190,33 +215,6 @@ rule get_aims:
 #                  2> {log}
 #           """
 
-#merge inversions within sample / pop by position
-rule merge_invs_sample:
-    input:
-        invs="results/lostruct_inversion_candidates/regions_chr{chrom}_{region}.txt",
-        aims="results/lostruct_aims/aims_chr{chrom}_{region}.txt",
-        assess="results/lostruct_inversions/inversions_chr{chrom}_{region}.txt",
-        meta=config["spptable"]
-    output:
-        aims="results/lostruct_merge/invs_chr{chrom}_{region}_aims.txt",
-        blocks="results/lostruct_merge/invs_chr{chrom}_{region}_blocks.txt",
-  	#aimspic="results/lostruct_merge/aims_chr{chrom}_{region}.png",
-    params:
-        prefix="results/lostruct_merge/invs_chr{chrom}_{region}",
-    resources:
-        mem_mb=1000,
-        disk_mb=2000,
-    log:
-        log="logs/lostruct_merge/merge_chr{chrom}_{region}.log",
-    shell:
-        """
-        Rscript scripts/merge_inversions_by_position.R \
-          -i {input.invs} \
-          -a {input.assess} \
-          -m {input.meta} \
-          -A {input.aims} \
-          -o {params.prefix} 2> {log}
-        """
 
 rule make_inversion_plots:
       input:
