@@ -103,6 +103,7 @@ blocks <- blocks[blocks$cluster %in% aimcounts$inv,]
 # csizeorder <- blocks %>% group_by(cluster) %>% summarise("size"=n_distinct(block)) %>% arrange(desc(size))
 # csizeorder <- csizeorder$cluster
 
+#calculate level to put each cluster on graph
 blocks$y=1
 for(C1 in unique(sort(blocks$cluster))) {
   for(C2 in unique(sort(blocks$cluster))) {
@@ -110,13 +111,13 @@ for(C1 in unique(sort(blocks$cluster))) {
     minC1 = min(blocks$pos[blocks$cluster==C1])
     maxC1 = max(blocks$pos[blocks$cluster==C1])
     yC1   = min(blocks$y[blocks$cluster==C1])
-    
+
     lenC2 = sum(blocks$cluster==C2)
     minC2 = min(blocks$pos[blocks$cluster==C2])
     maxC2 = max(blocks$pos[blocks$cluster==C2])
     yC2   = min(blocks$y[blocks$cluster==C2])
-    
-    
+
+
     if((minC2<maxC1 & maxC2>minC1)) {
       if(C2>C1 & yC1==yC2) {
         blocks$y[blocks$cluster==C2] <- blocks$y[blocks$cluster==C2]+1
@@ -135,10 +136,10 @@ names(clustcols) <- blockextents$cluster
 
 chrom <- blocks$chrom[1]
 
-blockclustplot <- ggplot(blocks,aes(x=pos,y=y,fill=as.factor(cluster))) + 
-  geom_raster() + 
-  geom_segment(data=blockextents,aes(x=min,xend=max,y=y,yend=y,color=as.factor(cluster)),inherit.aes=F) + 
-  geom_text(data=blockextents,aes(x=mid,y=y,label=cluster),inherit.aes=F) + 
+blockclustplot <- ggplot(blocks,aes(x=pos,y=y,fill=as.factor(cluster))) +
+  geom_raster() +
+  geom_segment(data=blockextents,aes(x=min,xend=max,y=y,yend=y,color=as.factor(cluster)),inherit.aes=F) +
+  geom_text(data=blockextents,aes(x=mid,y=y,label=cluster),inherit.aes=F) +
   scale_fill_manual(values = clustcols)+
   scale_color_manual(values = clustcols)+
   theme(axis.title=element_blank(),axis.text.y=element_blank(),axis.ticks.y=element_blank(),

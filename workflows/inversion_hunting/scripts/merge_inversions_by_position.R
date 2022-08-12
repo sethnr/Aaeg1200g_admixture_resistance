@@ -1,7 +1,4 @@
-
 library("tidyverse")
-
-#library("patchwork")
 library("gridExtra")
 library("grid")
 
@@ -10,19 +7,19 @@ library("getopt")
 opttab <- matrix(c("inversions","i","1","character",
                    "assessment","a","1","character",
                    "vcf","v","1","character",
-                   "aims","A","1","character",
-                   "country","c","1","character",
+                   "calls","c","1","character",
+                   "region","r","1","character",
                    "meta","m","1","character",
                    "out","o","1","character"
 ),byrow=T,ncol=4)
 opt <- getopt(opttab)
 
 vcffile <- opt$vcf
-country <- opt$country
+country <- opt$region
 metafile <- opt$meta
 invfile <- opt$inversions
 assessfile <- opt$assessment
-aimsfile <- opt$aims
+callsfile <- opt$calls
 outprefix <- opt$out
 
 # aimsfile <- "data/lostruct_aims/aims_chr1_Kenya.txt"
@@ -31,44 +28,33 @@ outprefix <- opt$out
 # metafile <- "resources/meta_Aaeg1kg_spp.txt"
 # outprefix <- "merged_aims_chr1_Kenya"
 
-outaims <- paste(outprefix,"aims.txt",sep="_")
 outblocks <- paste(outprefix,"blocks.txt",sep="_")
-#outpng <- paste(outprefix,"png",sep=".")
+outcalls <- paste(outprefix,"calls.txt",sep="_")
+outmerges <- paste(outprefix,"merges.txt",sep="_")
 
-#blocksize<-5e05
-# chromname <- c("NC_035107.1","NC_035108.1","NC_035109.1")
-# chromlen <- c(310827022,474425716,409777670)
-# names(chromlen) <- chromname
 
-write(file.size(aimsfile),stderr())
-
-if(file.size(aimsfile)==0L) {
-  file.create(outaims)
+if(file.size(callsfile)==0L) {
   file.create(outblocks)
-  write(paste("no aims in file",aimsfile,"\n","writing empty files for",outaims,outblocks),stderr())
+  write(paste("no calls in file",callsfile,"\n","writing empty files for",outcalls,outblocks),stderr())
   quit("no",0)
 }
 
-
-aims <- read.table(aimsfile,header=T)
 
 metatab <- read.table(metafile,header=T, sep="\t")
 samples <- metatab$sample
 samples <- samples[samples %in% colnames(aims)]
 
 
-#samples <- metatab$sample[metatab$country==country]
-#write(paste("found",length(samples),"samples for",country),stderr())
-
-
 invcands <- read.table(invfile,header=T)
-# invcands$end <- as.numeric((as.data.frame(strsplit(invcands$block,":"))[2,]))
-# invcands$start <- invcands$end-blocksize
-# invcands$chromname <- chromname[invcands$chrom]
 
 #get inversions that pass PCA assessment:
 invass <- read.table(assessfile,header=T)
 invids <- invass$cluster[invass$valid]
+
+
+
+calls <- read.table(callsfile,header=T)
+colnames(calls) <- gsub("X","",colnames(calls))
 
 
 
@@ -81,11 +67,18 @@ names(csizes) <- invids
 invids <- invids[order(csizes,decreasing = T)]
 
 
+#merge all inversions that are 75% overlap and have identical calls by PCA/kmeans
+
 blocksim <- 0.75 #minimum 2-way block overlap for merge
 
 rawnames <- invids
 newblocks <- list()
+
+mergetab <- data.frame("cluster"=character(),
+                       "inversion"=character())
+ci=0
 while(length(rawnames)>0) {
+  ci<-ci+1
   C1 <- rawnames[1]
   B1 <- invcands$block[invcands$cluster==C1]
   ols=c(C1)
@@ -98,11 +91,10 @@ while(length(rawnames)>0) {
     B1ol <- sum(B1 %in% B2)/length(B1)
     B2ol <- sum(B2 %in% B1)/length(B2)
 
-    #write(paste(C1,length(B1),sum(B1 %in% B2),B1ol,
-    #            C2,length(B2),sum(B2 %in% B1),B2ol,
-    #            blocksim),stderr())
+    C1calls <- calls[,as.character(C1)]
+    C2calls <- calls[,as.character(C2)]
 
-    if(B1ol>=blocksim & B2ol>=blocksim) {
+    if(B1ol>=blocksim & B2ol>=blocksim & all(C1calls==C2calls)) {
       #write(paste(C1,"<-",C1,C2,length(B1),length(B2)),stderr())
       #write(paste(C1,"<-",C1,C2),stderr())
       ols <- c(ols,C2)
@@ -111,37 +103,33 @@ while(length(rawnames)>0) {
   }
   rawnames <- rawnames[!rawnames %in% ols]
   write(paste(" ",C1,"<-",paste(ols,collapse="/")),stderr())
-  #newnames <- c(newnames,paste(ols,collapse="/"))
 
-  newblocks[[paste(ols,collapse="/")]] = unique(olbs)
-  #write(paste(allBlocks),stderr())
+  #clustername <- paste(ols,collapse="/")
+  clustername <- paste(ci,length(ols),sep="_")
+  newblocks[[clustername]] = unique(olbs)
+  mergetab <- rbind(mergetab,data.frame("cluster"=rep(clustername,length(ols)),
+                         "inversion"=ols))
 
-}
-#length(newblocks)
-
-
-
-
-for(invname in names(newblocks)) {
-  write(paste(" ",invname),file=stderr())
-  invnamesafe <- paste("X",gsub("\\D",".",invname,perl=T),sep="")
-  compinvids <- as.numeric(strsplit(invname,"/")[[1]])
-  #get SNPs for inversion, remove duplicates, re-index
-  aims$inv[aims$inv %in% compinvids] <- invname
+  calls[,clustername] <- calls[,ols[1]]
 }
 
-aims <- aims[!duplicated(aims[c("chrom","pos","country","inv")]),]
-aims <- aims[order(aims$pos),]
-for(invname in names(newblocks)) {
-  aims$i[aims$inv %in% compinvids] <- c(1:sum(aims$inv %in% compinvids))
-}
-write.table(aims,outaims,col.names=T,quote=F,row.names=F,sep="\t")
+write.table(mergetab,outmerges,col.names=T,quote=F,row.names=F,sep="\t"))
+
+#for(invname in names(newblocks)) {
+#  write(paste(" ",invname),file=stderr())
+#  invnamesafe <- paste("X",gsub("\\D",".",invname,perl=T),sep="")
+#  compinvids <- as.numeric(strsplit(invname,"/")[[1]])
+#  #get SNPs for inversion, remove duplicates, re-index
+#  #aims$inv[aims$inv %in% compinvids] <- invname
+#}
+
+newcalls <- calls[,names(newblocks)]
+write.table(newcalls,outcalls,col.names=T,quote=F,row.names=F,sep="\t"))
 
 
 #write blocks file
 block = c()
 inv = c()
-
 for(invname in names(newblocks)) {
   block <- c(block,newblocks[[invname]])
   inv <- c(inv,rep(invname,length(newblocks[[invname]])))
