@@ -4,7 +4,7 @@ library("grid")
 
 library("getopt")
 
-opttab <- matrix(c("blocks","i","1","character",
+opttab <- matrix(c("blocks","b","1","character",
                    "calls","c","1","character",
                    "out","o","1","character"
 ),byrow=T,ncol=4)
@@ -39,7 +39,7 @@ if(file.size(callsfile)==0L) {
 #samples <- samples[samples %in% colnames(aims)]
 
 
-invblocks <- read.table(invblocks,header=T)
+invblocks <- read.table(blockfile,header=T)
 calls <- read.table(callsfile,header=T)
 colnames(calls) <- gsub("X","",colnames(calls))
 
