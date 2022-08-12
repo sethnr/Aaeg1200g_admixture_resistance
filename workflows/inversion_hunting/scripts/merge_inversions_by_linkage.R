@@ -71,6 +71,7 @@ write(aimsfiles,stderr())
 if(exists("allaims")){rm(allaims)}
 for(C in countries) {
   if(file.size(aimsfiles[C])>0) {
+    write(paste(C,file.size(aimsfiles[C])),stderr())
     caims = read.table(aimsfiles[C],header=T)
     caims$region <- C
     if(exists("allaims")) {

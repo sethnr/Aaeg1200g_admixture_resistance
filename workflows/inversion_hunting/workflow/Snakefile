@@ -175,13 +175,13 @@ rule get_aims:
           calls="results/lostruct_merge/invs_chr{chrom}_{region}_calls.txt",
           spptable=config["spptable"]
       output:
-          txt="results/lostruct_aims/invs_chr{chrom}_{region}_aims.txt",
+          txt="results/lostruct_merge/invs_chr{chrom}_{region}_aims.txt",
       resources:
           mem_mb=4000,
           disk_mb=100000,
 	  h_rt='2:00:00',
       log:
-          log="logs/lostruct_aims/get_aims_chr{chrom}_{region}.log",
+          log="logs/lostruct_merge/get_aims_chr{chrom}_{region}.log",
       shell:
           """Rscript scripts/find_inversion_aims.R \
                 -b {input.blocks} \
@@ -242,7 +242,7 @@ rule make_inversion_plots:
 rule merge_invs_global:
     input:
         invs=expand("results/lostruct_merge/invs_chr{{chrom}}_{region}_blocks.txt",region=REGIONS),
-        aims=expand("results/lostruct_aims/invs_chr{{chrom}}_{region}_aims.txt",region=REGIONS),
+        aims=expand("results/lostruct_merge/invs_chr{{chrom}}_{region}_aims.txt",region=REGIONS),
         meta=config["spptable"]
     output:
         invs="results/lostruct_merge_chr/invs_chr{chrom}_aims.txt",
