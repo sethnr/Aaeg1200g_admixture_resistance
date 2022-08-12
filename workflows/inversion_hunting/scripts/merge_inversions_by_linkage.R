@@ -1,6 +1,6 @@
 
 library("tidyverse")
-
+library("lostruct")
 library("patchwork")
 library("gridExtra")
 library("grid")
@@ -18,6 +18,8 @@ opt <- getopt(opttab)
 
 indir <- opt$dir
 chrom <- opt$chr
+metafile <- opt$meta
+vcffile <- opt$vcf
 outprefix <- opt$out
 minr2 <- 0.25 #minimum r2 for merging
 blocksize<-5e05
@@ -41,6 +43,10 @@ blockfiles <- list.files(indir,pattern = paste(".*chr",chrom,".*blocks.txt",sep=
 countries <- gsub("invs_chr._","",gsub("_blocks.txt","",basename(blockfiles)))
 names(blockfiles) <- countries
 
+chromname <- c("NC_035107.1","NC_035108.1","NC_035109.1")
+chromlen <- c(310827022,474425716,409777670)
+names(chromlen) <- chromname
+
 if(exists("allblocks")){rm(allblocks)}
 for(C in countries) {
   if(file.size(blockfiles[C])>0) {
@@ -54,14 +60,10 @@ for(C in countries) {
   }
 }
 allblocks$id <- paste(allblocks$chrom,allblocks$region,allblocks$inv,sep="_")
-allblocks$chromname <- chromname[allblocks$chrom]
-allblocks$end <- allblocks$pos
-allblocks$start <- allblocks$end-blocksize
 
 csizes <- as.data.frame(allblocks %>% group_by(id) %>% summarise("size"=n(),"mid"=mean(pos)))
 cids <- csizes[order(csizes[,"mid"],decreasing = F),1]
 
-chromlen <- c(310827022,474425716,409777670)
 
 #####
 # get and cat aims
@@ -80,6 +82,7 @@ for(C in countries) {
     caims = read.table(aimsfiles[C],header=T)
     caims <- caims[,c("chrom","pos","i","inv","assoc")]
     caims$region <- C
+    caims$id <- paste(chrom,C,caims$inv,sep="_")
     if(exists("allaims")) {
       allaims <- rbind(allaims,caims)
     } else{
@@ -87,12 +90,13 @@ for(C in countries) {
     }
   }
 }
-samples <- colnames(allaims)[8:ncol(allaims)-1]
+#samples <- colnames(allaims)[8:ncol(allaims)-1]
 
-chromnames <- c("NC_035107.1","NC_035108.1","NC_035109.1")
-allaims$id <- paste(match(allaims$chrom,chromnames),allaims$region,allaims$inv,sep="_")
+#allaims$id <- paste(match(allaims$chrom,chromname),allaims$region,allaims$inv,sep="_")
+allaims$end <- allaims$pos
+allaims$start <- allaims$pos
 
-
+#write.table(head(allaims),stderr())
 ######
 # get SNPs for all aims
 ######
@@ -101,22 +105,31 @@ metatab <- read.table(metafile,header=T, sep="\t")
 samples <- metatab$sample
 
 
-for(I in allaims$inv) {
+write("parsing all assoc SNPs",file=stderr())
+for(I in unique(allaims$id)) {
+    write(paste("  ",I,sum(allaims$id==I)," SNPs"),file=stderr())	
     invsnps <- vcf_query(vcffile,
                      samples=samples,
-                     regions=allblocks[allblocks$inv==I,c("chromname","start","end")])
-    if(exists("allinvsnps")) {
-        allinvsnps <- rbind(allinvsnps,invsnps)
-    } else {
+                     regions=allaims[allaims$id==I,c("chrom","start","end")])
+    colnames(invsnps) <- samples
+    if(!exists("allinvsnps")) {
         allinvsnps <- invsnps
+    } else {
+        allinvsnps <- rbind(allinvsnps,invsnps)
     }
 }
+write("binding all assoc SNPs",file=stderr())
+write(dim(allaims),file=stderr())
+write(dim(allinvsnps),file=stderr())
 allaims <- cbind(allaims,allinvsnps)
+
+samples <- samples[samples %in% colnames(allinvsnps)]
+
 
 #######
 # calc R2 for all inv pairs
 #######
-
+write("calculating linkage ",file=stderr())
 if(file.exists(paste(outprefix,".r2.txt",sep=""))) {
   write(paste("reading from",paste(outprefix,".r2.txt",sep="")),stderr())
   r2df <- read.table(paste(outprefix,".r2.txt",sep=""),header=T,row.names=1)

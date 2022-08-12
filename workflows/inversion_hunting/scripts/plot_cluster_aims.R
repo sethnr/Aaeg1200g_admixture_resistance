@@ -124,6 +124,7 @@ blocks <- blocks[blocks$cluster %in% aimcounts$inv,]
 # csizeorder <- blocks %>% group_by(cluster) %>% summarise("size"=n_distinct(block)) %>% arrange(desc(size))
 # csizeorder <- csizeorder$cluster
 
+write("calculating display levels",stderr())
 #calculate level to put each cluster on graph
 blocks$y=1
 for(C1 in unique(sort(blocks$cluster))) {
@@ -142,13 +143,14 @@ for(C1 in unique(sort(blocks$cluster))) {
     if((minC2<maxC1 & maxC2>minC1)) {
       if(C2>C1 & yC1==yC2) {
         blocks$y[blocks$cluster==C2] <- blocks$y[blocks$cluster==C2]+1
-        write(paste(C1,":",yC1," ",C2,":",yC2,"->",yC2+1,sep=""),stderr())
+        #write(paste(C1,":",yC1," ",C2,":",yC2,"->",yC2+1,sep=""),stderr())
       }
     }
   }
 }
 
 
+write("calculating block extents",stderr())
 blockextents <- blocks %>% group_by(cluster) %>% summarise(min=min(pos),mid=mean(pos),max=max(pos),y=min(y))
 
 
@@ -156,6 +158,8 @@ clustcols <- sample(rainbow(nrow(blockextents),s=0.6,v=0.9))
 names(clustcols) <- blockextents$cluster
 
 chrom <- blocks$chrom[1]
+
+write("plotting blocks",stderr())
 
 blockclustplot <- ggplot(blocks,aes(x=pos,y=y,fill=as.factor(cluster))) +
   geom_raster() +
@@ -168,5 +172,15 @@ blockclustplot <- ggplot(blocks,aes(x=pos,y=y,fill=as.factor(cluster))) +
   scale_x_continuous(limits=c(0,chromlen[chrom]),expand = c(0,0,0,0))
 
 blockheight <- 0.5+(max(blocks$y)*0.25)
-aimplot / blockclustplot + plot_layout(heights=c(10-blockheight,blockheight))
-ggsave(outsnpspng,dpi = 300,width=250,height=175,units="mm")
+
+write("plotting aims / blocks",stderr())
+
+#aimplot / blockclustplot + plot_layout(heights=c(10-blockheight,blockheight))
+
+combplot <- arrangeGrob(
+  aimplot, blockclustplot,
+  ncol=1,heights=c(8,2))
+
+write("saving aims / blocks",stderr())
+
+ggsave(outsnpspng,plot=combplot,dpi = 300,width=250,height=175,units="mm")

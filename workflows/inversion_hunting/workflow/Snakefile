@@ -243,6 +243,8 @@ rule merge_invs_global:
     input:
         invs=expand("results/lostruct_merge/invs_chr{{chrom}}_{region}_blocks.txt",region=REGIONS),
         aims=expand("results/lostruct_merge/invs_chr{{chrom}}_{region}_aims.txt",region=REGIONS),
+          vcf=lambda wildcards: get_remote_vcf(wildcards),
+          tbi=lambda wildcards: get_remote_vcf_tbi(wildcards),
         meta=config["spptable"]
     output:
         invs="results/lostruct_merge_chr/invs_chr{chrom}_aims.txt",
@@ -262,6 +264,8 @@ rule merge_invs_global:
         Rscript scripts/merge_inversions_by_linkage.R \
           -d {params.indir} \
           -r {params.minr2} \
+	  -v {input.vcf} \
+	  -m {input.meta} \
           -c {wildcards.chrom} \
           -o {params.prefix} > {log}
 
