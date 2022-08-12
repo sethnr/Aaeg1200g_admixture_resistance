@@ -140,9 +140,8 @@ rule assess_inversion_candidates:
 #merge inversions within sample / pop by position
 rule merge_invs_sample:
     input:
-        invs="results/lostruct_inversion_candidates/regions_chr{chrom}_{region}.txt",
+        blocks="results/lostruct_inversion_candidates/regions_chr{chrom}_{region}.txt",
         calls="results/lostruct_inversions/inversions_chr{chrom}_{region}_calls.txt",
-        assess="results/lostruct_inversions/inversions_chr{chrom}_{region}.txt",
         meta=config["spptable"]
     output:
         calls="results/lostruct_merge/invs_chr{chrom}_{region}_calls.txt",
@@ -158,9 +157,7 @@ rule merge_invs_sample:
     shell:
         """
         Rscript scripts/merge_inversions_by_position.R \
-          -i {input.invs} \
-          -a {input.assess} \
-          -m {input.meta} \
+          -b {input.blocks} \
           -c {input.calls} \
           -o {params.prefix} 2> {log}
         """

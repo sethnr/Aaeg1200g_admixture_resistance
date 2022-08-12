@@ -4,21 +4,13 @@ library("grid")
 
 library("getopt")
 
-opttab <- matrix(c("inversions","i","1","character",
-                   "assessment","a","1","character",
-                   "vcf","v","1","character",
+opttab <- matrix(c("blocks","i","1","character",
                    "calls","c","1","character",
-                   "region","r","1","character",
-                   "meta","m","1","character",
                    "out","o","1","character"
 ),byrow=T,ncol=4)
 opt <- getopt(opttab)
 
-vcffile <- opt$vcf
-country <- opt$region
-metafile <- opt$meta
-invfile <- opt$inversions
-assessfile <- opt$assessment
+blockfile <- opt$blocks
 callsfile <- opt$calls
 outprefix <- opt$out
 
@@ -35,24 +27,19 @@ outmerges <- paste(outprefix,"merges.txt",sep="_")
 
 if(file.size(callsfile)==0L) {
   file.create(outblocks)
-  write(paste("no calls in file",callsfile,"\n","writing empty files for",outcalls,outblocks),stderr())
+  file.create(outcalls)
+  file.create(outmerges)
+  write(paste("no calls in file",callsfile,"\n","writing empty files for",outcalls,outblocks,outmerges),stderr())
   quit("no",0)
 }
 
 
-metatab <- read.table(metafile,header=T, sep="\t")
-samples <- metatab$sample
-samples <- samples[samples %in% colnames(aims)]
+#metatab <- read.table(metafile,header=T, sep="\t")
+#samples <- metatab$sample
+#samples <- samples[samples %in% colnames(aims)]
 
 
-invcands <- read.table(invfile,header=T)
-
-#get inversions that pass PCA assessment:
-invass <- read.table(assessfile,header=T)
-invids <- invass$cluster[invass$valid]
-
-
-
+invblocks <- read.table(invblocks,header=T)
 calls <- read.table(callsfile,header=T)
 colnames(calls) <- gsub("X","",colnames(calls))
 
@@ -60,15 +47,16 @@ colnames(calls) <- gsub("X","",colnames(calls))
 
 #inverse order inversions by block size
 csizes = c()
+
+invids <- unique(invblocks$inv)
 for(C1 in invids) {
-  B1 <- invcands$block[invcands$cluster==C1]
+  B1 <- invblocks$block[invblocks$cluster==C1]
   csizes <- c(csizes,length(B1))}
 names(csizes) <- invids
 invids <- invids[order(csizes,decreasing = T)]
 
 
 #merge all inversions that are 75% overlap and have identical calls by PCA/kmeans
-
 blocksim <- 0.75 #minimum 2-way block overlap for merge
 
 rawnames <- invids
@@ -80,12 +68,12 @@ ci=0
 while(length(rawnames)>0) {
   ci<-ci+1
   C1 <- rawnames[1]
-  B1 <- invcands$block[invcands$cluster==C1]
+  B1 <- invblocks$block[invblocks$cluster==C1]
   ols=c(C1)
   olbs <- B1
   for(C2 in rawnames) {
     if (C1==C2) {next}
-    B2 <- invcands$block[invcands$cluster==C2]
+    B2 <- invblocks$block[invblocks$cluster==C2]
     if (length(B1)<length(B2)) {next}
 
     B1ol <- sum(B1 %in% B2)/length(B1)
@@ -123,7 +111,7 @@ write.table(mergetab,outmerges,col.names=T,quote=F,row.names=F,sep="\t"))
 #  #aims$inv[aims$inv %in% compinvids] <- invname
 #}
 
-newcalls <- calls[,names(newblocks)]
+newcalls <- calls[,c("sample",names(newblocks))]
 write.table(newcalls,outcalls,col.names=T,quote=F,row.names=F,sep="\t"))
 
 
