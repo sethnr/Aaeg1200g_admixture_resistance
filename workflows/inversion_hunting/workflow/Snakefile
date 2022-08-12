@@ -102,7 +102,7 @@ rule assess_inversion_candidates:
         vcf=lambda wildcards: get_remote_vcf(wildcards),
         tbi=lambda wildcards: get_remote_vcf_tbi(wildcards),
         #vcf="verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr{chrom}.SNP.refseq.7e6.vcf.gz",
-        #tbi="verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr{chrom}.SNP.refseq.7e6.vcf.gz.tbi",x
+        #tbi="verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr{chrom}.SNP.refseq.7e6.vcf.gz.tbi",
         txt=ancient("results/lostruct_inversion_candidates/regions_chr{chrom}_{region}.txt"),
         spptable=config["spptable"],
     output:
@@ -173,7 +173,7 @@ rule get_aims:
       input:
           vcf=lambda wildcards: get_remote_vcf(wildcards),
           tbi=lambda wildcards: get_remote_vcf_tbi(wildcards),
-          invs="results/lostruct_merge/invs_chr{chrom}_{region}_blocks.txt"
+          invs="results/lostruct_merge/invs_chr{chrom}_{region}_blocks.txt",
           calls="results/lostruct_inversions/inversions_chr{chrom}_{region}_calls.txt",
           spptable=config["spptable"]
       output:
