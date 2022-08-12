@@ -43,12 +43,14 @@ invblocks <- read.table(blockfile,header=T)
 calls <- read.table(callsfile,header=T)
 colnames(calls) <- gsub("X","",colnames(calls))
 
-
+#get only inversions with calls (i.e. no NA columns)
+calls <- calls[,apply(calls,2,function(x) {!all(is.na(x))})]
 
 #inverse order inversions by block size
 csizes = c()
 
-invids <- unique(invblocks$inv)
+invids <- colnames(calls)[1:ncol(calls)]
+#invids <- unique(invblocks$cluster)
 for(C1 in invids) {
   B1 <- invblocks$block[invblocks$cluster==C1]
   csizes <- c(csizes,length(B1))}
