@@ -346,11 +346,13 @@ invcandsV$validation[invcandsV$admixed] <- "pass-F3"
 
 clustplot <- ggplot(invcandsV,aes(x=pos,fill=validation,y=as.factor(cluster))) + geom_tile() + ylab("cluster")
 
-if(exists("pcs")) {
+outcalls <- paste(outfile,"calls.txt",sep="_")
+
+if(exists("pcs") & !all(is.na(pcs$valid))) {
   saveRDS(pcs,file=paste(outfile,"pcs.Rds",sep="_"))
 
   callstable <- pivot_wider(pcs[,c("sample","valid","inv")],names_from = inv,values_from = c("valid"))
-  write.table(callstable,file=paste(outfile,"calls.txt",sep="_"),sep="\t",quote=F,row.names = F)
+  write.table(callstable,file=outcalls,sep="\t",quote=F,row.names = F)
 
   invcols <- scale_color_manual(values=c("aa"="yellow","ab"="orange","bb"="red"),na.value = "dark grey")
   ncol=round(sqrt(length(unique(pcs$inv))))
@@ -365,6 +367,7 @@ if(exists("pcs")) {
   invpca
   dev.off()
 } else {
+  file.create(outcalls)
   file.create(paste(outfile,"pcs.Rds",sep="_"))
   png(filename = paste(outfile,"png",sep="."),width=350,height=200,units="mm",res=400)
   grid.arrange(clustplot, grid.rect(gp=gpar(col="white")), ncol=2)
