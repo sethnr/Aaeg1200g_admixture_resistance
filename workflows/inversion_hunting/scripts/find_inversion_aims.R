@@ -1,22 +1,20 @@
 library("tidyverse")
 library("lostruct")
 library("getopt")
-opttab <- matrix(c("inversions","i","1","character",
-                   "assessment","a","1","character",
-                   "vcf","v","1","character",
-                   "pcs","p","1","character",
+opttab <- matrix(c("blocks","b","1","character",
+                   "calls", "c","1","character",
+                   "vcf",   "v","1","character",
                    "country","c","1","character",
                    "samples","s","1","character",
                    "outfile","o","1","character"
 ),byrow=T,ncol=4)
 opt <- getopt(opttab)
 
+blockfile <- opt$blocks
+callfile <- opt$calls
 vcffile <- opt$vcf
 country <- opt$country
 metafile <- opt$samples
-invfile <- opt$inversions
-assessfile <- opt$assessment
-pcsfile <- opt$pcs
 outtxt <- opt$outfile
 
 
@@ -67,28 +65,24 @@ write("gathering meta",file=stderr())
   countrysorttab <- unique(metatab[,c("country","contgroup","region")])
   metatab$country <- factor(metatab$country,levels=unique(metatab$country[order(metatab$region)]),ordered=T)
   samples <- metatab$sample
-
   csamples <- metatab$sample[metatab$country==country]
   write(paste("found",length(csamples),"samples for",country),file=stderr())
 
 
-write("reading PCs from lostruct analysis",file=stderr())
-  pcs <- readRDS(pcsfile)
+#write("reading PCs from lostruct analysis",file=stderr())
+#  pcs <- readRDS(pcsfile)
 
-write("loading candidate regions",file=stderr())
-  invcands <- read.table(invfile,header=T)
-  write(paste(" ",nrow(invcands),"inversion candidates"),file=stderr())
+write("loading inversion blocks",file=stderr())
+  invblocks <- read.table(blockfile,header=T)
+  write(paste(" ",length(unique(invblocks$inv)),"inversion candidates"),file=stderr())
 
-  invass <- read.table(assessfile,header=T)
-  compinvs <- invass$cluster[invass$valid & invass$lowdist]
-  write(paste(" ",length(compinvs),"valid candidates"),file=stderr())
+  invblocks$chromname <- chromname[invblocks$chrom]
+  invblocks$end <- invblocks$pos
+  invblocks$start <- invblocks$end-blocksize
 
-  invcands <- subset(invcands,invcands$cluster %in% compinvs)
-  write(paste(" ",nrow(invcands),"valid blocks"),file=stderr())
 
-  invcands$chromname <- chromname[invcands$chrom]
-  invcands$end <- invcands$pos
-  invcands$start <- invcands$end-blocksize
+write("reading calls from lostruct merge",file=stderr())
+calls <- read.table(callsfile,header=T,stringsAsFactors=T)
 
 
 allaims <- data.frame(chrom=character(),
@@ -101,31 +95,26 @@ allaims <- data.frame(chrom=character(),
 # get all potential aims - any SNP associated with PCA in region
 ######
 
-for(C in unique(invcands$cluster)) {
-#for(C in c(47,82)) {
+for(C in unique(invblocks$inv)) {
     write(paste("finding aims for cluster",C),file=stderr())
 
     #get SNPs in inverted region
-    invcands[invcands$cluster==C,c("chromname","start","end")]
-
     write("  get SNPs",stderr())
     invsnps <- vcf_query(vcffile,
                          samples=csamples,
-                         regions=invcands[invcands$cluster==C,c("chromname","start","end")])
+                         regions=invblocks[invblocks$inv==C,c("chromname","start","end")])
     write("  get posns",stderr())
-    posns <- vcf_positions(vcffile,invcands[invcands$cluster==C,c("chromname","start","end")])
+    posns <- vcf_positions(vcffile,invblocks[invblocks$inv==C,c("chromname","start","end")])
     write(paste(" ",nrow(posns),"SNPs in region"),stderr())
 
-   #parse out inversion calls from PC file,
-    invcall <- as.numeric(pcs$valid[pcs$inv==C])-1
-    names(invcall) <- pcs$sample[pcs$inv==C]
-    invcall <- invcall[csamples]
-    invorder <- order(invcall)
-
-   #get SNPs that can be used for chisq
+   #get SNPs that can be used for chisq (none missing)
     compsnpsi <- apply(invsnps,1,function(x) {!any(is.na(x)) & length(unique(x))>1})
     compsnps <- invsnps[compsnpsi,]
     compposns <- posns[compsnpsi,]
+
+    #parse out inversion calls from PC file,
+     invcall <- as.numeric(calls[,C])-1
+     names(invcall) <- calls$sample
 
    #do chisq with inversion calls for each
     #write(paste(length(invcall),dim(compsnps)),file=stderr())
@@ -155,9 +144,8 @@ for(C in unique(invcands$cluster)) {
 # refine aims based on LD Across all samples
 ########
 
-for(C in unique(invcands$cluster)) {
-#for(C in c(47,82)) {
-    chr = invcands[invcands$cluster==C,"chrom"][1]
+for(C in unique(invblocks$inv)) {
+    chr = invblocks[invblocks$inv==C,"chrom"][1]
     chrname = chromname[chr]
 
    #get calculated aim posns for this inversion
@@ -215,18 +203,12 @@ for(C in unique(invcands$cluster)) {
         cntinvorder <- metatab$sample[order(metatab$contgroup,metatab$country,meancall)]
 
         invsnps <- cbind(invaims,invsnps)
-#	write.table(invsnps[,c(1:20)],stderr())
         }
 
 
     if(!exists("allinvsnps")) {
-#        write(dim(invsnps),stderr())
         allinvsnps <- invsnps
     } else {
-#        write(dim(allinvsnps),stderr())
-#        write(dim(invsnps),stderr())
-#        write(colnames(allinvsnps)[!colnames(allinvsnps) %in% colnames(invsnps)],stderr())
-#        write(colnames(invsnps)[!colnames(invsnps) %in% colnames(allinvsnps)],stderr())
         allinvsnps <- rbind(allinvsnps,invsnps)}
 
 }
