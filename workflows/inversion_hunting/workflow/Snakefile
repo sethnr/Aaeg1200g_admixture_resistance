@@ -246,7 +246,7 @@ rule make_inversion_plots:
 rule merge_invs_global:
     input:
         invs=expand("results/lostruct_merge/invs_chr{{chrom}}_{region}_blocks.txt",region=REGIONS),
-        aims=expand("results/lostruct_merge/invs_chr{{chrom}}_{region}_aims.txt",region=REGIONS),
+        aims=expand("results/lostruct_aims/invs_chr{{chrom}}_{region}_aims.txt",region=REGIONS),
         meta=config["spptable"]
     output:
         invs="results/lostruct_merge_chr/invs_chr{chrom}_aims.txt",
