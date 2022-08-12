@@ -10,11 +10,15 @@ include: "rules/common.smk"
 
 
 spps = ["aaa", "aaf"]
+#bigcountries = ["Brazil", "USA", "Senegal",
+#     "Kenya", "Philippines","Gabon","Ghana",
+#     "SaudiArabia","BurkinaFaso","PuertoRico",
+#     "Uganda","Trinidad","Vietnam"]
+
 bigcountries = ["Brazil", "USA", "Senegal",
-     "Kenya", "Philippines","Gabon","Ghana",
+     "Philippines","Gabon","Ghana",
      "SaudiArabia","BurkinaFaso","PuertoRico",
      "Uganda","Trinidad","Vietnam"]
-#bigcountries = ["Brazil"]
 REGIONS=bigcountries
 
 conts = ["eafrica", "wafrica"]
@@ -33,8 +37,8 @@ wildcard_constraints:
 
 rule all:
     input:
-        expand("results/lostruct_plot/invs_chr{chrid}_{loc}_aims.png",
-        chrid=[1,2,3],loc=bigcountries),
+        #expand("results/lostruct_plot/invs_chr{chrid}_{loc}_aims.png",
+        #chrid=[1,2,3],loc=bigcountries),
         expand("results/lostruct_merge_chr/invs_chr{chrid}_aims.png",
         chrid=[1,2,3])
 
@@ -48,6 +52,7 @@ rule lostruct_get_distances:
         spptable=config["spptable"],
     output:
         pcs="results/lostruct_run/lostruct_chr{chrom}_{region}.txt",
+    params:
         png="results/lostruct_run/lostruct_chr{chrom}_{region}.png",
     resources:
         mem_mb=12000,
@@ -61,7 +66,7 @@ rule lostruct_get_distances:
               {input.spptable}  \
               {wildcards.chrom} {wildcards.region} \
               {output.pcs} \
-              {output.png}\
+              {params.png}\
               2> {log}
         """
 
@@ -69,7 +74,7 @@ rule lostruct_get_distances:
 # output list of candidates and image of regions
 rule find_inversion_candidates:
     input:
-        dists="results/lostruct_run/lostruct_chr{chrom}_{region}.txt"
+        dists=ancient("results/lostruct_run/lostruct_chr{chrom}_{region}.txt")
     output:
         txt="results/lostruct_inversion_candidates/regions_chr{chrom}_{region}.txt",
         png="results/lostruct_inversion_candidates/regions_chr{chrom}_{region}.png",
@@ -98,7 +103,7 @@ rule assess_inversion_candidates:
         tbi=lambda wildcards: get_remote_vcf_tbi(wildcards),
         #vcf="verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr{chrom}.SNP.refseq.7e6.vcf.gz",
         #tbi="verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr{chrom}.SNP.refseq.7e6.vcf.gz.tbi",x
-        txt="results/lostruct_inversion_candidates/regions_chr{chrom}_{region}.txt",
+        txt=ancient("results/lostruct_inversion_candidates/regions_chr{chrom}_{region}.txt"),
         spptable=config["spptable"],
     output:
         txt="results/lostruct_inversions/inversions_chr{chrom}_{region}.txt",
@@ -113,7 +118,7 @@ rule assess_inversion_candidates:
         prefix="results/lostruct_inversions/inversions_chr{chrom}_{region}",
         MAXD=0.2,
         MAXWSS=5,
-        MINBSS=20,
+        MINBSS=25,
         MINBSP=0.95
     threads: 1
     log:
@@ -217,7 +222,7 @@ rule make_inversion_plots:
       input:
           aims="results/lostruct_merge/invs_chr{chrom}_{region}_aims.txt",
           invs="results/lostruct_merge/invs_chr{chrom}_{region}_blocks.txt",
-          dists="results/lostruct_run/lostruct_chr{chrom}_{region}.txt",
+          dists=ancient("results/lostruct_run/lostruct_chr{chrom}_{region}.txt"),
           meta=config["spptable"]
       output:
           aimspic="results/lostruct_plot/invs_chr{chrom}_{region}_aims.png",
@@ -254,8 +259,8 @@ rule merge_invs_global:
         indir="results/lostruct_merge/",
         minr2=0.25
     resources:
-        mem_mb=16000,
-        disk_mb=10000,
+        mem_mb=32000,
+        disk_mb=20000,
     log:
         "logs/lostruct_merge/invs_chr{chrom}.log",
     shell:

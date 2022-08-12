@@ -63,14 +63,31 @@ meansnp <- apply(allinvsnps[,samples],2,FUN=function(x) {mean(na.omit(x))})
 
 write("got means",stderr())
 write(dim(allinvsnps),stderr())
-aimsM <- pivot_longer(allinvsnps,any_of(samples),
-			names_to = "sample") %>% rename("invcountry"="country")
+write(length(samples),stderr())
+samples <- samples[samples %in% colnames(allinvsnps)]
+
+allinvsnps <- allinvsnps[,c("chrom","pos","i","id","inv",samples)]
+allinvsnps <- unique(allinvsnps)
+write(colnames(allinvsnps)[!colnames(allinvsnps) %in% samples],stderr())
+
+aimsM <- pivot_longer(allinvsnps,all_of(samples),
+			names_to = "sample")   #%>% rename("invcountry"="country")
 write("pivoted",stderr())
 
-aimsM <- merge(aimsM,metatab,by="sample")
-write("merged",stderr())
+write.table(head(aimsM),stderr())
+
+#aimsM$sample <- factor(aimsM$sample,levels=samples)
+#metatab$sample <- factor(metatab$sample,levels=samples)
+
+
+countries <- metatab$country
+names(countries) <- metatab$sample
+#aimsM <- merge(aimsM,metatab,by="sample")
+#write("merged",stderr())
+
 
 write("sorting countries",stderr())
+aimsM$country <- countries[aimsM$sample]
 aimsM$country <- factor(aimsM$country,levels = cntorder,ordered=T)
 
 write("sorting SNPs",stderr())
@@ -82,6 +99,10 @@ aimsM$sample <- factor(aimsM$sample,levels = snporder,ordered=T)
 aimsM$cncode <- aimsM$country
 levels(aimsM$cncode) <- substr(levels(aimsM$country),0,3)
 
+#write.table(head(aimsM),stderr())
+#write(summary(aimsM),stderr())
+
+write("making AIM plot",stderr())
 aimplot <- ggplot(aimsM,aes(x=i,y=as.numeric(sample),fill=as.factor(value))) + geom_raster() +
    ylab("samples") + xlab("SNPs")+ theme(legend.position="none")+
      scale_y_continuous(expand = c(0,0)) + scale_x_continuous(expand = c(0,0)) +
@@ -94,7 +115,7 @@ aimplot <- ggplot(aimsM,aes(x=i,y=as.numeric(sample),fill=as.factor(value))) + g
           axis.ticks.y=element_blank())
 aimplot
 
-
+write("reading blocks",stderr())
 blocks <- read.table(blocksfile,header=T)
 
 aimcounts <- aimsM %>% group_by(inv) %>% summarise(aims=n_distinct(pos))

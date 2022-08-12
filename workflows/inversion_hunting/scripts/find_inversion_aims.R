@@ -21,7 +21,7 @@ outtxt <- opt$outfile
 
 
 #AIM criteria
-MAXCHISQ <- 1e-9
+MAXCHISQ <- 1e-7
 blocksize<-5e05
 maxaims <- 100
 chromname <- c("NC_035107.1","NC_035108.1","NC_035109.1")
@@ -133,7 +133,7 @@ for(C in unique(invcands$cluster)) {
     compposns$assoc <- assoc
 
    #get associated SNPS & posns
-    write(paste(" ",sum(compposns$assoc < MAXCHISQ)," potential AIMs over",MAXCHISQ,"for",C),file=stderr())
+    write(paste(" ",sum(compposns$assoc < MAXCHISQ)," potential AIMs over",MAXCHISQ,"for",C,"(min",min(compposns$assoc),")"),file=stderr())
     if(sum(compposns$assoc < MAXCHISQ)>0) {
       assocposns <- compposns[compposns$assoc < MAXCHISQ,] %>% add_column(i=c(1:sum(compposns$assoc < MAXCHISQ)),
                                                                               "inv"=C,
