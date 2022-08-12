@@ -34,11 +34,6 @@ if(file.size(callsfile)==0L) {
 }
 
 
-#metatab <- read.table(metafile,header=T, sep="\t")
-#samples <- metatab$sample
-#samples <- samples[samples %in% colnames(aims)]
-
-
 invblocks <- read.table(blockfile,header=T)
 calls <- read.table(callsfile,header=T)
 colnames(calls) <- gsub("X","",colnames(calls))
@@ -49,7 +44,7 @@ calls <- calls[,apply(calls,2,function(x) {!all(is.na(x))})]
 #inverse order inversions by block size
 csizes = c()
 
-invids <- colnames(calls)[1:ncol(calls)]
+invids <- colnames(calls)[2:ncol(calls)]
 #invids <- unique(invblocks$cluster)
 for(C1 in invids) {
   B1 <- invblocks$block[invblocks$cluster==C1]
@@ -58,8 +53,8 @@ names(csizes) <- invids
 invids <- invids[order(csizes,decreasing = T)]
 
 
-#merge all inversions that are 75% overlap and have identical calls by PCA/kmeans
-blocksim <- 0.75 #minimum 2-way block overlap for merge
+#merge all inversions that are 51% overlap and have identical calls by PCA/kmeans
+blocksim <- 0.51 #minimum 2-way block overlap for merge
 
 rawnames <- invids
 newblocks <- list()
@@ -81,10 +76,13 @@ while(length(rawnames)>0) {
     B1ol <- sum(B1 %in% B2)/length(B1)
     B2ol <- sum(B2 %in% B1)/length(B2)
 
-    C1calls <- calls[,as.character(C1)]
-    C2calls <- calls[,as.character(C2)]
+    C1calls <- as.character(calls[,as.character(C1)])
+    C2calls <- as.character(calls[,as.character(C2)])
 
-    if(B1ol>=blocksim & B2ol>=blocksim & all(C1calls==C2calls)) {
+    flipcall <- c('aa'='bb','ab'='ab','bb'='aa')    
+    callsmatch <- all(C1calls==C2calls) | all(flipcall[C1calls]==C2calls)
+    
+    if(B1ol>=blocksim & B2ol>=blocksim & callsmatch) {
       #write(paste(C1,"<-",C1,C2,length(B1),length(B2)),stderr())
       #write(paste(C1,"<-",C1,C2),stderr())
       ols <- c(ols,C2)
@@ -103,7 +101,7 @@ while(length(rawnames)>0) {
   calls[,clustername] <- calls[,ols[1]]
 }
 
-write.table(mergetab,outmerges,col.names=T,quote=F,row.names=F,sep="\t"))
+write.table(mergetab,outmerges,col.names=T,quote=F,row.names=F,sep="\t")
 
 #for(invname in names(newblocks)) {
 #  write(paste(" ",invname),file=stderr())
@@ -114,7 +112,7 @@ write.table(mergetab,outmerges,col.names=T,quote=F,row.names=F,sep="\t"))
 #}
 
 newcalls <- calls[,c("sample",names(newblocks))]
-write.table(newcalls,outcalls,col.names=T,quote=F,row.names=F,sep="\t"))
+write.table(newcalls,outcalls,col.names=T,quote=F,row.names=F,sep="\t")
 
 
 #write blocks file

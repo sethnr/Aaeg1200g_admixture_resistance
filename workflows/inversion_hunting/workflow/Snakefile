@@ -108,7 +108,8 @@ rule assess_inversion_candidates:
     output:
         txt="results/lostruct_inversions/inversions_chr{chrom}_{region}.txt",
         png="results/lostruct_inversions/inversions_chr{chrom}_{region}.png",
-        pcs="results/lostruct_inversions/inversions_chr{chrom}_{region}_pcs.Rds",
+        calls="results/lostruct_inversions/inversions_chr{chrom}_{region}_calls.txt",
+        #pcs="results/lostruct_inversions/inversions_chr{chrom}_{region}_pcs.Rds",
     resources:
         mem_mb=12000,
         disk_mb=500000,
@@ -170,7 +171,7 @@ rule get_aims:
       input:
           vcf=lambda wildcards: get_remote_vcf(wildcards),
           tbi=lambda wildcards: get_remote_vcf_tbi(wildcards),
-          invs="results/lostruct_merge/invs_chr{chrom}_{region}_blocks.txt",
+          blocks="results/lostruct_merge/invs_chr{chrom}_{region}_blocks.txt",
           calls="results/lostruct_merge/invs_chr{chrom}_{region}_calls.txt",
           spptable=config["spptable"]
       output:
@@ -183,11 +184,9 @@ rule get_aims:
           log="logs/lostruct_aims/get_aims_chr{chrom}_{region}.log",
       shell:
           """Rscript scripts/find_inversion_aims.R \
-                -i {input.invs} \
+                -b {input.blocks} \
                 -c {input.calls} \
                 -v {input.vcf} \
-                -r {wildcards.region} \
-                -s {input.spptable} \
                 -o {output.txt}\
             2> {log}
           """

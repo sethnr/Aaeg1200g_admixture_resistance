@@ -4,18 +4,24 @@ library("getopt")
 opttab <- matrix(c("blocks","b","1","character",
                    "calls", "c","1","character",
                    "vcf",   "v","1","character",
-                   "country","c","1","character",
-                   "samples","s","1","character",
+#                   "country","C","1","character",
+#                   "samples","S","1","character",
                    "outfile","o","1","character"
 ),byrow=T,ncol=4)
 opt <- getopt(opttab)
 
 blockfile <- opt$blocks
-callfile <- opt$calls
+callsfile <- opt$calls
 vcffile <- opt$vcf
-country <- opt$country
-metafile <- opt$samples
 outtxt <- opt$outfile
+
+if(file.size(callsfile)==0L) {
+  file.create(outtxt)
+  write(paste("no calls in file",callsfile,"\n","writing empty files for",outtxt),stderr())
+  quit("no",0)
+}
+
+
 
 
 #AIM criteria
@@ -54,19 +60,19 @@ vcf_genotypes <- function (file, regions, samples) {
 }
 
 
-write("gathering meta",file=stderr())
-  metatab <- read.table(metafile,header=T, sep="\t")
-  metatab$contgroup <- factor(metatab$contgroup,levels=c("Wafrica","Eafrica",
-                      "Americas","Asia"),ordered=T)
-  metatab$region <- factor(metatab$region,levels=c("East Africa","West Africa",
-                      "South America","Carribean","North America",
-                      "Middle East","Asia","Pacific"),ordered=T)
+#write("gathering meta",file=stderr())
+#  metatab <- read.table(metafile,header=T, sep="\t")
+#  metatab$contgroup <- factor(metatab$contgroup,levels=c("Wafrica","Eafrica",
+#                      "Americas","Asia"),ordered=T)
+#  metatab$region <- factor(metatab$region,levels=c("East Africa","West Africa",
+#                      "South America","Carribean","North America",
+#                      "Middle East","Asia","Pacific"),ordered=T)
 
-  countrysorttab <- unique(metatab[,c("country","contgroup","region")])
-  metatab$country <- factor(metatab$country,levels=unique(metatab$country[order(metatab$region)]),ordered=T)
-  samples <- metatab$sample
-  csamples <- metatab$sample[metatab$country==country]
-  write(paste("found",length(csamples),"samples for",country),file=stderr())
+#  countrysorttab <- unique(metatab[,c("country","contgroup","region")])
+#  metatab$country <- factor(metatab$country,levels=unique(metatab$country[order(metatab$region)]),ordered=T)
+#  samples <- metatab$sample
+#  csamples <- metatab$sample[metatab$country==country]
+#  write(paste("found",length(csamples),"samples for",country),file=stderr())
 
 
 #write("reading PCs from lostruct analysis",file=stderr())
@@ -83,25 +89,27 @@ write("loading inversion blocks",file=stderr())
 
 write("reading calls from lostruct merge",file=stderr())
 calls <- read.table(callsfile,header=T,stringsAsFactors=T)
+colnames(calls) <- gsub("X","",colnames(calls))
 
+samples <- calls$sample
 
 allaims <- data.frame(chrom=character(),
                       pos=numeric(),
                       i=numeric(),
                       inv=character(),
-                      country=character(),
+#                      country=character(),
                       assoc=numeric())
 ######
 # get all potential aims - any SNP associated with PCA in region
 ######
 
-for(C in unique(invblocks$inv)) {
+for(C in as.character(unique(invblocks$inv))) {
     write(paste("finding aims for cluster",C),file=stderr())
 
     #get SNPs in inverted region
     write("  get SNPs",stderr())
     invsnps <- vcf_query(vcffile,
-                         samples=csamples,
+                         samples=samples,
                          regions=invblocks[invblocks$inv==C,c("chromname","start","end")])
     write("  get posns",stderr())
     posns <- vcf_positions(vcffile,invblocks[invblocks$inv==C,c("chromname","start","end")])
@@ -126,7 +134,7 @@ for(C in unique(invblocks$inv)) {
     if(sum(compposns$assoc < MAXCHISQ)>0) {
       assocposns <- compposns[compposns$assoc < MAXCHISQ,] %>% add_column(i=c(1:sum(compposns$assoc < MAXCHISQ)),
                                                                               "inv"=C,
-                                                                              "country"=country,
+                                                                              # "country"=country,
                                                                               .after="pos")
    #if more than [maxaims] posns, take top 100 by chisq p-value
     if(nrow(assocposns)>maxaims) {
@@ -200,7 +208,7 @@ for(C in unique(invblocks$inv)) {
 
         meancall <- apply(invsnps,2,function(x) {mean(na.omit(x))})
         #order all SNPs by country, then mean inv call of high LD SNPs
-        cntinvorder <- metatab$sample[order(metatab$contgroup,metatab$country,meancall)]
+        #cntinvorder <- metatab$sample[order(metatab$contgroup,metatab$country,meancall)]
 
         invsnps <- cbind(invaims,invsnps)
         }

@@ -36,6 +36,9 @@ blockfiles <- list.files(indir,pattern = paste(".*chr",chrom,".*blocks.txt",sep=
 countries <- gsub("invs_chr._","",gsub("_blocks.txt","",basename(blockfiles)))
 names(blockfiles) <- countries
 
+write(blockfiles,stderr())
+write(names(blockfiles),stderr())
+
 if(exists("allblocks")){rm(allblocks)}
 for(C in countries) {
   if(file.size(blockfiles[C])>0) {
@@ -62,6 +65,8 @@ chromlen <- c(310827022,474425716,409777670)
 aimsfiles <- list.files(indir,pattern = paste(".*chr",chrom,".*aims.txt",sep=""),full.names = T)
 countries <- gsub("invs_chr._","",gsub("_aims.txt","",basename(aimsfiles)))
 names(aimsfiles) <- countries
+
+write(aimsfiles,stderr())
 
 if(exists("allaims")){rm(allaims)}
 for(C in countries) {
