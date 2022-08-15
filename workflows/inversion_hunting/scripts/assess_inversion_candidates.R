@@ -268,7 +268,11 @@ if(exists("pcs")) {
     if(anygood) {
       pcs$valid[which(pcs$inv==I)] <- assk$clusters
     } else {
-      assk <- assessInvK(pcsinv[,c("PC1","PC2")])
+      assk <- assessInvK(pcsinv[,c("PC1","PC2")],
+                        maxd=MAXD,
+                        maxwss=MAXWSS,
+                        minbss=MINBSS,
+                        minbsp=MINBSP)
       a <- 0
     }
 
