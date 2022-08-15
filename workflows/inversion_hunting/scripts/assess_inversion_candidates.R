@@ -298,7 +298,7 @@ invsummary$f3se=NA
 
 invsummary$minBSP=MINBSP
 invsummary$minBSS=MINBSS
-invsummary$maxD=MIND
+invsummary$maxD=MAXD
 invsummary$maxWSS=MAXWSS
 
 
