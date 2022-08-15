@@ -199,7 +199,7 @@ while(length(rawnames)>0) {
       ols <- c(ols,C2)
       i <- nrow(mergetab)+1
       mergetab[i,c("cluster","inversion")] <- c(C1,C2)
-      mergetab[i,r2] <- r2matrix[C1,C2]
+      mergetab[i,"r2"] <- r2matrix[C1,C2]
     }
   }
   rawnames <- rawnames[!rawnames %in% ols]
