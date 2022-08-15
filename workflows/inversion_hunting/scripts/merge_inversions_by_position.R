@@ -54,7 +54,7 @@ invids <- invids[order(csizes,decreasing = T)]
 
 
 #merge all inversions that are 51% overlap and have identical calls by PCA/kmeans
-blocksim <- 0.51 #minimum 2-way block overlap for merge
+blocksim <- 0.1 #minimum 2-way block overlap for merge
 
 rawnames <- invids
 newblocks <- list()
