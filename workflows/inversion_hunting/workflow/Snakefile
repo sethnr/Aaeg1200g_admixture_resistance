@@ -229,7 +229,7 @@ rule merge_invs_global:
           tbi=lambda wildcards: get_remote_vcf_tbi(wildcards),
         meta=config["spptable"]
     output:
-        invs="results/lostruct_merge_chr/invs_chr{chrom}_aims.txt",
+        invs="results/lostruct_merge/invs_chr{chrom}_aims.txt",
         png="results/lostruct_plot/invs_chr{chrom}_aims.png"
   	#aimspic="results/lostruct_merge/aims_chr{chrom}_{region}.png",
     params:
