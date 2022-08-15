@@ -109,7 +109,6 @@ rule assess_inversion_candidates:
         txt="results/lostruct_inversions/inversions_chr{chrom}_{region}.txt",
         png="results/lostruct_inversions/inversions_chr{chrom}_{region}.png",
         calls="results/lostruct_inversions/inversions_chr{chrom}_{region}_calls.txt",
-        #pcs="results/lostruct_inversions/inversions_chr{chrom}_{region}_pcs.Rds",
     resources:
         mem_mb=12000,
         disk_mb=500000,

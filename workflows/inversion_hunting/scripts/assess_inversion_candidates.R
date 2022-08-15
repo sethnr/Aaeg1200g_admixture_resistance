@@ -11,10 +11,10 @@ library("getopt")
 #######
 # default inversion validation criteria
 #######
-MAXD <- 0.2
-MAXWSS <- 5
-MINBSS <- 20
-MINBSP <- 0.95
+#MAXD <- 0.2
+#MAXWSS <- 5
+#MINBSS <- 20
+#MINBSP <- 0.95
 blocksize <- 5e5
 
 
@@ -100,7 +100,7 @@ jackknifeF3se <- function(snps,posns,p3,p1,p2,blocksize=1e5) {
 
 
 
-assessInvK <- function(pcs,invsnps,maxd=MAXD,maxwss=MAXWSS,minbss=MINBSS,minbsp=MINBSP) {
+assessInvK <- function(pcs,invsnps,maxd,maxwss,minbss,minbsp) {
 
   kmpca <- kmeans(pcs,centers=3,nstart=50,iter.max=100)
   clusters <- factor(kmpca$cluster)
@@ -233,6 +233,7 @@ for(C in unique(invcands$cluster)) {
 #### assess PCA clusters via kmeans with angle rotation
 
 write("assessing PCAs as inversions",file=stderr())
+write(paste("D<=",MAXD,"WSS<=",MAXWSS,"BSS>=",MINBSS,"BSP>=",MINBSP),file=stderr())
 invsummary <- invcands %>%
                     group_by(cluster) %>%
                     mutate(size = length(block)*blocksize)  %>%

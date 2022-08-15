@@ -53,7 +53,7 @@ names(csizes) <- invids
 invids <- invids[order(csizes,decreasing = T)]
 
 
-#merge all inversions that are 51% overlap and have identical calls by PCA/kmeans
+#merge all inversions that are >= 10% overlap and have identical calls by PCA/kmeans
 blocksim <- 0.1 #minimum 2-way block overlap for merge
 
 rawnames <- invids
@@ -79,9 +79,9 @@ while(length(rawnames)>0) {
     C1calls <- as.character(calls[,as.character(C1)])
     C2calls <- as.character(calls[,as.character(C2)])
 
-    flipcall <- c('aa'='bb','ab'='ab','bb'='aa')    
+    flipcall <- c('aa'='bb','ab'='ab','bb'='aa')
     callsmatch <- all(C1calls==C2calls) | all(flipcall[C1calls]==C2calls)
-    
+
     if(B1ol>=blocksim & B2ol>=blocksim & callsmatch) {
       #write(paste(C1,"<-",C1,C2,length(B1),length(B2)),stderr())
       #write(paste(C1,"<-",C1,C2),stderr())
