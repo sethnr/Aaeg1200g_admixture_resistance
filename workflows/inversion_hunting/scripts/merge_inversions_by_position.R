@@ -45,7 +45,6 @@ calls <- calls[,apply(calls,2,function(x) {!all(is.na(x))})]
 csizes = c()
 
 invids <- colnames(calls)[2:ncol(calls)]
-#invids <- unique(invblocks$cluster)
 for(C1 in invids) {
   B1 <- invblocks$block[invblocks$cluster==C1]
   csizes <- c(csizes,length(B1))}
@@ -100,20 +99,12 @@ while(length(rawnames)>0) {
 
   calls[,clustername] <- calls[,ols[1]]
 }
-
+mergetab$blocksim <- blocksim
 write.table(mergetab,outmerges,col.names=T,quote=F,row.names=F,sep="\t")
 
-#for(invname in names(newblocks)) {
-#  write(paste(" ",invname),file=stderr())
-#  invnamesafe <- paste("X",gsub("\\D",".",invname,perl=T),sep="")
-#  compinvids <- as.numeric(strsplit(invname,"/")[[1]])
-#  #get SNPs for inversion, remove duplicates, re-index
-#  #aims$inv[aims$inv %in% compinvids] <- invname
-#}
 
 newcalls <- calls[,c("sample",names(newblocks))]
 write.table(newcalls,outcalls,col.names=T,quote=F,row.names=F,sep="\t")
-
 
 #write blocks file
 block = c()
@@ -121,7 +112,6 @@ inv = c()
 for(invname in names(newblocks)) {
   block <- c(block,newblocks[[invname]])
   inv <- c(inv,rep(invname,length(newblocks[[invname]])))
-
 }
 chrom <- as.numeric(as.data.frame(strsplit(block,":"))[1,])
 posn <- as.numeric(as.data.frame(strsplit(block,":"))[2,])

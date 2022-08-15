@@ -107,7 +107,7 @@ samples <- metatab$sample
 
 write("parsing all assoc SNPs",file=stderr())
 for(I in unique(allaims$id)) {
-    write(paste("  ",I,sum(allaims$id==I)," SNPs"),file=stderr())	
+    write(paste("  ",I,sum(allaims$id==I)," SNPs"),file=stderr())
     invsnps <- vcf_query(vcffile,
                      samples=samples,
                      regions=allaims[allaims$id==I,c("chrom","start","end")])
@@ -208,14 +208,25 @@ while(length(rawnames)>0) {
 r2dfM$cluster = NA
 allblocks$cluster = NA
 allaims$cluster = NA
+
+mergetab <- data.frame("cluster"=character(),
+                       "inversion"=character())
 for(i in c(1:length(ldmerges))) {
+  cname <- names(ldmerges)[i]
   ols <- ldmerges[[i]]
 
   allaims$cluster[allaims$id %in% ols] <- i
   allblocks$cluster[allblocks$id %in% ols] <- i
+
+
+  mergetab <- rbind(mergetab,data.frame("global"=rep(cname,length(ols)),
+                         "regional"=ols))
+
 }
 
 write.table(allblocks,file=paste(outprefix,"blocks.txt",sep="_"),sep="\t",col.names=T,row.names=F,quote=F)
+
+write.table(mergetab,file=paste(outprefix,"LDmerges.txt",sep="_"),col.names=T,quote=F,row.names=F,sep="\t")
 
 
 

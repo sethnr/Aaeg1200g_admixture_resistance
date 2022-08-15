@@ -6,6 +6,8 @@ opttab <- matrix(c("blocks","b","1","character",
                    "vcf",   "v","1","character",
 #                   "country","C","1","character",
 #                   "samples","S","1","character",
+                   "chisq","P","1","numeric",
+                   "maxaims","N","1","numeric",
                    "outfile","o","1","character"
 ),byrow=T,ncol=4)
 opt <- getopt(opttab)
@@ -15,19 +17,19 @@ callsfile <- opt$calls
 vcffile <- opt$vcf
 outtxt <- opt$outfile
 
+#AIM criteria
+maxaims <- opt$maxaims
+MAXCHISQ <- opt$chisq
+
+blocksize<-5e05
+
+
 if(file.size(callsfile)==0L) {
   file.create(outtxt)
   write(paste("no calls in file",callsfile,"\n","writing empty files for",outtxt),stderr())
   quit("no",0)
 }
 
-
-
-
-#AIM criteria
-MAXCHISQ <- 1e-7
-blocksize<-5e05
-maxaims <- 100
 chromname <- c("NC_035107.1","NC_035108.1","NC_035109.1")
 chromlen <- c(310827022,474425716,409777670)
 names(chromlen) <- chromname
@@ -46,11 +48,6 @@ vcf_positions <- function (file, regions)
 }
 
 vcf_genotypes <- function (file, regions, samples) {
-
-  write(paste("bcftools query -f '[ %GT]\\n'",
-              "-r",regions,
-              "-s",shQuote(paste(samples, collapse = ",")),
-              file),stderr())
   txtgenos <- data.table::fread(cmd = paste("bcftools query -f '[ %GT]\\n'",
                                              "-r",region_string(regions),
                                              "-s",shQuote(paste(samples, collapse = ",")),
@@ -60,23 +57,6 @@ vcf_genotypes <- function (file, regions, samples) {
 }
 
 
-#write("gathering meta",file=stderr())
-#  metatab <- read.table(metafile,header=T, sep="\t")
-#  metatab$contgroup <- factor(metatab$contgroup,levels=c("Wafrica","Eafrica",
-#                      "Americas","Asia"),ordered=T)
-#  metatab$region <- factor(metatab$region,levels=c("East Africa","West Africa",
-#                      "South America","Carribean","North America",
-#                      "Middle East","Asia","Pacific"),ordered=T)
-
-#  countrysorttab <- unique(metatab[,c("country","contgroup","region")])
-#  metatab$country <- factor(metatab$country,levels=unique(metatab$country[order(metatab$region)]),ordered=T)
-#  samples <- metatab$sample
-#  csamples <- metatab$sample[metatab$country==country]
-#  write(paste("found",length(csamples),"samples for",country),file=stderr())
-
-
-#write("reading PCs from lostruct analysis",file=stderr())
-#  pcs <- readRDS(pcsfile)
 
 write("loading inversion blocks",file=stderr())
   invblocks <- read.table(blockfile,header=T)

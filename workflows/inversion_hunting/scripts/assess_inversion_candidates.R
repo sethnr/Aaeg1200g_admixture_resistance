@@ -296,6 +296,12 @@ invsummary$admixed=NA
 invsummary$f3=NA
 invsummary$f3se=NA
 
+invsummary$minBSP=MINBSP
+invsummary$minBSS=MINBSS
+invsummary$maxD=MIND
+invsummary$maxWSS=MAXWSS
+
+
 
 for(I in unique(invsummary$cluster[invsummary$valid])) {
   invsnps <- vcf_query(vcffile,
@@ -354,7 +360,7 @@ clustplot <- ggplot(invcandsV,aes(x=pos,fill=validation,y=as.factor(cluster))) +
 outcalls <- paste(outfile,"calls.txt",sep="_")
 
 if(exists("pcs") & !all(is.na(pcs$valid))) {
-  saveRDS(pcs,file=paste(outfile,"pcs.Rds",sep="_"))
+  #saveRDS(pcs,file=paste(outfile,"pcs.Rds",sep="_"))
 
   callstable <- pivot_wider(pcs[,c("sample","valid","inv")],names_from = inv,values_from = c("valid"))
   write.table(callstable,file=outcalls,sep="\t",quote=F,row.names = F)
@@ -373,7 +379,7 @@ if(exists("pcs") & !all(is.na(pcs$valid))) {
   dev.off()
 } else {
   file.create(outcalls)
-  file.create(paste(outfile,"pcs.Rds",sep="_"))
+  #file.create(paste(outfile,"pcs.Rds",sep="_"))
   png(filename = paste(outfile,"png",sep="."),width=350,height=200,units="mm",res=400)
   grid.arrange(clustplot, grid.rect(gp=gpar(col="white")), ncol=2)
   dev.off()
