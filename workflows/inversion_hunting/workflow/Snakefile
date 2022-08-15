@@ -230,7 +230,7 @@ rule merge_invs_global:
         meta=config["spptable"]
     output:
         invs="results/lostruct_merge_chr/invs_chr{chrom}_aims.txt",
-        png="results/lostruct_merge_chr/invs_chr{chrom}_aims.png"
+        png="results/lostruct_plot/invs_chr{chrom}_aims.png"
   	#aimspic="results/lostruct_merge/aims_chr{chrom}_{region}.png",
     params:
         prefix="results/lostruct_merge_chr/invs_chr{chrom}",
@@ -246,18 +246,16 @@ rule merge_invs_global:
         Rscript scripts/merge_inversions_by_linkage.R \
           -d {params.indir} \
           -r {params.minr2} \
-	  -v {input.vcf} \
-	  -m {input.meta} \
+	      -v {input.vcf} \
+	      -m {input.meta} \
           -c {wildcards.chrom} \
           -o {params.prefix} > {log}
-
 
         Rscript scripts/plot_cluster_aims.R \
             -s {input.meta} \
             -i {params.prefix}_aims.txt \
             -b {params.prefix}_blocks.txt \
-            -o {params.prefix}_aims.png >> {log}
-
+            -o {output.png} >> {log}
         """
 
 
