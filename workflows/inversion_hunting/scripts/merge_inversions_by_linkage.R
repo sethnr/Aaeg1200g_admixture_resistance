@@ -236,8 +236,8 @@ for(i in c(1:length(ldmerges))) {
   } else {
     cextent="global"
   }
-  ci <- length(grep(paste(chrom,cextent,se="_"),newnames))+1
-  newname <- paste(chrom,cextent,ci,se="_")
+  ci <- length(grep(paste(chrom,cextent,sep="_"),newnames))+1
+  newname <- paste(chrom,cextent,ci,sep="_")
   mergetab$newname[mergetab$cluster==cname] <- newname
   newnames <- c(newnames,newname)
 }
