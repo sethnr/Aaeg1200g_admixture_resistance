@@ -105,7 +105,7 @@ metatab <- read.table(metafile,header=T, sep="\t")
 samples <- metatab$sample
 
 
-write("parsing all assoc SNPs",file=stderr())
+write("parsing all SNPs in inversion",file=stderr())
 for(I in unique(allaims$id)) {
     write(paste("  ",I,sum(allaims$id==I)," SNPs"),file=stderr())
     invsnps <- vcf_query(vcffile,
@@ -185,6 +185,10 @@ r2plot <- ggplot(r2dfM,aes(x=from,y=to,fill=r2)) + geom_raster() +
 rawnames <- colnames(r2matrix)
 ldmerges <- list()
 
+mergetab <- data.frame("cluster"=character(),
+                       "inversion"=character(),
+                       "r2"=character())
+
 while(length(rawnames)>0) {
   C1 <- rawnames[1]
   ols=c(C1)
@@ -193,6 +197,9 @@ while(length(rawnames)>0) {
     if (is.na(r2matrix[C1,C2])) {next}
     if(r2matrix[C1,C2] > minr2) {
       ols <- c(ols,C2)
+      i <- nrow(mergetab)+1
+      mergetab[i,c("cluster","inversion")] <- c(C1,C2)
+      mergetab[i,r2] <- r2matrix[C1,C2]
     }
   }
   rawnames <- rawnames[!rawnames %in% ols]
@@ -208,9 +215,8 @@ while(length(rawnames)>0) {
 r2dfM$cluster = NA
 allblocks$cluster = NA
 allaims$cluster = NA
+newnames<-c()
 
-mergetab <- data.frame("cluster"=character(),
-                       "inversion"=character())
 for(i in c(1:length(ldmerges))) {
   cname <- names(ldmerges)[i]
   ols <- ldmerges[[i]]
@@ -218,10 +224,20 @@ for(i in c(1:length(ldmerges))) {
   allaims$cluster[allaims$id %in% ols] <- i
   allblocks$cluster[allblocks$id %in% ols] <- i
 
-
-  mergetab <- rbind(mergetab,data.frame("global"=rep(cname,length(ols)),
-                         "regional"=ols))
-
+  #parse and create new cluster name
+  olcountries = unique(gsub('[\\d\\_]*',"",ols],perl=T)])
+  olconts = unique(metatab$contgroup[metatab$country %in% olcountries)
+  if(length(olcountries)==1) {
+    cextent=olcountries[1]
+  } else if (length(olconts)==1){
+    cextent=olconts[1]
+  } else {
+    cextent="global"
+  }
+  ci <- length(grep(paste(chr,cextent,se="_"),newnames))+1
+  newname <- paste(chr,cextent,ci,se="_")
+  mergetab$newname[mergetab$cluster==cname] <- newname
+  newnames <- c(newnames,newname)
 }
 
 write.table(allblocks,file=paste(outprefix,"blocks.txt",sep="_"),sep="\t",col.names=T,row.names=F,quote=F)
@@ -230,11 +246,6 @@ write.table(mergetab,file=paste(outprefix,"LDmerges.txt",sep="_"),col.names=T,qu
 
 
 
-
-# r2clustplot <- ggplot(r2dfM,aes(x=from,y=to,fill=as.factor(cluster))) + geom_raster() +
-#   coord_fixed() +
-#   theme(axis.text.x=element_text(angle=45,hjust=1),
-#         legend.position="bottom",axis.title=element_blank())
 
 clustersizes <- allblocks %>% group_by(cluster) %>%
                 summarise(invs=n_distinct(inv),
