@@ -198,8 +198,6 @@ while(length(rawnames)>0) {
     if(r2matrix[C1,C2] > minr2) {
       ols <- c(ols,C2)
       i <- nrow(mergetab)+1
-      mergetab[i,c("cluster","inversion")] <- c(C1,C2)
-      mergetab[i,"r2"] <- r2matrix[C1,C2]
     }
   }
   rawnames <- rawnames[!rawnames %in% ols]
@@ -238,8 +236,13 @@ for(i in c(1:length(ldmerges))) {
   }
   ci <- length(grep(paste(chrom,cextent,sep="_"),newnames))+1
   newname <- paste(chrom,cextent,ci,sep="_")
-  mergetab$newname[mergetab$cluster==cname] <- newname
   newnames <- c(newnames,newname)
+
+  for(C2 in ols) {
+    mergetab[i,c("cluster","inversion")] <- c(newname,C2)
+    mergetab[i,"r2"] <- r2matrix[cname,C2]
+  }
+
 }
 
 write.table(allblocks,file=paste(outprefix,"blocks.txt",sep="_"),sep="\t",col.names=T,row.names=F,quote=F)
