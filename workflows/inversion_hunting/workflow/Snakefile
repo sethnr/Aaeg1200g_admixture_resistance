@@ -39,7 +39,7 @@ rule all:
     input:
         #expand("results/lostruct_plot/invs_chr{chrid}_{loc}_aims.png",
         #chrid=[1,2,3],loc=bigcountries),
-        expand("results/lostruct_merge_chr/invs_chr{chrid}_aims.png",
+        expand("results/lostruct_merge/invs_chr{chrid}_aims.png",
         chrid=[1,2,3])
 
 ###### run lostruct algorithm ########
