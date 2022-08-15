@@ -106,16 +106,16 @@ rule assess_inversion_candidates:
         txt=ancient("results/lostruct_inversion_candidates/regions_chr{chrom}_{region}.txt"),
         spptable=config["spptable"],
     output:
-        txt="results/lostruct_inversions/inversions_chr{chrom}_{region}.txt",
-        png="results/lostruct_inversions/inversions_chr{chrom}_{region}.png",
-        calls="results/lostruct_inversions/inversions_chr{chrom}_{region}_calls.txt",
+        txt="results/lostruct_inversions/assess_chr{chrom}_{region}.txt",
+        calls="results/lostruct_inversions/assess_chr{chrom}_{region}_calls.txt",
+        png="results/lostruct_plot/assess_chr{chrom}_{region}.png",
     resources:
         mem_mb=12000,
         disk_mb=500000,
         h_rt='1:00:00',
         cpus=1
     params:
-        prefix="results/lostruct_inversions/inversions_chr{chrom}_{region}",
+        prefix="results/lostruct_inversions/assess_chr{chrom}_{region}",
         MAXD=0.1,
         MAXWSS=5,
         MINBSS=25,
@@ -135,20 +135,23 @@ rule assess_inversion_candidates:
         	-B {params.MINBSS} \
         	-P {params.MINBSP} \
         	2>> {log}
+
+        mv {params.prefix}.png {output.png}
         """
 
 #merge inversions within sample / pop by position
 rule merge_invs_sample:
     input:
         blocks="results/lostruct_inversion_candidates/regions_chr{chrom}_{region}.txt",
-        calls="results/lostruct_inversions/inversions_chr{chrom}_{region}_calls.txt",
+        calls="results/lostruct_inversions/assess_chr{chrom}_{region}_calls.txt",
         meta=config["spptable"]
     output:
-        calls="results/lostruct_merge/invs_chr{chrom}_{region}_calls.txt",
-        blocks="results/lostruct_merge/invs_chr{chrom}_{region}_blocks.txt",
+        calls="results/lostruct_inversions/invs_chr{chrom}_{region}_calls.txt",
+        merges="results/lostruct_inversions/invs_chr{chrom}_{region}_merges.txt",
+        blocks="results/lostruct_inversions/invs_chr{chrom}_{region}_blocks.txt",
   	#aimspic="results/lostruct_merge/aims_chr{chrom}_{region}.png",
     params:
-        prefix="results/lostruct_merge/invs_chr{chrom}_{region}",
+        prefix="results/lostruct_inversions/invs_chr{chrom}_{region}",
     resources:
         mem_mb=1000,
         disk_mb=2000,
@@ -189,26 +192,6 @@ rule get_aims:
                 -o {output.txt}\
             2> {log}
           """
-
-#plot AIMs for all samples in dataset, ordered by country + putative inversion call
-# rule plot_aims:
-#       input:
-#           aims="results/lostruct_aims/aims_chr{chrom}_{region}.txt",
-#           spptable=config["spptable"]
-#       output:
-#           aimspic="results/lostruct_aims/aims_chr{chrom}_{region}.png",
-#       resources:
-#           mem_mb=1000,
-#           disk_mb=2000,
-#       log:
-#           log="logs/lostruct_aims/plot_aims_chr{chrom}_{region}.log",
-#       shell:
-#           """Rscript scripts/plot_inversion_aims.R \
-#           	   -s {input.spptable} \
-#           	   -i {input.aims} \
-#                -o {output.aimspic} \
-#                  2> {log}
-#           """
 
 
 rule make_inversion_plots:
