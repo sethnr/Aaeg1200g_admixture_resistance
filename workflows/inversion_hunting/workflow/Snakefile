@@ -173,11 +173,11 @@ rule get_aims:
       input:
           vcf=lambda wildcards: get_remote_vcf(wildcards),
           tbi=lambda wildcards: get_remote_vcf_tbi(wildcards),
-          blocks="results/lostruct_merge/invs_chr{chrom}_{region}_blocks.txt",
-          calls="results/lostruct_merge/invs_chr{chrom}_{region}_calls.txt",
+          blocks="results/lostruct_inversions/invs_chr{chrom}_{region}_blocks.txt",
+          calls="results/lostruct_inversions/invs_chr{chrom}_{region}_calls.txt",
           spptable=config["spptable"]
       output:
-          txt="results/lostruct_merge/invs_chr{chrom}_{region}_aims.txt",
+          txt="results/lostruct_inversions/invs_chr{chrom}_{region}_aims.txt",
       resources:
           mem_mb=4000,
           disk_mb=100000,
