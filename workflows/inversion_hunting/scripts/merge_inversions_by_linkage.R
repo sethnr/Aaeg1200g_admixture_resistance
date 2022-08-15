@@ -197,7 +197,6 @@ while(length(rawnames)>0) {
     if (is.na(r2matrix[C1,C2])) {next}
     if(r2matrix[C1,C2] > minr2) {
       ols <- c(ols,C2)
-      i <- nrow(mergetab)+1
     }
   }
   rawnames <- rawnames[!rawnames %in% ols]
@@ -239,6 +238,7 @@ for(i in c(1:length(ldmerges))) {
   newnames <- c(newnames,newname)
 
   for(C2 in ols) {
+    i <- nrow(mergetab)+1
     mergetab[i,c("cluster","inversion")] <- c(newname,C2)
     mergetab[i,"r2"] <- r2matrix[cname,C2]
   }
