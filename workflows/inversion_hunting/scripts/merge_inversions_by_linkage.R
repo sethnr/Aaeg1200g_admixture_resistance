@@ -225,7 +225,7 @@ for(i in c(1:length(ldmerges))) {
   allblocks$cluster[allblocks$id %in% ols] <- i
 
   #parse and create new cluster name
-  olcountries = unique(gsub('[\\d\\_]*',"",ols],perl=T))
+  olcountries = unique(gsub('[\\d\\_]*',"",ols,perl=T))
   olconts = unique(metatab$contgroup[metatab$country %in% olcountries)
   if(length(olcountries)==1) {
     cextent=olcountries[1]
