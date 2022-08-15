@@ -116,7 +116,7 @@ rule assess_inversion_candidates:
         cpus=1
     params:
         prefix="results/lostruct_inversions/inversions_chr{chrom}_{region}",
-        MAXD=0.2,
+        MAXD=0.1,
         MAXWSS=5,
         MINBSS=25,
         MINBSP=0.95
