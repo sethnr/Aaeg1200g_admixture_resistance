@@ -11,10 +11,6 @@ library("getopt")
 #######
 # default inversion validation criteria
 #######
-#MAXD <- 0.2
-#MAXWSS <- 5
-#MINBSS <- 20
-#MINBSP <- 0.95
 blocksize <- 5e5
 
 
@@ -126,7 +122,6 @@ assessInvK <- function(pcs,invsnps,maxd,maxwss,minbss,minbsp) {
   nbss <- sum(ncl[1]*ncl[2] + ncl[2]*ncl[3] + ncl[1]*ncl[3])
 
   tot.ss <- kmpca$totss
-  c(nwss,nbss,npairs)
 
   #assess pass
   invpass <- (
@@ -257,6 +252,7 @@ if(exists("pcs")) {
                         maxwss=MAXWSS,
                         minbss=MINBSS,
                         minbsp=MINBSP)
+      #write(paste(I,a,assk$d,assk$valid),stderr())
 
       if(assk$valid) {
         anygood=T
@@ -268,7 +264,7 @@ if(exists("pcs")) {
     if(anygood) {
       pcs$valid[which(pcs$inv==I)] <- assk$clusters
     } else {
-      assk <- assessInvK(pcsinv[,c("PC1","PC2")],
+      assk <- assessInvK(pcsinv[,"PC1"],
                         maxd=MAXD,
                         maxwss=MAXWSS,
                         minbss=MINBSS,
@@ -302,7 +298,6 @@ invsummary$maxD=MAXD
 invsummary$maxWSS=MAXWSS
 
 
-
 for(I in unique(invsummary$cluster[invsummary$valid])) {
   invsnps <- vcf_query(vcffile,
                        samples=samples,
@@ -319,7 +314,7 @@ for(I in unique(invsummary$cluster[invsummary$valid])) {
   p1 <- clusters=='aa'
   p3 <- clusters=='ab'
   p2 <- clusters=='bb'
-
+  
   f3 <- meanF3(invsnps,p3,p1,p2)
   f3se <- jackknifeF3se(invsnps,invposns,p3,p1,p2)
   invsummary$f3[invsummary$cluster==I] <- f3

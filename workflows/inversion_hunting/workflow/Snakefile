@@ -18,7 +18,7 @@ spps = ["aaa", "aaf"]
 bigcountries = ["Brazil", "USA", "Senegal",
      "Philippines","Gabon","Ghana",
      "SaudiArabia","BurkinaFaso","PuertoRico",
-     "Uganda","Trinidad","Vietnam"]
+     "Uganda"]
 REGIONS=bigcountries
 
 conts = ["eafrica", "wafrica"]
@@ -133,8 +133,8 @@ rule assess_inversion_candidates:
             -D {params.MAXD} \
         	-W {params.MAXWSS} \
         	-B {params.MINBSS} \
-        	-P {params.MINBSP} \
-        	2>> {log}
+        	-P {params.MINBSP} #\
+        	# 2>> {log}
 
         mv {params.prefix}.png {output.png}
         """
@@ -189,6 +189,8 @@ rule get_aims:
                 -b {input.blocks} \
                 -c {input.calls} \
                 -v {input.vcf} \
+		-P 1e-06 \
+		-N 100 \
                 -o {output.txt}\
             2> {log}
           """
@@ -225,16 +227,16 @@ rule merge_invs_global:
     input:
         invs=expand("results/lostruct_inversions/invs_chr{{chrom}}_{region}_blocks.txt",region=REGIONS),
         aims=expand("results/lostruct_inversions/invs_chr{{chrom}}_{region}_aims.txt",region=REGIONS),
-          vcf=lambda wildcards: get_remote_vcf(wildcards),
-          tbi=lambda wildcards: get_remote_vcf_tbi(wildcards),
+        vcf=lambda wildcards: get_remote_vcf(wildcards),
+        tbi=lambda wildcards: get_remote_vcf_tbi(wildcards),
         meta=config["spptable"]
     output:
         invs="results/lostruct_merge/invs_chr{chrom}_aims.txt",
-        png="results/lostruct_plot/invs_chr{chrom}_aims.png"
+        png="results/lostruct_merge/invs_chr{chrom}_aims.png"
   	#aimspic="results/lostruct_merge/aims_chr{chrom}_{region}.png",
     params:
-        prefix="results/lostruct_merge_chr/invs_chr{chrom}",
-        indir="results/lostruct_merge/",
+        indir="results/lostruct_inversions/",
+        prefix="results/lostruct_merge/invs_chr{chrom}",
         minr2=0.25
     resources:
         mem_mb=32000,

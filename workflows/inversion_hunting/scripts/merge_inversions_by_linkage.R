@@ -74,6 +74,7 @@ countries <- gsub("invs_chr._","",gsub("_aims.txt","",basename(aimsfiles)))
 names(aimsfiles) <- countries
 
 write(aimsfiles,stderr())
+write(countries,stderr())
 
 if(exists("allaims")){rm(allaims)}
 for(C in countries) {
@@ -96,7 +97,7 @@ for(C in countries) {
 allaims$end <- allaims$pos
 allaims$start <- allaims$pos
 
-#write.table(head(allaims),stderr())
+write.table(head(allaims),stderr())
 ######
 # get SNPs for all aims
 ######
@@ -186,6 +187,7 @@ rawnames <- colnames(r2matrix)
 ldmerges <- list()
 
 mergetab <- data.frame("cluster"=character(),
+                       "extent"=character(),
                        "inversion"=character(),
                        "r2"=character())
 
@@ -236,10 +238,10 @@ for(i in c(1:length(ldmerges))) {
   ci <- length(grep(paste(chrom,cextent,sep="_"),newnames))+1
   newname <- paste(chrom,cextent,ci,sep="_")
   newnames <- c(newnames,newname)
-
+  
   for(C2 in ols) {
     i <- nrow(mergetab)+1
-    mergetab[i,c("cluster","inversion")] <- c(newname,C2)
+    mergetab[i,c("cluster","extent","inversion")] <- c(newname,cextent,C2)
     mergetab[i,"r2"] <- r2matrix[cname,C2]
   }
 

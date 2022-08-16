@@ -19,7 +19,7 @@ outtxt <- opt$outfile
 
 #AIM criteria
 maxaims <- opt$maxaims
-MAXCHISQ <- opt$chisq
+MAXCHISQ <- as.numeric(opt$chisq)
 
 blocksize<-5e05
 
@@ -110,7 +110,7 @@ for(C in as.character(unique(invblocks$inv))) {
     compposns$assoc <- assoc
 
    #get associated SNPS & posns
-    write(paste(" ",sum(compposns$assoc < MAXCHISQ)," potential AIMs over",MAXCHISQ,"for",C,"(min",min(compposns$assoc),")"),file=stderr())
+    write(paste(" ",sum(compposns$assoc < MAXCHISQ)," potential AIMs under",MAXCHISQ,"for",C,"(min",min(compposns$assoc),")"),file=stderr())
     if(sum(compposns$assoc < MAXCHISQ)>0) {
       assocposns <- compposns[compposns$assoc < MAXCHISQ,] %>% add_column(i=c(1:sum(compposns$assoc < MAXCHISQ)),
                                                                               "inv"=C,
