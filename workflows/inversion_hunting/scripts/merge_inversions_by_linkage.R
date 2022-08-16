@@ -215,7 +215,10 @@ r2dfM$cluster = NA
 allblocks$cluster = NA
 allaims$cluster = NA
 newnames<-c()
+oldnames<-c()
 
+
+## calculate geographical extent of cluster, rename accordingly
 for(i in c(1:length(ldmerges))) {
   cname <- names(ldmerges)[i]
   ols <- ldmerges[[i]]
@@ -238,7 +241,8 @@ for(i in c(1:length(ldmerges))) {
   ci <- length(grep(paste(chrom,cextent,sep="_"),newnames))+1
   newname <- paste(chrom,cextent,ci,sep="_")
   newnames <- c(newnames,newname)
-  
+  oldnames <- c(oldnames,oldname)
+
   for(C2 in ols) {
     i <- nrow(mergetab)+1
     mergetab[i,c("cluster","extent","inversion")] <- c(newname,cextent,C2)
@@ -246,6 +250,7 @@ for(i in c(1:length(ldmerges))) {
   }
 
 }
+names(newnames) <- oldnames
 
 write.table(allblocks,file=paste(outprefix,"blocks.txt",sep="_"),sep="\t",col.names=T,row.names=F,quote=F)
 
@@ -281,5 +286,6 @@ clustaims <- clustaims[order(clustaims$pos),] %>% rename("inv"="cluster")
 for(i in unique(allaims$cluster)) {
   clustaims$i[clustaims$cluster==i] <- c(1:sum(clustaims$cluster==i))
 }
+clustaims$name <- newnames[clustaims$cluster]
 
 write.table(clustaims,paste(outprefix,"aims.txt",sep="_"),sep="\t",quote=F,col.names=T,row.names=F)
