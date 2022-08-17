@@ -36,6 +36,11 @@ vcf_genotypes <- function (file, regions, samples) {
   txtgenos
 }
 
+meanHz <- function(snps,inds) {
+  hz <- snps[,inds]==1/sum(!is.na(snps[,inds]))
+  hz
+}
+
 meanF3 <- function(invsnps,p3,p1,p2) {
   #calculate f3 stat for 3 'pops'
   getmaf = function(x) {sum(na.omit(x)) / sum(!is.na(x))*2}
@@ -85,7 +90,6 @@ jackknifeF3se <- function(snps,posns,p3,p1,p2,blocksize=1e5) {
     f3jacks = c(f3jacks,mean(f3blocks[starts != s]))}
 
   # compute mean of jackknife values
-  #m <- weighted.mean(f3jacks,snpcounts)
   m <- mean(f3jacks)
   n <- length(starts)
   # compute standard error
@@ -182,11 +186,7 @@ if (!is.null(opt$maxwss) ) {MAXWSS <- opt$maxwss}
 if (!is.null(opt$minbss)) {MINBSS <- opt$minbss}
 if (!is.null(opt$minbsp)) {MINBSP <- opt$minbsp}
 
-#invcandfile <- "uganda_chr1_pvclust_single_uncentered_hier_P0.99_n1000.txt"
-
 chromname <- c("NC_035107.1","NC_035108.1","NC_035109.1")
-chromlen <- c(310827022,474425716,409777670)
-names(chromlen) <- chromname
 
 spptab <- read.table(sppfile,header=T, sep="\t")
 samples <- spptab$sample[spptab$country==country]
@@ -232,7 +232,7 @@ write(paste("D<=",MAXD,"WSS<=",MAXWSS,"BSS>=",MINBSS,"BSP>=",MINBSP),file=stderr
 invsummary <- invcands %>%
                     group_by(cluster) %>%
                     mutate(size = length(block)*blocksize)  %>%
-                    select(c("cluster","au","bp","meandist","lowdist","size")) %>%
+                    select(c("cluster","size")) %>%
                     unique()
 
 angles <- c(0,rep(seq(5,45,5),each=2)*c(1,-1))
@@ -314,7 +314,7 @@ for(I in unique(invsummary$cluster[invsummary$valid])) {
   p1 <- clusters=='aa'
   p3 <- clusters=='ab'
   p2 <- clusters=='bb'
-  
+
   f3 <- meanF3(invsnps,p3,p1,p2)
   f3se <- jackknifeF3se(invsnps,invposns,p3,p1,p2)
   invsummary$f3[invsummary$cluster==I] <- f3
@@ -324,6 +324,10 @@ for(I in unique(invsummary$cluster[invsummary$valid])) {
   } else {
     invsummary$admixed[invsummary$cluster==I] <- F
   }
+
+  invsummary$hzaa[invsummary$cluster==I] <- meanHz(invsnps,p1)
+  invsummary$hzbb[invsummary$cluster==I] <- meanHz(invsnps,p2)
+  invsummary$hzab[invsummary$cluster==I] <- meanHz(invsnps,p3)
 
 }
 
