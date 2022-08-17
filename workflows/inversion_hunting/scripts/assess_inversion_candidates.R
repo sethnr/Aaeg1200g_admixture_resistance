@@ -37,7 +37,7 @@ vcf_genotypes <- function (file, regions, samples) {
 }
 
 meanHz <- function(snps,inds) {
-  hz <- snps[,inds]==1/sum(!is.na(snps[,inds]))
+  hz <- sum(snps[,inds]==1)/sum(!is.na(snps[,inds]))
   hz
 }
 
