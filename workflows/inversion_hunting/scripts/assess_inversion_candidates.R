@@ -358,11 +358,12 @@ if(nrow(invsummary) > 0) {
 write(paste("plotting",nrow(invsummary),"PCs"),file=stderr())
 
 invsummary$inv <- factor(invsummary$cluster,levels=sort(unique(invsummary$cluster)),ordered=T)
-invcandsV <- merge(invcands,invsummary[,c("cluster","valid","admixed")],all.x=T)
+invcandsV <- merge(invcands,invsummary[,c("cluster","valid","admixed","hzgood")],all.x=T)
 
 invcandsV$validation <- "fail"
-invcandsV$validation[invcandsV$valid] <- "pass-d"
-invcandsV$validation[invcandsV$admixed] <- "pass-F3"
+invcandsV$validation[invcandsV$valid] <- "d"
+invcandsV$validation[invcandsV$admixed] <- paste(invcandsV$validation[invcandsV$admixed],"F3",sep=":")
+invcandsV$validation[invcandsV$hzgood] <- paste(invcandsV$validation[invcandsV$hzgood],"HZ",sep=":")
 
 clustplot <- ggplot(invcandsV,aes(x=pos,fill=validation,y=as.factor(cluster))) + geom_tile() + ylab("cluster")
 
