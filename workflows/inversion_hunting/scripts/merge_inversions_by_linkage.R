@@ -161,7 +161,7 @@ if(file.exists(paste(outprefix,".r2.txt",sep=""))) {
   }
 
   r2df <- as.data.frame(r2matrix)
-  write.table(r2df,paste(outprefix,".r2.txt",sep=""),col.names=T,row.names=T,quote=F,sep="\t")
+  write.table(signif(r2df,3),paste(outprefix,".r2.txt",sep=""),col.names=T,row.names=T,quote=F,sep="\t")
 }
 
 
@@ -233,7 +233,7 @@ for(i in c(1:length(ldmerges))) {
   } else {
     cextent="global"
   }
-  ci <- length(grep(paste(chrom,cextent,sep="_"),newnames))+1
+  ci <- length(grep(paste(chrom,cextent,sep="_"),unique(mergetab$newname)))+1
   newname <- paste(chrom,cextent,ci,sep="_")
 
   for(C2 in ols) {
@@ -250,7 +250,7 @@ clustersizes <- allblocks %>% group_by(cluster) %>%
                 summarise(invs=n_distinct(inv),
                           blocks=n_distinct(block))
 
-write.table(clustersizes,stderr())
+#write.table(clustersizes,stderr())
 bigclusts <- clustersizes$cluster[clustersizes$invs>1]
 clustcols <- sample(rainbow(length(bigclusts),s=0.6,v=0.9))
 names(clustcols) <- bigclusts
