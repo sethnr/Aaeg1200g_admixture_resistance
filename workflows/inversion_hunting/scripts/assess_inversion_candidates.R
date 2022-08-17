@@ -362,8 +362,9 @@ invcandsV <- merge(invcands,invsummary[,c("cluster","valid","admixed","hzgood")]
 
 invcandsV$validation <- "fail"
 invcandsV$validation[invcandsV$valid] <- "d"
-invcandsV$validation[invcandsV$admixed] <- "d:F3"
-invcandsV$validation[invcandsV$hzgood] <- paste(invcandsV$validation[invcandsV$hzgood],"HZ",sep=":")
+invcandsV$validation[invcandsV$valid & invcandsV$admixed] <- "d:F3"
+invcandsV$validation[invcandsV$valid & invcandsV$hzgood] <- "d:HZ"
+invcandsV$validation[invcandsV$valid & invcandsV$hzgood & invcandsV$admixed] <- "d:F3:HZ"
 
 clustplot <- ggplot(invcandsV,aes(x=pos,fill=validation,y=as.factor(cluster))) + geom_tile() + ylab("cluster")
 
