@@ -32,8 +32,6 @@ metatab$country <- factor(metatab$country,levels=unique(metatab$country[order(me
 
 chromlen <- c(310827022,474425716,409777670)
 
-# invcands <- read.table(invfile,header=T)
-# invcands <- subset(invcands,as.logical(valid))
 
 write("reading inv snps",file=stderr())
 
@@ -50,23 +48,19 @@ nsamples <- nrow(metatab)
 metatab <- metatab[metatab$sample %in% colnames(allinvsnps),]
 write(paste("found",nrow(metatab),"samples of",nsamples),stderr())
 samples <- metatab$sample
-#write(samples,stderr())
+
 
 #order countries in metatable by region (w african, eafrican, american, asian)
 cntorder <- unique(metatab$country[order(metatab$contgroup,metatab$region)])
 
 
-# mlpreds <- read.table(mlcallsfile,header=F,col.names = unique(allinvsnps$inv))
-# meanpreds <- read.table(meancallsfile,header=T)
-
 meansnp <- apply(allinvsnps[,samples],2,FUN=function(x) {mean(na.omit(x))})
 
 write("got means",stderr())
-write(dim(allinvsnps),stderr())
-write(length(samples),stderr())
+
 samples <- samples[samples %in% colnames(allinvsnps)]
 
-allinvsnps <- allinvsnps[,c("chrom","pos","i","id","inv",samples)]
+allinvsnps <- allinvsnps[,c("chrom","pos","i","id","inv","cluster",samples)]
 allinvsnps <- unique(allinvsnps)
 write(colnames(allinvsnps)[!colnames(allinvsnps) %in% samples],stderr())
 
@@ -76,13 +70,10 @@ write("pivoted",stderr())
 
 write.table(head(aimsM),stderr())
 
-#aimsM$sample <- factor(aimsM$sample,levels=samples)
-#metatab$sample <- factor(metatab$sample,levels=samples)
-
 
 countries <- metatab$country
 names(countries) <- metatab$sample
-#aimsM <- merge(aimsM,metatab,by="sample")
+
 #write("merged",stderr())
 
 
@@ -99,15 +90,13 @@ aimsM$sample <- factor(aimsM$sample,levels = snporder,ordered=T)
 aimsM$cncode <- aimsM$country
 levels(aimsM$cncode) <- substr(levels(aimsM$country),0,3)
 
-#write.table(head(aimsM),stderr())
-#write(summary(aimsM),stderr())
 
 write("making AIM plot",stderr())
 aimplot <- ggplot(aimsM,aes(x=i,y=as.numeric(sample),fill=as.factor(value))) + geom_raster() +
    ylab("samples") + xlab("SNPs")+ theme(legend.position="none")+
      scale_y_continuous(expand = c(0,0)) + scale_x_continuous(expand = c(0,0)) +
     scale_fill_manual(values=c("0"="blue","1"="purple","2"="red")) +
-    facet_grid("cncode ~ inv",scale="free",space="free") +
+    facet_grid("cncode ~ cluster",scale="free",space="free") +
     #ggtitle(paste(invname,"aim calls","( top",nrow(invsnps),")"))+
     theme(panel.spacing = unit(0.2, "mm"),
           axis.text.y=element_blank(),
@@ -118,8 +107,8 @@ aimplot
 write("reading blocks",stderr())
 blocks <- read.table(blocksfile,header=T)
 
-aimcounts <- aimsM %>% group_by(inv) %>% summarise(aims=n_distinct(pos))
-blocks <- blocks[blocks$cluster %in% aimcounts$inv,]
+aimcounts <- aimsM %>% group_by(cluster) %>% summarise(aims=n_distinct(pos))
+blocks <- blocks[blocks$cluster %in% aimcounts$cluster,]
 
 # csizeorder <- blocks %>% group_by(cluster) %>% summarise("size"=n_distinct(block)) %>% arrange(desc(size))
 # csizeorder <- csizeorder$cluster

@@ -74,7 +74,6 @@ countries <- gsub("invs_chr._","",gsub("_aims.txt","",basename(aimsfiles)))
 names(aimsfiles) <- countries
 
 write(aimsfiles,stderr())
-write(countries,stderr())
 
 if(exists("allaims")){rm(allaims)}
 for(C in countries) {
@@ -91,13 +90,10 @@ for(C in countries) {
     }
   }
 }
-#samples <- colnames(allaims)[8:ncol(allaims)-1]
 
-#allaims$id <- paste(match(allaims$chrom,chromname),allaims$region,allaims$inv,sep="_")
 allaims$end <- allaims$pos
 allaims$start <- allaims$pos
 
-write.table(head(allaims),stderr())
 ######
 # get SNPs for all aims
 ######
@@ -120,8 +116,6 @@ for(I in unique(allaims$id)) {
     }
 }
 write("binding all assoc SNPs",file=stderr())
-write(dim(allaims),file=stderr())
-write(dim(allinvsnps),file=stderr())
 allaims <- cbind(allaims,allinvsnps)
 
 samples <- samples[samples %in% colnames(allinvsnps)]
@@ -187,6 +181,7 @@ rawnames <- colnames(r2matrix)
 ldmerges <- list()
 
 mergetab <- data.frame("cluster"=character(),
+                       "newname"=character(),
                        "extent"=character(),
                        "inversion"=character(),
                        "r2"=character())
@@ -223,8 +218,8 @@ for(i in c(1:length(ldmerges))) {
   cname <- names(ldmerges)[i]
   ols <- ldmerges[[i]]
 
-  allaims$cluster[allaims$id %in% ols] <- i
-  allblocks$cluster[allblocks$id %in% ols] <- i
+  allaims$cluster[allaims$id %in% ols] <- cname
+  allblocks$cluster[allblocks$id %in% ols] <- cname
 
   #parse and create new cluster name
   olcountries = unique(gsub('[\\d\\_]*',"", ols, perl=T))
@@ -240,34 +235,27 @@ for(i in c(1:length(ldmerges))) {
   }
   ci <- length(grep(paste(chrom,cextent,sep="_"),newnames))+1
   newname <- paste(chrom,cextent,ci,sep="_")
-  newnames <- c(newnames,newname)
-  oldnames <- c(oldnames,oldname)
 
   for(C2 in ols) {
     i <- nrow(mergetab)+1
-    mergetab[i,c("cluster","extent","inversion")] <- c(newname,cextent,C2)
+    mergetab[i,c("cluster","newname","extent","inversion")] <- c(cname,newname,cextent,C2)
     mergetab[i,"r2"] <- r2matrix[cname,C2]
   }
 
 }
-names(newnames) <- oldnames
-
-write.table(allblocks,file=paste(outprefix,"blocks.txt",sep="_"),sep="\t",col.names=T,row.names=F,quote=F)
-
-write.table(mergetab,file=paste(outprefix,"LDmerges.txt",sep="_"),col.names=T,quote=F,row.names=F,sep="\t")
 
 
-
-
+write("calculating cluster sizes",stderr())
 clustersizes <- allblocks %>% group_by(cluster) %>%
                 summarise(invs=n_distinct(inv),
                           blocks=n_distinct(block))
 
-#bigclusts <- unique(na.omit(allblocks$cluster))
+write.table(clustersizes,stderr())
 bigclusts <- clustersizes$cluster[clustersizes$invs>1]
 clustcols <- sample(rainbow(length(bigclusts),s=0.6,v=0.9))
 names(clustcols) <- bigclusts
 
+write("making block plot",stderr())
 allblocks$id <- factor(allblocks$id,levels=cids,ordered=T)
 blockclustplot <- ggplot(allblocks,aes(x=pos,y=id,fill=as.factor(cluster))) +
   geom_raster() + scale_y_discrete(position="right") +
@@ -276,16 +264,31 @@ blockclustplot <- ggplot(allblocks,aes(x=pos,y=id,fill=as.factor(cluster))) +
   xlim(0,chromlen[chrom])
 
 r2plot | blockclustplot
+write("printing block plot",stderr())
 ggsave(paste(outprefix,".png",sep=""),dpi = 300,width=400,height=220,units="mm")
 
 
 
+write("combining aims for merged inversions ",stderr())
 #set aims for each cluster
 clustaims <- allaims[!duplicated(allaims[,c("cluster","chrom","pos")]),] %>% select(!c(inv,assoc))
 clustaims <- clustaims[order(clustaims$pos),] %>% rename("inv"="cluster")
 for(i in unique(allaims$cluster)) {
   clustaims$i[clustaims$cluster==i] <- c(1:sum(clustaims$cluster==i))
 }
-clustaims$name <- newnames[clustaims$cluster]
 
+
+write("writing merge table",stderr())
+
+write.table(mergetab,file=paste(outprefix,"LDmerges.txt",sep="_"),col.names=T,quote=F,row.names=F,sep="\t")
+
+newnames <- mergetab$newname
+names(newnames) <- mergetab$cluster
+
+clustaims$cluster <- newnames[as.character(clustaims$inv)]
 write.table(clustaims,paste(outprefix,"aims.txt",sep="_"),sep="\t",quote=F,col.names=T,row.names=F)
+
+allblocks$cluster <- newnames[as.character(allblocks$cluster)]
+write.table(allblocks,file=paste(outprefix,"blocks.txt",sep="_"),sep="\t",col.names=T,row.names=F,quote=F)
+
+write("merged all inversions by LD",stderr())
