@@ -1,33 +1,30 @@
-country	contgroup	total
-Brazil	Americas	217
-USA	Americas	145
-Senegal	Wafrica	101
-Kenya	Eafrica	97
-Philippines	Asia	53
-	Gabon	42
-Ghana	Wafrica	40
-SaudiArabia	Asia	36
-BurkinaFaso	Wafrica	36
-	Kenya	35
-PuertoRico	Americas	29
-Uganda	Eafrica	26
-Gabon	Wafrica	22
-Trinidad	Americas	20
-Vietnam	Asia	20
-Nigeria	Wafrica	19
-USVirgin	Americas	18
-Thailand	Asia	18
-Mexico	Americas	17
-Dominica	Americas	15
-Pakistan	Asia	14
-Taiwan	Asia	14
-Angola	Wafrica	13
-Cameroon	Wafrica	13
-Argentina	Americas	12
-SriLanka	Asia	12
-Turkey	Asia	12
-Australia	Asia	11
-SouthAfrica	Safrica	11
-Tahiti	Asia	8
-Colombia	Americas	6
-Tahiti	Asia	1
+country	n	contgroup	region
+Brazil	217	Americas	South America
+USA	145	Americas	North America
+Kenya	132	Eafrica	East Africa
+Senegal	101	Wafrica	West Africa
+Gabon	64	Wafrica	West Africa
+Philippines	53	Asia	Asia
+Ghana	40	Wafrica	West Africa
+BurkinaFaso	36	Wafrica	West Africa
+SaudiArabia	36	Asia	Middle East
+PuertoRico	29	Americas	Caribean
+Uganda	26	Eafrica	East Africa
+Trinidad	20	Americas	Caribean
+Vietnam	20	Asia	Asia
+Nigeria	19	Wafrica	West Africa
+Thailand	18	Asia	Asia
+USVirginIslands	18	Americas	Caribean
+Mexico	17	Americas	South America
+Dominica	15	Americas	Caribean
+Pakistan	14	Asia	Asia
+Taiwan	14	Asia	Asia
+Angola	13	Wafrica	West Africa
+Cameroon	13	Wafrica	West Africa
+Argentina	12	Americas	South America
+SriLanka	12	Asia	Asia
+Turkey	12	Asia	Asia
+Australia	11	Asia	Pacific
+SouthAfrica	11	Safrica	East Africa
+Tahiti	9	Asia	Pacific
+Colombia	6	Americas	South America
