@@ -175,8 +175,6 @@ clustplotP <- ggplot(subset(clustdf,au>=minP),aes(x=pos,fill=au,y=as.factor(clus
 
 grid.arrange(clustplotP,distplot,ncol=1,heights=c(2,5))
 
-
-#ggsave(paste("trinidad_chr1_pvclust_",cmeth,"_",dmeth,"_hier_P",minP,"_n",nboots,".png",sep=""))
 ggsave(paste(outfile,".png",sep=""))
 
 meandists <- data.frame("cluster"=integer(),

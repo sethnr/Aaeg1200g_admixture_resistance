@@ -32,12 +32,14 @@ metatab$country <- factor(metatab$country,levels=unique(metatab$country[order(me
 
 chromlen <- c(310827022,474425716,409777670)
 
+# invcands <- read.table(invfile,header=T)
+# invcands <- subset(invcands,as.logical(valid))
 
 write("reading inv snps",file=stderr())
 
 if (file.size(invaimsfile)>0) {
   allinvsnps <- read.table(invaimsfile,header=T,check.names = F)
-  write.table(table(allinvsnps$inv),file=stderr(),row.names = F,quote=F,col.names = F)
+  #write.table(table(allinvsnps$inv),file=stderr(),row.names = F,quote=F,col.names = F)
   write(paste(length(unique(allinvsnps$inv)),"invs found in",invaimsfile),file=stderr())
   allinvnames <- unique(allinvsnps$inv)
 } else {
@@ -49,15 +51,14 @@ metatab <- metatab[metatab$sample %in% colnames(allinvsnps),]
 write(paste("found",nrow(metatab),"samples of",nsamples),stderr())
 samples <- metatab$sample
 
-
 #order countries in metatable by region (w african, eafrican, american, asian)
 cntorder <- unique(metatab$country[order(metatab$contgroup,metatab$region)])
+
 
 
 meansnp <- apply(allinvsnps[,samples],2,FUN=function(x) {mean(na.omit(x))})
 
 write("got means",stderr())
-
 samples <- samples[samples %in% colnames(allinvsnps)]
 
 allinvsnps <- allinvsnps[,c("chrom","pos","i","id","inv","cluster",samples)]
@@ -68,108 +69,94 @@ aimsM <- pivot_longer(allinvsnps,all_of(samples),
 			names_to = "sample")   #%>% rename("invcountry"="country")
 write("pivoted",stderr())
 
-write.table(head(aimsM),stderr())
-
-
 countries <- metatab$country
 names(countries) <- metatab$sample
 
-#write("merged",stderr())
-
-
-write("sorting countries",stderr())
-aimsM$country <- countries[aimsM$sample]
-aimsM$country <- factor(aimsM$country,levels = cntorder,ordered=T)
 
 write("sorting SNPs",stderr())
 #order SNPs by country, then mean call in this inversion
 snporder <- metatab$sample[order(metatab$country,meansnp[metatab$sample])]
 
-    #write(snporder,stderr())
-aimsM$sample <- factor(aimsM$sample,levels = snporder,ordered=T)
-aimsM$cncode <- aimsM$country
-levels(aimsM$cncode) <- substr(levels(aimsM$country),0,3)
 
+write("sorting countries",stderr())
+    aimsM$country <- countries[aimsM$sample]
+    aimsM$country <- factor(aimsM$country,levels = cntorder,ordered=T)
+    aimsM$sample <- factor(aimsM$sample,levels = snporder,ordered=T)
+    aimsM$cncode <- aimsM$country
+    levels(aimsM$cncode) <- substr(levels(aimsM$country),0,3)
 
-write("making AIM plot",stderr())
-aimplot <- ggplot(aimsM,aes(x=i,y=as.numeric(sample),fill=as.factor(value))) + geom_raster() +
-   ylab("samples") + xlab("SNPs")+ theme(legend.position="none")+
-     scale_y_continuous(expand = c(0,0)) + scale_x_continuous(expand = c(0,0)) +
-    scale_fill_manual(values=c("0"="blue","1"="purple","2"="red")) +
-    facet_grid("cncode ~ cluster",scale="free",space="free") +
-    #ggtitle(paste(invname,"aim calls","( top",nrow(invsnps),")"))+
-    theme(panel.spacing = unit(0.2, "mm"),
-          axis.text.y=element_blank(),
-          axis.title=element_blank(),
-          axis.ticks.y=element_blank())
-aimplot
 
 write("reading blocks",stderr())
-blocks <- read.table(blocksfile,header=T)
-
-aimcounts <- aimsM %>% group_by(cluster) %>% summarise(aims=n_distinct(pos))
-blocks <- blocks[blocks$cluster %in% aimcounts$cluster,]
-
-# csizeorder <- blocks %>% group_by(cluster) %>% summarise("size"=n_distinct(block)) %>% arrange(desc(size))
-# csizeorder <- csizeorder$cluster
-
-write("calculating display levels",stderr())
-#calculate level to put each cluster on graph
-blocks$y=1
-for(C1 in unique(sort(blocks$cluster))) {
-  for(C2 in unique(sort(blocks$cluster))) {
-    lenC1 = sum(blocks$cluster==C1)
-    minC1 = min(blocks$pos[blocks$cluster==C1])
-    maxC1 = max(blocks$pos[blocks$cluster==C1])
-    yC1   = min(blocks$y[blocks$cluster==C1])
-
-    lenC2 = sum(blocks$cluster==C2)
-    minC2 = min(blocks$pos[blocks$cluster==C2])
-    maxC2 = max(blocks$pos[blocks$cluster==C2])
-    yC2   = min(blocks$y[blocks$cluster==C2])
-
-
-    if((minC2<maxC1 & maxC2>minC1)) {
-      if(C2>C1 & yC1==yC2) {
-        blocks$y[blocks$cluster==C2] <- blocks$y[blocks$cluster==C2]+1
-        #write(paste(C1,":",yC1," ",C2,":",yC2,"->",yC2+1,sep=""),stderr())
-      }
-    }
-  }
-}
-
+    blocks <- read.table(blocksfile,header=T)
+    blocks$y=1
 
 write("calculating block extents",stderr())
-blockextents <- blocks %>% group_by(cluster) %>% summarise(min=min(pos),mid=mean(pos),max=max(pos),y=min(y))
+    blockextents <- blocks %>% group_by(cluster) %>% summarise(min=min(pos),mid=mean(pos),max=max(pos),y=min(y))
+    clustcols <- sample(rainbow(nrow(blockextents),s=0.6,v=0.9))
+    names(clustcols) <- blockextents$cluster
+    blockextents$size <- blockextents$max-blockextents$min
+
+#calculate level to put each cluster on graph
+write("calculating display levels",stderr())
+    clustersL2S <- blockextents$cluster[order(blockextents$size,decreasing=T)]
+    clustersL2R <- blockextents$cluster[order(blockextents$min,decreasing=F)]
+
+    for(C1 in clustersL2S) {
+      for(C2 in clustersL2S) {
+        lenC1 = blockextents$size[blockextents$cluster==C1]
+        minC1 = blockextents$min[blockextents$cluster==C1]
+        maxC1 = blockextents$max[blockextents$cluster==C1]
+        yC1   = min(blocks$y[blocks$cluster==C1])
+
+        lenC2 = blockextents$size[blockextents$cluster==C2]
+        minC2 = blockextents$min[blockextents$cluster==C2]
+        maxC2 = blockextents$max[blockextents$cluster==C2]
+        yC2   = min(blocks$y[blocks$cluster==C2])
+
+        if((minC2<maxC1 & maxC2>minC1)) {
+          if(lenC2<lenC1 & yC1==yC2) {
+            newYC2 <- yC2+1
+            blocks$y[blocks$cluster==C2] <- newYC2
+            blockextents$y[blockextents$cluster==C2] <- newYC2
+            write(paste(C1,":",yC1," ",C2,":",yC2,"->",yC2+1,sep=""),stderr())
+          }
+        }
+      }
+    }
 
 
-clustcols <- sample(rainbow(nrow(blockextents),s=0.6,v=0.9))
-names(clustcols) <- blockextents$cluster
+write("plotting AIMs",stderr())
+    aimsM$cluster <- factor(aimsM$cluster,levels=clustersL2R,ordered=T)
+    aimplot <- ggplot(aimsM,aes(x=i,y=as.numeric(sample),fill=as.factor(value))) + geom_raster() +
+       ylab("samples") + xlab("SNPs")+ theme(legend.position="none")+
+         scale_y_continuous(expand = c(0,0)) + scale_x_continuous(expand = c(0,0)) +
+        scale_fill_manual(values=c("0"="blue","1"="purple","2"="red")) +
+        facet_grid("cncode ~ cluster",scale="free",space="free") +
+        #ggtitle(paste(invname,"aim calls","( top",nrow(invsnps),")"))+
+        theme(panel.spacing = unit(0.2, "mm"),
+              axis.text.y=element_blank(),
+              axis.title=element_blank(),
+              axis.ticks.y=element_blank())
 
-chrom <- blocks$chrom[1]
+
+
 
 write("plotting blocks",stderr())
-
-blockclustplot <- ggplot(blocks,aes(x=pos,y=y,fill=as.factor(cluster))) +
-  geom_raster() +
-  geom_segment(data=blockextents,aes(x=min,xend=max,y=y,yend=y,color=as.factor(cluster)),inherit.aes=F) +
-  geom_text(data=blockextents,aes(x=mid,y=y,label=cluster),inherit.aes=F) +
-  scale_fill_manual(values = clustcols)+
-  scale_color_manual(values = clustcols)+
-  theme(axis.title=element_blank(),axis.text.y=element_blank(),axis.ticks.y=element_blank(),
-        legend.position="none",legend.title.align = 1) +
-  scale_x_continuous(limits=c(0,chromlen[chrom]),expand = c(0,0,0,0))
-
-blockheight <- 0.5+(max(blocks$y)*0.25)
+    chrom <- blocks$chrom[1]
+    blockclustplot <- ggplot(blocks,aes(x=pos,y=y,fill=as.factor(cluster))) +
+      geom_raster() +
+      geom_segment(data=blockextents,aes(x=min,xend=max,y=y,yend=y,color=as.factor(cluster)),inherit.aes=F) +
+      geom_text(data=blockextents,aes(x=mid,y=y,label=cluster),inherit.aes=F) +
+      scale_fill_manual(values = clustcols)+
+      scale_color_manual(values = clustcols)+
+      theme(axis.title=element_blank(),axis.text.y=element_blank(),axis.ticks.y=element_blank(),
+            legend.position="none",legend.title.align = 1) +
+      scale_x_continuous(limits=c(0,chromlen[chrom]),expand = c(0,0,0,0))
 
 write("plotting aims / blocks",stderr())
-
-#aimplot / blockclustplot + plot_layout(heights=c(10-blockheight,blockheight))
-
-combplot <- arrangeGrob(
-  aimplot, blockclustplot,
-  ncol=1,heights=c(8,2))
+    combplot <- arrangeGrob(
+      aimplot, blockclustplot,
+      ncol=1,heights=c(8,2))
 
 write("saving aims / blocks",stderr())
-
-ggsave(outsnpspng,plot=combplot,dpi = 300,width=250,height=175,units="mm")
+    ggsave(outsnpspng,plot=combplot,dpi = 300,width=250,height=175,units="mm")
