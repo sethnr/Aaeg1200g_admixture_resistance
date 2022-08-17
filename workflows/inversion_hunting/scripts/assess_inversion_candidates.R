@@ -292,6 +292,11 @@ invsummary$admixed=NA
 invsummary$f3=NA
 invsummary$f3se=NA
 
+invsummary$hzaa=NA
+invsummary$hzbb=NA
+invsummary$hzab=NA
+invsummary$hzgood=NA
+
 invsummary$minBSP=MINBSP
 invsummary$minBSS=MINBSS
 invsummary$maxD=MAXD
@@ -325,9 +330,14 @@ for(I in unique(invsummary$cluster[invsummary$valid])) {
     invsummary$admixed[invsummary$cluster==I] <- F
   }
 
-  invsummary$hzaa[invsummary$cluster==I] <- meanHz(invsnps,p1)
-  invsummary$hzbb[invsummary$cluster==I] <- meanHz(invsnps,p2)
-  invsummary$hzab[invsummary$cluster==I] <- meanHz(invsnps,p3)
+  hzaa <- meanHz(invsnps,p1)
+  hzbb <- meanHz(invsnps,p2)
+  hzab <- meanHz(invsnps,p3)
+  hzgood <- (hzaa<hzab & hzab>hzbb)
+  invsummary$hzaa[invsummary$cluster==I] <- hzaa
+  invsummary$hzbb[invsummary$cluster==I] <- hzbb
+  invsummary$hzab[invsummary$cluster==I] <- hzab
+  invsummary$hzgood[invsummary$cluster==I] <- hzgood
 
 }
 
