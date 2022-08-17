@@ -322,8 +322,8 @@ for(I in unique(invsummary$cluster[invsummary$valid])) {
 
   f3 <- meanF3(invsnps,p3,p1,p2)
   f3se <- jackknifeF3se(invsnps,invposns,p3,p1,p2)
-  invsummary$f3[invsummary$cluster==I] <- f3
-  invsummary$f3se[invsummary$cluster==I] <- f3se
+  invsummary$f3[invsummary$cluster==I] <- signif(f3,3)
+  invsummary$f3se[invsummary$cluster==I] <- signif(f3se,3)
   if(f3 < 0-(2*f3se)) {
     invsummary$admixed[invsummary$cluster==I] <- T
   } else {
@@ -334,9 +334,9 @@ for(I in unique(invsummary$cluster[invsummary$valid])) {
   hzbb <- meanHz(invsnps,p2)
   hzab <- meanHz(invsnps,p3)
   hzgood <- (hzaa<hzab & hzab>hzbb)
-  invsummary$hzaa[invsummary$cluster==I] <- hzaa
-  invsummary$hzbb[invsummary$cluster==I] <- hzbb
-  invsummary$hzab[invsummary$cluster==I] <- hzab
+  invsummary$hzaa[invsummary$cluster==I] <- signif(hzaa,3)
+  invsummary$hzbb[invsummary$cluster==I] <- signif(hzbb,3)
+  invsummary$hzab[invsummary$cluster==I] <- signif(hzab,3)
   invsummary$hzgood[invsummary$cluster==I] <- hzgood
 
 }
