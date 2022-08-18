@@ -26,8 +26,8 @@ metatab <- read.table(metafile,header=T, sep="\t")
 write("reading inv snps",file=stderr())
 if (file.size(invaimsfile)>0) {
   allinvsnps <- read.table(invaimsfile,header=T,check.names = F)
-  write.table(table(allinvsnps$inv),file=stderr(),row.names = F,quote=F,col.names = F)
-  write(paste(length(unique(allinvsnps$inv)),"invs found in",invaimsfile),file=stderr())
+  write.table(table(allinvsnps$cluster),file=stderr(),row.names = F,quote=F,col.names = F)
+  write(paste(length(unique(allinvsnps$cluster)),"invs found in",invaimsfile),file=stderr())
   allinvnames <- unique(allinvsnps$inv)
 } else {
   allinvnames <- c()
