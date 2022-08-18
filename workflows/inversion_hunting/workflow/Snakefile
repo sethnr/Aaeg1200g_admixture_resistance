@@ -269,7 +269,6 @@ rule call_invs_global:
         meta=config["spptable"]
     output:
         calls="results/lostruct_merge/invs_chr{chrom}_calls.txt",
-        freqs="results/lostruct_merge/invs_chr{chrom}_freqs.txt",
     params:
         prefix="results/lostruct_merge/invs_chr{chrom}",
     resources:

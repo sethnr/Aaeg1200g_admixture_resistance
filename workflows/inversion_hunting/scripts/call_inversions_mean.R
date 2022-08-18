@@ -5,7 +5,6 @@ library("patchwork")
 library("gridExtra")
 library("grid")
 
-library("genetics")
 library("getopt")
 
 opttab <- matrix(c("infile","i","1","character",
