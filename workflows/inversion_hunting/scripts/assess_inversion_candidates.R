@@ -186,8 +186,8 @@ if (!is.null(opt$maxwss) ) {MAXWSS <- opt$maxwss}
 if (!is.null(opt$minbss)) {MINBSS <- opt$minbss}
 if (!is.null(opt$minbsp)) {MINBSP <- opt$minbsp}
 
-chromname <- c("NC_035107.1","NC_035108.1","NC_035109.1")
 
+chromname <- c("NC_035107.1","NC_035108.1","NC_035109.1")
 spptab <- read.table(sppfile,header=T, sep="\t")
 samples <- spptab$sample[spptab$country==country]
 write(paste("found",length(samples),"samples for",country),stderr())
@@ -197,8 +197,6 @@ invcands <- read.table(invcandfile,header=T)
 invcands$end <- as.numeric((as.data.frame(strsplit(invcands$block,":"))[2,]))
 invcands$start <- invcands$end-blocksize
 invcands$chromname <- chromname[invcands$chrom]
-
-#invcands <- invcands[invcands$cluster %in% c(485),]
 
 
 # Run PCAs for all candidate inversion regions
@@ -342,6 +340,7 @@ for(I in unique(invsummary$cluster[invsummary$valid])) {
   if(!hzgood) {
     write(paste("resetting valid for cluster",I,"(",hzaa,hzab,hzbb,hzgood,")"),stderr())
     invsummary$valid[invsummary$cluster==I] <- NA
+    pcs$valid[pcs$inv==I] <- NA
     }
 
 }
