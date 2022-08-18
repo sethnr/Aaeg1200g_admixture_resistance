@@ -286,7 +286,7 @@ if(exists("pcs")) {
 }
 
 ########
-# do f3 test on candidates
+# do f3 / hz test on candidates
 ########
 invsummary$admixed=NA
 invsummary$f3=NA
@@ -340,7 +340,9 @@ for(I in unique(invsummary$cluster[invsummary$valid])) {
   invsummary$hzgood[invsummary$cluster==I] <- hzgood
 
   if(!hzgood) {
-    invsummary$valid[invsummary$cluster==I] <- NA}
+    write(paste("resetting valid for cluster",I,"(",hzaa,hzab,hzbb,hzgood,")"),stderr())
+    invsummary$valid[invsummary$cluster==I] <- NA
+    }
 
 }
 
@@ -360,7 +362,7 @@ if(nrow(invsummary) > 0) {
 
 write(paste("plotting",nrow(invsummary),"PCs"),file=stderr())
 
-invsummary$inv <- factor(invsummary$cluster,levels=sort(unique(invsummary$cluster)),ordered=T)
+invsummary$inv <- factor(invsummary$cluster,levels=sort(unique(as.numeric(invsummary$cluster))),ordered=T)
 invcandsV <- merge(invcands,invsummary[,c("cluster","valid","admixed","hzgood")],all.x=T)
 
 invcandsV$validation <- "fail"
