@@ -34,6 +34,12 @@ if (!is.null(opt$r2)  ) {minr2 <- opt$r2}
 # outprefix <- "merged_aims_chr1_Kenya"
 
 
+mergefile <- paste(outprefix,"LDmerges.txt",sep="_")
+corfile <- paste(outprefix,".r2.txt",sep="")
+aimsfile <- paste(outprefix,"aims.txt",sep="_")
+blocksfile <- paste(outprefix,"blocks.txt",sep="_")
+pngfile <- paste(outprefix,".png",sep="")
+
 #####
 # get and cat blocks
 #####
@@ -47,7 +53,7 @@ chromname <- c("NC_035107.1","NC_035108.1","NC_035109.1")
 chromlen <- c(310827022,474425716,409777670)
 names(chromlen) <- chromname
 
-if(exists("allblocks")){rm(allblocks)}
+
 for(C in countries) {
   if(file.size(blockfiles[C])>0) {
     cblocks = read.table(blockfiles[C],header=T)
@@ -59,6 +65,16 @@ for(C in countries) {
     }
   }
 }
+
+if(!exists("allblocks")) {
+    write(paste("no blocks found in files",blockfiles),stderr())
+    for(filename in c(mergefile,corfile,aimsfile,blocksfile,pngfile)) {
+        write(paste("writing empty files for",filename)
+        file.create(filename)
+    }
+}
+
+
 allblocks$id <- paste(allblocks$chrom,allblocks$region,allblocks$inv,sep="_")
 
 csizes <- as.data.frame(allblocks %>% group_by(id) %>% summarise("size"=n(),"mid"=mean(pos)))
@@ -75,7 +91,6 @@ names(aimsfiles) <- countries
 
 write(aimsfiles,stderr())
 
-if(exists("allaims")){rm(allaims)}
 for(C in countries) {
   if(file.size(aimsfiles[C])>0) {
     write(paste(C,file.size(aimsfiles[C])),stderr())
@@ -161,7 +176,6 @@ if(file.exists(paste(outprefix,".r2.txt",sep=""))) {
   }
 
   r2df <- as.data.frame(r2matrix)
-  write.table(signif(r2df,3),paste(outprefix,".r2.txt",sep=""),col.names=T,row.names=T,quote=F,sep="\t")
 }
 
 
@@ -250,7 +264,6 @@ clustersizes <- allblocks %>% group_by(cluster) %>%
                 summarise(invs=n_distinct(inv),
                           blocks=n_distinct(block))
 
-#write.table(clustersizes,stderr())
 bigclusts <- clustersizes$cluster[clustersizes$invs>1]
 clustcols <- sample(rainbow(length(bigclusts),s=0.6,v=0.9))
 names(clustcols) <- bigclusts
@@ -265,7 +278,7 @@ blockclustplot <- ggplot(allblocks,aes(x=pos,y=id,fill=as.factor(cluster))) +
 
 r2plot | blockclustplot
 write("printing block plot",stderr())
-ggsave(paste(outprefix,".png",sep=""),dpi = 300,width=400,height=220,units="mm")
+ggsave(pngfile,dpi = 300,width=400,height=220,units="mm")
 
 
 
@@ -277,18 +290,22 @@ for(i in unique(allaims$cluster)) {
   clustaims$i[clustaims$cluster==i] <- c(1:sum(clustaims$cluster==i))
 }
 
-
-write("writing merge table",stderr())
-
-write.table(mergetab,file=paste(outprefix,"LDmerges.txt",sep="_"),col.names=T,quote=F,row.names=F,sep="\t")
-
 newnames <- mergetab$newname
 names(newnames) <- mergetab$cluster
 
-clustaims$cluster <- newnames[as.character(clustaims$inv)]
-write.table(clustaims,paste(outprefix,"aims.txt",sep="_"),sep="\t",quote=F,col.names=T,row.names=F)
 
+write("writing merge table",stderr())
+write.table(mergetab,file=mergefile,col.names=T,quote=F,row.names=F,sep="\t")
+
+write("writing correlation table",stderr())
+write.table(signif(r2df,3),corfile,col.names=T,row.names=T,quote=F,sep="\t")
+
+write("writing aims",stderr())
+clustaims$cluster <- newnames[as.character(clustaims$inv)]
+write.table(clustaims,aimsfile,sep="\t",quote=F,col.names=T,row.names=F)
+
+write("writing blocks",stderr())
 allblocks$cluster <- newnames[as.character(allblocks$cluster)]
-write.table(allblocks,file=paste(outprefix,"blocks.txt",sep="_"),sep="\t",col.names=T,row.names=F,quote=F)
+write.table(allblocks,file=blocksfile,sep="\t",col.names=T,row.names=F,quote=F)
 
 write("merged all inversions by LD",stderr())

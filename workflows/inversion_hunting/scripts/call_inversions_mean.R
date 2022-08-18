@@ -32,11 +32,7 @@ countrysorttab <- unique(metatab[,c("country","contgroup","region")])
 metatab$country <- factor(metatab$country,levels=unique(metatab$country[order(metatab$region)]),ordered=T)
 
 
-# invcands <- read.table(invfile,header=T)
-# invcands <- subset(invcands,as.logical(valid))
-
 write("reading inv snps",file=stderr())
-
 if (file.size(invaimsfile)>0) {
   allinvsnps <- read.table(invaimsfile,header=T,check.names = F)
   write.table(table(allinvsnps$inv),file=stderr(),row.names = F,quote=F,col.names = F)
@@ -50,14 +46,9 @@ nsamples <- nrow(metatab)
 metatab <- metatab[metatab$sample %in% colnames(allinvsnps),]
 write(paste("found",nrow(metatab),"samples of",nsamples),stderr())
 samples <- metatab$sample
-#write(samples,stderr())
 
 #order countries in metatable by region (w african, eafrican, american, asian)
 cntorder <- unique(metatab$country[order(metatab$contgroup,metatab$region)])
-
-
-# mlpreds <- read.table(mlcallsfile,header=F,col.names = unique(allinvsnps$inv))
-# meanpreds <- read.table(meancallsfile,header=T)
 
 invnames <- sort(unique(allinvsnps$inv))
 
@@ -78,7 +69,6 @@ calldf$sample <- row.names(calldf)
 
 
 calldf <- merge(calldf,metatab,by="sample")
-
 
 getCallFreqs <- function(x) {
   ab = sum(x==1)
@@ -120,7 +110,7 @@ for(I in as.character(invnames)) {
     } else{
       Pval <- 1
     }
-    
+
     i = nrow(freqtable)+1
     freqtable[i,c("inv","country","pop")] <- c(I,C,"all")
     freqtable[i,c("aa","ab","bb","n","maf","P","HWE")] <- c(cfreqs[["aa"]],
@@ -130,7 +120,7 @@ for(I in as.character(invnames)) {
                                                cfreqs[["maf"]],
                                                Pval,
                                                Pval > 0.01)
-    
+
     for (P in unique(calldf$pop[calldf$country==C])) {
       #write(paste(C,P),stderr())
       calls <- calldf[calldf$country==C & calldf$pop==P,I]
@@ -142,7 +132,7 @@ for(I in as.character(invnames)) {
       } else{
         Pval <- 1
       }
-      
+
       i = nrow(freqtable)+1
       freqtable[i,c("inv","country","pop")] <- c(I,C,P)
       freqtable[i,c("aa","ab","bb","n","maf","P","HWE")] <- c(cfreqs[["aa"]],
@@ -152,7 +142,7 @@ for(I in as.character(invnames)) {
                                                               cfreqs[["maf"]],
                                                               Pval,
                                                               Pval > 0.01)
-      
+
     }
   }
 }
@@ -162,8 +152,3 @@ write.table(freqtable,paste(outprefix,"inv_freqs.txt",sep="_"),sep="\t",quote=F,
 
 write.table(calldf,paste(outprefix,"inv_calls.txt",sep="_"),
             sep="\t",quote=F,row.names=F,col.names=T)
-
-
-
-
-
