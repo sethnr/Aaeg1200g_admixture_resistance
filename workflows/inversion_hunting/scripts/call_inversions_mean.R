@@ -28,7 +28,7 @@ if (file.size(invaimsfile)>0) {
   allinvsnps <- read.table(invaimsfile,header=T,check.names = F)
   write.table(table(allinvsnps$cluster),file=stderr(),row.names = F,quote=F,col.names = F)
   write(paste(length(unique(allinvsnps$cluster)),"invs found in",invaimsfile),file=stderr())
-  allinvnames <- unique(allinvsnps$inv)
+  allinvnames <- unique(allinvsnps$cluster)
 } else {
   allinvnames <- c()
   write(paste("no AIMs found in ",invaimsfile,"\n",
@@ -45,7 +45,7 @@ samples <- metatab$sample
 
 
 
-invnames <- sort(unique(allinvsnps$inv))
+invnames <- sort(unique(allinvsnps$cluster))
 
 callmatrix <- matrix(rep(NA,length(samples)*length(invnames)),
                      ncol = length(invnames),
@@ -53,7 +53,7 @@ callmatrix <- matrix(rep(NA,length(samples)*length(invnames)),
 
 for(i in c(1:length(invnames))) {
   I <- invnames[i]
-  meansnpcalls <- apply(allinvsnps[allinvsnps$inv==I,samples],2,FUN=function(x) {as.integer(median(na.omit(x)))})
+  meansnpcalls <- apply(allinvsnps[allinvsnps$cluster==I,samples],2,FUN=function(x) {as.integer(median(na.omit(x)))})
   callmatrix[samples,i] <- meansnpcalls
 }
 
