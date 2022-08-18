@@ -34,9 +34,7 @@ if (file.size(invaimsfile)>0) {
   write(paste("no AIMs found in ",invaimsfile,"\n",
               "writing empty files for",callsfile),stderr())
   file.create(callsfile)
-
   q("no",0,F)
-
 }
 
 nsamples <- nrow(metatab)
@@ -65,4 +63,5 @@ calldf$sample <- row.names(calldf)
 
 calldf <- merge(calldf,metatab,by="sample")
 
+write(paste("writing calls to",callsfile),stderr())
 write.table(calldf,callsfile,sep="\t",quote=F,row.names=F,col.names=T)
