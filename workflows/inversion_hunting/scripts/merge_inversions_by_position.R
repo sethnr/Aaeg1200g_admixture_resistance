@@ -5,20 +5,18 @@ library("grid")
 library("getopt")
 
 opttab <- matrix(c("blocks","b","1","character",
-                   "calls","c","1","character",
+                   "calls","i","1","character",
+                   "country","r","1","character",
+                   "chr","c","1","character",
                    "out","o","1","character"
 ),byrow=T,ncol=4)
 opt <- getopt(opttab)
 
 blockfile <- opt$blocks
 callsfile <- opt$calls
+country <- opt$country
+chrom <- opt$chr
 outprefix <- opt$out
-
-# aimsfile <- "data/lostruct_aims/aims_chr1_Kenya.txt"
-# invfile <- "data/lostruct_inversion_candidates/regions_chr1_Kenya.txt"
-# assessfile <- "data/lostruct_inversions/inversions_chr1_Kenya.txt"
-# metafile <- "resources/meta_Aaeg1kg_spp.txt"
-# outprefix <- "merged_aims_chr1_Kenya"
 
 outblocks <- paste(outprefix,"blocks.txt",sep="_")
 outcalls <- paste(outprefix,"calls.txt",sep="_")
@@ -92,7 +90,7 @@ while(length(rawnames)>0) {
   write(paste(" ",C1,"<-",paste(ols,collapse="/")),stderr())
 
   #clustername <- paste(ols,collapse="/")
-  clustername <- paste(ci,length(ols),sep="_")
+  clustername <- paste(chrom,country,ci,length(ols),sep="_")
   newblocks[[clustername]] = unique(olbs)
   mergetab <- rbind(mergetab,data.frame("cluster"=rep(clustername,length(ols)),
                          "inversion"=ols))

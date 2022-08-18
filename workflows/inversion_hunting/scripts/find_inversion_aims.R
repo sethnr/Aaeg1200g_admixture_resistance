@@ -4,8 +4,6 @@ library("getopt")
 opttab <- matrix(c("blocks","b","1","character",
                    "calls", "c","1","character",
                    "vcf",   "v","1","character",
-#                   "country","C","1","character",
-#                   "samples","S","1","character",
                    "chisq","P","1","numeric",
                    "maxaims","N","1","numeric",
                    "outfile","o","1","character"
@@ -114,7 +112,6 @@ for(C in as.character(unique(invblocks$inv))) {
     if(sum(compposns$assoc < MAXCHISQ)>0) {
       assocposns <- compposns[compposns$assoc < MAXCHISQ,] %>% add_column(i=c(1:sum(compposns$assoc < MAXCHISQ)),
                                                                               "inv"=C,
-                                                                              # "country"=country,
                                                                               .after="pos")
    #if more than [maxaims] posns, take top 100 by chisq p-value
     if(nrow(assocposns)>maxaims) {
@@ -153,7 +150,6 @@ for(C in unique(invblocks$inv)) {
 
 	colnames(invsnps) <- samples
         invsnps <- cbind(invaims,as.data.frame(invsnps))
-#	write.table(invsnps[,c(1:20)]
 
     } else {
        #pull out only those SNPs from file for ALL samples

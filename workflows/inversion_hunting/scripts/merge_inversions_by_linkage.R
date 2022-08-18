@@ -76,7 +76,8 @@ if(!exists("allblocks")) {
 }
 
 
-allblocks$id <- paste(allblocks$chrom,allblocks$region,allblocks$inv,sep="_")
+#allblocks$id <- paste(allblocks$chrom,allblocks$region,allblocks$inv,sep="_")
+allblocks$id <- allblocks$inv
 
 csizes <- as.data.frame(allblocks %>% group_by(id) %>% summarise("size"=n(),"mid"=mean(pos)))
 cids <- csizes[order(csizes[,"mid"],decreasing = F),1]
