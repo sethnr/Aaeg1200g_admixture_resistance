@@ -69,7 +69,7 @@ for(C in countries) {
 if(!exists("allblocks")) {
     write(paste("no blocks found in files",blockfiles),stderr())
     for(filename in c(mergefile,corfile,aimsfile,blocksfile,pngfile)) {
-        write(paste("writing empty files for",filename)
+        write(paste("writing empty files for",filename),stderr())
         file.create(filename)
     }
 }
