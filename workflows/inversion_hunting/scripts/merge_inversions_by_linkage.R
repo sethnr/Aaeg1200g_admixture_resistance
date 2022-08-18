@@ -177,8 +177,7 @@ if(file.exists(paste(outprefix,".r2.txt",sep=""))) {
     }
     write(paste(" "),stderr())
   }
-
-  r2df <- as.data.frame(r2matrix)
+  r2df <- signif(as.data.frame(r2matrix),3)
 }
 
 
@@ -301,7 +300,7 @@ write("writing merge table",stderr())
 write.table(mergetab,file=mergefile,col.names=T,quote=F,row.names=F,sep="\t")
 
 write("writing correlation table",stderr())
-write.table(signif(r2df,3),corfile,col.names=T,row.names=T,quote=F,sep="\t")
+write.table(r2df,corfile,col.names=T,row.names=T,quote=F,sep="\t")
 
 write("writing aims",stderr())
 clustaims$cluster <- newnames[as.character(clustaims$inv)]
