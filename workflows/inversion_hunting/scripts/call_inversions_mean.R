@@ -18,7 +18,6 @@ invaimsfile <- opt$infile
 metafile <- opt$meta
 outprefix <- opt$outfile
 
-freqfile <- paste(outprefix,"inv_freqs.txt",sep="_")
 callsfile <- paste(outprefix,"inv_calls.txt",sep="_")
 
 write("gathering meta",file=stderr())
@@ -34,8 +33,7 @@ if (file.size(invaimsfile)>0) {
 } else {
   allinvnames <- c()
   write(paste("no AIMs found in ",invaimsfile,"\n",
-              "writing empty files for",freqfile,callsfile),stderr())
-  file.create(freqfile)
+              "writing empty files for",callsfile),stderr())
   file.create(callsfile)
 
   q("no",0,F)
@@ -66,85 +64,6 @@ for(i in c(1:length(invnames))) {
 calldf <- as.data.frame(callmatrix)
 calldf$sample <- row.names(calldf)
 
-
-
 calldf <- merge(calldf,metatab,by="sample")
 
-getCallFreqs <- function(x) {
-  ab = sum(x==1)
-  aa = sum(x==0)
-  bb = sum(x==2)
-  n = (ab+aa+bb)
-  maf = (ab+(2*bb))/(2*n)
-  list("aa"=aa,
-       "ab"=ab,
-       "bb"=bb,
-       "n"=n,
-       "maf"=maf)
-}
-
-
-
-freqtable <- data.frame(inv=character(),
-           country=character(),
-           pop=character(),
-           aa=numeric(),
-           ab=numeric(),
-           bb=numeric(),
-           n=numeric(),
-           maf=numeric(),
-           P=numeric(),
-           HWE=logical())
-
-for(I in as.character(invnames)) {
-  #write(I,stderr())
-  for(C in unique(calldf$country)) {
-  #for(C in c("Kenya")) {
-    #write(paste(" ",C),stderr())
-    calls <- calldf[calldf$country==C,I]
-    cfreqs <- getCallFreqs(calls)
-    geno <- genotype(c("a/a","a/b","b/b")[calls+1])
-    if(nallele(geno)==2) {
-      test <- HWE.test(geno)
-      Pval <- test$test$p.value
-    } else{
-      Pval <- 1
-    }
-
-    i = nrow(freqtable)+1
-    freqtable[i,c("inv","country","pop")] <- c(I,C,"all")
-    freqtable[i,c("aa","ab","bb","n","maf","P","HWE")] <- c(cfreqs[["aa"]],
-                                               cfreqs[["ab"]],
-                                               cfreqs[["bb"]],
-                                               cfreqs[["n"]],
-                                               cfreqs[["maf"]],
-                                               Pval,
-                                               Pval > 0.01)
-
-    for (P in unique(calldf$pop[calldf$country==C])) {
-      #write(paste(C,P),stderr())
-      calls <- calldf[calldf$country==C & calldf$pop==P,I]
-      cfreqs <- getCallFreqs(calls)
-      geno <- genotype(c("a/a","a/b","b/b")[calls+1])
-      if(nallele(geno)==2) {
-        test <- HWE.test(geno)
-        Pval <- test$test$p.value
-      } else{
-        Pval <- 1
-      }
-
-      i = nrow(freqtable)+1
-      freqtable[i,c("inv","country","pop")] <- c(I,C,P)
-      freqtable[i,c("aa","ab","bb","n","maf","P","HWE")] <- c(cfreqs[["aa"]],
-                                                              cfreqs[["ab"]],
-                                                              cfreqs[["bb"]],
-                                                              cfreqs[["n"]],
-                                                              cfreqs[["maf"]],
-                                                              Pval,
-                                                              Pval > 0.01)
-
-    }
-  }
-}
-write.table(freqtable,freqfile,sep="\t",quote=F,row.names=F,col.names=T)
 write.table(calldf,callsfile,sep="\t",quote=F,row.names=F,col.names=T)
