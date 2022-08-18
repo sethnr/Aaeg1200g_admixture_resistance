@@ -339,6 +339,9 @@ for(I in unique(invsummary$cluster[invsummary$valid])) {
   invsummary$hzab[invsummary$cluster==I] <- signif(hzab,3)
   invsummary$hzgood[invsummary$cluster==I] <- hzgood
 
+  if(!hzgood) {
+    invsummary$valid[invsummary$cluster==I] <- NA}
+
 }
 
 
