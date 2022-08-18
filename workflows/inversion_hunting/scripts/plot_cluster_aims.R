@@ -32,18 +32,19 @@ metatab$country <- factor(metatab$country,levels=unique(metatab$country[order(me
 
 chromlen <- c(310827022,474425716,409777670)
 
-# invcands <- read.table(invfile,header=T)
-# invcands <- subset(invcands,as.logical(valid))
 
 write("reading inv snps",file=stderr())
 
 if (file.size(invaimsfile)>0) {
   allinvsnps <- read.table(invaimsfile,header=T,check.names = F)
-  #write.table(table(allinvsnps$inv),file=stderr(),row.names = F,quote=F,col.names = F)
   write(paste(length(unique(allinvsnps$inv)),"invs found in",invaimsfile),file=stderr())
   allinvnames <- unique(allinvsnps$inv)
 } else {
   allinvnames <- c()
+  write(paste("no AIMs found to plot in ",invaimsfile,"\n",
+              "writing empty plot for",outsnpspng),stderr())
+  file.create(outsnpspng)
+  q("no",0,F)
 }
 
 nsamples <- nrow(metatab)
