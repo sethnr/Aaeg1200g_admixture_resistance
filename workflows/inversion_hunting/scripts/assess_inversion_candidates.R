@@ -318,17 +318,16 @@ for(I in unique(invsummary$cluster[invsummary$valid])) {
   p3 <- clusters=='ab'
   p2 <- clusters=='bb'
 
+
+  #calculate F3 stat for middle cluster
   f3 <- meanF3(invsnps,p3,p1,p2)
   f3se <- jackknifeF3se(invsnps,invposns,p3,p1,p2)
-
   invsummary$f3[invsummary$cluster==I] <- signif(f3,3)
   invsummary$f3se[invsummary$cluster==I] <- signif(f3se,3)
-  if(f3 < 0-(2*f3se)) {
-    invsummary$admixed[invsummary$cluster==I] <- T
-  } else {
-    invsummary$admixed[invsummary$cluster==I] <- F
-  }
+  admixed <- f3 < 0-(2*f3se)
+  invsummary$admixed[invsummary$cluster==I] <- admixed
 
+  #assess hz for middle cluster
   hzaa <- meanHz(invsnps,p1)
   hzbb <- meanHz(invsnps,p2)
   hzab <- meanHz(invsnps,p3)
@@ -338,6 +337,7 @@ for(I in unique(invsummary$cluster[invsummary$valid])) {
   invsummary$hzab[invsummary$cluster==I] <- signif(hzab,3)
   invsummary$hzgood[invsummary$cluster==I] <- hzgood
 
+  #if fails both, set as not inverted
   if(!hzgood & !admixed) {
     write(paste("resetting valid for cluster",I,"(",hzaa,hzab,hzbb,hzgood,") (",f3,0-(2*f3se),")"),stderr())
     #invsummary$valid[invsummary$cluster==I] <- NA
