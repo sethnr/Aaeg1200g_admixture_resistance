@@ -268,7 +268,7 @@ rule call_invs_global:
         tbi=lambda wildcards: get_remote_vcf_tbi(wildcards),
         meta=config["spptable"]
     output:
-        calls="results/lostruct_merge/invs_chr{chrom}_calls.txt",
+        calls="results/lostruct_merge/invs_chr{chrom}_inv_calls.txt",
     params:
         prefix="results/lostruct_merge/invs_chr{chrom}",
     resources:
