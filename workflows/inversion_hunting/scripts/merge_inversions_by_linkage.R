@@ -72,6 +72,7 @@ if(!exists("allblocks")) {
         write(paste("writing empty files for",filename),stderr())
         file.create(filename)
     }
+    stop(paste("no inversion to merge for chr",chrom))
 }
 
 
