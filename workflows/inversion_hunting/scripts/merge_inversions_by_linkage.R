@@ -99,7 +99,8 @@ for(C in countries) {
     caims = read.table(aimsfiles[C],header=T)
     caims <- caims[,c("chrom","pos","i","inv","assoc")]
     caims$region <- C
-    caims$id <- paste(chrom,C,caims$inv,sep="_")
+    #caims$id <- paste(chrom,C,caims$inv,sep="_")
+    caims$id <- caims$inv
     if(exists("allaims")) {
       allaims <- rbind(allaims,caims)
     } else{
