@@ -320,6 +320,7 @@ for(I in unique(invsummary$cluster[invsummary$valid])) {
 
   f3 <- meanF3(invsnps,p3,p1,p2)
   f3se <- jackknifeF3se(invsnps,invposns,p3,p1,p2)
+
   invsummary$f3[invsummary$cluster==I] <- signif(f3,3)
   invsummary$f3se[invsummary$cluster==I] <- signif(f3se,3)
   if(f3 < 0-(2*f3se)) {
@@ -337,9 +338,9 @@ for(I in unique(invsummary$cluster[invsummary$valid])) {
   invsummary$hzab[invsummary$cluster==I] <- signif(hzab,3)
   invsummary$hzgood[invsummary$cluster==I] <- hzgood
 
-  if(!hzgood) {
-    write(paste("resetting valid for cluster",I,"(",hzaa,hzab,hzbb,hzgood,")"),stderr())
-    invsummary$valid[invsummary$cluster==I] <- NA
+  if(!hzgood & !admixed) {
+    write(paste("resetting valid for cluster",I,"(",hzaa,hzab,hzbb,hzgood,") (",f3,0-(2*f3se),")"),stderr())
+    #invsummary$valid[invsummary$cluster==I] <- NA
     pcs$valid[pcs$inv==I] <- NA
     }
 
