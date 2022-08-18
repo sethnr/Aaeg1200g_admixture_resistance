@@ -39,7 +39,7 @@ rule all:
     input:
         #expand("results/lostruct_plot/invs_chr{chrid}_{loc}_aims.png",
         #chrid=[1,2,3],loc=bigcountries),
-        expand("results/lostruct_merge/invs_chr{chrid}_aims.txt",
+        expand("results/lostruct_merge/invs_chr{chrid}_calls.txt",
         chrid=[1,2,3])
 
 ###### run lostruct algorithm ########
@@ -260,6 +260,30 @@ rule merge_invs_global:
             -o {output.png} >> {log}
         """
 
+#call inversions using merged aims
+rule call_invs_global:
+    input:
+        aims="results/lostruct_merge/invs_chr{chrom}_aims.txt",
+        vcf=lambda wildcards: get_remote_vcf(wildcards),
+        tbi=lambda wildcards: get_remote_vcf_tbi(wildcards),
+        meta=config["spptable"]
+    output:
+        calls="results/lostruct_merge/invs_chr{chrom}_calls.txt",
+        freqs="results/lostruct_merge/invs_chr{chrom}_freqs.txt",
+    params:
+        prefix="results/lostruct_merge/invs_chr{chrom}",
+    resources:
+        mem_mb=8000,
+        disk_mb=10000,
+    log:
+        "logs/lostruct_merge/invs_chr{chrom}.log",
+    shell:
+        """
+        Rscript scripts/call_inversions_mean.R \
+          -i {input.aims} \
+          -m {input.meta} \
+          -o {params.prefix} > {log}
+        """
 
 
 

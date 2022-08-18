@@ -18,18 +18,11 @@ invaimsfile <- opt$infile
 metafile <- opt$meta
 outprefix <- opt$outfile
 
-# invaimsfile <- "invs_ldcf_chr1_r0.25_aims.txt"
-# metafile <- "resources/meta_Aaeg1kg_spp.txt"
-
+freqfile <- paste(outprefix,"inv_freqs.txt",sep="_")
+callsfile <- paste(outprefix,"inv_calls.txt",sep="_")
 
 write("gathering meta",file=stderr())
-
 metatab <- read.table(metafile,header=T, sep="\t")
-metatab$contgroup <- factor(metatab$contgroup,levels=c("Wafrica","Safrica","Eafrica","Americas","Asia"),ordered=T)
-metatab$region <- factor(metatab$region,levels=c("East Africa","West Africa","South America","Carribean","North America","Middle East","Asia","Pacific"),ordered=T)
-
-countrysorttab <- unique(metatab[,c("country","contgroup","region")])
-metatab$country <- factor(metatab$country,levels=unique(metatab$country[order(metatab$region)]),ordered=T)
 
 
 write("reading inv snps",file=stderr())
@@ -40,15 +33,22 @@ if (file.size(invaimsfile)>0) {
   allinvnames <- unique(allinvsnps$inv)
 } else {
   allinvnames <- c()
+  write(paste("no AIMs found in ",invaimsfile,"\n",
+              "writing empty files for",freqfile,callsfile),stderr())
+  file.create(freqfile)
+  file.create(callsfile)
+
+  q("no",0,F)
+
 }
 
 nsamples <- nrow(metatab)
 metatab <- metatab[metatab$sample %in% colnames(allinvsnps),]
+
 write(paste("found",nrow(metatab),"samples of",nsamples),stderr())
 samples <- metatab$sample
 
-#order countries in metatable by region (w african, eafrican, american, asian)
-cntorder <- unique(metatab$country[order(metatab$contgroup,metatab$region)])
+
 
 invnames <- sort(unique(allinvsnps$inv))
 
@@ -146,9 +146,5 @@ for(I in as.character(invnames)) {
     }
   }
 }
-
-write.table(subset(freqtable,HWE==0),stderr())
-write.table(freqtable,paste(outprefix,"inv_freqs.txt",sep="_"),sep="\t",quote=F,row.names=F,col.names=T)
-
-write.table(calldf,paste(outprefix,"inv_calls.txt",sep="_"),
-            sep="\t",quote=F,row.names=F,col.names=T)
+write.table(freqtable,freqfile,sep="\t",quote=F,row.names=F,col.names=T)
+write.table(calldf,callsfile,sep="\t",quote=F,row.names=F,col.names=T)
