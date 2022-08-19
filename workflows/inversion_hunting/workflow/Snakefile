@@ -270,6 +270,7 @@ rule call_plot_global:
         png="results/lostruct_merge/invs_chr{chrom}_aims.png"
     params:
         prefix="results/lostruct_merge/invs_chr{chrom}",
+        minaims=10
     resources:
         mem_mb=8000,
         disk_mb=10000,
@@ -281,13 +282,13 @@ rule call_plot_global:
             -s {input.meta} \
             -i {params.prefix}_aims.txt \
             -b {params.prefix}_blocks.txt \
-            -N 20 \
+            -N {params.minaims} \
             -o {output.png} 2> {log}
 
         Rscript scripts/call_inversions_mean.R \
           -i {input.aims} \
           -m {input.meta} \
-          -N 20 \
+          -N {params.minaims} \
           -o {params.prefix} 2>> {log}
         """
 
