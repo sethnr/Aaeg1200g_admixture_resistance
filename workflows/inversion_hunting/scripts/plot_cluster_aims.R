@@ -68,7 +68,9 @@ write(colnames(allinvsnps)[!colnames(allinvsnps) %in% samples],stderr())
 allinvsnps <- allinvsnps[allinvsnps$include,]
 goodclusters <- allinvsnps$cluster
 
-if(length(goodclusters < 1)) {
+write(paste(goodclusters),stderr())
+write(length(goodclusters),stderr())
+if(length(goodclusters) < 1) {
     file.create(outsnpspng)
     q("no",0)
 }
