@@ -234,9 +234,7 @@ rule merge_invs_global:
         tbi=lambda wildcards: get_remote_vcf_tbi(wildcards),
         meta=config["spptable"]
     output:
-        invs="results/lostruct_merge/invs_chr{chrom}_aims.txt",
-        png="results/lostruct_merge/invs_chr{chrom}_aims.png"
-  	#aimspic="results/lostruct_merge/aims_chr{chrom}_{region}.png",
+        aims="results/lostruct_merge/invs_chr{chrom}_aims.txt",
     params:
         indir="results/lostruct_inversions/",
         prefix="results/lostruct_merge/invs_chr{chrom}",
@@ -245,7 +243,7 @@ rule merge_invs_global:
         mem_mb=32000,
         disk_mb=20000,
     log:
-        "logs/lostruct_merge/invs_chr{chrom}.log",
+        "logs/lostruct_merge/invs_chr{chrom}_LDmerge.log",
     shell:
         """
         Rscript scripts/merge_inversions_by_linkage.R \
@@ -256,35 +254,38 @@ rule merge_invs_global:
           -c {wildcards.chrom} \
           -o {params.prefix} > {log}
 
-        Rscript scripts/plot_cluster_aims.R \
-            -s {input.meta} \
-            -i {params.prefix}_aims.txt \
-            -b {params.prefix}_blocks.txt \
-            -o {output.png} >> {log}
         """
 
 #call inversions using merged aims
-rule call_invs_global:
+rule call_plot_global:
     input:
         aims="results/lostruct_merge/invs_chr{chrom}_aims.txt",
+        aims="results/lostruct_merge/invs_chr{chrom}_blocks.txt",
         vcf=lambda wildcards: get_remote_vcf(wildcards),
         tbi=lambda wildcards: get_remote_vcf_tbi(wildcards),
         meta=config["spptable"]
     output:
         calls="results/lostruct_merge/invs_chr{chrom}_inv_calls.txt",
+        png="results/lostruct_merge/invs_chr{chrom}_aims.png"
     params:
         prefix="results/lostruct_merge/invs_chr{chrom}",
     resources:
         mem_mb=8000,
         disk_mb=10000,
     log:
-        "logs/lostruct_merge/invs_chr{chrom}.log",
+        "logs/lostruct_merge/invs_chr{chrom}_call.log",
     shell:
         """
+        Rscript scripts/plot_cluster_aims.R \
+            -s {input.meta} \
+            -i {params.prefix}_aims.txt \
+            -b {params.prefix}_blocks.txt \
+            -o {output.png} > {log}
+
         Rscript scripts/call_inversions_mean.R \
           -i {input.aims} \
           -m {input.meta} \
-          -o {params.prefix} > {log}
+          -o {params.prefix} >> {log}
         """
 
 

@@ -44,8 +44,20 @@ write(paste("found",nrow(metatab),"samples of",nsamples),stderr())
 samples <- metatab$sample
 
 
+#removing invs with too few AIMs, stop if no clusters left
+    write(paste("removing invs with <",MINAIMS,"aims"),stderr())
+    aimcounts <- as.data.frame(allinvsnps$cluster)
+    colnames(aimcounts) <- c("cluster","n")
+    write.table(aimcounts,sep="\t",quote=F,stderr())
+    goodclusters <- aimcounts$cluster[aimcounts$n>MINAIMS]
+    if(length(goodclusters < 1)) {
+        file.create(callsfile)
+        q("no",0)
+    }
+    allinvsnps <- allinvsnps[allinvsnps$cluster %in% goodclusters,]
 
-invnames <- sort(unique(allinvsnps$cluster))
+#invnames <- sort(unique(allinvsnps$cluster))
+invnames <- goodclusters
 
 callmatrix <- matrix(rep(NA,length(samples)*length(invnames)),
                      ncol = length(invnames),

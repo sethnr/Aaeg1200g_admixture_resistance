@@ -186,6 +186,7 @@ for(C in unique(invblocks$inv)) {
             write(paste("  no MINR2 given, using mean-sd (",mean(r2s),sd(r2s),") for inv",C),stderr())
             ldinclude <- meanr2s >= (mean(r2s)-sd(r2s))
         } else {
+            write(paste("including SNPs > ",MINR2),stderr())
             ldinclude <- meanr2s >= MINR2}
 
         write(paste("  passing ",sum(ldinclude),"AIMs"),stderr())
@@ -202,14 +203,14 @@ for(C in unique(invblocks$inv)) {
         }
 
     aimcount <- nrow(invsnps)
-    if(aimcount < MINAIMS) {
+    #if(aimcount < MINAIMS) {
         write(paste(aimcount,"AIMs pass filters for inv",C),stderr())
-    } else {
+    #} else {
         if(!exists("allinvsnps")) {
             allinvsnps <- invsnps
         } else {
             allinvsnps <- rbind(allinvsnps,invsnps)}
-    }
+    #}
 }
 
 
