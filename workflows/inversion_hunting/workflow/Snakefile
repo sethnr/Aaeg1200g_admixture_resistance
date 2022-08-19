@@ -282,13 +282,13 @@ rule call_plot_global:
             -i {params.prefix}_aims.txt \
             -b {params.prefix}_blocks.txt \
             -N 20 \
-            -o {output.png} > {log}
+            -o {output.png} 2> {log}
 
         Rscript scripts/call_inversions_mean.R \
           -i {input.aims} \
           -m {input.meta} \
           -N 20 \
-          -o {params.prefix} >> {log}
+          -o {params.prefix} 2>> {log}
         """
 
 
