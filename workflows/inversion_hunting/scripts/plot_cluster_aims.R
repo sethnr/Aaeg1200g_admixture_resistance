@@ -72,7 +72,7 @@ write(colnames(allinvsnps)[!colnames(allinvsnps) %in% samples],stderr())
     colnames(aimcounts) <- c("cluster","n")
     write.table(aimcounts,sep="\t",quote=F,stderr())
     goodclusters <- aimcounts$cluster[aimcounts$n>MINAIMS]
-    if(length(goodclusters < 1)) {
+    if(length(goodclusters) < 1) {
         file.create(outsnpspng)
         q("no",0)
     }

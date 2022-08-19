@@ -52,7 +52,7 @@ samples <- metatab$sample
     colnames(aimcounts) <- c("cluster","n")
     write.table(aimcounts,sep="\t",quote=F,stderr())
     goodclusters <- aimcounts$cluster[aimcounts$n>MINAIMS]
-    if(length(goodclusters < 1)) {
+    if(length(goodclusters) < 1) {
         file.create(callsfile)
         q("no",0)
     }
