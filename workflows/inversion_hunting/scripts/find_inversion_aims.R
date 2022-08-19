@@ -203,13 +203,13 @@ for(C in unique(invblocks$inv)) {
 
     aimcount <- nrow(invsnps)
     if(aimcount < MINAIMS) {
-        write(paste(aimcount,"AIMs pass filters for inv",C),stderr()) }
-    invsnps$include <- aimcount >= MINAIMS
-    if(!exists("allinvsnps")) {
-        allinvsnps <- invsnps
+        write(paste(aimcount,"AIMs pass filters for inv",C),stderr())
     } else {
-        allinvsnps <- rbind(allinvsnps,invsnps)}
-
+        if(!exists("allinvsnps")) {
+            allinvsnps <- invsnps
+        } else {
+            allinvsnps <- rbind(allinvsnps,invsnps)}
+    }
 }
 
 
