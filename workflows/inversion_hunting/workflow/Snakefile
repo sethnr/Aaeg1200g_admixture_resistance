@@ -191,8 +191,9 @@ rule get_aims:
                 -b {input.blocks} \
                 -c {input.calls} \
                 -v {input.vcf} \
-		-P 1e-07 \
-		-N 100 \
+        		-P 1e-07 \
+        		-X 100 \
+                -N 20 \
                 -o {output.txt}\
             2> {log}
           """

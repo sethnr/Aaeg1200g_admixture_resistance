@@ -295,10 +295,10 @@ invsummary$hzbb=NA
 invsummary$hzab=NA
 invsummary$hzgood=NA
 
-invsummary$minBSP=MINBSP
-invsummary$minBSS=MINBSS
-invsummary$maxD=MAXD
-invsummary$maxWSS=MAXWSS
+# invsummary$minBSP=MINBSP
+# invsummary$minBSS=MINBSS
+# invsummary$maxD=MAXD
+# invsummary$maxWSS=MAXWSS
 
 
 for(I in unique(invsummary$cluster[invsummary$valid])) {

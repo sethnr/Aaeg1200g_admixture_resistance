@@ -4,8 +4,10 @@ library("getopt")
 opttab <- matrix(c("blocks","b","1","character",
                    "calls", "c","1","character",
                    "vcf",   "v","1","character",
+                   "maxaims","X","1","numeric",
+                   "minaims","N","1","numeric",
                    "chisq","P","1","numeric",
-                   "maxaims","N","1","numeric",
+                   "minr2","R","1","numeric",
                    "outfile","o","1","character"
 ),byrow=T,ncol=4)
 opt <- getopt(opttab)
@@ -17,6 +19,7 @@ outtxt <- opt$outfile
 
 #AIM criteria
 maxaims <- opt$maxaims
+minaims <- opt$maxaims
 MAXCHISQ <- as.numeric(opt$chisq)
 
 blocksize<-5e05
@@ -177,7 +180,13 @@ for(C in unique(invblocks$inv)) {
           }
         }
         meanr2s <- apply(r2s,1,mean)
-        ldinclude <- meanr2s >= (mean(r2s)-sd(r2s))
+
+        if(is.na(MINR2)) {
+            write(paste("no MINR2 given, using mean-sd ("mean(r2s),sd(r2s),") for inv",C),stderr())
+            ldinclude <- meanr2s >= (mean(r2s)-sd(r2s))
+        } else {
+            ldinclude <- meanr2s >= MINR2}
+
         invsnps <- invsnps[ldinclude,]
         invaims <- invaims[ldinclude,]
         invaims$i <- c(1:nrow(invaims))
@@ -189,7 +198,10 @@ for(C in unique(invblocks$inv)) {
         invsnps <- cbind(invaims,invsnps)
         }
 
-
+    aimcount <- nrow(invsnps)
+    if(aimcount < minaims) {
+        write(paste(aimcount,"AIMs pass filters for inv",C),stderr()) }
+    invsnps$include <- aimcount >= minaims
     if(!exists("allinvsnps")) {
         allinvsnps <- invsnps
     } else {

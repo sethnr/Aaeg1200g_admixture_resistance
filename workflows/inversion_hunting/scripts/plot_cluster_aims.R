@@ -66,6 +66,10 @@ allinvsnps <- allinvsnps[,c("chrom","pos","i","id","inv","cluster",samples)]
 allinvsnps <- unique(allinvsnps)
 write(colnames(allinvsnps)[!colnames(allinvsnps) %in% samples],stderr())
 
+#removing invs with too few AIMs
+allinvsnps <- allinvsnps[allinvsnps$include,]
+goodclusters <- allinvsnps$cluster
+
 aimsM <- pivot_longer(allinvsnps,all_of(samples),
 			names_to = "sample")   #%>% rename("invcountry"="country")
 write("pivoted",stderr())
@@ -90,6 +94,7 @@ write("sorting countries",stderr())
 write("reading blocks",stderr())
     blocks <- read.table(blocksfile,header=T)
     blocks$y=1
+    blocks <- blocks[blocks$cluster %in% goodclusters,]
 
 write("calculating block extents",stderr())
     blockextents <- blocks %>% group_by(cluster) %>% summarise(min=min(pos),mid=mean(pos),max=max(pos),y=min(y))
