@@ -1,0 +1,92 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+```{r setup, include=FALSE}
+library("tidyverse")
+
+library("patchwork")
+library("gridExtra")
+library("grid")
+
+library("genetics")
+
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+callsfiles <- list.files("lostruct_merge",pattern="invs_chr.*_inv_calls.txt",full.names = T)
+callsfiles <- callsfiles[laply(callsfiles, file.size)>0]
+rm("calltab")
+
+for(x in callsfiles) {
+  icalls <- read.table(x,header=T,sep="\t")
+  invnames <- colnames(icalls)[!colnames(icalls) %in% c("sample","spp","pop","region","contgroup","country")]
+  sample <- icalls$sample
+  icallmat <- icalls[,invnames]
+  if(!exists("calltab")) {
+    calltab <- cbind(sample,icallmat)
+  } else {
+    calltab <- cbind(calltab,icallmat)
+  }
+  
+}
+
+meta <- icalls[,c("sample","pop","region","country")]
+calltab <- merge(calltab,meta)
+
+
+countries <- unique(calltab$country)
+invnames <- colnames(calltab)[!colnames(calltab) %in% c("sample","spp","pop","region","contgroup","country")]
+maf <- function(x) {round(sum(x) / (length(x)*2),2)}
+
+popfreqs <- aggregate(. ~ pop,data=calltab[,c("pop",as.character(invnames))],FUN=maf)
+popN <- as.data.frame(table(calltab[,c("pop")]))
+colnames(popN) <- c("pop","n")
+popfreqs <- merge(popfreqs,popN)
+
+poplocs <- read.table("../../resources/aegy.wgs.pops.list.csv",sep=",",header=T) %>% rename_with(tolower)
+popvars <- read.table("meta_loc_demo_clim_vals.txt",header=T,sep="\t")
+demvarnames <- c("popdens","maxtemp","mintemp","precipitation","precseason","tempseason")
+popvars <- merge(poplocs[,c("pop","country","region")],popvars)
+
+popfreqs <- merge(popfreqs,popvars)
+popfreqsM <- pivot_longer(popfreqs,cols=invnames,names_to = "inversion",values_to = "freq")
+
+```
+
+
+```{r}
+ggplot(popfreqsM,aes(x=abs(lat),y=freq,color=region)) + geom_point()  + 
+  geom_smooth(method="lm") + facet_wrap("inversion",scale="free_x") + ylim(0,1) +
+  ggtitle("latitude vs inv freqs")
+
+ggplot(popfreqsM,aes(x=popdens,y=freq,color=region)) + geom_point()  + 
+  geom_smooth(method="lm") + facet_wrap("inversion",scale="free_x") + ylim(0,1) + scale_x_log10() +
+  ggtitle("population density vs inv freqs")
+
+ggplot(popfreqsM,aes(x=precipitation,y=freq,color=region)) + geom_point() + 
+  geom_smooth(method="lm",se = F) + facet_wrap("inversion",scale="free_x") + ylim(0,1) +
+  ggtitle("precipitation vs inv freqs")
+
+ggplot(popfreqsM,aes(x=precseason,y=freq,color=region)) + geom_point() + 
+  geom_smooth(method="lm",se = F) + facet_wrap("inversion",scale="free_x") + ylim(0,1) +
+  ggtitle("precipitation seasonality vs inv freqs")
+
+ggplot(popfreqsM,aes(x=tempseason,y=freq,color=region)) + geom_point() + 
+  geom_smooth(method="lm",se = F) + facet_wrap("inversion",scale="free_x") + ylim(0,1) +
+  ggtitle("temperature seasonality vs inv freqs")
+
+ggplot(popfreqsM,aes(x=maxtemp,y=freq,color=region)) + geom_point() + 
+  geom_smooth(method="lm",se = F) + facet_wrap("inversion",scale="free_x") + ylim(0,1) +
+  ggtitle("max temp vs inv freqs")
+
+ggplot(popfreqsM,aes(x=mintemp,y=freq,color=region)) + geom_point() + 
+  geom_smooth(method="lm",se = F) + facet_wrap("inversion",scale="free_x") + ylim(0,1) +
+  ggtitle("min temp vs inv freqs")
+
+
+
+```
