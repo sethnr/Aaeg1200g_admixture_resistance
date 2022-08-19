@@ -19,7 +19,7 @@ outtxt <- opt$outfile
 
 #AIM criteria
 MAXAIMS <- opt$maxaims
-MINAIMS <- opt$maxaims
+MINAIMS <- opt$minaims
 MINR2 <- opt$minr2
 MAXCHISQ <- as.numeric(opt$chisq)
 

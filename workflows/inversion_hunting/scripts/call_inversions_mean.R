@@ -9,6 +9,7 @@ library("getopt")
 
 opttab <- matrix(c("infile","i","1","character",
                    "meta","m","1","character",
+                   "minaims","N","1","numeric",
                    "outfile","o","1","character"
 ),byrow=T,ncol=4)
 opt <- getopt(opttab)
@@ -16,6 +17,7 @@ opt <- getopt(opttab)
 invaimsfile <- opt$infile
 metafile <- opt$meta
 outprefix <- opt$outfile
+MINAIMS <- opt$minaims
 
 callsfile <- paste(outprefix,"inv_calls.txt",sep="_")
 
