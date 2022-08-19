@@ -183,7 +183,7 @@ for(C in unique(invblocks$inv)) {
         meanr2s <- apply(r2s,1,mean)
 
         if(is.na(MINR2)) {
-            write(paste("no MINR2 given, using mean-sd ("mean(r2s),sd(r2s),") for inv",C),stderr())
+            write(paste("no MINR2 given, using mean-sd (",mean(r2s),sd(r2s),") for inv",C),stderr())
             ldinclude <- meanr2s >= (mean(r2s)-sd(r2s))
         } else {
             ldinclude <- meanr2s >= MINR2}
