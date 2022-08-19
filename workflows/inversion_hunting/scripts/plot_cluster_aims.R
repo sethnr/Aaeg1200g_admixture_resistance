@@ -55,12 +55,10 @@ samples <- metatab$sample
 #order countries in metatable by region (w african, eafrican, american, asian)
 cntorder <- unique(metatab$country[order(metatab$contgroup,metatab$region)])
 
-
-
 meansnp <- apply(allinvsnps[,samples],2,FUN=function(x) {mean(na.omit(x))})
-
 write("got means",stderr())
 samples <- samples[samples %in% colnames(allinvsnps)]
+
 
 allinvsnps <- allinvsnps[,c("chrom","pos","i","id","inv","cluster",samples)]
 allinvsnps <- unique(allinvsnps)
@@ -69,6 +67,11 @@ write(colnames(allinvsnps)[!colnames(allinvsnps) %in% samples],stderr())
 #removing invs with too few AIMs
 allinvsnps <- allinvsnps[allinvsnps$include,]
 goodclusters <- allinvsnps$cluster
+
+if length(goodclusters < 1) {
+    file.create(outsnpspng)
+    q("no",0)
+}
 
 aimsM <- pivot_longer(allinvsnps,all_of(samples),
 			names_to = "sample")   #%>% rename("invcountry"="country")
