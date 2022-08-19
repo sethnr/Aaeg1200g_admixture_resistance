@@ -181,8 +181,11 @@ if(file.exists(paste(outprefix,".r2.txt",sep=""))) {
 }
 
 
-r2df$from <- rownames(r2matrix)
-r2dfM <- pivot_longer(r2df,cols=any_of(cids),names_to = "to",values_to = "r2")
+#r2df$from <- rownames(r2matrix)
+
+r2dfM <- r2df %>%
+            add_column("from"=rownames(r2matrix)) %>%
+            pivot_longer(r2df,cols=any_of(cids),names_to = "to",values_to = "r2")
 r2dfM$to <- factor(r2dfM$to,levels=cids,ordered=T)
 r2dfM$from <- factor(r2dfM$from,levels=cids,ordered=T)
 r2plot <- ggplot(r2dfM,aes(x=from,y=to,fill=r2)) + geom_raster() +
