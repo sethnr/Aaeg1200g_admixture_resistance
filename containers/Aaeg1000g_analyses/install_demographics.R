@@ -10,5 +10,5 @@ repos <- c('http://cran.us.r-project.org')
 # install.packages(demographics,repos=repos,clean=TRUE)
 
 devtools::install_github("petrelharp/local_pca/lostruct")
-
+install.packages("genetics")
 q(save = "no")
