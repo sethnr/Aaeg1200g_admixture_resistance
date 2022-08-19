@@ -65,13 +65,12 @@ allinvsnps <- unique(allinvsnps)
 write(colnames(allinvsnps)[!colnames(allinvsnps) %in% samples],stderr())
 
 #removing invs with too few AIMs
-allinvsnps <- allinvsnps[allinvsnps$include,]
-goodclusters <- allinvsnps$cluster
-
-if(length(goodclusters < 1)) {
-    file.create(outsnpspng)
-    q("no",0)
-}
+# allinvsnps <- allinvsnps[allinvsnps$include,]
+# goodclusters <- allinvsnps$cluster
+# if(length(goodclusters < 1)) {
+#     file.create(outsnpspng)
+#     q("no",0)
+# }
 
 aimsM <- pivot_longer(allinvsnps,all_of(samples),
 			names_to = "sample")   #%>% rename("invcountry"="country")
