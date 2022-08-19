@@ -18,8 +18,9 @@ vcffile <- opt$vcf
 outtxt <- opt$outfile
 
 #AIM criteria
-maxaims <- opt$maxaims
-minaims <- opt$maxaims
+MAXAIMS <- opt$maxaims
+MINAIMS <- opt$maxaims
+MINR2 <- opt$minr2
 MAXCHISQ <- as.numeric(opt$chisq)
 
 blocksize<-5e05
@@ -117,8 +118,8 @@ for(C in as.character(unique(invblocks$inv))) {
                                                                               "inv"=C,
                                                                               .after="pos")
    #if more than [maxaims] posns, take top 100 by chisq p-value
-    if(nrow(assocposns)>maxaims) {
-        assocposns <- assocposns[order(assocposns$assoc)[1:maxaims],]
+    if(nrow(assocposns)>MAXAIMS) {
+        assocposns <- assocposns[order(assocposns$assoc)[1:MAXAIMS],]
         assocposns <- assocposns[order(assocposns$i),]
     }
     allaims <- rbind(allaims,assocposns)
@@ -199,9 +200,9 @@ for(C in unique(invblocks$inv)) {
         }
 
     aimcount <- nrow(invsnps)
-    if(aimcount < minaims) {
+    if(aimcount < MINAIMS) {
         write(paste(aimcount,"AIMs pass filters for inv",C),stderr()) }
-    invsnps$include <- aimcount >= minaims
+    invsnps$include <- aimcount >= MINAIMS
     if(!exists("allinvsnps")) {
         allinvsnps <- invsnps
     } else {
