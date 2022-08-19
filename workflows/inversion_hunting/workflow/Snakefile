@@ -18,7 +18,7 @@ spps = ["aaa", "aaf"]
 bigcountries = ["Brazil", "USA", "Senegal",
      "Philippines","Gabon","Ghana",
      "SaudiArabia","BurkinaFaso","PuertoRico",
-     "Uganda","Trinidad","Vietnam"]
+     "Uganda"]
 REGIONS=bigcountries
 
 conts = ["eafrica", "wafrica"]

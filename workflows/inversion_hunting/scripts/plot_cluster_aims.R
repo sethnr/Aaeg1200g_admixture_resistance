@@ -68,7 +68,7 @@ write(colnames(allinvsnps)[!colnames(allinvsnps) %in% samples],stderr())
 
 #removing invs with too few AIMs, stop if no clusters left
     write(paste("removing invs with <",MINAIMS,"aims"),stderr())
-    aimcounts <- as.data.frame(allinvsnps$cluster)
+    aimcounts <- as.data.frame(table(allinvsnps$cluster))
     colnames(aimcounts) <- c("cluster","n")
     write.table(aimcounts,sep="\t",quote=F,stderr())
     goodclusters <- aimcounts$cluster[aimcounts$n>MINAIMS]
