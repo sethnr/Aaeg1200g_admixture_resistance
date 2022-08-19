@@ -11,6 +11,7 @@ library("getopt")
 opttab <- matrix(c("infile","i","1","character",
                    "blocks","b","1","character",
                    "samples","s","1","character",
+                   "minaims","N","1","numeric",
                    "outfile","o","1","character"
 ),byrow=T,ncol=4)
 opt <- getopt(opttab)
@@ -19,6 +20,7 @@ invaimsfile <- opt$infile
 blocksfile <- opt$blocks
 metafile <- opt$samples
 outsnpspng <- opt$outfile
+MINAIMS <- opt$minaims
 
 
 write("gathering meta",file=stderr())
