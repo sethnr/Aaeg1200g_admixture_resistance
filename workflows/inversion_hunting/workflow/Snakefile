@@ -235,6 +235,7 @@ rule merge_invs_global:
         meta=config["spptable"]
     output:
         aims="results/lostruct_merge/invs_chr{chrom}_aims.txt",
+        blocks="results/lostruct_merge/invs_chr{chrom}_blocks.txt",
     params:
         indir="results/lostruct_inversions/",
         prefix="results/lostruct_merge/invs_chr{chrom}",
@@ -260,7 +261,7 @@ rule merge_invs_global:
 rule call_plot_global:
     input:
         aims="results/lostruct_merge/invs_chr{chrom}_aims.txt",
-        aims="results/lostruct_merge/invs_chr{chrom}_blocks.txt",
+        blocks="results/lostruct_merge/invs_chr{chrom}_blocks.txt",
         vcf=lambda wildcards: get_remote_vcf(wildcards),
         tbi=lambda wildcards: get_remote_vcf_tbi(wildcards),
         meta=config["spptable"]
