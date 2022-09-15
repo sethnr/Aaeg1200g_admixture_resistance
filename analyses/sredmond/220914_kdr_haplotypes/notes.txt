@@ -1,1 +1,16 @@
-tabix -h lostruct_chr2.vcf.gz NC_035108.1:354607309-354769022 > randthin_kdr_SNPs.vcf
+tabix -h $AADAT/phase_shapeit_thinrand/phased_shapeit_2.vcf.gz NC_035108.1:354607309-354769022 > randthin_kdr_SNPs.vcf
+tabix -h $AADAT/phase_shapeit_thinLD/phased_shapeit_2.vcf.gz NC_035108.1:354607309-354769022 > ldthin_kdr_SNPs.vcf
+
+
+mkdir AaegL5
+cd AaegL5
+ln -s ../../../../../refs/VectorBase-59_AaegyptiLVP_AGWG.refseq.gff genes.fa
+ln -s ../../../../../refs/Aedes-aegypti-LVP_AGWG_AaegL5_refSeq.fa sequences.fa
+java -Xmx12g -jar /opt/miniconda3/share/snpeff-5.1-2/snpEff.jar build -gff3 -dataDir ./ AaegL5
+ln -s ../../../../../refs/VectorBase-59_AaegyptiLVP_AGWG.refseq.gff genes.gff
+ln -s ../../../../../refs/VectorBase-59_AaegyptiLVP_AGWG_AnnotatedCDSs.fasta cds.fa
+ln -s ../../../../../refs/VectorBase-59_AaegyptiLVP_AGWG_AnnotatedProteins.fasta proteins.fa
+perl -pe s/AaegL5_1/NC_035107.1/; s/AaegL5_2/NC_035108.1/; s/AaegL5_3/NC_035109.1/; genes.gff > genes.refseq.gff
+ln -s ../../../../../refs/VectorBase-59_AaegyptiLVP_AGWG_AnnotatedProteins.refseq.fasta protein.fa
+java -Xmx12g -jar /opt/miniconda3/share/snpeff-5.1-2/snpEff.jar build -gff3 -dataDir ./ -noCheckProtein AaegL5
+bcftools view -H -q 0.2 -Q 0.98 randthin_kdr_SNPs.coding.vcf > randthin_kdr_SNPs.coding.maf0.02.vcf

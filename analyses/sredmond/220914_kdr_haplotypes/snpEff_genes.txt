@@ -1,0 +1,9 @@
+# The following table is formatted as tab separated values. 
+#GeneName	GeneId	TranscriptId	BioType	variants_impact_LOW	variants_impact_MODERATE	variants_impact_MODIFIER	variants_effect_3_prime_UTR_variant	variants_effect_5_prime_UTR_premature_start_codon_gain_variant	variants_effect_5_prime_UTR_variant	variants_effect_intron_variant	variants_effect_missense_variant	variants_effect_splice_region_variant	variants_effect_synonymous_variant	variants_effect_upstream_gene_variant
+AAEL019599	AAEL019599	AAEL019599-RA	protein_coding	41	4	1187	2	1	20	1168	4	3	37	0
+AAEL019599	AAEL019599	AAEL019599-RB	protein_coding	31	2	237	2	0	3	188	2	1	30	45
+AAEL019599	AAEL019599	AAEL019599-RC	protein_coding	41	4	1187	2	1	20	1168	4	3	37	0
+AAEL019599	AAEL019599	AAEL019599-RD	protein_coding	32	2	119	2	0	2	75	2	1	31	41
+AAEL019599	AAEL019599	AAEL019599-RE	protein_coding	41	4	1187	2	1	20	1168	4	3	37	0
+AAEL019599	AAEL019599	AAEL019599-RF	protein_coding	31	2	237	2	0	3	188	2	1	30	45
+AAEL019599	AAEL019599	AAEL019599-RG	protein_coding	41	4	1187	2	1	20	1168	4	3	37	0
