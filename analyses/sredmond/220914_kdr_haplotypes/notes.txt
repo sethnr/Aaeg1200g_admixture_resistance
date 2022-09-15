@@ -1,0 +1,1 @@
+tabix -h lostruct_chr2.vcf.gz NC_035108.1:354607309-354769022 > randthin_kdr_SNPs.vcf

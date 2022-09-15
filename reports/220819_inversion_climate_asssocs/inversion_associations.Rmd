@@ -34,7 +34,8 @@ for(x in callsfiles) {
   
 }
 
-meta <- icalls[,c("sample","pop","region","country")]
+meta <- icalls[,c("sample","pop","region","country","contgroup")]
+meta$region[meta$region == "Caribean"]<-"Caribbean"
 calltab <- merge(calltab,meta)
 
 
@@ -49,16 +50,20 @@ popfreqs <- merge(popfreqs,popN)
 
 poplocs <- read.table("../../resources/aegy.wgs.pops.list.csv",sep=",",header=T) %>% rename_with(tolower)
 popvars <- read.table("meta_loc_demo_clim_vals.txt",header=T,sep="\t")
-demvarnames <- c("popdens","maxtemp","mintemp","precipitation","precseason","tempseason")
 popvars <- merge(poplocs[,c("pop","country","region")],popvars)
 
 popfreqs <- merge(popfreqs,popvars)
-popfreqsM <- pivot_longer(popfreqs,cols=invnames,names_to = "inversion",values_to = "freq")
+popfreqs$abslat <- abs(popfreqs$lat)
+
+allvars <- c("abslat","popdens","maxtemp","mintemp","precipitation","precseason","tempseason")
+
 
 ```
 
 
 ```{r}
+popfreqsM <- pivot_longer(popfreqs,cols=invnames,names_to = "inversion",values_to = "freq")
+
 ggplot(popfreqsM,aes(x=abs(lat),y=freq,color=region)) + geom_point()  + 
   geom_smooth(method="lm") + facet_wrap("inversion",scale="free_x") + ylim(0,1) +
   ggtitle("latitude vs inv freqs")
@@ -90,3 +95,20 @@ ggplot(popfreqsM,aes(x=mintemp,y=freq,color=region)) + geom_point() +
 
 
 ```
+
+
+```{r}
+popfreqsM2 <- pivot_longer(popfreqsM,cols=all_of(allvars),names_to = "variable",values_to = "value")
+
+for(I in invnames) {
+
+ivarplot <- ggplot(subset(popfreqsM2,inversion==I),aes(x=value,y=freq,color=region)) + geom_point()  + 
+  geom_smooth(method="lm") + facet_wrap("variable",scale="free_x") + ylim(0,1) +
+  ggtitle(paste(I,"vs climate/dem vars"))
+
+print(ivarplot)
+}
+
+```
+
+

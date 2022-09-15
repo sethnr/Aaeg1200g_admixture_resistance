@@ -37,8 +37,8 @@ wildcard_constraints:
 
 rule all:
     input:
-        #expand("results/lostruct_plot/invs_chr{chrid}_{loc}_aims.png",
-        #chrid=[1,2,3],loc=bigcountries),
+        expand("results/lostruct_plot/invs_chr{chrid}_{loc}_aims.png",
+        chrid=[1,2,3],loc=bigcountries),
         expand("results/lostruct_merge/invs_chr{chrid}_inv_calls.txt",
         chrid=[1,2,3])
 
@@ -260,13 +260,12 @@ rule merge_invs_global:
 #call inversions using merged aims
 rule call_plot_global:
     input:
-        aims="results/lostruct_merge/invs_chr{chrom}_aims.txt",
-        blocks="results/lostruct_merge/invs_chr{chrom}_blocks.txt",
+        aims="results/lostruct_inversions/invs_chr{chrom}_aims.txt",
+        blocks="results/lostruct_inversions/invs_chr{chrom}_blocks.txt",
         vcf=lambda wildcards: get_remote_vcf(wildcards),
         tbi=lambda wildcards: get_remote_vcf_tbi(wildcards),
         meta=config["spptable"]
     output:
-        calls="results/lostruct_merge/invs_chr{chrom}_inv_calls.txt",
         png="results/lostruct_merge/invs_chr{chrom}_aims.png"
     params:
         prefix="results/lostruct_merge/invs_chr{chrom}",
@@ -284,12 +283,6 @@ rule call_plot_global:
             -b {params.prefix}_blocks.txt \
             -N {params.minaims} \
             -o {output.png} 2> {log}
-
-        Rscript scripts/call_inversions_mean.R \
-          -i {input.aims} \
-          -m {input.meta} \
-          -N {params.minaims} \
-          -o {params.prefix} 2>> {log}
         """
 
 

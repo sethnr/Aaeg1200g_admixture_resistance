@@ -26,3 +26,11 @@ Rscript print_inversion_offcenters.R \
 	-n 485
 
 
+Rscript print_inversion_offcenters.R \
+        -i regions_chr1_Senegal.txt \
+        -v data/aegy.wgs.aaa.aaf.norep5-30x.ac10.thinrand01.chr1.vcf.gz \
+        -o inversions_chr1_Senegal \
+        -s resources/meta_Aaeg1kg_spp.txt \
+        -c Senegal
+	-n 161
+
