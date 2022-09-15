@@ -1,1 +1,4 @@
 tabix -h lostruct_chr2.vcf.gz NC_035108.1:354607309-354769022 > randthin_kdr_SNPs.vcf
+tabix -h $AADAT/phase_shapeit_thinrand/phased_shapeit_2.vcf.gz NC_035108.1:354607309-354769022 > randthin_kdr_SNPs.vcf
+tabix -h $AADAT/phase_shapeit_ldthin/phased_shapeit_2.vcf.gz NC_035108.1:354607309-354769022 > ldthin_kdr_SNPs.vcf
+tabix -h $AADAT/phase_shapeit_thinLD/phased_shapeit_2.vcf.gz NC_035108.1:354607309-354769022 > ldthin_kdr_SNPs.vcf
