@@ -2,7 +2,7 @@ library(ape)
 library(pegas)
 library(vcfR)
 
-f <- "randthin_kdr_SNPs.coding.vcf"
+f <- "randthin_kdr_SNPs.coding.maf0.02.vcf"
 
 snps <- VCFloci(f)
 samples <- VCFlabels(f)
@@ -18,7 +18,7 @@ d <- dist.dna(h,"n")
 # #min spanning tree
 # nt <- rmst(d)
 #minimum spanning network
-nt <- msn(d)
+nt <- mst(d)
 
 
 meta <- read.table("meta_Aaeg1kg_spp.txt",header=T,sep="\t")
@@ -30,8 +30,8 @@ ntlabs <- attr(nt,"labels")
 
 sz <- summary(h)
 
-plot(nt,threshold = c(1, 10),fast=T,
-     pie=R[ntlabs,],size=sz[ntlabs],
-     legend = c(-2.5,3))
+plot(nt,fast=F,
+     pie=R[ntlabs,],size=sz[ntlabs]/100,
+     legend = T)
 
 
