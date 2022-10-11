@@ -307,9 +307,9 @@ rule call_invs_global:
         """
         Rscript scripts/call_inversions_mean.R \
             -m {input.meta} \
-            -i {params.prefix} \
+            -i {input.aims} \
             -N {params.minaims} \
-            -o {output.txt} 2> {log}
+            -o {params.prefix} 2> {log}
         """
 
 
