@@ -258,7 +258,7 @@ rule merge_invs_global:
         """
 
 #call inversions using merged aims
-rule call_plot_global:
+rule plot_global:
     input:
         aims="results/lostruct_inversions/invs_chr{chrom}_aims.txt",
         blocks="results/lostruct_inversions/invs_chr{chrom}_blocks.txt",
@@ -285,6 +285,32 @@ rule call_plot_global:
             -o {output.png} 2> {log}
         """
 
+#call inversions using merged aims
+rule call_invs_global:
+    input:
+        aims="results/lostruct_inversions/invs_chr{chrom}_aims.txt",
+        #blocks="results/lostruct_inversions/invs_chr{chrom}_blocks.txt",
+        vcf=lambda wildcards: get_remote_vcf(wildcards),
+        tbi=lambda wildcards: get_remote_vcf_tbi(wildcards),
+        meta=config["spptable"]
+    output:
+        txt="results/lostruct_merge/invs_chr{chrom}_calls.txt"
+    params:
+        prefix="results/lostruct_merge/invs_chr{chrom}",
+        minaims=10
+    resources:
+        mem_mb=8000,
+        disk_mb=10000,
+    log:
+        "logs/lostruct_call/invs_chr{chrom}_call.log",
+    shell:
+        """
+        Rscript scripts/call_inversions_mean.R \
+            -m {input.meta} \
+            -i {params.prefix}_aims.txt \
+            -N {params.minaims} \
+            -o {output.txt} 2> {log}
+        """
 
 
 
