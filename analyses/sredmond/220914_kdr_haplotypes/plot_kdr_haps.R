@@ -2,7 +2,7 @@ library(ape)
 library(pegas)
 library(vcfR)
 
-f <- "randthin_kdr_SNPs.coding.maf0.02.vcf"
+f <- "randthin_kdr_SNPs.coding.vcf"
 
 snps <- VCFloci(f)
 samples <- VCFlabels(f)
@@ -30,8 +30,10 @@ ntlabs <- attr(nt,"labels")
 
 sz <- summary(h)
 
-plot(nt,fast=F,
-     pie=R[ntlabs,],size=sz[ntlabs]/100,
-     legend = T)
 
+png(gsub(".vcf",".png",f),width=800,height=800)
+plot(nt,fast=T,threshold=c(5,10),
+     pie=R[ntlabs,],size=sz[ntlabs]/100,
+     legend = c(0.15, 9.5))
+dev.off()
 

@@ -1,9 +1,14 @@
 # The following table is formatted as tab separated values. 
-#GeneName	GeneId	TranscriptId	BioType	variants_impact_LOW	variants_impact_MODERATE	variants_impact_MODIFIER	variants_effect_3_prime_UTR_variant	variants_effect_5_prime_UTR_premature_start_codon_gain_variant	variants_effect_5_prime_UTR_variant	variants_effect_intron_variant	variants_effect_missense_variant	variants_effect_splice_region_variant	variants_effect_synonymous_variant	variants_effect_upstream_gene_variant
-AAEL019599	AAEL019599	AAEL019599-RA	protein_coding	41	4	1187	2	1	20	1168	4	3	37	0
-AAEL019599	AAEL019599	AAEL019599-RB	protein_coding	31	2	237	2	0	3	188	2	1	30	45
-AAEL019599	AAEL019599	AAEL019599-RC	protein_coding	41	4	1187	2	1	20	1168	4	3	37	0
-AAEL019599	AAEL019599	AAEL019599-RD	protein_coding	32	2	119	2	0	2	75	2	1	31	41
-AAEL019599	AAEL019599	AAEL019599-RE	protein_coding	41	4	1187	2	1	20	1168	4	3	37	0
-AAEL019599	AAEL019599	AAEL019599-RF	protein_coding	31	2	237	2	0	3	188	2	1	30	45
-AAEL019599	AAEL019599	AAEL019599-RG	protein_coding	41	4	1187	2	1	20	1168	4	3	37	0
+#GeneName	GeneId	TranscriptId	BioType	variants_impact_HIGH	variants_impact_MODERATE	variants_impact_MODIFIER	variants_effect_3_prime_UTR_variant	variants_effect_intron_variant	variants_effect_missense_variant	variants_effect_splice_region_variant	variants_effect_stop_gained
+AAEL008354	AAEL008354	AAEL008354-RA	protein_coding	0	2	991	6	985	2	0	0
+AAEL008354	AAEL008354	AAEL008354-RB	protein_coding	0	3	990	6	984	3	1	0
+AAEL008354	AAEL008354	AAEL008354-RC	protein_coding	0	3	990	6	984	3	1	0
+AAEL008354	AAEL008354	AAEL008354-RD	protein_coding	0	2	991	6	985	2	0	0
+AAEL008354	AAEL008354	AAEL008354-RE	protein_coding	0	3	990	6	984	3	1	0
+AAEL008354	AAEL008354	AAEL008354-RF	protein_coding	0	3	990	6	984	3	1	0
+AAEL008354	AAEL008354	AAEL008354-RG	protein_coding	0	3	990	6	984	3	1	0
+AAEL008354	AAEL008354	AAEL008354-RH	protein_coding	0	3	990	6	984	3	1	0
+AAEL008354	AAEL008354	AAEL008354-RI	protein_coding	0	3	990	6	984	3	1	0
+AAEL008354	AAEL008354	AAEL008354-RJ	protein_coding	0	2	991	6	985	2	0	0
+AAEL008354	AAEL008354	AAEL008354-RK	protein_coding	0	3	990	6	984	3	1	0
+AAEL008354	AAEL008354	AAEL008354-RL	protein_coding	3	6	984	0	984	6	1	3
