@@ -202,30 +202,30 @@ rule get_aims:
           """
 
 
-# rule make_inversion_plots:
-#       input:
-#           aims="results/lostruct_merge/invs_chr{chrom}_{region}_aims.txt",
-#           invs="results/lostruct_merge/invs_chr{chrom}_{region}_blocks.txt",
-#           dists=ancient("results/lostruct_run/lostruct_chr{chrom}_{region}.txt"),
-#           meta=config["spptable"]
-#       output:
-#           aimspic="results/lostruct_plot/invs_chr{chrom}_{region}_aims.png",
-#       resources:
-#           mem_mb=4000,
-#           disk_mb=10000,
-#       params:
-#           prefix="results/lostruct_plot/invs_chr{chrom}_{region}",
-#       log:
-#           log="logs/lostruct_plots/plot_chr{chrom}_{region}.log",
-#       shell:
-#         """
-#         Rscript scripts/make_inversion_plots.R \
-#           -i {input.invs} \
-#           -a {input.aims} \
-#           -m {input.meta} \
-#           -d {input.dists} \
-#           -o {params.prefix}
-#         """
+rule make_inversion_plots:
+      input:
+          aims="results/lostruct_merge/invs_chr{chrom}_{region}_aims.txt",
+          invs="results/lostruct_merge/invs_chr{chrom}_{region}_blocks.txt",
+          dists=ancient("results/lostruct_run/lostruct_chr{chrom}_{region}.txt"),
+          meta=config["spptable"]
+      output:
+          aimspic="results/lostruct_plot/invs_chr{chrom}_{region}_aims.png",
+      resources:
+          mem_mb=4000,
+          disk_mb=10000,
+      params:
+          prefix="results/lostruct_plot/invs_chr{chrom}_{region}",
+      log:
+          log="logs/lostruct_plots/plot_chr{chrom}_{region}.log",
+      shell:
+        """
+        Rscript scripts/make_inversion_plots.R \
+          -i {input.invs} \
+          -a {input.aims} \
+          -m {input.meta} \
+          -d {input.dists} \
+          -o {params.prefix}
+        """
 
 
 #merge inversions within sample / pop by position
