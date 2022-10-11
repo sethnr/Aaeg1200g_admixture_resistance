@@ -71,7 +71,7 @@ invedges <- invblocks %>% group_by(inv) %>% summarize(st = min(pos), en = max(po
 invplot <- ggplot(invblocks,aes(x=pos,y=as.factor(inv))) + geom_tile(height=0.9) +
   geom_text(data=subset(invedges,st<=(chromlen[chrom]/2)), aes(x=en,label=inv),hjust=-0.2) +
   geom_text(data=subset(invedges,st>(chromlen[chrom]/2)), aes(x=st,label=inv),hjust=1.2) +
-  scale_x_continuous(limits=c(0,chromlen[chrom]),expand = c(0,0,0,0)) + 
+  scale_x_continuous(limits=c(0,chromlen[chrom]),expand = c(0,0,0,0)) +
   theme(axis.title=element_blank(),axis.text.y=element_blank())
 
 write("making aim plots",stderr())
@@ -81,23 +81,23 @@ for(invname in unique(invblocks$inv)) {
   invnamesafe <- paste("X",gsub("\\D",".",invname,perl=T),sep="")
   write(invname,stderr())
   compinvids <- as.numeric(strsplit(invname,"/")[[1]])
-  
+
   #get SNPs for inversion, remove duplicates, re-index
   invsnps <- subset(aims,inv == invname)
   meansnp <- apply(invsnps[,samples],2,FUN=function(x) {mean(na.omit(x))})
-  
+
   cntinvorder <- metatab$sample[order(metatab$contgroup,metatab$region,metatab$country,meansnp[metatab$sample])]
   cntorder <- unique(metatab$country[order(metatab$contgroup,metatab$region)])
-  
+
   aimsM <- pivot_longer(invsnps,all_of(samples),names_to = "sample") %>% rename("invcountry"="country")
   aimsM <- merge(aimsM,metatab,by="sample")
   aimsM$sample <- factor(aimsM$sample,levels = cntinvorder,ordered=T)
   aimsM$country <- factor(aimsM$country,levels = cntorder,ordered=T)
   aimsM$cncode <- aimsM$country
   levels(aimsM$cncode) <- substr(levels(aimsM$country),0,3)
-  
+
   if(nrow(invsnps)>0) {
-    aimplot <- ggplot(aimsM,aes(x=i,y=as.numeric(sample),fill=as.factor(value))) + geom_raster() + 
+    aimplot <- ggplot(aimsM,aes(x=i,y=as.numeric(sample),fill=as.factor(value))) + geom_raster() +
       ylab("samples") + xlab("SNPs")+ theme(legend.position="none")+
       scale_y_continuous(expand = c(0,0)) + scale_x_continuous(expand = c(0,0)) +
       scale_fill_manual(values=c("0"="blue","1"="purple","2"="red")) +
@@ -108,7 +108,7 @@ for(invname in unique(invblocks$inv)) {
             axis.title.y=element_blank(),
             axis.ticks.y=element_blank())
   } else {
-    aimplot <- ggplot(aimsM,aes(x=i,y=as.numeric(sample),fill=as.factor(value))) + geom_raster() + 
+    aimplot <- ggplot(aimsM,aes(x=i,y=as.numeric(sample),fill=as.factor(value))) + geom_raster() +
       ylab("samples") + xlab("SNPs")+ theme(legend.position="none")+
       scale_y_continuous(expand = c(0,0)) + scale_x_continuous(expand = c(0,0)) +
       scale_fill_manual(values=c("0"="blue","1"="purple","2"="red")) +
@@ -119,9 +119,9 @@ for(invname in unique(invblocks$inv)) {
             axis.ticks.y=element_blank())
   }
   aimplots[[invnamesafe]] <- aimplot
-  
-  
-  
+
+
+
 }
 
 # aimsM <- pivot_longer(aims,all_of(samples),names_to = "sample") %>% rename("invcountry"="country")
@@ -130,7 +130,7 @@ for(invname in unique(invblocks$inv)) {
 # aimsM$country <- factor(aimsM$country,levels = cntorder,ordered=T)
 # aimsM$cncode <- aimsM$country
 # levels(aimsM$cncode) <- substr(levels(aimsM$country),0,3)
-# 
+#
 # aimplotC <- ggplot(aimsM,aes(x=i,y=as.numeric(sample),fill=as.factor(value))) + geom_raster() +
 #   ylab("samples") + xlab("SNPs")+ theme(legend.position="none")+
 #   scale_y_continuous(expand = c(0,0)) + scale_x_continuous(expand = c(0,0)) +
@@ -183,10 +183,10 @@ pcdistflat <- merge(merge(pcdistflat,regions,by="block"),
 invedges$label="L"
 invedges$label[invedges$mid < chromlen[chrom]*0.1] <- "R"
 invedges$label[invedges$mid > chromlen[chrom]*0.5 & invedges$mid < chromlen[chrom]*0.9] <- "R"
-#invedges 
+#invedges
 
 distplot <- ggplot(pcdistflat,aes(x=pos.x,y=pos.y,fill=value)) +
-  geom_tile() + 
+  geom_tile() +
   scale_x_continuous(limits=c(0,chromlen[chrom]),expand = c(0,0,0,0)) +
   scale_y_continuous(limits=c(0,chromlen[chrom]),expand = c(0,0,0,0)) +
   geom_text(data=subset(invedges,label=="L"),aes(y=mid,x=mid-3e7,label=inv),inherit.aes=F,color="orange") +
