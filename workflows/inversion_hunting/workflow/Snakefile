@@ -294,7 +294,7 @@ rule call_invs_global:
         tbi=lambda wildcards: get_remote_vcf_tbi(wildcards),
         meta=config["spptable"]
     output:
-        txt="results/lostruct_merge/invs_chr{chrom}_calls.txt"
+        txt="results/lostruct_merge/invs_chr{chrom}_inv_calls.txt"
     params:
         prefix="results/lostruct_merge/invs_chr{chrom}",
         minaims=10
@@ -307,7 +307,7 @@ rule call_invs_global:
         """
         Rscript scripts/call_inversions_mean.R \
             -m {input.meta} \
-            -i {params.prefix}_aims.txt \
+            -i {params.prefix} \
             -N {params.minaims} \
             -o {output.txt} 2> {log}
         """
