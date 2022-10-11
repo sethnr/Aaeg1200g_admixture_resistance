@@ -1,8 +1,3 @@
-#from snakemake.remote.GS import RemoteProvider as GSRemoteProvider
-#GS = GSRemoteProvider()
-
-
-
 container: "docker://sethnr/aaeg1000g_admixture:0.02"
 #### Config file and sample sheets #####
 configfile: "config/config.yaml"
@@ -19,19 +14,7 @@ wildcard_constraints:
 
 rule all:
     input:
-        expand("results/phase_shapeit/phased_shapeit_{chrom}.vcf.gz",chrom=CHROMS)
-
-rule mergetest:
-    input:
-        bam="results/phase_whatshap/whatshap_1.vcf.gz"
-
-
-rule bamtest:
-    input:
-        bam="results/bams/Debug010_aegypti_Tahiti_FrenchPolynesia_01.bam"
-
-###rule orders ###
-ruleorder: whatshap_sample > tabix_vcf
+        expand("results/bams/{sample}.bam",sample=SAMPLES)
 
 
 ##### split and phase vcf #####
@@ -63,8 +46,8 @@ rule tx_remote_bam:
     input:
         apikey=config["gkey"]
     output:
-        bam=temporary("results/bams/{sample}.bam"),
-        bai=temporary("results/bams/{sample}.bam.bai")
+        bam="results/bams/{sample}.bam",
+        bai="results/bams/{sample}.bam.bai"
     resources:
         mem_mb=2000,
         disk_mb=500000,
@@ -118,100 +101,6 @@ rule whatshap_sample:
         """
 
 
-# rule merge_vcfs:
-#     input:
-#         vcfs=expand("results/phase_whatshap/whatshapp_{{chrom}}_{sample}.vcf.gz",
-#             sample=SAMPLES),
-#         tbis=expand("results/phase_whatshap/whatshapp_{{chrom}}_{sample}.vcf.gz.tbi",
-#             sample=SAMPLES)
-#     output:
-#         filelist="results/phase_whatshap/filelist_{chrom}.txt",
-#         vcf=protected("results/phase_whatshap/whatshap_{chrom}.vcf.gz"),
-#     resources:
-#         bamspace=0,
-#         h_rt='6:00:00',
-#         mem_mb=16000,
-#         disk_mb=100000,
-#         cpus=4
-#     threads:4
-#     log:
-#         "logs/phase_whatshap/merge-chr{chrom}.log",
-#     shell:
-#         """
-# 	       echo {input.vcfs} | tr ' ' '\n' > {output.filelist}
-# 	       bcftools merge --threads {threads} -o {output.vcf} -O z -l {output.filelist};
-# 	    """
-
-
-rule merge_aaa_vcfs:
-    input:
-        vcfs=expand("results/phase_whatshap/whatshapp_{{chrom}}_{sample}.vcf.gz",
-            sample=AAA_SAMPLES),
-        tbis=expand("results/phase_whatshap/whatshapp_{{chrom}}_{sample}.vcf.gz.tbi",
-            sample=AAA_SAMPLES),
-    output:
-        vcf=protected("results/phase_whatshap/whatshap_{chrom}_AAAsamples.vcf.gz"),
-        filelist=temporary("results/phase_whatshap/whatshap_{chrom}_AAAsamples.txt"),
-    resources:
-        bamspace=0,
-        h_rt='6:00:00',
-        mem_mb=8000,
-        disk_mb=50000,
-        cpus=4
-    threads:4
-    log:
-        "logs/phase_whatshap/merge-chr{chrom}_aaa.log",
-    shell:
-        """
-    	echo {input.vcfs} | tr ' ' '\n' > {output.filelist}
-    	bcftools merge --threads {threads} -o {output.vcf} -O z -l {output.filelist}  >> {log}
-    	"""
-
-rule merge_aaf_vcfs:
-    input:
-        vcfs=expand("results/phase_whatshap/whatshapp_{{chrom}}_{sample}.vcf.gz",
-            sample=AAF_SAMPLES),
-        tbis=expand("results/phase_whatshap/whatshapp_{{chrom}}_{sample}.vcf.gz.tbi",
-            sample=AAF_SAMPLES),
-    output:
-        vcf=protected("results/phase_whatshap/whatshap_{chrom}_AAFsamples.vcf.gz"),
-        filelist=temporary("results/phase_whatshap/whatshap_{chrom}_AAFsamples.txt"),
-    resources:
-        bamspace=0,
-        h_rt='6:00:00',
-        mem_mb=8000,
-        disk_mb=50000,
-        cpus=4
-    threads:4
-    log:
-        "logs/phase_whatshap/merge-chr{chrom}_aaf.log",
-    shell:
-        """
-	       echo {input.vcfs} | tr ' ' '\n' > {output.filelist}
-	       bcftools merge --threads {threads} -o {output.vcf} -O z -l {output.filelist}  >> {log}
-	    """
-
-rule merge_aaa_aaf:
-    input:
-        aaa="results/phase_whatshap/whatshap_{chrom}_AAAsamples.vcf.gz",
-        aaatbi="results/phase_whatshap/whatshap_{chrom}_AAAsamples.vcf.gz.tbi",
-        aaf="results/phase_whatshap/whatshap_{chrom}_AAFsamples.vcf.gz",
-        aaftbi="results/phase_whatshap/whatshap_{chrom}_AAFsamples.vcf.gz.tbi"
-    output:
-        vcf=protected("results/phase_whatshap/whatshap_{chrom}.vcf.gz"),
-    resources:
-        bamspace=0,
-        h_rt='6:00:00',
-        mem_mb=16000,
-        disk_mb=100000,
-        cpus=4
-    threads:4
-    log:
-        "logs/phase_whatshap/merge-chr{chrom}.log",
-    shell:
-        """
-	       bcftools merge --threads {threads} -o {output.vcf} -O z {input.aaa} {input.aaf} >> {log}
-	    """
 
 
 rule phase_shapeit:
