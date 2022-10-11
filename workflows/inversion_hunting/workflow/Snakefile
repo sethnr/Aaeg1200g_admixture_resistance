@@ -39,7 +39,7 @@ rule all:
     input:
         expand("results/lostruct_merge/invs_chr{chrid}_aims.png",
         chrid=[1,2,3]),
-        expand("results/lostruct_merge/invs_chr{chrid}_inv_calls.txt",
+        expand("results/lostruct_merge/invs_chr{chrid}_calls.txt",
         chrid=[1,2,3])
 
 ###### run lostruct algorithm ########
