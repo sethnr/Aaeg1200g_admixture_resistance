@@ -26,7 +26,7 @@ rule all:
 
 rule subset_vcf:
     input:
-        vcf="lambda wildcards: get_region_vcf(wildcards)"
+        vcf=lambda wildcards: get_region_vcf(wildcards)
     output:
         outvcf="results/locushap_vcf/split_{locusname}.vcf.gz",
         outtbi="results/locushap_vcf/split_{locusname}.vcf.gz.tbi"
@@ -38,7 +38,7 @@ rule subset_vcf:
     log:
         "logs/locushap_split_vcf/{locusname}.log",
     params:
-        regionstring="lambda wildcards: get_region_string(wildcards)"
+        regionstring=lambda wildcards: get_region_string(wildcards)
     shell:
         """
         bcftools view -Oz  \
