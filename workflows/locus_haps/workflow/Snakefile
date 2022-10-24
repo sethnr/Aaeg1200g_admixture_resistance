@@ -18,7 +18,9 @@ wildcard_constraints:
 rule all:
     input:
         #expand("results/bams/{sample}.bam",sample=SAMPLES)
-        expand("results/locushap_split_vcf/split_{locusname}_{sample}.vcf.gz",sample=SAMPLES)
+        expand("results/locushap_split_vcf/split_{locusname}_{sample}.vcf.gz",
+            sample=SAMPLES,
+            locusname=LOCI)
 
 ##### split and phase vcf #####
 
