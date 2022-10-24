@@ -36,7 +36,7 @@ rule subset_vcf:
         bamspace=0
     threads: 1,
     log:
-        "logs/locushap_split_vcf/{chrom}.{sample}.log",
+        "logs/locushap_split_vcf/{locusname}.log",
     params:
         regionstring="lambda wildcards: get_region_string(wildcards)"
     shell:
