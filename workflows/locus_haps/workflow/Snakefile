@@ -9,7 +9,7 @@ SAMPLES=pd.read_table(config['samples'],dtype=str,header=0)['sample']
 AAF_SAMPLES=pd.read_table("config/AAF_samples.txt",dtype=str,header=0)['sample']
 AAA_SAMPLES=pd.read_table("config/AAA_samples.txt",dtype=str,header=0)['sample']
 
-LOCI=pd.read_table("resources/aaeg_hap_loci",dtype=str,header=0)['locusname']
+LOCI=pd.read_table(config["haploci"],dtype=str,header=0)['locusname']
 
 
 wildcard_constraints:
