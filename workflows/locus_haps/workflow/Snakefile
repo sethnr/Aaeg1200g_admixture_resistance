@@ -9,37 +9,62 @@ SAMPLES=pd.read_table(config['samples'],dtype=str,header=0)['sample']
 AAF_SAMPLES=pd.read_table("config/AAF_samples.txt",dtype=str,header=0)['sample']
 AAA_SAMPLES=pd.read_table("config/AAA_samples.txt",dtype=str,header=0)['sample']
 
+LOCI=pd.read_table("resources/aaeg_hap_loci",dtype=str,header=0)['locusname']
+
+
 wildcard_constraints:
     chrom=CHROMS
 
 rule all:
     input:
-        expand("results/bams/{sample}.bam",sample=SAMPLES)
-
+        #expand("results/bams/{sample}.bam",sample=SAMPLES)
+        expand("results/locushap_split_vcf/split_{locusname}_{sample}.vcf.gz",sample=SAMPLES)
 
 ##### split and phase vcf #####
 
-rule split_vcf:
+rule subset_vcf:
     input:
-        #vcf=lambda wildcards: get_remote_vcf(wildcards)
-        #vcf="verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.norep5-30x.ac10.thinrand01.chr{chrom}.vcf.gz"
-        vcf="verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr{chrom}.SNP.refseq.7e6.vcf.gz"
+        vcf="lambda wildcards: get_region_vcf(wildcards)"
     output:
-        outvcf=temporary("results/phase_split_vcf/split_{chrom}_{sample}.vcf.gz"),
-        outtbi=temporary("results/phase_split_vcf/split_{chrom}_{sample}.vcf.gz.tbi")
+        outvcf="results/locushap_vcf/split_{locusname}.vcf.gz",
+        outtbi="results/locushap_vcf/split_{locusname}.vcf.gz.tbi"
     resources:
         mem_mb=3000,
         disk_mb=500000,
         bamspace=0
     threads: 1,
     log:
-        "logs/phase_split_vcf/{chrom}.{sample}.log",
+        "logs/locushap_split_vcf/{chrom}.{sample}.log",
+    params:
+        regionstring="lambda wildcards: get_region_string(wildcards)"
+    shell:
+        """
+        bcftools view -Oz  \
+                -o results/locushap_vcf/split_{wildcards.locusname}.vcf.gz \
+                          {input.vcf} {params.regionstring} 2>> {log}
+        tabix -p vcf results/locushap_vcf/split_{wildcards.locusname}.vcf.gz  2>> {log}
+        """
+
+rule split_vcf:
+    input:
+        vcf="results/locushap_vcf/split_{locusname}.vcf.gz",
+        tbi="results/locushap_vcf/split_{locusname}.vcf.gz.tbi"
+    output:
+        outvcf=temporary("results/locushap_split_vcf/split_{locusname}_{sample}.vcf.gz"),
+        outtbi=temporary("results/locushap_split_vcf/split_{locusname}_{sample}.vcf.gz.tbi")
+    resources:
+        mem_mb=3000,
+        disk_mb=500000,
+        bamspace=0
+    threads: 1,
+    log:
+        "logs/locushap_split_vcf/{locusname}.{sample}.log",
     shell:
         """
         bcftools view -Oz -s {wildcards.sample} \
-                          -o results/phase_split_vcf/split_{wildcards.chrom}_{wildcards.sample}.vcf.gz \
+                          -o results/locushap_split_vcf/split_{wildcards.locusname}_{wildcards.sample}.vcf.gz \
                           {input.vcf} 2>> {log}
-        tabix -p vcf results/phase_split_vcf/split_{wildcards.chrom}_{wildcards.sample}.vcf.gz  2>> {log}
+        tabix -p vcf results/locushap_split_vcf/split_{wildcards.locusname}_{wildcards.sample}.vcf.gz  2>> {log}
         """
 
 rule tx_remote_bam:
@@ -74,7 +99,7 @@ rule tx_remote_bam:
 
 rule whatshap_sample:
     input:
-        vcf="results/phase_split_vcf/split_{chrom}_{sample}.vcf.gz",
+        vcf="results/locushap_split_vcf/split_{chrom}_{sample}.vcf.gz",
         #bam=lambda wildcards: get_remote_bam(wildcards),
         #bai=lambda wildcards: get_remote_bai(wildcards),
         bam="results/bams/{sample}.bam",
@@ -82,10 +107,10 @@ rule whatshap_sample:
         ref=config['fasta'],
         fai=config['fai']
     output:
-        #vcf=temporary("results/phase_whatshap/whatshapp_{chrom}_{sample}.vcf.gz"),
-        #tbi=temporary("results/phase_whatshap/whatshapp_{chrom}_{sample}.vcf.gz.tbi")
-        vcf="results/phase_whatshap/whatshapp_{chrom}_{sample}.vcf.gz",
-        tbi="results/phase_whatshap/whatshapp_{chrom}_{sample}.vcf.gz.tbi"
+        #vcf=temporary("results/locushap_whatshap/whatshapp_{chrom}_{sample}.vcf.gz"),
+        #tbi=temporary("results/locushap_whatshap/whatshapp_{chrom}_{sample}.vcf.gz.tbi")
+        vcf="results/locushap_whatshap/whatshapp_{chrom}_{sample}.vcf.gz",
+        tbi="results/locushap_whatshap/whatshapp_{chrom}_{sample}.vcf.gz.tbi"
     resources:
         mem_mb=16000,
         disk_mb=500000,
@@ -93,7 +118,7 @@ rule whatshap_sample:
         h_rt='24:00:00'
     threads: 1,
     log:
-        "logs/phase_whatshap/{chrom}_{sample}.log",
+        "logs/locushap_whatshap/{chrom}_{sample}.log",
     shell:
         """
           whatshap phase {input.vcf} {input.bam} -r {input.ref} -o {output.vcf} 2>> {log}
@@ -103,13 +128,13 @@ rule whatshap_sample:
 
 
 
-rule phase_shapeit:
+rule locushap_shapeit:
     input:
-        vcf="results/phase_whatshap/whatshap_{chrom}.vcf.gz",
-        tbi="results/phase_whatshap/whatshap_{chrom}.vcf.gz.tbi",
+        vcf="results/locushap_whatshap/whatshap_{chrom}.vcf.gz",
+        tbi="results/locushap_whatshap/whatshap_{chrom}.vcf.gz.tbi",
         map=config['map']
     output:
-        vcf=protected("results/phase_shapeit/phased_shapeit_{chrom}.vcf.gz"),
+        vcf=protected("results/locushap_shapeit/phased_shapeit_{chrom}.vcf.gz"),
     resources:
         mem_mb=16000,
         disk_mb=500000,
@@ -121,7 +146,7 @@ rule phase_shapeit:
     params:
         chromid=lambda wildcards: get_chrom_id(wildcards)
     log:
-        "logs/phase_shapeit/merge-chr{chrom}.log",
+        "logs/locushap_shapeit/merge-chr{chrom}.log",
     shell:
         """
         shapeit4 --input {input.vcf} --map {input.map} \

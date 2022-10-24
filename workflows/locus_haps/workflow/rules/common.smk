@@ -74,6 +74,18 @@ def get_chrom_id(wildcards):
     return chromtab.loc[str(wildcards.chrom)].chrom_id
 
 
+def get_region_string(wildcards):
+    loctab = pd.read_table(config["haploci"],dtype = str).set_index(["locusname"])
+    """lookup locusname"""
+    return loctab.loc[str(wildcards.locusname)].regionstring
+
+def get_region_vcf(wildcards):
+    loctab = pd.read_table(config["haploci"],dtype = str).set_index(["locusname"])
+    vcfs = pd.read_table(config["vcfs"],dtype = str,header=0).set_index(["chrom"])
+    chromid = loctab.loc[str(wildcards.locusname)].chrom
+    return GS.remote(vcfs.loc[chromid].vcf, keep_local=True)
+
+
 
 # def get_chrom_vcfs(wildcards):
 #     """Get vcfs of given chrom"""
