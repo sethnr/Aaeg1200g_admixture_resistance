@@ -145,7 +145,7 @@ rule whatshap_sample:
 rule locushap_shapeit:
     input:
         vcf="results/locushap_whatshap/whatshap.{locusname}.{sample}.vcf.gz",
-        tbi="results/locushap_whatshap/whatshap.{locusname}.{sample}.vcf.gz.tbi"
+        tbi="results/locushap_whatshap/whatshap.{locusname}.{sample}.vcf.gz.tbi",
         map=config['map']
     output:
         vcf=protected("results/locushap_shapeit/phased.{locusname}.{sample}.vcf.gz"),
@@ -160,7 +160,7 @@ rule locushap_shapeit:
     params:
         chromid=lambda wildcards: get_chrom_id(wildcards)
     log:
-        "logs/locushap_shapeit/merge-chr{chrom}.log",
+        "logs/locushap_shapeit/phased.{locusname}.{sample}.log",
     shell:
         """
         shapeit4 --input {input.vcf} --map {input.map} \
