@@ -15,7 +15,7 @@ LOCI=pd.read_table("resources/aaeg_hap_loci.txt",dtype=str,header=0)['locusname'
 wildcard_constraints:
     chrom=CHROMS
     locusname=LOCI
-    
+
 rule all:
     input:
         #expand("results/bams/{sample}.bam",sample=SAMPLES)
@@ -27,6 +27,8 @@ rule all:
 
 rule subset_vcf:
     input:
+        loci=config["haploci"],
+        meta=config["vcfs"],
         vcf=lambda wildcards: get_region_vcf(wildcards)
     output:
         outvcf="results/locushap_vcf/split.{locusname}.vcf.gz",
