@@ -31,7 +31,8 @@ rule subset_vcf:
     input:
         loci=config["haploci"],
         meta=config["vcfs"],
-        vcf=lambda wildcards: get_region_vcf(wildcards)
+        vcf="results/vcfs/aegy.wgs.non-AfrI3.mapQ20.GoodSites.dMM3.chr2.comp.bcf.SNP.vcf.gz"
+        #vcf=lambda wildcards: get_region_vcf(wildcards)
     output:
         outvcf="results/locushap_vcf/split.{locusname}.vcf.gz",
         outtbi="results/locushap_vcf/split.{locusname}.vcf.gz.tbi"
