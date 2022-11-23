@@ -17,7 +17,7 @@ wildcard_constraints:
     #locusname=LOCI
 
 ruleorder:
-    subset_vcf > whatshap_merge > tabix_vcf
+    subset_vcf > whatshap > whatshap_merge > shapeit #> tabix_vcf
 
 rule all:
     input:
@@ -25,10 +25,10 @@ rule all:
         #expand("results/locushap_whatshap/whatshap.{locusname}.{sample}.vcf.gz",
         #    sample=SAMPLES,
         #    locusname=LOCI)
-        expand("results/locushap_whatshap/whatshap.{locusname}.vcf.gz",
-            locusname=LOCI)
-        #expand("results/locushap_shapeit/shapeit.{locusname}.vcf.gz",
+        #expand("results/locushap_whatshap/whatshap.{locusname}.vcf.gz",
         #    locusname=LOCI)
+        expand("results/locushap_shapeit/shapeit.{locusname}.vcf.gz",
+            locusname=LOCI)
 
 
 ##### get remotes #######
