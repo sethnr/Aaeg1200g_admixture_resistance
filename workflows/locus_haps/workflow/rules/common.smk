@@ -80,7 +80,7 @@ def get_region_string(wildcards):
     return loctab.loc[str(wildcards.locusname)].regionstring
 
 def get_region_vcf(wildcards):
-    loctab = pd.read_table(config["haploci"],dtype = str).set_index(["locusname"])
+    loctab = pd.read_table(config["haploci"],dtype = str,header=0).set_index(["locusname"])
     vcfs = pd.read_table(config["vcfs"],dtype = str,header=0).set_index(["chrom"])
     chromid = loctab.loc[str(wildcards.locusname)].chrom
     return GS.remote(vcfs.loc[chromid].vcf, keep_local=True)
