@@ -18,6 +18,7 @@ wildcard_constraints:
 
 ruleorder:
 	subset_vcf > tabix_vcf
+    whatshap_merge > tabix_vcf
 
 rule all:
     input:
@@ -163,6 +164,7 @@ rule whatshap_merge:
         """
 	       echo {input.vcfs} | tr ' ' '\n' > {output.filelist}
 	       bcftools merge --threads {threads} -o {output.vcf} -O z -l {output.filelist};
+           tabix -pvcf {output.vcf} 2>> {log}
 	"""
 
 
