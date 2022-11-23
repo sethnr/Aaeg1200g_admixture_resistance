@@ -13,8 +13,7 @@ LOCI=pd.read_table("resources/aaeg_hap_loci.txt",dtype=str,header=0)['locusname'
 
 
 wildcard_constraints:
-    chrom=CHROMS,
-    samples=SAMPLES
+    samples=SAMPLES,
 #    locusname=LOCI
 
 ruleorder:
