@@ -144,19 +144,19 @@ rule whatshap_sample:
 
 rule locushap_shapeit:
     input:
-        vcf="results/locushap_whatshap/whatshap.{chrom}.vcf.gz",
-        tbi="results/locushap_whatshap/whatshap.{chrom}.vcf.gz.tbi",
+        vcf="results/locushap_whatshap/whatshap.{locusname}.{sample}.vcf.gz",
+        tbi="results/locushap_whatshap/whatshap.{locusname}.{sample}.vcf.gz.tbi"
         map=config['map']
     output:
-        vcf=protected("results/locushap_shapeit/phased_shapeit.{chrom}.vcf.gz"),
+        vcf=protected("results/locushap_shapeit/phased.{locusname}.{sample}.vcf.gz"),
     resources:
-        mem_mb=16000,
-        disk_mb=500000,
+        mem_mb=4000,
+        disk_mb=10000,
         h_rt='96:00:00',
         bamspace=0,
-        cpus=10,
-	qsub_args='-l highmem  -l avx2=TRUE -l node_type=srm'
-    threads: 10
+        cpus=4,
+	#qsub_args='-l highmem  -l avx2=TRUE -l node_type=srm'
+    threads: 4
     params:
         chromid=lambda wildcards: get_chrom_id(wildcards)
     log:
