@@ -111,7 +111,7 @@ rule tx_remote_bam:
 
 
 
-rule whatshap_sample:
+rule whatshap:
     input:
         vcf="results/locushap_split_vcf/split.{locusname}.{sample}.vcf.gz",
         #bam=lambda wildcards: get_remote_bam(wildcards),
@@ -139,10 +139,33 @@ rule whatshap_sample:
           tabix -pvcf {output.vcf} 2>> {log}
         """
 
+rule whatshap_merge:
+    input:
+        vcfs=expand("results/locushap_whatshap/whatshapp_{{locusname}}_{sample}.vcf.gz",
+            sample=SAMPLES),
+        tbis=expand("results/locushap_whatshap/whatshapp_{{locusname}}_{sample}.vcf.gz.tbi",
+            sample=SAMPLES)
+    output:
+        filelist="results/locushap_whatshap/filelist.{locusname}.txt",
+        vcf=protected("results/locushap_whatshap/whatshap.{locusname}.vcf.gz"),
+    resources:
+        bamspace=0,
+        h_rt='6:00:00',
+        mem_mb=16000,
+        disk_mb=100000,
+        cpus=4
+    threads:4
+    log:
+        "logs/phase_whatshap/merge-chr{chrom}.log",
+    shell:
+        """
+	       echo {input.vcfs} | tr ' ' '\n' > {output.filelist}
+	       bcftools merge --threads {threads} -o {output.vcf} -O z -l {output.filelist};
+	    """
 
 
 
-rule locushap_shapeit:
+rule shapeit:
     input:
         vcf="results/locushap_whatshap/whatshap.{locusname}.{sample}.vcf.gz",
         tbi="results/locushap_whatshap/whatshap.{locusname}.{sample}.vcf.gz.tbi"
