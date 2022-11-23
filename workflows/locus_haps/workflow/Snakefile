@@ -68,6 +68,7 @@ rule tx_remote_bam:
 rule subset_vcf:
     input:
         vcf="results/vcfs/aegy.wgs.non-AfrI3.mapQ20.GoodSites.dMM3.chr2.comp.bcf.SNP.vcf.gz",
+        tbi="results/vcfs/aegy.wgs.non-AfrI3.mapQ20.GoodSites.dMM3.chr2.comp.bcf.SNP.vcf.gz.tbi",
         loci=config["haploci"],
         meta=config["vcfs"],
         #vcf=lambda wildcards: get_region_vcf(wildcards)
