@@ -13,14 +13,16 @@ LOCI=pd.read_table("resources/aaeg_hap_loci.txt",dtype=str,header=0)['locusname'
 
 
 wildcard_constraints:
-    chrom=CHROMS
+    chrom=CHROMS,
     locusname=LOCI
 
 rule all:
     input:
         #expand("results/bams/{sample}.bam",sample=SAMPLES)
-        expand("results/locushap_split_vcf/split.{locusname}.{sample}.vcf.gz",
-            sample=SAMPLES,
+        #expand("results/locushap_split_vcf/split.{locusname}.{sample}.vcf.gz",
+        #    sample=SAMPLES,
+        #    locusname=LOCI)
+        expand("results/locushap_vcf/split.{locusname}.vcf.gz",
             locusname=LOCI)
 
 ##### split and phase vcf #####
@@ -55,8 +57,10 @@ rule split_vcf:
         vcf="results/locushap_vcf/split.{locusname}.vcf.gz",
         tbi="results/locushap_vcf/split.{locusname}.vcf.gz.tbi"
     output:
-        outvcf=temporary("results/locushap_split_vcf/split.{locusname}.{sample}.vcf.gz"),
-        outtbi=temporary("results/locushap_split_vcf/split.{locusname}.{sample}.vcf.gz.tbi")
+        #outvcf=temporary("results/locushap_split_vcf/split.{locusname}.{sample}.vcf.gz"),
+        #outtbi=temporary("results/locushap_split_vcf/split.{locusname}.{sample}.vcf.gz.tbi")
+        outvcf="results/locushap_split_vcf/split.{locusname}.{sample}.vcf.gz",
+        outtbi="results/locushap_split_vcf/split.{locusname}.{sample}.vcf.gz.tbi"
     resources:
         mem_mb=3000,
         disk_mb=500000,
