@@ -156,7 +156,7 @@ rule whatshap_merge:
         cpus=4
     threads:4
     log:
-        "logs/phase_whatshap/merge-chr{chrom}.log",
+        "logs/phase_whatshap/merge-locusname}.log",
     shell:
         """
 	       echo {input.vcfs} | tr ' ' '\n' > {output.filelist}
