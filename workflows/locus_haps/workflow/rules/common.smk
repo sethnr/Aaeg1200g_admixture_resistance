@@ -139,14 +139,14 @@ def get_bai_for_sample(wildcards):
     return GS.remote(samples.loc[wildcards.sample].bai)
 
 
-rule tabix_vcf:
-    input:
-        "results/{vcftype}/{vcfname}.vcf.gz"
-    output:
-        "results/{vcftype}/{vcfname}.vcf.gz.tbi",
-    log:
-        "logs/tabix/{vcftype}/{vcfname}.vcf.log",
-    params:
-        "-p vcf",
-    wrapper:
-        "0.74.0/bio/tabix"
+# rule tabix_vcf:
+#     input:
+#         "results/{vcftype}/{vcfname}.vcf.gz"
+#     output:
+#         "results/{vcftype}/{vcfname}.vcf.gz.tbi",
+#     log:
+#         "logs/tabix/{vcftype}/{vcfname}.vcf.log",
+#     params:
+#         "-p vcf",
+#     wrapper:
+#         "0.74.0/bio/tabix"
