@@ -91,7 +91,7 @@ rule tx_remote_vcf:
 
 rule subset_vcf:
     input:
-        vcf=lambda wildcards: get_raw_vcf_from_hapname(wildcards)
+        vcf=lambda wildcards: get_raw_vcf_from_hapname(wildcards),
         tbi=lambda wildcards: get_raw_tbi_from_hapname(wildcards)
         # vcf=lambda wildcards: get_region_vcf_local(wildcards)
         # tbi=lambda wildcards: get_region_vcf_tbi_local(wildcards)
