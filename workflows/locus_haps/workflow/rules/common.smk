@@ -68,6 +68,10 @@ def get_remote_vcf_raw(wildcards):
     """Get vcf of given chrom and block """
     return GS.remote(vcf.loc[wildcards.chrom,wildcards.block].vcf)
 
+def get_remote_vcf_raw_url(wildcards):
+    vcf = pd.read_table(config["vcfs_raw"],dtype = str).set_index(["chrom","block"])
+    """Get vcf of given chrom and block """
+    return vcf.loc[wildcards.chrom,wildcards.block].vcf
 
 
 def get_chrom_id(wildcards):
