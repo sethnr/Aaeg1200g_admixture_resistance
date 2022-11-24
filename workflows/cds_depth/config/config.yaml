@@ -1,5 +1,6 @@
 good_regions: "gs://verily-aaeg1200g/genome_mask_files/snpable_no_outliers.bed.gz"
 norep_regions: "gs://verily-aaeg1200g/genome_mask_files/norepeat_5_30x_coverage.bed.gz"
+genebed: "resources/VectorBase-59_AaegyptiLVP_AGWG_gene_regions_refseq.bed"
 #samples: "config/samples.tsv"
 
 #vcfs: "config_lostruct/vcfs_head.tsv"
