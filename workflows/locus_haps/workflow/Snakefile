@@ -65,7 +65,7 @@ rule tx_remote_vcf:
     input:
         apikey=config["gkey"]
     output:
-        vcf="/vcfs/raw_{chrom}_{block}.vcf.gz"
+        vcf="results/vcfs/raw_{chrom}_{block}.vcf.gz"
     resources:
         mem_mb=2000,
         disk_mb=500000,
