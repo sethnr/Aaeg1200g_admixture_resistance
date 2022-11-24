@@ -60,7 +60,7 @@ rule bedcov_sample:
         h_rt='24:00:00'
     threads: 1,
     log:
-        "logs/bedcov/{sample}.log",
+        "logs/bedcov1/{sample}.log",
     shell:
         """
           echo {wildcards.sample} > {output.cov}
@@ -73,7 +73,7 @@ rule mergecovs:
     output:
         allcov="results/bedcov/all_gene_covs.txt",
     log:
-        "logs/mergecovs/merge.{locusname}.log",
+        "logs/mergecovs/merge.log",
     shell:
         """
 	       paste {input.covs} > {output.allcov}
