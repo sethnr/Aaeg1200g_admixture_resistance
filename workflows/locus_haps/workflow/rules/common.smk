@@ -108,10 +108,13 @@ def get_region_vcf_remote(wildcards):
 
 def get_raw_vcf_for_hapname(wildcards):
     loctab = pd.read_table(config["haploci"],dtype = str,header=0).set_index(["locusname"])
-    vcfs = pd.read_table(config["vcfs"],dtype = str,header=0).set_index(["chrom"])
+    vcfs = pd.read_table(config["vcfs_raw"],dtype = str,header=0).set_index(["chrom","block"])
     chromid = loctab.loc[str(wildcards.locusname)].chrom
-    return chromid
+    block = round(int(loctab.loc[str(wildcards.locusname)].start)/1e7)
+    return "results/vcfs/raw_{}_{}.vcf.gz".format(chromid,block)
 
+def get_raw_tbi_for_hapname(wildcards):
+    return get_raw_vcf_for_hapname(wildcards).replace(".vcf.gz",".vcf.gz.tbi")
 
 def get_chrom_from_hapname(wildcards):
     loctab = pd.read_table(config["haploci"],dtype = str,header=0).set_index(["locusname"])
