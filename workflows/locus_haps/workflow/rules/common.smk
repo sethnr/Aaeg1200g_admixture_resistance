@@ -114,7 +114,7 @@ def get_raw_vcf_from_hapname(wildcards):
     loctab = pd.read_table(config["haploci"],dtype = str,header=0).set_index(["locusname"])
     vcfs = pd.read_table(config["vcfs_raw"],dtype = str,header=0).set_index(["chrom","block"])
     chromid = loctab.loc[str(wildcards.locusname)].chrom
-    block = round(int(loctab.loc[str(wildcards.locusname)].start)/1e7)
+    block = round(int(loctab.loc[str(wildcards.locusname)].start)/1e7)+1
     return "results/vcfs/raw_{}_{}.vcf.gz".format(chromid,block)
 
 def get_raw_tbi_from_hapname(wildcards):
