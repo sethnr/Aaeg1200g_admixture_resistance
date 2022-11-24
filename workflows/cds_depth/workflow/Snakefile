@@ -9,26 +9,10 @@ SAMPLES=pd.read_table(config['samples'],dtype=str,header=0)['sample']
 AAF_SAMPLES=pd.read_table("config/AAF_samples.txt",dtype=str,header=0)['sample']
 AAA_SAMPLES=pd.read_table("config/AAA_samples.txt",dtype=str,header=0)['sample']
 
-LOCI=pd.read_table("resources/aaeg_hap_loci.txt",dtype=str,header=0)['locusname']
-
-
-wildcard_constraints:
-    samples=SAMPLES,
-    #locusname=LOCI
-
-ruleorder:
-    subset_vcf > whatshap > whatshap_merge > shapeit > tabix_vcf
 
 rule all:
     input:
-        #expand("results/bams/{sample}.bam",sample=SAMPLES)
-        #expand("results/locushap_whatshap/whatshap.{locusname}.{sample}.vcf.gz",
-        #    sample=SAMPLES,
-        #    locusname=LOCI)
-        expand("results/locushap_vcf/split.{locusname}.vcf.gz",
-            locusname=LOCI)
-        #expand("results/locushap_shapeit/shapeit.{locusname}.vcf.gz",
-        #    locusname=LOCI)
+        "results/bedcov/all_gene_covs"
 
 
 ##### get remotes #######
