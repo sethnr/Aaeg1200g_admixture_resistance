@@ -73,7 +73,7 @@ rule tx_remote_vcf:
         bamspace=10
     threads: 1,
     params:
-        vcf=lambda wildcards: get_region_vcf(wildcards),
+        vcf=lambda wildcards: get_remote_vcf_raw(wildcards),
     container:
         "docker://google/cloud-sdk:latest"
     log:
