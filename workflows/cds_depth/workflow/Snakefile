@@ -1,0 +1,96 @@
+container: "docker://sethnr/aaeg1000g_admixture:0.02"
+#### Config file and sample sheets #####
+configfile: "config/config.yaml"
+#### reused methods for grabbing GS objects, etc ####
+include: "rules/common.smk"
+
+CHROMS=[1,2,3]
+SAMPLES=pd.read_table(config['samples'],dtype=str,header=0)['sample']
+AAF_SAMPLES=pd.read_table("config/AAF_samples.txt",dtype=str,header=0)['sample']
+AAA_SAMPLES=pd.read_table("config/AAA_samples.txt",dtype=str,header=0)['sample']
+
+LOCI=pd.read_table("resources/aaeg_hap_loci.txt",dtype=str,header=0)['locusname']
+
+
+wildcard_constraints:
+    samples=SAMPLES,
+    #locusname=LOCI
+
+ruleorder:
+    subset_vcf > whatshap > whatshap_merge > shapeit > tabix_vcf
+
+rule all:
+    input:
+        #expand("results/bams/{sample}.bam",sample=SAMPLES)
+        #expand("results/locushap_whatshap/whatshap.{locusname}.{sample}.vcf.gz",
+        #    sample=SAMPLES,
+        #    locusname=LOCI)
+        expand("results/locushap_vcf/split.{locusname}.vcf.gz",
+            locusname=LOCI)
+        #expand("results/locushap_shapeit/shapeit.{locusname}.vcf.gz",
+        #    locusname=LOCI)
+
+
+##### get remotes #######
+rule tx_remote_bam:
+    input:
+        apikey=config["gkey"]
+    output:
+        bam="results/bams/{sample}.bam",
+        bai="results/bams/{sample}.bam.bai"
+    resources:
+        mem_mb=2000,
+        disk_mb=500000,
+        #run with, eg, --resources bamspace=10 for 10 sim d/ls
+        bamspace=10
+    threads: 1,
+    params:
+        bam=lambda wildcards: get_remote_bam_url(wildcards),
+        bai=lambda wildcards: get_remote_bai_url(wildcards),
+    container:
+        "docker://google/cloud-sdk:latest"
+    log:
+        "logs/txbam/{sample}.log",
+    shell:
+        """
+        gcloud auth activate-service-account --key-file {input.apikey}
+        gsutil cp {params.bam} {output.bam}
+        gsutil cp {params.bai} {output.bai}
+        #samtools quickcheck {output.bam}
+        exit $?
+        """
+
+
+##### split and phase vcf #####
+
+
+rule bedcov_sample:
+    input:
+        bam="results/bams/{sample}.bam",
+        bai="results/bams/{sample}.bam.bai",
+        bed=config['genebed'],
+    output:
+        cov="results/bedcov/bedcov.{sample}.cov",
+    resources:
+        mem_mb=4000,
+        h_rt='24:00:00'
+    threads: 1,
+    log:
+        "logs/locushap_whatshap/{locusname}.{sample}.log",
+    shell:
+        """
+          echo {wildcards.sample} > {output.cov}
+          samtools bedcov {input.bed} {input.bam} | cut -f 7,7 >> {output.cov}
+        """
+
+rule mergecovs:
+    input:
+        covs=expand("results/bedcov/bedcov.{sample}.cov",sample=SAMPLES),
+    output:
+        allcov="results/bedcov/all_gene_covs.txt",
+    log:
+        "logs/mergecovs/merge.{locusname}.log",
+    shell:
+        """
+	       paste {input.covs} > {output.allcov}
+	    """
