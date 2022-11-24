@@ -92,7 +92,7 @@ def get_region_vcf(wildcards):
     vcfs = pd.read_table(config["vcfs_raw"],dtype = str,header=0).set_index(["chrom","block"])
     block = round(int(loctab.loc[str(wildcards.locusname)].start)/1e7)
     chromid = loctab.loc[str(wildcards.locusname)].chrom
-    return vcfs.loc[chromid,block].vcf
+    return vcfs.loc[(chromid,block)].vcf
 
 def get_region_vcf_remote(wildcards):
     return GS.remote(get_region_vcf(wildcards), keep_local=True)
