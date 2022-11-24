@@ -61,17 +61,43 @@ rule tx_remote_bam:
         """
 
 
+rule tx_remote_vcf:
+    input:
+        apikey=config["gkey"]
+    output:
+        vcf="/vcfs/raw_{chrom}_{block}_10mb.vcf.gz"
+    resources:
+        mem_mb=2000,
+        disk_mb=500000,
+        #run with, eg, --resources bamspace=10 for 10 sim d/ls
+        bamspace=10
+    threads: 1,
+    params:
+        vcf=lambda wildcards: get_region_vcf(wildcards),
+    container:
+        "docker://google/cloud-sdk:latest"
+    log:
+        "logs/txvcf/{chrom}_{block}.log",
+    shell:
+        """
+        gcloud auth activate-service-account --key-file {input.apikey}
+        gsutil cp {params.vcf} {output.vcf}
+        exit $?
+        """
+
 
 
 ##### split and phase vcf #####
 
 rule subset_vcf:
     input:
-        vcf="results/vcfs/aegy.wgs.non-AfrI3.mapQ20.GoodSites.dMM3.chr2.comp.bcf.SNP.vcf.gz",
-        tbi="results/vcfs/aegy.wgs.non-AfrI3.mapQ20.GoodSites.dMM3.chr2.comp.bcf.SNP.vcf.gz.tbi",
+        vcf=lambda wildcards: get_region_vcf_local(wildcards)
+        tbi=lambda wildcards: get_region_vcf_tbi_local(wildcards)
+        #vcf="results/vcfs/aegy.wgs.non-AfrI3.mapQ20.GoodSites.dMM3.chr2.comp.bcf.SNP.vcf.gz",
+        #tbi="results/vcfs/aegy.wgs.non-AfrI3.mapQ20.GoodSites.dMM3.chr2.comp.bcf.SNP.vcf.gz.tbi",
         loci=config["haploci"],
         meta=config["vcfs"],
-        #vcf=lambda wildcards: get_region_vcf(wildcards)
+
     output:
         outvcf="results/locushap_vcf/split.{locusname}.vcf.gz",
         outtbi="results/locushap_vcf/split.{locusname}.vcf.gz.tbi"

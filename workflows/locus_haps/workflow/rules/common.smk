@@ -64,9 +64,11 @@ def get_remote_vcf(wildcards):
 
 
 def get_remote_vcf_raw(wildcards):
-    vcf = pd.read_table(config["vcfs"],dtype = str).set_index(["chrom","block"])
+    vcf = pd.read_table(config["vcfs_raw"],dtype = str).set_index(["chrom","block"])
     """Get vcf of given chrom and block """
     return GS.remote(vcf.loc[wildcards.chrom,wildcards.block].vcf)
+
+
 
 def get_chrom_id(wildcards):
     chromtab = pd.read_table(config["chrommap"],dtype = str).set_index(["chrom"])
@@ -74,35 +76,41 @@ def get_chrom_id(wildcards):
     return chromtab.loc[str(wildcards.chrom)].chrom_id
 
 
+
+######
+# haplotype / region functions
+######
+
 def get_region_string(wildcards):
     loctab = pd.read_table(config["haploci"],dtype = str).set_index(["locusname"])
     """lookup locusname"""
     return loctab.loc[str(wildcards.locusname)].regionstring
 
+#get raw (blocks) VCF from hap name
 def get_region_vcf(wildcards):
     loctab = pd.read_table(config["haploci"],dtype = str,header=0).set_index(["locusname"])
-    vcfs = pd.read_table(config["vcfs"],dtype = str,header=0).set_index(["chrom"])
+    vcfs = pd.read_table(config["vcfs_raw"],dtype = str,header=0).set_index(["chrom","block"])
     chromid = loctab.loc[str(wildcards.locusname)].chrom
-    return GS.remote(vcfs.loc[chromid].vcf, keep_local=True)
+    block = round(int(loctab.loc[str(wildcards.locusname)].start)/1e7)
+    return vcfs.loc[chromid,block].vcf
 
-def get_region_vcf_local(wildcards):
+def get_region_vcf_remote(wildcards):
+    return GS.remote(get_region_vcf(wildcards), keep_local=True)
+
+# def get_region_vcf_tbi(wildcards):
+#     return get_region_vcf(wildcards).replace(".vcf.gz",".vcf.gz.tbi")
+#
+# def get_region_vcf_local(wildcards):
+#     return get_region_vcf(wildcards).replace("gs://verily-aaeg1200g/vcfs/SNPs","results/vcfs")
+#
+# def get_region_vcf_tbi_local(wildcards):
+#     return get_region_vcf(wildcards).replace("gs://verily-aaeg1200g/vcfs/SNPs","results/vcfs").replace(".vcf.gz",".vcf.gz.tbi")
+
+def get_raw_vcf_for_hapname(wildcards):
     loctab = pd.read_table(config["haploci"],dtype = str,header=0).set_index(["locusname"])
     vcfs = pd.read_table(config["vcfs"],dtype = str,header=0).set_index(["chrom"])
     chromid = loctab.loc[str(wildcards.locusname)].chrom
-    return GS.remote(vcfs.loc[str(chromid)].vcf, keep_local=True).replace("gs://verily-aaeg1200g/vcfs/SNPs","results/vcfs")
-
-def get_region_vcf_tbi(wildcards):
-    loctab = pd.read_table(config["haploci"],dtype = str,header=0).set_index(["locusname"])
-    vcfs = pd.read_table(config["vcfs"],dtype = str,header=0).set_index(["chrom"])
-    chromid = loctab.loc[str(wildcards.locusname)].chrom
-    return GS.remote(vcfs.loc[str(chromid)].vcf, keep_local=True).replace(".vcf.gz",".vcf.gz.tbi")
-
-def get_region_vcf_tbi_local(wildcards):
-    loctab = pd.read_table(config["haploci"],dtype = str,header=0).set_index(["locusname"])
-    vcfs = pd.read_table(config["vcfs"],dtype = str,header=0).set_index(["chrom"])
-    chromid = loctab.loc[str(wildcards.locusname)].chrom
-    return GS.remote(vcfs.loc[str(chromid)].vcf, keep_local=True).replace("gs://verily-aaeg1200g/vcfs/SNPs","results/vcfs").replace(".vcf.gz",".vcf.gz.tbi")
-
+    return chromid
 
 
 def get_chrom_from_hapname(wildcards):

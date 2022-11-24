@@ -6,6 +6,7 @@ norep_regions: "gs://verily-aaeg1200g/genome_mask_files/norepeat_5_30x_coverage.
 samples: "config/samples_head.txt"
 
 vcfs: "resources/aaeg1000g_full_vcfs.txt"
+vcfs_raw: "resources/aaeg1000g_raw_vcfs_tab.txt"
 bams: "resources/aaeg1000g_bams.txt"
 spptable: "resources/meta_Aaeg1kg_spp.txt"
 invtable: "resources/redmond_2020_inversion_calls.txt"
