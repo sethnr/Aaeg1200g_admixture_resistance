@@ -1,0 +1,7 @@
+grep protein_coding_gene ../../../resources/VectorBase-59_AaegyptiLVP_AGWG.gff | \
+  perl -lane '$F[8] =~ s/ID=(\w+)\;.*/$1/; 
+              $F[0] =~ s/AaegL5_//gi; 
+              print join("\t",$F[0],$F[3],$F[4],$F[8],".",$F[6])' | \
+  sort -k1g -k2g -k3g > VectorBase-59_AaegyptiLVP_AGWG_gene_regions.bed
+samtools depth -a -b VectorBase-59_AaegyptiLVP_AGWG_gene_regions_HEAD.bed bams/Cebu_City_Philippines-_10.bam
+samtools depth -a -b VectorBase-59_AaegyptiLVP_AGWG_gene_regions_refseq_HEAD.bed bams/Cebu_City_Philippines-_10.bam

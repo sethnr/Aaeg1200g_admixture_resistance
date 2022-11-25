@@ -3,7 +3,7 @@ norep_regions: "gs://verily-aaeg1200g/genome_mask_files/norepeat_5_30x_coverage.
 #samples: "config/samples.tsv"
 
 #vcfs: "config_lostruct/vcfs_head.tsv"
-samples: "config/samples_head.txt"
+samples: "config/samples.txt"
 
 vcfs: "resources/aaeg1000g_full_vcfs.txt"
 vcfs_raw: "resources/aaeg1000g_raw_vcfs_tab.txt"
