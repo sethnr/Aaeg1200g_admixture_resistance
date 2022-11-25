@@ -65,7 +65,7 @@ rule tx_remote_vcf:
     input:
         apikey=config["gkey"]
     output:
-        vcf="results/vcfs/raw_{chrom}_{block}.vcf.gz"
+        vcf=temporary("results/vcfs/raw_{chrom}_{block}.vcf.gz")
     resources:
         mem_mb=2000,
         disk_mb=500000,
@@ -126,10 +126,10 @@ rule split_vcf:
         vcf="results/locushap_vcf/split.{locusname}.vcf.gz",
         tbi="results/locushap_vcf/split.{locusname}.vcf.gz.tbi"
     output:
-        #outvcf=temporary("results/locushap_split_vcf/split.{locusname}.{sample}.vcf.gz"),
-        #outtbi=temporary("results/locushap_split_vcf/split.{locusname}.{sample}.vcf.gz.tbi")
-        outvcf="results/locushap_split_vcf/split.{locusname}.{sample}.vcf.gz",
-        outtbi="results/locushap_split_vcf/split.{locusname}.{sample}.vcf.gz.tbi"
+        outvcf=temporary("results/locushap_split_vcf/split.{locusname}.{sample}.vcf.gz"),
+        outtbi=temporary("results/locushap_split_vcf/split.{locusname}.{sample}.vcf.gz.tbi")
+        #outvcf="results/locushap_split_vcf/split.{locusname}.{sample}.vcf.gz",
+        #outtbi="results/locushap_split_vcf/split.{locusname}.{sample}.vcf.gz.tbi"
     resources:
         mem_mb=3000,
         disk_mb=500000,
@@ -154,15 +154,15 @@ rule whatshap:
         ref=config['fasta'],
         fai=config['fai']
     output:
-        #vcf=temporary("results/locushap_whatshap/whatshap.{locusname}.{sample}.vcf.gz"),
-        #tbi=temporary("results/locushap_whatshap/whatshap.{locusname}.{sample}.vcf.gz.tbi")
-        vcf="results/locushap_whatshap/whatshap.{locusname}.{sample}.vcf.gz",
-        tbi="results/locushap_whatshap/whatshap.{locusname}.{sample}.vcf.gz.tbi"
+        vcf=temporary("results/locushap_whatshap/whatshap.{locusname}.{sample}.vcf.gz"),
+        tbi=temporary("results/locushap_whatshap/whatshap.{locusname}.{sample}.vcf.gz.tbi")
+        #vcf="results/locushap_whatshap/whatshap.{locusname}.{sample}.vcf.gz",
+        #tbi="results/locushap_whatshap/whatshap.{locusname}.{sample}.vcf.gz.tbi"
     resources:
-        mem_mb=16000,
-        disk_mb=500000,
+        mem_mb=4000,
+        disk_mb=100000,
         bamspace=0,
-        h_rt='24:00:00'
+        h_rt='1:00:00'
     threads: 1,
     log:
         "logs/locushap_whatshap/{locusname}.{sample}.log",
