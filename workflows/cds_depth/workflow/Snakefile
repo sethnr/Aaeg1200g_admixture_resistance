@@ -88,6 +88,8 @@ rule indexmbs:
         stats=temporary("results/bedcov/idxstats.{sample}.mbs"),
     log:
         "logs/idxstats/{sample}.log",
+    params:
+        readlength=150
     shell:
         """
           samtools idxstats {input.bam} | \
