@@ -92,9 +92,7 @@ rule indexmbs:
         readlength=150
     shell:
         """
-          samtools idxstats {input.bam} | \
-          awk '{{m+=\$3; u+=\$4}} END{{print "{wildcards.sample}", m*{params.readlength}/1e6, u*{params.readlength}/1e6}}' \
-          > {output.stats}
+          samtools idxstats {input.bam} |  awk '{{m+=$3; u+=$4}} END{{print "{wildcards.sample}", m*{params.readlength}/1e6, u*{params.readlength}/1e6}}' > {output.stats}
         """
 
 rule mergembs:
