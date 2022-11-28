@@ -12,7 +12,8 @@ AAA_SAMPLES=pd.read_table("config/AAA_samples.txt",dtype=str,header=0)['sample']
 
 rule all:
     input:
-        "results/bedcov/all_gene_covs.txt"
+        "results/bedcov/all_gene_covs.txt",
+        "results/bedcov/all_gene_mbs.txt"
 
 
 ##### get remotes #######
