@@ -105,8 +105,6 @@ rule subset_vcf:
         outtbi="results/locushap_vcf/split.{locusname}.vcf.gz.tbi"
     resources:
         mem_mb=3000,
-        disk_mb=500000,
-        bamspace=0
     threads: 1,
     log:
         "logs/locushap_split_vcf/{locusname}.log",
@@ -132,8 +130,6 @@ rule split_vcf:
         #outtbi="results/locushap_split_vcf/split.{locusname}.{sample}.vcf.gz.tbi"
     resources:
         mem_mb=3000,
-        disk_mb=500000,
-        bamspace=0
     threads: 1,
     log:
         "logs/locushap_split_vcf/{locusname}.{sample}.log",
@@ -160,8 +156,6 @@ rule whatshap:
         #tbi="results/locushap_whatshap/whatshap.{locusname}.{sample}.vcf.gz.tbi"
     resources:
         mem_mb=4000,
-        disk_mb=100000,
-        bamspace=0,
         h_rt='1:00:00'
     threads: 1,
     log:

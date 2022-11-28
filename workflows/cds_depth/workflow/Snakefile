@@ -78,3 +78,30 @@ rule mergecovs:
         """
 	       paste {input.covs} > {output.allcov}
 	    """
+
+rule indexmbs:
+    input:
+        bam="results/bams/{sample}.bam",
+        bai="results/bams/{sample}.bam.bai",
+    output:
+        stats=temporary("results/bedcov/idxstats.{sample}.mbs"),
+    log:
+        "logs/idxstats/{sample}.log",
+    shell:
+        """
+          samtools idxstats {input.bam} | \
+          awk '{m+=$3; u+=$4} END{print "{wildcards.sample}", m*{params.readlength}/1e6, u*{params.readlength}/1e6}' \
+          > {output.stats}
+        """
+
+rule mergembs:
+    input:
+        mbs=expand("results/bedcov/idxstats.{sample}.mbs",sample=SAMPLES),
+    output:
+        allmbs="results/bedcov/all_bam_mbs.txt",
+    log:
+        "logs/mergecovs/merge_mbs.log",
+    shell:
+        """
+	       cat {input.mbs} > {output.allmbs}
+	    """
