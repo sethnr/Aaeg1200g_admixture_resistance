@@ -5,3 +5,7 @@ grep protein_coding_gene ../../../resources/VectorBase-59_AaegyptiLVP_AGWG.gff |
   sort -k1g -k2g -k3g > VectorBase-59_AaegyptiLVP_AGWG_gene_regions.bed
 samtools depth -a -b VectorBase-59_AaegyptiLVP_AGWG_gene_regions_HEAD.bed bams/Cebu_City_Philippines-_10.bam
 samtools depth -a -b VectorBase-59_AaegyptiLVP_AGWG_gene_regions_refseq_HEAD.bed bams/Cebu_City_Philippines-_10.bam
+
+
+#pull out gene names from matthews 2017
+perl -i -F\\\t  -lane '$ID = $F[1]; $ID =~ s/.*(AAEL\d+).*/$1/gi; print join("\t",$F[0],$F[1],$ID,$F[2])' gste_p450_annotations.txt
