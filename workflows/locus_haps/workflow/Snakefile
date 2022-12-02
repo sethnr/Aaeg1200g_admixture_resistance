@@ -194,8 +194,8 @@ rule whatshap_merge:
 
 rule thinvcf:
     input:
-        vcf=temporary("results/locushap_whatshap/whatshap.{locusname}.vcf.gz"),
-        tbi=temporary("results/locushap_whatshap/whatshap.{locusname}.vcf.gz.tbi")
+        vcf="results/locushap_whatshap/whatshap.{locusname}.vcf.gz",
+        tbi="results/locushap_whatshap/whatshap.{locusname}.vcf.gz.tbi"
     output:
         vcf=temporary("results/locushap_whatshap/whatshap.{locusname}.c0.vcf.gz"),
         tbi=temporary("results/locushap_whatshap/whatshap.{locusname}.c0.vcf.gz.tbi")
