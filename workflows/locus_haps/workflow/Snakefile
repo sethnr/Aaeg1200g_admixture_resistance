@@ -197,8 +197,8 @@ rule thinvcf:
         vcf="results/locushap_whatshap/whatshap.{locusname}.vcf.gz",
         tbi="results/locushap_whatshap/whatshap.{locusname}.vcf.gz.tbi"
     output:
-        vcf=temporary("results/locushap_whatshap/whatshap.{locusname}.c0.vcf.gz"),
-        tbi=temporary("results/locushap_whatshap/whatshap.{locusname}.c0.vcf.gz.tbi")
+        vcf=temporary("results/locushap_whatshap/whatshap.{locusname}-c0.vcf.gz"),
+        tbi=temporary("results/locushap_whatshap/whatshap.{locusname}-c0.vcf.gz.tbi")
     resources:
         mem_mb=4000,
         h_rt='1:00:00'
@@ -215,8 +215,8 @@ rule thinvcf:
 
 rule shapeit:
     input:
-        vcf="results/locushap_whatshap/whatshap.{locusname}.c0.vcf.gz",
-        tbi="results/locushap_whatshap/whatshap.{locusname}.c0.vcf.gz.tbi",
+        vcf="results/locushap_whatshap/whatshap.{locusname}-c0.vcf.gz",
+        tbi="results/locushap_whatshap/whatshap.{locusname}-c0.vcf.gz.tbi",
 #        map=config['map']
     output:
         vcf=protected("results/locushap_shapeit/shapeit.{locusname}.vcf.gz"),
