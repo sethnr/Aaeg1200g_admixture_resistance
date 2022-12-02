@@ -188,16 +188,35 @@ rule whatshap_merge:
     shell:
         """
 	       echo {input.vcfs} | tr ' ' '\n' > {output.filelist}
-	       bcftools merge --threads {threads} -o {output.vcf} -O z -l {output.filelist};
+	       bcftools merge --threads {threads} -o {output.vcf} -O z -l {output.filelist};  2>> {log}
            tabix -pvcf {output.vcf} 2>> {log}
 	"""
+
+rule thinvcf:
+    input:
+        vcf=temporary("results/locushap_whatshap/whatshap.{locusname}.vcf.gz"),
+        tbi=temporary("results/locushap_whatshap/whatshap.{locusname}.vcf.gz.tbi")
+    output:
+        vcf=temporary("results/locushap_whatshap/whatshap.{locusname}.c0.vcf.gz"),
+        tbi=temporary("results/locushap_whatshap/whatshap.{locusname}.c0.vcf.gz.tbi")
+    resources:
+        mem_mb=4000,
+        h_rt='1:00:00'
+    threads: 1,
+    log:
+        "logs/locushap_whatshap/{locusname}.{sample}.log",
+    shell:
+        """
+          bcftools view -c 1 -O z -o {output.vcf}  {input.vcf} 2>> {log}
+          tabix -pvcf {output.vcf} 2>> {log}
+        """
 
 
 
 rule shapeit:
     input:
-        vcf="results/locushap_whatshap/whatshap.{locusname}.vcf.gz",
-        tbi="results/locushap_whatshap/whatshap.{locusname}.vcf.gz.tbi",
+        vcf="results/locushap_whatshap/whatshap.{locusname}.c0.vcf.gz",
+        tbi="results/locushap_whatshap/whatshap.{locusname}.c0.vcf.gz.tbi",
 #        map=config['map']
     output:
         vcf=protected("results/locushap_shapeit/shapeit.{locusname}.vcf.gz"),
