@@ -204,7 +204,7 @@ rule thinvcf:
         h_rt='1:00:00'
     threads: 1,
     log:
-        "logs/locushap_whatshap/{locusname}.{sample}.log",
+        "logs/locushap_whatshap/thin.{locusname}.log",
     shell:
         """
           bcftools view -c 1 -O z -o {output.vcf}  {input.vcf} 2>> {log}
