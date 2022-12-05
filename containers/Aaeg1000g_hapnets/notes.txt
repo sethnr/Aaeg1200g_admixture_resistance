@@ -1,0 +1,2 @@
+docker build ./ -t sethnr/aaeg1000g_hapnets:0.01
+docker push sethnr/aaeg1000g_hapnets:0.01
