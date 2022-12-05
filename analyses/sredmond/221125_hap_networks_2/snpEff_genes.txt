@@ -1,0 +1,10 @@
+# The following table is formatted as tab separated values. 
+#GeneName	GeneId	TranscriptId	BioType	variants_impact_HIGH	variants_impact_LOW	variants_impact_MODERATE	variants_impact_MODIFIER	variants_effect_3_prime_UTR_variant	variants_effect_5_prime_UTR_premature_start_codon_gain_variant	variants_effect_5_prime_UTR_variant	variants_effect_downstream_gene_variant	variants_effect_intron_variant	variants_effect_missense_variant	variants_effect_non_coding_transcript_exon_variant	variants_effect_splice_acceptor_variant	variants_effect_splice_donor_variant	variants_effect_splice_region_variant	variants_effect_start_lost	variants_effect_stop_gained	variants_effect_stop_lost	variants_effect_stop_retained_variant	variants_effect_synonymous_variant	variants_effect_upstream_gene_variant
+AAEL013277	AAEL013277	AAEL013277-RB	protein_coding	393	2981	6141	738025	848	201	3667	0	734050	6141	0	68	67	608	3	252	3	0	2360	0
+AAEL013277	AAEL013277	AAEL013277-RC	protein_coding	394	2992	6200	737954	848	201	3667	0	733963	6200	0	66	65	590	3	257	3	0	2383	0
+AAEL013277	AAEL013277	AAEL013277-RD	protein_coding	395	3010	6271	737864	848	201	3667	0	733873	6271	0	66	65	590	3	258	3	0	2401	0
+AAEL013277	AAEL013277	AAEL013277-RE	protein_coding	395	2990	6271	737864	848	181	3232	0	734308	6271	0	66	65	590	3	258	3	0	2401	0
+AAEL013284	AAEL013284	AAEL013284-RA	protein_coding	27	235	514	9454	67	2	33	4407	0	514	0	0	0	3	3	22	2	1	229	4947
+AAEL022250	AAEL022250	AAEL022250-RA	protein_coding	20	126	305	16530	20	18	419	4980	6264	305	0	2	2	21	3	10	3	0	93	4863
+exon_AAEL022140-RA-E1	AAEL022140	AAEL022140-RA		7	39	0	10969	0	0	0	4975	560	0	541	3	4	39	0	0	0	0	0	4939
+exon_AAEL027944-RA-E2	AAEL027944	AAEL027944-RA		4	20	0	10578	0	0	0	4933	48	0	765	2	2	20	0	0	0	0	0	4856

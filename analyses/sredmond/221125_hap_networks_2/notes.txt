@@ -1,0 +1,9 @@
+java -Xmx12g -jar /opt/miniconda3/share/snpeff-5.1-2/snpEff.jar \
+  eff -dataDir ./ AaegL5 locus_shapeit/shapeit.kdr.vcf.gz > snpeff.kdr.vcf
+
+grep -v -e intronic -e UTR  snpeff.kdr.vcf | bcftools view -q 0.2 -Q 0.98 -O z -o snpeff.kdr.coding.vcf.gz -
+grep -v -e \|synonymous -e intron -e UTR  snpeff.kdr.vcf  | bcftools view -q 0.2 -Q 0.98 -O z -o snpeff.kdr.nonsyn.vcf.gz -
+
+grep -v -e intronic -e UTR  snpeff.kdr.vcf | bcftools view -O z -o snpeff.kdr.coding.vcf.gz -
+grep -v -e \|synonymous -e intron -e UTR  snpeff.kdr.vcf  | bcftools view -O z -o snpeff.kdr.nonsyn.vcf.gz -
+scp -r bty122@login.hpc.qmul.ac.uk:/data/scratch/bty122/redmond-lab-aaeg1000g/results/locushap_shapeit/ locushap_shapeit
