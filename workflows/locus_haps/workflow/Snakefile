@@ -225,7 +225,7 @@ rule shapeit:
         disk_mb=10000,
         h_rt='96:00:00',
         bamspace=0,
-        cpus=4,
+        cpus=8,
 	qsub_args='-l highmem  -l avx2=TRUE -l node_type=srm'
     threads: 8
     params:
