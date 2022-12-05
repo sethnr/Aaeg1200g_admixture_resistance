@@ -239,5 +239,21 @@ rule shapeit:
                  --region {params.regionstring} \
                  --thread {threads} --log {log} \
                  --output {output.vcf} \
-		 --sequencing
+		         --sequencing
+        """
+
+
+rule snpeff:
+    input:
+        vcf="results/locushap_whatshap/whatshap.{locusname}-c1.vcf.gz",
+        tbi="results/locushap_whatshap/whatshap.{locusname}-c1.vcf.gz.tbi",
+#        map=config['map']
+    output:
+        vcf=protected("results/locushap_shapeit/snpeff.{locusname}.vcf.gz"),
+    log:
+        "logs/locushap_snpeff/snpeff.{locusname}.log",
+    container: "docker://sethnr/aaeg1000g_hapnet:0.01"
+    shell:
+        """
+        snpEff eff -dataDir ./ AaegL5 {input.vcf} > {output.vcf}
         """

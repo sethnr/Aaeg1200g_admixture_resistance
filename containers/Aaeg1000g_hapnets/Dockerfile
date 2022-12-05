@@ -34,7 +34,7 @@ RUN mamba install -c bioconda -c conda-forge -y samtools=1.11
 RUN mamba install -c bioconda -c conda-forge -y  snpeff
 
 COPY AaegL5 AaegL5
-
+COPY snpEff.config snpEff.config
 
 ############
 # Rstats
