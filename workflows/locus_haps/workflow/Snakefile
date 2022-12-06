@@ -4,8 +4,6 @@ configfile: "config/config.yaml"
 #### reused methods for grabbing GS objects, etc ####
 include: "rules/common.smk"
 
-snpeffdir: "resources/"
-
 CHROMS=[1,2,3]
 SAMPLES=pd.read_table(config['samples'],dtype=str,header=0)['sample']
 AAF_SAMPLES=pd.read_table("config/AAF_samples.txt",dtype=str,header=0)['sample']
@@ -290,11 +288,13 @@ rule snpeff:
         "logs/locushap_shapeit/snpeff.{locusname}.log",
     container:
         "docker://sethnr/aaeg1000g_hapnet:0.01"
+    params:
+        snpeffdir: config["snpeffdir"]
     shell:
         """
         gunzip -dc {input.vcf} | \
         snpEff eff  -no-downstream -no-upstream -no-intergenic -no-intron -no-utr \
-                    -canon -dataDir {snpeffdir} AaegL5 | \
+                    -canon -dataDir {params.snpeffdir} AaegL5 | \
         bcftools view -o {output.vcf} -O z 2> {log}
 
         tabix -p vcf {output.vcf}
