@@ -19,7 +19,7 @@ wildcard_constraints:
     #locusname=LOCI
 
 ruleorder:
-    region_vcf > sample_vcf > whatshap > whatshap_merge > thinvcf > shapeit > exon_vcf > snpeff > tabix_vcf
+    region_vcf > thinvcf > exon_vcf > sample_vcf > whatshap > whatshap_merge > shapeit > snpeff > tabix_vcf
 
 rule all:
     input:
