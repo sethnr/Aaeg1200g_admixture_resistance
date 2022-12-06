@@ -124,12 +124,13 @@ rule region_vcf:
 
 rule exons_vcf:
     input:
-        vcf="results/locushap_shapeit/shapeit.{locusname}.vcf.gz",
-        tbi="results/locushap_shapeit/shapeit.{locusname}.vcf.gz.tbi"
+        vcf="results/{stage}/shapeit.{locusname}.vcf.gz",
+        tbi="results/{stage}/shapeit.{locusname}.vcf.gz.tbi"
         loci=config["haploci"],
     output:
-        outvcf="results/locushap_shapeit/exons.{locusname}.vcf.gz",
-        outtbi="results/locushap_shapeit/exons.{locusname}.vcf.gz.tbi"
+        bed="results/{stage}/exons.{locusname}.vcf.gz",
+        vcf="results/{stage}/exons.{locusname}.vcf.gz",
+        tbi="results/{stage}/exons.{locusname}.vcf.gz.tbi"
     resources:
         mem_mb=3000,
     threads: 1,
@@ -140,7 +141,7 @@ rule exons_vcf:
     shell:
         """
         python scripts/get_gene_merged_exons.py \
-            -o exons.{wildcards.locusname}.vcf \
+            -o exons.{wildcards.locusname}.bed \
             -n {params.geneid} \
             -g {input.gff}
 
@@ -226,11 +227,11 @@ rule whatshap_merge:
 
 rule thinvcf:
     input:
-        vcf="results/locushap_whatshap/whatshap.{locusname}.vcf.gz",
-        tbi="results/locushap_whatshap/whatshap.{locusname}.vcf.gz.tbi"
+        vcf="results/{stage}/whatshap.{locusname}.vcf.gz",
+        tbi="results/{stage}/whatshap.{locusname}.vcf.gz.tbi"
     output:
-        vcf=temporary("results/locushap_whatshap/whatshap.{locusname}-c1.vcf.gz"),
-        tbi=temporary("results/locushap_whatshap/whatshap.{locusname}-c1.vcf.gz.tbi")
+        vcf=temporary("results/{stage}/thin.{locusname}.vcf.gz"),
+        tbi=temporary("results/{stage}/thin.{locusname}.vcf.gz.tbi")
     resources:
         mem_mb=4000,
         h_rt='1:00:00'
@@ -247,8 +248,8 @@ rule thinvcf:
 
 rule shapeit:
     input:
-        vcf="results/locushap_whatshap/whatshap.{locusname}-c1.vcf.gz",
-        tbi="results/locushap_whatshap/whatshap.{locusname}-c1.vcf.gz.tbi",
+        vcf="results/locushap_whatshap/whatshap.{locusname}.vcf.gz",
+        tbi="results/locushap_whatshap/whatshap.{locusname}.vcf.gz.tbi",
 #        map=config['map']
     output:
         vcf=protected("results/locushap_shapeit/shapeit.{locusname}.vcf.gz"),
@@ -277,13 +278,13 @@ rule shapeit:
 
 rule snpeff:
     input:
-        vcf="results/locushap_whatshap/whatshap.{locusname}-c1.vcf.gz",
-        tbi="results/locushap_whatshap/whatshap.{locusname}-c1.vcf.gz.tbi",
+        vcf="results/{stage}/exons.{locusname}.vcf.gz",
+        tbi="results/{stage}/exons.{locusname}.vcf.gz.tbi",
 #        map=config['map']
     output:
-        vcf=protected("results/locushap_shapeit/snpeff.{locusname}.vcf.gz"),
+        vcf=protected("results/{stage}/snpeff.{locusname}.vcf.gz"),
     log:
-        "logs/locushap_snpeff/snpeff.{locusname}.log",
+        "logs/{stage}/snpeff.{locusname}.log",
     container:
         "docker://sethnr/aaeg1000g_hapnet:0.01"
     shell:
