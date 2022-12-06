@@ -148,7 +148,7 @@ rule exon_vcf:
     input:
         vcf="results/{stage}/shapeit.{locusname}.vcf.gz",
         tbi="results/{stage}/shapeit.{locusname}.vcf.gz.tbi",
-        loci=config["haploci"],
+        loci=ancient(config["haploci"]),
     output:
         bed="results/{stage}/exons.{locusname}.bed",
         vcf="results/{stage}/exons.{locusname}.vcf.gz",
