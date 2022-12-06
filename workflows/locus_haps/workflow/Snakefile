@@ -251,8 +251,8 @@ rule whatshap_merge:
 
 rule shapeit:
     input:
-        vcf=ancient("results/locushap_whatshap/whatshap.{locusname}.vcf.gz"),
-        tbi=ancient("results/locushap_whatshap/whatshap.{locusname}.vcf.gz.tbi"),
+        vcf="results/locushap_whatshap/whatshap.{locusname}.vcf.gz",
+        tbi="results/locushap_whatshap/whatshap.{locusname}.vcf.gz.tbi",
 #        map=config['map']
     output:
         vcf=protected("results/locushap_shapeit/shapeit.{locusname}.vcf.gz"),
