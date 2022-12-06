@@ -146,9 +146,10 @@ rule thinvcf:
 
 rule exon_vcf:
     input:
-        vcf=ancient("results/{stage}/shapeit.{locusname}.vcf.gz"),
-        tbi=ancient("results/{stage}/shapeit.{locusname}.vcf.gz.tbi"),
+        vcf="results/{stage}/shapeit.{locusname}.vcf.gz",
+        tbi="results/{stage}/shapeit.{locusname}.vcf.gz.tbi",
         loci=ancient(config["haploci"]),
+        gff=ancient(config["features"]),
     output:
         bed="results/{stage}/exons.{locusname}.bed",
         vcf="results/{stage}/exons.{locusname}.vcf.gz",
@@ -250,8 +251,8 @@ rule whatshap_merge:
 
 rule shapeit:
     input:
-        vcf=ancient("results/locushap_whatshap/whatshap.{locusname}.vcf.gz"),
-        tbi=ancient("results/locushap_whatshap/whatshap.{locusname}.vcf.gz.tbi"),
+        vcf="results/locushap_whatshap/whatshap.{locusname}.vcf.gz",
+        tbi="results/locushap_whatshap/whatshap.{locusname}.vcf.gz.tbi",
 #        map=config['map']
     output:
         vcf=protected("results/locushap_shapeit/shapeit.{locusname}.vcf.gz"),
@@ -280,8 +281,8 @@ rule shapeit:
 
 rule snpeff:
     input:
-        vcf=ancient("results/{stage}/exons.{locusname}.vcf.gz"),
-        tbi=ancient("results/{stage}/exons.{locusname}.vcf.gz.tbi"),
+        vcf="results/{stage}/exons.{locusname}.vcf.gz",
+        tbi="results/{stage}/exons.{locusname}.vcf.gz.tbi",
 #        map=config['map']
     output:
         vcf=protected("results/{stage}/snpeff.{locusname}.vcf.gz"),
