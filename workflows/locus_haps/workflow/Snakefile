@@ -146,8 +146,8 @@ rule thinvcf:
 
 rule exon_vcf:
     input:
-        vcf="results/{stage}/shapeit.{locusname}.vcf.gz",
-        tbi="results/{stage}/shapeit.{locusname}.vcf.gz.tbi",
+        vcf=ancient("results/{stage}/shapeit.{locusname}.vcf.gz"),
+        tbi=ancient("results/{stage}/shapeit.{locusname}.vcf.gz.tbi"),
         loci=ancient(config["haploci"]),
     output:
         bed="results/{stage}/exons.{locusname}.bed",
