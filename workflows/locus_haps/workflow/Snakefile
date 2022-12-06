@@ -29,7 +29,7 @@ rule all:
         #    locusname=LOCI)
         #expand("results/locushap_vcf/split.{locusname}.vcf.gz",
         #    locusname=LOCI)
-        expand("results/locushap_shapeit/shapeit.{locusname}.vcf.gz",
+        expand("results/locushap_shapeit/snpeff.{locusname}.vcf.gz",
             locusname=LOCI)
 
 
