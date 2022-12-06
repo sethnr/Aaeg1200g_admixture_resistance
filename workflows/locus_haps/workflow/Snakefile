@@ -135,7 +135,7 @@ rule exons_vcf:
         mem_mb=3000,
     threads: 1,
     log:
-        "logs/locushap_split_vcf/{locusname}.log",
+        "logs/{stage}/{locusname}.log",
     params:
         geneid=lambda wildcards: get_gene_id_from_name(wildcards)
     shell:
