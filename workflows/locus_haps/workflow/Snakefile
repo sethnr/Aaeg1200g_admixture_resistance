@@ -144,7 +144,7 @@ rule thinvcf:
 
 
 
-rule exons_vcf:
+rule exon_vcf:
     input:
         vcf="results/{stage}/shapeit.{locusname}.vcf.gz",
         tbi="results/{stage}/shapeit.{locusname}.vcf.gz.tbi",
