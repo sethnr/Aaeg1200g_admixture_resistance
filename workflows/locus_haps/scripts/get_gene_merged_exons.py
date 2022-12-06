@@ -18,7 +18,7 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--gff', '-g', help='genes (gff3)')
 parser.add_argument('--gene', '-n', help='gene name')
-parser.add_argument('--out', '-i', help='outfile name (bed)')
+parser.add_argument('--out', '-o', help='outfile name (bed)')
 
 args = parser.parse_args()
 gff = args.gff
