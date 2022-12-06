@@ -128,7 +128,7 @@ rule exons_vcf:
         tbi="results/{stage}/shapeit.{locusname}.vcf.gz.tbi",
         loci=config["haploci"],
     output:
-        bed="results/{stage}/exons.{locusname}.vcf.gz",
+        bed="results/{stage}/exons.{locusname}.bed",
         vcf="results/{stage}/exons.{locusname}.vcf.gz",
         tbi="results/{stage}/exons.{locusname}.vcf.gz.tbi"
     resources:
