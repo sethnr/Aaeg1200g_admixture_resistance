@@ -289,7 +289,7 @@ rule snpeff:
     container:
         "docker://sethnr/aaeg1000g_hapnet:0.01"
     params:
-        snpeffdir: config["snpeffdir"]
+        snpeffdir=config["snpeffdir"]
     shell:
         """
         gunzip -dc {input.vcf} | \
