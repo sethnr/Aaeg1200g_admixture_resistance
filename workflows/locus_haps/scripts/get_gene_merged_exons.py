@@ -25,7 +25,7 @@ gff = args.gff
 geneid = args.gene
 outfile = args.out
 
-
+genes = allel.gff3_to_recarray(gff,attributes=["gene_id"])
 exons = genes[np.logical_and(genes['type']=='exon', genes['gene_id']==geneid)]
 
 
