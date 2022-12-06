@@ -101,6 +101,11 @@ def get_region_vcf(wildcards):
 def get_region_vcf_remote(wildcards):
     return GS.remote(get_region_vcf(wildcards), keep_local=True)
 
+def get_gene_id_from_name(wildcards):
+    loctab = pd.read_table(config["haploci"],dtype = str).set_index(["locusname"])
+    """lookup locusname"""
+    return loctab.loc[str(wildcards.locusname)].geneid
+
 # def get_region_vcf_tbi(wildcards):
 #     return get_region_vcf(wildcards).replace(".vcf.gz",".vcf.gz.tbi")
 #
