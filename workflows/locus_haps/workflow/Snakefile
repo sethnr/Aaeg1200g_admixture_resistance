@@ -125,7 +125,7 @@ rule region_vcf:
 rule exons_vcf:
     input:
         vcf="results/{stage}/shapeit.{locusname}.vcf.gz",
-        tbi="results/{stage}/shapeit.{locusname}.vcf.gz.tbi"
+        tbi="results/{stage}/shapeit.{locusname}.vcf.gz.tbi",
         loci=config["haploci"],
     output:
         bed="results/{stage}/exons.{locusname}.vcf.gz",
