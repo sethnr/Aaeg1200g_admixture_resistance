@@ -122,6 +122,28 @@ rule region_vcf:
         tabix -p vcf results/locushap_vcf/split.{wildcards.locusname}.vcf.gz  2>> {log}
         """
 
+
+rule thinvcf:
+    input:
+        vcf="results/{stage}/whatshap.{locusname}.vcf.gz",
+        tbi="results/{stage}/whatshap.{locusname}.vcf.gz.tbi"
+    output:
+        vcf=temporary("results/{stage}/thin.{locusname}.vcf.gz"),
+        tbi=temporary("results/{stage}/thin.{locusname}.vcf.gz.tbi")
+    resources:
+        mem_mb=4000,
+        h_rt='1:00:00'
+    threads: 1,
+    log:
+        "logs/{stage}/thin.{locusname}.log",
+    shell:
+        """
+          bcftools view -c 1 -O z -o {output.vcf}  {input.vcf} 2>> {log}
+          tabix -pvcf {output.vcf} 2>> {log}
+        """
+
+
+
 rule exons_vcf:
     input:
         vcf="results/{stage}/shapeit.{locusname}.vcf.gz",
@@ -224,26 +246,6 @@ rule whatshap_merge:
 	       bcftools merge --threads {threads} -o {output.vcf} -O z -l {output.filelist};  2>> {log}
            tabix -pvcf {output.vcf} 2>> {log}
 	"""
-
-rule thinvcf:
-    input:
-        vcf="results/{stage}/whatshap.{locusname}.vcf.gz",
-        tbi="results/{stage}/whatshap.{locusname}.vcf.gz.tbi"
-    output:
-        vcf=temporary("results/{stage}/thin.{locusname}.vcf.gz"),
-        tbi=temporary("results/{stage}/thin.{locusname}.vcf.gz.tbi")
-    resources:
-        mem_mb=4000,
-        h_rt='1:00:00'
-    threads: 1,
-    log:
-        "logs/locushap_whatshap/thin.{locusname}.log",
-    shell:
-        """
-          bcftools view -c 1 -O z -o {output.vcf}  {input.vcf} 2>> {log}
-          tabix -pvcf {output.vcf} 2>> {log}
-        """
-
 
 
 rule shapeit:
