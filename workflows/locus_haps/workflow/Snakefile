@@ -99,7 +99,7 @@ rule region_vcf:
         # tbi=lambda wildcards: get_region_vcf_tbi_local(wildcards)
         #vcf="results/vcfs/aegy.wgs.non-AfrI3.mapQ20.GoodSites.dMM3.chr2.comp.bcf.SNP.vcf.gz",
         #tbi="results/vcfs/aegy.wgs.non-AfrI3.mapQ20.GoodSites.dMM3.chr2.comp.bcf.SNP.vcf.gz.tbi",
-        loci=config["haploci"],
+        loci=ancient(config["haploci"]),
         meta=config["vcfs"],
 
     output:
