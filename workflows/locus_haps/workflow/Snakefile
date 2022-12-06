@@ -280,8 +280,8 @@ rule shapeit:
 
 rule snpeff:
     input:
-        vcf="results/{stage}/exons.{locusname}.vcf.gz",
-        tbi="results/{stage}/exons.{locusname}.vcf.gz.tbi",
+        vcf=ancient("results/{stage}/exons.{locusname}.vcf.gz"),
+        tbi=ancient("results/{stage}/exons.{locusname}.vcf.gz.tbi"),
 #        map=config['map']
     output:
         vcf=protected("results/{stage}/snpeff.{locusname}.vcf.gz"),
