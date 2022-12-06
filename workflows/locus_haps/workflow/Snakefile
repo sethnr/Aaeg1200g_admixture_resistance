@@ -163,14 +163,14 @@ rule exon_vcf:
     shell:
         """
         python scripts/get_gene_merged_exons.py \
-            -o exons.{wildcards.locusname}.bed \
+            -o results/{wildcards.stage}/exons.{wildcards.locusname}.bed \
             -n {params.geneid} \
             -g {input.gff}
 
-        bcftools view -Oz  -R results/locushap_shapeit/exons.{wildcards.locusname}.bed \
-                        -o results/locushap_shapeit/exons.{wildcards.locusname}.vcf.gz \
+        bcftools view -Oz  -R results/{wildcards.stage}/exons.{wildcards.locusname}.bed \
+                        -o results/{wildcards.stage}/exons.{wildcards.locusname}.vcf.gz \
                           {input.vcf} 2>> {log}
-        tabix -p vcf results/locushap_shapeit/exons.{wildcards.locusname}.vcf.gz  2>> {log}
+        tabix -p vcf results/{wildcards.stage}/exons.{wildcards.locusname}.vcf.gz  2>> {log}
         """
 
 
@@ -250,8 +250,8 @@ rule whatshap_merge:
 
 rule shapeit:
     input:
-        vcf="results/locushap_whatshap/whatshap.{locusname}.vcf.gz",
-        tbi="results/locushap_whatshap/whatshap.{locusname}.vcf.gz.tbi",
+        vcf=ancient("results/locushap_whatshap/whatshap.{locusname}.vcf.gz"),
+        tbi=ancient("results/locushap_whatshap/whatshap.{locusname}.vcf.gz.tbi"),
 #        map=config['map']
     output:
         vcf=protected("results/locushap_shapeit/shapeit.{locusname}.vcf.gz"),
