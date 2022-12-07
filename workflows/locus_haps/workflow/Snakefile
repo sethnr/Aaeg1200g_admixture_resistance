@@ -180,8 +180,8 @@ rule sample_vcf:
         vcf="results/locushap_vcf/exons.{locusname}.vcf.gz",
         tbi="results/locushap_vcf/exons.{locusname}.vcf.gz.tbi"
     output:
-        outvcf=temporary("results/locushap_split_vcf/exons.{locusname}.{sample}.vcf.gz"),
-        outtbi=temporary("results/locushap_split_vcf/exons.{locusname}.{sample}.vcf.gz.tbi")
+        vcf=temporary("results/locushap_split_vcf/exons.{locusname}.{sample}.vcf.gz"),
+        tbi=temporary("results/locushap_split_vcf/exons.{locusname}.{sample}.vcf.gz.tbi")
         #outvcf="results/locushap_split_vcf/locus.{locusname}.{sample}.vcf.gz",
         #outtbi="results/locushap_split_vcf/locus.{locusname}.{sample}.vcf.gz.tbi"
     resources:
@@ -192,9 +192,9 @@ rule sample_vcf:
     shell:
         """
         bcftools view -Oz -s {wildcards.sample} \
-                          -o results/locushap_split_vcf/locus.{wildcards.locusname}.{wildcards.sample}.vcf.gz \
+                          -o {output.vcf} \
                           {input.vcf} 2>> {log}
-        tabix -p vcf results/locushap_split_vcf/locus.{wildcards.locusname}.{wildcards.sample}.vcf.gz  2>> {log}
+        tabix -p vcf {output.vcf} 2>> {log}
         """
 
 
