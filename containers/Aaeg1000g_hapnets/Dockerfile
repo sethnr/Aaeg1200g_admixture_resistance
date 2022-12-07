@@ -33,6 +33,12 @@ RUN mamba install -c bioconda -c conda-forge -y samtools=1.11
 
 RUN mamba install -c bioconda -c conda-forge -y  snpeff
 
+
+RUN mamba install -c bioconda pandas
+RUN mamba install -c bioconda numpy
+RUN mamba install -c conda-forge/label/main  -y scikit-allel
+
+
 COPY AaegL5 AaegL5
 COPY snpEff.config snpEff.config
 
