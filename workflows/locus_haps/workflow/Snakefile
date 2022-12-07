@@ -25,7 +25,7 @@ rule all:
         #expand("results/locushap_whatshap/whatshap.{locusname}.{sample}.vcf.gz",
         #    sample=SAMPLES,
         #    locusname=LOCI)
-        #expand("results/locushap_vcf/split.{locusname}.vcf.gz",
+        #expand("results/locushap_vcf/locus.{locusname}.vcf.gz",
         #    locusname=LOCI)
         expand("results/locushap_shapeit/snpeff.{locusname}.vcf.gz",
             locusname=LOCI)
@@ -101,13 +101,13 @@ rule region_vcf:
         meta=config["vcfs"],
 
     output:
-        outvcf="results/locushap_vcf/split.{locusname}.vcf.gz",
-        outtbi="results/locushap_vcf/split.{locusname}.vcf.gz.tbi"
+        outvcf="results/locushap_vcf/locus.{locusname}.vcf.gz",
+        outtbi="results/locushap_vcf/locus.{locusname}.vcf.gz.tbi"
     resources:
         mem_mb=3000,
     threads: 1,
     log:
-        "logs/locushap_split_vcf/{locusname}.log",
+        "logs/locushap_locus_vcf/{locusname}.log",
     params:
         #regionstring="NC_035108.1:94761102-95559560"
         regionstring=lambda wildcards: get_region_string(wildcards),
@@ -115,37 +115,37 @@ rule region_vcf:
     shell:
         """
         bcftools view -Oz  \
-                -o results/locushap_vcf/split.{wildcards.locusname}.vcf.gz \
+                -o results/locushap_vcf/locus.{wildcards.locusname}.vcf.gz \
                           {input.vcf} {params.regionstring} 2>> {log}
-        tabix -p vcf results/locushap_vcf/split.{wildcards.locusname}.vcf.gz  2>> {log}
+        tabix -p vcf results/locushap_vcf/locus.{wildcards.locusname}.vcf.gz  2>> {log}
         """
 
 
-rule thinvcf:
-    input:
-        vcf="results/locushap_vcf/split.{locusname}.vcf.gz",
-        tbi="results/locushap_vcf/split.{locusname}.vcf.gz.tbi"
-    output:
-        vcf=temporary("results/locushap_vcfthin.{locusname}.vcf.gz"),
-        tbi=temporary("results/locushap_vcf/thin.{locusname}.vcf.gz.tbi")
-    resources:
-        mem_mb=4000,
-        h_rt='1:00:00'
-    threads: 1,
-    log:
-        "logs/locushap_vcf/thin.{locusname}.log",
-    shell:
-        """
-          bcftools view -c 1 -O z -o {output.vcf}  {input.vcf} 2>> {log}
-          tabix -pvcf {output.vcf} 2>> {log}
-        """
+# rule thinvcf:
+#     input:
+#         vcf="results/locushap_vcf/locus.{locusname}.vcf.gz",
+#         tbi="results/locushap_vcf/locus.{locusname}.vcf.gz.tbi"
+#     output:
+#         vcf=temporary("results/locushap_vcfthin.{locusname}.vcf.gz"),
+#         tbi=temporary("results/locushap_vcf/thin.{locusname}.vcf.gz.tbi")
+#     resources:
+#         mem_mb=4000,
+#         h_rt='1:00:00'
+#     threads: 1,
+#     log:
+#         "logs/locushap_vcf/thin.{locusname}.log",
+#     shell:
+#         """
+#           bcftools view -c 1 -O z -o {output.vcf}  {input.vcf} 2>> {log}
+#           tabix -pvcf {output.vcf} 2>> {log}
+#         """
 
 
 
 rule exon_vcf:
     input:
-        vcf="results/locushap_vcf/thin.{locusname}.vcf.gz",
-        tbi="results/locushap_vcf/thin.{locusname}.vcf.gz.tbi",
+        vcf="results/locushap_vcf/locus.{locusname}.vcf.gz",
+        tbi="results/locushap_vcf/locus.{locusname}.vcf.gz.tbi",
         loci=ancient(config["haploci"]),
         gff=ancient(config["features"]),
     output:
@@ -162,14 +162,14 @@ rule exon_vcf:
     shell:
         """
         python scripts/get_gene_merged_exons.py \
-            -o results/{wildcards.stage}/exons.{wildcards.locusname}.bed \
+            -o {output.bed} \
             -n {params.geneid} \
             -g {input.gff}
 
-        bcftools view -Oz  -R results/{wildcards.stage}/exons.{wildcards.locusname}.bed \
-                        -o results/{wildcards.stage}/exons.{wildcards.locusname}.vcf.gz \
+        bcftools view -Oz  -R {output.bed} \
+                        -o {output.vcf} \
                           {input.vcf} 2>> {log}
-        tabix -p vcf results/{wildcards.stage}/exons.{wildcards.locusname}.vcf.gz  2>> {log}
+        tabix -p vcf {output.vcf}  2>> {log}
         """
 
 
@@ -180,8 +180,8 @@ rule sample_vcf:
     output:
         outvcf=temporary("results/locushap_split_vcf/exons.{locusname}.{sample}.vcf.gz"),
         outtbi=temporary("results/locushap_split_vcf/exons.{locusname}.{sample}.vcf.gz.tbi")
-        #outvcf="results/locushap_split_vcf/split.{locusname}.{sample}.vcf.gz",
-        #outtbi="results/locushap_split_vcf/split.{locusname}.{sample}.vcf.gz.tbi"
+        #outvcf="results/locushap_split_vcf/locus.{locusname}.{sample}.vcf.gz",
+        #outtbi="results/locushap_split_vcf/locus.{locusname}.{sample}.vcf.gz.tbi"
     resources:
         mem_mb=3000,
     threads: 1,
@@ -190,9 +190,9 @@ rule sample_vcf:
     shell:
         """
         bcftools view -Oz -s {wildcards.sample} \
-                          -o results/locushap_split_vcf/split.{wildcards.locusname}.{wildcards.sample}.vcf.gz \
+                          -o results/locushap_split_vcf/locus.{wildcards.locusname}.{wildcards.sample}.vcf.gz \
                           {input.vcf} 2>> {log}
-        tabix -p vcf results/locushap_split_vcf/split.{wildcards.locusname}.{wildcards.sample}.vcf.gz  2>> {log}
+        tabix -p vcf results/locushap_split_vcf/locus.{wildcards.locusname}.{wildcards.sample}.vcf.gz  2>> {log}
         """
 
 
