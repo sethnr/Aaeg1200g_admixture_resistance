@@ -1,5 +1,6 @@
 import pandas as pd
 import sys
+
 from snakemake.utils import validate
 from snakemake.utils import min_version
 
@@ -94,7 +95,7 @@ def get_region_string(wildcards):
 def get_region_vcf(wildcards):
     #loctab = pd.read_table(config["haploci"],dtype = str,header=0).set_index(["locusname"])
     vcfs = pd.read_table(config["vcfs_raw"],dtype = str,header=0).set_index(["chrom","block"])
-    block = floor(int(loctab.loc[str(wildcards.locusname)].start)/1e7)-1
+    block = int(int(loctab.loc[str(wildcards.locusname)].start)/1e7)-1
     chromid = loctab.loc[str(wildcards.locusname)].chrom
     return vcfs.loc[chromid,block].vcf
 
@@ -119,7 +120,7 @@ def get_raw_vcf_from_hapname(wildcards):
     loctab = pd.read_table(config["haploci"],dtype = str,header=0).set_index(["locusname"])
     vcfs = pd.read_table(config["vcfs_raw"],dtype = str,header=0).set_index(["chrom","block"])
     chromid = loctab.loc[str(wildcards.locusname)].chrom
-    block = floor(int(loctab.loc[str(wildcards.locusname)].start)/1e7)
+    block = int(int(loctab.loc[str(wildcards.locusname)].start)/1e7)-1
     return "results/vcfs/raw_{}_{}.vcf.gz".format(chromid,block)
 
 def get_raw_tbi_from_hapname(wildcards):
