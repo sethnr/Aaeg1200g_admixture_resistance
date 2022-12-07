@@ -155,6 +155,8 @@ rule exon_vcf:
     resources:
         mem_mb=3000,
     threads: 1,
+    container:
+        "docker://sethnr/aaeg1000g_hapnets:0.01"
     log:
         "logs/locushap_vcf/{locusname}.log",
     params:
