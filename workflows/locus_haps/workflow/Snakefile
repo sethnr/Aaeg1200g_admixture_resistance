@@ -292,7 +292,7 @@ rule snpeff:
         snpeffdir=config["snpeffdir"]
     shell:
         """
-        gunzip -dc {input.vcf} >  results/locushap_shapeit/shapeit.{locusname}.vcf
+        gunzip -dc {input.vcf} >  results/locushap_shapeit/shapeit.{wildcards.locusname}.vcf
 
         snpEff eff  -no-downstream -no-upstream -no-intergenic -no-intron -no-utr \
                     -canon -dataDir {params.snpeffdir} AaegL5 \
