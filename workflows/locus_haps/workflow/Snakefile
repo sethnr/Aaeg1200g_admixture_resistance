@@ -13,8 +13,8 @@ LOCI=pd.read_table("resources/aaeg_hap_loci.txt",dtype=str,header=0)['locusname'
 
 
 wildcard_constraints:
-    samples=SAMPLES,
-    #locusname=LOCI
+    sample="[^\.]+",
+    loci="[^\_]+\d?"
 
 ruleorder:
     region_vcf > exon_vcf > sample_vcf > whatshap > whatshap_merge > shapeit > snpeff > tabix_vcf
