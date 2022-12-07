@@ -25,10 +25,10 @@ rule all:
         #expand("results/locushap_whatshap/whatshap.{locusname}.{sample}.vcf.gz",
         #    sample=SAMPLES,
         #    locusname=LOCI)
-        #expand("results/locushap_vcf/locus.{locusname}.vcf.gz",
-        #    locusname=LOCI)
-        expand("results/locushap_shapeit/snpeff.{locusname}.vcf.gz",
+        expand("results/locushap_vcf/locus.{locusname}.vcf.gz",
             locusname=LOCI)
+        #expand("results/locushap_shapeit/snpeff.{locusname}.vcf.gz",
+        #    locusname=LOCI)
 
 
 ##### get remotes #######
