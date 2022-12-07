@@ -287,7 +287,7 @@ rule snpeff:
     log:
         "logs/locushap_shapeit/snpeff.{locusname}.log",
     container:
-        "docker://sethnr/aaeg1000g_hapnet:0.01"
+        "docker://sethnr/aaeg1000g_hapnets:0.01"
     params:
         snpeffdir=config["snpeffdir"]
     shell:
