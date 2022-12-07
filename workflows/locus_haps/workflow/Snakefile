@@ -296,7 +296,7 @@ rule snpeff:
 
         snpEff eff  -no-downstream -no-upstream -no-intergenic -no-intron -no-utr \
                     -canon -dataDir {params.snpeffdir} AaegL5 \
-                    results/locushap_shapeit/shapeit.{locusname}.vcf | \
+                    results/locushap_shapeit/shapeit.{wildcards.locusname}.vcf | \
         bcftools view -o {output.vcf} -O z 2> {log}
 
         tabix -p vcf {output.vcf}
