@@ -94,7 +94,7 @@ def get_region_string(wildcards):
 def get_region_vcf(wildcards):
     #loctab = pd.read_table(config["haploci"],dtype = str,header=0).set_index(["locusname"])
     vcfs = pd.read_table(config["vcfs_raw"],dtype = str,header=0).set_index(["chrom","block"])
-    block = round(int(loctab.loc[str(wildcards.locusname)].start)/1e7)+1
+    block = round(int(loctab.loc[str(wildcards.locusname)].start)/1e7)
     chromid = loctab.loc[str(wildcards.locusname)].chrom
     return vcfs.loc[chromid,block].vcf
 
