@@ -17,7 +17,7 @@ wildcard_constraints:
     loci="[^\_]+\d?"
 
 ruleorder:
-    region_vcf > exon_vcf > sample_vcf > whatshap > whatshap_merge > shapeit > snpeff > tabix_vcf
+    region_vcf > exon_vcf > sample_vcf > whatshap > merge_whatshap > shapeit > snpeff > tabix_vcf
 
 rule all:
     input:
