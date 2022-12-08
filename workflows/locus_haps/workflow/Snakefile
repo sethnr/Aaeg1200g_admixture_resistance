@@ -236,9 +236,9 @@ rule merge_whatshapp:
         h_rt='6:00:00',
         mem_mb=16000,
         disk_mb=100000,
-        cpus=4
+        cpus=4,
+        qsub_args='-l highmem '
     threads:4
-    qsub_args='-l highmem '
     log:
         "logs/phase_whatshap/merge.{locusname}.log",
     shell:
