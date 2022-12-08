@@ -228,9 +228,9 @@ rule merge_whatshap:
         tbis=expand("results/locushap_whatshap/whatshap.{{locusname}}.{sample}.vcf.gz.tbi",
             sample=SAMPLES)
     output:
-        filelist="results/locushap_whatshap/filelist.{locusname}.txt",
-        vcf=protected("results/locushap_whatshap/whatshap.{locusname}.vcf.gz"),
-        tbi=protected("results/locushap_whatshap/whatshap.{locusname}.vcf.gz.tbi"),
+        filelist="results/locushap_vcf/filelist.{locusname}.txt",
+        vcf=protected("results/locushap_vcf/whatshap.{locusname}.vcf.gz"),
+        tbi=protected("results/locushap_vcf/whatshap.{locusname}.vcf.gz.tbi"),
     resources:
         bamspace=0,
         h_rt='6:00:00',
@@ -251,8 +251,8 @@ rule merge_whatshap:
 
 rule shapeit:
     input:
-        vcf="results/locushap_whatshap/whatshap.{locusname}.vcf.gz",
-        tbi="results/locushap_whatshap/whatshap.{locusname}.vcf.gz.tbi",
+        vcf="results/locushap_vcf/whatshap.{locusname}.vcf.gz",
+        tbi="results/locushap_vcf/whatshap.{locusname}.vcf.gz.tbi",
 #        map=config['map']
     output:
         vcf=protected("results/locushap_shapeit/shapeit.{locusname}.vcf.gz"),
