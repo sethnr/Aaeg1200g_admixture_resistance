@@ -221,7 +221,7 @@ rule whatshap:
           tabix -pvcf {output.vcf} 2>> {log}
         """
 
-rule merge_whatshapp:
+rule merge_whatshap:
     input:
         vcfs=expand("results/locushap_whatshap/whatshap.{{locusname}}.{sample}.vcf.gz",
             sample=SAMPLES),
