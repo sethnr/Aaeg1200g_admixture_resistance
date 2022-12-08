@@ -99,10 +99,9 @@ rule region_vcf:
         #tbi="results/vcfs/aegy.wgs.non-AfrI3.mapQ20.GoodSites.dMM3.chr2.comp.bcf.SNP.vcf.gz.tbi",
         loci=ancient(config["haploci"]),
         meta=config["vcfs"],
-
     output:
-        outvcf="results/locushap_vcf/locus.{locusname}.vcf.gz",
-        outtbi="results/locushap_vcf/locus.{locusname}.vcf.gz.tbi"
+        vcf="results/locushap_vcf/locus.{locusname}.vcf.gz",
+        tbi="results/locushap_vcf/locus.{locusname}.vcf.gz.tbi"
     resources:
         mem_mb=3000,
     threads: 1,
@@ -114,10 +113,9 @@ rule region_vcf:
         geneid=lambda wildcards: get_gene_id_from_name(wildcards)
     shell:
         """
-        bcftools view -Oz  \
-                -o results/locushap_vcf/locus.{wildcards.locusname}.vcf.gz \
+        bcftools view -Oz -o {output.vcf} \
                           {input.vcf} {params.regionstring} 2>> {log}
-        tabix -p vcf results/locushap_vcf/locus.{wildcards.locusname}.vcf.gz  2>> {log}
+        tabix -p vcf {output.vcf}  2>> {log}
         """
 
 
@@ -193,6 +191,7 @@ rule sample_vcf:
         """
         bcftools view -Oz -s {wildcards.sample} \
                           -o {output.vcf} \
+                          --force-samples \
                           {input.vcf} 2>> {log}
         tabix -p vcf {output.vcf} 2>> {log}
         """
@@ -222,7 +221,7 @@ rule whatshap:
           tabix -pvcf {output.vcf} 2>> {log}
         """
 
-rule whatshap_merge:
+rule merge_whatshapp:
     input:
         vcfs=expand("results/locushap_whatshap/whatshap.{{locusname}}.{sample}.vcf.gz",
             sample=SAMPLES),
@@ -239,6 +238,7 @@ rule whatshap_merge:
         disk_mb=100000,
         cpus=4
     threads:4
+    qsub_args='-l highmem '
     log:
         "logs/phase_whatshap/merge.{locusname}.log",
     shell:
@@ -286,6 +286,7 @@ rule snpeff:
 #        map=config['map']
     output:
         vcf=protected("results/locushap_shapeit/snpeff.{locusname}.vcf.gz"),
+        tbi="results/locushap_shapeit/snpeff.{locusname}.vcf.gz.tbi",
     log:
         "logs/locushap_shapeit/snpeff.{locusname}.log",
     container:
@@ -305,4 +306,33 @@ rule snpeff:
         bcftools view -o {output.vcf} -O z 2> {log}
 
         tabix -p vcf {output.vcf}
+        """
+
+rule happlots:
+    input:
+        vcf="results/locushap_shapeit/snpeff.{locusname}.vcf.gz",
+        tbi="results/locushap_shapeit/snpeff.{locusname}.vcf.gz.tbi",
+        meta=config["spptable"],
+    output:
+        vcf5="results/locushap_shapeit/snpeff.{locusname}.m5.vcf.gz",
+        haps0="results/locushap_shapeit/{locusname}.m0.haps.png",
+        haps5="results/locushap_shapeit/{locusname}.m5.haps.png",
+    log:
+        "logs/locushap_shapeit/haps.{locusname}.log",
+    container:
+        "docker://sethnr/aaeg1000g_hapnets:0.01"
+    params:
+        haps0="results/locushap_shapeit/{locusname}.m0.haps.png",
+        haps5="results/locushap_shapeit/{locusname}.m5.haps.png",
+    shell:
+        """
+            Rscript scripts/plot_hap_network.R \
+        	-i {input.vcf} -o {params.haps0} -m {input.meta} 2>> {log}
+
+            bcftools view -O z -o {output.vcf5} {input.vcf}
+            tabix -pvcf {output.vcf5}
+
+            Rscript scripts/plot_hap_network.R \
+        	-i {output.vcf5} -o {params.haps5} -m {input.meta} 2>> {log}
+
         """
