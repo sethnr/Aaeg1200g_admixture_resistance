@@ -1,6 +1,10 @@
-library(ape)
-library(pegas)
-library(vcfR)
+
+if(!require(ape)){install.packages("ape")
+                          library(ape)}
+if(!require(pegas)){install.packages("pegas")
+                          library(pegas)}
+if(!require(vcfR)){install.packages("vcfR")
+                          library(vcfR)}
 
 f <- "snpeff.kdr.nonsyn.vcf.gz"
 
