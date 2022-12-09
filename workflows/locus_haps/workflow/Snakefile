@@ -21,14 +21,13 @@ ruleorder:
 
 rule all:
     input:
-        #expand("results/bams/{sample}.bam",sample=SAMPLES)
-        #expand("results/locushap_whatshap/whatshap.{locusname}.{sample}.vcf.gz",
-        #    sample=SAMPLES,
-        #    locusname=LOCI)
         #expand("results/locushap_vcf/locus.{locusname}.vcf.gz",
         #    locusname=LOCI)
-        expand("results/locushap_shapeit/snpeff.{locusname}.vcf.gz",
+        #expand("results/locushap_shapeit/snpeff.{locusname}.vcf.gz",
+        #    locusname=LOCI)
+        expand("results/locushap_plots/{locusname}.m0.haps.png",
             locusname=LOCI)
+
 
 
 ##### get remotes #######
@@ -315,8 +314,8 @@ rule happlots:
         meta=config["spptable"],
     output:
         vcf5="results/locushap_shapeit/snpeff.{locusname}.m5.vcf.gz",
-        haps0="results/locushap_shapeit/{locusname}.m0.haps.png",
-        haps5="results/locushap_shapeit/{locusname}.m5.haps.png",
+        haps0="results/locushap_plots/{locusname}.m0.haps.png",
+        haps5="results/locushap_plots/{locusname}.m5.haps.png",
     log:
         "logs/locushap_shapeit/haps.{locusname}.log",
     container:
