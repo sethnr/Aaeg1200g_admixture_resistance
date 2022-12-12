@@ -1,31 +1,31 @@
-
-if(!require(ape)){install.packages("ape")
-                          library(ape)}
-if(!require(pegas)){install.packages("pegas")
-                          library(pegas)}
-if(!require(vcfR)){install.packages("vcfR")
-                          library(vcfR)}
-
-f <- "snpeff.kdr.nonsyn.vcf.gz"
+library(ape)
+library(pegas)
+#library(vcfR)
 
 library("getopt")
 
 opttab <- matrix(c("vcf","i","1","character",
                    "out","o","1","character",
-                   "meta","m","1","character",
-),byrow=T,ncol=4)
+                   "meta","m","1","character"
+                   ),byrow=T,ncol=4)
 opt <- getopt(opttab)
 
 f <- opt$vcf
 outprefix <- opt$out
 metafile <- opt$meta
 
+write(f,file=stderr())
+
 snps <- VCFloci(f)
 samples <- VCFlabels(f)
 
 v <- pegas::read.vcf(f)
+write("is snp",file=stderr())
 h <- pegas::haplotype(v,is.snp(snps))
+write("makehaps",file=stderr())
 dh <- dist.haplotype.loci(h)
+
+write("make DNA bin",file=stderr())
 
 x <- vcfR2DNAbin(read.vcfR(f, verbose = FALSE))
 h <- haplotype(x)

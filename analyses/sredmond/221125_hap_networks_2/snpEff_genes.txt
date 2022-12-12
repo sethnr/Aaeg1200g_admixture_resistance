@@ -1,14 +1,15 @@
 # The following table is formatted as tab separated values. 
-#GeneName	GeneId	TranscriptId	BioType	variants_impact_HIGH	variants_impact_LOW	variants_impact_MODERATE	variants_impact_MODIFIER	variants_effect_3_prime_UTR_variant	variants_effect_5_prime_UTR_premature_start_codon_gain_variant	variants_effect_5_prime_UTR_variant	variants_effect_downstream_gene_variant	variants_effect_intron_variant	variants_effect_missense_variant	variants_effect_splice_acceptor_variant	variants_effect_splice_donor_variant	variants_effect_splice_region_variant	variants_effect_stop_gained	variants_effect_stop_lost	variants_effect_stop_retained_variant	variants_effect_synonymous_variant	variants_effect_upstream_gene_variant
-AAEL008354	AAEL008354	AAEL008354-RA	protein_coding	3	204	28	144323	1151	16	327	0	142882	28	1	1	41	1	0	0	151	0
-AAEL008354	AAEL008354	AAEL008354-RB	protein_coding	1	193	31	144333	1151	16	327	0	142888	31	0	1	39	0	0	0	143	0
-AAEL008354	AAEL008354	AAEL008354-RC	protein_coding	1	203	31	144332	1151	26	566	0	142521	31	0	1	39	0	0	0	143	128
-AAEL008354	AAEL008354	AAEL008354-RD	protein_coding	2	195	27	144334	1151	16	327	0	142890	27	1	1	37	0	0	0	145	0
-AAEL008354	AAEL008354	AAEL008354-RE	protein_coding	2	203	33	144320	1151	16	327	0	142878	33	0	1	43	1	0	0	150	0
-AAEL008354	AAEL008354	AAEL008354-RF	protein_coding	1	206	31	144333	1151	30	593	0	142494	31	0	1	38	0	0	0	143	128
-AAEL008354	AAEL008354	AAEL008354-RG	protein_coding	2	202	31	144335	1151	27	569	0	142518	31	0	2	37	0	0	0	143	128
-AAEL008354	AAEL008354	AAEL008354-RH	protein_coding	0	188	31	144334	1151	11	290	0	142916	31	0	0	39	0	0	0	143	9
-AAEL008354	AAEL008354	AAEL008354-RI	protein_coding	0	187	31	144335	1151	10	292	0	142835	31	0	0	39	0	0	0	143	88
-AAEL008354	AAEL008354	AAEL008354-RJ	protein_coding	3	205	29	144321	1151	16	327	0	142880	29	1	1	41	1	0	0	152	0
-AAEL008354	AAEL008354	AAEL008354-RK	protein_coding	1	192	30	144335	1151	16	327	0	142890	30	0	1	39	0	0	0	142	0
-AAEL008354	AAEL008354	AAEL008354-RL	protein_coding	128	401	1033	142978	0	0	0	107	142908	1033	0	2	44	85	41	20	346	0
+#GeneName	GeneId	TranscriptId	BioType	variants_impact_HIGH	variants_impact_LOW	variants_impact_MODERATE	variants_impact_MODIFIER	variants_effect_3_prime_UTR_variant	variants_effect_intron_variant	variants_effect_missense_variant	variants_effect_splice_acceptor_variant	variants_effect_splice_donor_variant	variants_effect_splice_region_variant	variants_effect_stop_gained	variants_effect_stop_lost	variants_effect_synonymous_variant
+AAEL023266	AAEL023266	AAEL023266-RA	protein_coding	80	620	1661	14408	4513	9935	1661	6	4	65	67	3	588
+AAEL023266	AAEL023266	AAEL023266-RB	protein_coding	81	618	1640	14430	4513	9965	1640	8	4	71	66	3	580
+AAEL023266	AAEL023266	AAEL023266-RD	protein_coding	81	618	1640	14430	4513	9965	1640	8	4	71	66	3	580
+AAEL023266	AAEL023266	AAEL023266-RE	protein_coding	81	618	1640	14430	4513	9965	1640	8	4	71	66	3	580
+AAEL023266	AAEL023266	AAEL023266-RF	protein_coding	80	620	1645	14424	4513	9959	1645	8	4	71	65	3	582
+AAEL023266	AAEL023266	AAEL023266-RG	protein_coding	81	618	1624	14446	4513	9989	1624	10	4	77	64	3	574
+AAEL023266	AAEL023266	AAEL023266-RH	protein_coding	81	618	1624	14446	4513	9989	1624	10	4	77	64	3	574
+AAEL023266	AAEL023266	AAEL023266-RI	protein_coding	81	618	1640	14430	4513	9965	1640	8	4	73	66	3	580
+AAEL023266	AAEL023266	AAEL023266-RJ	protein_coding	80	620	1661	14408	4513	9935	1661	6	4	63	67	3	588
+AAEL023266	AAEL023266	AAEL023266-RK	protein_coding	80	620	1661	14408	4513	9935	1661	6	4	63	67	3	588
+AAEL023266	AAEL023266	AAEL023266-RL	protein_coding	80	620	1661	14408	4513	9935	1661	6	4	63	67	3	588
+AAEL023266	AAEL023266	AAEL023266-RM	protein_coding	79	612	1615	14463	4513	9998	1615	8	4	71	64	3	574
+AAEL023266	AAEL023266.2	AAEL023266-RC	protein_coding	73	576	1573	14547	4513	10058	1573	4	2	45	64	3	556

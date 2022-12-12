@@ -28,18 +28,15 @@ outfile = args.out
 genes = allel.gff3_to_recarray(gff,attributes=["gene_id"])
 exons = genes[np.logical_and(genes['type']=='exon', genes['gene_id']==geneid)]
 
-
 ranges = [i for i in zip(exons['start'],exons['end'])]
-j=0
-s=0
-merged=[]
-for i in range(len(ranges)):
-    if ranges[i][0]<ranges[j][1]:
-        continue
+
+merged = [ranges[0]]
+for (s,e) in ranges[1:]:
+    if e <= merged[-1][1]:
+        merged[-1] = (merged[-1][0],max(merged[-1][1], e))
     else:
-        j = j + 1
-        merged.append((ranges[s][0], ranges[j][1]))
-        s = i
+        merged.append((s,e))
+
 
 outbed = np.array([i for i in zip([exons['seqid'][1]] * len(merged),
             [i[0] for i in merged],

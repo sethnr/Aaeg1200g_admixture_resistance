@@ -7,3 +7,10 @@ grep -v -e \|synonymous -e intron -e UTR  snpeff.kdr.vcf  | bcftools view -q 0.2
 grep -v -e intronic -e UTR  snpeff.kdr.vcf | bcftools view -O z -o snpeff.kdr.coding.vcf.gz -
 grep -v -e \|synonymous -e intron -e UTR  snpeff.kdr.vcf  | bcftools view -O z -o snpeff.kdr.nonsyn.vcf.gz -
 scp -r bty122@login.hpc.qmul.ac.uk:/data/scratch/bty122/redmond-lab-aaeg1000g/results/locushap_shapeit/ locushap_shapeit
+
+
+
+
+parse SNPs from attardo paper
+none found! go back to exons script
+ snpEff -canon  -no-downstream -no-upstream -no-intergenic -no-intron -no-utr AaegL5  locushap_shapeit/snpeff.kdr3.vcf.gz | cut -f 1-11 | grep -e p.Phe1534Cys -e p.Cys1534Phe -e 315983763 -e 315999297 -e 316014588 -e 316080722 -e 315939224
