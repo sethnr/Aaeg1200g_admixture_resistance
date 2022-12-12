@@ -23,10 +23,10 @@ rule all:
     input:
         #expand("results/locushap_vcf/locus.{locusname}.vcf.gz",
         #    locusname=LOCI)
-        #expand("results/locushap_shapeit/snpeff.{locusname}.vcf.gz",
-        #    locusname=LOCI)
-        expand("results/locushap_plots/{locusname}.m0.haps.png",
+        expand("results/locushap_shapeit/snpeff.{locusname}.vcf.gz",
             locusname=LOCI)
+        #expand("results/locushap_plots/{locusname}.m0.haps.png",
+        #    locusname=LOCI)
 
 
 
