@@ -47,6 +47,6 @@ sz <- summary(h)
 
 png(paste(prefix,".png",),width=800,height=800)
 plot(nt,fast=T,
-     pie=R[ntlabs,],size=sz[ntlabs],
+     pie=R[ntlabs,],size=sz[ntlabs]/10,
      legend = T)
 dev.off()
