@@ -1,15 +1,4 @@
 # The following table is formatted as tab separated values. 
-#GeneName	GeneId	TranscriptId	BioType	variants_impact_HIGH	variants_impact_LOW	variants_impact_MODERATE	variants_impact_MODIFIER	variants_effect_3_prime_UTR_variant	variants_effect_intron_variant	variants_effect_missense_variant	variants_effect_splice_acceptor_variant	variants_effect_splice_donor_variant	variants_effect_splice_region_variant	variants_effect_stop_gained	variants_effect_stop_lost	variants_effect_synonymous_variant
-AAEL023266	AAEL023266	AAEL023266-RA	protein_coding	80	620	1661	14408	4513	9935	1661	6	4	65	67	3	588
-AAEL023266	AAEL023266	AAEL023266-RB	protein_coding	81	618	1640	14430	4513	9965	1640	8	4	71	66	3	580
-AAEL023266	AAEL023266	AAEL023266-RD	protein_coding	81	618	1640	14430	4513	9965	1640	8	4	71	66	3	580
-AAEL023266	AAEL023266	AAEL023266-RE	protein_coding	81	618	1640	14430	4513	9965	1640	8	4	71	66	3	580
-AAEL023266	AAEL023266	AAEL023266-RF	protein_coding	80	620	1645	14424	4513	9959	1645	8	4	71	65	3	582
-AAEL023266	AAEL023266	AAEL023266-RG	protein_coding	81	618	1624	14446	4513	9989	1624	10	4	77	64	3	574
-AAEL023266	AAEL023266	AAEL023266-RH	protein_coding	81	618	1624	14446	4513	9989	1624	10	4	77	64	3	574
-AAEL023266	AAEL023266	AAEL023266-RI	protein_coding	81	618	1640	14430	4513	9965	1640	8	4	73	66	3	580
-AAEL023266	AAEL023266	AAEL023266-RJ	protein_coding	80	620	1661	14408	4513	9935	1661	6	4	63	67	3	588
-AAEL023266	AAEL023266	AAEL023266-RK	protein_coding	80	620	1661	14408	4513	9935	1661	6	4	63	67	3	588
-AAEL023266	AAEL023266	AAEL023266-RL	protein_coding	80	620	1661	14408	4513	9935	1661	6	4	63	67	3	588
-AAEL023266	AAEL023266	AAEL023266-RM	protein_coding	79	612	1615	14463	4513	9998	1615	8	4	71	64	3	574
-AAEL023266	AAEL023266.2	AAEL023266-RC	protein_coding	73	576	1573	14547	4513	10058	1573	4	2	45	64	3	556
+#GeneName	GeneId	TranscriptId	BioType	variants_impact_HIGH	variants_impact_LOW	variants_impact_MODERATE	variants_impact_MODIFIER	variants_effect_3_prime_UTR_variant	variants_effect_5_prime_UTR_premature_start_codon_gain_variant	variants_effect_5_prime_UTR_variant	variants_effect_intron_variant	variants_effect_missense_variant	variants_effect_splice_region_variant	variants_effect_start_lost	variants_effect_stop_gained	variants_effect_stop_lost	variants_effect_synonymous_variant	variants_effect_upstream_gene_variant
+AAEL023266	AAEL023266	AAEL023266-RL	protein_coding	184	1337	3490	6418	4513	90	1710	194	3490	150	3	178	3	1215	1
+AAEL023266	AAEL023266.2	AAEL023266-RC	protein_coding	181	1309	3379	6560	4513	90	1711	336	3379	140	3	175	3	1187	0
