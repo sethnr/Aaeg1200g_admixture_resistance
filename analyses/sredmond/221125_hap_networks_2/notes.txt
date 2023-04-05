@@ -8,7 +8,6 @@ grep -v -e intronic -e UTR  snpeff.kdr.vcf | bcftools view -O z -o snpeff.kdr.co
 grep -v -e \|synonymous -e intron -e UTR  snpeff.kdr.vcf  | bcftools view -O z -o snpeff.kdr.nonsyn.vcf.gz -
 scp -r bty122@login.hpc.qmul.ac.uk:/data/scratch/bty122/redmond-lab-aaeg1000g/results/locushap_shapeit/ locushap_shapeit
 
-
 parse SNPs from attardo paper
 none found! go back to exons script
  snpEff -canon  -no-downstream -no-upstream -no-intergenic -no-intron -no-utr AaegL5  locushap_shapeit/snpeff.kdr3.vcf.gz | cut -f 1-11 | grep -e p.Phe1534Cys -e p.Cys1534Phe -e 315983763 -e 315999297 -e 316014588 -e 316080722 -e 315939224
@@ -16,3 +15,20 @@ none found! go back to exons script
 
 bcftools view -q 0.05 -Q 0.95  locushap_shapeit/snpeff.kdr3.vcf.gz | grep -e \# -e ANN |
  bcftools view -O z -o locushap_shapeit/snpeff.kdr3.m0.05_noUTR.vcf.gz -
+
+
+
+
+for V in locushap_shapeit/*vcf.gz ; do
+    bcftools view -q 0.01 -Q 0.99 -O z -
+    o ${V/vcf.gz/c001.vcf.gz} $V ;
+    tabix -pvcf ${V/vcf.gz/c001.vcf.gz} ;
+done
+
+for L in rdl2 rdl1 kdr3 kdr2 ace acefrag ; do
+   Rscript --vanilla plot_haps_geneHapR.R \
+     -i locushap_shapeit/snpeff.${L}.c005.vcf.gz \
+     -o ${L} -m meta_Aaeg1kg_spp.txt ;
+done
+
+
