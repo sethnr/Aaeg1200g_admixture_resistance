@@ -1,0 +1,16 @@
+#unpack gff3 
+gunzip -dc resources/aedes-aegypti-lvpagwgrepeatfeaturesaaegl5.refSeq.gff3.gz | grep -v chromosome > ./resources/aedes-aegypti-lvpagwgrepeatfeaturesaaegl5.refSeq.gff3
+
+#remove all repeat features
+bedtools subtract -a resources/AaegL5_chroms.bed -b resources/aedes-aegypti-lvpagwgrepeatfeaturesaaegl5.refSeq.gff3 > chrom_no_repeats.bed 
+
+
+#add 10kb flank to genes bed
+perl -lane '$F[1] = $F[1]-1e4; $F[2]=$F[2]+1e4; print(join("\t",@F))' resources/VectorBase-59_AaegyptiLVP_AGWG_gene_regions_refseq.bed  > gene_regions_10kb_flank.bed
+
+#remove all genes + 10kb
+bedtools subtract -a chrom_no_repeats.bed -b gene_regions_10kb_flank.bed > chrom_no_repeats_no_genes_10kb.bed
+
+#remove blocks < 1kb
+perl -i -lane 'print $_ if $F[2]-$F[1] > 1000' chrom_no_repeats_no_genes_10kb.bed
+
