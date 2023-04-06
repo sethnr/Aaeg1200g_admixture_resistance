@@ -1,0 +1,213 @@
+annotation	blastp	geneid	group
+cytochrome P450 307a1	CYP307A1_AAEL009762-PA (supercont1.427) [93.81%]	AAEL009762	p450
+probable cytochrome P450 6d5	CYP6F3_AAEL014684-PA (supercont1.1219) [98.02%]	AAEL014684	p450
+probable cytochrome P450 6d5	CYP6F2_AAEL014678-PA (supercont1.1219) [100%]	AAEL014678	p450
+probable cytochrome P450 6d5	CYP6F2_AAEL014678-PA (supercont1.1219) [100%]	AAEL014678	p450
+probable cytochrome P450 6a14	CYP6CB1_AAEL002046-PA (supercont1.48) [98.61%] / AAEL009018-PA (supercont1.362) [98.41%]	AAEL009018	p450
+probable cytochrome P450 6d5	CYP6AL3_AAEL009656-PA (supercont1.415) [99.61%]	AAEL009656	p450
+cytochrome P450 4c3	CYP4C50_AAEL008017-PA (supercont1.295) [100%]	AAEL008017	p450
+cytochrome P450 4c3	CYP4C51_AAEL008018-PA (supercont1.295) [97.98%]	AAEL008018	p450
+cytochrome P450 4c3	CYP4C52_AAEL008023-PA (supercont1.295) [97.84%]	AAEL008023	p450
+cytochrome P450 4g15	AAEL006824-PA (supercont1.222) [100%] / CYP4G35_AAEL008345-PA (supercont1.318) [99.82%]	AAEL008345	p450
+cytochrome P450 CYP12A2 isoform X1	CYP12F8_AAEL006827-PA (supercont1.222) [99.41%]	AAEL006827	p450
+cytochrome P450 CYP12A2 isoform X2	CYP12F8_AAEL006827-PA (supercont1.222) [99.77%]	AAEL006827	p450
+cytochrome P450 4d1 isoform X1	CYP4H29_AAEL007830-PA (supercont1.285) [98.05%]	AAEL007830	p450
+probable cytochrome P450 4d14 isoform X2	CYP4H29_AAEL007830-PA (supercont1.285) [98.24%]	AAEL007830	p450
+cytochrome P450 4g15	CYP4G36_AAEL004054-PA (supercont1.106) [100%]	AAEL004054	p450
+"cytochrome P450 315a1, mitochondrial"	CYP315A1_AAEL011850-PA (supercont1.622) [99.79%]	AAEL011850	p450
+cytochrome P450 9e2	CYP9AE1_AAEL003748-PA (supercont1.96) [100%]	AAEL003748	p450
+cytochrome P450 9b2	CYP329B1_AAEL003763-PA (supercont1.96) [99.42%]	AAEL003763	p450
+probable cytochrome P450 6d4	AAEL014924-PB (supercont1.1337) [100%] / AAEL002872-PA (supercont1.70) [100%]	AAEL002872	p450
+probable cytochrome P450 6a14	CYP6BB2_AAEL014893-PA (supercont1.1327) [100%]	AAEL014893	p450
+probable cytochrome P450 6a14	AAEL017061-PA (supercont1.1327) [65.23%] / CYP6AA5_AAEL012492-PA (supercont1.702) [65.56%] *	AAEL012492	p450
+cytochrome P450 6a8	AAEL017061-PA (supercont1.1327) [100%] / CYP6AA5_AAEL012492-PA (supercont1.702) [96.63%]	AAEL012492	p450
+uncharacterized protein LOC5576391	N-terminal: CYP6P12_AAEL014891-PA (supercont1.1327) [99.80%] / CYP6P12_AAEL012491-PA (supercont1.702) [97.05%] |  C-terminal: CYP6BZ1_AAEL012494-PA (supercont1.702) [98.80%] / AAEL014892-PA (supercont1.1327) [95.82%]	AAEL014892	p450
+probable cytochrome P450 6a13	CYP6CC1_AAEL014890-PA (supercont1.1327) [98.58%]	AAEL014890	p450
+probable cytochrome P450 304a1	CYP304C1_AAEL014413-PA (supercont1.1104) [100%]	AAEL014413	p450
+probable cytochrome P450 304a1	CYP304B2_AAEL014412-PA (supercont1.1104) [100%]	AAEL014412	p450
+probable cytochrome P450 304a1	CYP304B3_AAEL014411-PA (supercont1.1104) [100%]	AAEL014411	p450
+cytochrome P450 18a1	CYP18A1_AAEL004870-PA (supercont1.133) [100%]	AAEL004870	p450
+cytochrome P450 306a1	CYP306A1_AAEL004888-PA (supercont1.133) [98.80%]	AAEL004888	p450
+"cytochrome P450 302a1, mitochondrial"	AAEL011463-PB (supercont1.581) [99.22%] / CYP302A1_AAEL015655-PA (supercont1.4395) [99.22%]	AAEL015655	p450
+probable cytochrome P450 308a1	CYP6AH1_AAEL007473-PA (supercont1.257) [100%] / AAEL015641-PA (supercont1.4127) [98.9%; partial alignment]	AAEL015641	p450
+probable cytochrome P450 4ac1	CYP4J13_AAEL013555-PA (supercont1.869) [100%] / AAEL014830-PA (supercont1.1282) [98.43%]	AAEL014830	p450
+cytochrome P450 4C1	CYP4J14_AAEL013554-PA (supercont1.869) [100%]	AAEL013554	p450
+cytochrome P450 4C1	CYP4J15_AAEL013556-PA (supercont1.869) [100%] / AAEL014829-PB (supercont1.1282) [98.04%]	AAEL014829	p450
+probable cytochrome P450 4ac1 isoform X1	CYP4J16_AAEL014019-PB (supercont1.985) [100%] / AAEL015663-PA (supercont1.4503) [96.46%]	AAEL015663	p450
+probable cytochrome P450 4ac1 isoform X2	CYP4J16_AAEL014019-PA (supercont1.985) [100%]	AAEL014019	p450
+"probable cytochrome P450 301a1, mitochondrial"	CYP301A1_AAEL014594-PA (supercont1.1181) [100%]	AAEL014594	p450
+"probable cytochrome P450 301a1, mitochondrial"	CYP301A1_AAEL014594-PA (supercont1.1181) [100%]	AAEL014594	p450
+probable cytochrome P450 305a1	CYP305A6_AAEL002071-PA (supercont1.48) [95.78%]	AAEL002071	p450
+probable cytochrome P450 305a1	CYP305A5_AAEL002043-PA (supercont1.48) [100%]	AAEL002043	p450
+probable cytochrome P450 6d5	CYP6AL1_AAEL008889-PA (supercont1.354) [100%]	AAEL008889	p450
+probable cytochrome P450 49a1	CYP49A1_AAEL008638-PA (supercont1.338) [100%]	AAEL008638	p450
+probable cytochrome P450 303a1	CYP303A1_AAEL012144-PA (supercont1.660) [100%]	AAEL012144	p450
+probable cytochrome P450 9f2 isoform X1	AAEL018075-PA (supercont1.352) [100%] / CYP9J32_AAEL008846-PA (supercont1.352) [99.26%]	AAEL008846	p450
+probable cytochrome P450 9f2 isoform X1	AAEL018075-PA (supercont1.352) [100%] / CYP9J32_AAEL008846-PA (supercont1.352) [99.26%]	AAEL008846	p450
+probable cytochrome P450 9f2 isoform X2	AAEL018075-PA (supercont1.352) [100%] / CYP9J32_AAEL008846-PA (supercont1.352) [99.26%]	AAEL008846	p450
+probable cytochrome P450 9f2 isoform X1	AAEL018075-PA (supercont1.352) [100%] / CYP9J32_AAEL008846-PA (supercont1.352) [99.26%]	AAEL008846	p450
+probable cytochrome P450 9f2	CYP9J31_AAEL002633-PB (supercont1.62) [100%]	AAEL002633	p450
+probable cytochrome P450 9f2	CYP9J31_AAEL002633-PB (supercont1.62) [100%]	AAEL002633	p450
+probable cytochrome P450 9f2	CYP9J6_AAEL002638-PA (supercont1.62) [100%]	AAEL002638	p450
+cytochrome P450 307a1	AAEL014208-PA (supercont1.1036) [100%] / CYP307B1_AAEL006875-PA (supercont1.224) [100%]	AAEL006875	p450
+cytochrome P450 4c21 isoform X2	CYP325X4_AAEL005700-PA (supercont1.170) [91.33%]	AAEL005700	p450
+probable cytochrome P450 313a4 isoform X1	CYP325X4_AAEL005700-PA (supercont1.170) [99.04%]	AAEL005700	p450
+probable cytochrome P450 313a4	CYP325X2_AAEL005696-PA (supercont1.170) [99.22%]	AAEL005696	p450
+probable cytochrome P450 313a4	CYP325X1_AAEL005695-PA (supercont1.170) [100%]	AAEL005695	p450
+cytochrome P450 4d8	CYP4H31_AAEL002085-PA (supercont1.48) [100%]	AAEL002085	p450
+cytochrome P450 9e2	CYP9M8_AAEL009591-PA (supercont1.410) [98.69%]	AAEL009591	p450
+cytochrome P450 4d1	CYP4H33_AAEL013798-PA (supercont1.923) [100%]	AAEL013798	p450
+cytochrome P450 9e2	CYP9M9_AAEL001807-PA (supercont1.43) [99.81%]	AAEL001807	p450
+cytochrome P450 4d2	CYP4AR2_AAEL010154-PA (supercont1.457) [96.80%]	AAEL010154	p450
+probable cytochrome P450 6a14	CYP6N17_AAEL010158-PA (supercont1.457) [98.40%]	AAEL010158	p450
+probable cytochrome P450 6a14	CYP6N16_AAEL010151-PA (supercont1.457) [99.80%]	AAEL010151	p450
+cytochrome P450 4C1	CYP4C38_AAEL012266-PA (supercont1.673) [100%]	AAEL012266	p450
+probable cytochrome P450 6d4	CYP6Z9_AAEL009129-PA (supercont1.371) [100%]	AAEL009129	p450
+cytochrome P450 6d3	CYP6Z8_AAEL009131-PA (supercont1.371) [100%]	AAEL009131	p450
+probable cytochrome P450 6d4	CYP6Z7_AAEL009130-PA (supercont1.371) [100%]	AAEL009130	p450
+cytochrome P450 6d3	CYP6Z6_AAEL009123-PA (supercont1.371) [100%]	AAEL009123	p450
+probable cytochrome P450 6a14	CYP6M11_AAEL009127-PA (supercont1.371) [100%]	AAEL009127	p450
+cytochrome P450 6a8	CYP6M10_AAEL009125-PA (supercont1.371) [100%]	AAEL009125	p450
+cytochrome P450 6a8	CYP6M10_AAEL009125-PA (supercont1.371) [100%]	AAEL009125	p450
+cytochrome P450 6a8	CYP6M10_AAEL009125-PA (supercont1.371) [100%]	AAEL009125	p450
+probable cytochrome P450 6a14	CYP6M9_AAEL017297-PA (supercont1.371) [100%] / CYP6M5_AAEL009117-PA (supercont1.371) [96.35%]	AAEL009117	p450
+probable cytochrome P450 6a14	CYP6M9_AAEL017297-PA (supercont1.371) [100%] / CYP6M5_AAEL009117-PA (supercont1.371) [96.35%]	AAEL009117	p450
+probable cytochrome P450 6a14	CYP6M9_AAEL017297-PA (supercont1.371) [100%] / CYP6M5_AAEL009117-PA (supercont1.371) [96.35%]	AAEL009117	p450
+cytochrome P450 6a8	CYP6M5_AAEL009117-PA (supercont1.371) [100%] / CYP6M9_AAEL017297-PA (supercont1.371) [96.35%]	AAEL017297	p450
+probable cytochrome P450 6a14	CYP6M6_AAEL009128-PA (supercont1.371) [100%]	AAEL009128	p450
+cytochrome P450 6a2	CYP6Y3_AAEL009132-PA (supercont1.371) [99.40%]	AAEL009132	p450
+cytochrome P450 6A1	AAEL009122-PA (supercont1.371) [100%]	AAEL009122	p450
+probable cytochrome P450 6a13	CYP6N14_AAEL009133-PA (supercont1.371) [100%]	AAEL009133	p450
+probable cytochrome P450 6a14	CYP6N13_AAEL009137-PA (supercont1.371) [100%]	AAEL009137	p450
+probable cytochrome P450 6a20	CYP6S3_AAEL009120-PA (supercont1.371) [100%]	AAEL009120	p450
+probable cytochrome P450 6a13	CYP6N12_AAEL009124-PA (supercont1.371) [100%]	AAEL009124	p450
+probable cytochrome P450 6a14	CYP6N6_AAEL009126-PA (supercont1.371) [100%]	AAEL009126	p450
+probable cytochrome P450 6a13	CYP6N11_AAEL009138-PA (supercont1.371) [100%]	AAEL009138	p450
+cytochrome P450 6A1	AAEL017556-PB (supercont1.371) [100%]	AAEL017556	p450
+probable cytochrome P450 6a14	CYP6N9_AAEL009121-PA (supercont1.371) [100%]	AAEL009121	p450
+"probable cytochrome P450 12a4, mitochondrial isoform X1"	AAEL001960-PA (supercont1.47) [100%]	AAEL001960	p450
+"probable cytochrome P450 12a4, mitochondrial isoform X2"	AAEL001960-PA (supercont1.47) [100%]	AAEL001960	p450
+cytochrome P450 CYP12A2	CYP12F6_AAEL002005-PA (supercont1.47) [99.55%]	AAEL002005	p450
+cytochrome P450 CYP12A2	CYP12F7_AAEL002031-PA (supercont1.47) [99.43%]	AAEL002031	p450
+cytochrome P450 9b2	CYP9M7_AAEL001292-PA (supercont1.29) [99.80%]	AAEL001292	p450
+cytochrome P450 9b2	CYP9M6_AAEL001312-PA (supercont1.29) [98.69%]	AAEL001312	p450
+cytochrome P450 9e2	CYP9M5_AAEL001288-PA (supercont1.29) [93.62%]	AAEL001288	p450
+cytochrome P450 9e2	CYP9M4_AAEL001320-PA (supercont1.29) [97.93%]	AAEL001320	p450
+cytochrome P450 9e2-like	CYP9M4_AAEL001320-PA (supercont1.29) [93.07%]	AAEL001320	p450
+cytochrome P450 4V2	CYP325Y1_AAEL006257-PA (supercont1.197) [100%]	AAEL006257	p450
+cytochrome P450 4V2	CYP325Y3_AAEL018028-PB (supercont1.197) [100%] / AAEL015362-PA (supercont1.1912) [98.68%]	AAEL015362	p450
+cytochrome P450 4V2	AAEL015361-PA (supercont1.1912) [98.90%] / CYP325Y3_AAEL018028-PA (supercont1.197) [90.91%]	AAEL018028	p450
+cytochrome P450 4c21	CYP325Q2_AAEL006058-PA (supercont1.187) [100%] / AAEL015563-PA (supercont1.3299) [99.19%]	AAEL015563	p450
+probable cytochrome P450 313a4	CYP325Q1_AAEL006044-PA (supercont1.187) [99.80%]	AAEL006044	p450
+cytochrome P450 4c3	CYP4H28_AAEL003380-PA (supercont1.85) [100%]	AAEL003380	p450
+cytochrome P450 4C1	CYP4H30_AAEL003399-PA (supercont1.85) [98.80%]	AAEL003399	p450
+probable cytochrome P450 28a5	CYP6AG8_AAEL015654-PA (supercont1.4359) [99.20%] / AAEL003890-PA (supercont1.99) [99.20%]	AAEL003890	p450
+cytochrome P450 4C1	CYP325L1_AAEL011770-PA (supercont1.610) [100%]	AAEL011770	p450
+cytochrome P450 4c3	CYP325M5_AAEL011761-PA (supercont1.610) [100%]	AAEL011761	p450
+cytochrome P450 4C1	CYP325M4_AAEL011769-PA (supercont1.610) [95.83%]	AAEL011769	p450
+probable cytochrome P450 313a4	CYP325M1_AAEL012773-PA (supercont1.738) [98.81%]	AAEL012773	p450
+cytochrome P450 4C1	CYP325N1_AAEL012770-PA (supercont1.738) [99.21%]	AAEL012770	p450
+cytochrome P450 4C1	CYP325G3_AAEL012772-PA (supercont1.738) [97.80%]	AAEL012772	p450
+cytochrome P450 4C1	CYP325T2_AAEL012761-PA (supercont1.738) [100%]	AAEL012761	p450
+probable cytochrome P450 313a1	CYP325M2_AAEL012769-PA (supercont1.738) [100%]	AAEL012769	p450
+probable cytochrome P450 313a4	CYP325M3_AAEL012765-PA (supercont1.738) [100%]	AAEL012765	p450
+cytochrome P450 4C1	CYP325N2_AAEL012762-PA (supercont1.738) [100%]	AAEL012762	p450
+cytochrome P450 4c21	CYP325G2_AAEL012766-PA (supercont1.738) [100%]	AAEL012766	p450
+cytochrome P450 4C1	AAEL000340-PA (supercont1.6) [96.95%]	AAEL000340	p450
+cytochrome P450 4c21-like	CYP325S3_AAEL000357-PA (supercont1.6) [41.60%] *	AAEL000357	p450
+cytochrome P450 4C1	CYP325E3_AAEL000338-PA (supercont1.6) [89.94%] *	AAEL000338	p450
+cytochrome P450 4c21	CYP325V1_AAEL017136-PA (supercont1.6) [98.81%]	AAEL017136	p450
+cytochrome P450 4c21	CYP325U1_AAEL017215-PA (supercont1.6) [94.38%]	AAEL017215	p450
+probable cytochrome P450 313a2	CYP325T1_AAEL000320-PA (supercont1.6) [100%]	AAEL000320	p450
+probable cytochrome P450 313a2	CYP325S2_AAEL000325-PA (supercont1.6) [99.49%]	AAEL000325	p450
+cytochrome P450 4c21	CYP325S3_AAEL000357-PA (supercont1.6) [100%]	AAEL000357	p450
+cytochrome P450 4c21	CYP325S1_AAEL000326-PA (supercont1.6) [98.44%]	AAEL000326	p450
+cytochrome P450 4c21	CYP325K3_AAEL005788-PA (supercont1.174) [100%]	AAEL005788	p450
+probable cytochrome P450 313a1	CYP325K2_AAEL005771-PA (supercont1.174) [100%]	AAEL005771	p450
+cytochrome P450 4c21	CYP325R1_AAEL005775-PA (supercont1.174) [99.80%]	AAEL005775	p450
+cytochrome P450 4C1	CYP4H32_AAEL007812-PA (supercont1.283) [100%]	AAEL007812	p450
+cytochrome P450 4d2 isoform X2	CYP4D23_AAEL007816-PA (supercont1.283) [93.33%]	AAEL007816	p450
+cytochrome P450 4d2 isoform X1	CYP4D23_AAEL007816-PA (supercont1.283) [100%]	AAEL007816	p450
+cytochrome P450 4d1	CYP4D37_AAEL007795-PA (supercont1.283) [100%]	AAEL007795	p450
+cytochrome P450 4d1 isoform X2	CYP4D38_AAEL007807-PA (supercont1.283) [100%]	AAEL007807	p450
+cytochrome P450 4d1 isoform X1	CYP4D38_AAEL007807-PA (supercont1.283) [99.56%]	AAEL007807	p450
+cytochrome P450 4d1	CYP4D39_AAEL007808-PA (supercont1.283) [100%]	AAEL007808	p450
+cytochrome P450 4d1	CYP4D24_AAEL007815-PA (supercont1.283) [99.60%]	AAEL007815	p450
+cytochrome P450 4d1	CYP4K3_AAEL007798-PA (supercont1.283) [100%]	AAEL007798	p450
+cytochrome P450 4c21	CYP325AA1_AAEL004012-PA (supercont1.105) [96.83%]	AAEL004012	p450
+probable cytochrome P450 28a5	CYP6AG4_AAEL007010-PA (supercont1.231) [100%] / CYP6AG3_AAEL007024-PA (supercont1.231) [97.18%]	AAEL007024	p450
+probable cytochrome P450 28a5	CYP6AG3_AAEL007024-PA (supercont1.231) [100%] / CYP6AG4_AAEL007010-PA (supercont1.231) [97.18%]	AAEL007010	p450
+probable cytochrome P450 28a5	CYP6AG7_AAEL006989-PA (supercont1.231) [100%]	AAEL006989	p450
+probable cytochrome P450 28a5	CYP6AG6_AAEL006992-PA (supercont1.231) [100%]	AAEL006992	p450
+probable cytochrome P450 28a5	CYP6AG5_AAEL006984-PA (supercont1.231) [99.40%]	AAEL006984	p450
+probable cytochrome P450 6g2 isoform X1	CYP6AK1_AAEL004941-PA (supercont1.136) [82.00%] *	AAEL004941	p450
+probable cytochrome P450 6g2 isoform X2	CYP6AK1_AAEL004941-PA (supercont1.136) [97.66%]	AAEL004941	p450
+probable cytochrome P450 6g2	CYP6CD1_AAEL005006-PA (supercont1.138) [99.02%]	AAEL005006	p450
+cytochrome P450 9e2	CYP9J15_AAEL006795-PA (supercont1.221) [99.63%]	AAEL006795	p450
+probable cytochrome P450 9f2	CYP9J16_AAEL006815-PA (supercont1.221) [100%]	AAEL006815	p450
+probable cytochrome P450 9f2	CYP9J17_AAEL006784-PA (supercont1.221) [100%]	AAEL006784	p450
+probable cytochrome P450 9f2	CYP9J2_AAEL006805-PA (supercont1.221) [100%]	AAEL006805	p450
+probable cytochrome P450 9f2	CYP9J8_AAEL006811-PA (supercont1.221) [99.81%] / CYP9J8_AAEL014608-PA (supercont1.1188) [99.26%]	AAEL014608	p450
+probable cytochrome P450 9f2	CYP9J9_AAEL006793-PA (supercont1.221) [99.82%] / CYP9J9_AAEL014605-PA (supercont1.1188) [98.89%]	AAEL014605	p450
+probable cytochrome P450 9f2	CYP9J10_AAEL006798-PA (supercont1.221) [99.82%] / AAEL014614-PA (supercont1.1188) [98.71%]	AAEL014614	p450
+probable cytochrome P450 9f2	CYP9J10_AAEL006798-PA (supercont1.221) [99.82%] / AAEL014614-PA (supercont1.1188) [98.71%]	AAEL014614	p450
+probable cytochrome P450 9f2	AAEL018044-PA (supercont1.221) [100%] / CYP9J18_AAEL018043-PA (supercont1.221) [100%] / AAEL014618-PA (supercont1.1188) [96.13%]	AAEL014618	p450
+probable cytochrome P450 9f2	AAEL018046-PA (supercont1.221) [100%] / CYP9J19_AAEL018045-PA (supercont1.221) [100%] / CYPJ19_AAEL014611-PA (supercont1.1188) [96.30%]	AAEL014611	p450
+uncharacterized protein LOC5564757	N-terminal: CYP9J20_AAEL006814-PA (supercont1.221) [100%] / AAEL014604-PA (supercont1.1188) [98.70%] | C-terminal: CYP9J21_AAEL018030-PA (supercont1.221) [100%] / AAEL014612-PA (supercont1.1188) [97.96%]	AAEL014612	p450
+probable cytochrome P450 9f2	CYP9J22_AAEL006802-PA (supercont1.221) [98.69%] / CYP9J22_AAEL014619-PA (supercont1.1188) [98.31%]	AAEL014619	p450
+cytochrome P450 9e2	CYP9J23_AAEL014615-PA (supercont1.1188) [97.56%]	AAEL014615	p450
+probable cytochrome P450 9f2	CYP9J24_AAEL014613-PA (supercont1.1188) [98.32%]	AAEL014613	p450
+probable cytochrome P450 9f2	CYP9J26_AAEL014609-PA (supercont1.1188) [90.47%]	AAEL014609	p450
+probable cytochrome P450 9f2	CYP9J26_AAEL014609-PA (supercont1.1188) [99.81%]	AAEL014609	p450
+cytochrome P450 9e2	CYP9J28_AAEL014617-PA (supercont1.1188) [100%]	AAEL014617	p450
+cytochrome P450 9e2	CYP9J29_AAEL014610-PA (supercont1.1188) [100%] / CYP9J30_AAEL014603-PA (supercont1.1188) [91.43%]	AAEL014603	p450
+cytochrome P450 9e2	CYP9J30_AAEL014603-PA (supercont1.1188) [100%] / CYP9J29_AAEL014610-PA (supercont1.1188) [91.43%]	AAEL014610	p450
+cytochrome P450 6a2	CYP6BY1_AAEL017539-PA (supercont1.7) [100%]	AAEL017539	p450
+cytochrome P450 4c21-like	CYP325S1_AAEL000326-PA (supercont1.6) [93.37%]	AAEL000326	p450
+"probable cytochrome P450 301a1, mitochondrial, partial"	CYP301A1_AAEL014594-PA (supercont1.1181) [99.47%]	AAEL014594	p450
+probable cytochrome P450 28a5	CYP6AG4_AAEL007010-PA (supercont1.231) [99.20%] / CYP6AG3_AAEL007024-PA (supercont1.231) [96.78%]	AAEL007024	p450
+glutathione S-transferase theta-3	GSTT2_AAEL009016-PA (supercont1.362) [99.12%]	AAEL009016	GST
+glutathione S-transferase theta-1	GSTT1_AAEL009017-PA (supercont1.362) [99.13%]	AAEL009017	GST
+glutathione S-transferase theta-1	GSTT3_AAEL009020-PA (supercont1.362) [99.57%]	AAEL009020	GST
+microsomal glutathione S-transferase 1	microsomal_GST_AAEL006829-PA (supercont1.222) [100%]	AAEL006829	GST
+microsomal glutathione S-transferase 1	microsomal_GST_AAEL006818-PA (supercont1.222) [85.35%] *	AAEL006818	GST
+glutathione S-transferase theta-1	GSTT4_AAEL004229-PA (supercont1.111) [100%]	AAEL004229	GST
+glutathione S-transferase 1	GSTI1_AAEL011752-PA (supercont1.608) [100%]	AAEL011752	GST
+glutathione S-transferase D7	GSTD7_AAEL001090-PA (supercont1.22) [99.54%]	AAEL001090	GST
+glutathione S-transferase 1 isoform X3	GSTD1_AAEL001061-PB (supercont1.22) [100%]	AAEL001061	GST
+glutathione S-transferase 1 isoform X1	GSTD1_AAEL001061-PA (supercont1.22) [95.89%]	AAEL001061	GST
+glutathione S-transferase 1 isoform X2	GSTD1_AAEL001061-PC (supercont1.22) [99.05%]	AAEL001061	GST
+glutathione S-transferase 1	GSTD2_AAEL001078-PA (supercont1.22) [96.90%]	AAEL001078	GST
+glutathione S-transferase 1	GSTD5_AAEL001071-PA (supercont1.22) [98.56%]	AAEL001071	GST
+glutathione S-transferase 1	GSTD4_AAEL001054-PA (supercont1.22) [98.62%]	AAEL001054	GST
+glutathione S-transferase D5	GSTD3_AAEL001059-PA (supercont1.22) [97.21%]	AAEL001059	GST
+glutathione S-transferase 1	GSTD6_AAEL010591-PA (supercont1.488) [100%]	AAEL010591	GST
+glutathione S-transferase 1-1	GSTD11_AAEL010582-PA (supercont1.488) [98.65%]	AAEL010582	GST
+glutathione S-transferase T3 isoform X3	AAEL015285-PB (supercont1.1707) [99.48%] / AAEL015285-PA (supercont1.1707) [98.96%]	AAEL015285	GST
+glutathione S-transferase T3 isoform X4	AAEL015285-PA (supercont1.1707) [99.48%] / AAEL015285-PB (supercont1.1707) [98.96%]	AAEL015285	GST
+glutathione S-transferase T3 isoform X1	AAEL015285-PB (supercont1.1707) [100%] / AAEL015285-PA (supercont1.1707) [99.48%]	AAEL015285	GST
+glutathione S-transferase T3 isoform X2	AAEL015285-PB (supercont1.1707) [100%] / AAEL015285-PA (supercont1.1707) [99.48%]	AAEL015285	GST
+glutathione S-transferase E14	GSTE8_AAEL007955-PA (supercont1.291) [100%]	AAEL007955	GST
+glutathione S-transferase 1	GSTE1_AAEL007954-PA (supercont1.291) [91.07%]	AAEL007954	GST
+glutathione S-transferase 1	GSTE4_AAEL007962-PA (supercont1.291) [100%]	AAEL007962	GST
+glutathione S-transferase 1-like	GSTE2_AAEL007951-PA (supercont1.291) [100%]	AAEL007951	GST
+glutathione S-transferase 1-like	GSTE5_AAEL007964-PA (supercont1.291) [100%]	AAEL007964	GST
+glutathione S-transferase 1	GSTE7_AAEL007948-PA (supercont1.291) [100%]	AAEL007948	GST
+glutathione S-transferase 1-like	GSTE2_AAEL007951-PA (supercont1.291) [100%]	AAEL007951	GST
+glutathione S-transferase 1-like	GSTE5_AAEL007964-PA (supercont1.291) [100%]	AAEL007964	GST
+glutathione S-transferase 1-like	GSTE7_AAEL007948-PA (supercont1.291) [100%]	AAEL007948	GST
+glutathione S-transferase 1-like	GSTE7_AAEL007948-PA (supercont1.291) [100%]	AAEL007948	GST
+glutathione S-transferase 1-like	GSTE2_AAEL007951-PA (supercont1.291) [100%]	AAEL007951	GST
+glutathione S-transferase 1	GSTE5_AAEL007964-PA (supercont1.291) [100%]	AAEL007964	GST
+glutathione S-transferase 1-like	GSTE7_AAEL007948-PA (supercont1.291) [100%]	AAEL007948	GST
+glutathione S-transferase 1	GSTE6_AAEL007946-PA (supercont1.291) [98.18%]	AAEL007946	GST
+glutathione S-transferase 1	GSTE3_AAEL007947-PA (supercont1.291) [100%]	AAEL007947	GST
+microsomal glutathione S-transferase 1	microsomal_GST_AAEL010157-PA (supercont1.457) [98.65%]	AAEL010157	GST
+glutathione S-transferase D7 isoform X1	GSTX2_AAEL010500-PA (supercont1.481) [100%]	AAEL010500	GST
+glutathione S-transferase D7 isoform X2	GSTX2_AAEL010500-PA (supercont1.481) [100%]	AAEL010500	GST
+glutathione S-transferase D4	GSTX1_AAEL000092-PA (supercont1.1) [99.08%]	AAEL000092	GST
+glutathione S-transferase isoform X3	GSTS1_AAEL011741-PA (supercont1.607) [99.51%]	AAEL011741	GST
+glutathione S-transferase isoform X4	GSTS1_AAEL011741-PA (supercont1.607) [99.51%]	AAEL011741	GST
+glutathione S-transferase isoform X2	GSTS1_AAEL011741-PA (supercont1.607) [99.51%]	AAEL011741	GST
+glutathione S-transferase isoform X1	GSTS1_AAEL011741-PA (supercont1.607) [99.51%]	AAEL011741	GST
+microsomal glutathione S-transferase 1-like	microsomal_GST_AAEL010157-PA (supercont1.457) [98.65%]	AAEL010157	GST
