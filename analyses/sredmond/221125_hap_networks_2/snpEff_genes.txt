@@ -1,4 +1,4 @@
 # The following table is formatted as tab separated values. 
-#GeneName	GeneId	TranscriptId	BioType	variants_impact_HIGH	variants_impact_LOW	variants_impact_MODERATE	variants_impact_MODIFIER	variants_effect_3_prime_UTR_variant	variants_effect_5_prime_UTR_premature_start_codon_gain_variant	variants_effect_5_prime_UTR_variant	variants_effect_intron_variant	variants_effect_missense_variant	variants_effect_splice_region_variant	variants_effect_start_lost	variants_effect_stop_gained	variants_effect_stop_lost	variants_effect_synonymous_variant	variants_effect_upstream_gene_variant
-AAEL023266	AAEL023266	AAEL023266-RL	protein_coding	184	1337	3490	6418	4513	90	1710	194	3490	150	3	178	3	1215	1
-AAEL023266	AAEL023266.2	AAEL023266-RC	protein_coding	181	1309	3379	6560	4513	90	1711	336	3379	140	3	175	3	1187	0
+#GeneName	GeneId	TranscriptId	BioType	variants_impact_LOW	variants_impact_MODERATE	variants_impact_MODIFIER	variants_effect_intron_variant	variants_effect_missense_variant	variants_effect_splice_region_variant	variants_effect_synonymous_variant
+AAEL023266	AAEL023266	AAEL023266-RL	protein_coding	53	12	3	3	12	3	53
+AAEL023266	AAEL023266.2	AAEL023266-RC	protein_coding	56	9	3	3	9	4	56

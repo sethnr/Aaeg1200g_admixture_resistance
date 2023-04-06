@@ -32,10 +32,10 @@ h <- haplotype(x)
 d <- dist.dna(h,"n")
 
 # #min spanning tree
-mstree <- rmst(d)
+mstree <- rmst(dh)
 #minimum spanning network
-msnet <- mst(d)
-nt <- msnet
+msnet <- mst(dh)
+nt <- mstree
 
 meta <- read.table(metafile,header=T,sep="\t")
 rownames(meta) <- meta$sample
@@ -48,5 +48,6 @@ sz <- summary(h)
 png(paste(prefix,".png",),width=800,height=800)
 plot(nt,fast=T,
      pie=R[ntlabs,],size=sz[ntlabs]/10,
-     legend = T)
+     legend = T,
+     threshold=0)
 dev.off()
