@@ -1,0 +1,4 @@
+samtools mpileup -f $AAGIT/resources/Aedes-aegypti-LVP_AGWG_AaegL5_refSeq.fa  \
+  -r NC_035109.1:315926360-316405639 \
+  -o kdr3_pileup_Roswell.txt \
+  /data/SBBS-RedmondLab-aaeg1200g/verily-aaeg1200g/bams/*Roswell*.bam
