@@ -38,9 +38,9 @@ wildcard_constraints:
 rule all:
     input:
         expand("results/lostruct_merge/invs_chr{chrid}_aims.png",
-        chrid=[1]),
+        chrid=[1,2,3]),
         expand("results/lostruct_merge/invs_chr{chrid}_inv_calls.txt",
-        chrid=[1])
+        chrid=[1,2,3])
 
 
 ###### run lostruct algorithm ########
