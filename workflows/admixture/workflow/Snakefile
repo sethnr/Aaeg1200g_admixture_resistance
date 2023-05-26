@@ -4,7 +4,8 @@ configfile: "config/config.yaml"
 #### reused methods for grabbing GS objects, etc ####
 include: "rules/common.smk"
 
-CHROMS=[1,2,3]
+#CHROMS=[1,2,3]
+CHROMS=[1]
 BIGPOPS=pd.read_table(config["countries"],dtype=str,header=0)['country']
 TESTS=['alder','3pop']
 
