@@ -1,28 +1,21 @@
 good_regions: "gs://verily-aaeg1200g/genome_mask_files/snpable_no_outliers.bed.gz"
 norep_regions: "gs://verily-aaeg1200g/genome_mask_files/norepeat_5_30x_coverage.bed.gz"
-#samples: "config/samples.tsv"
 
-#vcfs: "config_lostruct/vcfs_head.tsv"
-samples: "config/samples.txt"
 
-vcfs: "resources/aaeg1000g_vcfs_random.txt"
-bams: "resources/aaeg1000g_bams.txt"
+samples:  "resources/aaeg1000g_samples.txt"
+
+vcfs:     "resources/aaeg1000g_full_vcfs.txt"
+bams:     "resources/aaeg1000g_bams.txt"
 spptable: "resources/meta_Aaeg1kg_spp.txt"
 invtable: "resources/redmond_2020_inversion_calls.txt"
 
-#fasta: "resources/Aedes-aegypti-LVP_AGWG_CHROMOSOMES_ONLY_AaegL5.fa.gz"
-#fai: "resources/Aedes-aegypti-LVP_AGWG_CHROMOSOMES_ONLY_AaegL5.fa.gz.fai"
-fasta: "resources/Aedes-aegypti-LVP_AGWG_AaegL5_refSeq.fa"
-fai: "resources/Aedes-aegypti-LVP_AGWG_AaegL5_refSeq.fa.fai"
+fasta:    "resources/Aedes-aegypti-LVP_AGWG_AaegL5_refSeq.fa"
+fai:      "resources/Aedes-aegypti-LVP_AGWG_AaegL5_refSeq.fa.fai"
 chrommap: "resources/chrom_ids.txt"
 
-gkey: "resources/apikey.json"
+gkey:     "resources/apikey.json"
 
-map: "resources/AaegL5_chr{chrom}.recalc.gmap"
-#map: "resources/AaegL5_chr{chrom}.gmap.gz"
-#map: "resources/juneja_linkage_REMAP.manual.c{chrom}.txt"
-
-#rawdata_bucket: "gs://verily-aaeg1200g/"
+map:      "resources/AaegL5_chr{chrom}.recalc.gmap"
 
 ref:
   # ensembl species name
