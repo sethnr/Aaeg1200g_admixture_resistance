@@ -4,9 +4,10 @@ configfile: "config/config.yaml"
 #### reused methods for grabbing GS objects, etc ####
 include: "rules/common.smk"
 
-CHROMS=[1,2,3]
+#CHROMS=[1,2,3]
 #TESTS=['alder','3pop']
 TESTS=['3pop']
+CHROMS=['123']
 BIGPOPS=pd.read_table(config["countries"],dtype=str,header=0)['country']
 
 wildcard_constraints:

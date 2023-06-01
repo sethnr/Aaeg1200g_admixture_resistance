@@ -1,0 +1,152 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+```{r}
+library("tidyverse")
+
+library("patchwork")
+library("gridExtra")
+library("plyr")
+library("zoo")
+
+library("getopt")
+```
+
+```{r}
+indir <- "admix_tests"
+outprefix <- "3pop_admix_loci"
+
+#make function to read/parse all vars and create table
+parse_3pop <- function(x) {
+  fnspl <- strsplit(basename(x),"_")[[1]]
+  chr = fnspl[2]
+  mixpop <- fnspl[5]
+  pop1 <- fnspl[3]
+  pop2 <- fnspl[4]
+  read.table(x,col.names = c("start","mid","end","f3")) %>% 
+    add_column("p1"=pop1,"p2"=pop2,"p3"=mixpop,"chr"=chr)
+}
+
+#read in block files:
+write(paste("getting blocks from ",indir),stderr())
+pop3files <- list.files(indir,pattern="3pop.*_blocks.txt",full.names = T)
+# pop3tab <- ldply(pop3files, parse_3pop)
+pop3tab <- ldply(pop3files, function(x) {read.table(x,sep="\t",col.names=c("p3","p1","p2","chr","start","mid","end","f3"))})
+pop3tab[pop3tab$p2>pop3tab$p1,c("p1","p2")] <- pop3tab[pop3tab$p2>pop3tab$p1,c("p2","p1")]
+pop3tab$set <- paste(pop3tab$p3,pop3tab$p1,pop3tab$p2,sep="/")
+
+write(paste("found",nrow(pop3tab),"block lines from",length(pop3files),"files"),stderr())
+
+
+#read in summary (significance) files
+pop3files <- list.files(indir,pattern="3pop.*_summaries.txt",full.names = T)
+pop3sum <- ldply(pop3files, function(x) {read.table(x,col.names=c("p3","p1","p2","chr","f3","f3sd","f3z","f3sig"))})
+pop3sum[pop3sum$p2>pop3sum$p1,c("p1","p2")] <- pop3sum[pop3sum$p2>pop3sum$p1,c("p2","p1")]
+pop3sum$set <- paste(pop3sum$p3,pop3sum$p1,pop3sum$p2,sep="/")
+pop3sum$parent <- paste(pop3sum$p1,pop3sum$p2,sep="/")
+pop3sum$f3sig <- as.logical(pop3sum$f3sig)
+write(paste("found",nrow(pop3sum),"summary lines from",length(pop3files),"files"),stderr())
+
+
+#calculate z-scores
+pop3results <- merge(pop3tab,pop3sum[,c("set","parent","chr","f3sd","f3sig")],by=c("set","chr"),all=T)
+pop3results$f3z <- pop3results$f3/pop3results$f3sd
+
+
+
+sigFvxHCMC <- unique(pop3sum$p3[pop3sum$f3sig & pop3sum$p2=="Franceville"])
+sigBtxNO <- unique(pop3sum$p3[pop3sum$f3sig & pop3sum$p2=="Bantata"])
+
+
+
+#get significant pops from both parents
+sigpopsP3 <- intersect(sigBtxNO,sigFvxHCMC)
+#get those that show sig f3 but not from admixed parents
+sigsets <- unique(pop3sum$set[pop3sum$f3sig & 
+                                ((!pop3sum$p1 %in% sigpopsP3) & (!pop3sum$p2 %in% sigpopsP3) & (pop3sum$p3 %in% sigpopsP3))])
+#get those that show non-sig f3
+nonsigsets <- subset(pop3results,!p1 %in% sigpopsP3 & !p2 %in% sigpopsP3 &
+                                !p3 %in% sigpopsP3 & !set %in% sigsets)$set
+```
+
+
+```{r}
+sigmixes <- subset(pop3sum,p3 %in% sigpopsP3) %>% group_by(set) %>% 
+                        dplyr::summarise(p1=first(p1),p2=first(p2),p3=first(p3),
+                                         f3mean=mean(f3),f3zmean=mean(f3z),
+                                         f3zmin=min(f3z),sig=max(f3sig))
+
+
+minmixes <- subset(sigmixes,!p1 %in% sigpopsP3 & !p2 %in% sigpopsP3) %>% 
+                  group_by(p3) %>% 
+                  slice_min(order_by = f3zmin)
+
+
+
+```
+
+
+
+```{r  fig.width=10,fig.height=8,dpi=300}
+
+
+#######
+# plot z scores
+####### 
+
+ggplot(subset(pop3results,set %in% sigsets),aes(x=mid,y=f3z,group=set,color=parent)) + 
+  geom_line() + facet_grid(p3 ~ chr,scale="free_x",space="free_x") + 
+  scale_y_continuous(limits=c(-100,0)) +
+  theme(legend.position = "bottom") +
+  ggtitle("f3z scores, significant populations, both parents")
+#ggsave(paste(outprefix,"fz_sigpopsP3_neg.png",sep="_"),dpi = 300,width=250,height=175,units="mm")
+
+ggplot(subset(pop3results,!set %in% sigsets),aes(x=mid,y=f3z,group=set,color=parent)) + 
+  geom_line() + 
+  facet_grid(p3 ~ chr,scale="free_x",space="free_x") + 
+  scale_y_continuous(limits=c(-100,0)) +
+  theme(legend.position = "bottom") +
+  ggtitle("f3z scores, non-significant populations")
+#ggsave(paste(outprefix,"fz_nonsig_neg.png",sep="_"),dpi = 300,width=250,height=175,units="mm")
+
+```
+
+
+
+
+```{r fig.width=10,fig.height=4.5,dpi=300}
+library(maptools)
+library(raster)
+library(ggmap)
+
+world <- map_data("world")
+poptotals <- read.table("resources/aegy.wgs.pops.list.csv",sep=",",header=T,stringsAsFactors = F) %>% 
+                rename_with(tolower)
+
+poptotals$sig = "NS"
+poptotals$sig[poptotals$pop %in% sigBtxNO] = "BtxNO"
+poptotals$sig[poptotals$pop %in% sigFvxHCMC] = "FvxHCMC"
+poptotals$sig[poptotals$pop %in% sigpopsP3] = "both"
+
+
+ggplot() +
+    geom_polygon(data = world, aes(x=long, y=lat, group=group), fill='grey',color="black",size=0.2) +
+    geom_point(data=poptotals, aes(x=long, y=lat, size=num_bams), shape=21,inherit.aes=F) +
+    geom_point(data=subset(poptotals,sig == "FvxHCMC"), aes(x=Long, y=Lat, fill=sig,size=num_bams), shape=21,inherit.aes=F) +
+    ggtitle(paste("3-pop results (unadmixed parents, lowest z-score)",sep="")) +
+    scale_fill_manual(values=c("NS"="grey","BtxNO"="red","FvxHCMC"="yellow","both"="orange")) +
+    geom_point(data=poptotals, aes(x=long, y=lat, fill=sig,size=num_bams), shape=21,inherit.aes=F) +
+    coord_fixed(ylim=c(-48,48),xlim=c(-155,140))+
+    theme(axis.text=element_blank(),
+          panel.border=element_rect(fill=NA, color="black"),
+          panel.background=element_rect(fill='light blue', color=NA),
+          panel.grid = element_blank(),
+          axis.title=element_blank(),
+          legend.position="bottom")
+
+
+```
+
+
