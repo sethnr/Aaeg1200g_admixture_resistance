@@ -8,3 +8,12 @@ Franceville	NewOrleans	Kwale
 Franceville	NewOrleans	ElDorado
 Franceville	NewOrleans	PassoFundo
 Franceville	NewOrleans	PatosdeMinas
+Bantata	HoChiMin	Thies
+Bantata	HoChiMin	Ngoye
+Bantata	HoChiMin	PK10
+Bantata	HoChiMin	Rabai2009
+Bantata	HoChiMin	Rabai2017
+Bantata	HoChiMin	Kwale
+Bantata	HoChiMin	ElDorado
+Bantata	HoChiMin	PassoFundo
+Bantata	HoChiMin	PatosdeMinas
