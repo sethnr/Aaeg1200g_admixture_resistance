@@ -4,17 +4,13 @@ configfile: "config/config.yaml"
 #### reused methods for grabbing GS objects, etc ####
 include: "rules/common.smk"
 
-#CHROMS=[1,2,3]
-CHROMS=[1]
-BIGPOPS=pd.read_table(config["countries"],dtype=str,header=0)['country']
-TESTS=['alder','3pop']
+CHROMS=[1,2,3]
+#TESTS=['alder','3pop']
+TESTS=['3pop']
 
 wildcard_constraints:
     chrom=CHROMS,
     test=TESTS,
-#    pop1=BIGPOPS,
-#    pop2=BIGPOPS,
-#    pop3=BIGPOPS
 
 rule all:
     input:
@@ -46,6 +42,10 @@ rule make_biallelic:
         bcftools view -m2 -M2 {input.vcf} -O z -o {output.vcf}
         tabix -pvcf {output.vcf}
         """
+
+#####
+# ALDER ADMIXTURE ANALYSIS
+#####
 
 rule make_eigenfiles:
     input:
@@ -135,42 +135,23 @@ rule admix_alder:
         """
 
 
-# rule admix_alder_chr:
-#     input:
-#         geno="results/admix_eigen/eigen_{chrom}.geno",
-#         snp="results/admix_eigen/eigen_{chrom}.snp",
-#         ind="results/admix_eigen/eigen_{chrom}.ind"
-#     output:
-#         sum="results/admix_tests/alder_{chrom}_{pop1}_{pop2}_{pop3}_summary.txt",
-#         raw="results/admix_tests/alder_{chrom}_{pop1}_{pop2}_{pop3}_raw.txt"
-#     resources:
-#         mem_mb=4000,
-#         disk_mb=20000,
-#         h_rt='4:00:00',
-#         cpus=4
-#     threads: 4
-#     params:
-#         #chromid=lambda wildcards: get_chrom_id(wildcards),
-#         file="results/admix_tests/alder_{chrom}_{pop1}_{pop2}_{pop3}.params"
-#     log:
-#         "logs/admix_alder/alder_{chrom}_{pop1}_{pop2}_{pop3}.log",
-#     shell:
-#         """
-#         echo genotypename: {input.geno} >./{params.file}
-#         echo snpname:      {input.snp} >>./{params.file}
-#         echo indivname:    {input.ind} >>./{params.file}
-#         echo admixpop:     {wildcards.pop3} >>./{params.file}
-#         echo refpops:      {wildcards.pop1}\;{wildcards.pop2} >>./{params.file}
-#         echo raw_outname:  {output.raw} >>./{params.file}
-#         echo \n                         >>./{params.file}
-#         echo num_threads:  {threads} >>./{params.file}
-#         echo mindis:       0.1 >>./{params.file}
-#         echo binsize:      0.1 >>./{params.file}
-#         echo jackknife:    NO >>./{params.file}
-#
-# 	alder -p {params.file} | tee {log} > {output.sum}
-#         """
+rule cat_alder:
+    input:
+        sums=expand("results/admix_tests/alder_{popstring}_summary.txt",
+                    popstring=get_all_admix_3_strings(BIGPOPS))
+    output:
+        "results/admix_tests/alder_all_summaries.txt"
+    log:
+        "logs/admix_tests/alder_all.log"
+    shell:
+        """
+        cat {input.sums} | grep DATA | sort -ur > {output}
+        """
 
+
+#####
+# 3-POP ADMIXTURE ANALYSIS
+#####
 
 rule admix_3pop:
     input:
@@ -200,41 +181,16 @@ rule admix_3pop:
         """
 
 
-
-rule cat_alder:
-    input:
-        sums=expand("results/admix_tests/alder_{popstring}_summary.txt",
-                    popstring=get_all_admix_3_strings(BIGPOPS))
-    output:
-        "results/admix_tests/alder_all_summaries.txt"
-    log:
-        "logs/admix_tests/alder_all.log"
-    shell:
-        """
-        cat {input.sums} | grep DATA | sort -ur > {output}
-        """
-
-# rule cat_alder_chrom:
-#     input:
-#         sums=expand("results/admix_tests/alder_{{chrom}}_{popstring}_summary.txt",
-#                     popstring=get_all_admix_3_strings(BIGPOPS))
-#     output:
-#         "results/admix_tests/alder_{chrom}_summaries.txt"
-#     log:
-#         "logs/admix_tests/alder_{chrom}_cat.log"
-#     shell:
-#         """
-#         cat results/admix_tests/alder_{wildcards.chrom}_*_summary.txt | grep DATA > {output}
-#         """
-
-
-
 rule cat_3pop:
     input:
+        # sums=expand("results/admix_tests/3pop_{{chrom}}_{popstring}_summary.txt",
+        #             popstring=get_all_admix_3_strings(BIGPOPS)),
+        # blocks=expand("results/admix_tests/3pop_{{chrom}}_{popstring}_blocks.txt",
+        #             popstring=get_all_admix_3_strings(BIGPOPS))
         sums=expand("results/admix_tests/3pop_{{chrom}}_{popstring}_summary.txt",
-                    popstring=get_all_admix_3_strings(BIGPOPS)),
+                    popstring=get_all_admix_sets_file(config["3pops"])),
         blocks=expand("results/admix_tests/3pop_{{chrom}}_{popstring}_blocks.txt",
-                    popstring=get_all_admix_3_strings(BIGPOPS))
+                    popstring=get_all_admix_sets_file(config["3pops"]))
     output:
         sums="results/admix_tests/3pop_{chrom}_summaries.txt",
         blocks="results/admix_tests/3pop_{chrom}_blocks.txt"
