@@ -7,6 +7,7 @@ include: "rules/common.smk"
 CHROMS=[1,2,3]
 #TESTS=['alder','3pop']
 TESTS=['3pop']
+BIGPOPS=pd.read_table(config["countries"],dtype=str,header=0)['country']
 
 wildcard_constraints:
     chrom=CHROMS,
@@ -14,8 +15,8 @@ wildcard_constraints:
 
 rule all:
     input:
-        expand("results/admix_tests/alder_all_summaries.txt",
-            chrom=CHROMS),
+#        expand("results/admix_tests/alder_all_summaries.txt",
+#            chrom=CHROMS),
         expand("results/admix_tests/3pop_{chrom}_summaries.txt",
             chrom=CHROMS),
 
