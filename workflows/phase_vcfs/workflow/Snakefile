@@ -40,7 +40,7 @@ rule split_vcf:
     input:
         #vcf=lambda wildcards: get_remote_vcf(wildcards)
         #vcf="verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.norep5-30x.ac10.thinrand01.chr{chrom}.vcf.gz"
-        vcf="verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr{chrom}.SNP.refseq.7e6.vcf.gz"
+        vcf="verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr{chrom}.SNP.7e6.NC_labels.vcf.gz"
     output:
         outvcf=temporary("results/phase_split_vcf/split_{chrom}_{sample}.vcf.gz"),
         outtbi=temporary("results/phase_split_vcf/split_{chrom}_{sample}.vcf.gz.tbi")

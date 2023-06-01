@@ -1,0 +1,14 @@
+pip install pandas
+
+#set project for both (needs GS access for rawdata)
+gcloud config set project redmond-lab-analyses
+gcloud iam service-accounts keys create apikey.JSON --iam-account=seth-redmond@slurm-cluster-308318.iam.gserviceaccount.com
+
+#GCP
+snakemake --default-remote-provider GS --default-remote-prefix redmond-lab-analysis --use-singularity -j 99 --nolock --kubernetes --latency-wait 120
+
+#on-prem
+snakemake --use-singularity --profile apo --ri -k -j 250
+
+#alder failing due to long names
+perl -i.longnames -pe 's/Debug.*aegypti_//g; s/Debug.*aegy-//g' results/admix_eigen/eigen_?.ind
