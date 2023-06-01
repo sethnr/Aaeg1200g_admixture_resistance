@@ -8,6 +8,9 @@ Franceville	NewOrleans	Kwale
 Franceville	NewOrleans	ElDorado
 Franceville	NewOrleans	PassoFundo
 Franceville	NewOrleans	PatosdeMinas
+Franceville	NewOrleans	ShimbaHills
+Franceville	NewOrleans	Libreville
+Franceville	NewOrleans	KayaBomu
 Bantata	HoChiMin	Thies
 Bantata	HoChiMin	Ngoye
 Bantata	HoChiMin	PK10
@@ -17,3 +20,6 @@ Bantata	HoChiMin	Kwale
 Bantata	HoChiMin	ElDorado
 Bantata	HoChiMin	PassoFundo
 Bantata	HoChiMin	PatosdeMinas
+Bantata	HoChiMin	ShimbaHills
+Bantata	HoChiMin	Libreville
+Bantata	HoChiMin	KayaBomu
