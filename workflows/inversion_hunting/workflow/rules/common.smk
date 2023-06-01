@@ -68,14 +68,6 @@ def get_chrom_id(wildcards):
 
 
 
-# def get_chrom_vcfs(wildcards):
-#     """Get vcfs of given chrom"""
-#     return vcfs.loc[(wildcards.chrom)].vcf
-
-# def get_chrom_blocks(wildcards):
-#     """Get blocks for given chrom"""
-#     return vcfs.loc[(wildcards.chrom)].block
-
 def get_chrom_blocks_string(wildcards):
     vcfs = pd.read_table(config["vcfs"],dtype = str).set_index("chrom")
     """Get block strings for given chrom"""
