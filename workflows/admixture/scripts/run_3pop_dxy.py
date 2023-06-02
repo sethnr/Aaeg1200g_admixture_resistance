@@ -62,7 +62,7 @@ callset3 = allel.read_vcf(vcf, samples=pop3samps, fields='*')
 gtpop3 = allel.GenotypeArray(callset3['calldata/GT'])
 acpop3 = gtpop3.count_alleles()
 
-print("testing if {} is admixed from {} and {}".format(pop3,pop1,pop2),file=sys.stderr)
+print("assessing dxy divergence {} from {} and {}".format(pop3,pop1,pop2),file=sys.stderr)
 
 f3, f3sd, f3z, f3blk, f3jack = allel.average_patterson_f3(acpop3, acpop1, acpop2, block, normed=True)
 #f3wins = allel.moving_patterson_f3(acpop3, acpop1, acpop2, block, step=step, normed=True)
@@ -75,11 +75,12 @@ print(wins13.shape,file=sys.stderr)
 print(dxy13.shape,file=sys.stderr)
 print(dxy23.shape,file=sys.stderr)
 
-poswins = np.vstack((
-            [pop3] * len(nbases13),
-            [pop1] * len(nbases13),
-            [pop2] * len(nbases13),
-            [chrom] * len(nbases13),
+poswins = np.hstack(
+            (np.vstack((
+                [pop3] * len(nbases13),
+                [pop1] * len(nbases13),
+                [pop2] * len(nbases13),
+                [chrom] * len(nbases13))).transpose(),
             wins13,
             dxy13,
             wins23,
