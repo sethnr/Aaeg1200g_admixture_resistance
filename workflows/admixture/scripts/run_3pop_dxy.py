@@ -82,7 +82,7 @@ postab = np.vstack((
                 [chrom] * len(nbases13))).transpose()
 print(postab.shape,file=sys.stderr)
 
-poswins = np.vstack((
+poswins = np.hstack((
             postab,
             wins13,
             dxy13,
