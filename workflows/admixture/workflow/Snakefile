@@ -211,7 +211,7 @@ rule cat_3pop:
 # 3-POP DXY ANALYSIS
 #####
 
-rule admix_3pop:
+rule cf3pop_dxy:
     input:
         vcf="results/admix_bivcf/phased_bi_{chrom}.vcf.gz",
         tbi="results/admix_bivcf/phased_bi_{chrom}.vcf.gz.tbi",
@@ -238,7 +238,7 @@ rule admix_3pop:
         """
 
 
-rule cat_dxy:
+rule cf3pop_cat:
     input:
         dxy=expand("results/admix_tests/3pop_{{chrom}}_{popstring}_dxy.txt",
                     popstring=get_all_admix_sets_file(config["3pops"]))
