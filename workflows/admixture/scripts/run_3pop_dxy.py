@@ -66,8 +66,8 @@ print("testing if {} is admixed from {} and {}".format(pop3,pop1,pop2),file=sys.
 
 f3, f3sd, f3z, f3blk, f3jack = allel.average_patterson_f3(acpop3, acpop1, acpop2, block, normed=True)
 #f3wins = allel.moving_patterson_f3(acpop3, acpop1, acpop2, block, step=step, normed=True)
-dxy13, wins13 = allel.windowed_divergence(callset1['variants/POS'],acpop3, acpop2, block, step=step, normed=True)
-dxy23, wins23 = allel.windowed_divergence(callset1['variants/POS'],acpop3, acpop1, block, step=step, normed=True)
+dxy13, wins13 = allel.windowed_divergence(callset1['variants/POS'],acpop3, acpop2, block, step=step)
+dxy23, wins23 = allel.windowed_divergence(callset1['variants/POS'],acpop3, acpop1, block, step=step)
 
 
 poswins = np.vstack((
