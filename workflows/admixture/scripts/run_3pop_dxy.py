@@ -71,10 +71,10 @@ dxy23, wins23, nbases23, counts23 = allel.windowed_divergence(callset1['variants
 
 
 poswins = np.vstack((
-            [pop3] * len(f3wins),
-            [pop1] * len(f3wins),
-            [pop2] * len(f3wins),
-            [chrom] * len(f3wins),
+            [pop3] * len(nbases13),
+            [pop1] * len(nbases13),
+            [pop2] * len(nbases13),
+            [chrom] * len(nbases13),
             wins13,
             dxy13,
             wins12,
