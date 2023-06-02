@@ -77,7 +77,7 @@ poswins = np.vstack((
             [chrom] * len(nbases13),
             wins13,
             dxy13,
-            wins12,
+            wins23,
             dxy12)).transpose()
 
 np.savetxt(out+"_dxy.txt", poswins, fmt='%s', delimiter='\t')
