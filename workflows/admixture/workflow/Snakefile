@@ -20,6 +20,8 @@ rule all:
 #            chrom=CHROMS),
         expand("results/admix_tests/3pop_{chrom}_summaries.txt",
             chrom=CHROMS),
+        expand("results/admix_tests/3pop_{chrom}_dxy.txt",
+            chrom=CHROMS),
 
 ###rule orders ###
 ruleorder: make_biallelic > tabix_vcf
@@ -202,4 +204,49 @@ rule cat_3pop:
         """
         cat {input.sums} > {output.sums}
         cat {input.blocks} > {output.blocks}
+        """
+
+
+#####
+# 3-POP DXY ANALYSIS
+#####
+
+rule admix_3pop:
+    input:
+        vcf="results/admix_bivcf/phased_bi_{chrom}.vcf.gz",
+        tbi="results/admix_bivcf/phased_bi_{chrom}.vcf.gz.tbi",
+        chrom_ids=config["chrommap"],
+        meta=config["spptable"]
+    output:
+        dxy=temporary("results/admix_tests/3pop_{chrom}_{pop1}_{pop2}_{pop3}_dxy.txt"),
+    resources:
+        mem_mb=8000,
+        disk_mb=20000,
+        h_rt='1:00:00',
+    params:
+        prefix="results/admix_tests/3pop_{chrom}_{pop1}_{pop2}_{pop3}"
+    log:
+        "logs/admix_tests/dxy_{chrom}_{pop1}_{pop2}_{pop3}.log"
+    container: "docker://sethnr/aaeg1000g_analysis:0.02"
+    shell:
+        """
+	    python scripts/run_3pop_dxy.py \
+            -p1 {wildcards.pop1} -p2 {wildcards.pop2} -p3 {wildcards.pop3} \
+            -m {input.meta} -M 'pop' \
+            -c {wildcards.chrom} -v {input.vcf} \
+            -o {params.prefix}
+        """
+
+
+rule cat_dxy:
+    input:
+        dxy=expand("results/admix_tests/3pop_{{chrom}}_{popstring}_dxy.txt",
+                    popstring=get_all_admix_sets_file(config["3pops"]))
+    output:
+        dxy="results/admix_tests/3pop_{chrom}_blocks.txt"
+    log:
+        "logs/admix_tests/3pop_{chrom}.log"
+    shell:
+        """
+        cat {input.dxy} > {output.dxy}
         """
