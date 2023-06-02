@@ -78,7 +78,7 @@ poswins = np.vstack((
             wins13,
             dxy13,
             wins23,
-            dxy12)).transpose()
+            dxy23)).transpose()
 
 np.savetxt(out+"_dxy.txt", poswins, fmt='%s', delimiter='\t')
 # In[ ]:
