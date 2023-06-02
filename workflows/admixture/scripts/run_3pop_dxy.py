@@ -69,6 +69,8 @@ f3, f3sd, f3z, f3blk, f3jack = allel.average_patterson_f3(acpop3, acpop1, acpop2
 dxy13, wins13, nbases13, counts13 = allel.windowed_divergence(callset1['variants/POS'],acpop3, acpop2, block, step=step)
 dxy23, wins23, nbases23, counts23 = allel.windowed_divergence(callset1['variants/POS'],acpop3, acpop1, block, step=step)
 
+print(wins23.shape,file=sys.stderr)
+print(wins13.shape,file=sys.stderr)
 
 poswins = np.vstack((
             [pop3] * len(nbases13),
