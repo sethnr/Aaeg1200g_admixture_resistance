@@ -6,7 +6,7 @@ norep_regions: "gs://verily-aaeg1200g/genome_mask_files/norepeat_5_30x_coverage.
 samples: "config/samples.txt"
 countries: "config/countries.txt"
 
-3pops: "config/3popsAll.txt"
+3pops: "config/3pops.txt"
 
 
 vcfs: "resources/aaeg1000g_vcfs.txt"
