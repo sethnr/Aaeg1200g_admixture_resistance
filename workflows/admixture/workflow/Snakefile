@@ -4,9 +4,9 @@ configfile: "config/config.yaml"
 #### reused methods for grabbing GS objects, etc ####
 include: "rules/common.smk"
 
-CHROMS=[1,2,3]
 #TESTS=['alder','3pop']
 TESTS=['3pop']
+CHROMS=[1,2,3]
 #CHROMS=['123']
 BIGPOPS=pd.read_table(config["countries"],dtype=str,header=0)['country']
 
@@ -243,7 +243,7 @@ rule cf3pop_cat:
         dxy=expand("results/admix_tests/3pop_{{chrom}}_{popstring}_dxy.txt",
                     popstring=get_all_admix_sets_file(config["3pops"]))
     output:
-        dxy="results/admix_tests/3pop_{chrom}_blocks.txt"
+        dxy="results/admix_tests/3pop_{chrom}_dxy.txt"
     log:
         "logs/admix_tests/3pop_{chrom}.log"
     shell:
