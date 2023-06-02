@@ -62,9 +62,8 @@ Franceville	NewOrleans	Cuanda
 Franceville	NewOrleans	Bundibugyo
 Franceville	NewOrleans	Entebbe
 Franceville	NewOrleans	Kichwamba
-Franceville	NewOrleans	Karenga
 Franceville	NewOrleans	Kakamega
-Franceville	NewOrleans	Virembe
+Franceville	NewOrleans	Virhembe
 Franceville	NewOrleans	Arabuko
 Franceville	NewOrleans	Ganda
 Franceville	NewOrleans	KayaBomu
