@@ -121,31 +121,61 @@ library(maptools)
 library(raster)
 library(ggmap)
 
+pop3sumWG <- read.table("admix_tests/3pop_123_summaries.txt",col.names=c("p3","p1","p2","chr","f3","f3sd","f3z","f3sig"))
+pop3sumWG$set <- paste(pop3sumWG$p3,pop3sumWG$p1,pop3sumWG$p2,sep="/")
+pop3sumWG$parent <- paste(pop3sumWG$p1,pop3sumWG$p2,sep="/")
+pop3sumWG$f3sig <- as.logical(pop3sumWG$f3sig)
+write(paste("found",nrow(pop3sumWG),"summary lines from",1,"files"),stderr())
+
+
 world <- map_data("world")
 poptotals <- read.table("resources/aegy.wgs.pops.list.csv",sep=",",header=T,stringsAsFactors = F) %>% 
-                rename_with(tolower)
+                rename_with(tolower) %>% 
+                mutate("pop" = gsub("_","",pop))
 
-poptotals$sig = "NS"
-poptotals$sig[poptotals$pop %in% sigBtxNO] = "BtxNO"
-poptotals$sig[poptotals$pop %in% sigFvxHCMC] = "FvxHCMC"
-poptotals$sig[poptotals$pop %in% sigpopsP3] = "both"
+
+poptotals <- merge(poptotals,pop3sumWG,by.x="pop",by.y="p3")
+
+parents <- c("NewOrleans","Franceville")
+sigpopsWGSFvxNO = pop3sumWG$p3[pop3sumWG$f3sig]
+sigpopsWGSFvxNO <- sigpopsWGSFvxNO[!sigpopsWGSFvxNO %in% parents]
+
+poptotals$sig = F
+poptotals$sig[poptotals$pop %in% sigpopsWGSFvxNO] = T
+poptotals$sig[poptotals$pop %in% parents] = NA
+poptotals$f3z[poptotals$pop %in% parents] = NA
+
 
 
 ggplot() +
-    geom_polygon(data = world, aes(x=long, y=lat, group=group), fill='grey',color="black",size=0.2) +
-    geom_point(data=poptotals, aes(x=long, y=lat, size=num_bams), shape=21,inherit.aes=F) +
-    geom_point(data=subset(poptotals,sig == "FvxHCMC"), aes(x=Long, y=Lat, fill=sig,size=num_bams), shape=21,inherit.aes=F) +
-    ggtitle(paste("3-pop results (unadmixed parents, lowest z-score)",sep="")) +
-    scale_fill_manual(values=c("NS"="grey","BtxNO"="red","FvxHCMC"="yellow","both"="orange")) +
-    geom_point(data=poptotals, aes(x=long, y=lat, fill=sig,size=num_bams), shape=21,inherit.aes=F) +
+    geom_polygon(data = world, aes(x=long, y=lat, group=group), fill='#C7ECD3',color="black",size=0.2) +
+    geom_point(data=poptotals, aes(x=long, y=lat, fill=sig, size=num_bams), shape=21,inherit.aes=F) +
+    geom_point(data=subset(poptotals,sig), aes(x=long, y=lat, fill=sig,size=num_bams), shape=21,inherit.aes=F) +
+    ggtitle(paste("3-pop results (FCV / NO)",sep="")) +
     coord_fixed(ylim=c(-48,48),xlim=c(-155,140))+
+    scale_fill_manual(values=c("white","red"),na.value="grey") +
     theme(axis.text=element_blank(),
           panel.border=element_rect(fill=NA, color="black"),
-          panel.background=element_rect(fill='light blue', color=NA),
+          panel.background=element_rect(fill='#C7E6F1', color=NA),
           panel.grid = element_blank(),
           axis.title=element_blank(),
+          axis.ticks=element_blank(),
           legend.position="bottom")
 
+ggplot() +
+    geom_polygon(data = world, aes(x=long, y=lat, group=group), fill='#C7ECD3',color="black",size=0.2) +
+    geom_point(data=poptotals, aes(x=long, y=lat, fill=f3z,size=num_bams), fill="grey",shape=21,inherit.aes=F) +
+    geom_point(data=subset(poptotals,sig), aes(x=long, y=lat, fill=f3z,size=num_bams), shape=21,inherit.aes=F) +
+    coord_fixed(ylim=c(-48,48),xlim=c(-155,140))+
+    ggtitle(paste("3-pop results (FCV / NO)",sep="")) +
+    scale_fill_gradient(low="red",high="white",na.value="grey") +
+    theme(axis.text=element_blank(),
+          panel.border=element_rect(fill=NA, color="black"),
+          panel.background=element_rect(fill='#C7E6F1', color=NA),
+          panel.grid = element_blank(),
+          axis.title=element_blank(),
+          axis.ticks=element_blank(),
+          legend.position="bottom")
 
 ```
 
