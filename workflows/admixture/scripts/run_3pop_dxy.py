@@ -75,12 +75,15 @@ print(wins13.shape,file=sys.stderr)
 print(dxy13.shape,file=sys.stderr)
 print(dxy23.shape,file=sys.stderr)
 
-poswins = np.hstack(
-            (np.vstack((
+postab = np.vstack((
                 [pop3] * len(nbases13),
                 [pop1] * len(nbases13),
                 [pop2] * len(nbases13),
-                [chrom] * len(nbases13))).transpose(),
+                [chrom] * len(nbases13))).transpose()
+print(postab.shape,file=sys.stderr)
+
+poswins = np.vstack(
+            postab,
             wins13,
             dxy13,
             wins23,
