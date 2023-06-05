@@ -70,17 +70,19 @@ dxy13, wins13, nbases13, counts13 = allel.windowed_divergence(callset1['variants
 dxy23, wins23, nbases23, counts23 = allel.windowed_divergence(callset1['variants/POS'],acpop3, acpop1, block, step=step)
 
 print(len(nbases13),file=sys.stderr)
-#print(wins23.shape,file=sys.stderr)
-print(wins13.shape,file=sys.stderr)
 print(dxy13.shape,file=sys.stderr)
 print(dxy23.shape,file=sys.stderr)
+#print(wins23.shape,file=sys.stderr)
+print(wins13.shape,file=sys.stderr)
 
 print("assessing Fst divergence {} from {} and {}".format(pop3,pop1,pop2),file=sys.stderr)
-fst23 = allel.moving_patterson_fst(acpop3, acpop2, block,step=step)
-fst13 = allel.moving_patterson_fst(acpop3, acpop1, block,step=step)
+fst23, wins23, nbases23,= allel.windowed_patterson_fst(callset1['variants/POS'], acpop3, acpop2, size=block,step=step)
+fst13, wins13, nbases13, = allel.windowed_patterson_fst(callset1['variants/POS'], acpop3, acpop1, size=block,step=step)
 
 print(fst13.shape,file=sys.stderr)
 print(fst23.shape,file=sys.stderr)
+#print(wins23.shape,file=sys.stderr)
+print(wins13.shape,file=sys.stderr)
 
 postab = np.vstack((
                 [pop3] * len(nbases13),
