@@ -82,12 +82,11 @@ postab = np.vstack((
                 [chrom] * len(nbases13))).transpose()
 print(postab.shape,file=sys.stderr)
 
-poswins = np.vstack((
-            postab,
+poswins = np.hstack(
+            (postab,
             wins13,
-            dxy13,
-            wins23,
-            dxy23)).transpose()
+            np.vstack((dxy13,
+                       dxy23)).transpose()))
 
 np.savetxt(out+"_dxy.txt", poswins, fmt='%s', delimiter='\t')
 # In[ ]:
