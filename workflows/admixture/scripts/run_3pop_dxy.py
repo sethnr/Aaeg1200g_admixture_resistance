@@ -38,8 +38,8 @@ vcf = args.vcf
 out = args.out
 if out is None:
     out = "3pop_{}_{}_{}".format(pop1,pop2,pop3)
-block = args.block
-step = args.step
+block = int(args.block)
+step = int(args.step)
 
 
 meta = np.genfromtxt(metafile,delimiter='\t',names=True,dtype=None,encoding='utf-8')

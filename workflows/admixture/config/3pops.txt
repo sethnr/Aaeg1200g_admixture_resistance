@@ -39,7 +39,7 @@ Bantata	HoChiMin	Arabuko
 Bantata	HoChiMin	Ganda		
 Bantata	HoChiMin	KayaBomu		
 Bantata	HoChiMin	Rabai2017		
-Bantata	HoChiMin	PK10		"Kedougou   ""Mindin""     ""Kintampo""   ""Ouahigouya"" ""YAOMO""  "
+Bantata	HoChiMin	PK10
 Bantata	HoChiMin	Rabai2009		
 Bantata	HoChiMin	Kwale		
 Bantata	HoChiMin	PassoFundo		
