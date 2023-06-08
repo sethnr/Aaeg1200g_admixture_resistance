@@ -180,11 +180,10 @@ rule admix_3pop:
 	    python scripts/run_3pop_tests.py \
             -p1 {wildcards.pop1} -p2 {wildcards.pop2} -p3 {wildcards.pop3} \
             -m {input.meta} -M 'pop' \
-            -b 1000000 -s 500000 \
+            -b 20000 -s 10000 \
             -c {wildcards.chrom} -v {input.vcf} \
             -o {params.prefix}
         """
-            #-b 20000 -s 10000 \
 
 
 rule cat_3pop:
