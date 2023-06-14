@@ -1,0 +1,137 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```r
+library("tidyverse")
+
+library("patchwork")
+library("gridExtra")
+
+library("zoo")
+library("plyr")
+library("getopt")
+
+knitr::opts_chunk$set(fig.width=10,fig.height=8,dpi=300)
+```
+
+
+```r
+indir <- "admix_tests"
+```
+
+
+```r
+library(maptools)
+library(raster)
+```
+
+```
+## Error: package or namespace load failed for 'raster' in loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]]):
+##  there is no package called 'terra'
+```
+
+```r
+library(ggmap)
+
+world <- map_data("world")
+poptotals <- read.table("resources/aegy.wgs.pops.list.csv",sep=",",header=T,stringsAsFactors = F)
+colnames(poptotals) <- tolower(colnames(poptotals))
+poptotals$country <- gsub(" ","",poptotals$country)
+
+
+countryfile <- "country_geocoords.txt"
+if(file.exists(countryfile)){
+  locations <- read.table(countryfile,header=T) 
+} else {
+  register_google(key="AIzaSyBFbT5X6MjrepPAlzIj3zz1HS58hnIPtEM", write=T)
+  countries <- unique(poptotals$country)
+  locations <- geocode(countries)
+  locations$country <- countries
+  write.table(locations,countryfile,sep="\t",row.names=F,col.names=T)
+}
+
+
+
+countrytotals <- unique(aggregate(num_bams ~ country,poptotals,FUN=sum))
+                              
+
+countrytotals <- merge(countrytotals,locations,all.x=T) %>% dplyr::rename(n=num_bams)
+
+corder <- c("Kenya","Uganda","Gabon","Ghana","BurkinaFaso","Senegal","Brazil" ,"PuertoRico","Trinidad","USA","SaudiArabia","Philippines","Vietnam")
+
+aldersum <- read.table("admix_tests/alder_all_summaries.txt",sep="\t", header=T)
+aldersum$test.result <- gsub("\\s+.*","",aldersum$test.status,perl=T)
+aldersum$inconsistent <- grepl("inconsistent",aldersum$test.status)
+
+#get tested pops
+aldertested <- unique(aldersum$test.pop)
+
+aldersum <- aldersum[grep("success*",aldersum$test.status),] %>%      
+                     rename(c("test.pop"="p3","ref.B"="p2","ref.A"="p1")) %>% 
+                     mutate("set"=paste(p3,p1,p2,sep="/")) %>% 
+                     mutate("parent"=paste(p1,p2,sep="/")) %>% 
+                     select(c("test.result","inconsistent","p.value","p1","p2","p3",
+                        "X2.ref.z.score", #"max.decay.diff..",
+                        "X2.ref.decay","X2.ref.amp_exp",
+                        "set","parent")) %>% 
+                     mutate("parent"=paste(p1,p2,sep="/"))
+
+sigpopsAlder <- unique(aldersum$p3)
+aldersum$p2 <-factor(aldersum$p2,levels=corder,ordered=T)
+aldersum$p1 <-factor(aldersum$p1,levels=corder,ordered=T)
+
+#select (discard 1-ref results)
+
+uppertri <- aldersum$p1>aldersum$p2
+aldersum[uppertri,c("p1","p2")] <- aldersum[uppertri,c("p2","p1")]
+
+# minalder <- subset(aldersum,!p2 %in% sigpopsAlder & !p1 %in% sigpopsAlder & !inconsistent) %>% 
+#                   group_by(p3) %>% 
+#                   slice_min(order_by = p.value)
+
+minalder <- subset(aldersum,!p2 %in% sigpopsAlder & !p1 %in% sigpopsAlder) %>%
+                  group_by(p3) %>%
+                  slice_min(order_by = c(p.value))
+```
+
+
+
+```r
+minalder <- merge(
+                merge(
+                  merge(minalder,locations,by.x="p3",by.y="country"),
+                                locations,by.x="p1",by.y="country",suffixes=c("","1")),
+                                locations,by.x="p2",by.y="country",suffixes=c("","2"))
+
+
+
+countrytotals$alder <- "not tested"
+countrytotals$alder[countrytotals$country %in% aldertested] <- "not admixed"
+countrytotals$alder[countrytotals$country %in% sigpopsAlder] <- "admixed"
+
+
+ggplot() +
+    geom_polygon(data = world, aes(x=long, y = lat, group=group), fill='grey',color="black",size=0.2) +
+    geom_point(data=countrytotals, aes(x=lon, y=lat, fill=alder,size=n), shape=21,inherit.aes=F) +
+    geom_curve(data=minalder, 
+                 aes(x=lon1, y=lat1, xend=lon,yend=lat),
+                 arrow=arrow(length = unit(0.3,"cm")),inherit.aes=F) +
+    geom_curve(data=minalder, aes(x=lon2, y=lat2, xend=lon,yend=lat),
+                 arrow=arrow(length = unit(0.3,"cm")),inherit.aes=F) +
+    geom_point(data=subset(countrytotals,alder=="not admixed"), 
+               aes(x=lon, y=lat, fill=alder,size=n), shape=21,inherit.aes=F) +
+    ggtitle(paste("Alder results (unadmixed parents, lowest p-val)",sep="")) +
+    scale_fill_manual(values=c("red","green","white")) +
+    coord_fixed(ylim=c(-48,48),xlim=c(-155,140))+
+    theme(axis.text=element_blank(),
+          panel.border=element_rect(fill=NA, color="black"),
+          panel.background=element_rect(fill='light blue', color=NA),
+          panel.grid = element_blank(),
+          axis.title=element_blank(),
+          legend.position="bottom")
+```
+
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)

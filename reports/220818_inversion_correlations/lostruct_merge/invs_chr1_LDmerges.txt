@@ -1,0 +1,13 @@
+cluster	newname	extent	inversion	r2
+1_Gabon_1_1	1_Gabon_1	Gabon	1_Gabon_1_1	NA
+1_PuertoRico_3_1	1_PuertoRico_1	PuertoRico	1_PuertoRico_3_1	NA
+1_BurkinaFaso_2_1	1_global_1	global	1_BurkinaFaso_2_1	NA
+1_BurkinaFaso_2_1	1_global_1	global	1_BurkinaFaso_1_3	0.466
+1_BurkinaFaso_2_1	1_global_1	global	1_Uganda_3_1	0.38
+1_Gabon_2_2	1_Wafrica_1	Wafrica	1_Gabon_2_2	NA
+1_Gabon_2_2	1_Wafrica_1	Wafrica	1_Ghana_1_1	0.627
+1_Uganda_1_2	1_Uganda_1	Uganda	1_Uganda_1_2	NA
+1_PuertoRico_1_1	1_PuertoRico_2	PuertoRico	1_PuertoRico_1_1	NA
+1_PuertoRico_2_1	1_PuertoRico_3	PuertoRico	1_PuertoRico_2_1	NA
+1_Senegal_1_2	1_Senegal_1	Senegal	1_Senegal_1_2	NA
+1_Uganda_2_2	1_Uganda_2	Uganda	1_Uganda_2_2	NA

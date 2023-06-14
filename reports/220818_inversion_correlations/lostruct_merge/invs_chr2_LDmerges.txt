@@ -1,0 +1,9 @@
+cluster	newname	extent	inversion	r2
+2_SaudiArabia_1_3	2_SaudiArabia_1	SaudiArabia	2_SaudiArabia_1_3	NA
+2_SaudiArabia_1_3	2_SaudiArabia_1	SaudiArabia	2_SaudiArabia_2_1	0.514
+2_Senegal_1_1	2_Senegal_1	Senegal	2_Senegal_1_1	NA
+2_Senegal_1_1	2_Senegal_1	Senegal	2_Senegal_2_1	0.587
+2_Senegal_1_1	2_Senegal_1	Senegal	2_Senegal_3_1	0.58
+2_Senegal_1_1	2_Senegal_1	Senegal	2_Senegal_4_1	0.579
+2_Uganda_1_1	2_Uganda_1	Uganda	2_Uganda_1_1	NA
+2_BurkinaFaso_1_1	2_BurkinaFaso_1	BurkinaFaso	2_BurkinaFaso_1_1	NA

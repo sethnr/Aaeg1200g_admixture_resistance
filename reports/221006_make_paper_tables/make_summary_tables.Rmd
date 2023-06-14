@@ -1,0 +1,197 @@
+```{r setup, include=FALSE}
+library("tidyverse")
+
+library("patchwork")
+library("gridExtra")
+library("grid")
+
+library("genetics")
+
+library(plyr)
+
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+callsfiles <- list.files("lostruct_merge",pattern="invs_chr.*_inv_calls.txt",full.names = T)
+callsfiles <- callsfiles[laply(callsfiles, file.size)>0]
+rm("calltab")
+
+for(x in callsfiles) {
+  icalls <- read.table(x,header=T,sep="\t")
+  invnames <- colnames(icalls)[!colnames(icalls) %in% c("sample","spp","pop","region","contgroup","country")]
+  sample <- icalls$sample
+  icallmat <- icalls[,invnames]
+  if(!exists("calltab")) {
+    calltab <- cbind(sample,icallmat)
+  } else {
+    calltab <- cbind(calltab,icallmat)
+  }
+  
+}
+
+meta <- icalls[,c("sample","pop","region","country")]
+calltab <- merge(calltab,meta)
+
+```
+
+
+```{r}
+countries <- unique(calltab$country)
+invnames <- colnames(calltab)[!colnames(calltab) %in% c("sample","spp","pop","region","contgroup","country")]
+maf <- function(x) {round(sum(x) / (length(x)*2),2)}
+#order countries in metatable by region (w african, eafrican, american, asian)
+regorder <- c("East Africa","West Africa","Caribean","South America","North America","Middle East","Asia","Pacific")
+meta$region <- factor(meta$region,levels=regorder,ordered=T)
+cntorder <- unique(meta$country[order(meta$region)])
+
+```
+
+
+#calculate HWE for pops
+```{r}
+
+hwetab <- data.frame("inversion"=factor(levels=invnames),
+           "country"=factor(levels=unique(calltab$country)),
+           "pop"=factor(levels=unique(calltab$pop)),
+           "N"=numeric(),
+           "aa"=numeric(),
+           "ab"=numeric(),
+           "bb"=numeric(),
+           "MAF"=numeric(),
+           "F"=numeric(),
+           "HWE"=numeric()
+           )
+
+maf <- function(x) {round(sum(x) / (length(x)*2),2)}
+f <- function(x) {
+    Ho<-sum(na.omit(x==1))/length(na.omit(x));
+    He<-2*(maf(x)*(1-maf(x)));
+    f <- Ho/He;
+    f}
+
+for (C in unique(calltab$country)) {
+      countrycalls <- calltab[calltab$country==C,]
+      
+      for(I in invnames) {
+        ICcalls <- calltab[calltab$country==C,I]
+        geno <- genotype(c("a/a","a/b","b/b")[calltab[calltab$country==C,I]+1])
+        if(nallele(geno)==2) {
+          test <- HWE.test(geno)
+          Pval <- test$test$p.value
+        } else{
+          Pval <- 1
+        }
+        i <- nrow(hwetab)+1
+        hwetab[i,c("aa","ab","bb")] <- c(sum(geno=="a/a"),sum(geno=="a/b"),sum(geno=="b/b"))
+        hwetab[i,c("country","inversion")] <- c(C,I)
+        hwetab[i,c("HWE")] <- Pval
+        hwetab[i,c("MAF")] <- maf(ICcalls)
+        hwetab[i,c("F")] <- f(ICcalls)
+        
+      }
+}
+
+for (P in unique(calltab$pop)) {
+      #countrycalls <- calltab[calltab$country==C,]
+      C <- unique(calltab[calltab$pop==P,"country"])
+      for(I in invnames) {
+        ICcalls <- calltab[calltab$pop==P,I]
+        geno <- genotype(c("a/a","a/b","b/b")[calltab[calltab$pop==P,I]+1])
+        if(nallele(geno)==2) {
+          test <- HWE.test(geno)
+          Pval <- test$test$p.value
+        } else{
+          Pval <- 1
+        }
+        i <- nrow(hwetab)+1
+        hwetab[i,c("aa","ab","bb")] <- c(sum(geno=="a/a"),sum(geno=="a/b"),sum(geno=="b/b"))
+        hwetab[i,c("country","pop","inversion")] <- c(C,P,I)
+        hwetab[i,c("HWE")] <- Pval
+        hwetab[i,c("MAF")] <- maf(ICcalls)
+        hwetab[i,c("F")] <- f(ICcalls)
+        
+      }
+}
+
+
+hwetabP <- subset(hwetab,HWE<0.01)
+
+
+```
+
+
+#make f/af cols with signif asterisks for paper
+```{r}
+
+hwetab$f <- round(hwetab$F,2)
+hwetab$f[is.nan(hwetab$f)] <- "-"
+hwetab$f[hwetab$HWE<0.05] <- paste(hwetab$f[hwetab$HWE<0.05],"*",sep="")
+hwetab$f[hwetab$HWE<0.01] <- paste(hwetab$f[hwetab$HWE<0.01],"*",sep="")
+hwetab$AF <- hwetab$MAF
+
+#add popn sizes to table
+popsizes <- table(calltab$pop)
+cntsizes <- table(calltab$country)
+hwetab$N <- popsizes[as.character(hwetab$pop)]
+hwetab$N[is.na(hwetab$pop)] <- cntsizes[as.character(hwetab$country[is.na(hwetab$pop)])]
+
+
+hwetabCP <- pivot_wider(hwetab[,c("inversion","country","pop","N","AF","f")],names_from = inversion,values_from = c(AF,f),names_glue = "{inversion}::{.value}",)
+colorder <- c("country","pop","N",colnames(hwetabCP)[order(colnames(hwetabCP)[4:ncol(hwetabCP)])+3])
+hwetabCP$country <- factor(hwetabCP$country,levels=cntorder,ordered=T)
+hwetabCP <- hwetabCP[order(hwetabCP$country),colorder]
+hwetabCP
+
+write.table(hwetabCP,file = "inversion_freqs_cnt_pops.txt",sep="\t",col.names = T,row.names = F,quote=F)
+
+
+```
+
+
+#get inversion locations
+```{r}
+blocks <- ldply(as.list(list.files("./lostruct_merge","*blocks.txt",full.names = T)),read_tsv)
+
+blocks$inversion <- paste("X",blocks$cluster,sep="")
+blocks <- blocks[blocks$inversion %in% invnames,]
+
+blockextents <- blocks %>% dplyr::group_by(inversion) %>% 
+                           dplyr::summarise(chrom=min(chrom),
+                                            start=min(pos),
+                                            end=max(pos)+0.5e6,
+                                            size=round((0.5e6+max(pos)-min(pos))/1e6,2)) %>% 
+                            mutate(region=paste(chrom,":",as.integer(start),"-",as.integer(end),sep="")) %>%
+                            dplyr::relocate(region,.before = size)
+
+blockextents
+```
+
+
+```{r}
+maf <- function(x) {round(sum(x) / (length(x)*2),3)}
+
+calltab$african <- c("RoW","Africa")[+1]
+
+regioncount <- data.frame("inversion"=factor(levels=invnames),
+           "f"=numeric(),
+           "f_Afr"=numeric(),
+           "f_Row"=numeric()
+           )
+
+for(I in invnames) {
+  ICcalls <- 
+  i <- nrow(regioncount)+1
+  regioncount[i,c("inversion")] <- I
+  regioncount[i,c("f")] <- maf(calltab[,I])
+  regioncount[i,c("f_Afr")] <- maf(calltab[calltab$region %in% c("West Africa","East Africa"),I])
+  regioncount[i,c("f_Row")] <- maf(calltab[!calltab$region %in% c("West Africa","East Africa"),I])
+  
+}
+
+regioncount <- merge(blockextents[,c("inversion","region","size")],regioncount)
+write.table(regioncount,file = "inversion_extents_freqs.txt",sep="\t",col.names = T,row.names = F,quote=F)
+
+
+```

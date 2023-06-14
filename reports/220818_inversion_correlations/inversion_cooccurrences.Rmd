@@ -1,0 +1,160 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+```{r setup, include=FALSE}
+library("tidyverse")
+
+library("patchwork")
+library("gridExtra")
+library("grid")
+
+library("genetics")
+
+library(maptools)
+library(raster)
+library(ggmap)
+
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+callsfile <- "lostruct_merge/invs_chr1_inv_calls.txt"
+calldf <- read.table(callsfile,header=T,sep="\t")
+invnames <- colnames(calldf)[!colnames(calldf) %in% c("sample","spp","pop","region","contgroup","country")]
+countries <- unique(calldf$country)
+
+```
+
+
+```{r}
+maf <- function(x) {round(sum(x) / (length(x)*2),2)}
+invfreqs <- aggregate(. ~ country,data=calldf[,c("country",as.character(invnames))],FUN=maf)
+invfreqscont <- aggregate(. ~ contgroup,data=calldf[,c("contgroup",as.character(invnames))],FUN=maf)
+invfreqspop <- aggregate(. ~ pop,data=calldf[,c("pop",as.character(invnames))],FUN=maf)
+
+cormatrix <- matrix(rep(NA,length(invnames)^2),
+                    dimnames = list(invnames,invnames),
+                    nrow=length(invnames))
+
+cortab <- data.frame(
+  inv1=character(),
+  inv2=character(),
+  occurpops=logical(),
+  p=numeric(),
+  cor=numeric()
+  )
+
+write("getting correlations",stderr())
+minmaf <- 0.05
+for(I1 in invnames) {
+  for(I2 in invnames) {
+    if(match(I1,invnames) >= match(I2,invnames)) {next}
+    incountries <- invfreqs$country[invfreqs[,I1] > minmaf & invfreqs[,I2] > minmaf]
+    
+    cortest <- cor.test(calldf[,I1],
+                        calldf[,I2])
+    
+    i <- nrow(cortab)+1
+    cortab[i,c("inv1","inv2")] <- c(I1,I2)
+    cortab[i,c("p","cor")] <- c(cortest$p.value,cortest$estimate)
+    cortab[i,c("occurpops")] <- FALSE
+    
+    if(length(incountries)>0) {
+      cortest <- cor.test(calldf[calldf$country %in% incountries,I1],
+                          calldf[calldf$country %in% incountries,I2])
+      
+      i <- nrow(cortab)+1
+      cortab[i,c("inv1","inv2")] <- c(I2,I1)
+      cortab[i,c("occurpops")] <- TRUE
+      cortab[i,c("p","cor")] <- c(cortest$p.value,cortest$estimate)
+    }
+  }
+}
+
+
+occurtab <- data.frame(
+  inv1=character(),
+  inv2=character(),
+  continent=logical(),
+  country=logical(),
+  exclusive=logical()
+)
+
+
+#Assess inversion co-occurrences
+for(I1 in invnames) {
+  for(I2 in invnames) {
+    if(I1==I2) {next}
+    incountries <- invfreqs$country[invfreqs[,I1] > minmaf & invfreqs[,I2] > minmaf]
+    inconts <- invfreqscont$contgroup[invfreqscont[,I1] > minmaf & invfreqscont[,I2] > minmaf]
+    
+    excl <- (all(calldf[calldf[,I1]==2,I2]==0) &
+               all(calldf[calldf[,I2]==2,I1]==0)) &
+            (max(calldf[calldf[,I1]==1,I2])==1 &
+               max(calldf[calldf[,I2]==1,I1])==1)
+    
+    occurcountry <- length(incountries)>0
+    occurcont <- length(inconts)>0
+    
+    i <- nrow(occurtab)+1
+    occurtab[i,c("inv1","inv2")] <- c(I1,I2)
+    occurtab[i,c("continent","country","exclusive")] <- c(occurcont,occurcountry,excl)
+
+  }    
+}
+
+cortab$inv1 <- factor(cortab$inv1,levels=invnames,ordered=T)
+cortab$inv2 <- factor(cortab$inv2,levels=invnames,ordered=T)
+ggplot(subset(cortab),aes(x=inv1,y=inv2,fill=cor)) + 
+  geom_raster() + 
+  geom_tile(data=subset(occurtab,exclusive),fill=NA,color="orange",size=1)+ 
+  coord_fixed() + scale_fill_distiller(palette="RdBu",limits=c(-1,1)) +
+  ylab("all samples") + xlab(paste("maf >",minmaf)) +
+  theme(panel.background =element_rect("dark grey"),
+        panel.grid = element_blank(),
+        axis.text.x=element_text(angle=45,hjust=1))
+```
+
+
+```{r}
+
+countryfile <- "country_geocoords.txt"
+if(file.exists(countryfile)){
+  locations <- read.table(countryfile,header=T) 
+} else {
+  register_google(key="AIzaSyBFbT5X6MjrepPAlzIj3zz1HS58hnIPtEM", write=T)
+  countries <- unique(invfreqs$country)
+  locations <- geocode(countries)
+  locations$country <- countries
+  write.table(locations,countryfile,sep="\t",row.names=F,col.names=T)
+}
+
+countryfreqs <- merge(subset(invfreqs,pop=="all"),locations)
+
+
+world <- map_data("world")
+
+
+
+for(C in chrs) {
+  cinvs <- subset(countryfreqs,chrom==C)
+  ncols <- floor(sqrt(length(unique(cinvs$inv))))
+  ggplot() +
+    geom_polygon(data = world, aes(x=long, y = lat, group=group), fill='grey',color="black",size=0.2) +
+    geom_point(data=cinvs, aes(x=lon, y=lat, fill=maf,size=n), shape=21,inherit.aes=F) +
+    #geom_text(data=sample_table, aes(x=lon, y=lat, fill=set,label=Population), shape=21,inherit.aes=F) +
+    ggtitle(paste("inversion distributions c",C," invs",sep="")) +
+    scale_fill_distiller(limits=c(0,1),palette="Reds",direction = 1)+
+    coord_fixed(ylim=c(-48,48),xlim=c(-155,140))+
+    theme(axis.text=element_blank(),
+          panel.border=element_rect(fill=NA, color="black"),
+          panel.background=element_rect(fill='light blue', color=NA),
+          axis.title=element_blank(),
+          legend.position="bottom") +
+    facet_wrap(inv ~ .,ncol=ncols)
+
+
+```

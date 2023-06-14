@@ -1,0 +1,83 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```r
+library("tidyverse")
+
+library("patchwork")
+library("gridExtra")
+library("plyr")
+library("zoo")
+
+library("getopt")
+```
+
+
+
+```r
+library(maptools)
+library(raster)
+library(ggmap)
+
+world <- map_data("world")
+poptotals <- read.table("resources/aegy.wgs.pops.list.csv",sep=",",header=T,stringsAsFactors = F)
+colnames(poptotals) <- tolower(colnames(poptotals))
+poptotals$country <- gsub(" ","",poptotals$country)
+
+
+countryfile <- "country_geocoords.txt"
+if(file.exists(countryfile)){
+  locations <- read.table(countryfile,header=T) 
+} else {
+  register_google(key="AIzaSyBFbT5X6MjrepPAlzIj3zz1HS58hnIPtEM", write=T)
+  countries <- unique(poptotals$country)
+  locations <- geocode(countries)
+  locations$country <- countries
+  write.table(locations,countryfile,sep="\t",row.names=F,col.names=T)
+}
+
+
+
+#countrytotals <- aggregate(num_bams ~ country,poptotals,FUN=sum)
+#countrytotals <- merge(countrytotals,locations,all.x=T) %>% dplyr::rename(n=num_bams)
+
+countrytotals <- read.table("resources/meta_country_totals.txt",sep="\t",header=T)
+countrytotals <- merge(countrytotals,locations,all.x=T) %>% dplyr::rename(n=num_bams)
+```
+
+```
+## Error in `stop_subscript()`:
+## ! Can't rename columns that don't exist.
+## ✖ Column `num_bams` doesn't exist.
+```
+
+```r
+countrytotals$subspp <- "aegypti"
+countrytotals$subspp[countrytotals$contgroup %in% c("Wafrica","Eafrica","Safrica")] <- "formosus"
+
+map <- ggplot() +
+    geom_polygon(data = world, aes(x=long, y = lat, group=group), fill='grey',color="black",size=0.2) +
+    geom_point(data=countrytotals, aes(x=lon, y=lat, size=n,fill=subspp), shape=21,inherit.aes=F) +
+    #geom_text(data=sample_table, aes(x=lon, y=lat, fill=set,label=Population), shape=21,inherit.aes=F) +
+    scale_fill_manual(values=c("blue","red")) +
+    ggtitle(paste("Aaeg1000g sampling sites",sep="")) +
+    coord_fixed(ylim=c(-48,48),xlim=c(-155,140))+
+    theme(axis.text=element_blank(),
+          panel.border=element_rect(fill=NA, color="black"),
+          panel.background=element_rect(fill='light blue', color=NA),
+          panel.grid = element_blank(),
+          axis.title=element_blank(),
+          legend.position="bottom")
+
+print(map)
+```
+
+```
+## Error in FUN(X[[i]], ...): object 'lon' not found
+```
+
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
+

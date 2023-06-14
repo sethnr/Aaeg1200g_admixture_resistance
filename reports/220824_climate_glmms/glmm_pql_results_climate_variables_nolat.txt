@@ -1,0 +1,217 @@
+Estimate	Std. Error	z value	Pr(>|z|)	var	inv	vars	converged
+1.7	4.5	0.368736410707187	0.712324206405268	(Intercept)	X1_Gabon_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	0.341403821843277	0.73279959834597	popdens	X1_Gabon_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0.07	0.23	0.316200199551321	0.751850556292426	maxtemp	X1_Gabon_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+-0.28	0.22	-1.28890556044637	0.197430920724434	mintemp	X1_Gabon_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	0.0176367173147596	0.985928665045453	precipitation	X1_Gabon_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+-0.014	0.02	-0.695316956092813	0.486856690339539	precseason	X1_Gabon_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+-0.013	0.009	-1.44223136079546	0.149237116292874	tempseason	X1_Gabon_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+2.7	4.6	0.58666907141015	0.557425983608504	(Intercept)	X1_Gabon_1	popdens + maxtemp + mintemp + precseason + tempseason	TRUE
+0	0	0.356514484673686	0.721455306582691	popdens	X1_Gabon_1	popdens + maxtemp + mintemp + precseason + tempseason	TRUE
+0.07	0.23	0.291564724244109	0.770619449999489	maxtemp	X1_Gabon_1	popdens + maxtemp + mintemp + precseason + tempseason	TRUE
+-0.31	0.22	-1.40122387668011	0.161147136454596	mintemp	X1_Gabon_1	popdens + maxtemp + mintemp + precseason + tempseason	TRUE
+-0.015	0.019	-0.781190459106995	0.434690484358151	precseason	X1_Gabon_1	popdens + maxtemp + mintemp + precseason + tempseason	TRUE
+-0.014	0.01	-1.43106011346586	0.152412987426043	tempseason	X1_Gabon_1	popdens + maxtemp + mintemp + precseason + tempseason	TRUE
+3.6	3.2	1.10678101804323	0.268388617031947	(Intercept)	X1_Gabon_1	popdens + mintemp + precseason + tempseason	TRUE
+0	0	0.237212806481126	0.812491701684622	popdens	X1_Gabon_1	popdens + mintemp + precseason + tempseason	TRUE
+-0.25	0.15	-1.66099246890256	0.0967149592583834	mintemp	X1_Gabon_1	popdens + mintemp + precseason + tempseason	TRUE
+-0.012	0.017	-0.709270723121461	0.478156492835243	precseason	X1_Gabon_1	popdens + mintemp + precseason + tempseason	TRUE
+-0.012	0.0064	-1.88117313183174	0.0599483713661808	tempseason	X1_Gabon_1	popdens + mintemp + precseason + tempseason	TRUE
+3.4	3.2	1.06011872001127	0.289090592331566	(Intercept)	X1_Gabon_1	mintemp + precseason + tempseason	TRUE
+-0.22	0.15	-1.46494935254379	0.142934736447589	mintemp	X1_Gabon_1	mintemp + precseason + tempseason	TRUE
+-0.008	0.016	-0.507673618704562	0.611682252511236	precseason	X1_Gabon_1	mintemp + precseason + tempseason	TRUE
+-0.012	0.0063	-1.90894683602808	0.0562689502423748	tempseason	X1_Gabon_1	mintemp + precseason + tempseason	TRUE
+2.87	2.79	1.02679106339257	0.304518858327791	(Intercept)	X1_Gabon_1	mintemp + tempseason	TRUE
+-0.214	0.137	-1.56340464048068	0.117957449362192	mintemp	X1_Gabon_1	mintemp + tempseason	TRUE
+-0.0132	0.0059	-2.24443898262608	0.0248041707025236	tempseason	X1_Gabon_1	mintemp + tempseason	TRUE
+-1.3	1.2	-1.13195679786548	0.257652597859689	(Intercept)	X1_Gabon_1	tempseason	TRUE
+-0.0106	0.0063	-1.68922573289426	0.0911761794054621	tempseason	X1_Gabon_1	tempseason	TRUE
+-1.5287	3.8534	-0.39671871375502	0.691574898666148	(Intercept)	X1_global_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	-0.428310271835466	0.668425241483959	popdens	X1_global_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	0.402464622424322	0.687342119432518	maxtemp	X1_global_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	-0.464176030442781	0.642521632830216	mintemp	X1_global_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	-0.606294095065687	0.544319479040879	precipitation	X1_global_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	-0.0866071312878496	0.930983797255143	precseason	X1_global_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	-0.70064355759997	0.483525488203967	tempseason	X1_global_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+-1.4681	3.7847	-0.387899120373065	0.698090689103999	(Intercept)	X1_global_1	popdens + maxtemp + mintemp + precipitation + tempseason	TRUE
+0	0	-0.451987185432993	0.651278214130496	popdens	X1_global_1	popdens + maxtemp + mintemp + precipitation + tempseason	TRUE
+0	0	0.447804043278436	0.654294625117226	maxtemp	X1_global_1	popdens + maxtemp + mintemp + precipitation + tempseason	TRUE
+0	0	-0.459806941781751	0.645654800093415	mintemp	X1_global_1	popdens + maxtemp + mintemp + precipitation + tempseason	TRUE
+0	0	-0.627408808840599	0.530391295010746	precipitation	X1_global_1	popdens + maxtemp + mintemp + precipitation + tempseason	TRUE
+0	0	-0.752897827275401	0.451511313869339	tempseason	X1_global_1	popdens + maxtemp + mintemp + precipitation + tempseason	TRUE
+0	0	-0.115824873975388	0.907791336606078	(Intercept)	X1_global_1	popdens + mintemp + precipitation + tempseason	TRUE
+0	0	-0.50067733969851	0.616598222596605	popdens	X1_global_1	popdens + mintemp + precipitation + tempseason	TRUE
+0	0	-0.203793916380711	0.838514547104914	mintemp	X1_global_1	popdens + mintemp + precipitation + tempseason	TRUE
+0	0	-0.867692447883272	0.38556272128858	precipitation	X1_global_1	popdens + mintemp + precipitation + tempseason	TRUE
+0	0	-0.611825279894064	0.540653362123424	tempseason	X1_global_1	popdens + mintemp + precipitation + tempseason	TRUE
+-0.7823	1.3749	-0.569022826594642	0.569340649118127	(Intercept)	X1_global_1	popdens + precipitation + tempseason	TRUE
+0	0	-0.526031108242878	0.598866593102698	popdens	X1_global_1	popdens + precipitation + tempseason	TRUE
+0	0	-0.852912671405239	0.39370773419832	precipitation	X1_global_1	popdens + precipitation + tempseason	TRUE
+0	0	-0.679254971949176	0.496976321574082	tempseason	X1_global_1	popdens + precipitation + tempseason	TRUE
+-0.9743	1.3516	-0.720831576683336	0.471013145003985	(Intercept)	X1_global_1	precipitation + tempseason	TRUE
+0	0	-0.80776808336356	0.419224101746419	precipitation	X1_global_1	precipitation + tempseason	TRUE
+0	0	-0.623736887090019	0.532800393903439	tempseason	X1_global_1	precipitation + tempseason	TRUE
+-1.85	0.82	-2.26575459738707	0.0234664126557252	(Intercept)	X1_global_1	precipitation	TRUE
+0	0	-0.436564835404326	0.662426969484989	precipitation	X1_global_1	precipitation	TRUE
+-3.7994	7.2064	-0.527219783721416	0.598040971675729	(Intercept)	X1_PuertoRico_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	-0.65660728827326	0.511433461337137	popdens	X1_PuertoRico_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	0.265871240071324	0.790338375241649	maxtemp	X1_PuertoRico_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	-0.353323512763323	0.723845920191785	mintemp	X1_PuertoRico_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	0.757140040670717	0.448965967624341	precipitation	X1_PuertoRico_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	-0.528061864180362	0.597456398613226	precseason	X1_PuertoRico_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	-0.360718852864219	0.718309629743553	tempseason	X1_PuertoRico_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+-2.4801	5.0266	-0.493398654397942	0.621730932958421	(Intercept)	X1_PuertoRico_1	popdens + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	-0.63492059416309	0.525480204799101	popdens	X1_PuertoRico_1	popdens + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	-0.238659469492793	0.811369647279706	mintemp	X1_PuertoRico_1	popdens + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	0.754801124271864	0.450368319212896	precipitation	X1_PuertoRico_1	popdens + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	-0.472071929985042	0.636875447423344	precseason	X1_PuertoRico_1	popdens + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	-0.240913448272834	0.809622198863394	tempseason	X1_PuertoRico_1	popdens + mintemp + precipitation + precseason + tempseason	TRUE
+-3.4261	3.3432	-1.02478922602124	0.305462651145281	(Intercept)	X1_PuertoRico_1	popdens + precipitation + precseason + tempseason	TRUE
+0	0	-0.647869057825897	0.517069645137194	popdens	X1_PuertoRico_1	popdens + precipitation + precseason + tempseason	TRUE
+0	0	0.764595440114933	0.444512485275442	precipitation	X1_PuertoRico_1	popdens + precipitation + precseason + tempseason	TRUE
+0	0	-0.522219029463339	0.601517838036614	precseason	X1_PuertoRico_1	popdens + precipitation + precseason + tempseason	TRUE
+0	0	-0.0885742898315067	0.929420241498071	tempseason	X1_PuertoRico_1	popdens + precipitation + precseason + tempseason	TRUE
+-3.5734	2.8829	-1.23950788639672	0.215157469992848	(Intercept)	X1_PuertoRico_1	popdens + precipitation + precseason	TRUE
+0	0	-0.645655861129109	0.518502251803781	popdens	X1_PuertoRico_1	popdens + precipitation + precseason	TRUE
+0	0	0.872175667407648	0.383112551696289	precipitation	X1_PuertoRico_1	popdens + precipitation + precseason	TRUE
+0	0	-0.525760509713777	0.599054615619189	precseason	X1_PuertoRico_1	popdens + precipitation + precseason	TRUE
+0	0	-2.42582106310708	0.0152737989680594	(Intercept)	X1_PuertoRico_1	popdens + precipitation	TRUE
+0	0	-0.681362699498912	0.495642018827233	popdens	X1_PuertoRico_1	popdens + precipitation	TRUE
+0	0	1.10246181032119	0.270260952512947	precipitation	X1_PuertoRico_1	popdens + precipitation	TRUE
+0	0	-2.60060300738539	0.00930600762162193	(Intercept)	X1_PuertoRico_1	precipitation	TRUE
+0	0	0.988448185235832	0.322933198763154	precipitation	X1_PuertoRico_1	precipitation	TRUE
+0	10	-0.740497641710937	0.458998091609531	(Intercept)	X1_PuertoRico_3	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	0.147865285669893	0.882449085016738	popdens	X1_PuertoRico_3	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	0.507804622456272	0.611590367758756	maxtemp	X1_PuertoRico_3	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	-0.331368541945441	0.740366123763759	mintemp	X1_PuertoRico_3	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	0.189241846926922	0.84990327106737	precipitation	X1_PuertoRico_3	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	-0.896923013073137	0.369759999198759	precseason	X1_PuertoRico_3	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	-0.307152445782369	0.758727339787087	tempseason	X1_PuertoRico_3	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+-4.127	5.604	-0.736358802455547	0.461512369342617	(Intercept)	X1_PuertoRico_3	maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	0.494092313542176	0.621240986055454	maxtemp	X1_PuertoRico_3	maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	-0.313355702837429	0.75401043467189	mintemp	X1_PuertoRico_3	maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	0.197763733941046	0.84322992184216	precipitation	X1_PuertoRico_3	maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	-0.891327569924712	0.372753462196043	precseason	X1_PuertoRico_3	maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	-0.291825439685837	0.770420093398604	tempseason	X1_PuertoRico_3	maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+-3.5588	4.7735	-0.745540548305738	0.455945007979477	(Intercept)	X1_PuertoRico_3	maxtemp + mintemp + precseason + tempseason	TRUE
+0	0	0.460591252393922	0.645091888744626	maxtemp	X1_PuertoRico_3	maxtemp + mintemp + precseason + tempseason	TRUE
+0	0	-0.28421168730982	0.776248159446452	mintemp	X1_PuertoRico_3	maxtemp + mintemp + precseason + tempseason	TRUE
+0	0	-0.976354647883185	0.328888747643703	precseason	X1_PuertoRico_3	maxtemp + mintemp + precseason + tempseason	TRUE
+0	0	-0.310939439695416	0.755846661015087	tempseason	X1_PuertoRico_3	maxtemp + mintemp + precseason + tempseason	TRUE
+-3.4386	4.7926	-0.717483894703351	0.473075570380642	(Intercept)	X1_PuertoRico_3	maxtemp + precseason + tempseason	TRUE
+0	0	0.371653424945127	0.710150906350987	maxtemp	X1_PuertoRico_3	maxtemp + precseason + tempseason	TRUE
+0	0	-0.947296696041475	0.343487613952451	precseason	X1_PuertoRico_3	maxtemp + precseason + tempseason	TRUE
+0	0	-0.125662096822802	0.899999406318257	tempseason	X1_PuertoRico_3	maxtemp + precseason + tempseason	TRUE
+-3.1584	4.1238	-0.765898524970524	0.443736683654689	(Intercept)	X1_PuertoRico_3	maxtemp + precseason	TRUE
+0	0	0.377775077769401	0.705597689199096	maxtemp	X1_PuertoRico_3	maxtemp + precseason	TRUE
+0	0	-0.970953478099534	0.331571445695025	precseason	X1_PuertoRico_3	maxtemp + precseason	TRUE
+-1.685	1.232	-1.36816876292815	0.171259256834244	(Intercept)	X1_PuertoRico_3	precseason	TRUE
+-0.018	0.0196	-0.916318820197978	0.35949969971867	precseason	X1_PuertoRico_3	precseason	TRUE
+4.15	5.26	0.788517377223188	0.430394138197189	(Intercept)	X1_Uganda_2	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	0.956942218013536	0.338596420575424	popdens	X1_Uganda_2	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0.0722	0.3015	0.239354334973002	0.810830836337986	maxtemp	X1_Uganda_2	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+-0.266	0.254	-1.04766144542321	0.294794616763017	mintemp	X1_Uganda_2	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	-0.972732854538512	0.330686091897088	precipitation	X1_Uganda_2	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+-0.0196	0.0313	-0.626219146168236	0.531171210687938	precseason	X1_Uganda_2	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	-1.25240846799623	0.210421062270754	tempseason	X1_Uganda_2	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+5.03	3.83	1.31157949143646	0.189662056512441	(Intercept)	X1_Uganda_2	popdens + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	0.949280836838516	0.342477797270717	popdens	X1_Uganda_2	popdens + mintemp + precipitation + precseason + tempseason	TRUE
+-0.218	0.16	-1.35655173977956	0.17492368489497	mintemp	X1_Uganda_2	popdens + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	-0.980879976353163	0.326651932923327	precipitation	X1_Uganda_2	popdens + mintemp + precipitation + precseason + tempseason	TRUE
+-0.0156	0.0257	-0.608656427645717	0.542752193894645	precseason	X1_Uganda_2	popdens + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	-1.78995318579802	0.0734614375741032	tempseason	X1_Uganda_2	popdens + mintemp + precipitation + precseason + tempseason	TRUE
+4.11	3.59	1.1443593626641	0.252474633891668	(Intercept)	X1_Uganda_2	popdens + mintemp + precipitation + tempseason	TRUE
+0	0	0.918598420804753	0.358305658294385	popdens	X1_Uganda_2	popdens + mintemp + precipitation + tempseason	TRUE
+-0.265	0.154	-1.72414431319964	0.084681794089836	mintemp	X1_Uganda_2	popdens + mintemp + precipitation + tempseason	TRUE
+0	0	-0.816972624970793	0.413944072346055	precipitation	X1_Uganda_2	popdens + mintemp + precipitation + tempseason	TRUE
+0	0	-1.88600719985032	0.0592939844419382	tempseason	X1_Uganda_2	popdens + mintemp + precipitation + tempseason	TRUE
+2.22	2.94	0.755472767807431	0.449965365990239	(Intercept)	X1_Uganda_2	popdens + mintemp + tempseason	TRUE
+0	0	1.19291240296985	0.232903681218278	popdens	X1_Uganda_2	popdens + mintemp + tempseason	TRUE
+-0.266	0.15	-1.77053939224243	0.0766373282132023	mintemp	X1_Uganda_2	popdens + mintemp + tempseason	TRUE
+0	0	-1.69049965961524	0.0909324033197736	tempseason	X1_Uganda_2	popdens + mintemp + tempseason	TRUE
+1.87	2.79	0.669204595324779	0.503364975290192	(Intercept)	X1_Uganda_2	mintemp + tempseason	TRUE
+-0.226	0.14	-1.61289775061072	0.10676672398177	mintemp	X1_Uganda_2	mintemp + tempseason	TRUE
+0	0	-1.60440917524705	0.108623889883558	tempseason	X1_Uganda_2	mintemp + tempseason	TRUE
+-2.51	1.45	-1.72418022497954	0.084675312886099	(Intercept)	X1_Uganda_2	mintemp	TRUE
+-0.058	0.094	-0.611741398885063	0.54070886686523	mintemp	X1_Uganda_2	mintemp	TRUE
+-6.2047	5.2522	-1.18137210155034	0.237454935837025	(Intercept)	X1_Wafrica_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	0.281563678692593	0.778278093994683	popdens	X1_Wafrica_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	0.176889948064415	0.859594834397301	maxtemp	X1_Wafrica_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	-0.075750338790398	0.939617726444342	mintemp	X1_Wafrica_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	1.07754025998177	0.281238974697282	precipitation	X1_Wafrica_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	0.864491595307191	0.387317895381233	precseason	X1_Wafrica_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	0.107582252739221	0.914327075535629	tempseason	X1_Wafrica_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+-6.2017	5.2668	-1.17750469105017	0.238994126273217	(Intercept)	X1_Wafrica_1	popdens + maxtemp + precipitation + precseason + tempseason	TRUE
+0	0	0.273564730388202	0.784419141395413	popdens	X1_Wafrica_1	popdens + maxtemp + precipitation + precseason + tempseason	TRUE
+0	0	0.173836488828786	0.861993967020836	maxtemp	X1_Wafrica_1	popdens + maxtemp + precipitation + precseason + tempseason	TRUE
+0	0	1.09582001207288	0.2731575489516	precipitation	X1_Wafrica_1	popdens + maxtemp + precipitation + precseason + tempseason	TRUE
+0	0	0.900368275480678	0.367924297827213	precseason	X1_Wafrica_1	popdens + maxtemp + precipitation + precseason + tempseason	TRUE
+0	0	0.378858383397254	0.704793029669641	tempseason	X1_Wafrica_1	popdens + maxtemp + precipitation + precseason + tempseason	TRUE
+-5.3997	2.5082	-2.15284943172328	0.0313305137935513	(Intercept)	X1_Wafrica_1	popdens + precipitation + precseason + tempseason	TRUE
+0	0	0.253559409303497	0.799835958607521	popdens	X1_Wafrica_1	popdens + precipitation + precseason + tempseason	TRUE
+0	0	1.13135105474951	0.257907363570665	precipitation	X1_Wafrica_1	popdens + precipitation + precseason + tempseason	TRUE
+0	0	1.07842126101824	0.280845803082655	precseason	X1_Wafrica_1	popdens + precipitation + precseason + tempseason	TRUE
+0	0	0.381044678185599	0.703170096472477	tempseason	X1_Wafrica_1	popdens + precipitation + precseason + tempseason	TRUE
+-10	0	-2.15704228913297	0.031002369567408	(Intercept)	X1_Wafrica_1	precipitation + precseason + tempseason	TRUE
+0	0	1.12347347420288	0.26123646011997	precipitation	X1_Wafrica_1	precipitation + precseason + tempseason	TRUE
+0	0	1.15301027944263	0.248906165307335	precseason	X1_Wafrica_1	precipitation + precseason + tempseason	TRUE
+0	0	0.372344322579525	0.709636502468384	tempseason	X1_Wafrica_1	precipitation + precseason + tempseason	TRUE
+-4.8429	1.9943	-2.42841776745671	0.0151648636759481	(Intercept)	X1_Wafrica_1	precipitation + precseason	TRUE
+0	0	1.06449825302387	0.287103045380667	precipitation	X1_Wafrica_1	precipitation + precseason	TRUE
+0	0	1.10792540638273	0.267894032211848	precseason	X1_Wafrica_1	precipitation + precseason	TRUE
+0	0	-2.89996257118655	0.00373207221740294	(Intercept)	X1_Wafrica_1	precseason	TRUE
+0	0	0.738869432274395	0.459986285490895	precseason	X1_Wafrica_1	precseason	TRUE
+0	0	-0.13268214801521	0.894444761843996	(Intercept)	X2_SaudiArabia_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	0.533313661290337	0.593816472453257	popdens	X2_SaudiArabia_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	-0.574535898945976	0.565605215011832	maxtemp	X2_SaudiArabia_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	0.231140217217842	0.817205872111141	mintemp	X2_SaudiArabia_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	0.979361988639161	0.327401151629003	precipitation	X2_SaudiArabia_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	-0.39147958559611	0.695442775419801	precseason	X2_SaudiArabia_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	0.555698813933041	0.578416767535637	tempseason	X2_SaudiArabia_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+-0.572	3.153	-0.18157861589639	0.855913431893882	(Intercept)	X2_SaudiArabia_1	popdens + maxtemp + precipitation + precseason + tempseason	TRUE
+0	0	0.615322911726464	0.538341489480219	popdens	X2_SaudiArabia_1	popdens + maxtemp + precipitation + precseason + tempseason	TRUE
+0	0	-0.628030328410008	0.52998407235278	maxtemp	X2_SaudiArabia_1	popdens + maxtemp + precipitation + precseason + tempseason	TRUE
+0	0	1.08651354576342	0.277251851259753	precipitation	X2_SaudiArabia_1	popdens + maxtemp + precipitation + precseason + tempseason	TRUE
+0	0	-0.422212495088336	0.672869922007584	precseason	X2_SaudiArabia_1	popdens + maxtemp + precipitation + precseason + tempseason	TRUE
+0	0	0.876776265240758	0.380608173219276	tempseason	X2_SaudiArabia_1	popdens + maxtemp + precipitation + precseason + tempseason	TRUE
+-0.4581	3.1428	-0.145756460514431	0.884113648212093	(Intercept)	X2_SaudiArabia_1	popdens + maxtemp + precipitation + tempseason	TRUE
+0	0	0.505669803963335	0.613088469547646	popdens	X2_SaudiArabia_1	popdens + maxtemp + precipitation + tempseason	TRUE
+0	0	-0.907907151759168	0.363927278765491	maxtemp	X2_SaudiArabia_1	popdens + maxtemp + precipitation + tempseason	TRUE
+0	0	1.20356062420201	0.22875944629814	precipitation	X2_SaudiArabia_1	popdens + maxtemp + precipitation + tempseason	TRUE
+0	0	0.975070492465513	0.32952529425948	tempseason	X2_SaudiArabia_1	popdens + maxtemp + precipitation + tempseason	TRUE
+-0.429	3.127	-0.137151590350569	0.89091097451677	(Intercept)	X2_SaudiArabia_1	maxtemp + precipitation + tempseason	TRUE
+0	0	-0.877920270442368	0.379986987959697	maxtemp	X2_SaudiArabia_1	maxtemp + precipitation + tempseason	TRUE
+0	0	1.15259729072669	0.249075715776665	precipitation	X2_SaudiArabia_1	maxtemp + precipitation + tempseason	TRUE
+0	0	0.930470952403257	0.352127297059855	tempseason	X2_SaudiArabia_1	maxtemp + precipitation + tempseason	TRUE
+-3.01	1.15	-2.62219370935313	0.0087365758240853	(Intercept)	X2_SaudiArabia_1	precipitation + tempseason	TRUE
+0	0	1.56204359479809	0.118277719234804	precipitation	X2_SaudiArabia_1	precipitation + tempseason	TRUE
+0	0	0.825705107290874	0.408971394385706	tempseason	X2_SaudiArabia_1	precipitation + tempseason	TRUE
+-2.31	0.73	-3.14638623266512	0.00165301556526039	(Intercept)	X2_SaudiArabia_1	precipitation	TRUE
+0	0	1.33633666484562	0.181439257541349	precipitation	X2_SaudiArabia_1	precipitation	TRUE
+2.48	3.28	0.756007097816745	0.449644940149871	(Intercept)	X2_Senegal_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	-0.28760285069552	0.773650762502107	popdens	X2_Senegal_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+-0.176	0.162	-1.08683478273805	0.277109832754474	maxtemp	X2_Senegal_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0.179	0.142	1.25667432895801	0.208871587447856	mintemp	X2_Senegal_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0	0	-0.0157573595240067	0.987427966379808	precipitation	X2_Senegal_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0.0215	0.0157	1.36675847117548	0.17170102367188	precseason	X2_Senegal_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+0.0054	0.0053	1.01662137419375	0.309333582154265	tempseason	X2_Senegal_1	popdens + maxtemp + mintemp + precipitation + precseason + tempseason	TRUE
+2.3	3.4	0.667346867790902	0.504550595860904	(Intercept)	X2_Senegal_1	popdens + maxtemp + mintemp + precseason + tempseason	TRUE
+0	0	-0.0969001621196037	0.922805680061472	popdens	X2_Senegal_1	popdens + maxtemp + mintemp + precseason + tempseason	TRUE
+-0.171	0.162	-1.05264717533115	0.29250272739348	maxtemp	X2_Senegal_1	popdens + maxtemp + mintemp + precseason + tempseason	TRUE
+0.141	0.155	0.910208475027122	0.362712575469202	mintemp	X2_Senegal_1	popdens + maxtemp + mintemp + precseason + tempseason	TRUE
+0.018	0.015	1.21684286856983	0.223664006093645	precseason	X2_Senegal_1	popdens + maxtemp + mintemp + precseason + tempseason	TRUE
+0.0038	0.0059	0.65015718425559	0.515590694458878	tempseason	X2_Senegal_1	popdens + maxtemp + mintemp + precseason + tempseason	TRUE
+0	0	0.61881793207696	0.536036307605399	(Intercept)	X2_Senegal_1	maxtemp + mintemp + precseason + tempseason	TRUE
+-0.17	0.17	-1.01520445844556	0.31000837577922	maxtemp	X2_Senegal_1	maxtemp + mintemp + precseason + tempseason	TRUE
+0.15	0.15	0.961867284138427	0.336116274326752	mintemp	X2_Senegal_1	maxtemp + mintemp + precseason + tempseason	TRUE
+0.019	0.014	1.40789951794987	0.159160825864966	precseason	X2_Senegal_1	maxtemp + mintemp + precseason + tempseason	TRUE
+0.0033	0.0053	0.624576438564223	0.532249087550273	tempseason	X2_Senegal_1	maxtemp + mintemp + precseason + tempseason	TRUE
+2.2	3.1	0.695539345652693	0.486717362584415	(Intercept)	X2_Senegal_1	maxtemp + mintemp + precseason	TRUE
+-0.087	0.1	-0.8741645473983	0.382028649958087	maxtemp	X2_Senegal_1	maxtemp + mintemp + precseason	TRUE
+0.053	0.065	0.812878632135903	0.416287646686448	mintemp	X2_Senegal_1	maxtemp + mintemp + precseason	TRUE
+0.0149	0.0134	1.10808502277319	0.267825098575708	precseason	X2_Senegal_1	maxtemp + mintemp + precseason	TRUE
+2.8	3	0.936841109600628	0.348840295446926	(Intercept)	X2_Senegal_1	maxtemp + precseason	TRUE
+-0.081	0.099	-0.821703451013725	0.411245694601869	maxtemp	X2_Senegal_1	maxtemp + precseason	TRUE
+0.0117	0.0121	0.969168465550637	0.332461142040259	precseason	X2_Senegal_1	maxtemp + precseason	TRUE
+0.3	0.9	0.317423249756399	0.750922467933653	(Intercept)	X2_Senegal_1	precseason	TRUE
+0.01	0.0097	1.02973948024771	0.303132317128087	precseason	X2_Senegal_1	precseason	TRUE
