@@ -1,0 +1,12 @@
+samtools mpileup -f $AAGIT/resources/Aedes-aegypti-LVP_AGWG_AaegL5_refSeq.fa  \
+  -r NC_035109.1:315926360-316405639 \
+  -o kdr3_pileup_Roswell.txt \
+  /data/SBBS-RedmondLab-aaeg1200g/verily-aaeg1200g/bams/*Roswell*.bam
+
+
+ls /data/SBBS-RedmondLab-aaeg1200g/verily-aaeg1200g/bams/*Rabai*bam | perl -pe 's/.*bams\/(.*).bam/$1/gi' > kdr3_pileup_Rabai_F1534C_names.txt
+ls /data/SBBS-RedmondLab-aaeg1200g/verily-aaeg1200g/bams/*Roswell*bam | perl -pe 's/.*bams\/(.*).bam/$1/gi' > kdr3_pileup_Roswell_F1534C_names.txt
+
+
+samtools depth -a -r NW_018735214.1 /data/SBBS-RedmondLab-aaeg1200g/verily-aaeg1200g/bams/*Roswell*.bam > samtools_depth_NW_018735214.1_Roswell.txt
+samtools depth -a -r NW_018735214.1 /data/SBBS-RedmondLab-aaeg1200g/verily-aaeg1200g/bams/*Rabai*.bam > samtools_depth_NW_018735214.1_Rabai.txt

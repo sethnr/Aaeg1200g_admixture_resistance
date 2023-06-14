@@ -1,0 +1,30 @@
+digraph snakemake_dag {
+    graph[bgcolor=white, margin=0];
+    node[shape=box, style=rounded, fontname=sans,                 fontsize=10, penwidth=2];
+    edge[penwidth=2, color=grey];
+	0[label = "all", color = "0.50 0.6 0.85", style="rounded"];
+	1[label = "snpeff", color = "0.17 0.6 0.85", style="rounded"];
+	2[label = "shapeit", color = "0.11 0.6 0.85", style="rounded"];
+	3[label = "merge_whatshap", color = "0.22 0.6 0.85", style="rounded"];
+	
+	4[label = "whatshap", color = "0.56 0.6 0.85", style="rounded"];
+	5[label = "sample_vcf\nsample: Amacuzac_Mexico-_12", color = "0.39 0.6 0.85", style="rounded"];
+	6[label = "exon_vcf", color = "0.44 0.6 0.85", style="rounded"];
+	7[label = "region_vcf\nlocusname: kdr3", color = "0.33 0.6 0.85", style="rounded"];
+	8[label = "tx_remote_vcf\nblock: 32\nchrom: 3", color = "0.00 0.6 0.85", style="rounded,dashed"];
+	9[label = "tabix_vcf\nvcfname: raw_3_32\nvcftype: vcfs", color = "0.61 0.6 0.85", style="rounded,dashed"];
+	10[label = "tx_remote_bam\nsample: Amacuzac_Mexico-_12", color = "0.06 0.6 0.85", style="rounded,dashed"];
+	
+	1 -> 0
+	2 -> 1
+	3 -> 2
+	4 -> 3
+	5 -> 4
+	10 -> 4
+	6 -> 5
+	7 -> 6
+	8 -> 7
+	9 -> 7
+	8 -> 9
+	
+}            

@@ -1,16 +1,16 @@
 sample	pop	spp	region	contgroup	country
-Debug019_aegypti_El_Dorado_Argentina_U_10	El_Dorado	ADMX	South America	Americas	Argentina
-Debug019_aegypti_El_Dorado_Argentina_U_11	El_Dorado	ADMX	South America	Americas	Argentina
-Debug019_aegypti_El_Dorado_Argentina_U_2	El_Dorado	ADMX	South America	Americas	Argentina
-Debug019_aegypti_El_Dorado_Argentina_U_4	El_Dorado	ADMX	South America	Americas	Argentina
-Debug019_aegypti_El_Dorado_Argentina_U_5	El_Dorado	ADMX	South America	Americas	Argentina
-Debug031_aegypti_El_Dorado_US_U_24	El_Dorado	ADMX	South America	Americas	Argentina
-Debug031_aegypti_El_Dorado_US_U_25	El_Dorado	ADMX	South America	Americas	Argentina
-Debug031_aegypti_El_Dorado_US_U_26	El_Dorado	ADMX	South America	Americas	Argentina
-Debug031_aegypti_El_Dorado_US_U_28	El_Dorado	ADMX	South America	Americas	Argentina
-Debug031_aegypti_El_Dorado_US_U_29	El_Dorado	ADMX	South America	Americas	Argentina
-Debug031_aegypti_El_Dorado_US_U_30	El_Dorado	ADMX	South America	Americas	Argentina
-Debug031_aegypti_El_Dorado_US_U_31	El_Dorado	ADMX	South America	Americas	Argentina
+Debug019_aegypti_El_Dorado_Argentina_U_10	ElDorado	ADMX	South America	Americas	Argentina
+Debug019_aegypti_El_Dorado_Argentina_U_11	ElDorado	ADMX	South America	Americas	Argentina
+Debug019_aegypti_El_Dorado_Argentina_U_2	ElDorado	ADMX	South America	Americas	Argentina
+Debug019_aegypti_El_Dorado_Argentina_U_4	ElDorado	ADMX	South America	Americas	Argentina
+Debug019_aegypti_El_Dorado_Argentina_U_5	ElDorado	ADMX	South America	Americas	Argentina
+Debug031_aegypti_El_Dorado_US_U_24	ElDorado	ADMX	South America	Americas	Argentina
+Debug031_aegypti_El_Dorado_US_U_25	ElDorado	ADMX	South America	Americas	Argentina
+Debug031_aegypti_El_Dorado_US_U_26	ElDorado	ADMX	South America	Americas	Argentina
+Debug031_aegypti_El_Dorado_US_U_28	ElDorado	ADMX	South America	Americas	Argentina
+Debug031_aegypti_El_Dorado_US_U_29	ElDorado	ADMX	South America	Americas	Argentina
+Debug031_aegypti_El_Dorado_US_U_30	ElDorado	ADMX	South America	Americas	Argentina
+Debug031_aegypti_El_Dorado_US_U_31	ElDorado	ADMX	South America	Americas	Argentina
 Debug010_aegypti_Cuanda_Angola_01	Cuanda	AAF	West Africa	Wafrica	Angola
 Debug010_aegypti_Cuanda_Angola_02	Cuanda	AAF	West Africa	Wafrica	Angola
 Debug010_aegypti_Cuanda_Angola_03	Cuanda	AAF	West Africa	Wafrica	Angola
@@ -24,28 +24,28 @@ Debug010_aegypti_Cuanda_Angola_14	Cuanda	AAF	West Africa	Wafrica	Angola
 Debug010_aegypti_Cuanda_Angola_18	Cuanda	AAF	West Africa	Wafrica	Angola
 Debug010_aegypti_Cuanda_Angola_19	Cuanda	AAF	West Africa	Wafrica	Angola
 Debug010_aegypti_Cuanda_Angola_20	Cuanda	AAF	West Africa	Wafrica	Angola
-Debug01-REPREP-05042017-aegy-La_Lope-Gabon-10	La_Lope	AAF	West Africa	Wafrica	Gabon
-Debug01-REPREP-05042017-aegy-La_Lope-Gabon-11	La_Lope	AAF	West Africa	Wafrica	Gabon
-Debug01-REPREP-05042017-aegy-La_Lope-Gabon-12	La_Lope	AAF	West Africa	Wafrica	Gabon
-Debug01-REPREP-05042017-aegy-La_Lope-Gabon-13	La_Lope	AAF	West Africa	Wafrica	Gabon
-Debug01-REPREP-05042017-aegy-La_Lope-Gabon-14	La_Lope	AAF	West Africa	Wafrica	Gabon
-Debug01-REPREP-05042017-aegy-La_Lope-Gabon-15	La_Lope	AAF	West Africa	Wafrica	Gabon
-Debug01-REPREP-05042017-aegy-La_Lope-Gabon-16	La_Lope	AAF	West Africa	Wafrica	Gabon
-Debug01-REPREP-05042017-aegy-La_Lope-Gabon-17	La_Lope	AAF	West Africa	Wafrica	Gabon
-Debug01-REPREP-05042017-aegy-La_Lope-Gabon-18	La_Lope	AAF	West Africa	Wafrica	Gabon
-Debug01-REPREP-05042017-aegy-La_Lope-Gabon-1	La_Lope	AAF	West Africa	Wafrica	Gabon
-Debug01-REPREP-05042017-aegy-La_Lope-Gabon-20	La_Lope	AAF	West Africa	Wafrica	Gabon
-Debug01-REPREP-05042017-aegy-La_Lope-Gabon-23	La_Lope	AAF	West Africa	Wafrica	Gabon
-Debug01-REPREP-05042017-aegy-La_Lope-Gabon-24	La_Lope	AAF	West Africa	Wafrica	Gabon
-Debug01-REPREP-05042017-aegy-La_Lope-Gabon-2	La_Lope	AAF	West Africa	Wafrica	Gabon
-Debug01-REPREP-05042017-aegy-La_Lope-Gabon-3	La_Lope	AAF	West Africa	Wafrica	Gabon
-Debug01-REPREP-05042017-aegy-La_Lope-Gabon-4	La_Lope	AAF	West Africa	Wafrica	Gabon
-Debug01-REPREP-05042017-aegy-La_Lope-Gabon-5	La_Lope	AAF	West Africa	Wafrica	Gabon
-Debug01-REPREP-05042017-aegy-La_Lope-Gabon-6	La_Lope	AAF	West Africa	Wafrica	Gabon
-Debug01-REPREP-05042017-aegy-La_Lope-Gabon-7	La_Lope	AAF	West Africa	Wafrica	Gabon
-Debug01-REPREP-05042017-aegy-La_Lope-Gabon-8	La_Lope	AAF	West Africa	Wafrica	Gabon
-Debug01-REPREP-05042017-aegy-La_Lope-Gabon-9	La_Lope	AAF	West Africa	Wafrica	Gabon
-La_Lope_Gabon-_19	La_Lope	AAF	West Africa	Wafrica	Gabon
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-10	LaLope	AAF	West Africa	Wafrica	Gabon
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-11	LaLope	AAF	West Africa	Wafrica	Gabon
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-12	LaLope	AAF	West Africa	Wafrica	Gabon
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-13	LaLope	AAF	West Africa	Wafrica	Gabon
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-14	LaLope	AAF	West Africa	Wafrica	Gabon
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-15	LaLope	AAF	West Africa	Wafrica	Gabon
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-16	LaLope	AAF	West Africa	Wafrica	Gabon
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-17	LaLope	AAF	West Africa	Wafrica	Gabon
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-18	LaLope	AAF	West Africa	Wafrica	Gabon
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-1	LaLope	AAF	West Africa	Wafrica	Gabon
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-20	LaLope	AAF	West Africa	Wafrica	Gabon
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-23	LaLope	AAF	West Africa	Wafrica	Gabon
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-24	LaLope	AAF	West Africa	Wafrica	Gabon
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-2	LaLope	AAF	West Africa	Wafrica	Gabon
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-3	LaLope	AAF	West Africa	Wafrica	Gabon
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-4	LaLope	AAF	West Africa	Wafrica	Gabon
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-5	LaLope	AAF	West Africa	Wafrica	Gabon
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-6	LaLope	AAF	West Africa	Wafrica	Gabon
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-7	LaLope	AAF	West Africa	Wafrica	Gabon
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-8	LaLope	AAF	West Africa	Wafrica	Gabon
+Debug01-REPREP-05042017-aegy-La_Lope-Gabon-9	LaLope	AAF	West Africa	Wafrica	Gabon
+La_Lope_Gabon-_19	LaLope	AAF	West Africa	Wafrica	Gabon
 Debug010_aegypti_Skukusa_South_Africa_02	Skukusa	AAF	East Africa	Safrica	SouthAfrica
 Debug010_aegypti_Skukusa_South_Africa_03	Skukusa	AAF	East Africa	Safrica	SouthAfrica
 Debug010_aegypti_Skukusa_South_Africa_04	Skukusa	AAF	East Africa	Safrica	SouthAfrica
@@ -150,35 +150,35 @@ Debug014_aegypti_Kwale_Kenya_37	Kwale	AAF	East Africa	Eafrica	Kenya
 Debug014_aegypti_Kwale_Kenya_38	Kwale	AAF	East Africa	Eafrica	Kenya
 Debug014_aegypti_Kwale_Kenya_39	Kwale	AAF	East Africa	Eafrica	Kenya
 Debug014_aegypti_Kwale_Kenya_40	Kwale	AAF	East Africa	Eafrica	Kenya
-Debug012_aegypti_Rabai_Kenya_01	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
-Debug012_aegypti_Rabai_Kenya_02	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
-Debug012_aegypti_Rabai_Kenya_03	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
-Debug012_aegypti_Rabai_Kenya_04	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
-Debug012_aegypti_Rabai_Kenya_05	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
-Debug012_aegypti_Rabai_Kenya_08	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
-Debug012_aegypti_Rabai_Kenya_09	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
-Debug012_aegypti_Rabai_Kenya_12	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
-Debug012_aegypti_Rabai_Kenya_13	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
-Debug012_aegypti_Rabai_Kenya_16	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
-Debug012_aegypti_Rabai_Kenya_17	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
-Debug012_aegypti_Rabai_Kenya_20	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
-Debug012_aegypti_Rabai_Kenya_21	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
-Debug012_aegypti_Rabai_Kenya_25	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
-Debug012_aegypti_Rabai_Kenya_28	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
-Debug012_aegypti_Rabai_Kenya_29	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
-Debug012_aegypti_Rabai_Kenya_33	Rabai_2017	ADMX	East Africa	Eafrica	Kenya
-Debug017_aegypti_Rabai_Kenya_2009_F_10	Rabai_2009	ADMX	East Africa	Eafrica	Kenya
-Debug017_aegypti_Rabai_Kenya_2009_F_11	Rabai_2009	ADMX	East Africa	Eafrica	Kenya
-Debug017_aegypti_Rabai_Kenya_2009_F_12	Rabai_2009	ADMX	East Africa	Eafrica	Kenya
-Debug017_aegypti_Rabai_Kenya_2009_F_13	Rabai_2009	ADMX	East Africa	Eafrica	Kenya
-Debug017_aegypti_Rabai_Kenya_2009_F_1	Rabai_2009	ADMX	East Africa	Eafrica	Kenya
-Debug017_aegypti_Rabai_Kenya_2009_F_3	Rabai_2009	ADMX	East Africa	Eafrica	Kenya
-Debug017_aegypti_Rabai_Kenya_2009_F_4	Rabai_2009	ADMX	East Africa	Eafrica	Kenya
-Debug017_aegypti_Rabai_Kenya_2009_F_9	Rabai_2009	ADMX	East Africa	Eafrica	Kenya
-Debug017_aegypti_Rabai_Kenya_2009_M_5	Rabai_2009	ADMX	East Africa	Eafrica	Kenya
-Debug017_aegypti_Rabai_Kenya_2009_M_6	Rabai_2009	ADMX	East Africa	Eafrica	Kenya
-Debug017_aegypti_Rabai_Kenya_2011_F_15	Rabai_2009	ADMX	East Africa	Eafrica	Kenya
-Debug017_aegypti_Rabai_Kenya_2011_M_16	Rabai_2009	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_01	Rabai2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_02	Rabai2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_03	Rabai2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_04	Rabai2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_05	Rabai2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_08	Rabai2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_09	Rabai2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_12	Rabai2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_13	Rabai2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_16	Rabai2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_17	Rabai2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_20	Rabai2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_21	Rabai2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_25	Rabai2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_28	Rabai2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_29	Rabai2017	ADMX	East Africa	Eafrica	Kenya
+Debug012_aegypti_Rabai_Kenya_33	Rabai2017	ADMX	East Africa	Eafrica	Kenya
+Debug017_aegypti_Rabai_Kenya_2009_F_10	Rabai2009	ADMX	East Africa	Eafrica	Kenya
+Debug017_aegypti_Rabai_Kenya_2009_F_11	Rabai2009	ADMX	East Africa	Eafrica	Kenya
+Debug017_aegypti_Rabai_Kenya_2009_F_12	Rabai2009	ADMX	East Africa	Eafrica	Kenya
+Debug017_aegypti_Rabai_Kenya_2009_F_13	Rabai2009	ADMX	East Africa	Eafrica	Kenya
+Debug017_aegypti_Rabai_Kenya_2009_F_1	Rabai2009	ADMX	East Africa	Eafrica	Kenya
+Debug017_aegypti_Rabai_Kenya_2009_F_3	Rabai2009	ADMX	East Africa	Eafrica	Kenya
+Debug017_aegypti_Rabai_Kenya_2009_F_4	Rabai2009	ADMX	East Africa	Eafrica	Kenya
+Debug017_aegypti_Rabai_Kenya_2009_F_9	Rabai2009	ADMX	East Africa	Eafrica	Kenya
+Debug017_aegypti_Rabai_Kenya_2009_M_5	Rabai2009	ADMX	East Africa	Eafrica	Kenya
+Debug017_aegypti_Rabai_Kenya_2009_M_6	Rabai2009	ADMX	East Africa	Eafrica	Kenya
+Debug017_aegypti_Rabai_Kenya_2011_F_15	Rabai2009	ADMX	East Africa	Eafrica	Kenya
+Debug017_aegypti_Rabai_Kenya_2011_M_16	Rabai2009	ADMX	East Africa	Eafrica	Kenya
 Debug012_aegypti_ShimbaHills_Kenya_01	ShimbaHills	ADMX	East Africa	Eafrica	Kenya
 Debug012_aegypti_ShimbaHills_Kenya_02	ShimbaHills	ADMX	East Africa	Eafrica	Kenya
 Debug012_aegypti_ShimbaHills_Kenya_07	ShimbaHills	ADMX	East Africa	Eafrica	Kenya
@@ -242,21 +242,21 @@ Debug017_aegypti_Libreville_Gabon_F_7	Libreville	AAF	West Africa	Wafrica	Gabon
 Debug017_aegypti_Libreville_Gabon_F_8	Libreville	AAF	West Africa	Wafrica	Gabon
 Debug017_aegypti_Libreville_Gabon_M_13	Libreville	AAF	West Africa	Wafrica	Gabon
 Debug017_aegypti_Libreville_Gabon_M_9	Libreville	AAF	West Africa	Wafrica	Gabon
-Debug017_aegypti_LopeVillage_Gabon_F_15	Lope_village	AAF	West Africa	Wafrica	Gabon
-Debug017_aegypti_LopeVillage_Gabon_F_1	Lope_village	AAF	West Africa	Wafrica	Gabon
-Debug017_aegypti_LopeVillage_Gabon_F_2	Lope_village	AAF	West Africa	Wafrica	Gabon
-Debug017_aegypti_LopeVillage_Gabon_F_3	Lope_village	AAF	West Africa	Wafrica	Gabon
-Debug017_aegypti_LopeVillage_Gabon_F_4	Lope_village	AAF	West Africa	Wafrica	Gabon
-Debug017_aegypti_LopeVillage_Gabon_F_5	Lope_village	AAF	West Africa	Wafrica	Gabon
-Debug017_aegypti_LopeVillage_Gabon_F_6	Lope_village	AAF	West Africa	Wafrica	Gabon
-Debug017_aegypti_LopeVillage_Gabon_F_7	Lope_village	AAF	West Africa	Wafrica	Gabon
-Debug017_aegypti_LopeVillage_Gabon_F_8	Lope_village	AAF	West Africa	Wafrica	Gabon
-Debug017_aegypti_LopeVillage_Gabon_F_9	Lope_village	AAF	West Africa	Wafrica	Gabon
-Debug017_aegypti_LopeVillage_Gabon_M_10	Lope_village	AAF	West Africa	Wafrica	Gabon
-Debug017_aegypti_LopeVillage_Gabon_M_11	Lope_village	AAF	West Africa	Wafrica	Gabon
-Debug017_aegypti_LopeVillage_Gabon_M_12	Lope_village	AAF	West Africa	Wafrica	Gabon
-Debug017_aegypti_LopeVillage_Gabon_M_13	Lope_village	AAF	West Africa	Wafrica	Gabon
-Debug017_aegypti_LopeVillage_Gabon_M_14	Lope_village	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_F_15	LopeVillage	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_F_1	LopeVillage	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_F_2	LopeVillage	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_F_3	LopeVillage	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_F_4	LopeVillage	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_F_5	LopeVillage	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_F_6	LopeVillage	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_F_7	LopeVillage	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_F_8	LopeVillage	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_F_9	LopeVillage	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_M_10	LopeVillage	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_M_11	LopeVillage	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_M_12	LopeVillage	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_M_13	LopeVillage	AAF	West Africa	Wafrica	Gabon
+Debug017_aegypti_LopeVillage_Gabon_M_14	LopeVillage	AAF	West Africa	Wafrica	Gabon
 Debug017_aegypti_Franceville_Gabon_F_11	Franceville	AAF	West Africa	Wafrica	Gabon
 Debug017_aegypti_Franceville_Gabon_F_12	Franceville	AAF	West Africa	Wafrica	Gabon
 Debug017_aegypti_Franceville_Gabon_F_1	Franceville	AAF	West Africa	Wafrica	Gabon
@@ -466,21 +466,21 @@ Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_5	Ouaga	AAF	West Africa	Wafrica	Burkin
 Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_6	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
 Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_7	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
 Debug021_aegypti_Tab_Ouaga_Burkina_Faso_F_8	Ouaga	AAF	West Africa	Wafrica	BurkinaFaso
-Debug016_aegypti_New_Orleans_USA_U_10	New_Orleans	AAA	North America	Americas	USA
-Debug016_aegypti_New_Orleans_USA_U_12	New_Orleans	AAA	North America	Americas	USA
-Debug016_aegypti_New_Orleans_USA_U_14	New_Orleans	AAA	North America	Americas	USA
-Debug016_aegypti_New_Orleans_USA_U_16	New_Orleans	AAA	North America	Americas	USA
-Debug016_aegypti_New_Orleans_USA_U_17	New_Orleans	AAA	North America	Americas	USA
-Debug016_aegypti_New_Orleans_USA_U_19	New_Orleans	AAA	North America	Americas	USA
-Debug016_aegypti_New_Orleans_USA_U_20	New_Orleans	AAA	North America	Americas	USA
-Debug016_aegypti_New_Orleans_USA_U_2	New_Orleans	AAA	North America	Americas	USA
-Debug016_aegypti_New_Orleans_USA_U_3	New_Orleans	AAA	North America	Americas	USA
-Debug016_aegypti_New_Orleans_USA_U_4	New_Orleans	AAA	North America	Americas	USA
-Debug016_aegypti_New_Orleans_USA_U_5	New_Orleans	AAA	North America	Americas	USA
-Debug016_aegypti_New_Orleans_USA_U_6	New_Orleans	AAA	North America	Americas	USA
-Debug016_aegypti_New_Orleans_USA_U_7	New_Orleans	AAA	North America	Americas	USA
-Debug016_aegypti_New_Orleans_USA_U_8	New_Orleans	AAA	North America	Americas	USA
-Debug016_aegypti_New_Orleans_USA_U_9	New_Orleans	AAA	North America	Americas	USA
+Debug016_aegypti_New_Orleans_USA_U_10	NewOrleans	AAA	North America	Americas	USA
+Debug016_aegypti_New_Orleans_USA_U_12	NewOrleans	AAA	North America	Americas	USA
+Debug016_aegypti_New_Orleans_USA_U_14	NewOrleans	AAA	North America	Americas	USA
+Debug016_aegypti_New_Orleans_USA_U_16	NewOrleans	AAA	North America	Americas	USA
+Debug016_aegypti_New_Orleans_USA_U_17	NewOrleans	AAA	North America	Americas	USA
+Debug016_aegypti_New_Orleans_USA_U_19	NewOrleans	AAA	North America	Americas	USA
+Debug016_aegypti_New_Orleans_USA_U_20	NewOrleans	AAA	North America	Americas	USA
+Debug016_aegypti_New_Orleans_USA_U_2	NewOrleans	AAA	North America	Americas	USA
+Debug016_aegypti_New_Orleans_USA_U_3	NewOrleans	AAA	North America	Americas	USA
+Debug016_aegypti_New_Orleans_USA_U_4	NewOrleans	AAA	North America	Americas	USA
+Debug016_aegypti_New_Orleans_USA_U_5	NewOrleans	AAA	North America	Americas	USA
+Debug016_aegypti_New_Orleans_USA_U_6	NewOrleans	AAA	North America	Americas	USA
+Debug016_aegypti_New_Orleans_USA_U_7	NewOrleans	AAA	North America	Americas	USA
+Debug016_aegypti_New_Orleans_USA_U_8	NewOrleans	AAA	North America	Americas	USA
+Debug016_aegypti_New_Orleans_USA_U_9	NewOrleans	AAA	North America	Americas	USA
 Debug015_aegypti_Santarem_Brazil_L_10	Santarem	AAA	South America	Americas	Brazil
 Debug015_aegypti_Santarem_Brazil_L_11	Santarem	AAA	South America	Americas	Brazil
 Debug015_aegypti_Santarem_Brazil_L_12	Santarem	AAA	South America	Americas	Brazil
@@ -512,29 +512,29 @@ Debug021_aegypti_Miami_USA_M_15	Miami	AAA	North America	Americas	USA
 Debug021_aegypti_Miami_USA_M_17	Miami	AAA	North America	Americas	USA
 Debug021_aegypti_Miami_USA_M_8	Miami	AAA	North America	Americas	USA
 Debug021_aegypti_Miami_USA_M_9	Miami	AAA	North America	Americas	USA
-Debug01-REPREP-05042017-aegy-Maricopa_County_Arizona-USA-10	Maricopa_County	AAA	North America	Americas	USA
-Debug01-REPREP-05042017-aegy-Maricopa_County_Arizona-USA-20	Maricopa_County	AAA	North America	Americas	USA
-Debug01-REPREP-05042017-aegy-Maricopa_County_Arizona-USA-22	Maricopa_County	AAA	North America	Americas	USA
-Debug01-REPREP-05042017-aegy-Maricopa_County_Arizona-USA-23	Maricopa_County	AAA	North America	Americas	USA
-Debug01-REPREP-05042017-aegy-Maricopa_County_Arizona-USA-2	Maricopa_County	AAA	North America	Americas	USA
-Debug01-REPREP-05042017-aegy-Maricopa_County_Arizona-USA-5	Maricopa_County	AAA	North America	Americas	USA
-Debug01-REPREP-05042017-aegy-Maricopa_County_Arizona-USA-7	Maricopa_County	AAA	North America	Americas	USA
-Maricopa_County_AZ-_11	Maricopa_County	AAA	North America	Americas	USA
-Maricopa_County_AZ-_12	Maricopa_County	AAA	North America	Americas	USA
-Maricopa_County_AZ-_13	Maricopa_County	AAA	North America	Americas	USA
-Maricopa_County_AZ-_14	Maricopa_County	AAA	North America	Americas	USA
-Maricopa_County_AZ-_15	Maricopa_County	AAA	North America	Americas	USA
-Maricopa_County_AZ-_16	Maricopa_County	AAA	North America	Americas	USA
-Maricopa_County_AZ-_18	Maricopa_County	AAA	North America	Americas	USA
-Maricopa_County_AZ-_19	Maricopa_County	AAA	North America	Americas	USA
-Maricopa_County_AZ-_1	Maricopa_County	AAA	North America	Americas	USA
-Maricopa_County_AZ-_21	Maricopa_County	AAA	North America	Americas	USA
-Maricopa_County_AZ-_24	Maricopa_County	AAA	North America	Americas	USA
-Maricopa_County_AZ-_3	Maricopa_County	AAA	North America	Americas	USA
-Maricopa_County_AZ-_4	Maricopa_County	AAA	North America	Americas	USA
-Maricopa_County_AZ-_6	Maricopa_County	AAA	North America	Americas	USA
-Maricopa_County_AZ-_8	Maricopa_County	AAA	North America	Americas	USA
-Maricopa_County_AZ-_9	Maricopa_County	AAA	North America	Americas	USA
+Debug01-REPREP-05042017-aegy-Maricopa_County_Arizona-USA-10	MaricopaCounty	AAA	North America	Americas	USA
+Debug01-REPREP-05042017-aegy-Maricopa_County_Arizona-USA-20	MaricopaCounty	AAA	North America	Americas	USA
+Debug01-REPREP-05042017-aegy-Maricopa_County_Arizona-USA-22	MaricopaCounty	AAA	North America	Americas	USA
+Debug01-REPREP-05042017-aegy-Maricopa_County_Arizona-USA-23	MaricopaCounty	AAA	North America	Americas	USA
+Debug01-REPREP-05042017-aegy-Maricopa_County_Arizona-USA-2	MaricopaCounty	AAA	North America	Americas	USA
+Debug01-REPREP-05042017-aegy-Maricopa_County_Arizona-USA-5	MaricopaCounty	AAA	North America	Americas	USA
+Debug01-REPREP-05042017-aegy-Maricopa_County_Arizona-USA-7	MaricopaCounty	AAA	North America	Americas	USA
+Maricopa_County_AZ-_11	MaricopaCounty	AAA	North America	Americas	USA
+Maricopa_County_AZ-_12	MaricopaCounty	AAA	North America	Americas	USA
+Maricopa_County_AZ-_13	MaricopaCounty	AAA	North America	Americas	USA
+Maricopa_County_AZ-_14	MaricopaCounty	AAA	North America	Americas	USA
+Maricopa_County_AZ-_15	MaricopaCounty	AAA	North America	Americas	USA
+Maricopa_County_AZ-_16	MaricopaCounty	AAA	North America	Americas	USA
+Maricopa_County_AZ-_18	MaricopaCounty	AAA	North America	Americas	USA
+Maricopa_County_AZ-_19	MaricopaCounty	AAA	North America	Americas	USA
+Maricopa_County_AZ-_1	MaricopaCounty	AAA	North America	Americas	USA
+Maricopa_County_AZ-_21	MaricopaCounty	AAA	North America	Americas	USA
+Maricopa_County_AZ-_24	MaricopaCounty	AAA	North America	Americas	USA
+Maricopa_County_AZ-_3	MaricopaCounty	AAA	North America	Americas	USA
+Maricopa_County_AZ-_4	MaricopaCounty	AAA	North America	Americas	USA
+Maricopa_County_AZ-_6	MaricopaCounty	AAA	North America	Americas	USA
+Maricopa_County_AZ-_8	MaricopaCounty	AAA	North America	Americas	USA
+Maricopa_County_AZ-_9	MaricopaCounty	AAA	North America	Americas	USA
 Debug_aegypti_Clovis_USA_F_10	Clovis	AAA	North America	Americas	USA
 Debug_aegypti_Clovis_USA_F_11	Clovis	AAA	North America	Americas	USA
 Debug_aegypti_Clovis_USA_F_12	Clovis	AAA	North America	Americas	USA
@@ -551,26 +551,26 @@ Debug_aegypti_Clovis_USA_F_6	Clovis	AAA	North America	Americas	USA
 Debug_aegypti_Clovis_USA_F_7	Clovis	AAA	North America	Americas	USA
 Debug_aegypti_Clovis_USA_F_8	Clovis	AAA	North America	Americas	USA
 Debug_aegypti_Clovis_USA_F_9	Clovis	AAA	North America	Americas	USA
-Debug033_aegypti_Los_Angeles_US_U_10	Los_Angeles	AAA	North America	Americas	USA
-Debug033_aegypti_Los_Angeles_US_U_11	Los_Angeles	AAA	North America	Americas	USA
-Debug033_aegypti_Los_Angeles_US_U_12	Los_Angeles	AAA	North America	Americas	USA
-Debug033_aegypti_Los_Angeles_US_U_13	Los_Angeles	AAA	North America	Americas	USA
-Debug033_aegypti_Los_Angeles_US_U_14	Los_Angeles	AAA	North America	Americas	USA
-Debug033_aegypti_Los_Angeles_US_U_15	Los_Angeles	AAA	North America	Americas	USA
-Debug033_aegypti_Los_Angeles_US_U_16	Los_Angeles	AAA	North America	Americas	USA
-Debug033_aegypti_Los_Angeles_US_U_17	Los_Angeles	AAA	North America	Americas	USA
-Debug033_aegypti_Los_Angeles_US_U_18	Los_Angeles	AAA	North America	Americas	USA
-Debug033_aegypti_Los_Angeles_US_U_19	Los_Angeles	AAA	North America	Americas	USA
-Debug033_aegypti_Los_Angeles_US_U_1	Los_Angeles	AAA	North America	Americas	USA
-Debug033_aegypti_Los_Angeles_US_U_20	Los_Angeles	AAA	North America	Americas	USA
-Debug033_aegypti_Los_Angeles_US_U_2	Los_Angeles	AAA	North America	Americas	USA
-Debug033_aegypti_Los_Angeles_US_U_3	Los_Angeles	AAA	North America	Americas	USA
-Debug033_aegypti_Los_Angeles_US_U_4	Los_Angeles	AAA	North America	Americas	USA
-Debug033_aegypti_Los_Angeles_US_U_5	Los_Angeles	AAA	North America	Americas	USA
-Debug033_aegypti_Los_Angeles_US_U_6	Los_Angeles	AAA	North America	Americas	USA
-Debug033_aegypti_Los_Angeles_US_U_7	Los_Angeles	AAA	North America	Americas	USA
-Debug033_aegypti_Los_Angeles_US_U_8	Los_Angeles	AAA	North America	Americas	USA
-Debug033_aegypti_Los_Angeles_US_U_9	Los_Angeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_10	LosAngeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_11	LosAngeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_12	LosAngeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_13	LosAngeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_14	LosAngeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_15	LosAngeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_16	LosAngeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_17	LosAngeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_18	LosAngeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_19	LosAngeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_1	LosAngeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_20	LosAngeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_2	LosAngeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_3	LosAngeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_4	LosAngeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_5	LosAngeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_6	LosAngeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_7	LosAngeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_8	LosAngeles	AAA	North America	Americas	USA
+Debug033_aegypti_Los_Angeles_US_U_9	LosAngeles	AAA	North America	Americas	USA
 Debug032_aegypti_Coachella_USA_F_10	Coachella	AAA	North America	Americas	USA
 Debug032_aegypti_Coachella_USA_F_11	Coachella	AAA	North America	Americas	USA
 Debug032_aegypti_Coachella_USA_F_12	Coachella	AAA	North America	Americas	USA
@@ -590,24 +590,24 @@ Debug032_aegypti_Coachella_USA_M_3	Coachella	AAA	North America	Americas	USA
 Debug032_aegypti_Coachella_USA_M_4	Coachella	AAA	North America	Americas	USA
 Debug032_aegypti_Coachella_USA_M_6	Coachella	AAA	North America	Americas	USA
 Debug032_aegypti_Coachella_USA_M_8	Coachella	AAA	North America	Americas	USA
-Debug031_aegypti_Las_Cruces_US_U_10	Las_Cruces	AAA	North America	Americas	USA
-Debug031_aegypti_Las_Cruces_US_U_11	Las_Cruces	AAA	North America	Americas	USA
-Debug031_aegypti_Las_Cruces_US_U_12	Las_Cruces	AAA	North America	Americas	USA
-Debug031_aegypti_Las_Cruces_US_U_13	Las_Cruces	AAA	North America	Americas	USA
-Debug031_aegypti_Las_Cruces_US_U_14	Las_Cruces	AAA	North America	Americas	USA
-Debug031_aegypti_Las_Cruces_US_U_15	Las_Cruces	AAA	North America	Americas	USA
-Debug031_aegypti_Las_Cruces_US_U_16	Las_Cruces	AAA	North America	Americas	USA
-Debug031_aegypti_Las_Cruces_US_U_17	Las_Cruces	AAA	North America	Americas	USA
-Debug031_aegypti_Las_Cruces_US_U_18	Las_Cruces	AAA	North America	Americas	USA
-Debug031_aegypti_Las_Cruces_US_U_19	Las_Cruces	AAA	North America	Americas	USA
-Debug031_aegypti_Las_Cruces_US_U_1	Las_Cruces	AAA	North America	Americas	USA
-Debug031_aegypti_Las_Cruces_US_U_3	Las_Cruces	AAA	North America	Americas	USA
-Debug031_aegypti_Las_Cruces_US_U_4	Las_Cruces	AAA	North America	Americas	USA
-Debug031_aegypti_Las_Cruces_US_U_5	Las_Cruces	AAA	North America	Americas	USA
-Debug031_aegypti_Las_Cruces_US_U_6	Las_Cruces	AAA	North America	Americas	USA
-Debug031_aegypti_Las_Cruces_US_U_7	Las_Cruces	AAA	North America	Americas	USA
-Debug031_aegypti_Las_Cruces_US_U_8	Las_Cruces	AAA	North America	Americas	USA
-Debug031_aegypti_Las_Cruces_US_U_9	Las_Cruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_10	LasCruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_11	LasCruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_12	LasCruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_13	LasCruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_14	LasCruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_15	LasCruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_16	LasCruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_17	LasCruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_18	LasCruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_19	LasCruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_1	LasCruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_3	LasCruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_4	LasCruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_5	LasCruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_6	LasCruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_7	LasCruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_8	LasCruces	AAA	North America	Americas	USA
+Debug031_aegypti_Las_Cruces_US_U_9	LasCruces	AAA	North America	Americas	USA
 Debug031_aegypti_Roswell_US_U_10	Roswell	AAA	North America	Americas	USA
 Debug031_aegypti_Roswell_US_U_11	Roswell	AAA	North America	Americas	USA
 Debug031_aegypti_Roswell_US_U_12	Roswell	AAA	North America	Americas	USA
@@ -627,25 +627,25 @@ Debug031_aegypti_Roswell_US_U_6	Roswell	AAA	North America	Americas	USA
 Debug031_aegypti_Roswell_US_U_7	Roswell	AAA	North America	Americas	USA
 Debug031_aegypti_Roswell_US_U_8	Roswell	AAA	North America	Americas	USA
 Debug031_aegypti_Roswell_US_U_9	Roswell	AAA	North America	Americas	USA
-Debug025_aegypti_Passo_Fundo_Brazil_M_10	Passo_Fundo	AAA	South America	Americas	Brazil
-Debug025_aegypti_Passo_Fundo_Brazil_M_11	Passo_Fundo	AAA	South America	Americas	Brazil
-Debug025_aegypti_Passo_Fundo_Brazil_M_12	Passo_Fundo	AAA	South America	Americas	Brazil
-Debug025_aegypti_Passo_Fundo_Brazil_M_13	Passo_Fundo	AAA	South America	Americas	Brazil
-Debug025_aegypti_Passo_Fundo_Brazil_M_14	Passo_Fundo	AAA	South America	Americas	Brazil
-Debug025_aegypti_Passo_Fundo_Brazil_M_15	Passo_Fundo	AAA	South America	Americas	Brazil
-Debug025_aegypti_Passo_Fundo_Brazil_M_1	Passo_Fundo	AAA	South America	Americas	Brazil
-Debug025_aegypti_Passo_Fundo_Brazil_M_2	Passo_Fundo	AAA	South America	Americas	Brazil
-Debug025_aegypti_Passo_Fundo_Brazil_M_3	Passo_Fundo	AAA	South America	Americas	Brazil
-Debug025_aegypti_Passo_Fundo_Brazil_M_4	Passo_Fundo	AAA	South America	Americas	Brazil
-Debug025_aegypti_Passo_Fundo_Brazil_M_5	Passo_Fundo	AAA	South America	Americas	Brazil
-Debug025_aegypti_Passo_Fundo_Brazil_M_6	Passo_Fundo	AAA	South America	Americas	Brazil
-Debug025_aegypti_Passo_Fundo_Brazil_M_7	Passo_Fundo	AAA	South America	Americas	Brazil
-Debug025_aegypti_Passo_Fundo_Brazil_M_8	Passo_Fundo	AAA	South America	Americas	Brazil
-Debug025_aegypti_Passo_Fundo_Brazil_M_9	Passo_Fundo	AAA	South America	Americas	Brazil
-Debug026_aegypti_Passo_Fundo_Brazil_M_16	Passo_Fundo	AAA	South America	Americas	Brazil
-Debug026_aegypti_Passo_Fundo_Brazil_M_17	Passo_Fundo	AAA	South America	Americas	Brazil
-Debug026_aegypti_Passo_Fundo_Brazil_M_19	Passo_Fundo	AAA	South America	Americas	Brazil
-Debug026_aegypti_Passo_Fundo_Brazil_M_20	Passo_Fundo	AAA	South America	Americas	Brazil
+Debug025_aegypti_Passo_Fundo_Brazil_M_10	PassoFundo	AAA	South America	Americas	Brazil
+Debug025_aegypti_Passo_Fundo_Brazil_M_11	PassoFundo	AAA	South America	Americas	Brazil
+Debug025_aegypti_Passo_Fundo_Brazil_M_12	PassoFundo	AAA	South America	Americas	Brazil
+Debug025_aegypti_Passo_Fundo_Brazil_M_13	PassoFundo	AAA	South America	Americas	Brazil
+Debug025_aegypti_Passo_Fundo_Brazil_M_14	PassoFundo	AAA	South America	Americas	Brazil
+Debug025_aegypti_Passo_Fundo_Brazil_M_15	PassoFundo	AAA	South America	Americas	Brazil
+Debug025_aegypti_Passo_Fundo_Brazil_M_1	PassoFundo	AAA	South America	Americas	Brazil
+Debug025_aegypti_Passo_Fundo_Brazil_M_2	PassoFundo	AAA	South America	Americas	Brazil
+Debug025_aegypti_Passo_Fundo_Brazil_M_3	PassoFundo	AAA	South America	Americas	Brazil
+Debug025_aegypti_Passo_Fundo_Brazil_M_4	PassoFundo	AAA	South America	Americas	Brazil
+Debug025_aegypti_Passo_Fundo_Brazil_M_5	PassoFundo	AAA	South America	Americas	Brazil
+Debug025_aegypti_Passo_Fundo_Brazil_M_6	PassoFundo	AAA	South America	Americas	Brazil
+Debug025_aegypti_Passo_Fundo_Brazil_M_7	PassoFundo	AAA	South America	Americas	Brazil
+Debug025_aegypti_Passo_Fundo_Brazil_M_8	PassoFundo	AAA	South America	Americas	Brazil
+Debug025_aegypti_Passo_Fundo_Brazil_M_9	PassoFundo	AAA	South America	Americas	Brazil
+Debug026_aegypti_Passo_Fundo_Brazil_M_16	PassoFundo	AAA	South America	Americas	Brazil
+Debug026_aegypti_Passo_Fundo_Brazil_M_17	PassoFundo	AAA	South America	Americas	Brazil
+Debug026_aegypti_Passo_Fundo_Brazil_M_19	PassoFundo	AAA	South America	Americas	Brazil
+Debug026_aegypti_Passo_Fundo_Brazil_M_20	PassoFundo	AAA	South America	Americas	Brazil
 Debug016_aegypti_Cali_Colombia_U_10	Cali	AAA	South America	Americas	Colombia
 Debug016_aegypti_Cali_Colombia_U_11	Cali	AAA	South America	Americas	Colombia
 Debug016_aegypti_Cali_Colombia_U_12	Cali	AAA	South America	Americas	Colombia
@@ -683,24 +683,24 @@ Debug015_aegypti_Jacobina_Brazil_L_5	Jacobina	AAA	South America	Americas	Brazil
 Debug015_aegypti_Jacobina_Brazil_L_7	Jacobina	AAA	South America	Americas	Brazil
 Debug015_aegypti_Jacobina_Brazil_L_8	Jacobina	AAA	South America	Americas	Brazil
 Debug015_aegypti_Jacobina_Brazil_L_9	Jacobina	AAA	South America	Americas	Brazil
-Debug025_aegypti_Sao_Luiz_Brazil_M_10	Sao_Luiz	AAA	South America	Americas	Brazil
-Debug025_aegypti_Sao_Luiz_Brazil_M_11	Sao_Luiz	AAA	South America	Americas	Brazil
-Debug025_aegypti_Sao_Luiz_Brazil_M_13	Sao_Luiz	AAA	South America	Americas	Brazil
-Debug025_aegypti_Sao_Luiz_Brazil_M_14	Sao_Luiz	AAA	South America	Americas	Brazil
-Debug025_aegypti_Sao_Luiz_Brazil_M_15	Sao_Luiz	AAA	South America	Americas	Brazil
-Debug025_aegypti_Sao_Luiz_Brazil_M_16	Sao_Luiz	AAA	South America	Americas	Brazil
-Debug025_aegypti_Sao_Luiz_Brazil_M_17	Sao_Luiz	AAA	South America	Americas	Brazil
-Debug025_aegypti_Sao_Luiz_Brazil_M_18	Sao_Luiz	AAA	South America	Americas	Brazil
-Debug025_aegypti_Sao_Luiz_Brazil_M_19	Sao_Luiz	AAA	South America	Americas	Brazil
-Debug025_aegypti_Sao_Luiz_Brazil_M_1	Sao_Luiz	AAA	South America	Americas	Brazil
-Debug025_aegypti_Sao_Luiz_Brazil_M_20	Sao_Luiz	AAA	South America	Americas	Brazil
-Debug025_aegypti_Sao_Luiz_Brazil_M_2	Sao_Luiz	AAA	South America	Americas	Brazil
-Debug025_aegypti_Sao_Luiz_Brazil_M_3	Sao_Luiz	AAA	South America	Americas	Brazil
-Debug025_aegypti_Sao_Luiz_Brazil_M_4	Sao_Luiz	AAA	South America	Americas	Brazil
-Debug025_aegypti_Sao_Luiz_Brazil_M_5	Sao_Luiz	AAA	South America	Americas	Brazil
-Debug025_aegypti_Sao_Luiz_Brazil_M_7	Sao_Luiz	AAA	South America	Americas	Brazil
-Debug025_aegypti_Sao_Luiz_Brazil_M_8	Sao_Luiz	AAA	South America	Americas	Brazil
-Debug025_aegypti_Sao_Luiz_Brazil_M_9	Sao_Luiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_10	SaoLuiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_11	SaoLuiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_13	SaoLuiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_14	SaoLuiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_15	SaoLuiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_16	SaoLuiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_17	SaoLuiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_18	SaoLuiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_19	SaoLuiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_1	SaoLuiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_20	SaoLuiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_2	SaoLuiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_3	SaoLuiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_4	SaoLuiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_5	SaoLuiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_7	SaoLuiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_8	SaoLuiz	AAA	South America	Americas	Brazil
+Debug025_aegypti_Sao_Luiz_Brazil_M_9	SaoLuiz	AAA	South America	Americas	Brazil
 Debug025_aegypti_Palmas_Brazil_M_10	Palmas	AAA	South America	Americas	Brazil
 Debug025_aegypti_Palmas_Brazil_M_11	Palmas	AAA	South America	Americas	Brazil
 Debug025_aegypti_Palmas_Brazil_M_12	Palmas	AAA	South America	Americas	Brazil
@@ -796,25 +796,25 @@ Debug026_aegypti_Lagarto_Brazil_M_6	Lagarto	AAA	South America	Americas	Brazil
 Debug026_aegypti_Lagarto_Brazil_M_7	Lagarto	AAA	South America	Americas	Brazil
 Debug026_aegypti_Lagarto_Brazil_M_8	Lagarto	AAA	South America	Americas	Brazil
 Debug026_aegypti_Lagarto_Brazil_M_9	Lagarto	AAA	South America	Americas	Brazil
-Debug026_aegypti_Porto_Velho_Brazil_M_11	Porto_Velho	AAA	South America	Americas	Brazil
-Debug026_aegypti_Porto_Velho_Brazil_M_12	Porto_Velho	AAA	South America	Americas	Brazil
-Debug026_aegypti_Porto_Velho_Brazil_M_13	Porto_Velho	AAA	South America	Americas	Brazil
-Debug026_aegypti_Porto_Velho_Brazil_M_14	Porto_Velho	AAA	South America	Americas	Brazil
-Debug026_aegypti_Porto_Velho_Brazil_M_15	Porto_Velho	AAA	South America	Americas	Brazil
-Debug026_aegypti_Porto_Velho_Brazil_M_16	Porto_Velho	AAA	South America	Americas	Brazil
-Debug026_aegypti_Porto_Velho_Brazil_M_17	Porto_Velho	AAA	South America	Americas	Brazil
-Debug026_aegypti_Porto_Velho_Brazil_M_18	Porto_Velho	AAA	South America	Americas	Brazil
-Debug026_aegypti_Porto_Velho_Brazil_M_19	Porto_Velho	AAA	South America	Americas	Brazil
-Debug026_aegypti_Porto_Velho_Brazil_M_1	Porto_Velho	AAA	South America	Americas	Brazil
-Debug026_aegypti_Porto_Velho_Brazil_M_20	Porto_Velho	AAA	South America	Americas	Brazil
-Debug026_aegypti_Porto_Velho_Brazil_M_2	Porto_Velho	AAA	South America	Americas	Brazil
-Debug026_aegypti_Porto_Velho_Brazil_M_3	Porto_Velho	AAA	South America	Americas	Brazil
-Debug026_aegypti_Porto_Velho_Brazil_M_4	Porto_Velho	AAA	South America	Americas	Brazil
-Debug026_aegypti_Porto_Velho_Brazil_M_5	Porto_Velho	AAA	South America	Americas	Brazil
-Debug026_aegypti_Porto_Velho_Brazil_M_6	Porto_Velho	AAA	South America	Americas	Brazil
-Debug026_aegypti_Porto_Velho_Brazil_M_7	Porto_Velho	AAA	South America	Americas	Brazil
-Debug026_aegypti_Porto_Velho_Brazil_M_8	Porto_Velho	AAA	South America	Americas	Brazil
-Debug026_aegypti_Porto_Velho_Brazil_M_9	Porto_Velho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_11	PortoVelho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_12	PortoVelho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_13	PortoVelho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_14	PortoVelho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_15	PortoVelho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_16	PortoVelho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_17	PortoVelho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_18	PortoVelho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_19	PortoVelho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_1	PortoVelho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_20	PortoVelho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_2	PortoVelho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_3	PortoVelho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_4	PortoVelho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_5	PortoVelho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_6	PortoVelho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_7	PortoVelho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_8	PortoVelho	AAA	South America	Americas	Brazil
+Debug026_aegypti_Porto_Velho_Brazil_M_9	PortoVelho	AAA	South America	Americas	Brazil
 Debug026_aegypti_Maringa_Brazil_M_10	Maringa	AAA	South America	Americas	Brazil
 Debug026_aegypti_Maringa_Brazil_M_11	Maringa	AAA	South America	Americas	Brazil
 Debug026_aegypti_Maringa_Brazil_M_12	Maringa	AAA	South America	Americas	Brazil
@@ -833,24 +833,24 @@ Debug026_aegypti_Maringa_Brazil_M_6	Maringa	AAA	South America	Americas	Brazil
 Debug026_aegypti_Maringa_Brazil_M_7	Maringa	AAA	South America	Americas	Brazil
 Debug026_aegypti_Maringa_Brazil_M_8	Maringa	AAA	South America	Americas	Brazil
 Debug026_aegypti_Maringa_Brazil_M_9	Maringa	AAA	South America	Americas	Brazil
-Debug026_aegypti_Patos_de_Minas_Brazil_M_10	Patos_de_Minas	AAA	South America	Americas	Brazil
-Debug026_aegypti_Patos_de_Minas_Brazil_M_11	Patos_de_Minas	AAA	South America	Americas	Brazil
-Debug026_aegypti_Patos_de_Minas_Brazil_M_12	Patos_de_Minas	AAA	South America	Americas	Brazil
-Debug026_aegypti_Patos_de_Minas_Brazil_M_13	Patos_de_Minas	AAA	South America	Americas	Brazil
-Debug026_aegypti_Patos_de_Minas_Brazil_M_14	Patos_de_Minas	AAA	South America	Americas	Brazil
-Debug026_aegypti_Patos_de_Minas_Brazil_M_15	Patos_de_Minas	AAA	South America	Americas	Brazil
-Debug026_aegypti_Patos_de_Minas_Brazil_M_16	Patos_de_Minas	AAA	South America	Americas	Brazil
-Debug026_aegypti_Patos_de_Minas_Brazil_M_17	Patos_de_Minas	AAA	South America	Americas	Brazil
-Debug026_aegypti_Patos_de_Minas_Brazil_M_18	Patos_de_Minas	AAA	South America	Americas	Brazil
-Debug026_aegypti_Patos_de_Minas_Brazil_M_19	Patos_de_Minas	AAA	South America	Americas	Brazil
-Debug026_aegypti_Patos_de_Minas_Brazil_M_1	Patos_de_Minas	AAA	South America	Americas	Brazil
-Debug026_aegypti_Patos_de_Minas_Brazil_M_20	Patos_de_Minas	AAA	South America	Americas	Brazil
-Debug026_aegypti_Patos_de_Minas_Brazil_M_2	Patos_de_Minas	AAA	South America	Americas	Brazil
-Debug026_aegypti_Patos_de_Minas_Brazil_M_4	Patos_de_Minas	AAA	South America	Americas	Brazil
-Debug026_aegypti_Patos_de_Minas_Brazil_M_5	Patos_de_Minas	AAA	South America	Americas	Brazil
-Debug026_aegypti_Patos_de_Minas_Brazil_M_7	Patos_de_Minas	AAA	South America	Americas	Brazil
-Debug026_aegypti_Patos_de_Minas_Brazil_M_8	Patos_de_Minas	AAA	South America	Americas	Brazil
-Debug026_aegypti_Patos_de_Minas_Brazil_M_9	Patos_de_Minas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_10	PatosdeMinas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_11	PatosdeMinas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_12	PatosdeMinas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_13	PatosdeMinas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_14	PatosdeMinas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_15	PatosdeMinas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_16	PatosdeMinas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_17	PatosdeMinas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_18	PatosdeMinas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_19	PatosdeMinas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_1	PatosdeMinas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_20	PatosdeMinas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_2	PatosdeMinas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_4	PatosdeMinas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_5	PatosdeMinas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_7	PatosdeMinas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_8	PatosdeMinas	AAA	South America	Americas	Brazil
+Debug026_aegypti_Patos_de_Minas_Brazil_M_9	PatosdeMinas	AAA	South America	Americas	Brazil
 Debug021_aegypti_St_Croix_USVI_F_10	Croix	AAA	Caribean	Americas	USVirginIslands
 Debug021_aegypti_St_Croix_USVI_F_1	Croix	AAA	Caribean	Americas	USVirginIslands
 Debug021_aegypti_St_Croix_USVI_F_2	Croix	AAA	Caribean	Americas	USVirginIslands
@@ -869,11 +869,11 @@ Debug021_aegypti_St_Croix_USVI_M_17	Croix	AAA	Caribean	Americas	USVirginIslands
 Debug021_aegypti_St_Croix_USVI_M_18	Croix	AAA	Caribean	Americas	USVirginIslands
 Debug021_aegypti_St_Croix_USVI_M_19	Croix	AAA	Caribean	Americas	USVirginIslands
 Debug021_aegypti_St_Croix_USVI_M_20	Croix	AAA	Caribean	Americas	USVirginIslands
-Debug019_aegypti_Far_North_Dominica_U_1	North_Dominica	AAA	Caribean	Americas	Dominica
-Debug019_aegypti_Far_North_Dominica_U_2	North_Dominica	AAA	Caribean	Americas	Dominica
-Debug019_aegypti_Far_North_Dominica_U_3	North_Dominica	AAA	Caribean	Americas	Dominica
-Debug019_aegypti_Far_North_Dominica_U_4	North_Dominica	AAA	Caribean	Americas	Dominica
-Debug019_aegypti_Far_North_Dominica_U_5	North_Dominica	AAA	Caribean	Americas	Dominica
+Debug019_aegypti_Far_North_Dominica_U_1	NorthDominica	AAA	Caribean	Americas	Dominica
+Debug019_aegypti_Far_North_Dominica_U_2	NorthDominica	AAA	Caribean	Americas	Dominica
+Debug019_aegypti_Far_North_Dominica_U_3	NorthDominica	AAA	Caribean	Americas	Dominica
+Debug019_aegypti_Far_North_Dominica_U_4	NorthDominica	AAA	Caribean	Americas	Dominica
+Debug019_aegypti_Far_North_Dominica_U_5	NorthDominica	AAA	Caribean	Americas	Dominica
 Debug019_aegypti_Roseau_Dominica_U_10	Roseau	AAA	Caribean	Americas	Dominica
 Debug019_aegypti_Roseau_Dominica_U_11	Roseau	AAA	Caribean	Americas	Dominica
 Debug019_aegypti_Roseau_Dominica_U_12	Roseau	AAA	Caribean	Americas	Dominica
@@ -997,59 +997,59 @@ Debug021_aegypti_Tainan_Taiwan_M_6	Taiwan	AAA	Asia	Asia	Taiwan
 Debug021_aegypti_Tainan_Taiwan_M_7	Taiwan	AAA	Asia	Asia	Taiwan
 Debug021_aegypti_Tainan_Taiwan_M_8	Taiwan	AAA	Asia	Asia	Taiwan
 Debug021_aegypti_Tainan_Taiwan_M_9	Taiwan	AAA	Asia	Asia	Taiwan
-Cebu_City_Philippines-_10	Cebu_City	AAA	Asia	Asia	Philippines
-Cebu_City_Philippines-_11	Cebu_City	AAA	Asia	Asia	Philippines
-Cebu_City_Philippines-_12	Cebu_City	AAA	Asia	Asia	Philippines
-Cebu_City_Philippines-_13	Cebu_City	AAA	Asia	Asia	Philippines
-Cebu_City_Philippines-_14	Cebu_City	AAA	Asia	Asia	Philippines
-Cebu_City_Philippines-_16	Cebu_City	AAA	Asia	Asia	Philippines
-Cebu_City_Philippines-_17	Cebu_City	AAA	Asia	Asia	Philippines
-Cebu_City_Philippines-_18	Cebu_City	AAA	Asia	Asia	Philippines
-Cebu_City_Philippines-_19	Cebu_City	AAA	Asia	Asia	Philippines
-Cebu_City_Philippines-_1	Cebu_City	AAA	Asia	Asia	Philippines
-Cebu_City_Philippines-_22	Cebu_City	AAA	Asia	Asia	Philippines
-Cebu_City_Philippines-_23	Cebu_City	AAA	Asia	Asia	Philippines
-Cebu_City_Philippines-_24	Cebu_City	AAA	Asia	Asia	Philippines
-Cebu_City_Philippines-_3	Cebu_City	AAA	Asia	Asia	Philippines
-Cebu_City_Philippines-_4	Cebu_City	AAA	Asia	Asia	Philippines
-Cebu_City_Philippines-_5	Cebu_City	AAA	Asia	Asia	Philippines
-Cebu_City_Philippines-_7	Cebu_City	AAA	Asia	Asia	Philippines
-Cebu_City_Philippines-_8	Cebu_City	AAA	Asia	Asia	Philippines
-Cebu_City_Philippines-_9	Cebu_City	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Urban_Sulawesi_U_10	Urban_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Urban_Sulawesi_U_11	Urban_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Urban_Sulawesi_U_12	Urban_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Urban_Sulawesi_U_13	Urban_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Urban_Sulawesi_U_14	Urban_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Urban_Sulawesi_U_15	Urban_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Urban_Sulawesi_U_16	Urban_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Urban_Sulawesi_U_17	Urban_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Urban_Sulawesi_U_18	Urban_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Urban_Sulawesi_U_19	Urban_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Urban_Sulawesi_U_1	Urban_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Urban_Sulawesi_U_20	Urban_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Urban_Sulawesi_U_3	Urban_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Urban_Sulawesi_U_4	Urban_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Urban_Sulawesi_U_5	Urban_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Urban_Sulawesi_U_6	Urban_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Urban_Sulawesi_U_7	Urban_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Urban_Sulawesi_U_8	Urban_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Rural_Sulawesi_U_10	Rural_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Rural_Sulawesi_U_12	Rural_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Rural_Sulawesi_U_13	Rural_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Rural_Sulawesi_U_14	Rural_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Rural_Sulawesi_U_16	Rural_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Rural_Sulawesi_U_17	Rural_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Rural_Sulawesi_U_19	Rural_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Rural_Sulawesi_U_1	Rural_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Rural_Sulawesi_U_20	Rural_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Rural_Sulawesi_U_2	Rural_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Rural_Sulawesi_U_3	Rural_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Rural_Sulawesi_U_4	Rural_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Rural_Sulawesi_U_6	Rural_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Rural_Sulawesi_U_7	Rural_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Rural_Sulawesi_U_8	Rural_Sulawesi	AAA	Asia	Asia	Philippines
-Debug031_aegypti_Rural_Sulawesi_U_9	Rural_Sulawesi	AAA	Asia	Asia	Philippines
+Cebu_City_Philippines-_10	CebuCity	AAA	Asia	Asia	Philippines
+Cebu_City_Philippines-_11	CebuCity	AAA	Asia	Asia	Philippines
+Cebu_City_Philippines-_12	CebuCity	AAA	Asia	Asia	Philippines
+Cebu_City_Philippines-_13	CebuCity	AAA	Asia	Asia	Philippines
+Cebu_City_Philippines-_14	CebuCity	AAA	Asia	Asia	Philippines
+Cebu_City_Philippines-_16	CebuCity	AAA	Asia	Asia	Philippines
+Cebu_City_Philippines-_17	CebuCity	AAA	Asia	Asia	Philippines
+Cebu_City_Philippines-_18	CebuCity	AAA	Asia	Asia	Philippines
+Cebu_City_Philippines-_19	CebuCity	AAA	Asia	Asia	Philippines
+Cebu_City_Philippines-_1	CebuCity	AAA	Asia	Asia	Philippines
+Cebu_City_Philippines-_22	CebuCity	AAA	Asia	Asia	Philippines
+Cebu_City_Philippines-_23	CebuCity	AAA	Asia	Asia	Philippines
+Cebu_City_Philippines-_24	CebuCity	AAA	Asia	Asia	Philippines
+Cebu_City_Philippines-_3	CebuCity	AAA	Asia	Asia	Philippines
+Cebu_City_Philippines-_4	CebuCity	AAA	Asia	Asia	Philippines
+Cebu_City_Philippines-_5	CebuCity	AAA	Asia	Asia	Philippines
+Cebu_City_Philippines-_7	CebuCity	AAA	Asia	Asia	Philippines
+Cebu_City_Philippines-_8	CebuCity	AAA	Asia	Asia	Philippines
+Cebu_City_Philippines-_9	CebuCity	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_10	UrbanSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_11	UrbanSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_12	UrbanSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_13	UrbanSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_14	UrbanSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_15	UrbanSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_16	UrbanSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_17	UrbanSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_18	UrbanSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_19	UrbanSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_1	UrbanSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_20	UrbanSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_3	UrbanSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_4	UrbanSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_5	UrbanSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_6	UrbanSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_7	UrbanSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Urban_Sulawesi_U_8	UrbanSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_10	RuralSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_12	RuralSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_13	RuralSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_14	RuralSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_16	RuralSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_17	RuralSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_19	RuralSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_1	RuralSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_20	RuralSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_2	RuralSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_3	RuralSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_4	RuralSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_6	RuralSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_7	RuralSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_8	RuralSulawesi	AAA	Asia	Asia	Philippines
+Debug031_aegypti_Rural_Sulawesi_U_9	RuralSulawesi	AAA	Asia	Asia	Philippines
 Debug019_aegypti_Pazar_Turkey_U_10	Pazar	AAA	Asia	Asia	Turkey
 Debug019_aegypti_Pazar_Turkey_U_11	Pazar	AAA	Asia	Asia	Turkey
 Debug019_aegypti_Pazar_Turkey_U_1	Pazar	AAA	Asia	Asia	Turkey

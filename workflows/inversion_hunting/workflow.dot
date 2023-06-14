@@ -1,0 +1,58 @@
+digraph snakemake_dag {
+    graph[bgcolor=white, margin=0];
+    node[shape=box, style=rounded, fontname=sans,                 fontsize=10, penwidth=2];
+    edge[penwidth=2, color=grey];
+	0[label = "all", color = "0.00 0.6 0.85", style="rounded"];
+	1[label = "plot_global", color = "0.27 0.6 0.85", style="rounded"];
+	2[label = "merge_invs_global", color = "0.47 0.6 0.85", style="rounded"];
+	3[label = "merge_invs_sample", color = "0.13 0.6 0.85", style="rounded"];
+	4[label = "find_inversion_candidates", color = "0.20 0.6 0.85", style="rounded"];
+	5[label = "lostruct_get_distances\nchrom: 1\nregion: Brazil", color = "0.07 0.6 0.85", style="rounded"];
+	6[label = "assess_inversion_candidates", color = "0.60 0.6 0.85", style="rounded"];
+	7[label = "merge_invs_sample", color = "0.13 0.6 0.85", style="rounded"];
+	8[label = "find_inversion_candidates", color = "0.20 0.6 0.85", style="rounded"];
+	9[label = "lostruct_get_distances\nchrom: 1\nregion: USA", color = "0.07 0.6 0.85", style="rounded"];
+	10[label = "assess_inversion_candidates", color = "0.60 0.6 0.85", style="rounded"];
+	11[label = "merge_invs_sample", color = "0.13 0.6 0.85", style="rounded"];
+	12[label = "find_inversion_candidates", color = "0.20 0.6 0.85", style="rounded"];
+	13[label = "lostruct_get_distances\nchrom: 1\nregion: Senegal", color = "0.07 0.6 0.85", style="rounded"];
+	14[label = "assess_inversion_candidates", color = "0.60 0.6 0.85", style="rounded"];
+
+
+	43[label = "get_aims", color = "0.40 0.6 0.85", style="rounded"];
+	44[label = "get_aims", color = "0.40 0.6 0.85", style="rounded"];
+	45[label = "get_aims", color = "0.40 0.6 0.85", style="rounded"];
+
+
+	53[label = "call_invs_global", color = "0.53 0.6 0.85", style="rounded"];
+	1 -> 0
+	53 -> 0
+	2 -> 1
+	3 -> 2
+	7 -> 2
+	11 -> 2
+
+	43 -> 2
+	44 -> 2
+	45 -> 2
+
+	4 -> 3
+	6 -> 3
+	5 -> 4
+	4 -> 6
+	8 -> 7
+	10 -> 7
+	9 -> 8
+	8 -> 10
+	12 -> 11
+	14 -> 11
+	13 -> 12
+	12 -> 14
+
+
+	3 -> 43
+	7 -> 44
+	11 -> 45
+
+	2 -> 53
+}            
