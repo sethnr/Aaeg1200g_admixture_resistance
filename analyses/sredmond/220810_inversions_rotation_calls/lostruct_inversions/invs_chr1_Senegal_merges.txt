@@ -1,0 +1,3 @@
+cluster	inversion	blocksim
+1_Senegal_1_2	194	0.1
+1_Senegal_1_2	129	0.1

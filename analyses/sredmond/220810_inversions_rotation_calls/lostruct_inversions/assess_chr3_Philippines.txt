@@ -1,0 +1,2 @@
+cluster	size	valid	d	mean_wss	mean_bss	prop_bss	angle	admixed	f3	f3se	hzaa	hzbb	hzab	hzgood
+8	3e+06	FALSE	0.03	0.68	2.938	0.886	0	NA	NA	NA	NA	NA	NA	NA

@@ -1,0 +1,15 @@
+cluster	newname	extent	inversion	r2
+2_Uganda_5_1	2_Uganda_1	Uganda	2_Uganda_5_1	NA
+2_Uganda_1_3	2_Uganda_2	Uganda	2_Uganda_1_3	NA
+2_SaudiArabia_1_3	2_SaudiArabia_1	SaudiArabia	2_SaudiArabia_1_3	NA
+2_SaudiArabia_1_3	2_SaudiArabia_1	SaudiArabia	2_SaudiArabia_2_1	0.513575999626226
+2_Ghana_1_1	2_Wafrica_1	Wafrica	2_Ghana_1_1	NA
+2_Ghana_1_1	2_Wafrica_1	Wafrica	2_Senegal_1_1	0.520943949815466
+2_Ghana_1_1	2_Wafrica_1	Wafrica	2_Ghana_2_1	0.615296125192714
+2_Ghana_1_1	2_Wafrica_1	Wafrica	2_Senegal_2_1	0.517119976419744
+2_Ghana_1_1	2_Wafrica_1	Wafrica	2_Senegal_3_1	0.535382746898808
+2_Ghana_1_1	2_Wafrica_1	Wafrica	2_Senegal_4_1	0.526292817809294
+2_Uganda_3_1	2_Uganda_3	Uganda	2_Uganda_3_1	NA
+2_Uganda_2_1	2_Uganda_4	Uganda	2_Uganda_2_1	NA
+2_BurkinaFaso_1_2	2_BurkinaFaso_1	BurkinaFaso	2_BurkinaFaso_1_2	NA
+2_Uganda_4_2	2_Uganda_5	Uganda	2_Uganda_4_2	NA

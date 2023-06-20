@@ -1,0 +1,2 @@
+docker run -v /Users/seth/Gits/aaeg1000g_analyses/analyses/sredmond/220523_phasing:/data/ sethnr/aaeg1000g_admixture:0.01 shapeit4 --input data/lostruct_chr1.vcf.gz --map data/juneja_linkage_REMAP.manual.c1.txt --output data/shapeit_phased_chr1.vcf.gz --region 1
+docker run -v $PWD:/data/ sethnr/aaeg1000g_admixture:0.01 shapeit4 --input data/lostruct_chr1.vcf.gz --map data/juneja_linkage_REMAP.manual.c1.txt --output data/shapeit_phased_chr1.vcf.gz --region 1

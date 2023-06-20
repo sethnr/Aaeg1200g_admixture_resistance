@@ -1,0 +1,6 @@
+cluster	inversion	blocksim
+1_Uganda_1_2	333	0.1
+1_Uganda_1_2	261	0.1
+1_Uganda_2_2	81	0.1
+1_Uganda_2_2	43	0.1
+1_Uganda_3_1	13	0.1

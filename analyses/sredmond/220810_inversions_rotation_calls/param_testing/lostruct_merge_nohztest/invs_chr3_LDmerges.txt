@@ -1,0 +1,5 @@
+cluster	newname	extent	inversion	r2
+3_Uganda_2_1	3_Uganda_1	Uganda	3_Uganda_2_1	NA
+3_Uganda_3_2	3_Uganda_2	Uganda	3_Uganda_3_2	NA
+3_Uganda_1_3	3_Uganda_3	Uganda	3_Uganda_1_3	NA
+3_Uganda_4_1	3_Uganda_4	Uganda	3_Uganda_4_1	NA

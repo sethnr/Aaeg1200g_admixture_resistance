@@ -1,0 +1,10 @@
+chrom pos i inv assoc Debug013_aegypti_Bundibugyo_Uganda_01 Debug013_aegypti_Bundibugyo_Uganda_04 Debug013_aegypti_Bundibugyo_Uganda_09 Debug013_aegypti_Bundibugyo_Uganda_10 Debug013_aegypti_Bundibugyo_Uganda_11 Debug013_aegypti_Bundibugyo_Uganda_36 Debug013_aegypti_Bundibugyo_Uganda_37 Debug013_aegypti_Kichwamba_Uganda_01 Debug013_aegypti_Kichwamba_Uganda_02 Debug013_aegypti_Kichwamba_Uganda_03 Debug013_aegypti_Kichwamba_Uganda_07 Debug013_aegypti_Kichwamba_Uganda_09 Debug014_aegypti_Entebbe_Uganda_01 Debug014_aegypti_Entebbe_Uganda_03 Debug014_aegypti_Entebbe_Uganda_04 Debug014_aegypti_Entebbe_Uganda_10 Debug014_aegypti_Entebbe_Uganda_11 Debug014_aegypti_Entebbe_Uganda_14 Debug014_aegypti_Entebbe_Uganda_15 Debug014_aegypti_Entebbe_Uganda_20 Debug014_aegypti_Entebbe_Uganda_21 Debug014_aegypti_Entebbe_Uganda_23 Debug014_aegypti_Entebbe_Uganda_24 Debug014_aegypti_Kichwamba_Uganda_15 Debug014_aegypti_Kichwamba_Uganda_17 Debug014_aegypti_Kichwamba_Uganda_18 include
+NC_035108.1 426034048 1 2_Uganda_1_1 4.24675477710334e-08 0 0 2 2 0 2 0 0 0 0 0 0 1 0 0 1 0 0 0 0 0 0 0 1 1 1 FALSE
+NC_035108.1 426829237 2 2_Uganda_1_1 6.96644902996491e-08 0 0 1 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 1 2 FALSE
+NC_035108.1 432516488 3 2_Uganda_1_1 4.24675477710334e-08 0 0 2 2 0 2 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 1 1 1 FALSE
+NC_035108.1 432634451 4 2_Uganda_1_1 1.37945403757711e-10 0 0 2 2 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 FALSE
+NC_035108.1 441564409 5 2_Uganda_1_1 4.99086109455369e-09 0 0 1 1 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 2 2 2 FALSE
+NC_035108.1 449229289 6 2_Uganda_1_1 4.24675477710334e-08 1 0 2 2 0 2 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 1 1 FALSE
+NC_035108.1 449613897 7 2_Uganda_1_1 4.99086109455369e-09 0 0 2 2 0 2 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 1 1 FALSE
+NC_035108.1 449910533 8 2_Uganda_1_1 4.99086109455369e-09 0 0 2 2 1 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 FALSE
+NC_035108.1 451686984 9 2_Uganda_1_1 1.30895987225057e-08 0 0 0 2 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 FALSE

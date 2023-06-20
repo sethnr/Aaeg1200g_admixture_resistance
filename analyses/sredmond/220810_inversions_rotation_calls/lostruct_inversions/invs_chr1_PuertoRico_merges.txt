@@ -1,0 +1,4 @@
+cluster	inversion	blocksim
+1_PuertoRico_1_1	127	0.1
+1_PuertoRico_2_1	34	0.1
+1_PuertoRico_3_1	15	0.1

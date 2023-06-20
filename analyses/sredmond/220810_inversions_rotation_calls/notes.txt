@@ -1,0 +1,3 @@
+scp -r bty122@login.hpc.qmul.ac.uk:/data/scratch/bty122/redmond-lab-aaeg1000g/results/lostruct_merge_chr ./inv_merged_calls
+scp -r bty122@login.hpc.qmul.ac.uk:/data/scratch/bty122/redmond-lab-aaeg1000g/results/lostruct_inversions ./inv_calls
+Rscript merge_inversions_by_linkage.R -d lostruct_inversions -c 1 -v ../220727_assess_inversion_offcentres/data/aegy.wgs.aaa.aaf.norep5-30x.ac10.thinrand01.chr1.vcf.gz -m ../220727_assess_inversion_offcentres/resources/meta_Aaeg1kg_spp.txt -o testmerge -r 0.25

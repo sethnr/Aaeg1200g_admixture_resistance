@@ -1,0 +1,3 @@
+cluster	inversion
+1_1	322
+2_1	215

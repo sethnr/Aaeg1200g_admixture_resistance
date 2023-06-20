@@ -1,0 +1,3 @@
+bcftools view -m2 -M2 whatshap_1.vcf.gz -O z -o whatshap_1_bi.vcf.gz
+tabix -pvcf whatshap_1_bi.vcf.gz
+docker run sethnr/aaeg1000g_admixture:0.02 alder

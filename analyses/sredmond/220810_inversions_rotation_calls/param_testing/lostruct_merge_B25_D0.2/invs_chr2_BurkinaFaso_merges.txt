@@ -1,0 +1,3 @@
+cluster	inversion
+1_2	498
+1_2	76
