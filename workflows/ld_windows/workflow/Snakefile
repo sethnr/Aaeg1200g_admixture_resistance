@@ -1,0 +1,79 @@
+container: "docker://sethnr/aaeg1000g_analysis:0.03"
+#### Config file and sample sheets #####
+configfile: "config/config.yaml"
+#### reused methods for grabbing GS objects, etc ####
+include: "rules/common.smk"
+
+CHROMS=[1,2,3]
+COUNTRIES=pd.read_table(config['spptable'],dtype=str,header=0)['countries'].unique()
+
+rule all:
+    input:
+        "results/ldwins/LDwins_all.txt"
+
+##### get LD wins #####
+
+
+rule getLDwindows:
+    input:
+        vcf="verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr{chrom}.SNP.7e6.NC_labels.vcf.gz"
+    output:
+        ld="results/ldwins/LDwins_{country}_c{chrom}.txt"
+    resources:
+        mem_mb=3000,
+        disk_mb=500000,
+        bamspace=0
+    threads: 1,
+    log:
+        "logs/ld/{country}_{chrom}_ldwins.log",
+    shell:
+        """
+        python get_LDwins_across_pop.py \
+            -p {wildcards.country} -l country 
+            -c {wildcards.chrom} \
+            -m {input.meta} \
+            -v {input.vcf} -o {output.ld} \
+            -b {params.blocksize} -s {params.stepsize}
+        """
+
+rule mergeLDwindows:
+    input:
+        lds=expand("results/ldwins/LDwins_{country}_c{chrom}.txt", country=COUNTRIES, chrom=CHROMS)
+    output:
+        allld="results/ldwins/LDwins_all.txt"
+    log:
+        "logs/ld/{country}_{chrom}_plotld.log",
+    shell:
+        """
+	       cat {input.lds} > {output.allld}
+	    """
+
+
+
+rule plotLDwindows:
+    input:
+        lds="results/ldwins/LDwins_all.txt"
+    output:
+        allcov="results/ld/windowed_ld_all.png",
+        sppcov="results/ld/windowed_ld_spp.png",
+    log:
+        "logs/ld/{country}_{chrom}_plotld.log",
+    shell:
+        """
+	       cat {input.lds} > {output.allld}
+	    """
+
+
+rule testinvLD:
+    input:
+        lds=expand("results/ld/LDwins_{country}_c{chrom}.txt", country=COUNTRIES, chrom=CHROMS),
+        invlocs="resources/resources/lostruct_inversions_table.txt",
+        invfreqs="resources/resources/lostruct_inversion_freqs.txt"
+    output:
+        tests="results/ld/inversion_tests.txt",
+    log:
+        "logs/ld/inversion_tests.log",
+    shell:
+        """
+	       cat {input.lds} > {output.tests}
+	    """
