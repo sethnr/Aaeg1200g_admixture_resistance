@@ -45,7 +45,7 @@ chrlens = {1:310827022,
 meta = np.genfromtxt(metafile,delimiter='\t',names=True,dtype=None,encoding='utf-8')
 pop1samps = meta['sample'][meta[poplevel]==pop]
 
-print("getting callset for {}. n={}",format(country,str(len(pop1samps))),file=sys.stderr)
+print("getting callset for {}. n={}",format(pop,str(len(pop1samps))),file=sys.stderr)
 
 callset1 = allel.read_vcf(vcffile, samples=pop1samps, fields='*')
 altcounts = callset1['calldata/GT'][:,:,0] + callset1['calldata/GT'][:,:,1]
