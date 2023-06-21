@@ -45,7 +45,7 @@ chrlens = {1:310827022,
 meta = np.genfromtxt(metafile,delimiter='\t',names=True,dtype=None,encoding='utf-8')
 pop1samps = meta['sample'][meta[poplevel]==pop]
 
-print("getting callset for {}. n={}",format(pop,str(len(pop1samps))),file=sys.stderr)
+print("getting callset for {}. n={}".format(pop,str(len(pop1samps))),file=sys.stderr)
 
 callset1 = allel.read_vcf(vcffile, samples=pop1samps, fields='*')
 altcounts = callset1['calldata/GT'][:,:,0] + callset1['calldata/GT'][:,:,1]
@@ -61,7 +61,7 @@ hasvar = np.logical_not(np.any(np.vstack([np.all(altcounts==2,1),
 goodposn = callset1['variants/POS'][hasvar]
 goodcounts = altcounts[hasvar,:]
 
-print("calculating ld across {} vars",format(str(len(goodposn))),file=sys.stderr)
+print("calculating ld across {} vars".format(str(len(goodposn))),file=sys.stderr)
 #get median r2 in wins
 r2, r2wins, r2n  = allel.windowed_r_squared(goodposn, goodcounts, 
                                             size=bsize, start=0, stop=chrlens[chrom], 
@@ -73,6 +73,7 @@ r2tab = pd.DataFrame({
         "chrom":[chrom]*len(r2),
         "start":r2wins[:,0],
         "end":r2wins[:,1],
-        "r2samp":r2})
+        "r2n":r2n,
+        "r2":r2})
     
 r2tab.to_csv(outfile, sep="\t", index=False)
