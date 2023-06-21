@@ -76,5 +76,7 @@ r2tab = pd.DataFrame({
         "end":r2wins[:,1],
         "r2n":r2n,
         "r2":r2})
-    
+print(r2tab,file=sys.stdout)
+
+
 r2tab.to_csv(outfile, sep="\t", index=False)
