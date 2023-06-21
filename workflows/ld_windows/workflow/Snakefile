@@ -5,7 +5,7 @@ configfile: "config/config.yaml"
 include: "rules/common.smk"
 
 CHROMS=[1,2,3]
-COUNTRIES=pd.read_table(config['spptable'],dtype=str,header=0)['countries'].unique()
+COUNTRIES=pd.read_table(config['spptable'],dtype=str,header=0)['country'].unique()
 
 rule all:
     input:
@@ -16,7 +16,8 @@ rule all:
 
 rule getLDwindows:
     input:
-        vcf="verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr{chrom}.SNP.7e6.NC_labels.vcf.gz"
+        vcf="verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.norep5-30x.ac10.thinrand01.chr{chrom}.vcf.gz",
+	meta=config['spptable']
     output:
         ld="results/ldwins/LDwins_{country}_c{chrom}.txt"
     resources:
@@ -24,6 +25,9 @@ rule getLDwindows:
         disk_mb=500000,
         bamspace=0
     threads: 1,
+    params:
+        blocksize=100000,
+        stepsize=100000,
     log:
         "logs/ld/{country}_{chrom}_ldwins.log",
     shell:
@@ -42,7 +46,7 @@ rule mergeLDwindows:
     output:
         allld="results/ldwins/LDwins_all.txt"
     log:
-        "logs/ld/{country}_{chrom}_plotld.log",
+        "logs/ld/mergeld.log",
     shell:
         """
 	       cat {input.lds} > {output.allld}
@@ -57,7 +61,7 @@ rule plotLDwindows:
         allcov="results/ld/windowed_ld_all.png",
         sppcov="results/ld/windowed_ld_spp.png",
     log:
-        "logs/ld/{country}_{chrom}_plotld.log",
+        "logs/ld/plotld.log",
     shell:
         """
 	       cat {input.lds} > {output.allld}
@@ -66,7 +70,7 @@ rule plotLDwindows:
 
 rule testinvLD:
     input:
-        lds=expand("results/ld/LDwins_{country}_c{chrom}.txt", country=COUNTRIES, chrom=CHROMS),
+        lds="results/ldwins/LDwins_all.txt",
         invlocs="resources/resources/lostruct_inversions_table.txt",
         invfreqs="resources/resources/lostruct_inversion_freqs.txt"
     output:
