@@ -17,11 +17,12 @@ rule all:
 rule getLDwindows:
     input:
         vcf="verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.norep5-30x.ac10.thinrand01.chr{chrom}.vcf.gz",
+        tbi="verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.norep5-30x.ac10.thinrand01.chr{chrom}.vcf.gz.tbi",
 	meta=config['spptable']
     output:
         ld="results/ldwins/LDwins_{country}_c{chrom}.txt"
     resources:
-        mem_mb=3000,
+        mem_mb=16000,
         disk_mb=500000,
         bamspace=0
     threads: 1,
