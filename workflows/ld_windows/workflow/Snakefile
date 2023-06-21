@@ -32,8 +32,8 @@ rule getLDwindows:
         "logs/ld/{country}_{chrom}_ldwins.log",
     shell:
         """
-        python get_LDwins_across_pop.py \
-            -p {wildcards.country} -l country 
+        python scripts/get_LDwins_across_pop.py \
+            -p {wildcards.country} -l country \
             -c {wildcards.chrom} \
             -m {input.meta} \
             -v {input.vcf} -o {output.ld} \

@@ -9,7 +9,6 @@ import sys
 
 import pandas as pd
 
-import tabix
 import random
 
 from math import isnan, isfinite
