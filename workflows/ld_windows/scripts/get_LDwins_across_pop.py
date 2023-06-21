@@ -42,12 +42,17 @@ chrlens = {1:310827022,
           2:474425716,
           3:409777670}
 
+chrname = {1:"NC_035107.1",
+          2:"NC_035108.1",
+          3:"NC_035109.1"}
+
+
 meta = np.genfromtxt(metafile,delimiter='\t',names=True,dtype=None,encoding='utf-8')
 pop1samps = meta['sample'][meta[poplevel]==pop]
 
 print("getting callset for {}. n={}".format(pop,str(len(pop1samps))),file=sys.stderr)
 
-chromregion = "{chrom}:{start}-{end}".format(chrom=chromname[chrom], start=1, end=chrlens[chrom])
+chromregion = "{chrom}:{start}-{end}".format(chrom=chrname[chrom], start=1, end=chrlens[chrom])
 
 callset1 = allel.read_vcf(vcffile,
                           region=chromregion,
