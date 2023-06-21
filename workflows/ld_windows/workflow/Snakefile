@@ -1,3 +1,4 @@
+
 container: "docker://sethnr/aaeg1000g_analysis:0.03"
 #### Config file and sample sheets #####
 configfile: "config/config.yaml"
@@ -22,7 +23,7 @@ rule getLDwindows:
     output:
         ld="results/ldwins/LDwins_{country}_c{chrom}.txt"
     resources:
-        mem_mb=16000,
+        mem_mb=35000,
         disk_mb=500000,
         bamspace=0
     threads: 1,
