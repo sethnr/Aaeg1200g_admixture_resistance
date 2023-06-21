@@ -65,7 +65,7 @@ print("calculating ld across {} vars",format(str(len(goodposn))),file=sys.stderr
 #get median r2 in wins
 r2, r2wins, r2n  = allel.windowed_r_squared(goodposn, goodcounts, 
                                             size=bsize, start=0, stop=chrlens[chrom], 
-                                            step=bsize, percentile=50)
+                                            step=bsize, percentile=50, fill=0)
 
 print("printing {} windows",format(str(len(r2))),file=sys.stderr)
 r2tab = pd.DataFrame({
