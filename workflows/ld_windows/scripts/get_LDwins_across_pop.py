@@ -51,6 +51,7 @@ callset1 = allel.read_vcf(vcffile, samples=pop1samps, fields='*')
 altcounts = callset1['calldata/GT'][:,:,0] + callset1['calldata/GT'][:,:,1]
 
 print(altcounts.shape,file=sys.stderr)
+print("removing invariant sites from {} vars".format(str(altcounts.shape)),file=sys.stderr)
 
 #remove all non-variant sites, and singletons
 hasvar = np.logical_not(np.any(np.vstack([np.all(altcounts==2,1),
