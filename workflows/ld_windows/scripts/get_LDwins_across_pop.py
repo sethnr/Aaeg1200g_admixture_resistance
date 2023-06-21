@@ -46,6 +46,8 @@ chrlens = {1:310827022,
 meta = np.genfromtxt(metafile,delimiter='\t',names=True,dtype=None,encoding='utf-8')
 pop1samps = meta['sample'][meta[poplevel]==pop]
 
+print("getting callset for {}. n={}",format(country,str(len(pop1samps))),file=sys.stderr)
+
 callset1 = allel.read_vcf(vcffile, samples=pop1samps, fields='*')
 altcounts = callset1['calldata/GT'][:,:,0] + callset1['calldata/GT'][:,:,1]
 
@@ -60,13 +62,13 @@ hasvar = np.logical_not(np.any(np.vstack([np.all(altcounts==2,1),
 goodposn = callset1['variants/POS'][hasvar]
 goodcounts = altcounts[hasvar,:]
 
-print(len(goodposn), file=sys.stderr)
-
+print("calculating ld across {} vars",format(str(len(goodposn))),file=sys.stderr)
 #get median r2 in wins
 r2, r2wins, r2n  = allel.windowed_r_squared(goodposn, goodcounts, 
                                             size=bsize, start=0, stop=chrlens[chrom], 
                                             step=bsize, percentile=50)
 
+print("printing {} windows",format(str(len(r2))),file=sys.stderr)
 r2tab = pd.DataFrame({
         "country":[pop]*len(r2),
         "chrom":[chrom]*len(r2),
