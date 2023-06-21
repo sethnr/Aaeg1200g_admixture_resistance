@@ -17,8 +17,10 @@ rule all:
 
 rule getLDwindows:
     input:
-        vcf="verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.norep5-30x.ac10.thinrand01.chr{chrom}.vcf.gz",
-        tbi="verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.norep5-30x.ac10.thinrand01.chr{chrom}.vcf.gz.tbi",
+        #vcf="verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.norep5-30x.ac10.thinrand01.chr{chrom}.vcf.gz",
+        #tbi="verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.norep5-30x.ac10.thinrand01.chr{chrom}.vcf.gz.tbi",
+        vcf="verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr123.SNP.1e6.NC_labels.vcf.gz",
+        tbi="verily-aaeg1200g/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr123.SNP.1e6.NC_labels.vcf.gz.tbi",
 	    meta=config['spptable']
     output:
         ld="results/ldwins/LDwins_{country}_c{chrom}.txt"
