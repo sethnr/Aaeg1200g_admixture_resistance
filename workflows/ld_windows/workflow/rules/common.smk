@@ -156,11 +156,14 @@ def get_bai_for_sample(wildcards):
 
 rule tabix_vcf:
     input:
-        "results/{vcftype}/{vcfname}.vcf.gz"
+#        "results/{vcftype}/{vcfname}.vcf.gz"
+        "{vcfname}.vcf.gz"
     output:
-        "results/{vcftype}/{vcfname}.vcf.gz.tbi",
+#        "results/{vcftype}/{vcfname}.vcf.gz.tbi",
+        "{vcfname}.vcf.gz.tbi",
     log:
-        "logs/tabix/{vcftype}/{vcfname}.vcf.log",
+#        "logs/tabix/{vcftype}/{vcfname}.vcf.log",
+        "logs/tabix/{vcfname}.vcf.log",
     params:
         "-p vcf",
     wrapper:
