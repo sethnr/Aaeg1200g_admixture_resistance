@@ -47,7 +47,11 @@ pop1samps = meta['sample'][meta[poplevel]==pop]
 
 print("getting callset for {}. n={}".format(pop,str(len(pop1samps))),file=sys.stderr)
 
-callset1 = allel.read_vcf(vcffile, samples=pop1samps, fields='*')
+chromregion = "{chrom}:{start}-{end}".format(chrom=chromname[chrom], start=1, end=chrlens[chrom])
+
+callset1 = allel.read_vcf(vcffile,
+                          region=chromregion,
+                          samples=pop1samps, fields=['calldata/GT','variants/POS'])
 altcounts = callset1['calldata/GT'][:,:,0] + callset1['calldata/GT'][:,:,1]
 
 print(altcounts.shape,file=sys.stderr)
