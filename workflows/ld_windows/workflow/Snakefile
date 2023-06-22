@@ -25,13 +25,13 @@ rule getLDwindows:
     output:
         ld="results/ldwins/LDwins_{country}_c{chrom}.txt"
     resources:
-        mem_mb=35000,
+        mem_mb=16000,
         disk_mb=500000,
         bamspace=0
     threads: 1,
     params:
-        blocksize=100000,
-        stepsize=100000,
+        blocksize=500000,
+        stepsize =250000,
     log:
         "logs/ld/{country}_{chrom}_ldwins.log",
     shell:

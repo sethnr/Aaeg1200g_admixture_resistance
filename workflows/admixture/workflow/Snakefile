@@ -6,8 +6,8 @@ include: "rules/common.smk"
 
 #TESTS=['alder','3pop']
 TESTS=['3pop']
-CHROMS=[1,2,3]
-#CHROMS=['123']
+#CHROMS=[1,2,3]
+CHROMS=['123']
 BIGPOPS=pd.read_table(config["countries"],dtype=str,header=0)['country']
 
 #wildcard_constraints:
@@ -199,6 +199,10 @@ rule cat_3pop:
     output:
         sums="results/admix_tests/3pop_{chrom}_summaries.txt",
         blocks="results/admix_tests/3pop_{chrom}_blocks.txt"
+    resources:
+        mem_mb=8000,
+        disk_mb=20000,
+        h_rt='1:00:00',
     log:
         "logs/admix_tests/3pop_{chrom}.log"
     shell:
