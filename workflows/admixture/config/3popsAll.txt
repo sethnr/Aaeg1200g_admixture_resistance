@@ -223,7 +223,7 @@ Franceville	ElDorado	Trinidad
 Franceville	ElDorado	Thies
 Franceville	ElDorado	Taiwan
 Franceville	ElDorado	Tahiti
-Franceville	ElDorado	Skukusapop1	pop2	pop3
+Franceville	ElDorado	Skukusa
 Franceville	ElDorado	ShimbaHills
 Franceville	ElDorado	SaoLuiz
 Franceville	ElDorado	Santarem
