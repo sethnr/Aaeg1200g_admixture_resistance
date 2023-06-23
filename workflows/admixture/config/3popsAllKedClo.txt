@@ -16,7 +16,7 @@ Kedougou	Clovis	Croix
 Kedougou	Clovis	Trinidad
 Kedougou	Clovis	Jeddah
 Kedougou	Clovis	Mecca
-Kedougou	Clovis	Clovis
+Kedougou	Clovis	Bantata
 Kedougou	Clovis	Coachella
 Kedougou	Clovis	LasCruces
 Kedougou	Clovis	LosAngeles

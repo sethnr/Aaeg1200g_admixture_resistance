@@ -23,47 +23,55 @@ library(maptools)
 library(raster)
 library(ggmap)
 
-pop3sumWG <- read.table("admix_tests/3pop_123_summaries_FCV_NO.txt",col.names=c("p3","p1","p2","chr","f3","f3sd","f3z","f3sig"))
-pop3sumWG$set <- paste(pop3sumWG$p3,pop3sumWG$p1,pop3sumWG$p2,sep="/")
-pop3sumWG$parent <- paste(pop3sumWG$p1,pop3sumWG$p2,sep="/")
-pop3sumWG$f3sig <- as.logical(pop3sumWG$f3sig)
-write(paste("found",nrow(pop3sumWG),"summary lines from",1,"files"),stderr())
+#pop3sum <- read.table("admix_tests/3pop_123_summaries_FCV_NO.txt",col.names=c("p3","p1","p2","chr","f3","f3sd","f3z","f3sig"))
+pop3sum <- read.table("admix_tests/3pop_123_summaries.txt",col.names=c("p3","p1","p2","chr","f3","f3sd","f3z","f3sig"))
+pop3sum <- subset(pop3sum,p1=="Franceville" & p2=="NewOrleans")
+pop3sum$set <- paste(pop3sum$p3,pop3sum$p1,pop3sum$p2,sep="/")
+pop3sum$parent <- paste(pop3sum$p1,pop3sum$p2,sep="/")
+pop3sum$f3sig <- as.logical(pop3sum$f3sig)
+f3lim=-0.3
+pop3sum$f3sig <- pop3sum$f3z < f3lim
+write(paste("found",nrow(pop3sum),"summary lines from",1,"files"),stderr())
 
 
 world <- map_data("world")
-poptotals <- read.table("aegy.wgs.pops.list_display.csv",sep=",",header=T,stringsAsFactors = F) %>% 
+meta <- read.table("aegy.wgs.pops.list_display.csv",sep=",",header=T,stringsAsFactors = F) %>% 
                 rename_with(tolower) %>% 
                 mutate("pop" = gsub("_","",pop))
 
 
-poptotals <- merge(poptotals,pop3sumWG,by.x="pop",by.y="p3")
+poptotals <- merge(meta,pop3sum,by.x="pop",by.y="p3")
 
 parents <- c("NewOrleans","Franceville")
-sigpopsWGSFvxNO = pop3sumWG$p3[pop3sumWG$f3sig]
-sigpopsWGSFvxNO <- sigpopsWGSFvxNO[!sigpopsWGSFvxNO %in% parents]
+sigpopsSFvxNO = pop3sum$p3[pop3sum$f3sig]
+sigpopsSFvxNO <- sigpopsSFvxNO[!sigpopsSFvxNO %in% parents]
 
 poptotals$sig = F
-poptotals$sig[poptotals$pop %in% sigpopsWGSFvxNO] = T
+poptotals$sig[poptotals$pop %in% sigpopsSFvxNO] = T
 poptotals$sig[poptotals$pop %in% parents] = NA
 poptotals$f3z[poptotals$pop %in% parents] = NA
 
-# ggplot() +
-#     geom_polygon(data = world, aes(x=long, y=lat, group=group), fill='#C7ECD3',color="black",size=0.2) +
-#     geom_point(data=poptotals, aes(x=long, y=lat, fill=f3z,size=num_bams), fill="grey",shape=21,inherit.aes=F) +
-#     geom_point(data=subset(poptotals,sig), aes(x=long, y=lat, fill=f3z,size=num_bams), shape=21,inherit.aes=F) +
-#     geom_text_repel(data=poptotals,aes(x=long, y=lat, label=pop),
-#                     size=3,max.overlaps = NA  ) +
-#     coord_fixed(ylim=c(-48,48),xlim=c(-155,140))+
-#     ggtitle(paste("3-pop results (FCV / NO)",sep="")) +
-#     scale_fill_gradient(low="red",high="white",na.value="grey") +
-#     theme(axis.text=element_blank(),
-#           panel.border=element_rect(fill=NA, color="black"),
-#           panel.background=element_rect(fill='#C7E6F1', color=NA),
-#           panel.grid = element_blank(),
-#           axis.title=element_blank(),
-#           axis.ticks=element_blank(),
-#           legend.position="bottom")
+ggplot() +
+    geom_polygon(data = world, aes(x=long, y=lat, group=group), fill='#C7ECD3',color="black",size=0.2) +
+    geom_point(data=poptotals, aes(x=long, y=lat, fill=f3z,size=num_bams), fill="grey",shape=21,inherit.aes=F) +
+    geom_point(data=subset(poptotals,sig), aes(x=long, y=lat, fill=f3z,size=num_bams), shape=21,inherit.aes=F) +
+    geom_text_repel(data=poptotals,aes(x=long, y=lat, label=pop),
+                    size=3,max.overlaps = NA  ) +
+    coord_fixed(ylim=c(-48,48),xlim=c(-155,140))+
+    ggtitle(paste("3-pop results (FCV / NO)",sep="")) +
+    scale_fill_gradient(low="red",high="white",na.value="grey") +
+    theme(axis.text=element_blank(),
+          panel.border=element_rect(fill=NA, color="black"),
+          panel.background=element_rect(fill='#C7E6F1', color=NA),
+          panel.grid = element_blank(),
+          axis.title=element_blank(),
+          axis.ticks=element_blank(),
+          legend.position="bottom")
+```
 
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
+
+```r
 poptotals$f3zdisp <- poptotals$f3z
 poptotals$f3zdisp[poptotals$f3z>=0] <- NA
 
@@ -86,4 +94,35 @@ ggplot() +
           legend.position="bottom")
 ```
 
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-2.png)
+
+
+
+```r
+pop3sumAll <- read.table("admix_tests/3pop_123_summaries.txt",col.names=c("p3","p1","p2","chr","f3","f3sd","f3z","f3sig"))
+pop3sumAll$set <- paste(pop3sumAll$p3,pop3sumAll$p1,pop3sumAll$p2,sep="/")
+pop3sumAll$parent <- paste(pop3sumAll$p1,pop3sumAll$p2,sep="/")
+f3lim=-0.258
+pop3sumAll$f3sig <- pop3sumAll$f3z < f3lim
+
+pop3sumAll$f3sig[pop3sumAll$p3==pop3sumAll$p2 | pop3sumAll$p3==pop3sumAll$p1] <- F
+pop3sumAll$f3[pop3sumAll$p3==pop3sumAll$p2 | pop3sumAll$p3==pop3sumAll$p1] <- NA
+pop3sumAll$f3z[pop3sumAll$p3==pop3sumAll$p2 | pop3sumAll$p3==pop3sumAll$p1] <- NA
+
+#pop3sumAll <- pop3sumAll[pop3sumAll$p3 %in% unique(pop3sumAll$p3[pop3sumAll$f3sig]),]
+
+pop3sumAll <- merge(pop3sumAll,meta,by.y="pop",by.x="p3")
+
+parentlevels <- c("Franceville/NewOrleans","Bantata/HoChiMin","Kedougou/Clovis",
+                  "Franceville/ElDorado","Kedougou/ElDorado",
+                  "ElDorado/NewOrleans" )
+pop3sumAll$parent <- factor(pop3sumAll$parent,levels=parentlevels)
+
+ggplot(pop3sumAll,aes(x=parent,y=p3,fill=f3z,color=f3sig)) + 
+         geom_tile() + 
+         scale_fill_gradient(low="red",high="white",na.value="grey") +
+         scale_color_manual(values=c("grey","black")) +
+         theme(axis.text.x=element_text(angle=45,hjust=1))
+```
+
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png)
