@@ -1,4 +1,5 @@
 pop1	pop2	pop3
+pop1	pop2	pop3
 Kedougou	NewOrleans	YAOMO
 Kedougou	NewOrleans	Virhembe
 Kedougou	NewOrleans	UrbanSulawesi
@@ -67,6 +68,7 @@ Kedougou	NewOrleans	Cali
 Kedougou	NewOrleans	Cairns
 Kedougou	NewOrleans	Bundibugyo
 Kedougou	NewOrleans	Boabeng
+Kedougou	NewOrleans	Bantata
 Kedougou	NewOrleans	Bangkok
 Kedougou	NewOrleans	Awka
 Kedougou	NewOrleans	Arabuko

@@ -1,7 +1,7 @@
 pop1	pop2	pop3
 Kedougou	NewOrleans	Bangkok
 Kedougou	NewOrleans	CebuCity
-Kedougou	NewOrleans	Clovis
+Kedougou	NewOrleans	Bantata
 Kedougou	NewOrleans	Jaffna
 Kedougou	NewOrleans	Pakistan
 Kedougou	NewOrleans	Pazar

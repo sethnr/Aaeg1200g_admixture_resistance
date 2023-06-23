@@ -25,7 +25,11 @@ library(ggmap)
 
 #pop3sum <- read.table("admix_tests/3pop_123_summaries_FCV_NO.txt",col.names=c("p3","p1","p2","chr","f3","f3sd","f3z","f3sig"))
 pop3sum <- read.table("admix_tests/3pop_123_summaries.txt",col.names=c("p3","p1","p2","chr","f3","f3sd","f3z","f3sig"))
-pop3sum <- subset(pop3sum,p1=="Franceville" & p2=="NewOrleans")
+
+parents <- c("Franceville","NewOrleans")
+#parents <- c("Bantata","HoChiMin")
+#parents <- c("Franceville","ElDorado")
+pop3sum <- subset(pop3sum,p1 %in% parents & p2 %in% parents)
 pop3sum$set <- paste(pop3sum$p3,pop3sum$p1,pop3sum$p2,sep="/")
 pop3sum$parent <- paste(pop3sum$p1,pop3sum$p2,sep="/")
 pop3sum$f3sig <- as.logical(pop3sum$f3sig)
@@ -42,7 +46,6 @@ meta <- read.table("aegy.wgs.pops.list_display.csv",sep=",",header=T,stringsAsFa
 
 poptotals <- merge(meta,pop3sum,by.x="pop",by.y="p3")
 
-parents <- c("NewOrleans","Franceville")
 sigpopsSFvxNO = pop3sum$p3[pop3sum$f3sig]
 sigpopsSFvxNO <- sigpopsSFvxNO[!sigpopsSFvxNO %in% parents]
 
@@ -58,7 +61,7 @@ ggplot() +
     geom_text_repel(data=poptotals,aes(x=long, y=lat, label=pop),
                     size=3,max.overlaps = NA  ) +
     coord_fixed(ylim=c(-48,48),xlim=c(-155,140))+
-    ggtitle(paste("3-pop results (FCV / NO)",sep="")) +
+    ggtitle(paste("3-pop results (",parents[1]," / ",parents[2],")",sep="")) +
     scale_fill_gradient(low="red",high="white",na.value="grey") +
     theme(axis.text=element_blank(),
           panel.border=element_rect(fill=NA, color="black"),
@@ -73,7 +76,7 @@ ggplot() +
 
 ```r
 poptotals$f3zdisp <- poptotals$f3z
-poptotals$f3zdisp[poptotals$f3z>=0] <- NA
+poptotals$f3zdisp[poptotals$f3z>=-0.3] <- NA
 
 
 ggplot() +
@@ -83,7 +86,7 @@ ggplot() +
     geom_point(data=subset(poptotals,!is.na(latdisp)), aes(x=longdisp, y=latdisp, fill=f3zdisp,size=num_bams), shape=21,inherit.aes=F) +
     #geom_text_repel(data=subset(poptotals,!is.na(latdisp)), aes(x=longdisp, y=latdisp, label=pop), shape=21,inherit.aes=F) +
     coord_fixed(ylim=c(-48,48),xlim=c(-155,140))+
-    ggtitle(paste("3-pop results (FCV / NO)",sep="")) +
+    ggtitle(paste("3-pop results (",parents[1]," / ",parents[2],")",sep="")) +
     scale_fill_gradient(low="red",high="white",na.value="grey") +
     theme(axis.text=element_blank(),
           panel.border=element_rect(fill=NA, color="black"),
@@ -113,14 +116,14 @@ pop3sumAll$f3z[pop3sumAll$p3==pop3sumAll$p2 | pop3sumAll$p3==pop3sumAll$p1] <- N
 
 pop3sumAll <- merge(pop3sumAll,meta,by.y="pop",by.x="p3")
 
-parentlevels <- c("Franceville/NewOrleans","Bantata/HoChiMin","Kedougou/Clovis",
-                  "Franceville/ElDorado","Kedougou/ElDorado",
-                  "ElDorado/NewOrleans" )
+parentlevels <- c("Franceville/NewOrleans","Franceville/HoChiMin",
+                  "Bantata/HoChiMin","Kedougou/NewOrleans","Kedougou/Clovis",
+                  "Franceville/ElDorado","Kedougou/ElDorado","ElDorado/NewOrleans" )
 pop3sumAll$parent <- factor(pop3sumAll$parent,levels=parentlevels)
 
 ggplot(pop3sumAll,aes(x=parent,y=p3,fill=f3z,color=f3sig)) + 
          geom_tile() + 
-         scale_fill_gradient(low="red",high="white",na.value="grey") +
+         scale_fill_gradient2(low="red",mid="white",high="white",midpoint = 0,na.value="grey") +
          scale_color_manual(values=c("grey","black")) +
          theme(axis.text.x=element_text(angle=45,hjust=1))
 ```
