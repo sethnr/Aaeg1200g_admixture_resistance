@@ -345,6 +345,7 @@ ElDorado	NewOrleans	Jaffna
 ElDorado	NewOrleans	Jacobina
 ElDorado	NewOrleans	HoChiMin
 ElDorado	NewOrleans	Ganda
+ElDorado	NewOrleans	Franceville
 ElDorado	NewOrleans	Entebbe
 ElDorado	NewOrleans	ElDorado
 ElDorado	NewOrleans	Cuiaba

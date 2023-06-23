@@ -50,7 +50,7 @@ ElDorado	NewOrleans	PK10
 ElDorado	NewOrleans	Kintampo
 ElDorado	NewOrleans	Kumasi
 ElDorado	NewOrleans	Boabeng
-ElDorado	NewOrleans	ElDorado
+ElDorado	NewOrleans	Franceville
 ElDorado	NewOrleans	Awka
 ElDorado	NewOrleans	Ouaga
 ElDorado	NewOrleans	Ouahigouya
