@@ -200,7 +200,7 @@ rule cat_3pop:
         sums="results/admix_tests/3pop_{chrom}_summaries.txt",
         blocks="results/admix_tests/3pop_{chrom}_blocks.txt"
     resources:
-        mem_mb=8000,
+        mem_mb=16000,
         disk_mb=20000,
         h_rt='1:00:00',
     log:
