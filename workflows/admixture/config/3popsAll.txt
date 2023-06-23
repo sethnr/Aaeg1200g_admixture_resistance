@@ -125,6 +125,7 @@ Kedougou	Clovis	Kakamega
 Kedougou	Clovis	Jeddah
 Kedougou	Clovis	Jaffna
 Kedougou	Clovis	Jacobina
+Kedougou	Clovis	HoChiMin
 Kedougou	Clovis	Ganda
 Kedougou	Clovis	Franceville
 Kedougou	Clovis	Entebbe
@@ -223,7 +224,7 @@ Franceville	ElDorado	Trinidad
 Franceville	ElDorado	Thies
 Franceville	ElDorado	Taiwan
 Franceville	ElDorado	Tahiti
-Franceville	ElDorado	Skukusa
+Franceville	ElDorado	Skukusapop1	pop2	pop3
 Franceville	ElDorado	ShimbaHills
 Franceville	ElDorado	SaoLuiz
 Franceville	ElDorado	Santarem

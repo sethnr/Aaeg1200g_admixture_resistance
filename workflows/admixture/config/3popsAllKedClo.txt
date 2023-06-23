@@ -43,7 +43,7 @@ Kedougou	Clovis	Santarem
 Kedougou	Clovis	SaoLuiz
 Kedougou	Clovis	Thies
 Kedougou	Clovis	Kedougou
-Kedougou	Clovis	Kedougou
+Kedougou	Clovis	HoChiMin
 Kedougou	Clovis	Mindin
 Kedougou	Clovis	Ngoye
 Kedougou	Clovis	PK10
