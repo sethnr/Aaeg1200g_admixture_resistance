@@ -79,7 +79,8 @@ poswins = np.vstack((
             f3wins)).transpose()
 
 sumfile=open(out+"_summary.txt",'w')
-print("\t".join(map(str,[pop3,pop1,pop2,chrom,f3,f3sd,f3z,f3<(-2*f3z)])), file=sumfile)
+zlim=-0.258
+print("\t".join(map(str,[pop3,pop1,pop2,chrom,f3,f3sd,f3z,f3z<zlim])), file=sumfile)
 sumfile.close()
 
 np.savetxt(out+"_blocks.txt", poswins, fmt='%s', delimiter='\t')
