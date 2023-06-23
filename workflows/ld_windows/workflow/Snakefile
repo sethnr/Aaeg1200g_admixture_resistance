@@ -6,7 +6,13 @@ configfile: "config/config.yaml"
 include: "rules/common.smk"
 
 CHROMS=[1,2,3]
-COUNTRIES=pd.read_table(config['spptable'],dtype=str,header=0)['country'].unique()
+#COUNTRIES=pd.read_table(config['spptable'],dtype=str,header=0)['country'].unique()
+
+COUNTRIES=["Brazil","USA","Kenya","Senegal","Gabon","Philippines","Ghana","BurkinaFaso",
+            "SaudiArabia","PuertoRico","Uganda","Trinidad","Vietnam","Nigeria","Thailand",
+            "USVirginIslands","Mexico","Dominica","Pakistan","Taiwan","Angola","Cameroon",
+            "Argentina","SriLanka","Turkey","Australia","SouthAfrica"]
+
 
 rule all:
     input:

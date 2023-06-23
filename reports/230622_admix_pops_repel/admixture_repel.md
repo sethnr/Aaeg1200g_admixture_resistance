@@ -106,6 +106,7 @@ pop3sumAll <- read.table("admix_tests/3pop_123_summaries.txt",col.names=c("p3","
 pop3sumAll$set <- paste(pop3sumAll$p3,pop3sumAll$p1,pop3sumAll$p2,sep="/")
 pop3sumAll$parent <- paste(pop3sumAll$p1,pop3sumAll$p2,sep="/")
 f3lim=-0.258
+f3lim=-0.3
 pop3sumAll$f3sig <- pop3sumAll$f3z < f3lim
 
 pop3sumAll$f3sig[pop3sumAll$p3==pop3sumAll$p2 | pop3sumAll$p3==pop3sumAll$p1] <- F
@@ -121,10 +122,18 @@ parentlevels <- c("Franceville/NewOrleans","Franceville/HoChiMin",
                   "Franceville/ElDorado","Kedougou/ElDorado","ElDorado/NewOrleans" )
 pop3sumAll$parent <- factor(pop3sumAll$parent,levels=parentlevels)
 
-ggplot(pop3sumAll,aes(x=parent,y=p3,fill=f3z,color=f3sig)) + 
+regionorder <- rev(c("East Africa","West Africa",
+                 "Caribbean","South America","North America",
+                 "Middle East","Asia","Pacific"))
+pop3sumAll$region <- factor(pop3sumAll$region,levels=regionorder)
+
+ggplot(pop3sumAll,aes(x=parent,y=p3,fill=f3z)) + 
          geom_tile() + 
+         geom_point(data=subset(pop3sumAll,f3sig),shape=4)+
          scale_fill_gradient2(low="red",mid="white",high="white",midpoint = 0,na.value="grey") +
-         scale_color_manual(values=c("grey","black")) +
+         #scale_color_manual(values=c("grey","black")) +
+         scale_x_discrete(expand = c(0, 0)) +
+         facet_grid("region ~ .",scales="free",space="free") +
          theme(axis.text.x=element_text(angle=45,hjust=1))
 ```
 
