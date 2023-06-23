@@ -31,7 +31,7 @@ rule getLDwindows:
     threads: 1,
     params:
         blocksize=500000,
-        stepsize =250000,
+        stepsize =500000,
     log:
         "logs/ld/{country}_{chrom}_ldwins.log",
     shell:
