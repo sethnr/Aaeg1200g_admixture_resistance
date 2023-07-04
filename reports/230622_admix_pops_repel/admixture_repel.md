@@ -24,11 +24,13 @@ library(raster)
 library(ggmap)
 
 #pop3sum <- read.table("admix_tests/3pop_123_summaries_FCV_NO.txt",col.names=c("p3","p1","p2","chr","f3","f3sd","f3z","f3sig"))
-pop3sum <- read.table("admix_tests/3pop_123_summaries.txt",col.names=c("p3","p1","p2","chr","f3","f3sd","f3z","f3sig"))
+pop3sum <- read.table("admix_tests/3pop_123_summaries.txt",
+                      col.names=c("p3","p1","p2","chr","f3","f3sd","f3z","f3sig")) %>%
+                    mutate(p3=gsub("Cuanda","Luanda",p3))
 
 parents <- c("Franceville","NewOrleans")
 #parents <- c("Bantata","HoChiMin")
-#parents <- c("Franceville","ElDorado")
+#parents <- c("Kedougou","ElDorado")
 pop3sum <- subset(pop3sum,p1 %in% parents & p2 %in% parents)
 pop3sum$set <- paste(pop3sum$p3,pop3sum$p1,pop3sum$p2,sep="/")
 pop3sum$parent <- paste(pop3sum$p1,pop3sum$p2,sep="/")
@@ -41,8 +43,13 @@ write(paste("found",nrow(pop3sum),"summary lines from",1,"files"),stderr())
 world <- map_data("world")
 meta <- read.table("aegy.wgs.pops.list_display.csv",sep=",",header=T,stringsAsFactors = F) %>% 
                 rename_with(tolower) %>% 
-                mutate("pop" = gsub("_","",pop))
+                mutate("pop" = gsub("_","",pop)) %>%
+                    mutate(pop=gsub("Cuanda","Luanda",pop))
 
+meta$displaced = !is.na(meta$latdisp)
+
+meta$latdisp[is.na(meta$latdisp)] <- meta$lat[is.na(meta$latdisp)]
+meta$longdisp[is.na(meta$longdisp)] <- meta$long[is.na(meta$longdisp)]
 
 poptotals <- merge(meta,pop3sum,by.x="pop",by.y="p3")
 
@@ -78,13 +85,16 @@ ggplot() +
 poptotals$f3zdisp <- poptotals$f3z
 poptotals$f3zdisp[poptotals$f3z>=-0.3] <- NA
 
+llab = c("Thies", "Ngoye", "ElDorado", "Luanda")
+rlab = c("Rabai2017","Rabai2009","KayaBomu")
 
-ggplot() +
-    geom_polygon(data = world, aes(x=long, y=lat, group=group), fill='#C7ECD3',color="black",size=0.2) +
-    geom_point(data=subset(poptotals,is.na(latdisp)), aes(x=long, y=lat, fill=f3zdisp,size=num_bams), shape=21,inherit.aes=F) +
-    geom_segment(data=subset(poptotals,!is.na(latdisp)), aes(x=longdisp, y=latdisp,xend=long, yend=lat),inherit.aes=F) +
-    geom_point(data=subset(poptotals,!is.na(latdisp)), aes(x=longdisp, y=latdisp, fill=f3zdisp,size=num_bams), shape=21,inherit.aes=F) +
-    #geom_text_repel(data=subset(poptotals,!is.na(latdisp)), aes(x=longdisp, y=latdisp, label=pop), shape=21,inherit.aes=F) +
+ggplot(poptotals,aes(x=longdisp, y=latdisp, label=pop,xend=long, yend=lat)) +
+    geom_polygon(data = world, aes(x=long, y=lat, group=group), fill='#C7ECD3',color="black",size=0.2,inherit.aes=F) +
+    #geom_point(data=subset(poptotals,is.na(latdisp)), aes(x=long, y=lat, fill=f3zdisp,size=num_bams), shape=21,inherit.aes=F) +
+    geom_segment(data=subset(poptotals,displaced)) +
+    geom_point(data=poptotals, aes(fill=f3zdisp,size=num_bams), shape=21) +
+    geom_text(data=subset(poptotals,pop %in% llab), hjust=1.3) +
+    geom_text(data=subset(poptotals,pop %in% rlab), hjust=-0.3) +
     coord_fixed(ylim=c(-48,48),xlim=c(-155,140))+
     ggtitle(paste("3-pop results (",parents[1]," / ",parents[2],")",sep="")) +
     scale_fill_gradient(low="red",high="white",na.value="grey") +
@@ -102,7 +112,9 @@ ggplot() +
 
 
 ```r
-pop3sumAll <- read.table("admix_tests/3pop_123_summaries.txt",col.names=c("p3","p1","p2","chr","f3","f3sd","f3z","f3sig"))
+pop3sumAll <- read.table("admix_tests/3pop_123_summaries.txt",
+                         col.names=c("p3","p1","p2","chr","f3","f3sd","f3z","f3sig")) %>%
+                    mutate(p3=gsub("Cuanda","Luanda",p3))
 pop3sumAll$set <- paste(pop3sumAll$p3,pop3sumAll$p1,pop3sumAll$p2,sep="/")
 pop3sumAll$parent <- paste(pop3sumAll$p1,pop3sumAll$p2,sep="/")
 f3lim=-0.258
@@ -126,6 +138,9 @@ regionorder <- rev(c("East Africa","West Africa",
                  "Caribbean","South America","North America",
                  "Middle East","Asia","Pacific"))
 pop3sumAll$region <- factor(pop3sumAll$region,levels=regionorder)
+
+poporder <- meta %>% arrange(region,country,pop) %>% pull(pop)
+pop3sumAll$p3 <- factor(pop3sumAll$p3,levels=poporder)
 
 ggplot(pop3sumAll,aes(x=parent,y=p3,fill=f3z)) + 
          geom_tile() + 
