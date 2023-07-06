@@ -1,0 +1,1 @@
+../230517_soft_sweep_scans/AaegL5_hap_contigs_align_asm10_p95_KDR.txt

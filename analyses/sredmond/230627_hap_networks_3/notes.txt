@@ -1,0 +1,32 @@
+grep -e NW_018735214 -e NW_018736300 AaegL5_hap_contigs_align_asm10_p95_KDR.txt | perl -lane 'print(join("\t",@F[5,6,7],$F[4],$F[0]))'  > hap_aligns.bed
+
+bedtools merge -i hap_aligns.bed -d 10000 > hap_aligns_merge.bed
+
+bedtools subtract -a kdr_limits.bed -b hap_aligns_merge.bed > kdr_limits_minus_haps.bed
+bcftools view -o locus.kdr3_nohap2.bcf -O b locus.kdr3.vcf.gz -r NC_035109.1:315965395-316399328
+bcftools view -o locus.kdr3_nohap1.bcf -O b locus.kdr3.vcf.gz -r NC_035109.1:315926360-315932230
+
+
+#samples not same across both files
+ bcftools query -l locus.kdr3_nohap1.bcf | sort > samples_rawvcf.txt
+ bcftools query -l aegy.wgs.aaa.aaf.NW_018735214.noMapQfilt.bcf | sort > samples_recallvcf.txt
+ comm -12 samples_rawvcf.txt samples_recallvcf.txt > samples_both.txt
+
+#bcf files actually vcf files
+ for B in aegy.wgs.*bcf; do echo $B; mv $B ${B/.bcf/vcf}; bcftools view -o $B -O b ${B/.bcf/vcf}; done
+
+for B in *bcf; do
+  bcftools view -s samples_both.txt -O b -o ${B/.bcf/_S.bcf} $B; 
+  bcftools index ${B/.bcf/_S.bcf};
+done 
+
+
+bcftools concat -Oz -olocus.kdr3recall.vcf.gz  \
+    aegy.wgs.aaa.aaf.NW_018735214.noMapQfilt_S.bcf \
+    locus.kdr3_nohap1_S.bcf \
+    aegy.wgs.aaa.aaf.NW_018736300.noMapQfilt_S.bcf \
+    locus.kdr3_nohap2_S.bcf
+
+
+
+gzip -dc locus.kdr3recall.vcf.gz| cut -f 1-10 | grep -e p.Phe1534Cys -e p.Cys1534Phe -e 315999297 -e 316014588 -e 316080722 -e 315939224
