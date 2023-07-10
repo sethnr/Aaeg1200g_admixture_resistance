@@ -10,7 +10,7 @@ AAF_SAMPLES=pd.read_table("config/AAF_samples.txt",dtype=str,header=0)['sample']
 AAA_SAMPLES=pd.read_table("config/AAA_samples.txt",dtype=str,header=0)['sample']
 
 #LOCI=pd.read_table("config/aaeg_hap_loci.txt",dtype=str,header=0)['locusname']
-LOCI=['kdr3recall','kdr']
+LOCI=['kdr3recall','kdr3']
 
 wildcard_constraints:
     sample="[^\.]+",
