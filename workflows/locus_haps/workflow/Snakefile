@@ -310,10 +310,10 @@ rule snpeff:
 
 rule maffilter:
     input:
-        vcf=protected("results/locushap_shapeit/snpeff.{locusname}.vcf.gz"),
+        vcf="results/locushap_shapeit/snpeff.{locusname}.vcf.gz",
         tbi="results/locushap_shapeit/snpeff.{locusname}.vcf.gz.tbi",
     output:
-        vcf="results/locushap_shapeit/maf.{locusname}.vcf.gz",
+        vcf=protected("results/locushap_shapeit/maf.{locusname}.vcf.gz"),
         tbi="results/locushap_shapeit/maf.{locusname}.vcf.gz.tbi",
     log:
         "logs/locushap_shapeit/maf.{locusname}.log",
