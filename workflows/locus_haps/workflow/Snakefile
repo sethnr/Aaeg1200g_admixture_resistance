@@ -24,7 +24,7 @@ rule all:
         #expand("results/locushap_vcf/locus.{locusname}.vcf.gz",
         #    locusname=LOCI)
         expand("results/locushap_shapeit/snpeff.{locusname}.vcf.gz",
-            locusname=LOCI)
+            locusname=LOCI),
         expand("results/locushap_haps/{locusname}_hapnet.png",
             locusname=LOCI)
         
