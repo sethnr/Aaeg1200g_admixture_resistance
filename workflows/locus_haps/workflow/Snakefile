@@ -10,7 +10,7 @@ AAF_SAMPLES=pd.read_table("config/AAF_samples.txt",dtype=str,header=0)['sample']
 AAA_SAMPLES=pd.read_table("config/AAA_samples.txt",dtype=str,header=0)['sample']
 
 #LOCI=pd.read_table("config/aaeg_hap_loci.txt",dtype=str,header=0)['locusname']
-LOCI=['kdr3']
+LOCI=['kdr3recall']
 
 wildcard_constraints:
     sample="[^\.]+",
@@ -233,8 +233,8 @@ rule merge_whatshap:
     resources:
         bamspace=0,
         h_rt='6:00:00',
-        mem_mb=16000,
-        disk_mb=100000,
+        mem_mb=4000,
+        disk_mb=50000,
         cpus=4,
         qsub_args='-l highmem '
     threads:4
@@ -256,7 +256,7 @@ rule shapeit:
     output:
         vcf=protected("results/locushap_shapeit/shapeit.{locusname}.vcf.gz"),
     resources:
-        mem_mb=16000,
+        mem_mb=4000,
         disk_mb=10000,
         h_rt='96:00:00',
         bamspace=0,
