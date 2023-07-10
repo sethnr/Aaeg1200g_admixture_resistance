@@ -10,7 +10,7 @@ AAF_SAMPLES=pd.read_table("config/AAF_samples.txt",dtype=str,header=0)['sample']
 AAA_SAMPLES=pd.read_table("config/AAA_samples.txt",dtype=str,header=0)['sample']
 
 #LOCI=pd.read_table("config/aaeg_hap_loci.txt",dtype=str,header=0)['locusname']
-LOCI=['kdr3recall']
+LOCI=['kdr3recall','kdr']
 
 wildcard_constraints:
     sample="[^\.]+",
@@ -25,7 +25,7 @@ rule all:
         #    locusname=LOCI)
         expand("results/locushap_shapeit/snpeff.{locusname}.vcf.gz",
             locusname=LOCI),
-        expand("results/locushap_haps/{locusname}_hapnet.png",
+        expand("results/locushap_plots/{locusname}_hapnet.png",
             locusname=LOCI)
         
 
