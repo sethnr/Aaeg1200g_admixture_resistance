@@ -307,31 +307,47 @@ rule snpeff:
         tabix -p vcf {output.vcf}
         """
 
+
+rule maffilter:
+    input:
+        vcf=protected("results/locushap_shapeit/snpeff.{locusname}.vcf.gz"),
+        tbi="results/locushap_shapeit/snpeff.{locusname}.vcf.gz.tbi",
+    output:
+        vcf="results/locushap_shapeit/maf.{locusname}.vcf.gz",
+        tbi="results/locushap_shapeit/maf.{locusname}.vcf.gz.tbi",
+    log:
+        "logs/locushap_shapeit/maf.{locusname}.log",
+    container:
+        "docker://sethnr/aaeg1000g_hapnets:0.01"
+    params:
+        minmaf=0.01,
+        maxmaf=0.99,
+    shell:
+        """
+        bcftools view -q {params.minmaf} -Q {params.maxmaf} -o {output.vcf} -Oz {input.vcf}
+
+        tabix -p vcf {output.vcf}
+        """
+
 rule happlots:
     input:
-        vcf="results/locushap_shapeit/snpeff.{locusname}.vcf.gz",
-        tbi="results/locushap_shapeit/snpeff.{locusname}.vcf.gz.tbi",
+        vcf="results/locushap_shapeit/maf.{locusname}.vcf.gz",
+        tbi="results/locushap_shapeit/maf.{locusname}.vcf.gz.tbi",
         meta=config["spptable"],
     output:
-        vcf5="results/locushap_shapeit/snpeff.{locusname}.m5.vcf.gz",
-        haps0="results/locushap_plots/{locusname}.m0.haps.png",
-        haps5="results/locushap_plots/{locusname}.m5.haps.png",
+        haptable="results/locushap_plots/{locusname}_haptable.png",
+        hapnet="results/locushap_plots/{locusname}_hapnet.png",
+        hapmappop="results/locushap_plots/{locusname}_geodist_pop.png",
+        hapmapcnt="results/locushap_plots/{locusname}_geodist_cnt.png",
     log:
         "logs/locushap_shapeit/haps.{locusname}.log",
     container:
         "docker://sethnr/aaeg1000g_hapnets:0.01"
     params:
-        haps0="results/locushap_shapeit/{locusname}.m0.haps.png",
-        haps5="results/locushap_shapeit/{locusname}.m5.haps.png",
+        prefix="results/locushap_shapeit/{locusname}",
     shell:
         """
-            Rscript scripts/plot_hap_network.R \
-        	-i {input.vcf} -o {params.haps0} -m {input.meta} 2>> {log}
-
-            bcftools view -O z -o {output.vcf5} {input.vcf}
-            tabix -pvcf {output.vcf5}
-
-            Rscript scripts/plot_hap_network.R \
-        	-i {output.vcf5} -o {params.haps5} -m {input.meta} 2>> {log}
+            Rscript scripts/plot_hap_network_geneHapR.R \
+        	-i {input.vcf} -o {params.prefix} -m {input.meta} 2>> {log}
 
         """
