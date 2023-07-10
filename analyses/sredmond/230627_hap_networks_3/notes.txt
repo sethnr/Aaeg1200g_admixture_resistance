@@ -1,16 +1,21 @@
 grep -e NW_018735214 -e NW_018736300 AaegL5_hap_contigs_align_asm10_p95_KDR.txt | perl -lane 'print(join("\t",@F[5,6,7],$F[4],$F[0]))'  > hap_aligns.bed
 
-bedtools merge -i hap_aligns.bed -d 10000 > hap_aligns_merge.bed
+#get limits of alt haps
+  bedtools merge -i hap_aligns.bed -d 10000 > hap_aligns_merge.bed
+  bedtools subtract -a kdr_limits.bed -b hap_aligns_merge.bed > kdr_limits_minus_haps.bed
 
-bedtools subtract -a kdr_limits.bed -b hap_aligns_merge.bed > kdr_limits_minus_haps.bed
-bcftools view -o locus.kdr3_nohap2.bcf -O b locus.kdr3.vcf.gz -r NC_035109.1:315965395-316399328
-bcftools view -o locus.kdr3_nohap1.bcf -O b locus.kdr3.vcf.gz -r NC_035109.1:315926360-315932230
 
+#get non-hap background vcfs 
+  bcftools view -o locus.kdr3_nohap2.bcf -O b locus.kdr3.vcf.gz -r NC_035109.1:315965395-316399328
+  bcftools view -o locus.kdr3_nohap1.bcf -O b locus.kdr3.vcf.gz -r NC_035109.1:315926360-315932230
+
+
+315939224
 
 #samples not same across both files
- bcftools query -l locus.kdr3_nohap1.bcf | sort > samples_rawvcf.txt
- bcftools query -l aegy.wgs.aaa.aaf.NW_018735214.noMapQfilt.bcf | sort > samples_recallvcf.txt
- comm -12 samples_rawvcf.txt samples_recallvcf.txt > samples_both.txt
+  bcftools query -l locus.kdr3_nohap1.bcf | sort > samples_rawvcf.txt
+  bcftools query -l aegy.wgs.aaa.aaf.NW_018735214.noMapQfilt.bcf | sort > samples_recallvcf.txt
+  comm -12 samples_rawvcf.txt samples_recallvcf.txt > samples_both.txt
 
 #bcf files actually vcf files
  for B in aegy.wgs.*bcf; do echo $B; mv $B ${B/.bcf/vcf}; bcftools view -o $B -O b ${B/.bcf/vcf}; done
@@ -21,8 +26,16 @@ for B in *bcf; do
 done 
 
 
+bcftools view -o aegy.NW_018735214.a.bcf -O b -r NC_035109.1:315932230-315939223 aegy.wgs.aaa.aaf.NW_018735214.noMapQfilt_S.bcf
+bcftools view -o aegy.NW_018735214.b.bcf -O b -r NC_035109.1:315939225-315965395 aegy.wgs.aaa.aaf.NW_018735214.noMapQfilt_S.bcf
+
+bcftools view -o aegy.NW_018735214.224.bcf -O b -S samples_both.txt aegy.wgs.aaa.aaf.NW_018735214.224.noMapQfilt.FLIP.vcf
+
+
 bcftools concat -Oz -olocus.kdr3recall.vcf.gz  \
-    aegy.wgs.aaa.aaf.NW_018735214.noMapQfilt_S.bcf \
+    aegy.NW_018735214.a.bcf \
+    aegy.NW_018735214.224.bcf \
+    aegy.NW_018735214.b.bcf \
     locus.kdr3_nohap1_S.bcf \
     aegy.wgs.aaa.aaf.NW_018736300.noMapQfilt_S.bcf \
     locus.kdr3_nohap2_S.bcf
