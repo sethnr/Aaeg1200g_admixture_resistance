@@ -68,22 +68,31 @@ acpop4 = gtpop4.count_alleles()
 print("testing if {} is admixed from {} and {} with outgroup {}".format(pop3,pop2,pop3,pop1),file=sys.stderr)
 
 f4, f4se, f4z, f4blk, f4jack = allel.average_patterson_d(acpop1, acpop2, acpop3, acpop4, block)
-f4wins = allel.moving_patterson_f4(acpop1, acpop2, acpop3, acpop4, block, step=step, normed=True)
+#f4wins = allel.moving_patterson_f4(acpop1, acpop2, acpop3, acpop4, block, step=step, normed=True)
 
 
-poswins = np.vstack((
-            [pop3] * len(f4wins),
-            [pop1] * len(f4wins),
-            [pop2] * len(f4wins),
-            [chrom] * len(f4wins),
-            allel.moving_statistic(callset1['variants/POS'], min, block, step=step),
-            allel.moving_statistic(callset1['variants/POS'], np.average, block, step=step),
-            allel.moving_statistic(callset1['variants/POS'], max, block, step=step),
-            f3wins)).transpose()
+# poswins = np.vstack((
+#             [pop3] * len(f4wins),
+#             [pop1] * len(f4wins),
+#             [pop2] * len(f4wins),
+#             [chrom] * len(f4wins),
+#             allel.moving_statistic(callset1['variants/POS'], min, block, step=step),
+#             allel.moving_statistic(callset1['variants/POS'], np.average, block, step=step),
+#             allel.moving_statistic(callset1['variants/POS'], max, block, step=step),
+#             f3wins)).transpose()
 
 sumfile=open(out+"_summary.txt",'w')
 zlim=-0.258
-print("\t".join(map(str,[pop1,pop2,pop3,pop4,chrom,f4,f4sd,f4z,f4z<zlim])), file=sumfile)
+
+result = ""
+signif=False
+if(f4z>zlim):
+    result = "{}->{}".format(pop4,pop3)
+    signif=True
+elif(f4z<(zlim*-1)):
+    result = "{}->{}".format(pop2,pop3)
+    signif=True
+print("\t".join(map(str,[pop1,pop2,pop3,pop4,chrom,f4,f4sd,f4z,signif])), file=sumfile)
 sumfile.close()
 
-np.savetxt(out+"_blocks.txt", poswins, fmt='%s', delimiter='\t')
+#np.savetxt(out+"_blocks.txt", poswins, fmt='%s', delimiter='\t')
