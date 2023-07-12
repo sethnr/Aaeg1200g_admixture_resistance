@@ -55,7 +55,7 @@ rule make_biallelic:
 
 rule make_eigenfiles:
     input:
-        vcf="results/admix_bivcf/phased_bi_{chrom}.vcf.gz",
+        vcf=ancient("results/admix_bivcf/phased_bi_{chrom}.vcf.gz"),
         tbi="results/admix_bivcf/phased_bi_{chrom}.vcf.gz.tbi",
         chrom_ids=config["chrommap"],
         meta=config["spptable"]
@@ -161,7 +161,7 @@ rule cat_alder:
 
 rule admix_3pop:
     input:
-        vcf="results/admix_bivcf/phased_bi_{chrom}.vcf.gz",
+        vcf=ancient("results/admix_bivcf/phased_bi_{chrom}.vcf.gz"),
         tbi="results/admix_bivcf/phased_bi_{chrom}.vcf.gz.tbi",
         chrom_ids=config["chrommap"],
         meta=config["spptable"]
@@ -220,7 +220,7 @@ rule cat_3pop:
 
 rule cf3pop_dxy:
     input:
-        vcf="results/admix_bivcf/phased_bi_{chrom}.vcf.gz",
+        vcf=ancient("results/admix_bivcf/phased_bi_{chrom}.vcf.gz"),
         tbi="results/admix_bivcf/phased_bi_{chrom}.vcf.gz.tbi",
         chrom_ids=config["chrommap"],
         meta=config["spptable"]
@@ -266,7 +266,7 @@ rule cf3pop_cat:
 
 rule admix_4pop:
     input:
-        vcf="results/admix_bivcf/phased_bi_{chrom}.vcf.gz",
+        vcf=ancient("results/admix_bivcf/phased_bi_{chrom}.vcf.gz"),
         tbi="results/admix_bivcf/phased_bi_{chrom}.vcf.gz.tbi",
         chrom_ids=config["chrommap"],
         meta=config["spptable"]
