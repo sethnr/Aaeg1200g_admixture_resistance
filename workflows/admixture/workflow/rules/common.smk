@@ -34,7 +34,7 @@ def get_all_admix_3_strings(bigpops):
     popstrings = ["{}_{}_{}".format(a,b,c) for a,b,c in popcombs]
     return popstrings
 
-def get_all_admix_sets_file(popfile):
+def get_all_admix3_sets_file(popfile):
     pops = pd.read_table(popfile,header=0,dtype = str)
     popcombs = zip( pops["pop1"].tolist(),
                     pops["pop2"].tolist(),
@@ -42,6 +42,14 @@ def get_all_admix_sets_file(popfile):
     popstrings = ["{}_{}_{}".format(a,b,c) for a,b,c in popcombs]
     return popstrings
 
+def get_all_admix4_sets_file(popfile):
+    pops = pd.read_table(popfile,header=0,dtype = str)
+    popcombs = zip( pops["pop1"].tolist(),
+                    pops["pop2"].tolist(),
+                    pops["pop3"].tolist(),
+                    pops["pop4"].tolist())
+    popstrings = ["{}_{}_{}_{}".format(a,b,c,d) for a,b,c,d in popcombs]
+    return popstrings
 
 
 ##### Helper functions #####

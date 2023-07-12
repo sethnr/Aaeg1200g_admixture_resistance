@@ -193,9 +193,9 @@ rule cat_3pop:
         # blocks=expand("results/admix_tests/3pop_{{chrom}}_{popstring}_blocks.txt",
         #             popstring=get_all_admix_3_strings(BIGPOPS))
         sums=expand("results/admix_tests/3pop_{{chrom}}_{popstring}_summary.txt",
-                    popstring=get_all_admix_sets_file(config["3pops"])),
+                    popstring=get_all_admix3_sets_file(config["3pops"])),
         blocks=expand("results/admix_tests/3pop_{{chrom}}_{popstring}_blocks.txt",
-                    popstring=get_all_admix_sets_file(config["3pops"]))
+                    popstring=get_all_admix3_sets_file(config["3pops"]))
     output:
         sums="results/admix_tests/3pop_{chrom}_summaries.txt",
         blocks="results/admix_tests/3pop_{chrom}_blocks.txt"
@@ -247,7 +247,7 @@ rule cf3pop_dxy:
 rule cf3pop_cat:
     input:
         dxy=expand("results/admix_tests/3pop_{{chrom}}_{popstring}_dxy.txt",
-                    popstring=get_all_admix_sets_file(config["3pops"]))
+                    popstring=get_all_admix3_sets_file(config["3pops"]))
     output:
         dxy="results/admix_tests/3pop_{chrom}_dxy.txt"
     log:
@@ -256,3 +256,59 @@ rule cf3pop_cat:
         """
         cat {input.dxy} > {output.dxy}
         """
+
+
+#####
+# 4-POP ADMIXTURE ANALYSIS
+#####
+
+rule admix_3pop:
+    input:
+        vcf="results/admix_bivcf/phased_bi_{chrom}.vcf.gz",
+        tbi="results/admix_bivcf/phased_bi_{chrom}.vcf.gz.tbi",
+        chrom_ids=config["chrommap"],
+        meta=config["spptable"]
+    output:
+        blk=temporary("results/admix_tests/4pop_{chrom}_{pop1}_{pop2}_{pop3}_{pop4}_blocks.txt"),
+        sum=temporary("results/admix_tests/4pop_{chrom}_{pop1}_{pop2}_{pop3}_{pop4}_summary.txt")
+    resources:
+        mem_mb=8000,
+        disk_mb=20000,
+        h_rt='1:00:00',
+    params:
+        prefix="results/admix_tests/4pop_{chrom}_{pop1}_{pop2}_{pop3}_{pop4}"
+    log:
+        "logs/admix_tests/4pop_{chrom}_{pop1}_{pop2}_{pop3}_{pop4}.log"
+    container: "docker://sethnr/aaeg1000g_analysis:0.02"
+    shell:
+        """
+	    python scripts/run_4pop_tests.py \
+            -p1 {wildcards.pop1} -p2 {wildcards.pop2} -p3 {wildcards.pop3}  -p4 {wildcards.pop4} \
+            -m {input.meta} -M 'pop' \
+            -b 20000 -s 10000 \
+            -c {wildcards.chrom} -v {input.vcf} \
+            -o {params.prefix}
+        """
+
+
+rule cat_4pop:
+    input:
+        sums=expand("results/admix_tests/4pop_{{chrom}}_{popstring}_summary.txt",
+                    popstring=get_all_admix4_sets_file(config["4pops"])),
+        blocks=expand("results/admix_tests/4pop_{{chrom}}_{popstring}_blocks.txt",
+                    popstring=get_all_admix4_sets_file(config["4pops"]))
+    output:
+        sums="results/admix_tests/4pop_{chrom}_summaries.txt",
+        blocks="results/admix_tests/4pop_{chrom}_blocks.txt"
+    resources:
+        mem_mb=32000,
+        disk_mb=20000,
+        h_rt='1:00:00',
+    log:
+        "logs/admix_tests/4pop_{chrom}.log"
+    shell:
+        """
+        cat {input.sums} > {output.sums}
+        cat {input.blocks} > {output.blocks}
+        """
+
