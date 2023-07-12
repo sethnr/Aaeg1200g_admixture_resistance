@@ -26,7 +26,7 @@ rule all:
 #            chrom=CHROMS),
 
 ###rule orders ###
-ruleorder: make_biallelic > tabix_vcf
+ruleorder: tabix_vcf > make_biallelic
 #ruleorder: admix_alder_chr > admix_alder
 
 ##### run admix tests on 4 pops #####
