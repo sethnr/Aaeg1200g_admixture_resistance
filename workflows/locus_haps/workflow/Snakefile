@@ -297,7 +297,6 @@ rule snpeff:
         gunzip -dc {input.vcf} >  results/locushap_shapeit/shapeit.{wildcards.locusname}.vcf
 
         snpEff eff  -no-downstream -no-upstream -no-intergenic -no-intron -no-utr \
-	       	        -canon \
                     -c {params.snpeffdir}/snpEff.config \
 		    -nodownload \
 		    AaegL5 \
