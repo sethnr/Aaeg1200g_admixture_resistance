@@ -43,3 +43,20 @@ bcftools concat -Oz -olocus.kdr3recall.vcf.gz  \
 
 
 gzip -dc locus.kdr3recall.vcf.gz| cut -f 1-10 | grep -e p.Phe1534Cys -e p.Cys1534Phe -e 315999297 -e 316014588 -e 316080722 -e 315939224
+
+
+#run on cluster, get 0.01MAF files
+#manually run hap nets
+
+Rscript scripts/plot_hap_network_geneHapR.R \
+  -i maf.kdr3.vcf.gz -o kdr3 \
+  -m resources/meta_Aaeg1kg_spp.txt 
+
+Rscript scripts/plot_hap_network_geneHapR.R \
+  -i maf.kdr3recall.vcf.gz -o kdr3recall \
+  -m resources/meta_Aaeg1kg_spp.txt
+
+
+
+
+

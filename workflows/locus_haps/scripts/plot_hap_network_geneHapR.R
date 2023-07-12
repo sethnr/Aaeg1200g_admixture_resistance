@@ -3,11 +3,11 @@
 # BiocManager::install(version = "3.14")
 # 
 # 
-BiocManager::install("GenomicRanges",update=F)
-BiocManager::install("Biostrings",update=F)
-BiocManager::install("rtracklayer",update=F)
-BiocManager::install("trackViewer",update=F)
-install.packages("geneHapR")
+#BiocManager::install("GenomicRanges",update=F)
+#BiocManager::install("Biostrings",update=F)
+#BiocManager::install("rtracklayer",update=F)
+#BiocManager::install("trackViewer",update=F)
+#install.packages("geneHapR")
 # 
 
 library("geneHapR")
@@ -67,7 +67,12 @@ haps <- haps[,colnames(haps) %in% metahap$sample]
 #paste(rep(VCFlabels(vcffile),each=2),c("0","1"),sep="_")
 haptab <- cbind(loci[,c(1,2,4,5,8)],haps)
 
-hapResult <- table2hap(haptab[c(grep("MODERATE",haptab$INFO),grep("HIGH",haptab$INFO)),])
+hapResult <- table2hap(haptab[sort(c(grep("MODERATE",haptab$INFO),
+                                grep("HIGH",haptab$INFO),
+                                grep("315939224",haptab$POS),
+                                grep("315999297",haptab$POS) )),])
+
+                                
 
 
 hapSummary <- hap_summary(hapResult)
@@ -86,6 +91,9 @@ hapNet <- get_hapNet(hapSummary,
                      AccINFO = metahap,
                      groupName = "region")
 
+# hapcols = c("West Africa"="dark blue","East Africa"="light blue",
+#             "Carribean"="Purple","South America"="Dark Red","North America"="Light Red",
+#             "Middle East"="Light Green","Asia"="Green","Pacific"="Dark Green")
 
 png(paste(prefix,"hapnet.png",sep="_"),width=W,height=H,res=R,units="mm")
 plotHapNet(hapNet,
@@ -93,12 +101,12 @@ plotHapNet(hapNet,
            legend=c(10,-15),
            show_size_legend=F,
            scale='log2',
-           threshold=0)
+           threshold=0) #+ scale_fill_manual(values=hapcols)
 dev.off()
 
 png(paste(prefix,"geodist_pop.png",sep="_"),width=W,height=H,res=R,units="mm")
 hapDistribution(hapResult,metahaploc,"poplong","poplat",
-                c("H001","H002","H003","H004","H005"),
+                c("H001","H002","H003","H004","H005","H006"),
                 legend=TRUE)
 dev.off()
 
