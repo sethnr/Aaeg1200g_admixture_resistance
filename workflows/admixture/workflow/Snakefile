@@ -18,7 +18,9 @@ rule all:
     input:
 #        expand("results/admix_tests/alder_all_summaries.txt",
 #            chrom=CHROMS),
-        expand("results/admix_tests/3pop_{chrom}_summaries.txt",
+#        expand("results/admix_tests/3pop_{chrom}_summaries.txt",
+#            chrom=CHROMS),
+        expand("results/admix_tests/4pop_{chrom}_summaries.txt",
             chrom=CHROMS),
 #        expand("results/admix_tests/3pop_{chrom}_dxy.txt",
 #            chrom=CHROMS),
@@ -262,7 +264,7 @@ rule cf3pop_cat:
 # 4-POP ADMIXTURE ANALYSIS
 #####
 
-rule admix_3pop:
+rule admix_4pop:
     input:
         vcf="results/admix_bivcf/phased_bi_{chrom}.vcf.gz",
         tbi="results/admix_bivcf/phased_bi_{chrom}.vcf.gz.tbi",

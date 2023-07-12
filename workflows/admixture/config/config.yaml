@@ -7,7 +7,7 @@ samples: "config/samples.txt"
 countries: "config/countries.txt"
 
 3pops: "config/3popsAll.txt"
-
+4pops: "config/4popsAll.txt"
 
 vcfs: "resources/aaeg1000g_vcfs.txt"
 bams: "resources/aaeg1000g_bams.txt"
