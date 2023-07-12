@@ -19,8 +19,8 @@ parser.add_argument('--chrom', '-c', help='chromosome number')
 parser.add_argument('--column', '-M', default='country', help='metadata column to search in')
 parser.add_argument('--vcf', '-v', help='vcf file to test')
 parser.add_argument('--out', '-o', help='vcf file to test')
-parser.add_argument('--block', '-b', default=10000, help='block size to assess (variants)')
-parser.add_argument('--step', '-s', default=1000, help='step size for windowing (variants)')
+parser.add_argument('--block', '-b', default=500000, help='block size to assess (variants)')
+parser.add_argument('--step', '-s',  default=250000, help='step size for windowing (variants)')
 
 args = parser.parse_args()
 
@@ -67,7 +67,7 @@ acpop4 = gtpop4.count_alleles()
 
 print("testing if {} is admixed from {} and {} with outgroup {}".format(pop3,pop2,pop3,pop1),file=sys.stderr)
 
-f4, f4se, f4z, f4blk, f4jack = allel.average_patterson_d(acpop1, acpop2, acpop3, acpop4)
+f4, f4se, f4z, f4blk, f4jack = allel.average_patterson_d(acpop1, acpop2, acpop3, acpop4, block)
 f4wins = allel.moving_patterson_f4(acpop1, acpop2, acpop3, acpop4, block, step=step, normed=True)
 
 
