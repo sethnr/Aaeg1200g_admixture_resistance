@@ -4,8 +4,6 @@ configfile: "config/config.yaml"
 #### reused methods for grabbing GS objects, etc ####
 include: "rules/common.smk"
 
-#TESTS=['alder','3pop']
-TESTS=['3pop']
 #CHROMS=[1,2,3]
 CHROMS=['123']
 BIGPOPS=pd.read_table(config["countries"],dtype=str,header=0)['country']
@@ -20,14 +18,13 @@ rule all:
 #            chrom=CHROMS),
 #        expand("results/admix_tests/3pop_{chrom}_summaries.txt",
 #            chrom=CHROMS),
-        expand("results/admix_tests/4pop_{chrom}_summaries.txt",
-            chrom=CHROMS),
 #        expand("results/admix_tests/3pop_{chrom}_dxy.txt",
 #            chrom=CHROMS),
+        expand("results/admix_tests/4pop_{chrom}_summaries.txt",
+            chrom=CHROMS),
 
 ###rule orders ###
 ruleorder: tabix_vcf > make_biallelic
-#ruleorder: admix_alder_chr > admix_alder
 
 ##### run admix tests on 4 pops #####
 
