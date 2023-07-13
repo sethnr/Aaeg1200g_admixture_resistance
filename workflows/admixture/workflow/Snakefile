@@ -8,8 +8,8 @@ include: "rules/common.smk"
 CHROMS=['123']
 BIGPOPS=pd.read_table(config["countries"],dtype=str,header=0)['country']
 
-wildcard_constraints:
-    chrom=CHROMS,
+#wildcard_constraints:
+#    chrom=CHROMS,
 #    test=TESTS,
 
 rule all:
