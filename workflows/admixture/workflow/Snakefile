@@ -268,7 +268,7 @@ rule admix_4pop:
         chrom_ids=config["chrommap"],
         meta=config["spptable"]
     output:
-        blk=temporary("results/admix_tests/4pop_{chrom}_{pop1}_{pop2}_{pop3}_{pop4}_blocks.txt"),
+        #blk=temporary("results/admix_tests/4pop_{chrom}_{pop1}_{pop2}_{pop3}_{pop4}_blocks.txt"),
         sum=temporary("results/admix_tests/4pop_{chrom}_{pop1}_{pop2}_{pop3}_{pop4}_summary.txt")
     resources:
         mem_mb=8000,
