@@ -92,7 +92,7 @@ if(f4z>zlim):
 elif(f4z<(zlim*-1)):
     result = "{}->{}".format(pop2,pop3)
     signif=True
-print("\t".join(map(str,[pop1,pop2,pop3,pop4,chrom,f4,f4sd,f4z,signif])), file=sumfile)
+print("\t".join(map(str,[pop1,pop2,pop3,pop4,chrom,f4,f4se,f4z,signif])), file=sumfile)
 sumfile.close()
 
 #np.savetxt(out+"_blocks.txt", poswins, fmt='%s', delimiter='\t')
