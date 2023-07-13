@@ -82,7 +82,7 @@ f4, f4se, f4z, f4blk, f4jack = allel.average_patterson_d(acpop1, acpop2, acpop3,
 #             f3wins)).transpose()
 
 sumfile=open(out+"_summary.txt",'w')
-zlim=-0.258
+zlim=3
 
 result = ""
 signif=False
