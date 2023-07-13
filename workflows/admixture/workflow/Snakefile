@@ -5,7 +5,7 @@ configfile: "config/config.yaml"
 include: "rules/common.smk"
 
 #CHROMS=[1,2,3]
-CHROMS=['123']
+CHROMS=['123',1,2,3]
 BIGPOPS=pd.read_table(config["countries"],dtype=str,header=0)['country']
 
 #wildcard_constraints:
