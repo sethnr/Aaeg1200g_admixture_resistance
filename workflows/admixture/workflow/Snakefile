@@ -35,8 +35,8 @@ rule make_biallelic:
         vcf="results/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr{chrom}.SNP.refseq.7e6.phased.vcf.gz",
         tbi="results/vcfs/SNPs/pruned_sites/aegy.wgs.aaa.aaf.mapQ20.GoodSites.chr{chrom}.SNP.refseq.7e6.phased.vcf.gz.tbi"
     output:
-        vcf="results/admix_bivcf/phased_bi_{chrom}.vcf.gz",
-        tbi="results/admix_bivcf/phased_bi_{chrom}.vcf.gz.tbi"
+        vcf=protected("results/admix_bivcf/phased_bi_{chrom}.vcf.gz"),
+        tbi=protected("results/admix_bivcf/phased_bi_{chrom}.vcf.gz.tbi")
     log:
         "logs/admix_bivcf/bivcf_{chrom}"
     shell:
@@ -264,7 +264,7 @@ rule cf3pop_cat:
 rule admix_4pop:
     input:
         vcf=ancient("results/admix_bivcf/phased_bi_{chrom}.vcf.gz"),
-        tbi="results/admix_bivcf/phased_bi_{chrom}.vcf.gz.tbi",
+        tbi=ancient("results/admix_bivcf/phased_bi_{chrom}.vcf.gz.tbi"),
         chrom_ids=config["chrommap"],
         meta=config["spptable"]
     output:
@@ -284,7 +284,7 @@ rule admix_4pop:
 	    python scripts/run_4pop_tests.py \
             -p1 {wildcards.pop1} -p2 {wildcards.pop2} -p3 {wildcards.pop3}  -p4 {wildcards.pop4} \
             -m {input.meta} -M 'pop' \
-            -b 20000 -s 10000 \
+            -b 1000000 -s 250000 \
             -c {wildcards.chrom} -v {input.vcf} \
             -o {params.prefix}
         """
