@@ -65,7 +65,7 @@ callset4 = allel.read_vcf(vcf, samples=pop4samps, fields='*')
 gtpop4 = allel.GenotypeArray(callset4['calldata/GT'])
 acpop4 = gtpop4.count_alleles()
 
-print("testing if {} is admixed from {} and {} with outgroup {}".format(pop3,pop1,pop2,pop4),file=sys.stderr)
+print("testing if {} is admixed from {} and {} with outgroup {}".format(pop2,pop1,pop3,pop4),file=sys.stderr)
 
 f4, f4se, f4z, f4blk, f4jack = allel.average_patterson_d(acpop1, acpop2, acpop3, acpop4, block)
 #f4wins = allel.moving_patterson_f4(acpop1, acpop2, acpop3, acpop4, block, step=step, normed=True)
@@ -87,10 +87,10 @@ zlim=3
 result = ""
 signif=False
 if(f4z>zlim):
-    result = "{}->{}".format(pop1,pop3)
+    result = "{}->{}".format(pop1,pop2)
     signif=True
 elif(f4z<(zlim*-1)):
-    result = "{}->{}".format(pop2,pop3)
+    result = "{}->{}".format(pop3,pop2)
     signif=True
 print("\t".join(map(str,[pop1,pop2,pop3,pop4,chrom,f4,f4se,f4z,signif,result])), file=sumfile)
 sumfile.close()
