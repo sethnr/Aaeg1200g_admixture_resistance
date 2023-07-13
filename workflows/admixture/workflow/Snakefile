@@ -293,12 +293,9 @@ rule admix_4pop:
 rule cat_4pop:
     input:
         sums=expand("results/admix_tests/4pop_{{chrom}}_{popstring}_summary.txt",
-                    popstring=get_all_admix4_sets_file(config["4pops"])),
-        #blocks=expand("results/admix_tests/4pop_{{chrom}}_{popstring}_blocks.txt",
-        #            popstring=get_all_admix4_sets_file(config["4pops"]))
+                    popstring=get_all_admix4_sets_file(config["4pops"]))
     output:
-        sums="results/admix_tests/4pop_{chrom}_summaries.txt",
-        #blocks="results/admix_tests/4pop_{chrom}_blocks.txt"
+        sums="results/admix_tests/4pop_{chrom}_summaries.txt"
     resources:
         mem_mb=32000,
         disk_mb=20000,
@@ -308,6 +305,5 @@ rule cat_4pop:
     shell:
         """
         cat {input.sums} > {output.sums}
-        cat {input.blocks} > {output.blocks}
         """
 
