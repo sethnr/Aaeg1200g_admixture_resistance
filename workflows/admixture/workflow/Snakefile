@@ -4,9 +4,8 @@ configfile: "config/config.yaml"
 #### reused methods for grabbing GS objects, etc ####
 include: "rules/common.smk"
 
-#CHROMS=[1,2,3]
-CHROMS=['123',1,2,3]
-BIGPOPS=pd.read_table(config["countries"],dtype=str,header=0)['country']
+CHROMS=[1]
+#CHROMS=['123',1,2,3]
 
 #wildcard_constraints:
 #    chrom=CHROMS,
@@ -21,7 +20,15 @@ rule all:
 #        expand("results/admix_tests/3pop_{chrom}_dxy.txt",
 #            chrom=CHROMS),
         expand("results/admix_tests/4pop_{chrom}_summaries.txt",
-            chrom=CHROMS),
+            chrom=CHROMS)
+
+rule filetest:
+    input:
+        "results/admix_tests/4pop_123_Skukusa_Franceville_Ngoye_NewOrleans_summary.txt"
+        #"results/admix_tests/4pop_2_summaries.txt"
+
+
+
 
 ###rule orders ###
 ruleorder: tabix_vcf > make_biallelic
@@ -141,7 +148,7 @@ rule admix_alder:
 rule cat_alder:
     input:
         sums=expand("results/admix_tests/alder_{popstring}_summary.txt",
-                    popstring=get_all_admix_3_strings(BIGPOPS))
+                    popstring=get_all_admix3_sets_file(config["3pops"]))
     output:
         "results/admix_tests/alder_all_summaries.txt"
     log:
