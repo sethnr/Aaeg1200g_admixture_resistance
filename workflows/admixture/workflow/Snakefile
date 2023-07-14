@@ -4,8 +4,8 @@ configfile: "config/config.yaml"
 #### reused methods for grabbing GS objects, etc ####
 include: "rules/common.smk"
 
-CHROMS=[1]
-#CHROMS=['123',1,2,3]
+#CHROMS=[1]
+CHROMS=['123',1,2,3]
 
 #wildcard_constraints:
 #    chrom=CHROMS,
