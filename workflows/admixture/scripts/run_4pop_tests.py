@@ -87,10 +87,10 @@ zlim=3
 result = ""
 signif=False
 if(f4z>zlim):
-    result = "{}->{}".format(pop1,pop2)
+    result = "{}->{}".format(pop1,pop3)
     signif=True
 elif(f4z<(zlim*-1)):
-    result = "{}->{}".format(pop3,pop2)
+    result = "{}->{}".format(pop2,pop3)
     signif=True
 print("\t".join(map(str,[pop1,pop2,pop3,pop4,chrom,f4,f4se,f4z,signif,result])), file=sumfile)
 sumfile.close()
