@@ -59,4 +59,5 @@ Rscript scripts/plot_hap_network_geneHapR.R \
 
 
 
-
+#SNPeff not showing missense on cluster as refs swapped, fix using vcftools norm
+bcftools norm -c ws locus.kdr3recall.vcf.gz -f resources/Aedes-aegypti-LVP_AGWG_AaegL5_refSeq.fa -O z -o locus.kdr3recall.fixref.vcf.gz
