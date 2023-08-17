@@ -18,7 +18,9 @@ library("tidyverse")
 
 opttab <- matrix(c("vcf","i","1","character",
                    "out","o","1","character",
-                   "meta","m","1","character"
+                   "meta","m","1","character",
+                   "includes","s","2","character"
+                   "resists","r","2","character"
 ),byrow=T,ncol=4)
 opt <- getopt(opttab)
 
@@ -29,6 +31,10 @@ opt <- getopt(opttab)
 vcffile <- opt$vcf
 prefix <- opt$out
 metafile <- opt$meta
+includes = NULL
+if(length(opt$includes) >0) {
+  includes = strsplit(opt$includes,",")[[1]]
+}
 
 meta <- read.table(metafile,sep="\t",header=T)
 
@@ -67,12 +73,18 @@ haps <- haps[,colnames(haps) %in% metahap$sample]
 #paste(rep(VCFlabels(vcffile),each=2),c("0","1"),sep="_")
 haptab <- cbind(loci[,c(1,2,4,5,8)],haps)
 
-hapResult <- table2hap(haptab[sort(c(grep("MODERATE",haptab$INFO),
-                                grep("HIGH",haptab$INFO),
-                                grep("315939224",haptab$POS),
-                                grep("315999297",haptab$POS) )),])
+write.table(haptab,paste(prefix,"gttab.txt",sep="_"),sep="\t",quote=F,row.names=F,col.names=T)
 
+if(is.null(includes)) {
+  hapResult <- table2hap(haptab[sort(c(grep("MODERATE",haptab$INFO),
+                                grep("HIGH",haptab$INFO))),])
+} else {
+  hapResult <- table2hap(haptab[sort(c(grep("MODERATE",haptab$INFO),
+                                       grep("HIGH",haptab$INFO),
+                                       grep(paste(includes,collapse="|"),haptab$POS) )),])
+}
                                 
+write.table(haptab,paste(prefix,"gttab.txt",sep="_"),sep="\t",quote=F,row.names=F,col.names=T)
 
 
 hapSummary <- hap_summary(hapResult)

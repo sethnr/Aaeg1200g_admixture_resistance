@@ -69,7 +69,7 @@ ggplot(poptotals,aes(x=longdisp, y=latdisp, label=pop,xend=long, yend=lat)) +
     geom_text(data=subset(poptotals,pop %in% llab), hjust=1.3) +
     geom_text(data=subset(poptotals,pop %in% rlab), hjust=-0.3) +
     coord_fixed(ylim=c(-48,48),xlim=c(-155,140))+
-    ggtitle(paste("3-pop results (",parents[1]," / ",parents[2],")",sep="")) +
+    ggtitle(paste("4-pop results (",parents[1]," / ",parents[2],")",sep="")) +
     scale_fill_gradient2(low="red",mid="white",high="blue",na.value="grey",limits=c(-0.5,0.5)) +
     scale_color_manual(values=c("red","blue"),na.value="grey",guide="none") +
     theme(axis.text=element_blank(),
@@ -188,6 +188,8 @@ ggplot(pop4tabAll,aes(x=factor(chr),y=f4,color=donorspp,group=set)) +
 
 ![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
 
+
+
 ```r
 ggplot(subset(pop4tabAll,!is.na(donorspp)),aes(x=factor(chr),y=abs(f4),
                       color=donorspp,group=paste(donorspp,chr,parents))) + 
@@ -197,4 +199,4 @@ ggplot(subset(pop4tabAll,!is.na(donorspp)),aes(x=factor(chr),y=abs(f4),
   theme(axis.title=element_blank())
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-2.png)
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)

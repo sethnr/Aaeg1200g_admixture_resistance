@@ -8,7 +8,7 @@ BiocManager::install("Biostrings",update=F)
 BiocManager::install("rtracklayer",update=F)
 BiocManager::install("trackViewer",update=F)
 install.packages("geneHapR")
-# 
+
 
 library("geneHapR")
 library("vcfR")
@@ -58,13 +58,15 @@ rownames(metahaploc) <- metahaploc$Hap
 loci <- VCFloci(vcffile)
 
 vcfr <- read.vcfR(vcffile)
+write("generating gt matrix",stderr())
 gts <- extract.gt(vcfr)
+write("extracting haps?",stderr())
 haps <- extract.haps(vcfr)
 
 #only include samples in haps file (removed related, etc)
 haps <- haps[,colnames(haps) %in% metahap$sample]
 
-#paste(rep(VCFlabels(vcffile),each=2),c("0","1"),sep="_")
+write("generating hap tab",stderr())
 haptab <- cbind(loci[,c(1,2,4,5,8)],haps)
 
 hapResult <- table2hap(haptab[c(grep("MODERATE",haptab$INFO),grep("HIGH",haptab$INFO)),])
