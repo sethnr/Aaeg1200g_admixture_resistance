@@ -20,8 +20,8 @@ metafile <- "resources/meta_Aaeg1kg_spp.txt"
 
 includes=c("315999297")
 
-resists=c("315939224","315983763","315999297","316014588","316080722")
-names(resists) = c("F1534C","V1016I","I915K","S723T","V410L")
+resists=c("315939224","315983762","315983763","315999297","316014588","316080722")
+names(resists) = c("F1534C","V1016G","V1016I","I915K","S723T","V410L")
 ```
 
 
@@ -327,6 +327,20 @@ dev.off()
 ```r
 hapResultRes <- table2hap(haptab[grep(paste(resists,collapse="|"),haptab$POS),])
 
+plotHapTable(hapResultRes)
+```
+
+```
+## Warning in plotHapTable(hapResultRes): using first 'angle': 0
+```
+
+```
+## Warning: Removed 1 rows containing missing values (`geom_text()`).
+```
+
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
+
+```r
 hapResultResDF <- as.data.frame(hapResultRes[grepl(paste0("H", "[0-9]{1,}"),hapResultRes$Hap)
                            ,c("Hap","Accession")])
 hapResultResDF$Hap <- factor(hapResultResDF$Hap,ordered=T)
@@ -371,7 +385,7 @@ haptotals <- sampleResultRes[c("Hap.y","Hap.x")] %>%
 ggplot(haptotals,aes(x=Hap.x,y=Hap.y,fill=count)) + geom_raster()
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-2.png)
 
 ```r
 countrytotals <- sampleResultRes[c("country","Hap.y","Hap.x")] %>%   
@@ -391,7 +405,7 @@ countrytotals <- sampleResultRes[c("country","Hap.y","Hap.x")] %>%
 ggplot(countrytotals,aes(x=Hap.x,y=Hap.y,fill=count)) + geom_raster() + facet_wrap("country")
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-2.png)
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-3.png)
 
 ```r
 regiontotals <- sampleResultRes[c("region","Hap.y","Hap.x")] %>% 
@@ -411,4 +425,176 @@ regiontotals <- sampleResultRes[c("region","Hap.y","Hap.x")] %>%
 ggplot(regiontotals,aes(x=Hap.x,y=Hap.y,fill=count)) + geom_raster() + facet_wrap("region")
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-3.png)
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-4.png)
+
+
+
+```r
+sampleResultRes$resistF=1
+sx = sampleResultRes$Hap.x=="S"
+sampleResultRes$resistF[sx] = sampleResultRes$resistF[sx] - 0.5
+sy = sampleResultRes$Hap.y=="S"
+sampleResultRes$resistF[sy] = sampleResultRes$resistF[sy] - 0.5
+
+world <- map_data("world")
+
+popresists <- sampleResultRes[c("pop","resistF")] %>%   
+                              group_by(pop,.drop = FALSE) %>% 
+                              summarise(resistance_freq=mean(resistF)) %>% 
+                              mutate("pop" = gsub("_","",pop)) %>%
+                              mutate(pop=gsub("Virhembe","Virembe",pop)) %>% 
+                              mutate(pop=gsub("Cuanda","Luanda",pop))
+
+metapops <- read.table("aegy.wgs.pops.list_display.csv",sep=",",header=T,stringsAsFactors = F) %>% 
+                rename_with(tolower) %>% 
+                mutate("pop" = gsub("_","",pop)) %>%
+                mutate(pop=gsub("Cuanda","Luanda",pop)) %>% 
+                mutate(displaced = !is.na(latdisp))
+metapops$latdisp[!metapops$displaced] <- metapops$lat[!metapops$displaced]
+metapops$longdisp[!metapops$displaced] <- metapops$long[!metapops$displaced]
+
+popresists = merge(popresists,metapops,by="pop",all=T)
+
+
+ggplot(popresists,aes(x=longdisp, y=latdisp, label=pop,xend=long, yend=lat)) +
+    geom_polygon(data = world, aes(x=long, y=lat, group=group), fill='#C7ECD3',color="black",size=0.2,inherit.aes=F) +
+    #geom_point(data=subset(poptotals,is.na(latdisp)), aes(x=long, y=lat, fill=f3zdisp,size=num_bams), shape=21,inherit.aes=F) +
+    geom_segment(data=subset(popresists,displaced)) +
+    geom_point(data=popresists, aes(fill=resistance_freq,size=num_bams), shape=21) +
+    #geom_text(data=subset(popresists,pop %in% llab), hjust=1.3) +
+    #geom_text(data=subset(popresists,pop %in% rlab), hjust=-0.3) +
+    coord_fixed(ylim=c(-48,48),xlim=c(-155,140))+
+    ggtitle(paste("VGSC resistance haplotype prevalence",sep="")) +
+    scale_fill_gradient(low="white",high="red",na.value="grey") +
+    theme(axis.text=element_blank(),
+          panel.border=element_rect(fill=NA, color="black"),
+          panel.background=element_rect(fill='#C7E6F1', color=NA),
+          panel.grid = element_blank(),
+          axis.title=element_blank(),
+          axis.ticks=element_blank(),
+          legend.position="bottom")
+```
+
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
+
+
+
+```r
+F1534C <- haps["NC_035109.1_315939224",]
+F1534C <- data.frame("hap"=names(F1534C),"call"=F1534C)
+rownames(F1534C) <- c(1:nrow(F1534C))
+
+F1534C <- F1534C %>% 
+  mutate("freq" = as.numeric(call=="C")/2) %>% 
+  mutate("sample" = gsub("_[0|1]$","",hap)) %>% 
+  group_by(sample) %>% 
+  summarize("freq"=sum(freq))
+
+F1534C <- merge(F1534C,meta,by="sample") %>% 
+  mutate("pop" = gsub("_","",pop)) %>%
+  mutate(pop=gsub("Virhembe","Virembe",pop)) %>% 
+  mutate(pop=gsub("Cuanda","Luanda",pop)) %>%
+  group_by(pop) %>%
+  summarise(resistance_freq=mean(freq)) %>% 
+  merge(metapops,by="pop")
+
+
+ggplot(popresists,aes(x=longdisp, y=latdisp, label=pop,xend=long, yend=lat)) +
+    geom_polygon(data = world, aes(x=long, y=lat, group=group), fill='#C7ECD3',color="black",size=0.2,inherit.aes=F) +
+    geom_segment(data=subset(popresists,displaced)) +
+    geom_point(data=F1534C, aes(fill=resistance_freq,size=num_bams), shape=21) +
+    coord_fixed(ylim=c(-48,48),xlim=c(-155,140))+
+    ggtitle(paste("VGSC F1534C prevalence",sep="")) +
+    scale_fill_gradient(low="white",high="red",na.value="grey") +
+    theme(axis.text=element_blank(),
+          panel.border=element_rect(fill=NA, color="black"),
+          panel.background=element_rect(fill='#C7E6F1', color=NA),
+          panel.grid = element_blank(),
+          axis.title=element_blank(),
+          axis.ticks=element_blank(),
+          legend.position="bottom")
+```
+
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png)
+
+
+
+
+```r
+V1016I <- haps["NC_035109.1_315983763",]
+V1016I <- data.frame("hap"=names(V1016I),"call"=V1016I)
+rownames(V1016I) <- c(1:nrow(V1016I))
+
+V1016I <- V1016I %>% 
+  mutate("freq" = as.numeric(call=="T")/2) %>% 
+  mutate("sample" = gsub("_[0|1]$","",hap)) %>% 
+  group_by(sample) %>% 
+  summarize("freq"=sum(freq))
+
+V1016I <- merge(V1016I,meta,by="sample") %>% 
+  mutate("pop" = gsub("_","",pop)) %>%
+  mutate(pop=gsub("Virhembe","Virembe",pop)) %>% 
+  mutate(pop=gsub("Cuanda","Luanda",pop)) %>%
+  group_by(pop) %>%
+  summarise(resistance_freq=mean(freq)) %>% 
+  merge(metapops,by="pop")
+
+
+ggplot(popresists,aes(x=longdisp, y=latdisp, label=pop,xend=long, yend=lat)) +
+    geom_polygon(data = world, aes(x=long, y=lat, group=group), fill='#C7ECD3',color="black",size=0.2,inherit.aes=F) +
+    geom_segment(data=subset(popresists,displaced)) +
+    geom_point(data=V1016I, aes(fill=resistance_freq,size=num_bams), shape=21) +
+    coord_fixed(ylim=c(-48,48),xlim=c(-155,140))+
+    ggtitle(paste("VGSC V1016I prevalence",sep="")) +
+    scale_fill_gradient(low="white",high="red",na.value="grey") +
+    theme(axis.text=element_blank(),
+          panel.border=element_rect(fill=NA, color="black"),
+          panel.background=element_rect(fill='#C7E6F1', color=NA),
+          panel.grid = element_blank(),
+          axis.title=element_blank(),
+          axis.ticks=element_blank(),
+          legend.position="bottom")
+```
+
+![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png)
+
+
+
+
+```r
+V1016G <- haps["NC_035109.1_315983762",]
+V1016G <- data.frame("hap"=names(V1016G),"call"=V1016G)
+rownames(V1016G) <- c(1:nrow(V1016G))
+
+V1016G <- V1016G %>% 
+  mutate("freq" = as.numeric(call=="C")/2) %>% 
+  mutate("sample" = gsub("_[0|1]$","",hap)) %>% 
+  group_by(sample) %>% 
+  summarize("freq"=sum(freq))
+
+V1016G <- merge(V1016G,meta,by="sample") %>% 
+  mutate("pop" = gsub("_","",pop)) %>%
+  mutate(pop=gsub("Virhembe","Virembe",pop)) %>% 
+  mutate(pop=gsub("Cuanda","Luanda",pop)) %>%
+  group_by(pop) %>%
+  summarise(resistance_freq=mean(freq)) %>% 
+  merge(metapops,by="pop")
+
+
+ggplot(popresists,aes(x=longdisp, y=latdisp, label=pop,xend=long, yend=lat)) +
+    geom_polygon(data = world, aes(x=long, y=lat, group=group), fill='#C7ECD3',color="black",size=0.2,inherit.aes=F) +
+    geom_segment(data=subset(popresists,displaced)) +
+    geom_point(data=V1016G, aes(fill=resistance_freq,size=num_bams), shape=21) +
+    coord_fixed(ylim=c(-48,48),xlim=c(-155,140))+
+    ggtitle(paste("VGSC V1016G prevalence",sep="")) +
+    scale_fill_gradient(low="white",high="red",na.value="grey") +
+    theme(axis.text=element_blank(),
+          panel.border=element_rect(fill=NA, color="black"),
+          panel.background=element_rect(fill='#C7E6F1', color=NA),
+          panel.grid = element_blank(),
+          axis.title=element_blank(),
+          axis.ticks=element_blank(),
+          legend.position="bottom")
+```
+
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png)
