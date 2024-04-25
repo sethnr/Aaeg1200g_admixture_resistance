@@ -1,0 +1,276 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```r
+library("tidyverse")
+
+library("patchwork")
+library("gridExtra")
+library("plyr")
+library("zoo")
+
+library("getopt")
+```
+
+
+
+
+```r
+library(maptools)
+library(raster)
+library(ggmap)
+
+pop3sumWG <- read.table("admix_tests/3pop_123_summaries_FCV_NO.txt",col.names=c("p3","p1","p2","chr","f3","f3sd","f3z","f3sig"))
+pop3sumWG$set <- paste(pop3sumWG$p3,pop3sumWG$p1,pop3sumWG$p2,sep="/")
+pop3sumWG$parent <- paste(pop3sumWG$p1,pop3sumWG$p2,sep="/")
+pop3sumWG$f3sig <- as.logical(pop3sumWG$f3sig)
+write(paste("found",nrow(pop3sumWG),"summary lines from",1,"files"),stderr())
+
+
+world <- map_data("world")
+poptotals <- read.table("resources/aegy.wgs.pops.list.csv",sep=",",header=T,stringsAsFactors = F) %>% 
+                rename_with(tolower) %>% 
+                mutate("pop" = gsub("_","",pop))
+
+
+poptotals <- merge(poptotals,pop3sumWG,by.x="pop",by.y="p3")
+
+parents <- c("NewOrleans","Franceville")
+sigpopsWGSFvxNO = pop3sumWG$p3[pop3sumWG$f3sig]
+sigpopsWGSFvxNO <- sigpopsWGSFvxNO[!sigpopsWGSFvxNO %in% parents]
+
+poptotals$sig = F
+poptotals$sig[poptotals$pop %in% sigpopsWGSFvxNO] = T
+poptotals$sig[poptotals$pop %in% parents] = NA
+poptotals$f3z[poptotals$pop %in% parents] = NA
+
+
+
+ggplot() +
+    geom_polygon(data = world, aes(x=long, y=lat, group=group), fill='#C7ECD3',color="black",size=0.2) +
+    geom_point(data=poptotals, aes(x=long, y=lat, fill=sig, size=num_bams), shape=21,inherit.aes=F) +
+    geom_point(data=subset(poptotals,sig), aes(x=long, y=lat, fill=sig,size=num_bams), shape=21,inherit.aes=F) +
+    ggtitle(paste("3-pop results (FCV / NO)",sep="")) +
+    coord_fixed(ylim=c(-48,48),xlim=c(-155,140))+
+    scale_fill_manual(values=c("white","red"),na.value="grey") +
+    theme(axis.text=element_blank(),
+          panel.border=element_rect(fill=NA, color="black"),
+          panel.background=element_rect(fill='#C7E6F1', color=NA),
+          panel.grid = element_blank(),
+          axis.title=element_blank(),
+          axis.ticks=element_blank(),
+          legend.position="bottom")
+```
+
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
+
+```r
+ggplot() +
+    geom_polygon(data = world, aes(x=long, y=lat, group=group), fill='#C7ECD3',color="black",size=0.2) +
+    geom_point(data=poptotals, aes(x=long, y=lat, fill=f3z,size=num_bams), fill="grey",shape=21,inherit.aes=F) +
+    geom_point(data=subset(poptotals,sig), aes(x=long, y=lat, fill=f3z,size=num_bams), shape=21,inherit.aes=F) +
+    coord_fixed(ylim=c(-48,48),xlim=c(-155,140))+
+    ggtitle(paste("3-pop results (FCV / NO)",sep="")) +
+    scale_fill_gradient(low="red",high="white",na.value="grey") +
+    theme(axis.text=element_blank(),
+          panel.border=element_rect(fill=NA, color="black"),
+          panel.background=element_rect(fill='#C7E6F1', color=NA),
+          panel.grid = element_blank(),
+          axis.title=element_blank(),
+          axis.ticks=element_blank(),
+          legend.position="bottom")
+```
+
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-2.png)
+
+
+
+```r
+pop3sumWG <- read.table("admix_tests/3pop_123_summaries_BTT_HCM.txt",col.names=c("p3","p1","p2","chr","f3","f3sd","f3z","f3sig"))
+pop3sumWG$set <- paste(pop3sumWG$p3,pop3sumWG$p1,pop3sumWG$p2,sep="/")
+pop3sumWG$parent <- paste(pop3sumWG$p1,pop3sumWG$p2,sep="/")
+pop3sumWG$f3sig <- as.logical(pop3sumWG$f3sig)
+write(paste("found",nrow(pop3sumWG),"summary lines from",1,"files"),stderr())
+
+
+world <- map_data("world")
+poptotals <- read.table("resources/aegy.wgs.pops.list.csv",sep=",",header=T,stringsAsFactors = F) %>% 
+                rename_with(tolower) %>% 
+                mutate("pop" = gsub("_","",pop))
+
+
+poptotals <- merge(poptotals,pop3sumWG,by.x="pop",by.y="p3")
+
+parents <- c("Bantata","HoChiMin")
+sigpopsWGSBtxHCM = pop3sumWG$p3[pop3sumWG$f3sig]
+sigpopsWGSBtxHCM <- sigpopsWGSBtxHCM[!sigpopsWGSBtxHCM %in% parents]
+
+poptotals$sig = F
+poptotals$sig[poptotals$pop %in% sigpopsWGSBtxHCM] = T
+poptotals$sig[poptotals$pop %in% parents] = NA
+poptotals$f3z[poptotals$pop %in% parents] = NA
+
+
+
+ggplot() +
+    geom_polygon(data = world, aes(x=long, y=lat, group=group), fill='#C7ECD3',color="black",size=0.2) +
+    geom_point(data=poptotals, aes(x=long, y=lat, fill=sig, size=num_bams), shape=21,inherit.aes=F) +
+    geom_point(data=subset(poptotals,sig), aes(x=long, y=lat, fill=sig,size=num_bams), shape=21,inherit.aes=F) +
+    ggtitle(paste("3-pop results (FCV / NO)",sep="")) +
+    coord_fixed(ylim=c(-48,48),xlim=c(-155,140))+
+    scale_fill_manual(values=c("white","red"),na.value="grey") +
+    theme(axis.text=element_blank(),
+          panel.border=element_rect(fill=NA, color="black"),
+          panel.background=element_rect(fill='#C7E6F1', color=NA),
+          panel.grid = element_blank(),
+          axis.title=element_blank(),
+          axis.ticks=element_blank(),
+          legend.position="bottom")
+```
+
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png)
+
+```r
+ggplot() +
+    geom_polygon(data = world, aes(x=long, y=lat, group=group), fill='#C7ECD3',color="black",size=0.2) +
+    geom_point(data=poptotals, aes(x=long, y=lat, fill=f3z,size=num_bams), fill="grey",shape=21,inherit.aes=F) +
+    geom_point(data=subset(poptotals,sig), aes(x=long, y=lat, fill=f3z,size=num_bams), shape=21,inherit.aes=F) +
+    coord_fixed(ylim=c(-48,48),xlim=c(-155,140))+
+    ggtitle(paste("3-pop results (BT / HCM)",sep="")) +
+    scale_fill_gradient(low="red",high="white",na.value="grey") +
+    theme(axis.text=element_blank(),
+          panel.border=element_rect(fill=NA, color="black"),
+          panel.background=element_rect(fill='#C7E6F1', color=NA),
+          panel.grid = element_blank(),
+          axis.title=element_blank(),
+          axis.ticks=element_blank(),
+          legend.position="bottom")
+```
+
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-2.png)
+
+
+```r
+poptotals$sigset = "NS"
+poptotals$sigset[poptotals$pop %in% intersect(sigpopsWGSBtxHCM,sigpopsWGSFvxNO)] <- "both"
+poptotals$sigset[poptotals$pop %in% setdiff(sigpopsWGSBtxHCM,sigpopsWGSFvxNO)] <- "BtxHCM"
+poptotals$sigset[poptotals$pop %in% setdiff(sigpopsWGSFvxNO,sigpopsWGSBtxHCM)] <- "FvxNO"
+
+
+ggplot() +
+    geom_polygon(data = world, aes(x=long, y=lat, group=group), fill='#C7ECD3',color="black",size=0.2) +
+    geom_point(data=poptotals, aes(x=long, y=lat, fill=sigset, size=num_bams), shape=21,inherit.aes=F) +
+    geom_point(data=subset(poptotals,sigset != "NS"), aes(x=long, y=lat, fill=sigset,size=num_bams), shape=21,inherit.aes=F) +
+    ggtitle(paste("3-pop results (FCV / NO)",sep="")) +
+    coord_fixed(ylim=c(-48,48),xlim=c(-155,140))+
+    theme(axis.text=element_blank(),
+          panel.border=element_rect(fill=NA, color="black"),
+          panel.background=element_rect(fill='#C7E6F1', color=NA),
+          panel.grid = element_blank(),
+          axis.title=element_blank(),
+          axis.ticks=element_blank(),
+          legend.position="bottom")
+```
+
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
+
+
+#get individual chromosome block files
+
+
+
+```r
+indir <- "admix_tests"
+outprefix <- "3pop_admix_loci"
+
+#make function to read/parse all vars and create table
+parse_3pop <- function(x) {
+  fnspl <- strsplit(basename(x),"_")[[1]]
+  chr = fnspl[2]
+  mixpop <- fnspl[5]
+  pop1 <- fnspl[3]
+  pop2 <- fnspl[4]
+  read.table(x,col.names = c("start","mid","end","f3")) %>% 
+    add_column("p1"=pop1,"p2"=pop2,"p3"=mixpop,"chr"=chr)
+}
+
+#read in block files:
+write(paste("getting blocks from ",indir),stderr())
+pop3files <- list.files(indir,pattern="3pop.*_blocks.txt",full.names = T)
+# pop3tab <- ldply(pop3files, parse_3pop)
+pop3tab <- ldply(pop3files, function(x) {read.table(x,sep="\t",col.names=c("p3","p1","p2","chr","start","mid","end","f3"))})
+pop3tab[pop3tab$p2>pop3tab$p1,c("p1","p2")] <- pop3tab[pop3tab$p2>pop3tab$p1,c("p2","p1")]
+pop3tab$set <- paste(pop3tab$p3,pop3tab$p1,pop3tab$p2,sep="/")
+pop3tab$parent <- paste(pop3tab$p1,pop3tab$p2,sep="/")
+
+write(paste("found",nrow(pop3tab),"block lines from",length(pop3files),"files"),stderr())
+```
+
+
+```r
+#######
+# plot z scores
+####### 
+pop3tab$sigset="NS"
+pop3tab$sigset[pop3tab$p3 %in% intersect(sigpopsWGSBtxHCM,sigpopsWGSFvxNO)] <- "both"
+pop3tab$sigset[pop3tab$p3 %in% setdiff(sigpopsWGSBtxHCM,sigpopsWGSFvxNO)] <- "BtxHCM"
+pop3tab$sigset[pop3tab$p3 %in% setdiff(sigpopsWGSFvxNO,sigpopsWGSBtxHCM)] <- "FvxNO"
+table(pop3tab$sigset)
+```
+
+```
+## 
+##   both  FvxNO     NS 
+## 156706  56984  71230
+```
+
+```r
+ggplot(subset(pop3tab,sigset=="BtxHCM"),aes(x=mid,y=f3z,group=set,color=parent)) + 
+  geom_line() + facet_grid(p3 ~ chr,scale="free_x",space="free_x") + 
+  scale_y_continuous(limits=c(-100,0)) +
+  theme(legend.position = "bottom") +
+  ggtitle("f3z scores, Bantata x Ho Chi Min parents")
+```
+
+```
+## Error in `combine_vars()`:
+## ! Faceting variables must have at least one value
+```
+
+```r
+#ggsave(paste(outprefix,"fz_sigpopsP3_neg.png",sep="_"),dpi = 300,width=250,height=175,units="mm")
+
+ggplot(subset(pop3tab,sigset=="FvxNO"),aes(x=mid,y=f3,group=set,color=parent)) + 
+  geom_line() + facet_grid(p3 ~ chr,scale="free_x",space="free_x") + 
+  #scale_y_continuous(limits=c(-100,0)) +
+  theme(legend.position = "bottom") +
+  ggtitle("f3z scores, Franceville x New Orleans parents")
+```
+
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
+
+```r
+ggplot(subset(pop3tab,sigset=="both"),aes(x=mid,y=f3,group=set,color=parent)) + 
+  geom_line() + facet_grid(p3 ~ chr,scale="free_x",space="free_x") + 
+  #scale_y_continuous(limits=c(-0.15,0)) +
+  theme(legend.position = "bottom") +
+  ggtitle("f3z scores, both parents")
+```
+
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-2.png)
+
+```r
+ggplot(subset(pop3tab,sigset=="NS"),aes(x=mid,y=f3,group=set,color=parent)) + 
+  geom_line() + facet_grid(p3 ~ chr,scale="free_x",space="free_x") + 
+  #scale_y_continuous(limits=c(-100,0)) +
+  theme(legend.position = "bottom") +
+  ggtitle("f3z scores, non-significant")
+```
+
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-3.png)
+
+
+

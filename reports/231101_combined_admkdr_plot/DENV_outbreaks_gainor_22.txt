@@ -1,0 +1,55 @@
+country	recorded_outbreaks	cdc_risk	no_outbreaks
+Sudan	2013 [42,43], 2014–2015 [44], 2017 [42]	Frequent/Continuous	3
+Egypt	2015 [45]	Sporadic/Uncertain	1
+Algeria	None reported in the past decade	Not listed	0
+Libya	None reported in the past decade	Not listed	0
+Morocco	None reported in the past decade	Not listed	0
+Tunisia	None reported in the past decade	Not listed	0
+Eritrea	2014, 2015 [46]	Frequent/Continuous	2
+Djibouti	2011–2014 [47]	Frequent/Continuous	1
+Ethiopia	2013, 2014, 2015, 2016 [48,49,50]	Frequent/Continuous	4
+Kenya	2011, 2013–2014, 2017–2018 [51,52,53,54]	Frequent/Continuous	3
+Somalia	2011 [54,55]	Frequent/Continuous	1
+Tanzania	2014, 2018, 2019 [56,57]	Frequent/Continuous	3
+Mauritius	2019 [58]	Sporadic/Uncertain	1
+Mozambique	2014 [59], 2015 [43]	Sporadic/Uncertain	2
+Seychelles	2015–2017 [60,61]	Sporadic/Uncertain	1
+Burundi	None reported in the past decade	Sporadic/Uncertain	0
+Comoros	None reported in the past decade	Sporadic/Uncertain	0
+Madagascar	None reported in the past decade	Sporadic/Uncertain	0
+Malawi	None reported in the past decade	Sporadic/Uncertain	0
+Rwanda	None reported in the past decade	Sporadic/Uncertain	0
+South Sudan	None reported in the past decade	Sporadic/Uncertain	0
+Uganda	None reported in the past decade	Sporadic/Uncertain	0
+Zambia	None reported in the past decade	Sporadic/Uncertain	0
+Zimbabwe	None reported in the past decade	Sporadic/Uncertain	0
+Angola	2013 [62,63]	Sporadic/Uncertain	1
+Cameroon	2017 [64]	Sporadic/Uncertain	1
+Central African Republic	None reported in the past decade	Sporadic/Uncertain	0
+Chad	None reported in the past decade	Sporadic/Uncertain	0
+Democratic Republic of the Congo	None reported in the past decade	Sporadic/Uncertain	0
+Republic of the Congo	None reported in the past decade	Sporadic/Uncertain	0
+Equatorial Guinea	None reported in the past decade	Sporadic/Uncertain	0
+Gabon	None reported in the past decade	Sporadic/Uncertain	0
+São Tomé and Príncipe	None reported in the past decade	Sporadic/Uncertain	0
+Burkina Faso	2013, 2016–2017 [65,66]	Frequent/Continuous	2
+Ivory Coast (Côte d’Ivoire)	2017, 2019 [58,67]	Sporadic/Uncertain	2
+Senegal	2015, 2018–2019 [68,69]	Sporadic/Uncertain	2
+Benin	None reported in the past decade	Sporadic/Uncertain	0
+Cape Verde	None reported in the past decade	Sporadic/Uncertain	0
+Gambia	None reported in the past decade	Sporadic/Uncertain	0
+Ghana	None reported in the past decade	Sporadic/Uncertain	0
+Guinea	None reported in the past decade	Sporadic/Uncertain	0
+Guinea-Bissau	None reported in the past decade	Sporadic/Uncertain	0
+Liberia	None reported in the past decade	Sporadic/Uncertain	0
+Mali	None reported in the past decade	Sporadic/Uncertain	0
+Niger	None reported in the past decade	Sporadic/Uncertain	0
+Nigeria	None reported in the past decade	Sporadic/Uncertain	0
+Sierra Leone	None reported in the past decade	Sporadic/Uncertain	0
+Togo	None reported in the past decade	Sporadic/Uncertain	0
+Mauritania	None reported in the past decade	Not listed	0
+Namibia	None reported in the past decade	Sporadic/Uncertain	0
+Botswana	None reported in the past decade	Not listed	0
+Eswatini (Swaziland)	None reported in the past decade	Not listed	0
+Lesotho	None reported in the past decade	Not listed	0
+South Africa	None reported in the past decade	Not listed	0
