@@ -3,7 +3,7 @@
 This repository contains a subset of the analyses supporting [Crawford et al., Science 2025](https://www.science.org/doi/10.1126/science.ads3732). It includes a collection of scripts, notebooks, and results focused on population genomics of _Aedes aegypti_ and contains the analyses pertaining to insecticide resistance, admixture, and global migration patterns as described in the paper.
 
 Contents
-- analyses/: analysis scripts and notebooks for insecticide resistance, admixture inference, and migration modelling
+- analyses/: analysis scripts and notebooks for insecticide resistance, admixture and migration inference
 - containers/: docker / singularity containers used in workflows
 - reports/: summary tables, figures, and intermediate outputs
 - resources/: environment and dependency specifications to reproduce analyses
