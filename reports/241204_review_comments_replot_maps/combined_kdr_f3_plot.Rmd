@@ -1,0 +1,890 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+library("tidyverse")
+
+library("patchwork")
+library("gridExtra")
+library("plyr")
+library("zoo")
+
+library("ggrepel")
+
+library(maptools)
+library(raster)
+library(ggmap)
+library(svglite)
+
+knitr::opts_chunk$set(fig.width=16,fig.height=8,dpi=400)
+```
+
+
+
+```{r fig.width=16,fig.height=8,dpi=400}
+prefix <- "pub_plots"
+
+pop3sum <- read.table("../230622_admix_pops_repel/admix_tests/3pop_123_summaries.txt",
+                      col.names=c("p3","p1","p2","chr","f3","f3sd","f3z","f3sig")) %>%
+                    mutate(p3=gsub("Cuanda","Luanda",p3))
+
+parents <- c("Franceville","NewOrleans")
+#parents <- c("Bantata","HoChiMin")
+#parents <- c("Kedougou","ElDorado")
+pop3sum <- subset(pop3sum,p1 %in% parents & p2 %in% parents)
+pop3sum$set <- paste(pop3sum$p3,pop3sum$p1,pop3sum$p2,sep="/")
+pop3sum$parent <- paste(pop3sum$p1,pop3sum$p2,sep="/")
+pop3sum$f3sig <- as.logical(pop3sum$f3sig)
+#f3lim=-0.3
+f3lim=-2.58
+pop3sum$f3sig <- pop3sum$f3z < f3lim
+write(paste("found",nrow(pop3sum),"summary lines from",1,"files"),stderr())
+
+
+world <- map_data("world")
+meta <- read.table("../230816_kdrhaps_3/aegy.wgs.pops.list_display.csv",sep=",",header=T,stringsAsFactors = F) %>% 
+                rename_with(tolower) %>% 
+                mutate("pop" = gsub("_","",pop)) %>%
+                    mutate(pop=gsub("Cuanda","Luanda",pop))
+
+meta$displaced = !is.na(meta$latdisp)
+
+meta$latdisp[is.na(meta$latdisp)] <- meta$lat[is.na(meta$latdisp)]
+meta$longdisp[is.na(meta$longdisp)] <- meta$long[is.na(meta$longdisp)]
+
+poptotals <- merge(meta,pop3sum,by.x="pop",by.y="p3")
+
+sigpopsSFvxNO = pop3sum$p3[pop3sum$f3sig]
+sigpopsSFvxNO <- sigpopsSFvxNO[!sigpopsSFvxNO %in% parents]
+
+poptotals$sig = F
+poptotals$sig[poptotals$pop %in% sigpopsSFvxNO] = T
+poptotals$sig[poptotals$pop %in% parents] = NA
+poptotals$f3z[poptotals$pop %in% parents] = NA
+
+
+poptotals$f3zdisp <- poptotals$f3z
+poptotals$f3zdisp[poptotals$f3z>=0] <- NA
+
+```
+
+
+
+```{r} 
+#reorder by region/long/lat, reset indices
+poptotals$region <- factor(poptotals$region,levels=c("North America","Caribbean","South America","West Africa","East Africa","Middle East","Asia","Pacific"))
+
+cntorder <- c("USA","Mexico",
+               "Puerto Rico","Dominica","Trinidad","USVI",
+               "Colombia","Argentina","Brazil",
+               "Senegal","Burkina Faso","Ghana","Nigeria",
+               "Cameroon","Gabon","Angola","South Africa",
+               "Uganda","Kenya",
+               "Saudi Arabia","Turkey",
+               "Pakistan","Sri Lanka",
+               "Thailand","Vietnam","Indonesia","Taiwan","Philippines",
+               "Australia","French Polynesia")
+
+poptotals$country <- factor(poptotals$country,levels=cntorder)
+
+
+#poptotals <- poptotals[order(poptotals$region,poptotals$long,poptotals$lat),]
+poptotals <- poptotals[order(poptotals$country,poptotals$long),]
+poptotals$index <- c(1:nrow(poptotals))
+
+```
+
+
+
+```{r}
+fxr=2
+
+longcut <- -125
+cutlocs <- world$long < longcut
+world$long[cutlocs] <- world$long[cutlocs]+360
+
+cutpops <- poptotals$long < longcut
+poptotals$long[cutpops] <- poptotals$long[cutpops]+360
+poptotals$longdisp[cutpops] <- poptotals$longdisp[cutpops]+360
+
+#tahiti is in the middle of nowhere
+poptotals$longdisp[poptotals$pop=="Tahiti"] <- 153
+#poptotals$longdisp[poptotals$pop=="Tahiti"] <- 153
+
+
+#calculate window position for lower plots
+maplen <- 280 # displayed length of map (degrees around equator)
+admlen <- (maplen * 0.8) - 2  #multiply by display length of admixture bars (remove 2px for pathwork spacer)
+winlen <- admlen/max(poptotals$index)
+poptotals$winpos <- longcut + (winlen*poptotals$index-(winlen/2))
+
+f3map <- ggplot(poptotals,aes(x=longdisp, y=latdisp, label=pop,xend=long, yend=lat)) +
+    geom_polygon(data = world, aes(x=long, y=lat, group=group), fill='grey70',color="grey40",size=0.2,inherit.aes=F) +
+    #geom_point(data=subset(poptotals,is.na(latdisp)), aes(x=long, y=lat, fill=f3zdisp,size=num_bams), shape=21,inherit.aes=F) +
+    geom_segment(data=subset(poptotals,displaced)) +
+    #geom_text(data=subset(poptotals,pop %in% llab), hjust=1.3) +
+    #geom_text(data=subset(poptotals,pop %in% rlab), hjust=-0.3) +
+    geom_text(data=poptotals, aes(label=index)) +
+    geom_rect(data=subset(poptotals,pop=="Tahiti"), 
+              aes(ymin=latdisp-4,ymax=latdisp+4,
+                  xmin=longdisp-4,xmax=longdisp+4),
+              fill="grey95",color="black",linetype="dashed",) +
+    geom_segment(aes(x=longdisp, y=latdisp,xend=winpos, yend=-48),color="grey30") +
+    geom_point(data=poptotals, aes(fill=f3zdisp,size=num_bams), shape=21) +
+    coord_fixed(ylim=c(-48,48),xlim=c(longcut,longcut+maplen),expand = F)+
+    scale_fill_gradient(low="darkblue",high="white",na.value="darkgrey") +
+    theme(panel.border=element_rect(fill=NA, color="black"),
+          panel.background=element_rect(fill='grey95', color=NA),
+          panel.grid = element_blank(),
+          axis.title=element_blank(),
+          axis.text=element_blank(),
+          axis.ticks=element_blank(),
+          legend.position="right",
+              plot.margin = unit(c(0,0,0,0), "cm"))
+f3map
+
+```
+
+
+```{r}
+bamfile <- "../../results/Aaeg1200g_structure_data/aegy.wgs.non-AfrI3.AfrI3.unrel.n1206.bams"
+structfile <- "../../results/Aaeg1200g_structure_data/aegy.wgs.non-AfrI3.AfrI3.unrel.n1206.1e6.beagle.gz.K2.mI1100.mM01.out.qopt"
+structure <- cbind(read.table(bamfile,col.names="bam"),
+                   read.table(structfile,col.names = c("P1","P2"))) %>%  
+                mutate(sample = gsub("\\..*bam","",gsub(".*\\/","",bam,perl=T),perl=T)) %>%
+                merge(read.table("../../resources/meta_Aaeg1kg_spp.txt",sep="\t",header=T)[,c("sample","pop")]) %>% 
+                mutate(pop=gsub("Cuanda","Luanda",pop)) %>%
+                merge(poptotals) %>% 
+                mutate(country = factor(country,cntorder))
+
+# structureM <- structure %>% pivot_longer(cols = c(P1,P2))
+# ggplot(structureM,aes(x=sample,fill=name,y=value)) + 
+#     geom_bar(position="stack",stat="identity") + 
+#     facet_grid(. ~country, space="free_x",scales="free_x")
+                
+
+aaaprop <- structure %>% 
+            dplyr::select(country,index,pop,P1,P2,f3z) %>% 
+            dplyr::group_by(country,pop,index) %>%
+            dplyr::summarize(aaasd = sd(P1), aaamean = mean(P1), 
+                             aasd = sd(P2), aafmean = mean(P2),
+                             aaaprop = sum(P1)/(sum(P2)+sum(P1)),
+                             f3z = mean(f3z))
+
+
+aaaplot <- ggplot(aaaprop,aes(x=index,y="Aaa proportion",fill=aaaprop)) + 
+            geom_raster() + 
+            scale_fill_gradient(low="#A23D30",high="#8AC3C2",na.value="darkgrey") +
+#            scale_fill_gradient(low="#fff7bc",high="#b2182b",na.value="darkgrey") +
+            coord_fixed(expand=F,ratio=fxr)+
+            theme(panel.border=element_rect(fill=NA, color="black"),
+              panel.background=element_rect(fill='grey95', color=NA),
+              panel.grid = element_blank(),
+              axis.title=element_blank(),
+              axis.text.x=element_blank(),
+              axis.ticks=element_blank(),
+              legend.position="right",
+              plot.margin = unit(c(0,0,0,0), "cm"))
+svglite(paste(prefix,"aaa_plot.svg",sep="_"))
+aaaplot      
+dev.off()
+  
+
+poptotals <- poptotals %>% merge(aaaprop[,c("index","aaaprop","aaasd")],all.x=T)
+```
+
+```{r}
+poptotals
+poptotals[poptotals$country %in%  c("Senegal","Burkina Faso","Ghana","Nigeria", "Cameroon","Gabon","Angola","South Africa", "Uganda","Kenya"),c("country","pop","aaasd","aaaprop","region")]
+
+
+aaabar <- ggplot(poptotals,aes(x=pop,group=region,fill=region,y=aaaprop)) + 
+  geom_bar(stat="identity") + 
+  theme(axis.text.x=element_text(angle=90,hjust=1),
+        legend.position="bottom")+
+  facet_grid(. ~ region,scales="free_x",space="free_x")
+aaabar 
+
+```
+
+```{r}
+
+aaamap <- ggplot(poptotals,aes(x=longdisp, y=latdisp, label=pop,xend=long, yend=lat)) +
+    geom_polygon(data = world, aes(x=long, y=lat, group=group), fill='grey70',color="grey40",size=0.2,inherit.aes=F) +
+    geom_segment(data=subset(poptotals,displaced)) +
+    geom_text(data=poptotals, aes(label=index)) +
+    geom_rect(data=subset(poptotals,pop=="Tahiti"), 
+              aes(ymin=latdisp-4,ymax=latdisp+4,
+                  xmin=longdisp-4,xmax=longdisp+4),
+              fill="grey95",color="black",linetype="dashed",) +
+    geom_segment(aes(x=longdisp, y=latdisp,xend=winpos, yend=-48),color="grey30") +
+    geom_point(data=poptotals, aes(fill=aaaprop,size=num_bams), shape=21) +
+    coord_fixed(ylim=c(-48,48),xlim=c(longcut,longcut+maplen),expand = F)+
+    scale_fill_gradient(low="#A23D30",high="#8AC3C2",na.value="darkgrey") +
+    #scale_fill_gradient(low="#fff7bc",high="#b2182b",na.value="darkgrey") +
+    #scale_fill_gradient(low="#2166ac",high="#b2182b",na.value="darkgrey") +
+    #scale_fill_gradient2(low="#2166ac",mid="white",high="#b2182b",midpoint = 0.5,na.value="darkgrey") +
+    theme(panel.border=element_rect(fill=NA, color="black"),
+          panel.background=element_rect(fill='grey95', color=NA),
+          panel.grid = element_blank(),
+          axis.title=element_blank(),
+          axis.text=element_blank(),
+          axis.ticks=element_blank(),
+          legend.position="bottom",
+              plot.margin = unit(c(0,0,0,0), "cm"))
+svglite(paste(prefix,"aaa_map.svg",sep="_"),width=12,height=10)
+aaamap
+dev.off()
+
+
+```
+
+
+
+```{r}
+
+resist <- read.table("../230816_kdrhaps_3/resistance_locus_prevalence_per_pop.txt",header=T,sep="\t") %>% 
+            merge(poptotals[c("label","pop","index","lat","long","longdisp","latdisp","num_bams")],all.x=T) %>%
+            pivot_longer(cols=c(V1016G,V1016I,F1534C,all),names_to = "locus",values_to="prevalence") %>%
+            mutate(locus = factor(locus,levels=c("V1016G","V1016I","F1534C","all")))
+```
+
+```{r}
+
+kdrmap <- ggplot(poptotals,aes(x=longdisp, y=latdisp, label=pop,xend=long, yend=lat)) +
+    geom_polygon(data = world, aes(x=long, y=lat, group=group), fill='grey70',color="grey40",size=0.2,inherit.aes=F) +
+    geom_segment(data=subset(poptotals,displaced)) +
+    geom_text(data=poptotals, aes(label=index)) +
+    geom_rect(data=subset(poptotals,pop=="Tahiti"), 
+              aes(ymin=latdisp-4,ymax=latdisp+4,
+                  xmin=longdisp-4,xmax=longdisp+4),
+              fill="grey95",color="black",linetype="dashed",) +
+    geom_segment(aes(x=longdisp, y=latdisp,xend=winpos, yend=-48),color="grey30") +
+    geom_point(data=subset(resist,locus=="F1534C"),aes(fill=prevalence,size=num_bams), shape=21) +
+    coord_fixed(ylim=c(-48,48),xlim=c(longcut,longcut+maplen),expand = F)+
+    scale_fill_gradient(low="white",high="#b2182b",na.value="darkgrey",limits=c(0,1),name="F1534C") +
+    #scale_fill_gradient2(low="#2166ac",mid="white",high="#b2182b",midpoint = 0.5,na.value="darkgrey") +
+    theme(panel.border=element_rect(fill=NA, color="black"),
+          panel.background=element_rect(fill='grey95', color=NA),
+          panel.grid = element_blank(),
+          axis.title=element_blank(),
+          axis.text=element_blank(),
+          axis.ticks=element_blank(),
+          legend.position="bottom",
+              plot.margin = unit(c(0,0,0,0), "cm"))
+kdrmap
+
+
+svglite(paste(prefix,"kdr_map.svg",sep="_"),width=12,height=10)
+kdrmap
+dev.off()
+
+
+```
+
+```{r}
+sentotals = subset(resist,locus=="F1534C" & country=="Senegal")
+
+sentotals$longdisp = sentotals$long
+sentotals$latdisp = sentotals$lat
+
+sentotals$label[sentotals$label=="Dakar_Thies"] <- "Thies"
+#sentotals[sentotals$label=="Bantata",c("longdisp","latdisp")] <- #sentotals[sentotals$label=="Bantata",c("long","lat")]+c(-0.5,0.7)
+
+sentotals[sentotals$label=="PK10",c("longdisp","latdisp")] <- sentotals[sentotals$label=="PK10",c("long","lat")]+c(-0,0.6)
+
+sentotals[sentotals$label=="Kedougou",c("longdisp","latdisp")] <- sentotals[sentotals$label=="Kedougou",c("long","lat")]+c(0.15,1.0)
+
+kdrsenmap <- ggplot(sentotals,aes(x=longdisp, y=latdisp, label=pop,xend=long,yend=lat)) +
+    geom_polygon(data = world, aes(x=long, y=lat, group=group), fill='grey70',color="grey40",size=0.2,inherit.aes=F) +
+    geom_segment() +
+    geom_point(data=subset(sentotals,locus=="F1534C"),aes(fill=prevalence,size=num_bams), shape=21) +
+    geom_text(data=subset(sentotals,label %in% c("Thies","Mindin","Bantata","PK10","Kedougou")), aes(label=label),hjust=1.4) +
+    geom_text(data=subset(sentotals,label %in% c("Ngoye")), aes(label=label),hjust=-0.4) +
+    coord_fixed(xlim =c(-18,-11),ylim=c(12,17), expand = F)+
+    scale_fill_gradient(low="white",high="#b2182b",na.value="darkgrey",limits=c(0,1)) +
+    #scale_fill_gradient2(low="#2166ac",mid="white",high="#b2182b",midpoint = 0.5,na.value="darkgrey") +
+    theme(panel.border=element_rect(fill=NA, color="black"),
+          panel.background=element_rect(fill='grey95', color=NA),
+          panel.grid = element_blank(),
+          axis.title=element_blank(),
+          axis.text=element_blank(),
+          axis.ticks=element_blank(),
+          legend.position="bottom",
+              plot.margin = unit(c(0,0,0,0), "cm"))
+kdrsenmap
+
+svglite(paste(prefix,"kdr_sen_map.svg",sep="_"),width=4,height=4)
+kdrsenmap
+dev.off()
+
+```
+
+
+
+
+```{r}
+fxr=2
+
+
+f3plot <- ggplot(poptotals,aes(x=index,y="admixture (F3)",fill=f3zdisp)) + 
+            geom_raster() + 
+            scale_fill_gradient(low="#b2182b",high="white",na.value="grey") + 
+            coord_fixed(expand=F,ratio=fxr)+
+            theme(panel.border=element_rect(fill=NA, color="black"),
+              panel.background=element_rect(fill='grey95', color=NA),
+              panel.grid = element_blank(),
+              axis.title=element_blank(),
+              axis.text.x=element_blank(),
+              axis.ticks=element_blank(),
+              legend.position="right",
+              plot.margin = unit(c(0,0,0,0), "cm"))
+f3plot      
+
+
+svglite(paste(prefix,"admixture_plot.svg",sep="_"),width=12)
+f3plot
+dev.off()
+
+
+
+```
+
+
+```{r}
+
+resplot <- ggplot(resist,aes(x=index,y=locus,fill=prevalence)) + geom_raster() + 
+          scale_fill_gradient(high="darkblue",low="white",na.value="grey") + 
+          coord_fixed(expand=F,ratio=fxr)+
+          theme(panel.border=element_rect(fill=NA, color="black"),
+            panel.background=element_rect(fill='grey95', color=NA),
+            panel.grid = element_blank(),
+            axis.title=element_blank(),
+            axis.text.x=element_blank(),
+            axis.ticks=element_blank(),
+            legend.position="right",
+              plot.margin = unit(c(0,0,0,0), "cm"))
+resplot
+
+
+svglite(paste(prefix,"resistance_plot.svg",sep="_"),width=10)
+resplot
+dev.off()
+
+
+```
+
+```{r}
+
+outbreaks <- read.table("DENV_outbreaks_gainor_22.txt",header=T,sep="\t",
+                        )%>% 
+            merge(poptotals[c("country","pop","index")],all.y=T)
+
+outbreaksC <- outbreaks %>% filter(!is.na(no_outbreaks)) %>%
+                  dplyr::group_by(country) %>% 
+                  dplyr::summarise(no_outbreaks = mean(no_outbreaks),
+                                    mindex = min(index)-0.5,
+                                    maxdex = max(index)+0.5,
+                                    n=n())
+outcols = c("0"="#ffffff",
+  "1"="#fed976",
+  "2"="#fd8d3c",
+  "3"="#fc4e2a")
+
+
+outplot <- ggplot(outbreaks,aes(x=index,y="Dengue outbreaks",fill=factor(no_outbreaks), group=country)) +   
+          geom_tile() + 
+          geom_rect(data=outbreaksC,aes(xmin=mindex,xmax=maxdex,ymin=0.5,ymax=1.5),inherit.aes=F,color="black",fill=NA) + 
+          scale_fill_manual("outbreaks",values=outcols,na.value=NA) + 
+          coord_fixed(expand=F,ratio=fxr)+
+          theme(
+            panel.background=element_rect(fill='white', color=NA),
+            panel.grid = element_blank(),
+            axis.title=element_blank(),
+            axis.text.x=element_blank(),
+            axis.ticks=element_blank(),
+            legend.position="right",
+              plot.margin = unit(c(0,0,0,0), "cm"))
+outplot
+
+
+
+
+svglite(paste(prefix,"outbreaks_plot.svg",sep="_"))
+outplot
+dev.off()
+
+
+
+
+```
+
+
+```{r}
+
+cdcriskall <- read.table("CDC_DENV_risk_profile.tsv",header=T,sep="\t")
+cdcriskall$country[cdcriskall$country == "United Republic of Tanzania"] <- "Tanzania"
+
+cdcriskall$country[cdcriskall$country == "Congo (Democratic republic of)"] <- "Democratic Republic of the Congo"
+cdcriskall$country[cdcriskall$country == "Congo"] <- "Republic of Congo"
+cdcrisk <- cdcriskall %>% 
+            merge(poptotals[c("country","pop","index")],all.y=T)
+
+
+cdcriskman <- read.table("CDC_DENV_risk_profile_manual.tsv",header=T,sep="\t") %>% column_to_rownames(var = "pop")
+
+snames = cdcrisk$pop[cdcrisk$pop %in% rownames(cdcriskman)]
+cdcrisk$risk[cdcrisk$pop %in% snames] <- cdcriskman[snames,"risk"]
+
+cdcrisksC <- cdcrisk %>% filter(!is.na(risk)) %>%
+                  dplyr::group_by(country) %>%
+                  dplyr::summarise(
+                                    mindex = min(index)-0.5,
+                                    maxdex = max(index)+0.5,
+                                    n=n())
+
+cdcplot <- ggplot(cdcrisk,aes(x=index,y="CDC dengue risk",fill=risk, group=country)) +   
+          geom_tile() + 
+           geom_rect(data=cdcrisksC,aes(xmin=mindex,xmax=maxdex,ymin=0.5,ymax=1.5),inherit.aes=F,color="black",fill=NA) + 
+          scale_fill_manual(values=c("Frequent/Continuous"="#fc4e2a",
+                                     "Sporadic/Uncertain"="#fed976")) + 
+          coord_fixed(expand=F,ratio=fxr)+
+          theme(
+            panel.background=element_rect(fill='white', color=NA),
+            panel.grid = element_blank(),
+            axis.title=element_blank(),
+            axis.text.x=element_blank(),
+            axis.ticks=element_blank(),
+            legend.position="right",
+              plot.margin = unit(c(0,0,0,0), "cm"))
+cdcplot
+
+svglite(paste(prefix,"cdcrisk_plot.svg",sep="_"))
+cdcplot
+dev.off()
+
+```
+
+```{r}
+samplehaps <- read.table("../230816_kdrhaps_3/sample_haplotype_mapping.txt",sep="\t",header=T)
+samplehaps$displayhap <- samplehaps$hap
+
+#manual merges of minor haps:
+merges <- list()
+
+#merges[["H001"]] <- c("H038","H035","H034","H026","H017","H012","H037","H011")
+merges[["H001s"]] <- c("H001","H010","H034","H017")
+merges[["H001r"]] <- c("H038","H035","H026",
+                      "H012","H037","H011")
+merges[["H002"]] <- c("H020","H018","H021","H045","H047","H033","H048","H025")
+merges[["H003"]] <- c("H040","H027","H015","H024","H014","H022","H032","H013")
+merges[["H004"]] <- c("H031","H042","H046")
+merges[["H005"]] <- c()
+merges[["H006"]] <- c("H030","H029","H028","H019")
+merges[["H007"]] <- c("H036","H039")
+merges[["H008"]] <- c("H043","H044")
+merges[["H009"]] <- c()
+merges[["H010r"]] <- c("H041","H016","H023")
+
+for(H in names(merges)) {
+  write(H,stderr())
+  samplehaps$displayhap[samplehaps$displayhap %in% merges[[H]]] <- H
+}
+
+african=c("H009") 
+asian=c("H001r","H004","H003","H006") 
+american=c("H010r","H008","H007","H005","H002") 
+horder = c("H001s",african,asian,american)
+
+
+library(RColorBrewer)  
+cols = c(
+  c("#ffffe5","#fec44f"),
+  brewer.pal(length(asian)+1,"Blues")[2:(length(asian)+1)],
+  #c("#3182bd"),
+  brewer.pal(length(american)+1,"Reds")[2:(length(american)+1)]
+  )
+  
+names(cols) = horder
+samplehaps$displayhap <- factor(samplehaps$displayhap,levels=rev(horder))
+cols
+
+hapcntcount <- samplehaps %>% dplyr::select("sample","country","hap","pop","displayhap") %>% 
+                    group_by(pop,displayhap) %>% 
+                    dplyr::summarise(hapcount=n()) %>%
+                    merge(poptotals[,c("country","index","pop")])
+hapcntcount$country <- factor(hapcntcount$country,levels=cntorder)
+
+
+
+
+happlot <- ggplot(hapcntcount,aes(x=index,y=hapcount,fill=displayhap)) + 
+  geom_bar(stat="identity",position = "fill") +
+  scale_fill_manual(values=cols)+
+  scale_x_continuous(expand = c(0,0))+
+  scale_y_continuous(expand = c(0,0))+
+  theme(panel.border=element_rect(fill=NA, color="black"),
+              panel.grid = element_blank(),
+              axis.title=element_blank(),
+              axis.text.x=element_blank(),
+              axis.ticks=element_blank(),
+              legend.position="right",
+              plot.margin = unit(c(0,0,0,0), "cm"))
+
+happlot 
+
+svglite(paste(prefix,"haplotype_bar_plot.svg",sep="_"))
+happlot
+dev.off()
+
+
+
+``` 
+
+```{r}
+noleg <- theme(legend.position="none")
+
+f3mapPW <- f3map + noleg
+aaamapPW <- aaamap + noleg
+f3plotPW <- f3plot + noleg
+aaaplotPW <- aaaplot + noleg
+resplotPW <- resplot + noleg
+happlotPW <- happlot + noleg
+outplotPW <- outplot + noleg
+cdcplotPW <- cdcplot + noleg
+
+
+(aaamapPW / ((
+            ((aaaplotPW / f3plotPW / outplotPW /cdcplotPW / resplotPW / happlotPW) + plot_layout(heights=c(1,1,1,1,2,6))) 
+            | plot_spacer()
+            ) + plot_layout(widths=c(8,2)))
+) + plot_layout(heights=c(4,6))
+
+
+
+svglite(paste(prefix,"combined_plot.svg",sep="_"),width=12,height=10)
+(aaamapPW / ((
+            ((f3plotPW / outplotPW /cdcplotPW / resplotPW / happlotPW) + plot_layout(heights=c(1,1,1,2,6))) 
+            | plot_spacer()
+            ) + plot_layout(widths=c(8,2)))
+) + plot_layout(heights=c(4,6))
+dev.off()
+
+# admdes <- "11111
+# 11111
+# 11111
+# 11111
+# 22225
+# 33335
+# 33335
+# 44445
+# 44445
+# 44445"
+# 
+# f3map + f3plot + resplot + happlot + guide_area() + plot_layout(design=admdes,guides="collect")
+```
+
+
+
+```{r}
+library("rnaturalearth")
+library("geosphere")
+library("sf")
+
+coast <- ne_coastline(returnclass = "sf",scale = "small")
+
+africapoptotals <- poptotals[poptotals$region %in% c("East Africa","West Africa"),]
+
+africasf <- poptotals[poptotals$region %in% c("East Africa","West Africa"),] %>% 
+              st_as_sf(coords = c('long','lat')) %>% 
+              st_set_crs(4326)
+
+# use dist2Line from geosphere - only works for WGS84 
+#data
+# dist <- geosphere::dist2Line(p = st_coordinates(senegalsf), 
+#                          line = coast)
+
+dist <- geosphere::dist2Line(p = st_coordinates(africasf), 
+                         line = st_coordinates(coast)[,c(1,2)])
+
+dist <- as.data.frame(dist)
+colnames(dist) <- c("distance","coastlon","coastlat")
+dist$distance <- round(dist$distance/1e3)
+
+dist2f3z <- cbind(dist,africapoptotals[c("pop","country","region","index","lat","long","f3z","f3zdisp")])
+
+
+dist2aaaprop <- merge(dist2f3z,poptotals[,c("pop","country","aaaprop","aaasd")])
+
+
+ggplot(dist2f3z,aes(x=distance,y=f3zdisp,color=region,label=pop)) + 
+        geom_point() +
+        geom_text(data=subset(dist2f3z,country %in% c("Senegal","Burkina Faso","Kenya")),hjust=0,angle=45) + 
+        xlab("distance to coast (km)") + ylab("admixture (f3)") #+
+        #geom_smooth(method="lm")
+
+distaaadot <- ggplot(dist2aaaprop,aes(x=distance,y=aaaprop,color=region,label=pop)) + 
+        geom_point() +
+        xlab("distance to coast (km)") + 
+        ylab("aaa proportion (STRUCTURE)") +
+        theme(legend.position="bottom")  #+
+        #geom_smooth(method="lm")
+
+ggplot(dist2f3z,aes(x=distance,y=f3z,color=region,label=pop)) + 
+        geom_hline(yintercept=-2,linetype="dashed") +
+        geom_point() +
+        geom_text(data=subset(dist2f3z,country %in% c("Senegal","Burkina Faso","Kenya")),hjust=0,angle=45) + 
+        xlab("distance to coast (km)") + ylab("admixture (f3)") #+
+        #geom_smooth(method="lm")
+
+
+dist2f3z$admixed <- dist2f3z$f3z<=-3
+dist2f3z$admixed[is.na(dist2f3z$admixed)] <- F  #fill in Franceville as unadmixed
+
+ggplot(dist2f3z,aes(x=region,color=admixed,group=paste(admixed,region),y=distance)) + 
+  geom_boxplot()
+
+
+distplot <- ggplot(dist2f3z,aes(x=index,y=distance)) + 
+        geom_bar(stat="identity")+
+        #ylab("distance to coast (km)")+
+        scale_x_continuous(limits=c(1,72),expand=c(0,0))+
+        #scale_y_continuous(limits=c(0,1200),expand=c(0,0),breaks=c(0,500,1000),position = "right",
+        #                   sec.axis=dup_axis(breaks=c(600),labels=c("distance to coast (km)")))+
+        scale_y_continuous(limits=c(0,1200),expand=c(0,0),breaks=c(0,500,1000),position = "left")+
+        theme(
+            panel.background=element_rect(fill='white', color="black"),
+            panel.grid = element_blank(),
+            axis.title=element_blank(),
+            #axis.title.y=element_text(angle=0,vjust=0.5),
+            axis.text.x=element_blank(),
+            axis.ticks=element_blank(),
+            legend.position="right",
+            plot.margin = unit(c(0,0,0,0), "cm"))
+
+
+distplotL2 <- ggplot(dist2f3z,aes(x=index,y=distance)) + 
+        geom_bar(stat="identity")+
+        #ylab("distance to coast (km)")+
+        scale_x_continuous(limits=c(1,72),expand=c(0,0))+
+        scale_y_continuous(limits=c(0,1200),expand=c(0,0),breaks=c(0,500,1000),position = "right",
+                          sec.axis=dup_axis(breaks=c(600),labels=c("distance to coast (km)")))+
+        theme(
+            panel.background=element_rect(fill='white', color="black"),
+            panel.grid = element_blank(),
+            axis.title=element_blank(),
+            #axis.title.y=element_text(angle=0,vjust=0.5),
+            axis.text.x=element_blank(),
+            axis.ticks=element_blank(),
+            legend.position="right",
+            plot.margin = unit(c(0,0,0,0), "cm"))
+
+
+svglite(paste(prefix,"inland_dist_bar_plot.svg",sep="_"))
+distplot
+dev.off()
+
+
+
+svglite(paste(prefix,"combined_plot_dist.svg",sep="_"),width=12,height=10)
+(f3mapPW / ((
+            ((distplot / f3plotPW / outplotPW /cdcplotPW / resplotPW / happlotPW) + plot_layout(heights=c(1,0.5,0.5,0.5,2,4))) 
+            | plot_spacer()
+            ) + plot_layout(widths=c(8,2)))
+) + plot_layout(heights=c(4,6))
+dev.off()
+
+
+
+```
+
+
+```{r}
+distaaadot | aaabar
+
+```
+
+
+```{r}
+
+f3map_nl <- ggplot(poptotals,aes(x=longdisp, y=latdisp, label=pop,xend=long, yend=lat)) +
+    geom_polygon(data = world, aes(x=long, y=lat, group=group), fill='grey70',color="grey40",size=0.2,inherit.aes=F) +
+    geom_segment(data=subset(poptotals,displaced)) +
+    geom_text(data=poptotals, aes(label=index)) +
+    geom_rect(data=subset(poptotals,pop=="Tahiti"), 
+              aes(ymin=latdisp-4,ymax=latdisp+4,
+                  xmin=longdisp-4,xmax=longdisp+4),
+              fill="grey95",color="black",linetype="dashed",) +
+    geom_point(data=poptotals, aes(fill=f3zdisp,size=num_bams), shape=21) +
+    coord_fixed(ylim=c(-48,48),xlim=c(longcut,longcut+maplen),expand = F)+
+    scale_fill_gradient(low="darkblue",high="white",na.value="darkgrey") +
+    theme(panel.border=element_rect(fill=NA, color="black"),
+          panel.background=element_rect(fill='grey95', color=NA),
+          panel.grid = element_blank(),
+          axis.title=element_blank(),
+          axis.text=element_blank(),
+          axis.ticks=element_blank(),
+          legend.position="bottom",
+              plot.margin = unit(c(0,0,0,0), "cm"))
+
+svglite(paste(prefix,"f3_map.svg",sep="_"))
+f3map_nl
+dev.off()
+
+
+aaamap_nl <- ggplot(poptotals,aes(x=longdisp, y=latdisp, label=pop,xend=long, yend=lat)) +
+    geom_polygon(data = world, aes(x=long, y=lat, group=group), fill='grey70',color="grey40",size=0.2,inherit.aes=F) +
+    geom_segment(data=subset(poptotals,displaced)) +
+    geom_text(data=poptotals, aes(label=index)) +
+    geom_rect(data=subset(poptotals,pop=="Tahiti"), 
+              aes(ymin=latdisp-4,ymax=latdisp+4,
+                  xmin=longdisp-4,xmax=longdisp+4),
+              fill="grey95",color="black",linetype="dashed",) +
+    geom_point(data=poptotals, aes(fill=aaaprop,size=num_bams), shape=21) +
+    coord_fixed(ylim=c(-48,48),xlim=c(longcut,longcut+maplen),expand = F)+
+    scale_fill_gradient(low="#fff7bc",high="#b2182b",na.value="darkgrey",name="Aaa ancestry") +
+    theme(panel.border=element_rect(fill=NA, color="black"),
+          panel.background=element_rect(fill='grey95', color=NA),
+          panel.grid = element_blank(),
+          axis.title=element_blank(),
+          axis.text=element_blank(),
+          axis.ticks=element_blank(),
+          legend.position="bottom",
+              plot.margin = unit(c(0,0,0,0), "cm"))
+
+svglite(paste(prefix,"aaa_map.svg",sep="_"))
+aaamap_nl
+dev.off()
+
+
+samplemap_nl <- ggplot(poptotals,aes(x=longdisp, y=latdisp, label=pop,xend=long, yend=lat)) +
+    geom_polygon(data = world, aes(x=long, y=lat, group=group), fill='grey70',color="grey40",size=0.2,inherit.aes=F) +
+    geom_segment(data=subset(poptotals,displaced)) +
+    geom_text(data=poptotals, aes(label=index)) +
+    geom_rect(data=subset(poptotals,pop=="Tahiti"), 
+              aes(ymin=latdisp-4,ymax=latdisp+4,
+                  xmin=longdisp-4,xmax=longdisp+4),
+              fill="grey95",color="black",linetype="dashed",) +
+    geom_point(data=poptotals, aes(size=num_bams), fill="grey",shape=21) +
+    coord_fixed(ylim=c(-48,48),xlim=c(longcut,longcut+maplen),expand = F)+
+    theme(panel.border=element_rect(fill=NA, color="black"),
+          panel.background=element_rect(fill='grey95', color=NA),
+          panel.grid = element_blank(),
+          axis.title=element_blank(),
+          axis.text=element_blank(),
+          axis.ticks=element_blank(),
+          legend.position="bottom",
+              plot.margin = unit(c(0,0,0,0), "cm"))
+svglite(paste(prefix,"sample_map.svg",sep="_"))
+samplemap_nl
+dev.off()
+
+basemap_nl <- ggplot(poptotals,aes(x=longdisp, y=latdisp, label=pop,xend=long, yend=lat)) +
+    geom_polygon(data = world, aes(x=long, y=lat, group=group), fill='grey70',color="grey40",size=0.2,inherit.aes=F) +
+    geom_rect(data=subset(poptotals,pop=="Tahiti"), 
+              aes(ymin=latdisp-4,ymax=latdisp+4,
+                  xmin=longdisp-4,xmax=longdisp+4),
+              fill="grey95",color="black",linetype="dashed",) +
+    coord_fixed(ylim=c(-48,48),xlim=c(longcut,longcut+maplen),expand = F)+
+    theme(panel.border=element_rect(fill=NA, color="black"),
+          panel.background=element_rect(fill='grey95', color=NA),
+          panel.grid = element_blank(),
+          axis.title=element_blank(),
+          axis.text=element_blank(),
+          axis.ticks=element_blank(),
+          legend.position="bottom",
+              plot.margin = unit(c(0,0,0,0), "cm"))
+svglite(paste(prefix,"base_map.svg",sep="_"))
+basemap_nl
+dev.off()
+```
+
+
+```{r}
+
+pop4sum <- read.table("../230713_admix_4pop/admix_tests/4pop_123_summaries.txt",
+                      col.names=c("p1","p2","p3","p4","chr","f4","f4se","f4z","f4sig","f4result"),fill=NA) %>%
+                    mutate(p3=gsub("Cuanda","Luanda",p3))
+pop4sum$f4sig <- as.logical(pop4sum$f4sig)
+pop4sum$donorspp=NA
+pop4sum$donorspp[pop4sum$f4 > 0 & pop4sum$f4sig] <- "AAF"
+pop4sum$donorspp[pop4sum$f4 < 0 & pop4sum$f4sig] <- "AAA/pAAA"
+
+parents <- c("Franceville","NewOrleans")
+#parents <- c("Bantata","HoChiMin")
+#parents <- c("Kedougou","ElDorado")
+pop4sum <- subset(pop4sum,p1 %in% parents & p2 %in% parents)
+pop4sum$set <- paste(pop4sum$p3,pop4sum$p1,pop4sum$p2,sep="/")
+pop4sum$parent <- paste(pop4sum$p1,pop4sum$p3,sep="/")
+pop4sum$f4sig <- as.logical(pop4sum$f4sig)
+f4zlim=3
+pop4sum$sig <- abs(pop4sum$f4z) > f4zlim
+write(paste("found",nrow(pop4sum),"summary lines from",1,"files"),stderr())
+
+
+poptotalsF4 <- merge(poptotals,
+                     pop4sum[,c("f4","f4z","f4sig","f4result","p3")],poptotals,by.y="p3",by.x="pop")
+
+
+f4map_nl <- ggplot(poptotalsF4,aes(x=longdisp, y=latdisp, label=pop,xend=long, yend=lat)) +
+    geom_polygon(data = world, aes(x=long, y=lat, group=group), fill='grey70',color="grey40",size=0.2,inherit.aes=F) +
+    geom_segment(data=subset(poptotalsF4,displaced)) +
+    geom_point(aes(fill=f4,size=num_bams), shape=21) +
+    coord_fixed(ylim=c(-48,48),xlim=c(longcut,longcut+maplen),expand = F)+
+    scale_fill_gradient2(low="red",mid="white",high="blue",
+                         na.value="grey",limits=c(-0.5,0.5)) +
+    scale_color_manual(values=c("red","blue"),na.value="grey",guide="none") +
+    theme(panel.border=element_rect(fill=NA, color="black"),
+          panel.background=element_rect(fill='grey95', color=NA),
+          panel.grid = element_blank(),
+          axis.title=element_blank(),
+          axis.text=element_blank(),
+          axis.ticks=element_blank(),
+          legend.position="bottom",
+              plot.margin = unit(c(0,0,0,0), "cm"))
+
+f4map_nl
+
+svglite(paste(prefix,"base_map_F4.svg",sep="_"))
+f4map_nl
+dev.off()
+
+
+```
+
+
+```{r}
+selcnt <- subset(world,region %in% c("Argentina","USA","India"))
+selcntrisk <- merge(selcnt,cdcriskall,by.x="region",by.y="country",all.x=T)
+selcntrisk <- selcntrisk[order(selcntrisk$order),]
+
+worldrisk <- merge(world,cdcriskall,by.x="region",by.y="country",all.x=T)
+worldrisk <- worldrisk[order(worldrisk$order),]
+worldrisk$risk <- gsub(". See map.","",worldrisk$risk)
+
+cdcmap <- ggplot(world) +
+    geom_polygon(data=worldrisk,aes(x=long, y=lat,group=group,fill=risk),color="black",size=0.2) +
+    coord_fixed(ylim=c(-48,48),xlim=c(longcut,longcut+maplen),expand = F)+
+    scale_fill_manual(values=c("Frequent/Continuous"="#fc4e2a",
+                               "Risk varies based on region"="#fda210",
+                               "Sporadic/Uncertain"="#fed976")) + 
+         theme(panel.border=element_rect(fill=NA, color="black"),
+          panel.background=element_rect(fill='grey95', color=NA),
+          panel.grid = element_blank(),
+          axis.title=element_blank(),
+          axis.text=element_blank(),
+          axis.ticks=element_blank(),
+          legend.position="bottom",
+              plot.margin = unit(c(0,0,0,0), "cm"))
+
+cdcmap
+
+svglite(paste(prefix,"base_map_cdcrisk.svg",sep="_"))
+cdcmap
+dev.off()
+
+```
+
